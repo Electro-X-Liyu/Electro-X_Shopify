@@ -133,6 +133,9 @@
                     "type": "column",
                     "settings": {
                         "image": "shopify:\/\/shop_images\/banner-1.png",
+                        "title": "",
+                        "text": "",
+                        "link_label": "",
                         "link": "shopify:\/\/products\/natural-alkaline-water"
                     }
                 },
@@ -140,6 +143,9 @@
                     "type": "column",
                     "settings": {
                         "image": "shopify:\/\/shop_images\/banner-2.png",
+                        "title": "",
+                        "text": "",
+                        "link_label": "",
                         "link": "shopify:\/\/products\/collection2"
                     }
                 },
@@ -147,6 +153,9 @@
                     "type": "column",
                     "settings": {
                         "image": "shopify:\/\/shop_images\/banner-3.png",
+                        "title": "",
+                        "text": "",
+                        "link_label": "",
                         "link": "shopify:\/\/products\/collection3"
                     }
                 },
@@ -154,6 +163,9 @@
                     "type": "column",
                     "settings": {
                         "image": "shopify:\/\/shop_images\/banner-4.png",
+                        "title": "",
+                        "text": "",
+                        "link_label": "",
                         "link": "shopify:\/\/products\/collection4"
                     }
                 },
@@ -161,6 +173,9 @@
                     "type": "column",
                     "settings": {
                         "image": "shopify:\/\/shop_images\/banner-5.png",
+                        "title": "",
+                        "text": "",
+                        "link_label": "",
                         "link": "shopify:\/\/products\/collection5"
                     }
                 }
@@ -187,7 +202,8 @@
                 "swipe_on_mobile": true,
                 "padding_top": 0,
                 "padding_bottom": 0
-            }
+            },
+            "custom_css": []
         },
         "featured_collection_NBGF7K": {
             "type": "featured-collection",
