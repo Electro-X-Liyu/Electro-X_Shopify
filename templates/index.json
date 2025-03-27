@@ -1,1 +1,450 @@
-{"sections":{"image_banner":{"type":"image-banner","blocks":{"heading":{"type":"heading","settings":{"heading":"ELECTRO X","heading_size":"h2"}},"text_cAgx7H":{"type":"text","settings":{"text":"MOVE TO BALANCE","text_style":"body"}},"button":{"type":"buttons","disabled":true,"settings":{"button_label_1":"Shop all","button_link_1":"shopify:\/\/collections\/all","button_style_secondary_1":false,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}}},"block_order":["heading","text_cAgx7H","button"],"settings":{"image":"shopify:\/\/shop_images\/2-1.jpg","image_overlay_opacity":0,"image_height":"large","image_behavior":"zoom-in","desktop_content_position":"bottom-center","desktop_content_alignment":"center","show_text_box":false,"color_scheme":"scheme-3","stack_images_on_mobile":false,"mobile_content_alignment":"center","show_text_below":false}},"featured_collection_ehmbKr":{"type":"featured-collection","disabled":true,"settings":{"collection":"natural-alkaline-water","products_to_show":2,"title":"Natural Alkaline Water","heading_size":"h1","description":"<p>ELECTRO X Natural Alkaline Water is a non-carbonated, natural alkaline water bottled and sourced in Heilongjiang Province, China.It has a pH level of 8.8 and above and contains a rich concentration of sodium bicarbonate (approximately 350-700 mg per liter).380mL | 580mL | 1L<\/p><ul><li>Naturally Alkaline Spring Water<\/li><li>100% Recycleable PET<\/li><\/ul>","show_description":true,"description_style":"body","columns_desktop":1,"enable_desktop_slider":false,"full_width":false,"show_view_all":false,"view_all_style":"link","color_scheme":"","image_ratio":"adapt","image_shape":"default","show_secondary_image":true,"show_vendor":true,"show_rating":true,"quick_add":"none","columns_mobile":"1","swipe_on_mobile":false,"padding_top":0,"padding_bottom":0}},"image_with_text_PJG4Yp":{"type":"image-with-text","blocks":{"heading_YJ83XK":{"type":"heading","settings":{"heading":"Natural Alkaline Water","heading_size":"h2"}},"text_mfE9mG":{"type":"text","settings":{"text":"<h5>ELECTRO X Natural Alkaline Water is a non-carbonated, natural alkaline water bottled and sourced in Heilongjiang Province, China.It has a pH level of 8.8 and above and contains a rich concentration of sodium bicarbonate (approximately 350-700 mg per liter).<\/h5><h5>380mL | 580mL | 1L<\/h5><ul><li><h5>Naturally Alkaline Spring Water<\/h5><\/li><li><h5>100% Recycleable PET<\/h5><\/li><\/ul>","text_style":"body"}},"button_kg7NDY":{"type":"button","settings":{"button_label":"Shop Now","button_link":"shopify:\/\/products\/natural-alkaline-water","button_style_secondary":false}}},"block_order":["heading_YJ83XK","text_mfE9mG","button_kg7NDY"],"disabled":true,"settings":{"image":"shopify:\/\/shop_images\/580mL.png","height":"adapt","desktop_image_width":"small","layout":"image_first","image_behavior":"none","content_layout":"overlap","desktop_content_position":"middle","desktop_content_alignment":"left","mobile_content_alignment":"left","section_color_scheme":"","color_scheme":"","padding_top":36,"padding_bottom":36}},"image_banner_KNFeMR":{"type":"image-banner","settings":{"image":"shopify:\/\/shop_images\/output.png","image_overlay_opacity":0,"image_height":"adapt","image_behavior":"none","desktop_content_position":"middle-center","desktop_content_alignment":"center","show_text_box":true,"color_scheme":"","stack_images_on_mobile":true,"mobile_content_alignment":"center","show_text_below":true}},"featured_collection_NBGF7K":{"type":"featured-collection","disabled":true,"settings":{"collection":"electrolyte-sports-drink","products_to_show":2,"title":"Featured collection","heading_size":"h1","description":"","show_description":false,"description_style":"body","columns_desktop":2,"enable_desktop_slider":false,"full_width":false,"show_view_all":true,"view_all_style":"solid","color_scheme":"","image_ratio":"adapt","image_shape":"parallelogram","show_secondary_image":true,"show_vendor":true,"show_rating":false,"quick_add":"none","columns_mobile":"2","swipe_on_mobile":false,"padding_top":36,"padding_bottom":36}},"featured_collection_aCmKJ3":{"type":"featured-collection","disabled":true,"settings":{"collection":"electrolyte-liquid-concentrate","products_to_show":4,"title":"Featured collection","heading_size":"h1","description":"","show_description":false,"description_style":"body","columns_desktop":2,"enable_desktop_slider":false,"full_width":false,"show_view_all":true,"view_all_style":"solid","color_scheme":"","image_ratio":"adapt","image_shape":"default","show_secondary_image":true,"show_vendor":true,"show_rating":false,"quick_add":"none","columns_mobile":"2","swipe_on_mobile":false,"padding_top":36,"padding_bottom":36}},"collage_zNtJH3":{"type":"collage","blocks":{"image_LLTpWC":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/slim.png"}},"image_LkWxzD":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/580mL.png"}},"image_WHLGgV":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/2_2f442a53-7a56-40ca-b918-8a0f93408740.jpg"}}},"block_order":["image_LLTpWC","image_LkWxzD","image_WHLGgV"],"disabled":true,"settings":{"heading":"Multimedia collage","heading_size":"h1","desktop_layout":"right","mobile_layout":"column","card_styles":"product-card-wrapper","color_scheme":"","padding_top":36,"padding_bottom":36}},"image_banner_R9mHmC":{"type":"image-banner","settings":{"image":"shopify:\/\/shop_images\/1.jpg","image_overlay_opacity":0,"image_height":"medium","image_behavior":"none","desktop_content_position":"middle-center","desktop_content_alignment":"center","show_text_box":true,"color_scheme":"","stack_images_on_mobile":true,"mobile_content_alignment":"center","show_text_below":true}},"featured_blog_hcNHKd":{"type":"featured-blog","settings":{"blog":"sports-sponsorship-1","post_limit":3,"heading":"Sports Sponsors","heading_size":"h1","columns_desktop":3,"show_view_all":true,"show_image":true,"show_date":true,"show_author":false,"color_scheme":"","padding_top":36,"padding_bottom":36}},"image_banner_AYjrAd":{"type":"image-banner","blocks":{"heading_FgW6xC":{"type":"heading","settings":{"heading":"Community","heading_size":"h1"}},"text_wmp3KA":{"type":"text","settings":{"text":"ELECTRO X has built a strong community culture","text_style":"body"}}},"block_order":["heading_FgW6xC","text_wmp3KA"],"settings":{"image":"shopify:\/\/shop_images\/KV_demo__1.jpg","image_overlay_opacity":0,"image_height":"medium","image_behavior":"none","desktop_content_position":"middle-center","desktop_content_alignment":"center","show_text_box":true,"color_scheme":"","stack_images_on_mobile":true,"mobile_content_alignment":"center","show_text_below":true}},"multicolumn_jz97CR":{"type":"multicolumn","blocks":{"column_ieGQiV":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/KV-23.jpg","title":"","text":"<p>王健<\/p>","link_label":"","link":""}},"column_3jjM8E":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/KV__1.jpg","title":"","text":"<p>郭耔<\/p>","link_label":"","link":""}},"column_MfVzJV":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/KV-03.jpg","title":"","text":"<p>季思铭<\/p>","link_label":"","link":""}}},"block_order":["column_ieGQiV","column_3jjM8E","column_MfVzJV"],"settings":{"title":"Community Ambassador","heading_size":"h1","image_width":"full","image_ratio":"adapt","button_label":"","button_link":"","columns_desktop":3,"column_alignment":"center","background_style":"primary","color_scheme":"","columns_mobile":"2","swipe_on_mobile":true,"padding_top":36,"padding_bottom":36}},"rich_text_neCnki":{"type":"rich-text","blocks":{"text_K7wnnM":{"type":"text","settings":{"text":"<p>ELECTRO X has built partnership with community leaders across diverse sportsTogether with our community leaders, we are redefeining the hydration<\/p>"}}},"block_order":["text_K7wnnM"],"settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"","full_width":true,"padding_top":40,"padding_bottom":52}},"image_banner_rALkGg":{"type":"image-banner","blocks":{"heading_6d7cBD":{"type":"heading","settings":{"heading":"About Us","heading_size":"h1"}},"text_qPWrPW":{"type":"text","settings":{"text":"Established in 2021, ELECTRO X is a premium sports beverage brand dedicated to delivering functional hydration solutions. Our product portfolio includes. Natural Alkaline Water,Electrolyte & BCAA Drinks, andElectrolyte Liquid Concentrates, designed to meet the needs of athletes, fitness enthusiasts, and health-conscious individuals.","text_style":"body"}}},"block_order":["heading_6d7cBD","text_qPWrPW"],"settings":{"image":"shopify:\/\/shop_images\/3.jpg","image_overlay_opacity":0,"image_height":"medium","image_behavior":"none","desktop_content_position":"middle-center","desktop_content_alignment":"center","show_text_box":false,"color_scheme":"scheme-3","stack_images_on_mobile":true,"mobile_content_alignment":"center","show_text_below":true}}},"order":["image_banner","featured_collection_ehmbKr","image_with_text_PJG4Yp","image_banner_KNFeMR","featured_collection_NBGF7K","featured_collection_aCmKJ3","collage_zNtJH3","image_banner_R9mHmC","featured_blog_hcNHKd","image_banner_AYjrAd","multicolumn_jz97CR","rich_text_neCnki","image_banner_rALkGg"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "ELECTRO X",
+            "heading_size": "h2"
+          }
+        },
+        "text_cAgx7H": {
+          "type": "text",
+          "settings": {
+            "text": "MOVE TO BALANCE",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Shop all",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text_cAgx7H",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/2-1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "image_behavior": "zoom-in",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "featured_collection_ehmbKr": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "collection": "natural-alkaline-water",
+        "products_to_show": 2,
+        "title": "Natural Alkaline Water",
+        "heading_size": "h1",
+        "description": "<p>ELECTRO X Natural Alkaline Water is a non-carbonated, natural alkaline water bottled and sourced in Heilongjiang Province, China.It has a pH level of 8.8 and above and contains a rich concentration of sodium bicarbonate (approximately 350-700 mg per liter).380mL | 580mL | 1L</p><ul><li>Naturally Alkaline Spring Water</li><li>100% Recycleable PET</li></ul>",
+        "show_description": true,
+        "description_style": "body",
+        "columns_desktop": 1,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "link",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": true,
+        "quick_add": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_text_PJG4Yp": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_YJ83XK": {
+          "type": "heading",
+          "settings": {
+            "heading": "Natural Alkaline Water",
+            "heading_size": "h2"
+          }
+        },
+        "text_mfE9mG": {
+          "type": "text",
+          "settings": {
+            "text": "<h5>ELECTRO X Natural Alkaline Water is a non-carbonated, natural alkaline water bottled and sourced in Heilongjiang Province, China.It has a pH level of 8.8 and above and contains a rich concentration of sodium bicarbonate (approximately 350-700 mg per liter).</h5><h5>380mL | 580mL | 1L</h5><ul><li><h5>Naturally Alkaline Spring Water</h5></li><li><h5>100% Recycleable PET</h5></li></ul>",
+            "text_style": "body"
+          }
+        },
+        "button_kg7NDY": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop Now",
+            "button_link": "shopify://products/natural-alkaline-water",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_YJ83XK",
+        "text_mfE9mG",
+        "button_kg7NDY"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/580mL.png",
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_banner_KNFeMR": {
+      "type": "image-banner",
+      "settings": {
+        "image": "shopify://shop_images/output.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "featured_collection_NBGF7K": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "collection": "electrolyte-sports-drink",
+        "products_to_show": 2,
+        "title": "Featured collection",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 2,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "parallelogram",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_aCmKJ3": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "collection": "electrolyte-liquid-concentrate",
+        "products_to_show": 4,
+        "title": "Featured collection",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 2,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collage_zNtJH3": {
+      "type": "collage",
+      "blocks": {
+        "image_LLTpWC": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/slim.png"
+          }
+        },
+        "image_LkWxzD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/580mL.png"
+          }
+        },
+        "image_WHLGgV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2_2f442a53-7a56-40ca-b918-8a0f93408740.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_LLTpWC",
+        "image_LkWxzD",
+        "image_WHLGgV"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Multimedia collage",
+        "heading_size": "h1",
+        "desktop_layout": "right",
+        "mobile_layout": "column",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_banner_R9mHmC": {
+      "type": "image-banner",
+      "settings": {
+        "image": "shopify://shop_images/1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "featured_blog_hcNHKd": {
+      "type": "featured-blog",
+      "settings": {
+        "blog": "sports-sponsorship-1",
+        "post_limit": 3,
+        "heading": "Sports Sponsors",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_banner_AYjrAd": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_FgW6xC": {
+          "type": "heading",
+          "settings": {
+            "heading": "Community",
+            "heading_size": "h1"
+          }
+        },
+        "text_wmp3KA": {
+          "type": "text",
+          "settings": {
+            "text": "ELECTRO X has built a strong community culture",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_FgW6xC",
+        "text_wmp3KA"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/KV_demo__1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "multicolumn_jz97CR": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_ieGQiV": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/KV-23.jpg",
+            "title": "",
+            "text": "<p>王健</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_3jjM8E": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/KV__1.jpg",
+            "title": "",
+            "text": "<p>郭耔</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_MfVzJV": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/KV-03.jpg",
+            "title": "",
+            "text": "<p>季思铭</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_ieGQiV",
+        "column_3jjM8E",
+        "column_MfVzJV"
+      ],
+      "settings": {
+        "title": "Community Ambassador",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_neCnki": {
+      "type": "rich-text",
+      "blocks": {
+        "text_K7wnnM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ELECTRO X has built partnership with community leaders across diverse sportsTogether with our community leaders, we are redefeining the hydration</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_K7wnnM"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "image_banner_rALkGg": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_6d7cBD": {
+          "type": "heading",
+          "settings": {
+            "heading": "About Us",
+            "heading_size": "h1"
+          }
+        },
+        "text_qPWrPW": {
+          "type": "text",
+          "settings": {
+            "text": "Established in 2021, ELECTRO X is a premium sports beverage brand dedicated to delivering functional hydration solutions. Our product portfolio includes. Natural Alkaline Water,Electrolyte & BCAA Drinks, andElectrolyte Liquid Concentrates, designed to meet the needs of athletes, fitness enthusiasts, and health-conscious individuals.",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_6d7cBD",
+        "text_qPWrPW"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/3.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "featured_collection_ehmbKr",
+    "image_with_text_PJG4Yp",
+    "image_banner_KNFeMR",
+    "featured_collection_NBGF7K",
+    "featured_collection_aCmKJ3",
+    "collage_zNtJH3",
+    "image_banner_R9mHmC",
+    "featured_blog_hcNHKd",
+    "image_banner_AYjrAd",
+    "multicolumn_jz97CR",
+    "rich_text_neCnki",
+    "image_banner_rALkGg"
+  ]
+}
