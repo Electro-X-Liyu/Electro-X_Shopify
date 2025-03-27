@@ -145,8 +145,8 @@
                         "image": "shopify:\/\/shop_images\/banner-2.png",
                         "title": "",
                         "text": "",
-                        "link_label": "",
-                        "link": "shopify:\/\/products\/collection2"
+                        "link_label": "View Details",
+                        "link": "shopify:\/\/products\/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor"
                     }
                 },
                 "column_3": {
@@ -155,8 +155,8 @@
                         "image": "shopify:\/\/shop_images\/banner-3.png",
                         "title": "",
                         "text": "",
-                        "link_label": "",
-                        "link": "shopify:\/\/products\/collection3"
+                        "link_label": "View Details",
+                        "link": "shopify:\/\/products\/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor"
                     }
                 },
                 "column_4": {
@@ -165,8 +165,8 @@
                         "image": "shopify:\/\/shop_images\/banner-4.png",
                         "title": "",
                         "text": "",
-                        "link_label": "",
-                        "link": "shopify:\/\/products\/collection4"
+                        "link_label": "View Details",
+                        "link": "shopify:\/\/products\/plus-electrolyte-liquid-concentrate-pineapple-mate-tea"
                     }
                 },
                 "column_5": {
@@ -175,8 +175,8 @@
                         "image": "shopify:\/\/shop_images\/banner-5.png",
                         "title": "",
                         "text": "",
-                        "link_label": "",
-                        "link": "shopify:\/\/products\/collection5"
+                        "link_label": "View Details",
+                        "link": "shopify:\/\/products\/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade"
                     }
                 }
             },
