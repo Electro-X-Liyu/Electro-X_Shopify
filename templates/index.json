@@ -127,69 +127,42 @@
             }
         },
         "image_banner_KNFeMR": {
-            "type": "multicolumn",
+            "type": "multicolumn-mixed",
             "blocks": {
-                "column_1": {
-                    "type": "column",
+                "single_column": {
+                    "type": "single_image",
                     "settings": {
                         "image": "shopify:\/\/shop_images\/banner-1.png",
-                        "title": "",
-                        "text": "",
-                        "link_label": "View Details",
                         "link": "shopify:\/\/products\/natural-alkaline-water"
                     }
                 },
-                "column_2": {
-                    "type": "column",
+                "double_column_1": {
+                    "type": "double_image",
                     "settings": {
-                        "image": "shopify:\/\/shop_images\/banner-2.png",
-                        "title": "",
-                        "text": "",
-                        "link_label": "View Details",
-                        "link": "shopify:\/\/products\/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
+                        "image_1": "shopify:\/\/shop_images\/banner-2.png",
+                        "link_1": "shopify:\/\/products\/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
                         "image_2": "shopify:\/\/shop_images\/banner-3.png",
                         "link_2": "shopify:\/\/products\/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor"
                     }
                 },
-                "column_3": {
-                    "type": "column",
+                "double_column_2": {
+                    "type": "double_image",
                     "settings": {
-                        "image": "shopify:\/\/shop_images\/banner-4.png",
-                        "title": "",
-                        "text": "",
-                        "link_label": "View Details",
-                        "link": "shopify:\/\/products\/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
+                        "image_1": "shopify:\/\/shop_images\/banner-4.png",
+                        "link_1": "shopify:\/\/products\/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
                         "image_2": "shopify:\/\/shop_images\/banner-5.png",
                         "link_2": "shopify:\/\/products\/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade"
                     }
                 }
             },
             "block_order": [
-                "column_1",
-                "column_2",
-                "column_3"
+                "single_column",
+                "double_column_1",
+                "double_column_2"
             ],
             "settings": {
-                "title": "",
-                "heading_size": "h1",
-                "image_width": "full",
-                "image_ratio": "adapt",
-                "columns_desktop": 3,
-                "column_alignment": "center",
-                "background_style": "none",
-                "button_label": "",
-                "button_link": "",
-                "color_scheme": "",
-                "columns_mobile": "1",
-                "swipe_on_mobile": true,
-                "padding_top": 0,
-                "padding_bottom": 0
-            },
-            "custom_css": [
-                ".multicolumn-list.grid--3-col-desktop { gap: 0.5rem; }",
-                ".multicolumn .grid__item { padding: 0; }",
-                ".multicolumn-card__image-wrapper + .multicolumn-card__image-wrapper { margin-top: 0.5rem; }"
-            ]
+                "image_ratio": "adapt"
+            }
         },
         "featured_collection_NBGF7K": {
             "type": "featured-collection",
