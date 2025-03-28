@@ -100,15 +100,15 @@
             <div class="column single-image-column">
               {% if block.settings.image %}
                 <div class="image-container">
-                  <img src="{{ block.settings.image | img_url: 'master' }}" 
-                       loading="lazy" 
-                       class="mixed-column-image"
-                       data-product-title="{{ block.settings.product_title }}"
-                       data-product-link="{{ block.settings.link }}">
-                  <div class="popover">
+                  <a href="{{ block.settings.link }}" class="image-link">
+                    <img src="{{ block.settings.image | img_url: 'master' }}" 
+                         loading="lazy" 
+                         class="mixed-column-image"
+                         alt="{{ block.settings.product_title }}">
+                  </a>
+                  <div class="popover desktop-only">
                     <div class="popover-content">
                       <h3>{{ block.settings.product_title }}</h3>
-                      <a href="{{ block.settings.link }}" class="button">Shop Now</a>
                     </div>
                   </div>
                 </div>
@@ -119,30 +119,30 @@
               <div class="double-image-wrapper">
                 {% if block.settings.image_1 %}
                   <div class="image-container">
-                    <img src="{{ block.settings.image_1 | img_url: 'master' }}" 
-                         loading="lazy" 
-                         class="mixed-column-image"
-                         data-product-title="{{ block.settings.product_title_1 }}"
-                         data-product-link="{{ block.settings.link_1 }}">
-                    <div class="popover">
+                    <a href="{{ block.settings.link_1 }}" class="image-link">
+                      <img src="{{ block.settings.image_1 | img_url: 'master' }}" 
+                           loading="lazy" 
+                           class="mixed-column-image"
+                           alt="{{ block.settings.product_title_1 }}">
+                    </a>
+                    <div class="popover desktop-only">
                       <div class="popover-content">
                         <h3>{{ block.settings.product_title_1 }}</h3>
-                        <a href="{{ block.settings.link_1 }}" class="button">Shop Now</a>
                       </div>
                     </div>
                   </div>
                 {% endif %}
                 {% if block.settings.image_2 %}
                   <div class="image-container">
-                    <img src="{{ block.settings.image_2 | img_url: 'master' }}" 
-                         loading="lazy" 
-                         class="mixed-column-image"
-                         data-product-title="{{ block.settings.product_title_2 }}"
-                         data-product-link="{{ block.settings.link_2 }}">
-                    <div class="popover">
+                    <a href="{{ block.settings.link_2 }}" class="image-link">
+                      <img src="{{ block.settings.image_2 | img_url: 'master' }}" 
+                           loading="lazy" 
+                           class="mixed-column-image"
+                           alt="{{ block.settings.product_title_2 }}">
+                    </a>
+                    <div class="popover desktop-only">
                       <div class="popover-content">
                         <h3>{{ block.settings.product_title_2 }}</h3>
-                        <a href="{{ block.settings.link_2 }}" class="button">Shop Now</a>
                       </div>
                     </div>
                   </div>
@@ -157,10 +157,13 @@
 
 <style>
 .mixed-column-container {
+  width: 100%;
+}
+
+.mobile-slider {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  width: 100%;
+  gap: 1rem;
 }
 
 .column {
@@ -169,58 +172,46 @@
 
 .double-image-wrapper {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .image-container {
   position: relative;
-  cursor: pointer;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.image-link {
+  display: block;
+  width: 100%;
 }
 
 .mixed-column-image {
   width: 100%;
-  height: 373px;
+  height: auto;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .popover {
   display: none;
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.95);
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  min-width: 200px;
   text-align: center;
+  z-index: 2;
+}
+
+.image-container:hover {
+  transform: scale(1.05);
 }
 
 .image-container:hover .popover {
   display: block;
-}
-
-.popover h3 {
-  margin: 0 0 15px 0;
-  font-size: 0.8em;
-  color: #333;
-}
-
-.button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #000;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-  line-height: inherit;
-}
-
-.button:hover {
-  background-color: #333;
 }
 
 @media screen and (max-width: 749px) {
@@ -239,19 +230,20 @@
   }
 
   .column {
-    flex: 0 0 auto;
-    width: 85vw;
+    flex: 0 0 85vw;
     scroll-snap-align: start;
   }
 
-  .double-image-wrapper {
-    display: flex;
-    gap: 1rem;
-    width: 85vw;
+  .double-image-column {
+    flex: 0 0 85vw;
   }
 
-  .double-image-column .image-container {
-    flex: 0 0 calc(50% - 0.5rem);
+  .double-image-wrapper {
+    gap: 1rem;
+  }
+
+  .desktop-only {
+    display: none !important;
   }
 
   /* 隐藏滚动条但保持功能 */
@@ -262,11 +254,6 @@
   .mixed-column-container {
     -ms-overflow-style: none;
     scrollbar-width: none;
-  }
-
-  /* 移除分页器 */
-  .slider-pagination {
-    display: none;
   }
 
   /* 添加滑动提示动画 */
@@ -290,19 +277,3 @@
   }
 }
 </style>
-
-<script>
-  // 移除之前的 MobileSlider 类，因为现在使用原生滚动
-  document.addEventListener('DOMContentLoaded', () => {
-    const container = document.querySelector('.mixed-column-container');
-    if (window.innerWidth <= 749 && container) {
-      // 添加触摸滑动提示
-      container.addEventListener('scroll', () => {
-        if (container.scrollLeft > 50) {
-          const hint = container.querySelector('.mobile-slider::after');
-          if (hint) hint.style.display = 'none';
-        }
-      });
-    }
-  });
-</script>
