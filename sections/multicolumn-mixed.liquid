@@ -223,11 +223,42 @@
 
 @media screen and (max-width: 749px) {
   .mixed-column-container {
-    grid-template-columns: 1fr;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 20px;
+  }
+
+  .mobile-slider {
+    display: flex;
+    gap: 0.5rem;
+    width: max-content;
+  }
+
+  .slide {
+    flex: 0 0 80vw;
+    scroll-snap-align: start;
+    width: 80vw;
+  }
+
+  .double-image-wrapper {
+    flex-direction: row;
+  }
+
+  /* 隐藏滚动条但保持功能 */
+  .mixed-column-container::-webkit-scrollbar {
+    display: none;
   }
   
-  .double-image-wrapper {
-    flex-direction: column;
+  .mixed-column-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* 移除分页器，因为改用横向滚动 */
+  .slider-pagination {
+    display: none;
   }
 }
 </style>
