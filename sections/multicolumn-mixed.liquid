@@ -38,6 +38,11 @@
           "type": "url",
           "id": "link",
           "label": "链接"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "商品名称"
         }
       ]
     },
@@ -56,6 +61,11 @@
           "label": "第一张图片链接"
         },
         {
+          "type": "text",
+          "id": "product_title_1",
+          "label": "第一个商品名称"
+        },
+        {
           "type": "image_picker",
           "id": "image_2",
           "label": "第二张图片"
@@ -64,6 +74,11 @@
           "type": "url",
           "id": "link_2",
           "label": "第二张图片链接"
+        },
+        {
+          "type": "text",
+          "id": "product_title_2",
+          "label": "第二个商品名称"
         }
       ]
     }
@@ -83,23 +98,53 @@
         {% when 'single_image' %}
           <div class="column single-image-column">
             {% if block.settings.image %}
-              <a href="{{ block.settings.link }}" class="image-link">
-                {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'mixed-column-image' }}
-              </a>
+              <div class="image-container">
+                <img src="{{ block.settings.image | img_url: 'master' }}" 
+                     loading="lazy" 
+                     class="mixed-column-image"
+                     data-product-title="{{ block.settings.product_title }}"
+                     data-product-link="{{ block.settings.link }}">
+                <div class="popover">
+                  <div class="popover-content">
+                    <h3>{{ block.settings.product_title }}</h3>
+                    <a href="{{ block.settings.link }}" class="button">Shop Now</a>
+                  </div>
+                </div>
+              </div>
             {% endif %}
           </div>
         {% when 'double_image' %}
           <div class="column double-image-column">
             <div class="double-image-wrapper">
               {% if block.settings.image_1 %}
-                <a href="{{ block.settings.link_1 }}" class="image-link">
-                  {{ block.settings.image_1 | image_url: width: 400 | image_tag: loading: 'lazy', class: 'mixed-column-image' }}
-                </a>
+                <div class="image-container">
+                  <img src="{{ block.settings.image_1 | img_url: 'master' }}" 
+                       loading="lazy" 
+                       class="mixed-column-image"
+                       data-product-title="{{ block.settings.product_title_1 }}"
+                       data-product-link="{{ block.settings.link_1 }}">
+                  <div class="popover">
+                    <div class="popover-content">
+                      <h3>{{ block.settings.product_title_1 }}</h3>
+                      <a href="{{ block.settings.link_1 }}" class="button">Shop Now</a>
+                    </div>
+                  </div>
+                </div>
               {% endif %}
               {% if block.settings.image_2 %}
-                <a href="{{ block.settings.link_2 }}" class="image-link">
-                  {{ block.settings.image_2 | image_url: width: 400 | image_tag: loading: 'lazy', class: 'mixed-column-image' }}
-                </a>
+                <div class="image-container">
+                  <img src="{{ block.settings.image_2 | img_url: 'master' }}" 
+                       loading="lazy" 
+                       class="mixed-column-image"
+                       data-product-title="{{ block.settings.product_title_2 }}"
+                       data-product-link="{{ block.settings.link_2 }}">
+                  <div class="popover">
+                    <div class="popover-content">
+                      <h3>{{ block.settings.product_title_2 }}</h3>
+                      <a href="{{ block.settings.link_2 }}" class="button">Shop Now</a>
+                    </div>
+                  </div>
+                </div>
               {% endif %}
             </div>
           </div>
@@ -125,16 +170,55 @@
   gap: 0.5rem;
 }
 
-.image-link {
-  display: block;
-  width: 100%;
+.image-container {
+  position: relative;
+  cursor: pointer;
 }
 
 .mixed-column-image {
   width: 100%;
-  height: auto;
+  height: 373px;
   display: block;
   object-fit: contain;
+}
+
+.popover {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  min-width: 200px;
+  text-align: center;
+}
+
+.image-container:hover .popover {
+  display: block;
+}
+
+.popover h3 {
+  margin: 0 0 15px 0;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #333;
 }
 
 @media screen and (max-width: 749px) {
