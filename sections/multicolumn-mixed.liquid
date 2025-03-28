@@ -93,63 +93,65 @@
 
 <div class="page-width">
   <div class="mixed-column-container">
-    {%- for block in section.blocks -%}
-      {% case block.type %}
-        {% when 'single_image' %}
-          <div class="column single-image-column">
-            {% if block.settings.image %}
-              <div class="image-container">
-                <img src="{{ block.settings.image | img_url: 'master' }}" 
-                     loading="lazy" 
-                     class="mixed-column-image"
-                     data-product-title="{{ block.settings.product_title }}"
-                     data-product-link="{{ block.settings.link }}">
-                <div class="popover">
-                  <div class="popover-content">
-                    <h3>{{ block.settings.product_title }}</h3>
-                    <a href="{{ block.settings.link }}" class="button">Shop Now</a>
-                  </div>
-                </div>
-              </div>
-            {% endif %}
-          </div>
-        {% when 'double_image' %}
-          <div class="column double-image-column">
-            <div class="double-image-wrapper">
-              {% if block.settings.image_1 %}
+    <div class="mobile-slider">
+      {%- for block in section.blocks -%}
+        {% case block.type %}
+          {% when 'single_image' %}
+            <div class="column single-image-column">
+              {% if block.settings.image %}
                 <div class="image-container">
-                  <img src="{{ block.settings.image_1 | img_url: 'master' }}" 
+                  <img src="{{ block.settings.image | img_url: 'master' }}" 
                        loading="lazy" 
                        class="mixed-column-image"
-                       data-product-title="{{ block.settings.product_title_1 }}"
-                       data-product-link="{{ block.settings.link_1 }}">
+                       data-product-title="{{ block.settings.product_title }}"
+                       data-product-link="{{ block.settings.link }}">
                   <div class="popover">
                     <div class="popover-content">
-                      <h3>{{ block.settings.product_title_1 }}</h3>
-                      <a href="{{ block.settings.link_1 }}" class="button">Shop Now</a>
-                    </div>
-                  </div>
-                </div>
-              {% endif %}
-              {% if block.settings.image_2 %}
-                <div class="image-container">
-                  <img src="{{ block.settings.image_2 | img_url: 'master' }}" 
-                       loading="lazy" 
-                       class="mixed-column-image"
-                       data-product-title="{{ block.settings.product_title_2 }}"
-                       data-product-link="{{ block.settings.link_2 }}">
-                  <div class="popover">
-                    <div class="popover-content">
-                      <h3>{{ block.settings.product_title_2 }}</h3>
-                      <a href="{{ block.settings.link_2 }}" class="button">Shop Now</a>
+                      <h3>{{ block.settings.product_title }}</h3>
+                      <a href="{{ block.settings.link }}" class="button">Shop Now</a>
                     </div>
                   </div>
                 </div>
               {% endif %}
             </div>
-          </div>
-      {% endcase %}
-    {%- endfor -%}
+          {% when 'double_image' %}
+            <div class="column double-image-column">
+              <div class="double-image-wrapper">
+                {% if block.settings.image_1 %}
+                  <div class="image-container">
+                    <img src="{{ block.settings.image_1 | img_url: 'master' }}" 
+                         loading="lazy" 
+                         class="mixed-column-image"
+                         data-product-title="{{ block.settings.product_title_1 }}"
+                         data-product-link="{{ block.settings.link_1 }}">
+                    <div class="popover">
+                      <div class="popover-content">
+                        <h3>{{ block.settings.product_title_1 }}</h3>
+                        <a href="{{ block.settings.link_1 }}" class="button">Shop Now</a>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if block.settings.image_2 %}
+                  <div class="image-container">
+                    <img src="{{ block.settings.image_2 | img_url: 'master' }}" 
+                         loading="lazy" 
+                         class="mixed-column-image"
+                         data-product-title="{{ block.settings.product_title_2 }}"
+                         data-product-link="{{ block.settings.link_2 }}">
+                    <div class="popover">
+                      <div class="popover-content">
+                        <h3>{{ block.settings.product_title_2 }}</h3>
+                        <a href="{{ block.settings.link_2 }}" class="button">Shop Now</a>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+        {% endcase %}
+      {%- endfor -%}
+    </div>
   </div>
 </div>
 
@@ -223,7 +225,6 @@
 
 @media screen and (max-width: 749px) {
   .mixed-column-container {
-    display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
@@ -232,18 +233,25 @@
 
   .mobile-slider {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
     width: max-content;
+    padding: 0 1rem;
   }
 
-  .slide {
-    flex: 0 0 80vw;
+  .column {
+    flex: 0 0 auto;
+    width: 85vw;
     scroll-snap-align: start;
-    width: 80vw;
   }
 
   .double-image-wrapper {
-    flex-direction: row;
+    display: flex;
+    gap: 1rem;
+    width: 85vw;
+  }
+
+  .double-image-column .image-container {
+    flex: 0 0 calc(50% - 0.5rem);
   }
 
   /* 隐藏滚动条但保持功能 */
@@ -256,9 +264,45 @@
     scrollbar-width: none;
   }
 
-  /* 移除分页器，因为改用横向滚动 */
+  /* 移除分页器 */
   .slider-pagination {
     display: none;
   }
+
+  /* 添加滑动提示动画 */
+  @keyframes slideHint {
+    0% { transform: translateX(0); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+  }
+
+  .mobile-slider::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    animation: slideHint 1.5s infinite;
+    pointer-events: none;
+  }
 }
 </style>
+
+<script>
+  // 移除之前的 MobileSlider 类，因为现在使用原生滚动
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.mixed-column-container');
+    if (window.innerWidth <= 749 && container) {
+      // 添加触摸滑动提示
+      container.addEventListener('scroll', () => {
+        if (container.scrollLeft > 50) {
+          const hint = container.querySelector('.mobile-slider::after');
+          if (hint) hint.style.display = 'none';
+        }
+      });
+    }
+  });
+</script>
