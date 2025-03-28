@@ -137,33 +137,45 @@
             "product_title": "Natural Alkaline Water"
           }
         },
-        "double_column_1": {
-          "type": "double_image",
+        "single_column_2": {
+          "type": "single_image",
           "settings": {
-            "image_1": "shopify://shop_images/banner-2.png",
-            "link_1": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
-            "product_title_1": "PLUS Electrolyte Sports Drink – Pineapple Mate Tea Flavor",
-            "image_2": "shopify://shop_images/banner-3.png",
-            "link_2": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor",
-            "product_title_2": "PLUS Electrolyte Sports Drink – Jasmine Green Grapes Flavor"
+            "image": "shopify://shop_images/banner-2.png",
+            "link": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
+            "product_title": "PLUS Electrolyte Sports Drink – Pineapple Mate Tea Flavor"
           }
         },
-        "double_column_2": {
-          "type": "double_image",
+        "single_column_3": {
+          "type": "single_image",
           "settings": {
-            "image_1": "shopify://shop_images/banner-4.png",
-            "link_1": "shopify://products/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
-            "product_title_1": "PLUS Electrolyte Liquid Concentrate – Pineapple Mate Tea",
-            "image_2": "shopify://shop_images/banner-5.png",
-            "link_2": "shopify://products/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade",
-            "product_title_2": "SLIM Electrolyte Liquid Concentrate – Pomegranate Pink Lemonade"
+            "image": "shopify://shop_images/banner-3.png",
+            "link": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor",
+            "product_title": "PLUS Electrolyte Sports Drink – Jasmine Green Grapes Flavor"
+          }
+        },
+        "single_column_4": {
+          "type": "single_image",
+          "settings": {
+            "image": "shopify://shop_images/banner-4.png",
+            "link": "shopify://products/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
+            "product_title": "PLUS Electrolyte Liquid Concentrate – Pineapple Mate Tea"
+          }
+        },
+        "single_column_5": {
+          "type": "single_image",
+          "settings": {
+            "image": "shopify://shop_images/banner-5.png",
+            "link": "shopify://products/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade",
+            "product_title": "SLIM Electrolyte Liquid Concentrate – Pomegranate Pink Lemonade"
           }
         }
       },
       "block_order": [
         "single_column",
-        "double_column_1",
-        "double_column_2"
+        "single_column_2",
+        "single_column_3",
+        "single_column_4",
+        "single_column_5"
       ],
       "settings": {
         "title": "",
