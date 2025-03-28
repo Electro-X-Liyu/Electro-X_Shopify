@@ -161,6 +161,7 @@
 <style>
 .mixed-column-container {
   width: 100%;
+  margin-top: 36px;
 }
 
 .mobile-slider {
@@ -191,16 +192,16 @@
 
 .mixed-column-image {
   width: 100%;
-  height: auto;
+  height: 374px;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .popover {
   display: none;
   position: absolute;
   left: 50%;
-  top: 50%;
+  bottom: 0;
   transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.95);
   padding: 20px;
@@ -280,6 +281,7 @@
   .mixed-column-container {
     -ms-overflow-style: none;
     scrollbar-width: none;
+    margin-top: 36px;
   }
 
   /* 添加滑动提示动画 */
