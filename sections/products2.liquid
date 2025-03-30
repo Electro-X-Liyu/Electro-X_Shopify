@@ -1,109 +1,172 @@
 {% schema %}
 {
-  "name": "Custom Product Banners",
+  "name": "精选产品网格",
   "settings": [
     {
       "type": "text",
       "id": "title",
-      "label": "Section Title",
-      "default": "FEATURED PRODUCTS"
+      "label": "标题",
+      "default": "SMART THIRST-QUENCHERS"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "选择产品集合"
     }
   ],
   "presets": [
     {
-      "name": "Custom Product Banners",
-      "category": "Custom"
+      "name": "精选产品网格",
+      "category": "产品展示"
     }
   ]
 }
 {% endschema %}
 
-<div class="custom-banners-section page-width">
+<div class="custom-product-grid-section">
   {% if section.settings.title != blank %}
     <h2 class="section-title">{{ section.settings.title }}</h2>
   {% endif %}
   
-  <div class="banners-container">
-    {% for i in (1..5) %}
-      {% assign banner_image = 'banner-1.png' | append: i | append: '.png' %}
-      <div class="banner-item">
-        <div class="image-wrapper">
-          <img src="{{ banner_image | asset_img_url: '800x' }}" 
-               alt="Banner {{ i }}"
-               loading="lazy"
-               class="banner-image"
-               width="800"
-               height="800">
-        </div>
+  <div class="custom-product-grid">
+    {% assign collection = collections[section.settings.collection] %}
+    {% assign product_count = 0 %}
+    
+    {% for product in collection.products limit: 5 %}
+      {% assign product_count = product_count | plus: 1 %}
+      <div class="product-card">
+        <a href="{{ product.url }}" class="product-link">
+          <div class="image-container">
+            <img src="{{ product.featured_image | img_url: '800x' }}" 
+                 alt="{{ product.title | escape }}"
+                 class="product-image"
+                 loading="lazy"
+                 width="800"
+                 height="800">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">{{ product.title }}</h3>
+            <div class="product-price">{{ product.price | money }}</div>
+          </div>
+        </a>
       </div>
+    {% endfor %}
+    
+    {% comment %} 如果产品不足5个，填充空白项保持布局 {% endcomment %}
+    {% for i in (product_count..4) %}
+      <div class="product-card empty-card"></div>
     {% endfor %}
   </div>
 </div>
 
 <style>
-  .custom-banners-section {
-    margin: 40px auto;
-    padding: 0 15px;
+.custom-product-grid-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.section-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background-color: #333;
+}
+
+.custom-product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.product-card {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.image-container {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%; /* 保持正方形比例 */
+  position: relative;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.product-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 保持原始比例 */
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.03);
+}
+
+.product-info {
+  padding: 15px 0;
+  text-align: center;
+}
+
+.product-title {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.product-price {
+  font-size: 16px;
+  color: #666;
+  font-weight: 500;
+}
+
+.empty-card {
+  visibility: hidden; /* 隐藏空白卡片但保持占位 */
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .custom-product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-product-grid {
+    grid-template-columns: 1fr;
   }
   
   .section-title {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 28px;
-    color: #333;
+    font-size: 24px;
   }
-  
-  .banners-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -5px; /* 抵消子元素margin */
-  }
-  
-  .banner-item {
-    flex: 1 1 calc(20% - 10px);
-    margin: 5px;
-    min-width: 150px;
-  }
-  
-  .image-wrapper {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 4px;
-  }
-  
-  .banner-image {
-    width: 100%;
-    height: 300px; /* 固定高度 */
-    object-fit: contain; /* 保持原始比例 */
-    display: block;
-    background-color: #f5f5f5;
-    transition: transform 0.3s ease;
-  }
-  
-  .banner-item:hover .banner-image {
-    transform: scale(1.03);
-  }
-  
-  @media screen and (max-width: 1024px) {
-    .banner-item {
-      flex: 1 1 calc(25% - 10px);
-    }
-  }
-  
-  @media screen and (max-width: 768px) {
-    .banner-item {
-      flex: 1 1 calc(33.333% - 10px);
-    }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .banner-item {
-      flex: 1 1 calc(50% - 10px);
-    }
-    
-    .banner-image {
-      height: 200px;
-    }
-  }
+}
 </style>
