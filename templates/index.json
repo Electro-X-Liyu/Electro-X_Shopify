@@ -87,6 +87,62 @@
         "padding_bottom": 0
       }
     },
+    "products2_aqecdb": {
+      "type": "products2",
+      "blocks": {
+        "product_banner_ebyEHp": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/banner-1.png",
+            "title": "",
+            "link": ""
+          }
+        },
+        "product_banner_tezFDA": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/banner-2.png",
+            "title": "",
+            "link": ""
+          }
+        },
+        "product_banner_WigMXz": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/banner-3.png",
+            "title": "",
+            "link": ""
+          }
+        },
+        "product_banner_DWfN9w": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/banner-4.png",
+            "title": "",
+            "link": ""
+          }
+        },
+        "product_banner_eCyWfj": {
+          "type": "product_banner",
+          "settings": {
+            "image": "shopify://shop_images/banner-5.png",
+            "title": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_banner_ebyEHp",
+        "product_banner_tezFDA",
+        "product_banner_WigMXz",
+        "product_banner_DWfN9w",
+        "product_banner_eCyWfj"
+      ],
+      "settings": {
+        "title": "精选产品",
+        "image_height": 400
+      }
+    },
     "image_with_text_PJG4Yp": {
       "type": "image-with-text",
       "blocks": {
@@ -186,6 +242,7 @@
         "single_column_4",
         "single_column_5"
       ],
+      "disabled": true,
       "settings": {
         "title": "",
         "image_ratio": "adapt"
@@ -620,6 +677,7 @@
   "order": [
     "image_banner",
     "featured_collection_ehmbKr",
+    "products2_aqecdb",
     "image_with_text_PJG4Yp",
     "image_banner_KNFeMR",
     "featured_collection_NBGF7K",
