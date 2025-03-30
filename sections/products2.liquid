@@ -1,165 +1,105 @@
 {% schema %}
 {
-  "name": "全宽产品横幅展示",
+  "name": "产品横幅展示",
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "区块标题",
-      "default": "精选产品"
-    },
-    {
-      "type": "range",
-      "id": "image_height",
-      "label": "图片高度(px)",
-      "min": 200,
-      "max": 800,
-      "step": 20,
-      "default": 400
-    }
-  ],
-  "blocks": [
-    {
-      "type": "product_banner",
-      "name": "产品横幅",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "横幅图片"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "产品标题"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "产品链接"
-        }
-      ]
+      "default": "特色产品"
     }
   ],
   "presets": [
     {
-      "name": "全宽产品横幅展示",
-      "blocks": [
-        {"type": "product_banner"},
-        {"type": "product_banner"},
-        {"type": "product_banner"},
-        {"type": "product_banner"},
-        {"type": "product_banner"}
-      ]
+      "name": "产品横幅展示",
+      "category": "图片"
     }
-  ],
-  "max_blocks": 5
+  ]
 }
 {% endschema %}
 
-<div class="fullwidth-banners-section">
+<div class="custom-banner-container">
   {% if section.settings.title != blank %}
-    <h2 class="section-title">{{ section.settings.title }}</h2>
+    <h2 class="banner-section-title">{{ section.settings.title }}</h2>
   {% endif %}
   
-  <div class="banners-container">
-    {% for block in section.blocks %}
-      {% assign banner_index = forloop.index %}
-      <div class="banner-item" {{ block.shopify_attributes }}>
-        {% if block.settings.image != blank %}
-          <a href="{{ block.settings.link }}" class="banner-link">
-            <div class="image-wrapper" style="height: {{ section.settings.image_height }}px;">
-              <img 
-                src="{{ block.settings.image | img_url: '2000x' }}" 
-                alt="{{ block.settings.title | escape }}"
-                class="banner-image"
-                loading="lazy"
-                style="width: 100%; height: 100%; object-fit: cover;"
-              >
-            </div>
-            {% if block.settings.title != blank %}
-              <h3 class="banner-title">{{ block.settings.title }}</h3>
-            {% endif %}
-          </a>
-        {% else %}
-          <div class="placeholder-image" style="height: {{ section.settings.image_height }}px;">
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-          </div>
-        {% endif %}
+  <div class="banner-grid">
+    {% for i in (1..5) %}
+      {% assign banner_image = 'banner-' | append: i %}
+      <div class="banner-item">
+        {{ banner_image | placeholder_svg_tag: 'placeholder-svg' }}
+        <img class="banner-image"
+             src="{{ banner_image | append: '.jpg' | file_img_url: '800x' }}"
+             alt="产品横幅 {{ i }}"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        {{ banner_image | placeholder_svg_tag: 'placeholder-svg' }}
       </div>
     {% endfor %}
   </div>
 </div>
 
 <style>
-  .fullwidth-banners-section {
-    margin: 40px 0;
-    width: 100%;
+  .custom-banner-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
   }
   
-  .section-title {
+  .banner-section-title {
     text-align: center;
     margin-bottom: 30px;
     font-size: 28px;
     color: #333;
-    padding: 0 20px;
   }
   
-  .banners-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0; /* 取消间距 */
+  .banner-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
   }
   
   .banner-item {
+    flex: 1;
     position: relative;
-    width: 100%;
-  }
-  
-  .image-wrapper {
-    width: 100%;
     overflow: hidden;
+    height: 400px; /* 设置固定高度 */
   }
   
   .banner-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
+    object-fit: contain; /* 保持原始比例 */
+    object-position: center;
+    transition: transform 0.3s ease;
   }
   
-  .banner-title {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    color: white;
-    font-size: 18px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    padding: 0 10px;
+  .banner-item:hover .banner-image {
+    transform: scale(1.03);
+  }
+  
+  .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    display: none; /* 默认隐藏，仅在图片加载失败时显示 */
   }
   
   @media (max-width: 1024px) {
-    .banners-container {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .banners-container {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .banners-container {
-      grid-template-columns: 1fr;
+    .banner-grid {
+      flex-wrap: wrap;
     }
     
-    .banner-title {
-      font-size: 16px;
-      bottom: 10px;
+    .banner-item {
+      flex: 0 0 calc(50% - 5px);
+      height: 300px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .banner-item {
+      flex: 0 0 100%;
+      height: 250px;
     }
   }
 </style>
