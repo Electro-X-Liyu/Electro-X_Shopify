@@ -1,51 +1,49 @@
 {% schema %}
 {
-  "name": "Custom Product Banner",
+  "name": "Product 2",
   "settings": [
     {
       "type": "text",
       "id": "title",
-      "label": "Section Title",
-      "default": "SMART THIRST-QUENCHERS"
+      "label": "区块标题",
+      "default": "精选产品"
     },
     {
       "type": "range",
-      "id": "spacing",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Spacing between items",
-      "default": 20
+      "id": "image_height",
+      "label": "图片高度(px)",
+      "min": 200,
+      "max": 800,
+      "step": 20,
+      "default": 400
     }
   ],
   "blocks": [
     {
       "type": "product_banner",
-      "name": "Product Banner",
+      "name": "产品横幅",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Banner Image"
+          "label": "横幅图片"
         },
         {
           "type": "text",
           "id": "title",
-          "label": "Product Title"
+          "label": "产品标题"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Product Link"
+          "label": "产品链接"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Custom Product Banner",
-      "category": "Image",
+      "name": "精选产品横幅展示",
       "blocks": [
         {
           "type": "product_banner"
@@ -69,41 +67,45 @@
 }
 {% endschema %}
 
-<div class="custom-product-banner page-width">
+<div class="featured-banners-section page-width">
   {% if section.settings.title != blank %}
     <h2 class="section-title">{{ section.settings.title }}</h2>
   {% endif %}
   
-  <div class="product-banner-grid" style="--spacing: {{ section.settings.spacing }}px;">
-    {% for block in section.blocks limit: 5 %}
-      {% assign image_name = 'banner-' | append: forloop.index %}
-      <div class="product-banner-item" {{ block.shopify_attributes }}>
-        <a href="{{ block.settings.link }}" class="product-banner-link">
-          <div class="image-wrapper">
-            {% if block.settings.image %}
-              {{ image_name | placeholder_svg_tag: 'placeholder-svg' }}
-              <img src="{{ block.settings.image | img_url: '600x' }}" 
-                   alt="{{ block.settings.title | escape }}"
-                   loading="lazy"
-                   class="product-banner-image"
-                   width="600"
-                   height="600">
-            {% else %}
-              {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+  <div class="banners-grid">
+    {% for block in section.blocks %}
+      {% assign banner_index = forloop.index %}
+      <div class="banner-item" {{ block.shopify_attributes }}>
+        {% if block.settings.image != blank %}
+          <a href="{{ block.settings.link }}" class="banner-link">
+            <div class="image-wrapper" style="height: {{ section.settings.image_height }}px;">
+              <img 
+                src="{{ block.settings.image | img_url: '800x' }}" 
+                alt="{{ block.settings.title | escape }}"
+                class="banner-image"
+                loading="lazy"
+                width="800"
+                height="{{ section.settings.image_height }}"
+                style="object-fit: contain;"
+              >
+            </div>
+            {% if block.settings.title != blank %}
+              <h3 class="banner-title">{{ block.settings.title }}</h3>
             {% endif %}
+          </a>
+        {% else %}
+          <div class="placeholder-image" style="height: {{ section.settings.image_height }}px;">
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
           </div>
-          {% if block.settings.title != blank %}
-            <h3 class="product-banner-title">{{ block.settings.title }}</h3>
-          {% endif %}
-        </a>
+        {% endif %}
       </div>
     {% endfor %}
   </div>
 </div>
 
 <style>
-  .custom-product-banner {
-    margin: 50px auto;
+  .featured-banners-section {
+    margin: 40px auto;
     padding: 0 20px;
   }
   
@@ -111,78 +113,62 @@
     text-align: center;
     margin-bottom: 30px;
     font-size: 28px;
-    position: relative;
-    display: inline-block;
-    width: 100%;
+    color: #333;
   }
   
-  .section-title:after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 2px;
-    background: currentColor;
-    margin: 15px auto 0;
-  }
-  
-  .product-banner-grid {
+  .banners-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: var(--spacing);
+    gap: 20px;
   }
   
-  .product-banner-item {
+  .banner-item {
     position: relative;
     transition: transform 0.3s ease;
   }
   
-  .product-banner-item:hover {
+  .banner-item:hover {
     transform: translateY(-5px);
-  }
-  
-  .product-banner-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
   }
   
   .image-wrapper {
     position: relative;
-    overflow: hidden;
-    padding-top: 100%;
-    background: #f5f5f5;
-    border-radius: 4px;
-  }
-  
-  .product-banner-image {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+    overflow: hidden;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
-  .product-banner-item:hover .product-banner-image {
-    transform: scale(1.03);
+  .banner-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
   }
   
-  .product-banner-title {
+  .banner-title {
     margin-top: 15px;
-    font-size: 16px;
     text-align: center;
-    font-weight: normal;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .banner-link {
+    text-decoration: none;
+    color: inherit;
   }
   
   @media (max-width: 1024px) {
-    .product-banner-grid {
+    .banners-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
   
-  @media (max-width: 640px) {
-    .product-banner-grid {
+  @media (max-width: 768px) {
+    .banners-grid {
       grid-template-columns: repeat(2, 1fr);
     }
     
@@ -192,7 +178,7 @@
   }
   
   @media (max-width: 480px) {
-    .product-banner-grid {
+    .banners-grid {
       grid-template-columns: 1fr;
     }
   }
