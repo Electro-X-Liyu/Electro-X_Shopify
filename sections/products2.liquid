@@ -25,7 +25,7 @@
   
   <div class="banners-container">
     {% for i in (1..5) %}
-      {% assign banner_image = 'banner-' | append: i | append: '.png' %}
+      {% assign banner_image = 'banner-1.png' | append: i | append: '.png' %}
       <div class="banner-item">
         <div class="image-wrapper">
           <img src="{{ banner_image | asset_img_url: '800x' }}" 
