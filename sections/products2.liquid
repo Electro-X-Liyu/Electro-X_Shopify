@@ -1,6 +1,6 @@
 {% schema %}
 {
-  "name": "精选产品横幅展示",
+  "name": "全宽产品横幅展示",
   "settings": [
     {
       "type": "text",
@@ -43,23 +43,13 @@
   ],
   "presets": [
     {
-      "name": "精选产品横幅展示",
+      "name": "全宽产品横幅展示",
       "blocks": [
-        {
-          "type": "product_banner"
-        },
-        {
-          "type": "product_banner"
-        },
-        {
-          "type": "product_banner"
-        },
-        {
-          "type": "product_banner"
-        },
-        {
-          "type": "product_banner"
-        }
+        {"type": "product_banner"},
+        {"type": "product_banner"},
+        {"type": "product_banner"},
+        {"type": "product_banner"},
+        {"type": "product_banner"}
       ]
     }
   ],
@@ -67,12 +57,12 @@
 }
 {% endschema %}
 
-<div class="featured-banners-section page-width">
+<div class="fullwidth-banners-section">
   {% if section.settings.title != blank %}
     <h2 class="section-title">{{ section.settings.title }}</h2>
   {% endif %}
   
-  <div class="banners-grid">
+  <div class="banners-container">
     {% for block in section.blocks %}
       {% assign banner_index = forloop.index %}
       <div class="banner-item" {{ block.shopify_attributes }}>
@@ -80,13 +70,11 @@
           <a href="{{ block.settings.link }}" class="banner-link">
             <div class="image-wrapper" style="height: {{ section.settings.image_height }}px;">
               <img 
-                src="{{ block.settings.image | img_url: '800x' }}" 
+                src="{{ block.settings.image | img_url: '2000x' }}" 
                 alt="{{ block.settings.title | escape }}"
                 class="banner-image"
                 loading="lazy"
-                width="800"
-                height="{{ section.settings.image_height }}"
-                style="object-fit: contain;"
+                style="width: 100%; height: 100%; object-fit: cover;"
               >
             </div>
             {% if block.settings.title != blank %}
@@ -104,9 +92,9 @@
 </div>
 
 <style>
-  .featured-banners-section {
-    margin: 40px auto;
-    padding: 0 20px;
+  .fullwidth-banners-section {
+    margin: 40px 0;
+    width: 100%;
   }
   
   .section-title {
@@ -114,72 +102,64 @@
     margin-bottom: 30px;
     font-size: 28px;
     color: #333;
+    padding: 0 20px;
   }
   
-  .banners-grid {
+  .banners-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
+    gap: 0; /* 取消间距 */
   }
   
   .banner-item {
     position: relative;
-    transition: transform 0.3s ease;
-  }
-  
-  .banner-item:hover {
-    transform: translateY(-5px);
+    width: 100%;
   }
   
   .image-wrapper {
-    position: relative;
     width: 100%;
     overflow: hidden;
-    background: #f5f5f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
   
   .banner-image {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
   }
   
   .banner-title {
-    margin-top: 15px;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
     text-align: center;
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .banner-link {
-    text-decoration: none;
-    color: inherit;
+    color: white;
+    font-size: 18px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    padding: 0 10px;
   }
   
   @media (max-width: 1024px) {
-    .banners-grid {
+    .banners-container {
       grid-template-columns: repeat(3, 1fr);
     }
   }
   
   @media (max-width: 768px) {
-    .banners-grid {
+    .banners-container {
       grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .section-title {
-      font-size: 24px;
     }
   }
   
   @media (max-width: 480px) {
-    .banners-grid {
+    .banners-container {
       grid-template-columns: 1fr;
+    }
+    
+    .banner-title {
+      font-size: 16px;
+      bottom: 10px;
     }
   }
 </style>
