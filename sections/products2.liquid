@@ -1,76 +1,83 @@
 {% schema %}
 {
-  "name": "产品横幅展示",
+  "name": "Custom Product Banners",
   "settings": [
     {
       "type": "text",
       "id": "title",
-      "label": "区块标题",
-      "default": "特色产品"
+      "label": "Section Title",
+      "default": "FEATURED PRODUCTS"
     }
   ],
   "presets": [
     {
-      "name": "产品横幅展示",
-      "category": "图片"
+      "name": "Custom Product Banners",
+      "category": "Custom"
     }
   ]
 }
 {% endschema %}
 
-<div class="custom-banner-container">
+<div class="custom-banners-section page-width">
   {% if section.settings.title != blank %}
-    <h2 class="banner-section-title">{{ section.settings.title }}</h2>
+    <h2 class="section-title">{{ section.settings.title }}</h2>
   {% endif %}
   
-  <div class="banner-grid">
+  <div class="banners-container">
     {% for i in (1..5) %}
-      {% assign banner_image = 'banner-' | append: i %}
+      {% assign banner_image = 'banner-' | append: i | append: '.png' %}
       <div class="banner-item">
-        {{ banner_image | placeholder_svg_tag: 'placeholder-svg' }}
-        <img class="banner-image"
-             src="{{ banner_image | append: '.jpg' | file_img_url: '800x' }}"
-             alt="产品横幅 {{ i }}"
-             loading="lazy"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        {{ banner_image | placeholder_svg_tag: 'placeholder-svg' }}
+        <div class="image-wrapper">
+          <img src="{{ banner_image | asset_img_url: '800x' }}" 
+               alt="Banner {{ i }}"
+               loading="lazy"
+               class="banner-image"
+               width="800"
+               height="800">
+        </div>
       </div>
     {% endfor %}
   </div>
 </div>
 
 <style>
-  .custom-banner-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
+  .custom-banners-section {
+    margin: 40px auto;
+    padding: 0 15px;
   }
   
-  .banner-section-title {
+  .section-title {
     text-align: center;
     margin-bottom: 30px;
     font-size: 28px;
     color: #333;
   }
   
-  .banner-grid {
+  .banners-container {
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
+    flex-wrap: wrap;
+    margin: 0 -5px; /* 抵消子元素margin */
   }
   
   .banner-item {
-    flex: 1;
+    flex: 1 1 calc(20% - 10px);
+    margin: 5px;
+    min-width: 150px;
+  }
+  
+  .image-wrapper {
     position: relative;
+    width: 100%;
     overflow: hidden;
-    height: 400px; /* 设置固定高度 */
+    border-radius: 4px;
   }
   
   .banner-image {
     width: 100%;
-    height: 100%;
+    height: 300px; /* 固定高度 */
     object-fit: contain; /* 保持原始比例 */
-    object-position: center;
+    display: block;
+    background-color: #f5f5f5;
     transition: transform 0.3s ease;
   }
   
@@ -78,28 +85,25 @@
     transform: scale(1.03);
   }
   
-  .placeholder-svg {
-    width: 100%;
-    height: 100%;
-    background-color: #f5f5f5;
-    display: none; /* 默认隐藏，仅在图片加载失败时显示 */
+  @media screen and (max-width: 1024px) {
+    .banner-item {
+      flex: 1 1 calc(25% - 10px);
+    }
   }
   
-  @media (max-width: 1024px) {
-    .banner-grid {
-      flex-wrap: wrap;
+  @media screen and (max-width: 768px) {
+    .banner-item {
+      flex: 1 1 calc(33.333% - 10px);
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .banner-item {
+      flex: 1 1 calc(50% - 10px);
     }
     
-    .banner-item {
-      flex: 0 0 calc(50% - 5px);
-      height: 300px;
-    }
-  }
-  
-  @media (max-width: 640px) {
-    .banner-item {
-      flex: 0 0 100%;
-      height: 250px;
+    .banner-image {
+      height: 200px;
     }
   }
 </style>
