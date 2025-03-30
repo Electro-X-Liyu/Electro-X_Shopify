@@ -1,6 +1,199 @@
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Custom Product Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "SMART THIRST-QUENCHERS"
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Spacing between items",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_banner",
+      "name": "Product Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Banner Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Product Title"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Product Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Product Banner",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "product_banner"
+        },
+        {
+          "type": "product_banner"
+        },
+        {
+          "type": "product_banner"
+        },
+        {
+          "type": "product_banner"
+        },
+        {
+          "type": "product_banner"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5
+}
 {% endschema %}
+
+<div class="custom-product-banner page-width">
+  {% if section.settings.title != blank %}
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+  {% endif %}
+  
+  <div class="product-banner-grid" style="--spacing: {{ section.settings.spacing }}px;">
+    {% for block in section.blocks limit: 5 %}
+      {% assign image_name = 'banner-' | append: forloop.index %}
+      <div class="product-banner-item" {{ block.shopify_attributes }}>
+        <a href="{{ block.settings.link }}" class="product-banner-link">
+          <div class="image-wrapper">
+            {% if block.settings.image %}
+              {{ image_name | placeholder_svg_tag: 'placeholder-svg' }}
+              <img src="{{ block.settings.image | img_url: '600x' }}" 
+                   alt="{{ block.settings.title | escape }}"
+                   loading="lazy"
+                   class="product-banner-image"
+                   width="600"
+                   height="600">
+            {% else %}
+              {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+          {% if block.settings.title != blank %}
+            <h3 class="product-banner-title">{{ block.settings.title }}</h3>
+          {% endif %}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .custom-product-banner {
+    margin: 50px auto;
+    padding: 0 20px;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .section-title:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: currentColor;
+    margin: 15px auto 0;
+  }
+  
+  .product-banner-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing);
+  }
+  
+  .product-banner-item {
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+  
+  .product-banner-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .product-banner-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .image-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding-top: 100%;
+    background: #f5f5f5;
+    border-radius: 4px;
+  }
+  
+  .product-banner-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .product-banner-item:hover .product-banner-image {
+    transform: scale(1.03);
+  }
+  
+  .product-banner-title {
+    margin-top: 15px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: normal;
+  }
+  
+  @media (max-width: 1024px) {
+    .product-banner-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .product-banner-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .section-title {
+      font-size: 24px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .product-banner-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
