@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "image_banner": {
@@ -205,6 +214,84 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_Nwrp7D": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_Ap4pMC": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/banner-1.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_XLK6NV": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/banner-2.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_AQKPCN": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/banner-3.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_yiyxLQ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/banner-4.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_tQmtcg": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/banner-5.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_Ap4pMC",
+        "column_XLK6NV",
+        "column_AQKPCN",
+        "column_yiyxLQ",
+        "column_tQmtcg"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "Button label",
+        "button_link": "",
+        "columns_desktop": 5,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
@@ -536,6 +623,7 @@
     "image_with_text_PJG4Yp",
     "image_banner_KNFeMR",
     "featured_collection_NBGF7K",
+    "multicolumn_Nwrp7D",
     "featured_collection_aCmKJ3",
     "collage_zNtJH3",
     "image_banner_R9mHmC",
