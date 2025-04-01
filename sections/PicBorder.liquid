@@ -1,0 +1,223 @@
+{% schema %}
+{
+  "name": "比例保持图片网格",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "标题",
+      "default": "图片展示"
+    },
+    {
+      "type": "range",
+      "id": "row_height",
+      "label": "行高(px)",
+      "min": 200,
+      "max": 600,
+      "step": 10,
+      "default": 400
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_block",
+      "name": "图片块",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "图片"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "替代文本",
+          "info": "图片描述(SEO优化用)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "比例保持图片网格",
+      "category": "图片展示",
+      "blocks": [
+        {"type": "image_block"},
+        {"type": "image_block"},
+        {"type": "image_block"},
+        {"type": "image_block"},
+        {"type": "image_block"}
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="proportional-image-grid" data-section-id="{{ section.id }}">
+  {% if section.settings.title != blank %}
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+  {% endif %}
+  
+  <div class="image-row">
+    {% for block in section.blocks limit: 5 %}
+      {% if block.settings.image != blank %}
+        {% assign aspect_ratio = block.settings.image.aspect_ratio %}
+        <div class="image-container" style="width: calc({{ aspect_ratio }} * {{ section.settings.row_height }}px);" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+            <img src="{{ block.settings.image | img_url: '1000x' }}"
+                 alt="{{ block.settings.alt_text | default: 'Image' }}"
+                 class="grid-image"
+                 loading="lazy"
+                 width="1000"
+                 height="{{ 1000 | divided_by: aspect_ratio | round }}"
+                 style="height: {{ section.settings.row_height }}px;">
+            <div class="image-hover-effect"></div>
+          </a>
+        </div>
+      {% endif %}
+    {% endfor %}
+    
+    {% comment %} 填充剩余空间保持5列布局 {% endcomment %}
+    {% assign shown_blocks = section.blocks.size | at_most: 5 %}
+    {% if shown_blocks < 5 %}
+      {% assign remaining_blocks = 5 | minus: shown_blocks %}
+      {% for i in (1..remaining_blocks) %}
+        <div class="image-container empty-container" style="width: calc(1 * {{ section.settings.row_height }}px);"></div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+<style>
+.proportional-image-grid {
+  max-width: calc(100% - 40px);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.section-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background-color: #333;
+}
+
+.image-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 0 -7.5px; /* 抵消gap的一半以保持边缘对齐 */
+}
+
+.image-container {
+  position: relative;
+  flex-grow: 0;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.image-link {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.grid-image {
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.image-hover-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.03);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-container:hover {
+  transform: translateY(-5px);
+}
+
+.image-container:hover .grid-image {
+  transform: scale(1.03);
+}
+
+.image-container:hover .image-hover-effect {
+  opacity: 1;
+}
+
+.empty-container {
+  visibility: hidden;
+}
+
+/* 响应式调整 - 保持5列但调整行高 */
+@media (max-width: 1200px) {
+  .image-row {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .proportional-image-grid {
+    max-width: calc(100% - 30px);
+    padding: 0 15px;
+  }
+  
+  .image-row {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .image-row {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .proportional-image-grid {
+    max-width: calc(100% - 20px);
+    padding: 0 10px;
+  }
+  
+  .image-row {
+    gap: 6px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+  }
+}
+</style>
