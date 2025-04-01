@@ -1,157 +1,18 @@
-{% schema %}
-{
-  "name": "自定义图片网格",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "标题",
-      "default": "SMART THIRST-QUENCHERS"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "image_block",
-      "name": "图片块",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "图片"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "链接"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "标题",
-          "default": "图片标题"
-        },
-        {
-          "type": "text",
-          "id": "subtitle",
-          "label": "副标题",
-          "default": "图片描述"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "自定义图片网格",
-      "category": "图片展示",
-      "blocks": [
-        {
-          "type": "image_block"
-        },
-        {
-          "type": "image_block"
-        },
-        {
-          "type": "image_block"
-        },
-        {
-          "type": "image_block"
-        },
-        {
-          "type": "image_block"
-        }
-      ]
-    }
-  ]
-}
-{% endschema %}
-
-<div class="custom-image-grid-section">
-  {% if section.settings.title != blank %}
-    <h2 class="section-title">{{ section.settings.title }}</h2>
-  {% endif %}
-  
-  <div class="custom-image-grid">
-    {% for block in section.blocks limit: 5 %}
-      {% if block.settings.image != blank %}
-        {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-        <div class="image-card" style="--aspect-ratio: {{ aspect_ratio }};" {{ block.shopify_attributes }}>
-          <a href="{{ block.settings.link }}" class="image-link">
-            <div class="image-container">
-              <img src="{{ block.settings.image | img_url: '800x' }}" 
-                   alt="{{ block.settings.title | escape }}"
-                   class="grid-image"
-                   loading="lazy"
-                   width="800"
-                   height="{{ 800 | divided_by: aspect_ratio | round }}">
-              <div class="hover-overlay"></div>
-              <div class="image-caption">
-                <h3 class="image-title">{{ block.settings.title }}</h3>
-                <p class="image-subtitle">{{ block.settings.subtitle }}</p>
-              </div>
-            </div>
-          </a>
-        </div>
-      {% endif %}
-    {% endfor %}
-    
-    {% comment %} 如果图片块不足5个，填充空白项保持布局 {% endcomment %}
-    {% assign block_count = section.blocks.size %}
-    {% if block_count < 5 %}
-      {% for i in (block_count..4) %}
-        <div class="image-card empty-card" style="--aspect-ratio: 1;"></div>
-      {% endfor %}
-    {% endif %}
-  </div>
-</div>
-
-<style>
-.custom-image-grid-section {
-  max-width: calc(100% - 40px);
-  margin: 0 auto;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
-.section-title {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 28px;
-  color: #333;
-  position: relative;
-  padding-bottom: 15px;
-}
-
-.section-title:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 2px;
-  background-color: #333;
-}
-
 .custom-image-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
   gap: 15px;
   width: 100%;
+  overflow-x: auto;
 }
 
 .image-card {
-  position: relative;
-  transition: all 0.3s ease;
-  width: 100%;
-}
-
-.image-card:hover {
-  transform: translateY(-5px);
+  flex: 0 0 calc(20% - 12px);
+  aspect-ratio: 1/1; /* 设置固定的宽高比 1:1 */
 }
 
 .image-container {
   width: 100%;
-  height: 400px; /* 固定高度 */
+  height: 100%; /* 改为100%以适应父容器 */
   position: relative;
   overflow: hidden;
   background: #f5f5f5;
@@ -161,117 +22,26 @@
 .grid-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* 改为contain以保持图片原始比例 */
   object-position: center;
   transition: transform 0.5s ease;
 }
 
-.hover-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.03);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.image-card:hover .hover-overlay {
-  opacity: 1;
-}
-
-.image-card:hover .grid-image {
-  transform: scale(1.05);
-}
-
-.image-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  text-align: center;
-  color: #fff;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-  transform: translateY(10px);
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.image-card:hover .image-caption {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.image-title {
-  margin: 0 0 5px 0;
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.image-subtitle {
-  margin: 0;
-  font-size: 14px;
-}
-
-.empty-card {
-  visibility: hidden;
-}
-
-/* 移动端保持5列布局 */
+/* 移除固定高度相关的媒体查询 */
 @media (max-width: 1024px) {
-  .custom-image-grid {
-    gap: 10px;
-  }
-  
-  .image-container {
-    height: 300px;
-  }
-  
-  .image-title {
-    font-size: 16px;
-  }
-  
-  .image-subtitle {
-    font-size: 13px;
+  .image-card {
+    flex: 0 0 calc(33.333% - 10px);
   }
 }
 
 @media (max-width: 768px) {
-  .custom-image-grid {
-    gap: 8px;
-  }
-  
-  .image-container {
-    height: 250px;
-  }
-  
-  .image-caption {
-    padding: 15px;
+  .image-card {
+    flex: 0 0 calc(50% - 8px);
   }
 }
 
 @media (max-width: 480px) {
-  .custom-image-grid {
-    gap: 6px;
-  }
-  
-  .image-container {
-    height: 200px;
-  }
-  
-  .image-caption {
-    padding: 10px;
-  }
-  
-  .image-title {
-    font-size: 14px;
-  }
-  
-  .image-subtitle {
-    font-size: 12px;
+  .image-card {
+    flex: 0 0 calc(100% - 6px);
   }
 }
-</style>
