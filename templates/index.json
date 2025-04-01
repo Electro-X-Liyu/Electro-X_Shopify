@@ -58,33 +58,27 @@
         "show_text_below": false
       }
     },
-    "featured_collection_ehmbKr": {
-      "type": "featured-collection",
-      "disabled": true,
+    "rich_text_PtqKYk": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_n7iUKb": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_n7iUKb"
+      ],
       "settings": {
-        "collection": "natural-alkaline-water",
-        "products_to_show": 2,
-        "title": "Natural Alkaline Water",
-        "heading_size": "h1",
-        "description": "<p>ELECTRO X Natural Alkaline Water is a non-carbonated, natural alkaline water bottled and sourced in Heilongjiang Province, China.It has a pH level of 8.8 and above and contains a rich concentration of sodium bicarbonate (approximately 350-700 mg per liter).380mL | 580mL | 1L</p><ul><li>Naturally Alkaline Spring Water</li><li>100% Recycleable PET</li></ul>",
-        "show_description": true,
-        "description_style": "body",
-        "columns_desktop": 1,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": false,
-        "view_all_style": "link",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
         "color_scheme": "",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": true,
-        "show_rating": true,
-        "quick_add": "none",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     },
     "pic_border_m7m9TP": {
@@ -139,7 +133,7 @@
         "image_block_gRrqgC"
       ],
       "settings": {
-        "title": "图片展示",
+        "title": "",
         "row_height": 400
       }
     },
@@ -189,68 +183,6 @@
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
-      }
-    },
-    "products2_9n6z6J": {
-      "type": "products2",
-      "blocks": {
-        "image_block_6tp6qW": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/banner-1.png",
-            "link": "shopify://products/natural-alkaline-water",
-            "title": "",
-            "text_color": "#ffffff"
-          }
-        },
-        "image_block_cHmLg9": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/banner-2.png",
-            "link": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
-            "title": "图片标题",
-            "text_color": "#ffffff"
-          }
-        },
-        "image_block_yCFR8N": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/banner-3.png",
-            "link": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
-            "title": "图片标题",
-            "text_color": "#ffffff"
-          }
-        },
-        "image_block_n78tXn": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/banner-4.png",
-            "link": "shopify://products/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
-            "title": "图片标题",
-            "text_color": "#ffffff"
-          }
-        },
-        "image_block_KpGpXj": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/banner-5.png",
-            "link": "shopify://products/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade",
-            "title": "图片标题",
-            "text_color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "image_block_6tp6qW",
-        "image_block_cHmLg9",
-        "image_block_yCFR8N",
-        "image_block_n78tXn",
-        "image_block_KpGpXj"
-      ],
-      "settings": {
-        "title": "Products",
-        "image_height": 380,
-        "image_fit": "cover"
       }
     },
     "image_banner_KNFeMR": {
@@ -315,7 +247,7 @@
       "settings": {
         "collection": "natural-alkaline-water",
         "products_to_show": 2,
-        "title": "Featured collection",
+        "title": "Natural Alkaline Water",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
@@ -688,10 +620,9 @@
   },
   "order": [
     "image_banner",
-    "featured_collection_ehmbKr",
+    "rich_text_PtqKYk",
     "pic_border_m7m9TP",
     "image_with_text_PJG4Yp",
-    "products2_9n6z6J",
     "image_banner_KNFeMR",
     "featured_collection_9xcdiL",
     "featured_collection_NBGF7K",
