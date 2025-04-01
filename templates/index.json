@@ -87,6 +87,62 @@
         "padding_bottom": 0
       }
     },
+    "pic_border_m7m9TP": {
+      "type": "PicBorder",
+      "blocks": {
+        "image_block_FxkFdq": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-1.png",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_ckz3La": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-2.png",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_mxWmxj": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-3.png",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_tfGeLi": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-4.png",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_gRrqgC": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-5.png",
+            "link": "",
+            "alt_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_block_FxkFdq",
+        "image_block_ckz3La",
+        "image_block_mxWmxj",
+        "image_block_tfGeLi",
+        "image_block_gRrqgC"
+      ],
+      "settings": {
+        "title": "图片展示",
+        "row_height": 400
+      }
+    },
     "image_with_text_PJG4Yp": {
       "type": "image-with-text",
       "blocks": {
@@ -143,8 +199,8 @@
           "settings": {
             "image": "shopify://shop_images/banner-1.png",
             "link": "shopify://products/natural-alkaline-water",
-            "title": "图片标题",
-            "subtitle": "图片描述"
+            "title": "",
+            "text_color": "#ffffff"
           }
         },
         "image_block_cHmLg9": {
@@ -153,7 +209,7 @@
             "image": "shopify://shop_images/banner-2.png",
             "link": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
             "title": "图片标题",
-            "subtitle": "图片描述"
+            "text_color": "#ffffff"
           }
         },
         "image_block_yCFR8N": {
@@ -162,7 +218,7 @@
             "image": "shopify://shop_images/banner-3.png",
             "link": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
             "title": "图片标题",
-            "subtitle": "图片描述"
+            "text_color": "#ffffff"
           }
         },
         "image_block_n78tXn": {
@@ -171,7 +227,7 @@
             "image": "shopify://shop_images/banner-4.png",
             "link": "shopify://products/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
             "title": "图片标题",
-            "subtitle": "图片描述"
+            "text_color": "#ffffff"
           }
         },
         "image_block_KpGpXj": {
@@ -180,7 +236,7 @@
             "image": "shopify://shop_images/banner-5.png",
             "link": "shopify://products/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade",
             "title": "图片标题",
-            "subtitle": "图片描述"
+            "text_color": "#ffffff"
           }
         }
       },
@@ -192,7 +248,9 @@
         "image_block_KpGpXj"
       ],
       "settings": {
-        "title": "Products"
+        "title": "Products",
+        "image_height": 380,
+        "image_fit": "cover"
       }
     },
     "image_banner_KNFeMR": {
@@ -252,6 +310,34 @@
         "image_ratio": "adapt"
       }
     },
+    "featured_collection_9xcdiL": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "natural-alkaline-water",
+        "products_to_show": 2,
+        "title": "Featured collection",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 1,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "featured_collection_NBGF7K": {
       "type": "featured-collection",
       "settings": {
@@ -275,84 +361,6 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn_Nwrp7D": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_Ap4pMC": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/banner-1.png",
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_XLK6NV": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/banner-2.png",
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_AQKPCN": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/banner-3.png",
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_yiyxLQ": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/banner-4.png",
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_tQmtcg": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/banner-5.png",
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_Ap4pMC",
-        "column_XLK6NV",
-        "column_AQKPCN",
-        "column_yiyxLQ",
-        "column_tQmtcg"
-      ],
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 5,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "color_scheme": "",
-        "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
@@ -417,8 +425,8 @@
         "heading": "Multimedia collage",
         "heading_size": "h1",
         "desktop_layout": "right",
-        "mobile_layout": "column",
-        "card_styles": "product-card-wrapper",
+        "mobile_layout": "collage",
+        "card_styles": "none",
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
@@ -681,11 +689,12 @@
   "order": [
     "image_banner",
     "featured_collection_ehmbKr",
+    "pic_border_m7m9TP",
     "image_with_text_PJG4Yp",
     "products2_9n6z6J",
     "image_banner_KNFeMR",
+    "featured_collection_9xcdiL",
     "featured_collection_NBGF7K",
-    "multicolumn_Nwrp7D",
     "featured_collection_aCmKJ3",
     "collage_zNtJH3",
     "image_banner_R9mHmC",
