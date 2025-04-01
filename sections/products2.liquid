@@ -1,47 +1,257 @@
-.custom-image-grid {
-  display: flex;
+{% schema %}
+{
+  "name": "等高图片网格",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "标题",
+      "default": "图片展示"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "图片高度(px)",
+      "min": 200,
+      "max": 600,
+      "step": 10,
+      "default": 400
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "图片填充方式",
+      "options": [
+        {
+          "value": "cover",
+          "label": "裁剪填充"
+        },
+        {
+          "value": "contain",
+          "label": "完整显示"
+        }
+      ],
+      "default": "cover"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_block",
+      "name": "图片块",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "图片"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "标题（可选）"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "文字颜色",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "等高图片网格",
+      "category": "图片展示",
+      "blocks": [
+        {"type": "image_block"},
+        {"type": "image_block"},
+        {"type": "image_block"},
+        {"type": "image_block"},
+        {"type": "image_block"}
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="uniform-height-grid" data-section-id="{{ section.id }}">
+  {% if section.settings.title != blank %}
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+  {% endif %}
+  
+  <div class="image-grid-container">
+    {% for block in section.blocks limit: 5 %}
+      <div class="image-block" {{ block.shopify_attributes }}>
+        {% if block.settings.image != blank %}
+          {% assign aspect_ratio = block.settings.image.aspect_ratio | default: 1 %}
+          <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+            <div class="image-wrapper" style="height: {{ section.settings.image_height }}px;">
+              <img src="{{ block.settings.image | img_url: '800x' }}"
+                   alt="{{ block.settings.title | default: '图片' | escape }}"
+                   class="grid-image"
+                   style="object-fit: {{ section.settings.image_fit }};"
+                   loading="lazy"
+                   width="800"
+                   height="{{ 800 | divided_by: aspect_ratio | round }}">
+              
+              {% if block.settings.title != blank %}
+                <div class="image-overlay" style="color: {{ block.settings.text_color }};">
+                  <h3>{{ block.settings.title }}</h3>
+                </div>
+              {% endif %}
+            </div>
+          </a>
+        {% endif %}
+      </div>
+    {% endfor %}
+    
+    {% comment %} 填充剩余位置保持5列布局 {% endcomment %}
+    {% assign remaining_blocks = 5 | minus: section.blocks.size %}
+    {% if remaining_blocks > 0 %}
+      {% for i in (1..remaining_blocks) %}
+        <div class="image-block empty-block"></div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+<style>
+.uniform-height-grid {
+  max-width: calc(100% - 40px);
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.section-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: currentColor;
+}
+
+.image-grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 15px;
   width: 100%;
-  overflow-x: auto;
 }
 
-.image-card {
-  flex: 0 0 calc(20% - 12px);
-  aspect-ratio: 1/1; /* 设置固定的宽高比 1:1 */
+.image-block {
+  position: relative;
+  transition: transform 0.3s ease;
 }
 
-.image-container {
+.image-block:hover {
+  transform: translateY(-5px);
+}
+
+.image-wrapper {
   width: 100%;
-  height: 100%; /* 改为100%以适应父容器 */
   position: relative;
   overflow: hidden;
-  background: #f5f5f5;
   border-radius: 4px;
+  background: #f5f5f5;
 }
 
 .grid-image {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* 改为contain以保持图片原始比例 */
-  object-position: center;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 }
 
-/* 移除固定高度相关的媒体查询 */
+.image-block:hover .grid-image {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 100%);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.image-block:hover .image-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.image-overlay h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.empty-block {
+  visibility: hidden;
+}
+
+/* 响应式设计 - 始终保持5列 */
 @media (max-width: 1024px) {
-  .image-card {
-    flex: 0 0 calc(33.333% - 10px);
+  .image-grid-container {
+    gap: 12px;
+  }
+  
+  .image-wrapper {
+    height: {{ section.settings.image_height | times: 0.85 }}px !important;
   }
 }
 
 @media (max-width: 768px) {
-  .image-card {
-    flex: 0 0 calc(50% - 8px);
+  .image-grid-container {
+    gap: 10px;
+  }
+  
+  .image-wrapper {
+    height: {{ section.settings.image_height | times: 0.7 }}px !important;
+  }
+  
+  .image-overlay {
+    padding: 15px;
+  }
+  
+  .image-overlay h3 {
+    font-size: 16px;
   }
 }
 
 @media (max-width: 480px) {
-  .image-card {
-    flex: 0 0 calc(100% - 6px);
+  .image-grid-container {
+    gap: 8px;
+  }
+  
+  .image-wrapper {
+    height: {{ section.settings.image_height | times: 0.6 }}px !important;
+  }
+  
+  .image-overlay {
+    padding: 10px;
+  }
+  
+  .image-overlay h3 {
+    font-size: 14px;
   }
 }
+</style>
