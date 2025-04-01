@@ -20,10 +20,18 @@
             "text": "Welcome to our store",
             "link": ""
           }
+        },
+        "announcement_Xy4zyj": {
+          "type": "announcement",
+          "settings": {
+            "text": "Move to Balance",
+            "link": ""
+          }
         }
       },
       "block_order": [
-        "announcement_Ttr4V3"
+        "announcement_Ttr4V3",
+        "announcement_Xy4zyj"
       ],
       "settings": {
         "auto_rotate": false,
@@ -39,11 +47,11 @@
       "type": "header",
       "settings": {
         "logo_position": "middle-left",
-        "mobile_logo_position": "left",
+        "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "mega",
         "sticky_header_type": "on-scroll-up",
-        "show_line_separator": false,
+        "show_line_separator": true,
         "color_scheme": "scheme-1",
         "menu_color_scheme": "scheme-1",
         "enable_country_selector": true,

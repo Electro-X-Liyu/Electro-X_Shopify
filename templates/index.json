@@ -89,58 +89,9 @@
     },
     "products2_aqecdb": {
       "type": "products2",
-      "blocks": {
-        "product_banner_ebyEHp": {
-          "type": "product_banner",
-          "settings": {
-            "image": "shopify://shop_images/banner-1.png",
-            "title": "",
-            "link": ""
-          }
-        },
-        "product_banner_tezFDA": {
-          "type": "product_banner",
-          "settings": {
-            "image": "shopify://shop_images/banner-2.png",
-            "title": "",
-            "link": ""
-          }
-        },
-        "product_banner_WigMXz": {
-          "type": "product_banner",
-          "settings": {
-            "image": "shopify://shop_images/banner-3.png",
-            "title": "",
-            "link": ""
-          }
-        },
-        "product_banner_DWfN9w": {
-          "type": "product_banner",
-          "settings": {
-            "image": "shopify://shop_images/banner-4.png",
-            "title": "",
-            "link": ""
-          }
-        },
-        "product_banner_eCyWfj": {
-          "type": "product_banner",
-          "settings": {
-            "image": "shopify://shop_images/banner-5.png",
-            "title": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_banner_ebyEHp",
-        "product_banner_tezFDA",
-        "product_banner_WigMXz",
-        "product_banner_DWfN9w",
-        "product_banner_eCyWfj"
-      ],
       "settings": {
         "title": "Products",
-        "image_height": 380
+        "collection": "frontpage"
       }
     },
     "image_with_text_PJG4Yp": {
