@@ -1,6 +1,6 @@
 {% schema %}
 {
-  "name": "自适应产品网格",
+  "name": "不等宽产品网格",
   "settings": [
     {
       "type": "text",
@@ -15,63 +15,64 @@
     },
     {
       "type": "range",
-      "id": "max_products",
-      "label": "最大显示产品数",
-      "min": 5,
-      "max": 15,
-      "step": 1,
-      "default": 5
+      "id": "image_height",
+      "label": "图片高度(px)",
+      "min": 200,
+      "max": 600,
+      "step": 10,
+      "default": 400
     }
   ],
   "presets": [
     {
-      "name": "自适应产品网格",
+      "name": "不等宽产品网格",
       "category": "产品展示"
     }
   ]
 }
 {% endschema %}
 
-<div class="adaptive-product-grid-section">
+<div class="uneven-product-grid-section">
   {% if section.settings.title != blank %}
     <h2 class="section-title">{{ section.settings.title }}</h2>
   {% endif %}
   
-  <div class="adaptive-product-grid-container">
-    <div class="adaptive-product-grid">
-      {% assign collection = collections[section.settings.collection] %}
-      {% assign max_products = section.settings.max_products | at_least: 5 %}
-      
-      {% for product in collection.products limit: max_products %}
-        <div class="product-card">
-          <a href="{{ product.url }}" class="product-link">
-            <div class="image-container">
-              <div class="image-wrapper">
-                <img src="{{ product.featured_image | img_url: '800x' }}" 
-                     alt="{{ product.title | escape }}"
-                     class="product-image"
-                     loading="lazy"
-                     width="800"
-                     height="800">
-              </div>
-              <div class="hover-overlay">
-                <span class="view-product">View Product</span>
-              </div>
-            </div>
-            <div class="product-info">
-              <h3 class="product-title">{{ product.title }}</h3>
-              <div class="product-price">{{ product.price | money }}</div>
-            </div>
-          </a>
-        </div>
-      {% endfor %}
-    </div>
+  <div class="uneven-product-grid">
+    {% assign collection = collections[section.settings.collection] %}
+    {% assign product_count = 0 %}
+    
+    {% for product in collection.products limit: 5 %}
+      {% assign product_count = product_count | plus: 1 %}
+      {% assign aspect_ratio = product.featured_image.aspect_ratio %}
+      <div class="product-card" style="--aspect-ratio: {{ aspect_ratio }};">
+        <a href="{{ product.url }}" class="product-link">
+          <div class="image-container" style="height: {{ section.settings.image_height }}px;">
+            <img src="{{ product.featured_image | img_url: '800x' }}" 
+                 alt="{{ product.title | escape }}"
+                 class="product-image"
+                 loading="lazy"
+                 width="800"
+                 height="{{ 800 | divided_by: aspect_ratio | round }}">
+            <div class="hover-overlay"></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">{{ product.title }}</h3>
+            <div class="product-price">{{ product.price | money }}</div>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+    
+    {% comment %} 如果产品不足5个，填充空白项保持布局 {% endcomment %}
+    {% for i in (product_count..4) %}
+      <div class="product-card empty-card" style="--aspect-ratio: 1;"></div>
+    {% endfor %}
   </div>
 </div>
 
 <style>
-.adaptive-product-grid-section {
-  max-width: 1440px;
+.uneven-product-grid-section {
+  max-width: calc(100% - 40px);
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
@@ -84,8 +85,6 @@
   color: #333;
   position: relative;
   padding-bottom: 15px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
 }
 
 .section-title:after {
@@ -99,43 +98,36 @@
   background-color: #333;
 }
 
-/* 桌面端网格布局 */
-.adaptive-product-grid-container {
-  overflow: hidden;
-}
-
-.adaptive-product-grid {
+.uneven-product-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 15px;
-  margin: 0 -7.5px; /* 抵消最外侧的间距 */
+  width: 100%;
 }
 
 .product-card {
   position: relative;
   transition: all 0.3s ease;
-  margin: 0 7.5px; /* 为滑动布局做准备 */
+  width: 100%;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
 }
 
 .image-container {
+  width: 100%;
   position: relative;
   overflow: hidden;
-  background: #f8f8f8;
-}
-
-.image-wrapper {
-  width: 100%;
-  padding-bottom: 100%; /* 初始比例，实际会被JS覆盖 */
-  position: relative;
+  background: #f5f5f5;
+  border-radius: 4px;
 }
 
 .product-image {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
   transition: transform 0.5s ease;
 }
 
@@ -145,23 +137,17 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0,0,0,0.03);
   opacity: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: opacity 0.3s ease;
 }
 
-.view-product {
-  color: white;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  transform: translateY(10px);
-  transition: transform 0.3s ease;
-  opacity: 0;
+.product-card:hover .hover-overlay {
+  opacity: 1;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
 }
 
 .product-info {
@@ -173,131 +159,63 @@
   margin: 0 0 5px 0;
   font-size: 16px;
   color: #333;
-  font-weight: 400;
+  transition: color 0.3s ease;
 }
 
 .product-price {
   font-size: 16px;
   color: #666;
   font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-/* 悬停效果 */
-.product-card:hover {
-  transform: translateY(-5px);
+.product-link:hover .product-title,
+.product-link:hover .product-price {
+  color: #000;
 }
 
-.product-card:hover .product-image {
-  transform: scale(1.05);
+.empty-card {
+  visibility: hidden;
 }
 
-.product-card:hover .hover-overlay {
-  opacity: 1;
-}
-
-.product-card:hover .view-product {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* 移动端滑动布局 */
+/* 保持移动端5列布局 */
 @media (max-width: 1024px) {
-  .adaptive-product-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 20px;
-    margin: 0 -15px;
-    grid-template-columns: unset;
-    gap: 0;
+  .uneven-product-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
   }
   
-  .adaptive-product-grid::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .product-card {
-    flex: 0 0 calc(20% - 12px);
-    scroll-snap-align: start;
-    margin: 0 7.5px;
-  }
-  
-  /* 确保至少显示部分下一个卡片作为提示 */
-  .adaptive-product-grid-container {
-    padding: 0 15px;
-    margin: 0 -15px;
+  .image-container {
+    height: {{ section.settings.image_height | times: 0.8 }}px !important;
   }
 }
 
 @media (max-width: 768px) {
-  .product-card {
-    flex: 0 0 calc(33.333% - 10px);
+  .uneven-product-grid {
+    gap: 8px;
+  }
+  
+  .image-container {
+    height: {{ section.settings.image_height | times: 0.7 }}px !important;
+  }
+  
+  .product-info {
+    padding: 10px 0;
+  }
+  
+  .product-title,
+  .product-price {
+    font-size: 14px;
   }
 }
 
 @media (max-width: 480px) {
-  .product-card {
-    flex: 0 0 calc(50% - 7.5px);
+  .uneven-product-grid {
+    gap: 6px;
   }
   
-  .section-title {
-    font-size: 24px;
+  .image-container {
+    height: {{ section.settings.image_height | times: 0.6 }}px !important;
   }
 }
-
-/* 动态高度调整脚本 */
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const productCards = document.querySelectorAll('.product-card');
-  let maxHeight = 0;
-  
-  // 重置所有卡片高度
-  function resetHeights() {
-    productCards.forEach(card => {
-      card.style.height = 'auto';
-    });
-    maxHeight = 0;
-    
-    // 计算最大高度
-    productCards.forEach(card => {
-      if (card.offsetHeight > maxHeight) {
-        maxHeight = card.offsetHeight;
-      }
-    });
-    
-    // 应用等高
-    productCards.forEach(card => {
-      card.style.height = maxHeight + 'px';
-    });
-    
-    // 计算图片容器的动态比例
-    const imageWrappers = document.querySelectorAll('.image-wrapper');
-    imageWrappers.forEach(wrapper => {
-      const img = wrapper.querySelector('img');
-      if (img.naturalWidth && img.naturalHeight) {
-        const aspectRatio = (img.naturalHeight / img.naturalWidth) * 100;
-        wrapper.style.paddingBottom = aspectRatio + '%';
-      }
-    });
-  }
-  
-  // 初始计算
-  resetHeights();
-  
-  // 窗口大小改变时重新计算
-  window.addEventListener('resize', function() {
-    resetHeights();
-  });
-  
-  // 图片加载后重新计算
-  const productImages = document.querySelectorAll('.product-image');
-  productImages.forEach(img => {
-    img.addEventListener('load', function() {
-      resetHeights();
-    });
-  });
-});
-</script>
 </style>
