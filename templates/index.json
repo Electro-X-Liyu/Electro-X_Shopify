@@ -137,54 +137,6 @@
         "row_height": 400
       }
     },
-    "image_with_text_PJG4Yp": {
-      "type": "image-with-text",
-      "blocks": {
-        "heading_YJ83XK": {
-          "type": "heading",
-          "settings": {
-            "heading": "Natural Alkaline Water",
-            "heading_size": "h2"
-          }
-        },
-        "text_mfE9mG": {
-          "type": "text",
-          "settings": {
-            "text": "<h5>ELECTRO X Natural Alkaline Water is a non-carbonated, natural alkaline water bottled and sourced in Heilongjiang Province, China.It has a pH level of 8.8 and above and contains a rich concentration of sodium bicarbonate (approximately 350-700 mg per liter).</h5><h5>380mL | 580mL | 1L</h5><ul><li><h5>Naturally Alkaline Spring Water</h5></li><li><h5>100% Recycleable PET</h5></li></ul>",
-            "text_style": "body"
-          }
-        },
-        "button_kg7NDY": {
-          "type": "button",
-          "settings": {
-            "button_label": "Shop Now",
-            "button_link": "shopify://products/natural-alkaline-water",
-            "button_style_secondary": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_YJ83XK",
-        "text_mfE9mG",
-        "button_kg7NDY"
-      ],
-      "disabled": true,
-      "settings": {
-        "image": "shopify://shop_images/580mL.png",
-        "height": "adapt",
-        "desktop_image_width": "small",
-        "layout": "image_first",
-        "image_behavior": "none",
-        "content_layout": "overlap",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "left",
-        "section_color_scheme": "",
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "image_banner_KNFeMR": {
       "type": "multicolumn-mixed",
       "blocks": {
@@ -266,6 +218,54 @@
         "quick_add": "none",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_PJG4Yp": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_YJ83XK": {
+          "type": "heading",
+          "settings": {
+            "heading": "Natural Alkaline Water",
+            "heading_size": "h2"
+          }
+        },
+        "text_mfE9mG": {
+          "type": "text",
+          "settings": {
+            "text": "<h5>ELECTRO X Natural Alkaline Water is a non-carbonated, natural alkaline water bottled and sourced in Heilongjiang Province, China.It has a pH level of 8.8 and above and contains a rich concentration of sodium bicarbonate (approximately 350-700 mg per liter).</h5>",
+            "text_style": "body"
+          }
+        },
+        "button_kg7NDY": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop Now",
+            "button_link": "shopify://products/natural-alkaline-water",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_YJ83XK",
+        "text_mfE9mG",
+        "button_kg7NDY"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/580mL.png",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -622,9 +622,9 @@
     "image_banner",
     "rich_text_PtqKYk",
     "pic_border_m7m9TP",
-    "image_with_text_PJG4Yp",
     "image_banner_KNFeMR",
     "featured_collection_9xcdiL",
+    "image_with_text_PJG4Yp",
     "featured_collection_NBGF7K",
     "featured_collection_aCmKJ3",
     "collage_zNtJH3",
