@@ -1,0 +1,60 @@
+<div class="article-card">
+  {%- if show_image -%}
+    <div class="article-card__gallery swiper">
+      <div class="swiper-wrapper">
+        {%- assign images_to_show = article.images | default: article.content | split: '<img' | size | minus: 1 -%}
+        {%- assign images_limit = max_images | at_most: images_to_show -%}
+        
+        {%- if article.image -%}
+          <div class="swiper-slide">
+            {{ article.image | image_url: width: 800 | image_tag:
+              loading: 'lazy',
+              alt: article.image.alt | escape,
+              class: 'article-card__image'
+            }}
+          </div>
+        {%- endif -%}
+        
+        {%- for image in article.images limit: images_limit -%}
+          {%- unless image == article.image -%}
+            <div class="swiper-slide">
+              {{ image | image_url: width: 800 | image_tag:
+                loading: 'lazy',
+                alt: image.alt | escape,
+                class: 'article-card__image'
+              }}
+            </div>
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+      <div class="article-card__gallery-pagination swiper-pagination"></div>
+    </div>
+  {%- endif -%}
+
+  <div class="article-card__info">
+    <h3 class="article-card__title">
+      <a href="{{ article.url }}">{{ article.title | escape }}</a>
+    </h3>
+    
+    {%- if show_date or show_author -%}
+      <div class="article-card__meta">
+        {%- if show_date -%}
+          <span class="article-card__date">
+            {{ article.published_at | time_tag: format: 'date' }}
+          </span>
+        {%- endif -%}
+        {%- if show_author -%}
+          <span class="article-card__author">
+            · {{ article.author }}
+          </span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    
+    {%- if show_excerpt and article.excerpt_or_content != blank -%}
+      <div class="article-card__excerpt">
+        {{ article.excerpt_or_content | strip_html | truncate: 150 }}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
