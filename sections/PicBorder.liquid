@@ -1,6 +1,6 @@
 {% schema %}
 {
-  "name": "比例保持图片网格",
+  "name": "滑动图片画廊",
   "settings": [
     {
       "type": "text",
@@ -11,11 +11,17 @@
     {
       "type": "range",
       "id": "row_height",
-      "label": "行高(px)",
+      "label": "图片高度(px)",
       "min": 200,
       "max": 600,
       "step": 10,
       "default": 400
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "移动端显示指示点",
+      "default": true
     }
   ],
   "blocks": [
@@ -44,7 +50,7 @@
   ],
   "presets": [
     {
-      "name": "比例保持图片网格",
+      "name": "滑动图片画廊",
       "category": "图片展示",
       "blocks": [
         {"type": "image_block"},
@@ -58,46 +64,69 @@
 }
 {% endschema %}
 
-<div class="proportional-image-grid" data-section-id="{{ section.id }}">
+<div class="sliding-image-gallery" data-section-id="{{ section.id }}">
   {% if section.settings.title != blank %}
     <h2 class="section-title">{{ section.settings.title }}</h2>
   {% endif %}
   
-  <div class="image-row">
-    {% for block in section.blocks limit: 5 %}
-      {% if block.settings.image != blank %}
-        {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-        <div class="image-container" style="width: calc({{ aspect_ratio }} * {{ section.settings.row_height }}px);" {{ block.shopify_attributes }}>
-          <a href="{{ block.settings.link | default: '#' }}" class="image-link">
-            <img src="{{ block.settings.image | img_url: '1000x' }}"
-                 alt="{{ block.settings.alt_text | default: 'Image' }}"
-                 class="grid-image"
-                 loading="lazy"
-                 width="1000"
-                 height="{{ 1000 | divided_by: aspect_ratio | round }}"
-                 style="height: {{ section.settings.row_height }}px;">
-            <div class="image-hover-effect"></div>
-          </a>
+  <div class="gallery-container">
+    <div class="gallery-track desktop-gallery">
+      {% for block in section.blocks %}
+        {% if block.settings.image != blank %}
+          {% assign aspect_ratio = block.settings.image.aspect_ratio %}
+          <div class="image-container" style="width: calc({{ aspect_ratio }} * {{ section.settings.row_height }}px); margin-right: 33px;" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+              <img src="{{ block.settings.image | img_url: '1000x' }}"
+                   alt="{{ block.settings.alt_text | default: 'Image' }}"
+                   class="grid-image"
+                   loading="lazy"
+                   width="1000"
+                   height="{{ 1000 | divided_by: aspect_ratio | round }}"
+                   style="height: {{ section.settings.row_height }}px;">
+              <div class="image-hover-effect"></div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    
+    <div class="mobile-gallery-wrapper">
+      <div class="gallery-track mobile-gallery">
+        {% for block in section.blocks %}
+          {% if block.settings.image != blank %}
+            {% assign aspect_ratio = block.settings.image.aspect_ratio %}
+            <div class="mobile-slide" style="scroll-snap-align: start; flex: 0 0 calc(100% / {{ section.blocks.size }} - 33px * {{ section.blocks.size | minus: 1 | divided_by: section.blocks.size }}); margin-right: 33px;">
+              <div class="image-container" style="height: {{ section.settings.row_height | times: 0.8 }}px;">
+                <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+                  <img src="{{ block.settings.image | img_url: '800x' }}"
+                       alt="{{ block.settings.alt_text | default: 'Image' }}"
+                       class="grid-image"
+                       loading="lazy"
+                       style="height: 100%; width: auto; max-width: none; object-fit: contain;">
+                  <div class="image-hover-effect"></div>
+                </a>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% if section.settings.show_dots and section.blocks.size > 1 %}
+        <div class="gallery-dots">
+          {% for block in section.blocks %}
+            <button class="dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></button>
+          {% endfor %}
         </div>
       {% endif %}
-    {% endfor %}
-    
-    {% comment %} 填充剩余空间保持5列布局 {% endcomment %}
-    {% assign shown_blocks = section.blocks.size | at_most: 5 %}
-    {% if shown_blocks < 5 %}
-      {% assign remaining_blocks = 5 | minus: shown_blocks %}
-      {% for i in (1..remaining_blocks) %}
-        <div class="image-container empty-container" style="width: calc(1 * {{ section.settings.row_height }}px);"></div>
-      {% endfor %}
-    {% endif %}
+    </div>
   </div>
 </div>
 
 <style>
-.proportional-image-grid {
+.sliding-image-gallery {
   max-width: calc(100% - 40px);
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
 }
 
 .section-title {
@@ -120,25 +149,35 @@
   background-color: #333;
 }
 
-.image-row {
+.gallery-container {
+  position: relative;
+}
+
+.gallery-track {
   display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.desktop-gallery {
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
-  margin: 0 -7.5px; /* 抵消gap的一半以保持边缘对齐 */
+  gap: 33px;
+  margin: 0 -16.5px; /* 抵消gap的一半 */
 }
 
 .image-container {
   position: relative;
-  flex-grow: 0;
   flex-shrink: 0;
   transition: transform 0.3s ease;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .image-link {
   display: block;
   position: relative;
-  overflow: hidden;
+  height: 100%;
 }
 
 .grid-image {
@@ -173,51 +212,181 @@
   opacity: 1;
 }
 
-.empty-container {
-  visibility: hidden;
+/* 移动端样式 */
+.mobile-gallery-wrapper {
+  position: relative;
+  display: none;
+  width: 100%;
 }
 
-/* 响应式调整 - 保持5列但调整行高 */
-@media (max-width: 1200px) {
-  .image-row {
-    gap: 12px;
-  }
+.mobile-gallery {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 20px;
 }
 
-@media (max-width: 1024px) {
-  .proportional-image-grid {
-    max-width: calc(100% - 30px);
-    padding: 0 15px;
+.mobile-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-slide {
+  flex-shrink: 0;
+}
+
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background-color: #333;
+}
+
+/* 响应式切换 */
+@media (max-width: 768px) {
+  .desktop-gallery {
+    display: none;
   }
   
-  .image-row {
-    gap: 10px;
+  .mobile-gallery-wrapper {
+    display: block;
   }
-}
-
-@media (max-width: 768px) {
+  
   .section-title {
     font-size: 24px;
     margin-bottom: 20px;
   }
-  
-  .image-row {
-    gap: 8px;
-  }
 }
 
 @media (max-width: 480px) {
-  .proportional-image-grid {
+  .sliding-image-gallery {
     max-width: calc(100% - 20px);
     padding: 0 10px;
-  }
-  
-  .image-row {
-    gap: 6px;
   }
   
   .section-title {
     font-size: 20px;
   }
+  
+  .mobile-slide {
+    flex: 0 0 calc(100% / {{ section.blocks.size }} - 20px);
+    margin-right: 20px;
+  }
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileGallery = document.querySelector('.mobile-gallery');
+  const dots = document.querySelectorAll('.dot');
+  
+  if (mobileGallery && dots.length > 0) {
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID;
+    let currentIndex = 0;
+    
+    // 触摸事件处理
+    mobileGallery.addEventListener('touchstart', touchStart);
+    mobileGallery.addEventListener('touchend', touchEnd);
+    mobileGallery.addEventListener('touchmove', touchMove);
+    
+    // 鼠标事件处理
+    mobileGallery.addEventListener('mousedown', touchStart);
+    mobileGallery.addEventListener('mouseup', touchEnd);
+    mobileGallery.addEventListener('mouseleave', touchEnd);
+    mobileGallery.addEventListener('mousemove', touchMove);
+    
+    // 防止拖动时选中文本
+    mobileGallery.addEventListener('selectstart', e => e.preventDefault());
+    
+    function touchStart(e) {
+      if (e.type === 'touchstart') {
+        startPos = e.touches[0].clientX;
+      } else {
+        startPos = e.clientX;
+        e.preventDefault();
+      }
+      
+      isDragging = true;
+      animationID = requestAnimationFrame(animation);
+      mobileGallery.style.cursor = 'grabbing';
+      mobileGallery.style.scrollBehavior = 'auto';
+    }
+    
+    function touchEnd() {
+      isDragging = false;
+      cancelAnimationFrame(animationID);
+      
+      const movedBy = currentTranslate - prevTranslate;
+      
+      if (movedBy < -50 && currentIndex < {{ section.blocks.size }} - 1) {
+        currentIndex += 1;
+      }
+      
+      if (movedBy > 50 && currentIndex > 0) {
+        currentIndex -= 1;
+      }
+      
+      setPositionByIndex();
+      mobileGallery.style.cursor = 'grab';
+      updateDots();
+    }
+    
+    function touchMove(e) {
+      if (isDragging) {
+        const currentPosition = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+        currentTranslate = prevTranslate + currentPosition - startPos;
+      }
+    }
+    
+    function animation() {
+      setGalleryPosition();
+      if (isDragging) requestAnimationFrame(animation);
+    }
+    
+    function setGalleryPosition() {
+      mobileGallery.style.transform = `translateX(${currentTranslate}px)`;
+    }
+    
+    function setPositionByIndex() {
+      const slideWidth = mobileGallery.children[0].offsetWidth + 33;
+      currentTranslate = -(currentIndex * slideWidth);
+      prevTranslate = currentTranslate;
+      setGalleryPosition();
+    }
+    
+    function updateDots() {
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+    
+    // 点击指示点跳转
+    dots.forEach(dot => {
+      dot.addEventListener('click', function() {
+        currentIndex = parseInt(this.getAttribute('data-index'));
+        setPositionByIndex();
+        updateDots();
+      });
+    });
+  }
+});
+</script>
