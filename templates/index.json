@@ -134,7 +134,8 @@
       ],
       "settings": {
         "title": "",
-        "row_height": 400
+        "row_height": 400,
+        "show_dots": true
       }
     },
     "image_banner_KNFeMR": {
@@ -222,6 +223,75 @@
         "padding_bottom": 0
       }
     },
+    "featured_product_p8HAMi": {
+      "type": "featured-product",
+      "blocks": {
+        "text_Gkqwic": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_9FA6Ut": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_tiLmfh": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_kPXTnF": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_FaRbRe": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_wQqzdM": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_JFUWzF": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "text_Gkqwic",
+        "title_9FA6Ut",
+        "price_tiLmfh",
+        "variant_picker_kPXTnF",
+        "quantity_selector_FaRbRe",
+        "buy_buttons_wQqzdM",
+        "share_JFUWzF"
+      ],
+      "settings": {
+        "product": "natural-alkaline-water",
+        "color_scheme": "",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "image_with_text_PJG4Yp": {
       "type": "image-with-text",
       "blocks": {
@@ -253,6 +323,7 @@
         "text_mfE9mG",
         "button_kg7NDY"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/580mL.png",
         "height": "medium",
@@ -766,16 +837,16 @@
       ],
       "settings": {
         "image": "shopify://shop_images/3.jpg",
-        "image_overlay_opacity": 0,
+        "image_overlay_opacity": 20,
         "image_height": "medium",
-        "image_behavior": "none",
+        "image_behavior": "ambient",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "scheme-3",
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
-        "show_text_below": true
+        "show_text_below": false
       }
     }
   },
@@ -785,6 +856,7 @@
     "pic_border_m7m9TP",
     "image_banner_KNFeMR",
     "featured_collection_9xcdiL",
+    "featured_product_p8HAMi",
     "image_with_text_PJG4Yp",
     "featured_collection_NBGF7K",
     "featured_collection_aCmKJ3",
