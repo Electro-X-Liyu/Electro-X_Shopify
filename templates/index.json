@@ -384,7 +384,7 @@
       "type": "featured-blog",
       "settings": {
         "blog": "sports-sponsorship-1",
-        "post_limit": 4,
+        "post_limit": 10,
         "heading": "Sports Sponsors",
         "heading_size": "h1",
         "columns_desktop": 3,
