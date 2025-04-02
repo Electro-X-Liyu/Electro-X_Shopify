@@ -88,7 +88,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-1.png",
-            "link": "",
+            "link": "shopify://products/natural-alkaline-water",
             "alt_text": ""
           }
         },
@@ -96,7 +96,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-2.png",
-            "link": "",
+            "link": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
             "alt_text": ""
           }
         },
@@ -104,7 +104,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-3.png",
-            "link": "",
+            "link": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor",
             "alt_text": ""
           }
         },
@@ -112,7 +112,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-4.png",
-            "link": "",
+            "link": "shopify://products/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
             "alt_text": ""
           }
         },
@@ -120,7 +120,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-5.png",
-            "link": "",
+            "link": "shopify://products/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade",
             "alt_text": ""
           }
         }
@@ -281,9 +281,9 @@
         "product": "natural-alkaline-water",
         "color_scheme": "",
         "secondary_background": false,
-        "media_size": "medium",
+        "media_size": "small",
         "constrain_to_viewport": true,
-        "media_fit": "contain",
+        "media_fit": "cover",
         "media_position": "left",
         "image_zoom": "lightbox",
         "hide_variants": false,
@@ -393,7 +393,7 @@
         "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 68
       }
     },
     "collage_zNtJH3": {
@@ -502,6 +502,36 @@
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
         "show_text_below": true
+      }
+    },
+    "rich_text_neCnki": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_i8z9Pe": {
+          "type": "heading",
+          "settings": {
+            "heading": "Community Ambassador",
+            "heading_size": "h1"
+          }
+        },
+        "text_K7wnnM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ELECTRO X has built partnership with community leaders across diverse sportsTogether with our community leaders, we are redefeining the hydration</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_i8z9Pe",
+        "text_K7wnnM"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 20
       }
     },
     "multicolumn_jz97CR": {
@@ -775,7 +805,7 @@
         "column_F8zNcm"
       ],
       "settings": {
-        "title": "Community Ambassador",
+        "title": "",
         "heading_size": "h2",
         "image_width": "full",
         "image_ratio": "adapt",
@@ -789,28 +819,6 @@
         "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 36
-      }
-    },
-    "rich_text_neCnki": {
-      "type": "rich-text",
-      "blocks": {
-        "text_K7wnnM": {
-          "type": "text",
-          "settings": {
-            "text": "<p>ELECTRO X has built partnership with community leaders across diverse sportsTogether with our community leaders, we are redefeining the hydration</p>"
-          }
-        }
-      },
-      "block_order": [
-        "text_K7wnnM"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
       }
     },
     "image_banner_rALkGg": {
@@ -864,8 +872,8 @@
     "image_banner_R9mHmC",
     "featured_blog_hcNHKd",
     "image_banner_AYjrAd",
-    "multicolumn_jz97CR",
     "rich_text_neCnki",
+    "multicolumn_jz97CR",
     "image_banner_rALkGg"
   ]
 }
