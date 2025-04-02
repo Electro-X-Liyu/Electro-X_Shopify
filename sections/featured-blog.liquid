@@ -19,7 +19,7 @@
 
 {%- liquid
   assign posts_displayed = section.settings.blog.articles_count
-  if section.settings.post_limit <= section.settings.blog.articles_count or section.settings.post_limit <= 10
+  if section.settings.post_limit <= section.settings.blog.articles_count or section.settings.post_limit <= 4
     assign posts_exceed_limit = true
     assign posts_displayed = section.settings.post_limit
   endif
@@ -207,7 +207,7 @@
       "type": "range",
       "id": "post_limit",
       "min": 2,
-      "max": 4,
+      "max": 10,
       "step": 1,
       "default": 3,
       "label": "t:sections.featured-blog.settings.post_limit.label"
