@@ -1,6 +1,222 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* 新增多图样式 */
+  .article-card__gallery {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  .article-card__gallery .swiper-slide {
+    height: auto;
+    aspect-ratio: {{ section.settings.image_aspect_ratio }};
+  }
+  
+  .article-card__gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .article-card__gallery-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: rgba(0,0,0,0.3);
+    margin: 0 5px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .swiper-pagination-bullet-active {
+    background: rgba(0,0,0,0.8);
+  }
+{%- endstyle -%}
+
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+
+{%- paginate blog.articles by section.settings.articles_per_page -%}
+  <div class="main-blog page-width section-{{ section.id }}-padding">
+    <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {{ blog.title | escape }}
+    </h1>
+
+    <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
+      {%- for article in blog.articles -%}
+        <div
+          class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+          {% endif %}
+        >
+          {%- render 'new-article-card',
+            article: article,
+            media_height: section.settings.image_height,
+            show_image: section.settings.show_image,
+            show_date: section.settings.show_date,
+            show_author: section.settings.show_author,
+            show_excerpt: section.settings.show_excerpt,
+            max_images: section.settings.max_images,
+            image_aspect_ratio: section.settings.image_aspect_ratio
+          -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      {%- render 'pagination', paginate: paginate -%}
+    {%- endif -%}
+  </div>
+{%- endpaginate -%}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 初始化所有文章图片轮播
+  document.querySelectorAll('.article-card__gallery').forEach(gallery => {
+    new Swiper(gallery, {
+      loop: true,
+      pagination: {
+        el: gallery.querySelector('.article-card__gallery-pagination'),
+        clickable: true,
+      },
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "New Blog",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 6,
+      "label": "每页文章数"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "网格布局"
+        },
+        {
+          "value": "collage",
+          "label": "拼贴布局"
+        }
+      ],
+      "default": "collage",
+      "label": "布局样式"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "显示图片"
+    },
+    {
+      "type": "range",
+      "id": "max_images",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3,
+      "label": "每篇文章最大图片数"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "options": [
+        {
+          "value": "1.77",
+          "label": "横向 (16:9)"
+        },
+        {
+          "value": "1.5",
+          "label": "横向 (3:2)"
+        },
+        {
+          "value": "1",
+          "label": "方形 (1:1)"
+        },
+        {
+          "value": "0.75",
+          "label": "纵向 (3:4)"
+        }
+      ],
+      "default": "1.5",
+      "label": "图片比例"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "显示日期"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "显示作者"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "default": true,
+      "label": "显示摘要"
+    },
+    {
+      "type": "header",
+      "content": "版式设置"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "上边距",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "下边距",
+      "default": 36
+    }
+  ]
+}
 {% endschema %}
