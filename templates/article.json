@@ -40,7 +40,7 @@
         "heading": "2024 Desafio Beijing",
         "heading_size": "h1",
         "desktop_layout": "right",
-        "mobile_layout": "column",
+        "mobile_layout": "collage",
         "card_styles": "product-card-wrapper",
         "color_scheme": "",
         "padding_top": 36,
