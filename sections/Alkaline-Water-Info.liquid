@@ -320,7 +320,7 @@
   @media screen and (min-width: 990px) {
     .alkaline-grid {
       grid-template-columns: 1fr 1fr;
-      align-items: center;
+      align-items: flex-start;
     }
   }
 
@@ -368,7 +368,53 @@
   }
 
   .product-info-container {
-    padding: 2rem 0;
+    padding: 0;
+  }
+
+  /* 精确匹配featured-product的间距标准 */
+  .product__title {
+    margin: 0 0 1.2rem;
+  }
+
+  .product__price {
+    margin: 0 0 1.4rem;
+  }
+
+  .product__sku {
+    margin: 0 0 1.4rem;
+  }
+
+  .product__variants {
+    margin: 0 0 1.8rem;
+  }
+
+  .product__quantity {
+    margin: 0 0 2.2rem;
+  }
+
+  .product__buttons {
+    margin: 0 0 1.6rem;
+  }
+
+  .product__share {
+    margin: 0 0 2rem;
+  }
+
+  .product__rating {
+    margin: 0 0 1.6rem;
+  }
+
+  .product__text {
+    margin: 0 0 1.4rem;
+  }
+
+  .product__view-details {
+    display: inline-block;
+    margin: 2rem 0 0;
+  }
+
+  .quick-add-button {
+    margin: 0 0 1rem;
   }
 
   @media screen and (max-width: 989px) {
@@ -385,11 +431,36 @@
     .alkaline-container {
       padding: 0 1rem;
     }
-  }
 
-  /* Quick add button styles */
-  .quick-add-button {
-    margin-top: 1rem;
+    .product__title {
+      margin: 0 0 1rem;
+    }
+
+    .product__price,
+    .product__sku,
+    .product__text {
+      margin: 0 0 1.2rem;
+    }
+
+    .product__variants {
+      margin: 0 0 1.4rem;
+    }
+
+    .product__quantity {
+      margin: 0 0 1.8rem;
+    }
+
+    .product__buttons {
+      margin: 0 0 1.4rem;
+    }
+
+    .product__share {
+      margin: 0 0 1.6rem;
+    }
+
+    .product__rating {
+      margin: 0 0 1.2rem;
+    }
   }
 </style>
 
@@ -447,81 +518,15 @@
               </div>
             
             {%- when 'sku' -%}
-              <p class="product__sku" {{ block.shopify_attributes }}>
+              <p class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}" {{ block.shopify_attributes }}>
                 <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>
                 {{- product.selected_or_first_available_variant.sku -}}
               </p>
             
-            {%- when 'variant_picker' -%}
-              {%- unless product.has_only_default_variant -%}
-                <div class="product__variants" {{ block.shopify_attributes }}>
-                  {%- render 'product-variant-picker',
-                    product: product,
-                    block: block,
-                    product_form_id: product_form_id
-                  -%}
-                </div>
-              {%- endunless -%}
-            
-            {%- when 'quantity_selector' -%}
-              <div class="product__quantity" {{ block.shopify_attributes }}>
-                <label for="Quantity-{{ section.id }}">
-                  {{ 'products.product.quantity.label' | t }}
-                </label>
-                <quantity-input class="quantity">
-                  <button name="minus" type="button">-</button>
-                  <input type="number"
-                    name="quantity"
-                    id="Quantity-{{ section.id }}"
-                    min="1"
-                    value="1"
-                    form="{{ product_form_id }}">
-                  <button name="plus" type="button">+</button>
-                </quantity-input>
-              </div>
-            
-            {%- when 'buy_buttons' -%}
-              <div {{ block.shopify_attributes }}>
-                {%- if block.settings.show_quick_add -%}
-                  <div class="quick-add-button">
-                    <button type="button"
-                      class="button button--full-width"
-                      data-quick-add
-                      data-variant-id="{{ product.selected_or_first_available_variant.id }}">
-                      {{ 'products.product.quick_add' | t }}
-                    </button>
-                  </div>
-                {%- endif -%}
-                
-                {%- form 'product', product, id: product_form_id -%}
-                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                  <div class="product__buttons">
-                    <button type="submit"
-                      name="add"
-                      class="button button--full-width button--primary"
-                      {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
-                      {%- if product.selected_or_first_available_variant.available -%}
-                        {{ 'products.product.add_to_cart' | t }}
-                      {%- else -%}
-                        {{ 'products.product.sold_out' | t }}
-                      {%- endif -%}
-                    </button>
-                    {%- if block.settings.show_dynamic_checkout -%}
-                      {{ form | payment_button }}
-                    {%- endif -%}
-                  </div>
-                {%- endform -%}
-              </div>
-            
-            {%- when 'share' -%}
-              <div class="product__share" {{ block.shopify_attributes }}>
-                {% assign share_url = product.url | prepend: request.origin %}
-                {% render 'share-button',
-                  block: block,
-                  share_link: share_url,
-                  share_label: block.settings.share_label
-                %}
-              </div>
+            {%- when 'text' -%}
+              <p class="product__text{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}" {{ block.shopify_attributes }}>
+                {{- block.settings.text -}}
+              </p>
             
             {%- when 'rating' -%}
               {%- if product.metafields.reviews.rating.value != blank -%}
@@ -547,15 +552,102 @@
                 </div>
               {%- endif -%}
             
-            {%- when 'text' -%}
-              <div class="product__text" {{ block.shopify_attributes }}>
-                {{ block.settings.text }}
+            {%- when 'variant_picker' -%}
+              {%- unless product.has_only_default_variant -%}
+                <div class="product__variants" {{ block.shopify_attributes }}>
+                  {%- render 'product-variant-picker',
+                    product: product,
+                    block: block,
+                    product_form_id: product_form_id
+                  -%}
+                </div>
+              {%- endunless -%}
+            
+            {%- when 'quantity_selector' -%}
+              <div class="product__quantity" {{ block.shopify_attributes }}>
+                <label class="quantity__label form__label" for="Quantity-{{ section.id }}">
+                  {{ 'products.product.quantity.label' | t }}
+                </label>
+                <quantity-input class="quantity">
+                  <button class="quantity__button" name="minus" type="button">
+                    <span class="visually-hidden">
+                      {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+                    </span>
+                    {% render 'icon-minus' %}
+                  </button>
+                  <input class="quantity__input"
+                    type="number"
+                    name="quantity"
+                    id="Quantity-{{ section.id }}"
+                    min="1"
+                    value="1"
+                    form="{{ product_form_id }}">
+                  <button class="quantity__button" name="plus" type="button">
+                    <span class="visually-hidden">
+                      {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+                    </span>
+                    {% render 'icon-plus' %}
+                  </button>
+                </quantity-input>
+              </div>
+            
+            {%- when 'buy_buttons' -%}
+              <div class="product__buttons" {{ block.shopify_attributes }}>
+                {%- if block.settings.show_quick_add -%}
+                  <div class="quick-add-button">
+                    <button type="button"
+                      class="button button--full-width"
+                      data-quick-add
+                      data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+                      {{ 'products.product.quick_add' | t }}
+                    </button>
+                  </div>
+                {%- endif -%}
+                
+                {%- form 'product', product, id: product_form_id -%}
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                  <div class="product-form__buttons">
+                    <button
+                      type="submit"
+                      name="add"
+                      class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+                      {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+                    >
+                      {%- if product.selected_or_first_available_variant.available -%}
+                        {{ 'products.product.add_to_cart' | t }}
+                      {%- else -%}
+                        {{ 'products.product.sold_out' | t }}
+                      {%- endif -%}
+                    </button>
+                    {%- if block.settings.show_dynamic_checkout -%}
+                      {{ form | payment_button }}
+                    {%- endif -%}
+                  </div>
+                {%- endform -%}
+              </div>
+            
+            {%- when 'share' -%}
+              <div class="product__share" {{ block.shopify_attributes }}>
+                {% assign share_url = product.url | prepend: request.origin %}
+                {% render 'share-button',
+                  block: block,
+                  share_link: share_url,
+                  share_label: block.settings.share_label
+                %}
               </div>
           {%- endcase -%}
         {%- endfor -%}
         
-        <a href="{{ product.url }}" class="link product__view-details">
+        <a
+          {% if product == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href="{{ product.url }}"
+          {% endif %}
+          class="link product__view-details animate-arrow"
+        >
           {{ 'products.product.view_full_details' | t }}
+          {% render 'icon-arrow' %}
         </a>
       </div>
     </div>
