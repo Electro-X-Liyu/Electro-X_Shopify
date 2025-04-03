@@ -1,6 +1,6 @@
 {% schema %}
 {
-  "name": "可拖拽图片画廊",
+  "name": "高级图片画廊",
   "settings": [
     {
       "type": "text",
@@ -10,12 +10,21 @@
     },
     {
       "type": "range",
-      "id": "row_height",
-      "label": "图片高度(px)",
+      "id": "desktop_height",
+      "label": "PC端图片高度(px)",
       "min": 200,
-      "max": 600,
+      "max": 800,
       "step": 10,
       "default": 400
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "移动端图片高度(px)",
+      "min": 150,
+      "max": 500,
+      "step": 10,
+      "default": 300
     }
   ],
   "blocks": [
@@ -44,7 +53,7 @@
   ],
   "presets": [
     {
-      "name": "可拖拽图片画廊",
+      "name": "高级图片画廊",
       "category": "图片展示",
       "blocks": [
         {"type": "image_block"},
@@ -58,62 +67,99 @@
 }
 {% endschema %}
 
-<div class="draggable-image-gallery" data-section-id="{{ section.id }}">
+<div class="advanced-image-gallery" data-section-id="{{ section.id }}">
   {% if section.settings.title != blank %}
     <h2 class="section-title">{{ section.settings.title }}</h2>
   {% endif %}
   
-  <div class="gallery-wrapper">
-    <div class="image-row desktop-gallery">
-      {% for block in section.blocks limit: 5 %}
+  <div class="gallery-container">
+    <!-- PC端网格布局 -->
+    <div class="gallery-grid desktop-gallery">
+      {% for block in section.blocks %}
         {% if block.settings.image != blank %}
           {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-          <div class="image-container" style="width: calc({{ aspect_ratio }} * {{ section.settings.row_height }}px);" {{ block.shopify_attributes }}>
+          <div class="image-card" style="--aspect-ratio: {{ aspect_ratio }}; flex: 0 0 calc({{ aspect_ratio }} * {{ section.settings.desktop_height }}px);" {{ block.shopify_attributes }}>
             <a href="{{ block.settings.link | default: '#' }}" class="image-link">
-              <img src="{{ block.settings.image | img_url: '1000x' }}"
-                   alt="{{ block.settings.alt_text | default: 'Image' }}"
-                   class="grid-image"
-                   loading="lazy"
-                   width="1000"
-                   height="{{ 1000 | divided_by: aspect_ratio | round }}"
-                   style="height: {{ section.settings.row_height }}px;">
-              <div class="image-hover-effect"></div>
+              <div class="image-wrapper" style="height: {{ section.settings.desktop_height }}px;">
+                <img src="{{ block.settings.image | img_url: '1200x' }}"
+                     alt="{{ block.settings.alt_text | default: 'Image' }}"
+                     class="gallery-image"
+                     loading="lazy"
+                     width="1200"
+                     height="{{ 1200 | divided_by: aspect_ratio | round }}">
+              </div>
             </a>
           </div>
         {% endif %}
       {% endfor %}
     </div>
     
+    <!-- 移动端滑动布局 -->
     <div class="mobile-gallery-container">
-      <div class="mobile-gallery">
-        {% for block in section.blocks limit: 5 %}
-          {% if block.settings.image != blank %}
-            {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-            <div class="mobile-image-container" style="width: calc({{ aspect_ratio }} * {{ section.settings.row_height | times: 0.8 }}px + 66px);">
-              <a href="{{ block.settings.link | default: '#' }}" class="image-link">
-                <img src="{{ block.settings.image | img_url: '800x' }}"
-                     alt="{{ block.settings.alt_text | default: 'Image' }}"
-                     class="mobile-image"
+      <div class="mobile-slider">
+        <!-- 循环滑动需要的副本（前后各加1个） -->
+        {% assign last_block = section.blocks.last %}
+        {% if last_block.settings.image != blank %}
+          {% assign aspect_ratio = last_block.settings.image.aspect_ratio %}
+          <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px);">
+            <a href="{{ last_block.settings.link | default: '#' }}" class="image-link">
+              <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
+                <img src="{{ last_block.settings.image | img_url: '800x' }}"
+                     alt="{{ last_block.settings.alt_text | default: 'Image' }}"
+                     class="gallery-image"
                      loading="lazy"
                      width="800"
-                     height="{{ 800 | divided_by: aspect_ratio | round }}"
-                     style="height: {{ section.settings.row_height | times: 0.8 }}px;">
-                <div class="image-hover-effect"></div>
+                     height="{{ 800 | divided_by: aspect_ratio | round }}">
+              </div>
+            </a>
+          </div>
+        {% endif %}
+        
+        {% for block in section.blocks %}
+          {% if block.settings.image != blank %}
+            {% assign aspect_ratio = block.settings.image.aspect_ratio %}
+            <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px);" data-index="{{ forloop.index0 }}">
+              <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+                <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
+                  <img src="{{ block.settings.image | img_url: '800x' }}"
+                       alt="{{ block.settings.alt_text | default: 'Image' }}"
+                       class="gallery-image"
+                       loading="lazy"
+                       width="800"
+                       height="{{ 800 | divided_by: aspect_ratio | round }}">
+                </div>
               </a>
             </div>
           {% endif %}
         {% endfor %}
+        
+        {% assign first_block = section.blocks.first %}
+        {% if first_block.settings.image != blank %}
+          {% assign aspect_ratio = first_block.settings.image.aspect_ratio %}
+          <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px);">
+            <a href="{{ first_block.settings.link | default: '#' }}" class="image-link">
+              <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
+                <img src="{{ first_block.settings.image | img_url: '800x' }}"
+                     alt="{{ first_block.settings.alt_text | default: 'Image' }}"
+                     class="gallery-image"
+                     loading="lazy"
+                     width="800"
+                     height="{{ 800 | divided_by: aspect_ratio | round }}">
+              </div>
+            </a>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
 </div>
 
 <style>
-.draggable-image-gallery {
+.advanced-image-gallery {
   max-width: calc(100% - 40px);
   margin: 0 auto;
   padding: 0 20px;
-  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .section-title {
@@ -136,184 +182,229 @@
   background-color: #333;
 }
 
-/* 桌面端样式 */
-.desktop-gallery {
+/* PC端样式 */
+.gallery-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 33px;
-  margin: 0 -16.5px; /* 抵消gap的一半 */
-}
-
-.image-container {
-  position: relative;
-  flex-grow: 0;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-}
-
-/* 移动端样式 - 隐藏桌面版 */
-@media (min-width: 751px) {
-  .mobile-gallery-container {
-    display: none;
-  }
-}
-
-/* 移动端样式 - 显示可拖拽画廊 */
-@media (max-width: 750px) {
-  .desktop-gallery {
-    display: none;
-  }
-  
-  .mobile-gallery-container {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 20px;
-    margin: 0 -20px;
-    padding: 0 20px;
-  }
-  
-  .mobile-gallery {
-    display: flex;
-    gap: 33px;
-    width: max-content;
-    padding-bottom: 10px;
-  }
-  
-  .mobile-image-container {
-    position: relative;
-    scroll-snap-align: start;
-    flex: 0 0 auto;
-    transition: transform 0.3s ease;
-  }
-  
-  /* 隐藏滚动条但保持功能 */
-  .mobile-gallery-container::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .mobile-gallery-container {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-}
-
-/* 通用图片样式 */
-.image-link {
-  display: block;
-  position: relative;
-  overflow: hidden;
-  border-radius: 4px;
-}
-
-.grid-image, .mobile-image {
-  width: auto;
-  max-width: none;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  transition: transform 0.5s ease;
-}
-
-.image-hover-effect {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.03);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  margin: 0 auto;
 }
 
-.image-container:hover, .mobile-image-container:hover {
-  transform: translateY(-5px);
+.image-card {
+  position: relative;
+  transition: transform 0.3s ease;
+  margin: 0;
+  padding: 0;
 }
 
-.image-container:hover .grid-image,
-.mobile-image-container:hover .mobile-image {
-  transform: scale(1.03);
+.image-wrapper {
+  position: relative;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  width: 100%;
 }
 
-.image-container:hover .image-hover-effect,
-.mobile-image-container:hover .image-hover-effect {
-  opacity: 1;
+.gallery-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
 
-/* 移动端拖拽提示 */
-@keyframes bounce {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(-10px); }
+/* PC端悬停效果 */
+.desktop-gallery .image-card:hover .gallery-image {
+  transform: scale(1.15);
+  z-index: 10;
 }
 
-.mobile-gallery-container:after {
-  content: "← 滑动浏览 →";
-  position: absolute;
-  right: 30px;
-  bottom: 0;
-  color: #999;
-  font-size: 12px;
-  animation: bounce 2s infinite;
+/* 移动端样式 */
+.mobile-gallery-container {
+  display: none;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.mobile-slider {
+  display: flex;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.mobile-slide {
+  flex-shrink: 0;
+  margin-right: 33px;
+  scroll-snap-align: start;
+}
+
+.mobile-slide .image-wrapper {
+  overflow: hidden;
+}
+
+/* 响应式切换 */
+@media (min-width: 769px) {
+  .mobile-gallery-container {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    display: none;
+  }
+  
+  .mobile-gallery-container {
+    display: block;
+  }
+  
+  .section-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
 }
 
 @media (max-width: 480px) {
-  .mobile-gallery-container:after {
-    content: "← →";
-    right: 20px;
+  .advanced-image-gallery {
+    max-width: calc(100% - 20px);
+    padding: 0 10px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+  }
+  
+  .mobile-slide {
+    margin-right: 20px;
   }
 }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // 移动端拖拽惯性效果增强
-  const gallery = document.querySelector('.mobile-gallery-container');
-  if (gallery) {
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+  const mobileSlider = document.querySelector('.mobile-slider');
+  
+  if (mobileSlider && mobileSlider.children.length > 3) {
+    const slides = Array.from(mobileSlider.children);
+    const realSlideCount = slides.length - 2; // 减去前后各1个副本
+    const slideWidth = slides[1].offsetWidth + 33; // 取第一个真实slide的宽度
     
-    gallery.addEventListener('mousedown', (e) => {
-      isDown = true;
-      startX = e.pageX - gallery.offsetLeft;
-      scrollLeft = gallery.scrollLeft;
-    });
+    // 初始化位置（定位到第一个真实slide）
+    let currentIndex = 1;
+    mobileSlider.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
     
-    gallery.addEventListener('mouseleave', () => {
-      isDown = false;
-    });
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = -slideWidth * currentIndex;
+    let prevTranslate = currentTranslate;
+    let animationID;
+    let velocity = 0;
+    let lastTime = 0;
     
-    gallery.addEventListener('mouseup', () => {
-      isDown = false;
-    });
+    // 触摸事件
+    mobileSlider.addEventListener('touchstart', touchStart);
+    mobileSlider.addEventListener('touchend', touchEnd);
+    mobileSlider.addEventListener('touchmove', touchMove);
     
-    gallery.addEventListener('mousemove', (e) => {
-      if(!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - gallery.offsetLeft;
-      const walk = (x - startX) * 2;
-      gallery.scrollLeft = scrollLeft - walk;
-    });
+    // 鼠标事件
+    mobileSlider.addEventListener('mousedown', touchStart);
+    mobileSlider.addEventListener('mouseup', touchEnd);
+    mobileSlider.addEventListener('mouseleave', touchEnd);
+    mobileSlider.addEventListener('mousemove', touchMove);
     
-    // 触摸事件支持
-    gallery.addEventListener('touchstart', (e) => {
-      isDown = true;
-      startX = e.touches[0].pageX - gallery.offsetLeft;
-      scrollLeft = gallery.scrollLeft;
-    }, {passive: true});
+    function touchStart(e) {
+      isDragging = true;
+      startPos = getPositionX(e);
+      animationID = requestAnimationFrame(animation);
+      mobileSlider.style.transition = 'none';
+      lastTime = performance.now();
+      velocity = 0;
+    }
     
-    gallery.addEventListener('touchend', () => {
-      isDown = false;
-    });
+    function touchEnd() {
+      isDragging = false;
+      cancelAnimationFrame(animationID);
+      
+      // 根据滑动速度决定是否切换
+      const momentumThreshold = 0.3;
+      const momentum = velocity * 30;
+      
+      if (Math.abs(momentum) > momentumThreshold) {
+        currentIndex += Math.sign(momentum);
+      }
+      
+      // 循环逻辑
+      if (currentIndex < 1) {
+        currentIndex = realSlideCount;
+      } else if (currentIndex > realSlideCount) {
+        currentIndex = 1;
+      }
+      
+      snapToSlide();
+    }
     
-    gallery.addEventListener('touchmove', (e) => {
-      if(!isDown) return;
-      const x = e.touches[0].pageX - gallery.offsetLeft;
-      const walk = (x - startX) * 2;
-      gallery.scrollLeft = scrollLeft - walk;
-    }, {passive: true});
+    function touchMove(e) {
+      if (isDragging) {
+        const currentPosition = getPositionX(e);
+        const delta = currentPosition - startPos;
+        
+        // 计算速度（用于惯性滑动判断）
+        const time = performance.now();
+        const deltaTime = time - lastTime;
+        if (deltaTime > 0) {
+          velocity = delta / deltaTime;
+        }
+        lastTime = time;
+        
+        currentTranslate = prevTranslate + delta;
+        setSliderPosition();
+      }
+    }
+    
+    function animation(time) {
+      if (isDragging) {
+        setSliderPosition();
+        animationID = requestAnimationFrame(animation);
+      }
+    }
+    
+    function setSliderPosition() {
+      mobileSlider.style.transform = `translateX(${currentTranslate}px)`;
+    }
+    
+    function snapToSlide() {
+      prevTranslate = currentTranslate = -slideWidth * currentIndex;
+      mobileSlider.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      setSliderPosition();
+      
+      // 滑动结束后检查是否需要重置位置（实现无缝循环）
+      const resetPosition = () => {
+        mobileSlider.removeEventListener('transitionend', resetPosition);
+        
+        if (currentIndex === 0) {
+          currentIndex = realSlideCount;
+        } else if (currentIndex === realSlideCount + 1) {
+          currentIndex = 1;
+        } else {
+          return;
+        }
+        
+        mobileSlider.style.transition = 'none';
+        prevTranslate = currentTranslate = -slideWidth * currentIndex;
+        setSliderPosition();
+      };
+      
+      mobileSlider.addEventListener('transitionend', resetPosition);
+    }
+    
+    function getPositionX(e) {
+      return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+    }
   }
 });
 </script>
