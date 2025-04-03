@@ -410,11 +410,11 @@
 
   .product__view-details {
     display: inline-block;
-    margin: 2.5rem 0 0; /* 修正行650：从2rem调整为2.5rem */
+    margin: 2.5rem 0 0;
   }
 
   .quick-add-button {
-    margin: 0 0 1.2rem; /* 修正行576：从1rem调整为1.2rem */
+    margin: 0 0 1.2rem;
   }
 
   @media screen and (max-width: 989px) {
@@ -443,7 +443,7 @@
     }
 
     .product__variants {
-      margin: 0 0 1.6rem; /* 修正行589：从1.4rem调整为1.6rem */
+      margin: 0 0 1.6rem;
     }
 
     .product__quantity {
@@ -460,10 +460,6 @@
 
     .product__rating {
       margin: 0 0 1.2rem;
-    }
-
-    .product__view-details {
-      margin: 2rem 0 0;
     }
   }
 </style>
@@ -577,7 +573,9 @@
                     <span class="visually-hidden">
                       {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
                     </span>
-                    {% render 'icon-minus' %}
+                    <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 1H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
                   </button>
                   <input class="quantity__input"
                     type="number"
@@ -590,7 +588,9 @@
                     <span class="visually-hidden">
                       {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
                     </span>
-                    {% render 'icon-plus' %}
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 5H9M5 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
                   </button>
                 </quantity-input>
               </div>
@@ -651,7 +651,9 @@
           class="link product__view-details animate-arrow"
         >
           {{ 'products.product.view_full_details' | t }}
-          {% render 'icon-arrow' %}
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
       </div>
     </div>
