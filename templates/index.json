@@ -405,6 +405,49 @@
         "padding_bottom": 20
       }
     },
+    "multicolumn_AknAwY": {
+      "type": "multicolumn",
+      "blocks": {
+        "member_FATJTx": {
+          "type": "member",
+          "settings": {
+            "title": "Member Name",
+            "text": "<p>Community member description</p>"
+          }
+        },
+        "member_GXhnww": {
+          "type": "member",
+          "settings": {
+            "title": "Member Name",
+            "text": "<p>Community member description</p>"
+          }
+        },
+        "member_mjt8nF": {
+          "type": "member",
+          "settings": {
+            "title": "Member Name",
+            "text": "<p>Community member description</p>"
+          }
+        }
+      },
+      "block_order": [
+        "member_FATJTx",
+        "member_GXhnww",
+        "member_mjt8nF"
+      ],
+      "settings": {
+        "title": "Our Community",
+        "heading_size": "h1",
+        "mobile_image_width": 500,
+        "desktop_image_width": 800,
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "swipe_on_mobile": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "image_banner_rALkGg": {
       "type": "image-banner",
       "blocks": {
@@ -455,6 +498,7 @@
     "featured_blog_hcNHKd",
     "image_banner_AYjrAd",
     "rich_text_neCnki",
+    "multicolumn_AknAwY",
     "image_banner_rALkGg"
   ]
 }
