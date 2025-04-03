@@ -1,6 +1,386 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{{ 'section-community-ambassador.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .ambassador-section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
+
+  @media screen and (min-width: 750px) {
+    .ambassador-section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* 大使卡片专属样式 */
+  .ambassador-card {
+    background: {{ section.settings.card_background }};
+    border-radius: {{ section.settings.card_border_radius }}px;
+    padding: {{ section.settings.card_padding }}px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    border: 1px solid {{ section.settings.card_border }};
+    text-align: center;
+  }
+
+  .ambassador-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  /* 大使徽章样式 */
+  .ambassador-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: {{ section.settings.badge_background }};
+    color: {{ section.settings.badge_text }};
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+
+  /* 移动端专属适配 */
+  @media screen and (max-width: 749px) {
+    .ambassador-list {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 15px;
+    }
+    
+    .ambassador-item {
+      flex: 0 0 80%;
+      scroll-snap-align: start;
+      margin-right: 20px;
+    }
+
+    .ambassador-card__image-wrapper {
+      max-height: 220px;
+      overflow: hidden;
+    }
+  }
+
+  /* 桌面端网格布局 */
+  @media screen and (min-width: 750px) {
+    .ambassador-list {
+      display: grid;
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+      gap: {{ section.settings.grid_gap }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign show_mobile_slider = section.settings.swipe_on_mobile
+-%}
+
+<div class="ambassador-section color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width ambassador-section-{{ section.id }}-padding isolate">
+    {%- unless section.settings.title == blank -%}
+      <div class="ambassador-header center">
+        <h2 class="ambassador-title {{ section.settings.heading_size }}">
+          {{ section.settings.title | escape }}
+        </h2>
+        {%- if section.settings.subtitle != blank -%}
+          <p class="ambassador-subtitle">{{ section.settings.subtitle | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endunless -%}
+
+    <slider-component class="slider-mobile-gutter">
+      <ul class="ambassador-list"
+          id="Slider-{{ section.id }}"
+          role="list">
+        {%- for block in section.blocks -%}
+          <li class="ambassador-item slider__slide" {{ block.shopify_attributes }}>
+            <div class="ambassador-card">
+              {%- if block.settings.image != blank -%}
+                <div class="ambassador-card__image-wrapper relative">
+                  <div class="media media--{{ section.settings.image_ratio }}"
+                       style="padding-bottom: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;">
+                    <img src="{{ block.settings.image | image_url: width: 800 }}"
+                         alt="{{ block.settings.image.alt | escape }}"
+                         loading="lazy"
+                         width="800"
+                         height="{{ 800 | divided_by: block.settings.image.aspect_ratio | round }}"
+                         class="ambassador-card__image motion-reduce">
+                  </div>
+                  {%- if block.settings.badge_text != blank -%}
+                    <span class="ambassador-badge">{{ block.settings.badge_text }}</span>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+              
+              <div class="ambassador-card__content">
+                {%- if block.settings.title != blank -%}
+                  <h3 class="ambassador-card__title h4">{{ block.settings.title | escape }}</h3>
+                {%- endif -%}
+                
+                {%- if block.settings.role != blank -%}
+                  <p class="ambassador-role">{{ block.settings.role }}</p>
+                {%- endif -%}
+                
+                {%- if block.settings.text != blank -%}
+                  <div class="ambassador-card__text rte">{{ block.settings.text }}</div>
+                {%- endif -%}
+                
+                {%- if block.settings.link_label != blank -%}
+                  <a href="{{ block.settings.link | default: '#' }}" 
+                     class="ambassador-card__link button button--secondary">
+                    {{ block.settings.link_label | escape }}
+                    <span class="icon-wrap">&nbsp;{% render 'icon-arrow' %}</span>
+                  </a>
+                {%- endif -%}
+              </div>
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- if show_mobile_slider and section.blocks.size > 1 -%}
+        <div class="slider-buttons no-js-hidden">
+          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}">
+            {% render 'icon-caret' %}
+          </button>
+          <div class="slider-counter caption">
+            <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="slider-counter--total">{{ section.blocks.size }}</span>
+          </div>
+          <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}">
+            {% render 'icon-caret' %}
+          </button>
+        </div>
+      {%- endif -%}
+    </slider-component>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Community Ambassador",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Our Ambassadors",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "default": "Meet our brand ambassadors",
+      "label": "Subheading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "Desktop columns",
+      "info": "Recommended: 3-4 for best appearance"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Column spacing",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "adapt", "label": "Adapt to image" },
+        { "value": "square", "label": "Square" },
+        { "value": "portrait", "label": "Portrait (3:4)" }
+      ],
+      "default": "square",
+      "label": "Image ratio"
+    },
+    {
+      "type": "header",
+      "content": "Card Design"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border",
+      "label": "Card border color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Card corner radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Card padding",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Badge Style"
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Badge background",
+      "default": "#FF6B6B"
+    },
+    {
+      "type": "color",
+      "id": "badge_text",
+      "label": "Badge text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Mobile settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "swipe_on_mobile",
+      "default": true,
+      "label": "Enable swipe on mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_width",
+      "min": 300,
+      "max": 600,
+      "step": 50,
+      "unit": "px",
+      "label": "Mobile image width",
+      "default": 400
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ambassador",
+      "name": "Ambassador",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Recommended: 800x800px square image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Ambassador Name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "default": "Brand Ambassador",
+          "label": "Role/Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Share something special about this ambassador</p>",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "default": "PRO",
+          "label": "Badge text",
+          "info": "Leave blank to hide badge"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "default": "View profile",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Community Ambassador",
+      "blocks": [
+        { "type": "ambassador" },
+        { "type": "ambassador" },
+        { "type": "ambassador" },
+        { "type": "ambassador" }
+      ]
+    }
+  ]
+}
 {% endschema %}
