@@ -166,23 +166,29 @@
         "padding_bottom": 52
       }
     },
-    "alkaline_water_ayHQYr": {
-      "type": "Alkaline-Water",
+    "alkaline_water_info_CjJNBr": {
+      "type": "Alkaline-Water-Info",
       "blocks": {
-        "dual_image_card_AqfEYW": {
-          "type": "dual_image_card",
+        "benefit_card_CgWadn": {
+          "type": "benefit_card",
           "settings": {
-            "image_1": "shopify://shop_images/KV-37.jpg",
-            "image_2": "shopify://shop_images/KV-31.jpg",
-            "card_link": "shopify://products/natural-alkaline-water"
+            "image_1": "shopify://shop_images/3a2e0a835929a74e3f7881023c653e1b.jpg",
+            "image_2": "shopify://shop_images/3_079288a1-caa8-4e7d-8c88-a15e2b6866f4.jpg",
+            "title": "Health Benefit",
+            "description": "<p>Explain the health benefit of alkaline water here</p>"
           }
         }
       },
       "block_order": [
-        "dual_image_card_AqfEYW"
+        "benefit_card_CgWadn"
       ],
       "settings": {
-        "row_height": 400
+        "heading": "ALKALINE WATER BENEFITS",
+        "card_height": 400,
+        "featured_product": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "product_collection_rYrG8U": {
@@ -626,7 +632,7 @@
     "rich_text_PtqKYk",
     "pic_border_m7m9TP",
     "rich_text_8tAG7w",
-    "alkaline_water_ayHQYr",
+    "alkaline_water_info_CjJNBr",
     "product_collection_rYrG8U",
     "product_collection_kM3g7z",
     "collage_zNtJH3",
