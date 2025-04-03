@@ -1,189 +1,98 @@
-{%- liquid
-  assign product = section.settings.product
-  if product == null
-    assign placeholder = true
-  endif
--%}
-
 {% schema %}
 {
-  "name": "Alkaline Water Info",
-  "tag": "section",
-  "class": "section",
+  "name": "自适应双图悬停卡片",
   "settings": [
     {
-      "type": "product",
-      "id": "product",
-      "label": "选择产品"
-    },
-    {
-      "type": "header",
-      "content": "双图卡片设置"
-    },
-    {
       "type": "range",
-      "id": "image_height",
-      "label": "图片高度 (px)",
-      "min": 300,
-      "max": 800,
+      "id": "row_height",
+      "label": "卡片高度 (px)",
+      "min": 200,
+      "max": 600,
       "step": 10,
-      "default": 500
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_hover",
-      "label": "启用悬停切换",
-      "default": true
-    },
-    {
-      "type": "image_picker",
-      "id": "custom_image_1",
-      "label": "自定义主图"
-    },
-    {
-      "type": "image_picker",
-      "id": "custom_image_2",
-      "label": "自定义悬停图"
-    },
-    {
-      "type": "header",
-      "content": "布局设置"
-    },
-    {
-      "type": "select",
-      "id": "desktop_layout",
-      "label": "PC端布局顺序",
-      "options": [
-        {
-          "value": "image_left",
-          "label": "图片在左"
-        },
-        {
-          "value": "image_right",
-          "label": "图片在右"
-        }
-      ],
-      "default": "image_left"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "配色方案",
-      "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "间距设置"
+      "default": 400
     },
     {
       "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "上间距",
-      "default": 36
+      "id": "spacing",
+      "label": "卡片间距 (px)",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "default": 20
     },
     {
       "type": "range",
-      "id": "padding_bottom",
+      "id": "price_spacing",
+      "label": "价格行间距 (px)",
       "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "下间距",
-      "default": 36
+      "max": 30,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "variant_spacing",
+      "label": "变体选择器间距 (px)",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "quantity_spacing",
+      "label": "数量选择器间距 (px)",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "button_spacing",
+      "label": "购买按钮间距 (px)",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 20
     }
   ],
   "blocks": [
     {
-      "type": "title",
-      "name": "标题",
-      "limit": 1
-    },
-    {
-      "type": "price",
-      "name": "价格",
-      "limit": 1
-    },
-    {
-      "type": "variant_picker",
-      "name": "变体选择器",
-      "limit": 1,
+      "type": "dual_image_card",
+      "name": "双图卡片",
       "settings": [
         {
-          "type": "select",
-          "id": "picker_type",
-          "options": [
-            {
-              "value": "dropdown",
-              "label": "下拉菜单"
-            },
-            {
-              "value": "button",
-              "label": "按钮组"
-            }
-          ],
-          "default": "button",
-          "label": "选择器类型"
-        }
-      ]
-    },
-    {
-      "type": "quantity_selector",
-      "name": "数量选择器",
-      "limit": 1
-    },
-    {
-      "type": "buy_buttons",
-      "name": "购买按钮",
-      "limit": 1,
-      "settings": [
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "默认图片"
+        },
         {
-          "type": "checkbox",
-          "id": "show_dynamic_checkout",
-          "default": true,
-          "label": "显示动态结账按钮"
-        }
-      ]
-    },
-    {
-      "type": "description",
-      "name": "描述",
-      "limit": 1
-    },
-    {
-      "type": "custom_text",
-      "name": "自定义文本",
-      "settings": [
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "悬停图片"
+        },
         {
-          "type": "richtext",
-          "id": "text",
-          "label": "文本内容",
-          "default": "<p>自定义文本内容</p>"
+          "type": "url",
+          "id": "card_link",
+          "label": "卡片链接"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Alkaline Water Info",
+      "name": "自适应双图卡片",
+      "category": "图片展示",
       "blocks": [
         {
-          "type": "title"
+          "type": "dual_image_card"
         },
         {
-          "type": "price"
+          "type": "dual_image_card"
         },
         {
-          "type": "variant_picker"
-        },
-        {
-          "type": "quantity_selector"
-        },
-        {
-          "type": "buy_buttons"
+          "type": "dual_image_card"
         }
       ]
     }
@@ -191,185 +100,212 @@
 }
 {% endschema %}
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-
-  /* 双图卡片样式 */
-  .alkaline-dual-card {
-    position: relative;
-    transition: transform 0.3s ease;
-  }
-
-  .alkaline-image-container {
-    position: relative;
-    width: 100%;
-    height: {{ section.settings.image_height }}px;
-    overflow: hidden;
-  }
-
-  .alkaline-primary-image,
-  .alkaline-hover-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: opacity 0.5s ease;
-  }
-
-  .alkaline-hover-image {
-    opacity: 0;
-  }
-
-  {% if section.settings.enable_hover %}
-    .alkaline-dual-card:hover .alkaline-primary-image {
-      opacity: 0;
-    }
-    .alkaline-dual-card:hover .alkaline-hover-image {
-      opacity: 1;
-    }
-  {% endif %}
-
-  /* 响应式布局 */
-  .alkaline-grid {
-    display: grid;
-    gap: 3rem;
-  }
-
-  @media (min-width: 750px) {
-    .alkaline-grid {
-      grid-template-columns: {% if section.settings.desktop_layout == 'image_left' %}1fr 1fr{% else %}1fr 1fr{% endif %};
-      align-items: center;
-    }
-  }
-
-  @media (max-width: 749px) {
-    .alkaline-grid {
-      grid-template-columns: 1fr;
-    }
-    .alkaline-image-container {
-      height: {{ section.settings.image_height | times: 0.8 }}px;
-    }
-  }
-{%- endstyle -%}
-
-<div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="page-width section-{{ section.id }}-padding">
-    <div class="alkaline-grid">
-      <!-- A部分：双图卡片 -->
-      <div class="alkaline-dual-card {% if section.settings.desktop_layout == 'image_right' %}order-2{% endif %}">
-        <div class="alkaline-image-container">
-          {% if section.settings.custom_image_1 %}
-            <img src="{{ section.settings.custom_image_1 | img_url: '1000x' }}"
-                 alt="{{ section.settings.custom_image_1.alt | escape }}"
-                 class="alkaline-primary-image"
+<div class="adaptive-dual-cards" 
+     style="--row-height: {{ section.settings.row_height }}px; 
+            --spacing: {{ section.settings.spacing }}px;
+            --price-spacing: {{ section.settings.price_spacing }}px;
+            --variant-spacing: {{ section.settings.variant_spacing }}px;
+            --quantity-spacing: {{ section.settings.quantity_spacing }}px;
+            --button-spacing: {{ section.settings.button_spacing }}px;">
+  {% for block in section.blocks %}
+    {% if block.settings.image_1 %}
+      {% assign aspect_ratio = block.settings.image_1.aspect_ratio | default: 1 %}
+      <div class="dual-card" 
+           style="--aspect-ratio: {{ aspect_ratio }};"
+           {{ block.shopify_attributes }}>
+        <a href="{{ block.settings.card_link | default: '#' }}" class="card-link">
+          <div class="image-container">
+            <img src="{{ block.settings.image_1 | img_url: '800x' }}"
+                 alt="{{ block.settings.image_1.alt | escape }}"
+                 class="primary-img"
                  loading="lazy"
-                 width="1000"
-                 height="{{ 1000 | divided_by: section.settings.custom_image_1.aspect_ratio | round }}">
-          {% elsif product.featured_image %}
-            <img src="{{ product.featured_image | img_url: '1000x' }}"
-                 alt="{{ product.featured_image.alt | escape }}"
-                 class="alkaline-primary-image"
-                 loading="lazy"
-                 width="1000"
-                 height="{{ 1000 | divided_by: product.featured_image.aspect_ratio | round }}">
-          {% else %}
-            {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-          {% endif %}
+                 width="800"
+                 height="{{ 800 | divided_by: aspect_ratio | round }}">
 
-          {% if section.settings.enable_hover %}
-            {% if section.settings.custom_image_2 %}
-              <img src="{{ section.settings.custom_image_2 | img_url: '1000x' }}"
-                   alt="{{ section.settings.custom_image_2.alt | escape }}"
-                   class="alkaline-hover-image"
+            {% if block.settings.image_2 %}
+              <img src="{{ block.settings.image_2 | img_url: '800x' }}"
+                   alt="{{ block.settings.image_2.alt | escape }}"
+                   class="hover-img"
                    loading="lazy"
-                   width="1000"
-                   height="{{ 1000 | divided_by: section.settings.custom_image_2.aspect_ratio | round }}">
-            {% elsif product.media.size >= 2 %}
-              <img src="{{ product.media[1] | img_url: '1000x' }}"
-                   alt="{{ product.media[1].alt | escape }}"
-                   class="alkaline-hover-image"
-                   loading="lazy"
-                   width="1000"
-                   height="{{ 1000 | divided_by: product.media[1].aspect_ratio | round }}">
+                   width="800"
+                   height="{{ 800 | divided_by: aspect_ratio | round }}">
             {% endif %}
-          {% endif %}
+          </div>
+        </a>
+        
+        <!-- 价格区块 -->
+        <div class="price-block" style="margin-bottom: var(--price-spacing);">
+          {{ product.price | money }}
+        </div>
+        
+        <!-- 变体选择器 -->
+        {% if product.variants.size > 1 %}
+          <div class="variant-selector" style="margin-bottom: var(--variant-spacing);">
+            <select name="id">
+              {% for variant in product.variants %}
+                <option value="{{ variant.id }}">{{ variant.title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endif %}
+        
+        <!-- 数量选择器 -->
+        <div class="quantity-selector" style="margin-bottom: var(--quantity-spacing);">
+          <button type="button" class="quantity-button minus">-</button>
+          <input type="number" name="quantity" value="1" min="1">
+          <button type="button" class="quantity-button plus">+</button>
+        </div>
+        
+        <!-- 购买按钮 -->
+        <div class="buy-buttons" style="margin-top: var(--button-spacing);">
+          <button type="submit" name="add" class="add-to-cart">
+            加入购物车
+          </button>
         </div>
       </div>
-
-      <!-- B部分：产品信息 -->
-      <div class="product-info-wrapper">
-        <div id="ProductInfo-{{ section.id }}" class="product__info-container">
-          {%- assign product_form_id = 'product-form-' | append: section.id -%}
-
-          {%- for block in section.blocks -%}
-            {%- case block.type -%}
-              {%- when 'title' -%}
-                <h1 class="product__title" {{ block.shopify_attributes }}>
-                  {{ product.title | escape }}
-                </h1>
-              {%- when 'price' -%}
-                <div class="no-js-hidden" id="price-{{ section.id }}" {{ block.shopify_attributes }}>
-                  {%- render 'price', product: product, use_variant: true, show_badges: true -%}
-                </div>
-              {%- when 'variant_picker' -%}
-                {%- render 'product-variant-picker',
-                  product: product,
-                  block: block,
-                  product_form_id: product_form_id
-                -%}
-              {%- when 'quantity_selector' -%}
-                <div class="product-form__input product-form__quantity" {{ block.shopify_attributes }}>
-                  <label class="form__label" for="Quantity-{{ section.id }}">
-                    {{ 'products.product.quantity.label' | t }}
-                  </label>
-                  <quantity-input class="quantity">
-                    <button class="quantity__button no-js-hidden" name="minus" type="button">
-                      -
-                    </button>
-                    <input class="quantity__input"
-                        type="number"
-                        name="quantity"
-                        id="Quantity-{{ section.id }}"
-                        min="1"
-                        value="1"
-                        form="{{ product_form_id }}"
-                      >
-                    <button class="quantity__button no-js-hidden" name="plus" type="button">
-                      +
-                    </button>
-                  </quantity-input>
-                </div>
-              {%- when 'buy_buttons' -%}
-                {%- render 'buy-buttons',
-                  block: block,
-                  product: product,
-                  product_form_id: product_form_id,
-                  section_id: section.id
-                -%}
-              {%- when 'description' -%}
-                <div class="product__description rte" {{ block.shopify_attributes }}>
-                  {{ product.description }}
-                </div>
-              {%- when 'custom_text' -%}
-                <div class="custom-text-block" {{ block.shopify_attributes }}>
-                  {{ block.settings.text }}
-                </div>
-            {%- endcase -%}
-          {%- endfor -%}
-        </div>
-      </div>
-    </div>
-  </div>
+    {% endif %}
+  {% endfor %}
 </div>
+
+<style>
+.adaptive-dual-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing);
+  padding: calc(var(--spacing) / 2);
+  width: calc(100% - var(--spacing));
+}
+
+.dual-card {
+  flex: 0 0 auto;
+  width: calc(var(--row-height) * var(--aspect-ratio));
+  height: var(--row-height);
+  position: relative;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 价格样式 */
+.price-block {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* 变体选择器样式 */
+.variant-selector select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* 数量选择器样式 */
+.quantity-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quantity-selector input {
+  width: 50px;
+  text-align: center;
+  margin: 0 10px;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.quantity-button {
+  width: 30px;
+  height: 30px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+/* 购买按钮样式 */
+.add-to-cart {
+  width: 100%;
+  padding: 12px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.add-to-cart:hover {
+  background: #333;
+}
+
+/* 图片容器样式保持不变 */
+.card-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.primary-img,
+.hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-img {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.dual-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.dual-card:hover .primary-img {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.dual-card:hover .hover-img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 响应式设计保持不变 */
+@media (max-width: 768px) {
+  .adaptive-dual-cards {
+    gap: calc(var(--spacing) * 0.8);
+  }
+  
+  .dual-card {
+    width: calc(50% - var(--spacing) / 2) !important;
+    height: calc(var(--row-height) * 0.8) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .adaptive-dual-cards {
+    gap: calc(var(--spacing) * 0.6);
+  }
+  
+  .dual-card {
+    width: 100% !important;
+    height: calc(var(--row-height) * 0.7) !important;
+  }
+}
+</style>
