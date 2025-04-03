@@ -1,0 +1,29 @@
+<div class="card-wrapper">
+  <div class="card card--product" tabindex="-1">
+    <div class="card__inner">
+      <div class="card__media">
+        <div class="media media--transparent media--{{ image_ratio }}"
+          {% if image_ratio == 'adapt' %}style="padding-bottom: 100%;"{% endif %}
+        >
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      </div>
+      <div class="card__content">
+        <div class="card__information">
+          <h3 class="card__heading h5">{{ 'onboarding.product_title' | t }}</h3>
+          <div class="card-information">
+            <div class="price">
+              <div class="price__container">
+                <div class="price__regular">
+                  <span class="price-item price-item--regular">
+                    {{ 1999 | money }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
