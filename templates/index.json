@@ -183,11 +183,21 @@
           "settings": {
             "heading_size": "h1"
           }
+        },
+        "price_GmKtfH": {
+          "type": "price",
+          "settings": {}
+        },
+        "quantity_selector_AAXmJM": {
+          "type": "quantity_selector",
+          "settings": {}
         }
       },
       "block_order": [
         "dual_image_jnJBUL",
-        "title_PC6fMe"
+        "title_PC6fMe",
+        "price_GmKtfH",
+        "quantity_selector_AAXmJM"
       ],
       "settings": {
         "product": "natural-alkaline-water",
