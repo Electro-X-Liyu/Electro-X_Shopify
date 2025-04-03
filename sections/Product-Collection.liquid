@@ -24,10 +24,32 @@
       max-width: 420px;
     }
 
-    /* 新增：确保产品网格水平居中 */
+    /* 确保产品网格水平居中 */
     .product-collection .product-grid {
       justify-content: center;
     }
+  }
+
+  /* 垂直居中所有卡片 */
+  .product-collection .grid__item {
+    display: flex;
+    justify-content: center;
+  }
+  .product-collection .card-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-collection .card {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-collection .card__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 {%- endstyle -%}
 
@@ -113,7 +135,7 @@
           >
             {% render 'card-product',
               card_product: product,
-              media_aspect_ratio: section.settings.image_ratio,
+              media_aspect_ratio: 'adapt',  {# 强制使用自适应比例 #}
               image_shape: section.settings.image_shape,
               show_secondary_image: section.settings.show_secondary_image,
               show_vendor: section.settings.show_vendor,
@@ -126,7 +148,7 @@
           {%- for i in (1..section.settings.columns_desktop) -%}
             <li class="grid__item">
               {% render 'card-product-placeholder', 
-                media_aspect_ratio: section.settings.image_ratio,
+                media_aspect_ratio: 'adapt',  {# 强制使用自适应比例 #}
                 image_shape: section.settings.image_shape
               %}
             </li>
@@ -271,26 +293,6 @@
       ],
       "default": "medium",
       "info": "Card width on desktop screens"
-    },
-    {
-      "type": "select",
-      "id": "image_ratio",
-      "options": [
-        {
-          "value": "adapt",
-          "label": "Adapt to image"
-        },
-        {
-          "value": "portrait",
-          "label": "Portrait"
-        },
-        {
-          "value": "square",
-          "label": "Square"
-        }
-      ],
-      "default": "adapt",
-      "label": "Image ratio"
     },
     {
       "type": "select",
