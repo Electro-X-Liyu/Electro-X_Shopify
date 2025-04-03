@@ -86,7 +86,8 @@
                      class="gallery-image"
                      loading="lazy"
                      width="1200"
-                     height="{{ 1200 | divided_by: aspect_ratio | round }}">
+                     height="{{ 1200 | divided_by: aspect_ratio | round }}"
+                     style="height: 100%; width: auto; max-width: none; object-fit: contain;">
               </div>
             </a>
           </div>
@@ -109,7 +110,8 @@
                          class="gallery-image"
                          loading="lazy"
                          width="800"
-                         height="{{ 800 | divided_by: aspect_ratio | round }}">
+                         height="{{ 800 | divided_by: aspect_ratio | round }}"
+                         style="height: 100%; width: auto; max-width: none; object-fit: contain;">
                   </div>
                 </a>
               </div>
@@ -127,7 +129,8 @@
                          class="gallery-image"
                          loading="lazy"
                          width="800"
-                         height="{{ 800 | divided_by: aspect_ratio | round }}">
+                         height="{{ 800 | divided_by: aspect_ratio | round }}"
+                         style="height: 100%; width: auto; max-width: none; object-fit: contain;">
                   </div>
                 </a>
               </div>
@@ -188,17 +191,19 @@
 
 .image-wrapper {
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   background: transparent;
   width: 100%;
+  height: 100%;
 }
 
 .gallery-image {
-  max-width: 100%;
-  max-height: 100%;
+  height: 100%;
+  width: auto;
+  max-width: none;
   object-fit: contain;
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
@@ -227,9 +232,9 @@
 .mobile-slider {
   display: flex;
   transition: transform 0.5s ease;
-  padding: 10px 8px; /* 上下留白 */
+  padding: 10px 8px;
   will-change: transform;
-  margin: 0 -8px; /* 抵消slide的padding */
+  margin: 0 -8px;
 }
 
 .mobile-slide {
@@ -241,6 +246,7 @@
 .mobile-slide .image-wrapper {
   overflow: hidden;
   border-radius: 4px;
+  height: 100%;
 }
 
 /* 响应式切换 */
@@ -290,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (mobileSlider && mobileSlider.children.length > 1) {
     const slides = mobileSlider.children;
-    const slideCount = slides.length - 2; // 减去复制的2个slide
+    const slideCount = slides.length - 2;
     const slideWidth = slides[0].offsetWidth;
     
     // 初始化位置
@@ -371,5 +377,38 @@ document.addEventListener('DOMContentLoaded', function() {
       return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
     }
   }
+  
+  // 确保所有图片高度一致
+  function enforceEqualHeights() {
+    // PC端
+    const desktopImages = document.querySelectorAll('.desktop-gallery .image-wrapper');
+    if (desktopImages.length > 0) {
+      const firstHeight = desktopImages[0].offsetHeight;
+      desktopImages.forEach(wrapper => {
+        const img = wrapper.querySelector('img');
+        if (img) {
+          img.style.height = `${firstHeight}px`;
+        }
+      });
+    }
+    
+    // 移动端
+    const mobileImages = document.querySelectorAll('.mobile-slide .image-wrapper');
+    if (mobileImages.length > 0) {
+      const firstMobileHeight = mobileImages[0].offsetHeight;
+      mobileImages.forEach(wrapper => {
+        const img = wrapper.querySelector('img');
+        if (img) {
+          img.style.height = `${firstMobileHeight}px`;
+        }
+      });
+    }
+  }
+  
+  // 初始化执行一次
+  enforceEqualHeights();
+  
+  // 窗口大小改变时重新检查
+  window.addEventListener('resize', enforceEqualHeights);
 });
 </script>
