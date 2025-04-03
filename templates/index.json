@@ -216,7 +216,7 @@
     "product_collection_rYrG8U": {
       "type": "Product-Collection",
       "settings": {
-        "collection": "electrolyte-beverages",
+        "collection": "electrolyte-sports-drink",
         "products_to_show": 4,
         "title": "Electrolyte Baverages",
         "heading_size": "h1",
@@ -244,11 +244,11 @@
     "product_collection_kM3g7z": {
       "type": "Product-Collection",
       "settings": {
-        "collection": "electrolyte-beverages",
+        "collection": "electrolyte-liquid-concentrate",
         "products_to_show": 4,
-        "title": "Electrolyte Beverages",
+        "title": "",
         "heading_size": "h1",
-        "description": "<p>In the Electrolyte Beverage segment, ELECTRO X's PLUS series have already established a strong presence and consolidated its position as a premium sports beverage brand within the cycling, CrossFit, and running communities.</p>",
+        "description": "",
         "show_description": false,
         "description_style": "body",
         "card_size": "xlarge",
