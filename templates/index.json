@@ -412,94 +412,202 @@
           "type": "ambassador",
           "settings": {
             "image": "shopify://shop_images/KV__1.jpg",
-            "title": "Ambassador Name",
-            "role": "",
-            "text": "",
-            "badge_text": "",
-            "link_label": "",
-            "link": ""
+            "title": "Ambassador Name"
           }
         },
         "ambassador_Abz69H": {
           "type": "ambassador",
           "settings": {
             "image": "shopify://shop_images/KV-03.jpg",
-            "title": "",
-            "role": "",
-            "text": "",
-            "badge_text": "",
-            "link_label": "",
-            "link": ""
+            "title": "Ambassador Name"
           }
         },
-        "ambassador_apLcik": {
+        "ambassador_nHjRKC": {
           "type": "ambassador",
           "settings": {
-            "title": "",
-            "role": "",
-            "text": "",
-            "badge_text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "ambassador_cgBL6c": {
-          "type": "ambassador",
-          "settings": {
-            "title": "",
-            "role": "",
-            "text": "",
-            "badge_text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "ambassador_HE8mEW": {
-          "type": "ambassador",
-          "settings": {
-            "title": "",
-            "role": "",
-            "text": "",
-            "badge_text": "",
-            "link_label": "",
-            "link": ""
+            "image": "shopify://shop_images/KV-05.jpg",
+            "title": "Ambassador Name"
           }
         },
         "ambassador_8xfreM": {
           "type": "ambassador",
           "settings": {
-            "title": "Ambassador Name",
-            "role": "Brand Ambassador",
-            "text": "<p>Share something special about this ambassador</p>",
-            "badge_text": "PRO",
-            "link_label": "View profile",
-            "link": ""
+            "image": "shopify://shop_images/KV-07.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_kctp3U": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-09.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_3d6MDV": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-11.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_8MR6Dx": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-13.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_rzdwV8": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-15.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_6QWztT": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-17.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_zkr7cL": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-19.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_kp7CVc": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-21.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_FMGYqH": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-23.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_pgBzbi": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-25.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_c8pCcy": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-27.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_xefVnr": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-29.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_q6YnhN": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-31.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_f9emxD": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-33.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_qb4Hr8": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-35.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_VP43D6": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-37.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_yPW8Kp": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-39.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_eLG7eC": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-41.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_kjeQJb": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-43.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_3hLXA7": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-45.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_6CDbVH": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-47.jpg",
+            "title": "Ambassador Name"
           }
         }
       },
       "block_order": [
         "ambassador_jjwixw",
         "ambassador_Abz69H",
-        "ambassador_apLcik",
-        "ambassador_cgBL6c",
-        "ambassador_HE8mEW",
-        "ambassador_8xfreM"
+        "ambassador_nHjRKC",
+        "ambassador_8xfreM",
+        "ambassador_kctp3U",
+        "ambassador_3d6MDV",
+        "ambassador_8MR6Dx",
+        "ambassador_rzdwV8",
+        "ambassador_6QWztT",
+        "ambassador_zkr7cL",
+        "ambassador_kp7CVc",
+        "ambassador_FMGYqH",
+        "ambassador_pgBzbi",
+        "ambassador_c8pCcy",
+        "ambassador_xefVnr",
+        "ambassador_q6YnhN",
+        "ambassador_f9emxD",
+        "ambassador_qb4Hr8",
+        "ambassador_VP43D6",
+        "ambassador_yPW8Kp",
+        "ambassador_eLG7eC",
+        "ambassador_kjeQJb",
+        "ambassador_3hLXA7",
+        "ambassador_6CDbVH"
       ],
       "settings": {
-        "title": "Our Ambassadors",
-        "subtitle": "Meet our brand ambassadors",
+        "title": "",
         "heading_size": "h0",
         "columns_desktop": 5,
         "grid_gap": 10,
-        "image_ratio": "adapt",
-        "card_background": "#ffffff",
-        "card_border": "#e0e0e0",
-        "card_border_radius": 12,
-        "card_padding": 20,
-        "badge_background": "#FF6B6B",
-        "badge_text": "#ffffff",
-        "swipe_on_mobile": true,
-        "mobile_image_width": 400,
         "padding_top": 48,
         "padding_bottom": 48
       }
