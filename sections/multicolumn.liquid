@@ -1,4 +1,4 @@
-{{ 'section-multicolumn.css' | asset_url | stylesheet_tag }}
+{{ 'section-community.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
@@ -16,129 +16,56 @@
 {%- endstyle -%}
 
 {%- liquid
-  assign columns_mobile_int = section.settings.columns_mobile | plus: 0
-  assign show_mobile_slider = false
-  if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
+  assign show_mobile_slider = true
+  if section.settings.swipe_on_mobile and section.blocks.size > 1
     assign show_mobile_slider = true
   endif
 -%}
 
-<div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
-  <div
-    class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    {% if settings.animations_reveal_on_scroll %}
-      data-cascade
-    {% endif %}
-  >
+<div class="community color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding isolate">
     {%- unless section.settings.title == blank -%}
-      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
+      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin community__title">
         <h2 class="title inline-richtext {{ section.settings.heading_size }}">
           {{ section.settings.title }}
         </h2>
-        {%- if section.settings.button_label != blank and show_mobile_slider -%}
-          <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">
-            {{- section.settings.button_label | escape -}}
-          </a>
-        {%- endif -%}
       </div>
     {%- endunless -%}
-    <slider-component class="slider-mobile-gutter">
-      <ul
-        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
-        id="Slider-{{ section.id }}"
-        role="list"
-      >
-        {%- liquid
-          assign highest_ratio = 0
-          for block in section.blocks
-            if block.settings.image.aspect_ratio > highest_ratio
-              assign highest_ratio = block.settings.image.aspect_ratio
-            endif
-          endfor
-        -%}
-        {%- for block in section.blocks -%}
-          {%- assign empty_column = '' -%}
-          {%- if block.settings.image == blank
-            and block.settings.title == blank
-            and block.settings.text == blank
-            and block.settings.link_label == blank
-          -%}
-            {%- assign empty_column = ' multicolumn-list__item--empty' -%}
-          {%- endif -%}
 
-          <li
-            id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {{ block.shopify_attributes }}
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
-            <div class="multicolumn-card content-container">
+    <slider-component class="slider-mobile-gutter">
+      <ul class="community-list contains-content-container grid grid--1-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop slider slider--tablet grid--peek" id="Slider-{{ section.id }}" role="list">
+        {%- for block in section.blocks -%}
+          <li id="Slide-{{ section.id }}-{{ forloop.index }}" class="community-list__item grid__item slider__slide" {{ block.shopify_attributes }}>
+            <div class="community-card content-container">
               {%- if block.settings.image != blank -%}
-                {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
-                  {% assign spaced_image = true %}
-                {% endif %}
-                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}">
-                  <div
-                    class="media media--transparent media--{{ section.settings.image_ratio }}"
-                    {% if section.settings.image_ratio == 'adapt' %}
-                      style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
-                    {% endif %}
-                  >
-                    {%- liquid
-                      assign number_of_columns = section.settings.columns_desktop
-                      assign number_of_columns_mobile = section.settings.columns_mobile
-                      assign grid_space_desktop = number_of_columns | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
-                      assign grid_space_tablet = number_of_columns_mobile | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
-                      assign grid_space_mobile = number_of_columns_mobile | minus: 1 | times: settings.spacing_grid_horizontal | divided_by: 2 | plus: 30 | append: 'px'
-                      if section.settings.image_width == 'half'
-                        assign image_width = 0.5
-                      elsif section.settings.image_width == 'third'
-                        assign image_width = 0.33
-                      else
-                        assign image_width = 1
-                      endif
-                    -%}
-                    {% capture sizes %}
-                      (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width }}px - {{ grid_space_desktop }}) * {{ image_width }} /  {{ number_of_columns }}),
-                      (min-width: 990px) calc((100vw - {{ grid_space_desktop }}) * {{ image_width }} / {{ number_of_columns }}),
-                      (min-width: 750px) calc((100vw - {{ grid_space_tablet }}) * {{ image_width }} / {{ number_of_columns_mobile }}),
-                      calc((100vw - {{ grid_space_mobile }}) * {{ image_width }} / {{ number_of_columns_mobile }})
-                    {% endcapture %}
-                    {{
-                      block.settings.image
-                      | image_url: width: 3200
-                      | image_tag:
-                        widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200',
-                        sizes: sizes,
-                        class: 'multicolumn-card__image'
-                    }}
+                <div class="community-card__image-wrapper community-card__image-wrapper--{{ section.settings.image_width }}-width">
+                  <div class="media media--transparent media--{{ section.settings.image_ratio }}">
+                    <a href="{{ block.settings.image | image_url: width: 2000 }}" class="community-card__image-link" data-fslightbox="community-gallery">
+                      {% assign mobile_image_width = section.settings.mobile_image_width | default: 500 %}
+                      {% assign desktop_image_width = section.settings.desktop_image_width | default: 800 %}
+                      <img
+                        srcset="
+                          {{ block.settings.image | image_url: width: mobile_image_width }} {{ mobile_image_width }}w,
+                          {{ block.settings.image | image_url: width: desktop_image_width }} {{ desktop_image_width }}w
+                        "
+                        src="{{ block.settings.image | image_url: width: desktop_image_width }}"
+                        sizes="(max-width: 749px) {{ mobile_image_width }}px, {{ desktop_image_width }}px"
+                        alt="{{ block.settings.image.alt | escape }}"
+                        loading="lazy"
+                        class="community-card__image"
+                        width="{{ desktop_image_width }}"
+                        height="{{ desktop_image_width | divided_by: block.settings.image.aspect_ratio | round }}"
+                      >
+                    </a>
                   </div>
                 </div>
               {%- endif -%}
-              <div class="multicolumn-card__info">
+              <div class="community-card__info">
                 {%- if block.settings.title != blank -%}
                   <h3 class="inline-richtext">{{ block.settings.title }}</h3>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
                   <div class="rte">{{ block.settings.text }}</div>
-                {%- endif -%}
-                {%- if block.settings.link_label != blank -%}
-                  <a
-                    class="link animate-arrow"
-                    {% if block.settings.link == blank %}
-                      role="link" aria-disabled="true"
-                    {% else %}
-                      href="{{ block.settings.link }}"
-                    {% endif %}
-                  >
-                    {{- block.settings.link_label | escape -}}
-                    <span class="svg-wrapper"
-                      ><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span
-                    >
-                  </a>
                 {%- endif -%}
               </div>
             </div>
@@ -148,12 +75,7 @@
 
       {%- if show_mobile_slider -%}
         <div class="slider-buttons large-up-hide">
-          <button
-            type="button"
-            class="slider-button slider-button--prev"
-            name="previous"
-            aria-label="{{ 'general.slider.previous_slide' | t }}"
-          >
+          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}">
             <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
           </button>
           <div class="slider-counter caption">
@@ -162,37 +84,26 @@
             <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
             <span class="slider-counter--total">{{ section.blocks.size }}</span>
           </div>
-          <button
-            type="button"
-            class="slider-button slider-button--next"
-            name="next"
-            aria-label="{{ 'general.slider.next_slide' | t }}"
-          >
+          <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}">
             <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
           </button>
         </div>
       {%- endif -%}
     </slider-component>
-    <div class="center{% if show_mobile_slider %} small-hide medium-hide{% endif %}">
-      {%- if section.settings.button_label != blank -%}
-        <a
-          class="button button--primary"
-          {% if section.settings.button_link == blank %}
-            role="link" aria-disabled="true"
-          {% else %}
-            href="{{ section.settings.button_link }}"
-          {% endif %}
-        >
-          {{ section.settings.button_label | escape }}
-        </a>
-      {%- endif -%}
-    </div>
   </div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof FsLightbox === 'function') {
+      new FsLightbox();
+    }
+  });
+</script>
+
 {% schema %}
 {
-  "name": "t:sections.multicolumn.name",
+  "name": "Community",
   "class": "section",
   "tag": "section",
   "disabled_on": {
@@ -202,8 +113,8 @@
     {
       "type": "inline_richtext",
       "id": "title",
-      "default": "t:sections.multicolumn.settings.title.default",
-      "label": "t:sections.multicolumn.settings.title.label"
+      "default": "Our Community",
+      "label": "Heading"
     },
     {
       "type": "select",
@@ -211,51 +122,41 @@
       "options": [
         {
           "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
+          "label": "Medium"
         },
         {
           "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
+          "label": "Large"
         },
         {
           "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
-        },
-        {
-          "value": "hxl",
-          "label": "t:sections.all.heading_size.options__4.label"
-        },
-        {
-          "value": "hxxl",
-          "label": "t:sections.all.heading_size.options__5.label"
+          "label": "Extra Large"
         }
       ],
       "default": "h1",
-      "label": "t:sections.all.heading_size.label"
+      "label": "Heading Size"
     },
     {
       "type": "header",
-      "content": "t:sections.multicolumn.settings.header_image.content"
-    },    
+      "content": "Image Settings"
+    },
     {
-      "type": "select",
-      "id": "image_width",
-      "options": [
-        {
-          "value": "third",
-          "label": "t:sections.multicolumn.settings.image_width.options__1.label"
-        },
-        {
-          "value": "half",
-          "label": "t:sections.multicolumn.settings.image_width.options__2.label"
-        },
-        {
-          "value": "full",
-          "label": "t:sections.multicolumn.settings.image_width.options__3.label"
-        }
-      ],
-      "default": "full",
-      "label": "t:sections.multicolumn.settings.image_width.label"
+      "type": "range",
+      "id": "mobile_image_width",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "default": 500,
+      "label": "Mobile Image Width (px)"
+    },
+    {
+      "type": "range",
+      "id": "desktop_image_width",
+      "min": 500,
+      "max": 1200,
+      "step": 100,
+      "default": 800,
+      "label": "Desktop Image Width (px)"
     },
     {
       "type": "select",
@@ -263,44 +164,28 @@
       "options": [
         {
           "value": "adapt",
-          "label": "t:sections.multicolumn.settings.image_ratio.options__1.label"
-        },
-        {
-          "value": "portrait",
-          "label": "t:sections.multicolumn.settings.image_ratio.options__2.label"
+          "label": "Adapt to image"
         },
         {
           "value": "square",
-          "label": "t:sections.multicolumn.settings.image_ratio.options__3.label"
+          "label": "Square"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
         },
         {
           "value": "circle",
-          "label": "t:sections.multicolumn.settings.image_ratio.options__4.label"
+          "label": "Circle"
         }
       ],
       "default": "adapt",
-      "label": "t:sections.multicolumn.settings.image_ratio.label"
+      "label": "Image Shape"
     },
     {
       "type": "header",
-      "content": "t:sections.multicolumn.settings.header_button.content"
-    },    
-    {
-      "type": "text",
-      "id": "button_label",
-      "default": "t:sections.multicolumn.settings.button_label.default",
-      "label": "t:sections.multicolumn.settings.button_label.label", 
-      "info": "t:sections.multicolumn.settings.button_label.info"
+      "content": "Layout"
     },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "t:sections.multicolumn.settings.button_link.label"
-    },    
-    {
-      "type": "header",
-      "content": "t:sections.multicolumn.settings.header_layout.content"
-    },     
     {
       "type": "range",
       "id": "columns_desktop",
@@ -308,75 +193,27 @@
       "max": 6,
       "step": 1,
       "default": 3,
-      "label": "t:sections.multicolumn.settings.columns_desktop.label"
-    },
-    {
-      "type": "select",
-      "id": "column_alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "t:sections.multicolumn.settings.column_alignment.options__1.label"
-        },
-        {
-          "value": "center",
-          "label": "t:sections.multicolumn.settings.column_alignment.options__2.label"
-        }
-      ],
-      "default": "left",
-      "label": "t:sections.multicolumn.settings.column_alignment.label"
-    },
-    {
-      "type": "select",
-      "id": "background_style",
-      "options": [
-        {
-          "value": "none",
-          "label": "t:sections.multicolumn.settings.background_style.options__1.label"
-        },
-        {
-          "value": "primary",
-          "label": "t:sections.multicolumn.settings.background_style.options__2.label"
-        }
-      ],
-      "default": "primary",
-      "label": "t:sections.multicolumn.settings.background_style.label"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
-    },    
-    {
-      "type": "header",
-      "content": "t:sections.multicolumn.settings.header_mobile.content"
-    },
-    {
-      "type": "select",
-      "id": "columns_mobile",
-      "options": [
-        {
-          "value": "1",
-          "label": "t:sections.multicolumn.settings.columns_mobile.options__1.label"
-        },
-        {
-          "value": "2",
-          "label": "t:sections.multicolumn.settings.columns_mobile.options__2.label"
-        }
-      ],
-      "default": "1",
-      "label": "t:sections.multicolumn.settings.columns_mobile.label"
+      "label": "Desktop Columns"
     },
     {
       "type": "checkbox",
       "id": "swipe_on_mobile",
-      "default": false,
-      "label": "t:sections.multicolumn.settings.swipe_on_mobile.label"
+      "default": true,
+      "label": "Enable mobile slider"
     },
     {
       "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
+      "content": "Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
     },
     {
       "type": "range",
@@ -385,7 +222,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
+      "label": "Top Padding",
       "default": 36
     },
     {
@@ -395,58 +232,47 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
+      "label": "Bottom Padding",
       "default": 36
     }
   ],
   "blocks": [
     {
-      "type": "column",
-      "name": "t:sections.multicolumn.blocks.column.name",
+      "type": "member",
+      "name": "Community Member",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:sections.multicolumn.blocks.column.settings.image.label"
+          "label": "Image"
         },
         {
-          "type": "inline_richtext",
+          "type": "text",
           "id": "title",
-          "default": "t:sections.multicolumn.blocks.column.settings.title.default",
-          "label": "t:sections.multicolumn.blocks.column.settings.title.label"
+          "default": "Member Name",
+          "label": "Name"
         },
         {
           "type": "richtext",
           "id": "text",
-          "default": "t:sections.multicolumn.blocks.column.settings.text.default",
-          "label": "t:sections.multicolumn.blocks.column.settings.text.label"
-        },
-        {
-          "type": "text",
-          "id": "link_label",
-          "label": "t:sections.multicolumn.blocks.column.settings.link_label.label",
-          "info": "t:sections.multicolumn.blocks.column.settings.link_label.info"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "t:sections.multicolumn.blocks.column.settings.link.label"
+          "default": "<p>Community member description</p>",
+          "label": "Description"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "t:sections.multicolumn.presets.name",
+      "name": "Community",
       "blocks": [
         {
-          "type": "column"
+          "type": "member"
         },
         {
-          "type": "column"
+          "type": "member"
         },
         {
-          "type": "column"
+          "type": "member"
         }
       ]
     }
