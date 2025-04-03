@@ -96,59 +96,58 @@
     
     <!-- 移动端滑动布局 -->
     <div class="mobile-gallery-container">
-      <div class="mobile-slider">
-        <!-- 循环滑动需要的副本（前后各加1个） -->
-        {% assign last_block = section.blocks.last %}
-        {% if last_block.settings.image != blank %}
-          {% assign aspect_ratio = last_block.settings.image.aspect_ratio %}
-          <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px);">
-            <a href="{{ last_block.settings.link | default: '#' }}" class="image-link">
-              <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
-                <img src="{{ last_block.settings.image | img_url: '800x' }}"
-                     alt="{{ last_block.settings.alt_text | default: 'Image' }}"
-                     class="gallery-image"
-                     loading="lazy"
-                     width="800"
-                     height="{{ 800 | divided_by: aspect_ratio | round }}">
-              </div>
-            </a>
-          </div>
-        {% endif %}
-        
-        {% for block in section.blocks %}
-          {% if block.settings.image != blank %}
-            {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-            <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px);" data-index="{{ forloop.index0 }}">
-              <a href="{{ block.settings.link | default: '#' }}" class="image-link">
-                <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
-                  <img src="{{ block.settings.image | img_url: '800x' }}"
-                       alt="{{ block.settings.alt_text | default: 'Image' }}"
+      <div class="mobile-slider-wrapper">
+        <div class="mobile-slider">
+          <!-- 循环滑动需要的副本（前后各加1个） -->
+          {% assign last_block = section.blocks.last %}
+          {% if last_block.settings.image != blank %}
+            {% assign aspect_ratio = last_block.settings.image.aspect_ratio %}
+            <div class="mobile-slide" style="width: calc(100vw - 40px); height: {{ section.settings.mobile_height }}px;">
+              <a href="{{ last_block.settings.link | default: '#' }}" class="image-link">
+                <div class="image-wrapper" style="height: 100%;">
+                  <img src="{{ last_block.settings.image | img_url: '800x' }}"
+                       alt="{{ last_block.settings.alt_text | default: 'Image' }}"
                        class="gallery-image"
                        loading="lazy"
-                       width="800"
-                       height="{{ 800 | divided_by: aspect_ratio | round }}">
+                       style="width: auto; height: 100%; object-fit: contain;">
                 </div>
               </a>
             </div>
           {% endif %}
-        {% endfor %}
-        
-        {% assign first_block = section.blocks.first %}
-        {% if first_block.settings.image != blank %}
-          {% assign aspect_ratio = first_block.settings.image.aspect_ratio %}
-          <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px);">
-            <a href="{{ first_block.settings.link | default: '#' }}" class="image-link">
-              <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
-                <img src="{{ first_block.settings.image | img_url: '800x' }}"
-                     alt="{{ first_block.settings.alt_text | default: 'Image' }}"
-                     class="gallery-image"
-                     loading="lazy"
-                     width="800"
-                     height="{{ 800 | divided_by: aspect_ratio | round }}">
+          
+          {% for block in section.blocks %}
+            {% if block.settings.image != blank %}
+              {% assign aspect_ratio = block.settings.image.aspect_ratio %}
+              <div class="mobile-slide" style="width: calc(100vw - 40px); height: {{ section.settings.mobile_height }}px;" data-index="{{ forloop.index0 }}">
+                <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+                  <div class="image-wrapper" style="height: 100%;">
+                    <img src="{{ block.settings.image | img_url: '800x' }}"
+                         alt="{{ block.settings.alt_text | default: 'Image' }}"
+                         class="gallery-image"
+                         loading="lazy"
+                         style="width: auto; height: 100%; object-fit: contain;">
+                  </div>
+                </a>
               </div>
-            </a>
-          </div>
-        {% endif %}
+            {% endif %}
+          {% endfor %}
+          
+          {% assign first_block = section.blocks.first %}
+          {% if first_block.settings.image != blank %}
+            {% assign aspect_ratio = first_block.settings.image.aspect_ratio %}
+            <div class="mobile-slide" style="width: calc(100vw - 40px); height: {{ section.settings.mobile_height }}px;">
+              <a href="{{ first_block.settings.link | default: '#' }}" class="image-link">
+                <div class="image-wrapper" style="height: 100%;">
+                  <img src="{{ first_block.settings.image | img_url: '800x' }}"
+                       alt="{{ first_block.settings.alt_text | default: 'Image' }}"
+                       class="gallery-image"
+                       loading="lazy"
+                       style="width: auto; height: 100%; object-fit: contain;">
+                </div>
+              </a>
+            </div>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
@@ -227,25 +226,36 @@
 .mobile-gallery-container {
   display: none;
   width: 100%;
-  overflow: hidden;
   position: relative;
+  margin: 0 -20px;
+}
+
+.mobile-slider-wrapper {
+  width: 100%;
+  overflow: hidden;
 }
 
 .mobile-slider {
   display: flex;
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
-  touch-action: pan-y;
+  height: {{ section.settings.mobile_height }}px;
 }
 
 .mobile-slide {
-  flex-shrink: 0;
-  margin-right: 33px;
+  flex: 0 0 calc(100vw - 40px);
+  height: 100%;
   scroll-snap-align: start;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .mobile-slide .image-wrapper {
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 响应式切换 */
@@ -272,8 +282,8 @@
 
 @media (max-width: 480px) {
   .advanced-image-gallery {
-    max-width: calc(100% - 20px);
-    padding: 0 10px;
+    max-width: 100%;
+    padding: 0 20px;
   }
   
   .section-title {
@@ -281,7 +291,7 @@
   }
   
   .mobile-slide {
-    margin-right: 20px;
+    flex: 0 0 calc(100vw - 40px);
   }
 }
 </style>
@@ -293,9 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (mobileSlider && mobileSlider.children.length > 3) {
     const slides = Array.from(mobileSlider.children);
     const realSlideCount = slides.length - 2; // 减去前后各1个副本
-    const slideWidth = slides[1].offsetWidth + parseInt(window.getComputedStyle(slides[1]).marginRight);
-    
-    // 初始化位置（定位到第一个真实slide）
+    const slideWidth = document.querySelector('.mobile-slide').offsetWidth;
     let currentIndex = 1;
     let currentTranslate = -slideWidth * currentIndex;
     let prevTranslate = currentTranslate;
@@ -310,32 +318,75 @@ document.addEventListener('DOMContentLoaded', function() {
     setSliderPosition();
     
     // 触摸事件
-    mobileSlider.addEventListener('touchstart', touchStart, { passive: false });
-    mobileSlider.addEventListener('touchend', touchEnd, { passive: false });
-    mobileSlider.addEventListener('touchmove', touchMove, { passive: false });
+    mobileSlider.addEventListener('touchstart', handleTouchStart, { passive: false });
+    mobileSlider.addEventListener('touchend', handleTouchEnd, { passive: false });
+    mobileSlider.addEventListener('touchmove', handleTouchMove, { passive: false });
     
     // 鼠标事件
-    mobileSlider.addEventListener('mousedown', touchStart);
-    mobileSlider.addEventListener('mouseup', touchEnd);
-    mobileSlider.addEventListener('mouseleave', touchEnd);
-    mobileSlider.addEventListener('mousemove', touchMove);
+    mobileSlider.addEventListener('mousedown', handleMouseStart);
     
-    function touchStart(e) {
+    function handleTouchStart(e) {
+      startDrag(e.touches[0].clientX);
+      e.preventDefault();
+    }
+    
+    function handleTouchMove(e) {
+      if (!isDragging) return;
+      updateDrag(e.touches[0].clientX);
+      e.preventDefault();
+    }
+    
+    function handleTouchEnd() {
+      endDrag();
+    }
+    
+    function handleMouseStart(e) {
+      startDrag(e.clientX);
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseEnd);
+    }
+    
+    function handleMouseMove(e) {
+      if (!isDragging) return;
+      updateDrag(e.clientX);
+    }
+    
+    function handleMouseEnd() {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseEnd);
+      endDrag();
+    }
+    
+    function startDrag(clientX) {
       if (isAnimating) return;
       
       isDragging = true;
-      startPos = getPositionX(e);
+      startPos = clientX;
       prevTranslate = currentTranslate;
       velocity = 0;
       lastTime = performance.now();
       mobileSlider.style.transition = 'none';
       animationID = requestAnimationFrame(animation);
-      
-      // 阻止默认行为防止页面滚动
-      if (e.cancelable) e.preventDefault();
     }
     
-    function touchEnd() {
+    function updateDrag(clientX) {
+      const currentPosition = clientX;
+      const delta = currentPosition - startPos;
+      
+      // 计算速度（用于惯性滑动判断）
+      const time = performance.now();
+      const deltaTime = time - lastTime;
+      if (deltaTime > 0) {
+        velocity = delta / deltaTime;
+      }
+      lastTime = time;
+      
+      // 添加滑动阻力
+      currentTranslate = prevTranslate + delta * 0.8;
+      setSliderPosition();
+    }
+    
+    function endDrag() {
       if (!isDragging) return;
       isDragging = false;
       cancelAnimationFrame(animationID);
@@ -356,28 +407,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       snapToSlide();
-    }
-    
-    function touchMove(e) {
-      if (!isDragging) return;
-      
-      const currentPosition = getPositionX(e);
-      const delta = currentPosition - startPos;
-      
-      // 计算速度（用于惯性滑动判断）
-      const time = performance.now();
-      const deltaTime = time - lastTime;
-      if (deltaTime > 0) {
-        velocity = delta / deltaTime;
-      }
-      lastTime = time;
-      
-      // 添加滑动阻力
-      currentTranslate = prevTranslate + delta * 0.8;
-      setSliderPosition();
-      
-      // 阻止默认行为防止页面滚动
-      if (e.cancelable) e.preventDefault();
     }
     
     function animation() {
@@ -420,10 +449,6 @@ document.addEventListener('DOMContentLoaded', function() {
       };
       
       mobileSlider.addEventListener('transitionend', onTransitionEnd);
-    }
-    
-    function getPositionX(e) {
-      return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
     }
   }
 });
