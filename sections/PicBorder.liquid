@@ -114,6 +114,24 @@
             </div>
           {% endif %}
         {% endfor %}
+        <!-- 循环滑动需要的副本 -->
+        {% for block in section.blocks limit: 2 %}
+          {% if block.settings.image != blank %}
+            {% assign aspect_ratio = block.settings.image.aspect_ratio %}
+            <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px);">
+              <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+                <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
+                  <img src="{{ block.settings.image | img_url: '800x' }}"
+                       alt="{{ block.settings.alt_text | default: 'Image' }}"
+                       class="gallery-image"
+                       loading="lazy"
+                       width="800"
+                       height="{{ 800 | divided_by: aspect_ratio | round }}">
+                </div>
+              </a>
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>
@@ -201,14 +219,6 @@
   transition: transform 0.5s ease;
   padding-bottom: 20px;
   will-change: transform;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.mobile-slider::-webkit-scrollbar {
-  display: none;
 }
 
 .mobile-slide {
@@ -264,11 +274,22 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileSlider = document.querySelector('.mobile-slider');
   
   if (mobileSlider && mobileSlider.children.length > 1) {
+    const slides = mobileSlider.children;
+    const slideCount = slides.length - 2; // 减去复制的2个slide
+    const slideWidth = slides[0].offsetWidth + 33;
+    
+    // 初始化位置
+    mobileSlider.style.transform = `translateX(0)`;
+    
+    // 设置无限循环需要的空间
+    mobileSlider.style.width = `${slideWidth * (slideCount + 2)}px`;
+    
     let isDragging = false;
     let startPos = 0;
     let currentTranslate = 0;
     let prevTranslate = 0;
     let animationID;
+    let currentIndex = 0;
     
     // 触摸事件
     mobileSlider.addEventListener('touchstart', touchStart);
@@ -292,11 +313,24 @@ document.addEventListener('DOMContentLoaded', function() {
     function touchEnd() {
       isDragging = false;
       cancelAnimationFrame(animationID);
-      mobileSlider.style.cursor = 'grab';
       
-      // 启用滑动吸附效果
-      mobileSlider.style.scrollBehavior = 'smooth';
-      mobileSlider.style.transition = 'transform 0.5s ease';
+      const movedBy = currentTranslate - prevTranslate;
+      
+      if (movedBy < -50) {
+        currentIndex += 1;
+      } else if (movedBy > 50) {
+        currentIndex -= 1;
+      }
+      
+      // 循环逻辑
+      if (currentIndex < 0) {
+        currentIndex = slideCount - 1;
+      } else if (currentIndex >= slideCount) {
+        currentIndex = 0;
+      }
+      
+      setSliderPosition();
+      mobileSlider.style.cursor = 'grab';
     }
     
     function touchMove(e) {
@@ -307,8 +341,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function animation() {
-      mobileSlider.style.transform = `translateX(${currentTranslate}px)`;
+      setSliderPosition();
       if (isDragging) requestAnimationFrame(animation);
+    }
+    
+    function setSliderPosition() {
+      currentTranslate = Math.max(Math.min(currentTranslate, slideWidth), -slideWidth * (slideCount + 1));
+      mobileSlider.style.transform = `translateX(${currentTranslate}px)`;
     }
     
     function getPositionX(e) {
