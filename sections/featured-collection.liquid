@@ -10,11 +10,6 @@
       padding-top: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px;
     }
-    
-    /* Mobile image ratio override */
-    .product-collection .card__media {
-      aspect-ratio: {{ section.settings.mobile_image_ratio }};
-    }
   }
 
   /* Desktop styles */
@@ -38,17 +33,9 @@
       max-width: 420px;
     }
 
-    /* 确保产品网格水平和垂直居中 */
+    /* 确保产品网格水平居中 */
     .product-collection .product-grid {
-      display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-    }
-    
-    /* PC image ratio override */
-    .product-collection .card__media {
-      aspect-ratio: {{ section.settings.desktop_image_ratio }};
     }
   }
 
@@ -72,6 +59,21 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  /* Make images adapt to their natural proportions */
+  .product-collection .card__media img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  .product-collection .card__media {
+    position: relative;
+    padding-bottom: 0 !important;
+    height: auto;
+  }
+  .product-collection .card__media::before {
+    content: none !important;
   }
 {%- endstyle -%}
 
@@ -157,7 +159,7 @@
           >
             {% render 'card-product',
               card_product: product,
-              media_aspect_ratio: section.settings.image_ratio,
+              media_aspect_ratio: 'adapt',
               image_shape: section.settings.image_shape,
               show_secondary_image: section.settings.show_secondary_image,
               show_vendor: section.settings.show_vendor,
@@ -170,7 +172,7 @@
           {%- for i in (1..section.settings.columns_desktop) -%}
             <li class="grid__item">
               {% render 'card-product-placeholder', 
-                media_aspect_ratio: section.settings.image_ratio,
+                media_aspect_ratio: 'adapt',
                 image_shape: section.settings.image_shape
               %}
             </li>
@@ -315,56 +317,6 @@
       ],
       "default": "medium",
       "info": "Card width on desktop screens"
-    },
-    {
-      "type": "select",
-      "id": "desktop_image_ratio",
-      "label": "Desktop image ratio",
-      "options": [
-        {
-          "value": "1",
-          "label": "Square (1:1)"
-        },
-        {
-          "value": "1.333",
-          "label": "Portrait (3:4)"
-        },
-        {
-          "value": "1.777",
-          "label": "Landscape (16:9)"
-        },
-        {
-          "value": "adapt",
-          "label": "Adapt to image"
-        }
-      ],
-      "default": "1",
-      "info": "Image aspect ratio for desktop"
-    },
-    {
-      "type": "select",
-      "id": "mobile_image_ratio",
-      "label": "Mobile image ratio",
-      "options": [
-        {
-          "value": "1",
-          "label": "Square (1:1)"
-        },
-        {
-          "value": "1.333",
-          "label": "Portrait (3:4)"
-        },
-        {
-          "value": "1.777",
-          "label": "Landscape (16:9)"
-        },
-        {
-          "value": "adapt",
-          "label": "Adapt to image"
-        }
-      ],
-      "default": "1",
-      "info": "Image aspect ratio for mobile"
     },
     {
       "type": "select",
@@ -529,9 +481,7 @@
     {
       "name": "Product Collection",
       "settings": {
-        "collection": "frontpage",
-        "desktop_image_ratio": "1",
-        "mobile_image_ratio": "1"
+        "collection": "frontpage"
       }
     }
   ]
