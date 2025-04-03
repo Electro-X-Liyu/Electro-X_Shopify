@@ -1,12 +1,12 @@
 {% schema %}
 {
-  "name": "高级图片画廊",
+  "name": "All Product",
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "标题",
-      "default": "图片展示"
+      "default": "产品展示"
     },
     {
       "type": "range",
@@ -53,8 +53,8 @@
   ],
   "presets": [
     {
-      "name": "高级图片画廊",
-      "category": "图片展示",
+      "name": "All Product",
+      "category": "产品展示",
       "blocks": [
         {"type": "image_block"},
         {"type": "image_block"},
@@ -67,7 +67,7 @@
 }
 {% endschema %}
 
-<div class="advanced-image-gallery" data-section-id="{{ section.id }}">
+<div class="all-product-gallery" data-section-id="{{ section.id }}">
   {% if section.settings.title != blank %}
     <h2 class="section-title">{{ section.settings.title }}</h2>
   {% endif %}
@@ -96,53 +96,54 @@
     
     <!-- 移动端滑动布局 -->
     <div class="mobile-gallery-container">
-      <div class="mobile-slider">
-        {% for block in section.blocks %}
-          {% if block.settings.image != blank %}
-            {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-            <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px);">
-              <a href="{{ block.settings.link | default: '#' }}" class="image-link">
-                <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
-                  <img src="{{ block.settings.image | img_url: '800x' }}"
-                       alt="{{ block.settings.alt_text | default: 'Image' }}"
-                       class="gallery-image"
-                       loading="lazy"
-                       width="800"
-                       height="{{ 800 | divided_by: aspect_ratio | round }}">
-                </div>
-              </a>
-            </div>
-          {% endif %}
-        {% endfor %}
-        <!-- 循环滑动需要的副本 -->
-        {% for block in section.blocks limit: 2 %}
-          {% if block.settings.image != blank %}
-            {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-            <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px);">
-              <a href="{{ block.settings.link | default: '#' }}" class="image-link">
-                <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
-                  <img src="{{ block.settings.image | img_url: '800x' }}"
-                       alt="{{ block.settings.alt_text | default: 'Image' }}"
-                       class="gallery-image"
-                       loading="lazy"
-                       width="800"
-                       height="{{ 800 | divided_by: aspect_ratio | round }}">
-                </div>
-              </a>
-            </div>
-          {% endif %}
-        {% endfor %}
+      <div class="mobile-slider-wrapper">
+        <div class="mobile-slider">
+          {% for block in section.blocks %}
+            {% if block.settings.image != blank %}
+              {% assign aspect_ratio = block.settings.image.aspect_ratio %}
+              <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px + 16px); padding: 0 8px;">
+                <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+                  <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
+                    <img src="{{ block.settings.image | img_url: '800x' }}"
+                         alt="{{ block.settings.alt_text | default: 'Image' }}"
+                         class="gallery-image"
+                         loading="lazy"
+                         width="800"
+                         height="{{ 800 | divided_by: aspect_ratio | round }}">
+                  </div>
+                </a>
+              </div>
+            {% endif %}
+          {% endfor %}
+          <!-- 循环滑动需要的副本 -->
+          {% for block in section.blocks limit: 2 %}
+            {% if block.settings.image != blank %}
+              {% assign aspect_ratio = block.settings.image.aspect_ratio %}
+              <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px + 16px); padding: 0 8px;">
+                <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+                  <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
+                    <img src="{{ block.settings.image | img_url: '800x' }}"
+                         alt="{{ block.settings.alt_text | default: 'Image' }}"
+                         class="gallery-image"
+                         loading="lazy"
+                         width="800"
+                         height="{{ 800 | divided_by: aspect_ratio | round }}">
+                  </div>
+                </a>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <style>
-.advanced-image-gallery {
-  max-width: calc(100% - 40px);
+.all-product-gallery {
+  width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
-  box-sizing: border-box;
+  padding: 0;
 }
 
 .section-title {
@@ -172,7 +173,10 @@
   justify-content: center;
   gap: 33px;
   width: 100%;
+  max-width: 1440px;
   margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .image-card {
@@ -210,25 +214,33 @@
 .mobile-gallery-container {
   display: none;
   width: 100%;
-  overflow: hidden;
   position: relative;
+  padding: 0;
+}
+
+.mobile-slider-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
 }
 
 .mobile-slider {
   display: flex;
   transition: transform 0.5s ease;
-  padding-bottom: 20px;
+  padding: 10px 8px; /* 上下留白 */
   will-change: transform;
+  margin: 0 -8px; /* 抵消slide的padding */
 }
 
 .mobile-slide {
   flex-shrink: 0;
-  margin-right: 33px;
   scroll-snap-align: start;
+  box-sizing: border-box;
 }
 
 .mobile-slide .image-wrapper {
   overflow: hidden;
+  border-radius: 4px;
 }
 
 /* 响应式切换 */
@@ -250,21 +262,24 @@
   .section-title {
     font-size: 24px;
     margin-bottom: 20px;
+    padding: 0 16px;
   }
 }
 
 @media (max-width: 480px) {
-  .advanced-image-gallery {
-    max-width: calc(100% - 20px);
-    padding: 0 10px;
-  }
-  
   .section-title {
     font-size: 20px;
+    padding: 0 12px;
+  }
+  
+  .mobile-slider {
+    padding: 8px 4px;
+    margin: 0 -4px;
   }
   
   .mobile-slide {
-    margin-right: 20px;
+    padding: 0 4px !important;
+    width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px + 8px) !important;
   }
 }
 </style>
@@ -276,13 +291,10 @@ document.addEventListener('DOMContentLoaded', function() {
   if (mobileSlider && mobileSlider.children.length > 1) {
     const slides = mobileSlider.children;
     const slideCount = slides.length - 2; // 减去复制的2个slide
-    const slideWidth = slides[0].offsetWidth + 33;
+    const slideWidth = slides[0].offsetWidth;
     
     // 初始化位置
     mobileSlider.style.transform = `translateX(0)`;
-    
-    // 设置无限循环需要的空间
-    mobileSlider.style.width = `${slideWidth * (slideCount + 2)}px`;
     
     let isDragging = false;
     let startPos = 0;
@@ -292,9 +304,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     
     // 触摸事件
-    mobileSlider.addEventListener('touchstart', touchStart);
-    mobileSlider.addEventListener('touchend', touchEnd);
-    mobileSlider.addEventListener('touchmove', touchMove);
+    mobileSlider.addEventListener('touchstart', touchStart, { passive: false });
+    mobileSlider.addEventListener('touchend', touchEnd, { passive: true });
+    mobileSlider.addEventListener('touchmove', touchMove, { passive: false });
     
     // 鼠标事件
     mobileSlider.addEventListener('mousedown', touchStart);
@@ -308,6 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
       animationID = requestAnimationFrame(animation);
       mobileSlider.style.cursor = 'grabbing';
       mobileSlider.style.transition = 'none';
+      e.preventDefault();
     }
     
     function touchEnd() {
@@ -316,9 +329,9 @@ document.addEventListener('DOMContentLoaded', function() {
       
       const movedBy = currentTranslate - prevTranslate;
       
-      if (movedBy < -50) {
+      if (movedBy < -30) {
         currentIndex += 1;
-      } else if (movedBy > 50) {
+      } else if (movedBy > 30) {
         currentIndex -= 1;
       }
       
@@ -331,12 +344,14 @@ document.addEventListener('DOMContentLoaded', function() {
       
       setSliderPosition();
       mobileSlider.style.cursor = 'grab';
+      mobileSlider.style.transition = 'transform 0.5s ease';
     }
     
     function touchMove(e) {
       if (isDragging) {
         const currentPosition = getPositionX(e);
         currentTranslate = prevTranslate + currentPosition - startPos;
+        e.preventDefault();
       }
     }
     
@@ -346,8 +361,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function setSliderPosition() {
-      currentTranslate = Math.max(Math.min(currentTranslate, slideWidth), -slideWidth * (slideCount + 1));
-      mobileSlider.style.transform = `translateX(${currentTranslate}px)`;
+      const maxTranslate = 0;
+      const minTranslate = -(slideWidth * (slideCount + 1));
+      currentTranslate = Math.max(minTranslate, Math.min(maxTranslate, currentTranslate));
+      mobileSlider.style.transform = `translateX(calc(${currentTranslate}px - 8px))`;
     }
     
     function getPositionX(e) {
