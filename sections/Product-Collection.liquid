@@ -10,24 +10,23 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
     
-    /* 统一卡片尺寸控制 */
+    /* PC端卡片尺寸控制 */
     .product-collection.card-size-small .card-wrapper {
-      width: 240px;
+      max-width: 240px;
     }
     .product-collection.card-size-medium .card-wrapper {
-      width: 300px;
+      max-width: 300px;
     }
     .product-collection.card-size-large .card-wrapper {
-      width: 360px;
+      max-width: 360px;
     }
     .product-collection.card-size-xlarge .card-wrapper {
-      width: 420px;
+      max-width: 420px;
     }
 
     /* 确保产品网格水平居中 */
     .product-collection .product-grid {
       justify-content: center;
-      gap: 20px; /* 统一间距 */
     }
   }
 
@@ -35,81 +34,22 @@
   .product-collection .grid__item {
     display: flex;
     justify-content: center;
-    padding-bottom: 20px;
   }
-  
   .product-collection .card-wrapper {
     height: 100%;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    border-radius: 12px; /* 统一圆角 */
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* 统一阴影 */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  
-  .product-collection .card-wrapper:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-  }
-  
   .product-collection .card {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    height: 100%;
   }
-  
   .product-collection .card__content {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 16px;
-  }
-  
-  /* 图片比例统一 */
-  .product-collection .card__media {
-    position: relative;
-    padding-bottom: 100%; /* 1:1比例 */
-    overflow: hidden;
-  }
-  
-  .product-collection .card__media img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-  
-  .product-collection .card__media:hover img {
-    transform: scale(1.03);
-  }
-  
-  /* 价格样式统一 */
-  .product-collection .price {
-    font-size: 1.1rem;
-    color: {{ settings.colors_accent_1 }};
-    margin-top: 8px;
-  }
-  
-  /* 移动端调整 */
-  @media screen and (max-width: 749px) {
-    .product-collection .card-wrapper {
-      max-width: 100%;
-    }
-    
-    .product-collection .grid__item {
-      padding-bottom: 10px;
-    }
-    
-    .product-collection .card__content {
-      padding: 12px;
-    }
   }
 {%- endstyle -%}
 
@@ -195,7 +135,7 @@
           >
             {% render 'card-product',
               card_product: product,
-              media_aspect_ratio: section.settings.image_ratio,
+              media_aspect_ratio: 'adapt',  {# 强制使用自适应比例 #}
               image_shape: section.settings.image_shape,
               show_secondary_image: section.settings.show_secondary_image,
               show_vendor: section.settings.show_vendor,
@@ -207,8 +147,8 @@
         {%- else -%}
           {%- for i in (1..section.settings.columns_desktop) -%}
             <li class="grid__item">
-              {% render 'card-product-placeholder',
-                media_aspect_ratio: 'square',
+              {% render 'card-product-placeholder', 
+                media_aspect_ratio: 'adapt',  {# 强制使用自适应比例 #}
                 image_shape: section.settings.image_shape
               %}
             </li>
@@ -353,26 +293,6 @@
       ],
       "default": "medium",
       "info": "Card width on desktop screens"
-    },
-    {
-      "type": "select",
-      "id": "image_ratio",
-      "options": [
-        {
-          "value": "adapt",
-          "label": "Adapt to image"
-        },
-        {
-          "value": "portrait",
-          "label": "Portrait"
-        },
-        {
-          "value": "square",
-          "label": "Square"
-        }
-      ],
-      "default": "square",
-      "label": "Image ratio"
     },
     {
       "type": "select",
