@@ -138,6 +138,34 @@
         "show_dots": true
       }
     },
+    "rich_text_8tAG7w": {
+      "type": "rich-text",
+      "blocks": {
+        "button_84dcML": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "button_84dcML"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "alkaline_water_Ct4W3N": {
       "type": "Alkaline-Water",
       "blocks": {
@@ -153,7 +181,9 @@
       "block_order": [
         "dual_image_card_HFMbMb"
       ],
-      "settings": {}
+      "settings": {
+        "row_height": 600
+      }
     },
     "featured_product_p8HAMi": {
       "type": "featured-product",
@@ -220,7 +250,7 @@
         "image_zoom": "lightbox",
         "hide_variants": false,
         "enable_video_looping": false,
-        "padding_top": 36,
+        "padding_top": 0,
         "padding_bottom": 36
       }
     },
@@ -851,6 +881,7 @@
     "image_banner",
     "rich_text_PtqKYk",
     "pic_border_m7m9TP",
+    "rich_text_8tAG7w",
     "alkaline_water_Ct4W3N",
     "featured_product_p8HAMi",
     "image_with_text_PJG4Yp",
