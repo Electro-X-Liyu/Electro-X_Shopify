@@ -169,48 +169,25 @@
     "alkaline_water_info_3FrxGU": {
       "type": "Alkaline-Water-Info",
       "blocks": {
-        "title_3LmmPd": {
-          "type": "title",
-          "settings": {}
-        },
-        "price_6LVQRK": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker_FAJeDD": {
-          "type": "variant_picker",
+        "dual_image_card_Qri7jY": {
+          "type": "dual_image_card",
           "settings": {
-            "picker_type": "dropdown"
-          }
-        },
-        "quantity_selector_DfCjAa": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons_DphmY8": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": false
+            "image_1": "shopify://shop_images/3a2e0a835929a74e3f7881023c653e1b.jpg",
+            "image_2": "shopify://shop_images/3_079288a1-caa8-4e7d-8c88-a15e2b6866f4.jpg",
+            "card_link": ""
           }
         }
       },
       "block_order": [
-        "title_3LmmPd",
-        "price_6LVQRK",
-        "variant_picker_FAJeDD",
-        "quantity_selector_DfCjAa",
-        "buy_buttons_DphmY8"
+        "dual_image_card_Qri7jY"
       ],
       "settings": {
-        "product": "natural-alkaline-water",
-        "image_height": 500,
-        "enable_hover": true,
-        "custom_image_1": "shopify://shop_images/3a2e0a835929a74e3f7881023c653e1b.jpg",
-        "custom_image_2": "shopify://shop_images/3_079288a1-caa8-4e7d-8c88-a15e2b6866f4.jpg",
-        "desktop_layout": "image_left",
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "row_height": 400,
+        "spacing": 20,
+        "price_spacing": 8,
+        "variant_spacing": 12,
+        "quantity_spacing": 15,
+        "button_spacing": 20
       }
     },
     "product_collection_rYrG8U": {
