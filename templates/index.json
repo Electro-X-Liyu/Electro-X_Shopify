@@ -407,34 +407,6 @@
         "padding_bottom": 20
       }
     },
-    "multicolumn_jz97CR": {
-      "type": "multicolumn",
-      "blocks": {
-        "member_WgVAdm": {
-          "type": "member",
-          "settings": {
-            "image": "shopify://shop_images/KV-37.jpg",
-            "title": "Member Name",
-            "text": "<p>Community member description</p>"
-          }
-        }
-      },
-      "block_order": [
-        "member_WgVAdm"
-      ],
-      "settings": {
-        "title": "",
-        "heading_size": "h2",
-        "mobile_image_width": 500,
-        "desktop_image_width": 800,
-        "image_ratio": "adapt",
-        "columns_desktop": 5,
-        "swipe_on_mobile": true,
-        "color_scheme": "scheme-2",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "image_banner_rALkGg": {
       "type": "image-banner",
       "blocks": {
@@ -542,7 +514,6 @@
     "featured_blog_hcNHKd",
     "image_banner_AYjrAd",
     "rich_text_neCnki",
-    "multicolumn_jz97CR",
     "image_banner_rALkGg",
     "image_banner_KNFeMR"
   ]

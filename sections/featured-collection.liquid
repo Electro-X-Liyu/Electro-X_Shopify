@@ -6,21 +6,14 @@
 
   /* Mobile styles */
   @media screen and (max-width: 749px) {
-    .product-collection .product-grid {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px;
     }
     
-    .product-collection .grid__item {
-      display: flex;
-      justify-content: center;
-    }
-    
-    /* Mobile image adjustments */
+    /* Mobile image ratio override */
     .product-collection .card__media {
-      max-height: {{ section.settings.mobile_image_height }}px;
+      aspect-ratio: {{ section.settings.mobile_image_ratio }};
     }
   }
 
@@ -29,20 +22,6 @@
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-    
-    /* Vertical centering for all cards */
-    .product-collection .product-grid {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .product-collection .grid__item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
     
     /* PC端卡片尺寸控制 */
@@ -58,11 +37,41 @@
     .product-collection.card-size-xlarge .card-wrapper {
       max-width: 420px;
     }
-    
-    /* Desktop image adjustments */
-    .product-collection .card__media {
-      max-height: {{ section.settings.desktop_image_height }}px;
+
+    /* 确保产品网格水平和垂直居中 */
+    .product-collection .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
     }
+    
+    /* PC image ratio override */
+    .product-collection .card__media {
+      aspect-ratio: {{ section.settings.desktop_image_ratio }};
+    }
+  }
+
+  /* Vertical centering for all cards */
+  .product-collection .grid__item {
+    display: flex;
+    justify-content: center;
+  }
+  .product-collection .card-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-collection .card {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-collection .card__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 {%- endstyle -%}
 
@@ -308,44 +317,54 @@
       "info": "Card width on desktop screens"
     },
     {
-      "type": "range",
-      "id": "desktop_image_height",
-      "min": 100,
-      "max": 600,
-      "step": 10,
-      "unit": "px",
-      "label": "Desktop image max height",
-      "default": 300
-    },
-    {
-      "type": "range",
-      "id": "mobile_image_height",
-      "min": 100,
-      "max": 500,
-      "step": 10,
-      "unit": "px",
-      "label": "Mobile image max height",
-      "default": 200
-    },
-    {
       "type": "select",
-      "id": "image_ratio",
+      "id": "desktop_image_ratio",
+      "label": "Desktop image ratio",
       "options": [
+        {
+          "value": "1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "1.333",
+          "label": "Portrait (3:4)"
+        },
+        {
+          "value": "1.777",
+          "label": "Landscape (16:9)"
+        },
         {
           "value": "adapt",
           "label": "Adapt to image"
-        },
-        {
-          "value": "portrait",
-          "label": "Portrait"
-        },
-        {
-          "value": "square",
-          "label": "Square"
         }
       ],
-      "default": "adapt",
-      "label": "Image ratio"
+      "default": "1",
+      "info": "Image aspect ratio for desktop"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_ratio",
+      "label": "Mobile image ratio",
+      "options": [
+        {
+          "value": "1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "1.333",
+          "label": "Portrait (3:4)"
+        },
+        {
+          "value": "1.777",
+          "label": "Landscape (16:9)"
+        },
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        }
+      ],
+      "default": "1",
+      "info": "Image aspect ratio for mobile"
     },
     {
       "type": "select",
@@ -510,7 +529,9 @@
     {
       "name": "Product Collection",
       "settings": {
-        "collection": "frontpage"
+        "collection": "frontpage",
+        "desktop_image_ratio": "1",
+        "mobile_image_ratio": "1"
       }
     }
   ]
