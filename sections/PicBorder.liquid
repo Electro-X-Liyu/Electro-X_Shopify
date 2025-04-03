@@ -97,25 +97,6 @@
     <!-- 移动端滑动布局 -->
     <div class="mobile-gallery-container">
       <div class="mobile-slider">
-        <!-- 前置副本（最后一张图） -->
-        {% assign last_block = section.blocks.last %}
-        {% if last_block.settings.image != blank %}
-          {% assign aspect_ratio = last_block.settings.image.aspect_ratio %}
-          <div class="mobile-slide clone" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px);">
-            <a href="{{ last_block.settings.link | default: '#' }}" class="image-link">
-              <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
-                <img src="{{ last_block.settings.image | img_url: '800x' }}"
-                     alt="{{ last_block.settings.alt_text | default: 'Image' }}"
-                     class="gallery-image"
-                     loading="lazy"
-                     width="800"
-                     height="{{ 800 | divided_by: aspect_ratio | round }}">
-              </div>
-            </a>
-          </div>
-        {% endif %}
-        
-        <!-- 主内容 -->
         {% for block in section.blocks %}
           {% if block.settings.image != blank %}
             {% assign aspect_ratio = block.settings.image.aspect_ratio %}
@@ -133,24 +114,24 @@
             </div>
           {% endif %}
         {% endfor %}
-        
-        <!-- 后置副本（第一张图） -->
-        {% assign first_block = section.blocks.first %}
-        {% if first_block.settings.image != blank %}
-          {% assign aspect_ratio = first_block.settings.image.aspect_ratio %}
-          <div class="mobile-slide clone" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px);">
-            <a href="{{ first_block.settings.link | default: '#' }}" class="image-link">
-              <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
-                <img src="{{ first_block.settings.image | img_url: '800x' }}"
-                     alt="{{ first_block.settings.alt_text | default: 'Image' }}"
-                     class="gallery-image"
-                     loading="lazy"
-                     width="800"
-                     height="{{ 800 | divided_by: aspect_ratio | round }}">
-              </div>
-            </a>
-          </div>
-        {% endif %}
+        <!-- 循环滑动需要的副本 -->
+        {% for block in section.blocks limit: 2 %}
+          {% if block.settings.image != blank %}
+            {% assign aspect_ratio = block.settings.image.aspect_ratio %}
+            <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px);">
+              <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+                <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
+                  <img src="{{ block.settings.image | img_url: '800x' }}"
+                       alt="{{ block.settings.alt_text | default: 'Image' }}"
+                       class="gallery-image"
+                       loading="lazy"
+                       width="800"
+                       height="{{ 800 | divided_by: aspect_ratio | round }}">
+                </div>
+              </a>
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>
@@ -236,6 +217,7 @@
 .mobile-slider {
   display: flex;
   transition: transform 0.5s ease;
+  padding-bottom: 20px;
   will-change: transform;
 }
 
@@ -292,21 +274,22 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileSlider = document.querySelector('.mobile-slider');
   
   if (mobileSlider && mobileSlider.children.length > 1) {
-    const slides = Array.from(mobileSlider.children);
-    const realSlides = slides.filter(slide => !slide.classList.contains('clone'));
-    const slideCount = realSlides.length;
-    const slideWidth = realSlides[0].offsetWidth + parseInt(window.getComputedStyle(realSlides[0]).marginRight);
+    const slides = mobileSlider.children;
+    const slideCount = slides.length - 2; // 减去复制的2个slide
+    const slideWidth = slides[0].offsetWidth + 33;
     
-    // 初始化位置（定位到第一个真实slide）
-    let currentIndex = 0;
-    let startPos = 0;
-    let currentTranslate = -slideWidth; // 初始位置在第一个真实slide
-    let prevTranslate = currentTranslate;
+    // 初始化位置
+    mobileSlider.style.transform = `translateX(0)`;
+    
+    // 设置无限循环需要的空间
+    mobileSlider.style.width = `${slideWidth * (slideCount + 2)}px`;
+    
     let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
     let animationID;
-    
-    // 设置初始位置
-    setSliderPosition(true);
+    let currentIndex = 0;
     
     // 触摸事件
     mobileSlider.addEventListener('touchstart', touchStart);
@@ -323,8 +306,8 @@ document.addEventListener('DOMContentLoaded', function() {
       isDragging = true;
       startPos = getPositionX(e);
       animationID = requestAnimationFrame(animation);
-      mobileSlider.style.transition = 'none';
       mobileSlider.style.cursor = 'grabbing';
+      mobileSlider.style.transition = 'none';
     }
     
     function touchEnd() {
@@ -333,12 +316,17 @@ document.addEventListener('DOMContentLoaded', function() {
       
       const movedBy = currentTranslate - prevTranslate;
       
-      if (Math.abs(movedBy) > 5) { // 微小移动不切换
-        if (movedBy < -50 && currentIndex < slideCount - 1) {
-          currentIndex += 1;
-        } else if (movedBy > 50 && currentIndex > 0) {
-          currentIndex -= 1;
-        }
+      if (movedBy < -50) {
+        currentIndex += 1;
+      } else if (movedBy > 50) {
+        currentIndex -= 1;
+      }
+      
+      // 循环逻辑
+      if (currentIndex < 0) {
+        currentIndex = slideCount - 1;
+      } else if (currentIndex >= slideCount) {
+        currentIndex = 0;
       }
       
       setSliderPosition();
@@ -357,41 +345,14 @@ document.addEventListener('DOMContentLoaded', function() {
       if (isDragging) requestAnimationFrame(animation);
     }
     
-    function setSliderPosition(instant = false) {
-      // 计算目标位置
-      const targetTranslate = -slideWidth * (currentIndex + 1);
-      
-      // 如果是拖动中，使用当前translate值
-      // 如果是动画结束，平滑移动到目标位置
-      const newTranslate = isDragging ? currentTranslate : targetTranslate;
-      
-      // 检查边界（允许稍微超出以便实现循环效果）
-      if (!isDragging) {
-        mobileSlider.style.transition = instant ? 'none' : 'transform 0.5s ease';
-        mobileSlider.style.transform = `translateX(${newTranslate}px)`;
-        prevTranslate = newTranslate;
-      } else {
-        mobileSlider.style.transform = `translateX(${newTranslate}px)`;
-      }
+    function setSliderPosition() {
+      currentTranslate = Math.max(Math.min(currentTranslate, slideWidth), -slideWidth * (slideCount + 1));
+      mobileSlider.style.transform = `translateX(${currentTranslate}px)`;
     }
     
     function getPositionX(e) {
       return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
     }
-    
-    // 处理循环逻辑
-    mobileSlider.addEventListener('transitionend', () => {
-      // 如果滑动到前置副本（index -1），跳转到最后一个真实slide
-      if (currentIndex === -1) {
-        currentIndex = slideCount - 1;
-        setSliderPosition(true);
-      } 
-      // 如果滑动到后置副本（index = slideCount），跳转到第一个真实slide
-      else if (currentIndex === slideCount) {
-        currentIndex = 0;
-        setSliderPosition(true);
-      }
-    });
   }
 });
 </script>
