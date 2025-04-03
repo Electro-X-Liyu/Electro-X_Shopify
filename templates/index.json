@@ -169,24 +169,24 @@
     "alkaline_water_info_CjJNBr": {
       "type": "Alkaline-Water-Info",
       "blocks": {
-        "benefit_card_CgWadn": {
-          "type": "benefit_card",
+        "dual_image_card_7jCh3i": {
+          "type": "dual_image_card",
           "settings": {
             "image_1": "shopify://shop_images/3a2e0a835929a74e3f7881023c653e1b.jpg",
             "image_2": "shopify://shop_images/3_079288a1-caa8-4e7d-8c88-a15e2b6866f4.jpg",
-            "title": "Health Benefit",
-            "description": "<p>Explain the health benefit of alkaline water here</p>"
+            "card_link": "shopify://products/natural-alkaline-water",
+            "heading": "",
+            "description": ""
           }
         }
       },
       "block_order": [
-        "benefit_card_CgWadn"
+        "dual_image_card_7jCh3i"
       ],
       "settings": {
-        "heading": "ALKALINE WATER BENEFITS",
-        "card_height": 400,
-        "featured_product": "",
-        "color_scheme": "",
+        "product": "",
+        "row_height": 400,
+        "desktop_layout": "image_left",
         "padding_top": 36,
         "padding_bottom": 36
       }
