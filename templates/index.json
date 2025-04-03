@@ -169,24 +169,23 @@
     "alkaline_water_info_CjJNBr": {
       "type": "Alkaline-Water-Info",
       "blocks": {
-        "dual_image_card_7jCh3i": {
-          "type": "dual_image_card",
+        "dual_image_jnJBUL": {
+          "type": "dual_image",
           "settings": {
             "image_1": "shopify://shop_images/3a2e0a835929a74e3f7881023c653e1b.jpg",
             "image_2": "shopify://shop_images/3_079288a1-caa8-4e7d-8c88-a15e2b6866f4.jpg",
-            "card_link": "shopify://products/natural-alkaline-water",
-            "heading": "",
-            "description": ""
+            "card_link": "shopify://collections/electrolyte-beverages",
+            "alt_text": ""
           }
         }
       },
       "block_order": [
-        "dual_image_card_7jCh3i"
+        "dual_image_jnJBUL"
       ],
       "settings": {
-        "product": "",
-        "row_height": 400,
-        "desktop_layout": "image_left",
+        "product": "natural-alkaline-water",
+        "image_height": 480,
+        "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
       }
