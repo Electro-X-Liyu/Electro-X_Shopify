@@ -91,7 +91,7 @@
         {% for block in section.blocks %}
           {% if block.settings.image != blank %}
             {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-            <div class="mobile-slide" style="scroll-snap-align: start; flex: 0 0 calc(80% - 20px); margin-right: 20px;">
+            <div class="mobile-slide" style="scroll-snap-align: start; flex: 0 0 calc(80% - 15.5px); margin-right: 15.5px;">
               <div class="image-container" style="height: 290px;">
                 <a href="{{ block.settings.link | default: '#' }}" class="image-link">
                   <img src="{{ block.settings.image | img_url: '800x' }}"
@@ -108,7 +108,7 @@
         {% for block in section.blocks %}
           {% if block.settings.image != blank %}
             {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-            <div class="mobile-slide" style="scroll-snap-align: start; flex: 0 0 calc(80% - 20px); margin-right: 20px;">
+            <div class="mobile-slide" style="scroll-snap-align: start; flex: 0 0 calc(80% - 15.5px); margin-right: 15.5px;">
               <div class="image-container" style="height: 290px;">
                 <a href="{{ block.settings.link | default: '#' }}" class="image-link">
                   <img src="{{ block.settings.image | img_url: '800x' }}"
@@ -220,7 +220,7 @@
   transition: opacity 0.3s ease;
 }
 
-/* 移动端样式 */
+/* 移动端样式 - 修改间距为15.5px */
 .mobile-gallery-wrapper {
   position: relative;
   display: none;
@@ -246,7 +246,7 @@
 
 .mobile-slide .image-container {
   height: 290px !important;
-  margin: 0 10px;
+  margin: 0 7.75px; /* 15.5px的一半 */
 }
 
 .mobile-image {
@@ -270,6 +270,12 @@
     font-size: 24px;
     margin-bottom: 20px;
   }
+  
+  /* 精确控制15.5px间距 */
+  .mobile-slide {
+    flex: 0 0 calc(80% - 15.5px);
+    margin-right: 15.5px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -283,8 +289,8 @@
   }
   
   .mobile-slide {
-    flex: 0 0 calc(85% - 15px);
-    margin-right: 15px;
+    flex: 0 0 calc(85% - 15.5px);
+    margin-right: 15.5px;
   }
 }
 </style>
