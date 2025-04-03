@@ -411,45 +411,57 @@
         "ambassador_jjwixw": {
           "type": "ambassador",
           "settings": {
-            "image": "shopify://shop_images/KV-37.jpg",
+            "image": "shopify://shop_images/KV__1.jpg",
             "title": "Ambassador Name",
             "role": "",
-            "text": "<p>Share something special about this ambassador</p>",
-            "badge_text": "PRO",
-            "link_label": "View profile",
+            "text": "",
+            "badge_text": "",
+            "link_label": "",
             "link": ""
           }
         },
         "ambassador_Abz69H": {
           "type": "ambassador",
           "settings": {
-            "title": "Ambassador Name",
-            "role": "Brand Ambassador",
-            "text": "<p>Share something special about this ambassador</p>",
-            "badge_text": "PRO",
-            "link_label": "View profile",
+            "image": "shopify://shop_images/KV-03.jpg",
+            "title": "",
+            "role": "",
+            "text": "",
+            "badge_text": "",
+            "link_label": "",
             "link": ""
           }
         },
         "ambassador_apLcik": {
           "type": "ambassador",
           "settings": {
-            "title": "Ambassador Name",
-            "role": "Brand Ambassador",
-            "text": "<p>Share something special about this ambassador</p>",
-            "badge_text": "PRO",
-            "link_label": "View profile",
+            "title": "",
+            "role": "",
+            "text": "",
+            "badge_text": "",
+            "link_label": "",
             "link": ""
           }
         },
         "ambassador_cgBL6c": {
           "type": "ambassador",
           "settings": {
-            "title": "Ambassador Name",
-            "role": "Brand Ambassador",
-            "text": "<p>Share something special about this ambassador</p>",
-            "badge_text": "PRO",
-            "link_label": "View profile",
+            "title": "",
+            "role": "",
+            "text": "",
+            "badge_text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "ambassador_HE8mEW": {
+          "type": "ambassador",
+          "settings": {
+            "title": "",
+            "role": "",
+            "text": "",
+            "badge_text": "",
+            "link_label": "",
             "link": ""
           }
         },
@@ -470,15 +482,16 @@
         "ambassador_Abz69H",
         "ambassador_apLcik",
         "ambassador_cgBL6c",
+        "ambassador_HE8mEW",
         "ambassador_8xfreM"
       ],
       "settings": {
         "title": "Our Ambassadors",
         "subtitle": "Meet our brand ambassadors",
-        "heading_size": "h1",
-        "columns_desktop": 4,
-        "grid_gap": 24,
-        "image_ratio": "square",
+        "heading_size": "h0",
+        "columns_desktop": 5,
+        "grid_gap": 10,
+        "image_ratio": "adapt",
         "card_background": "#ffffff",
         "card_border": "#e0e0e0",
         "card_border_radius": 12,
