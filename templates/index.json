@@ -405,6 +405,92 @@
         "padding_bottom": 20
       }
     },
+    "community_ambassador_jNH89B": {
+      "type": "Community-Ambassador",
+      "blocks": {
+        "ambassador_jjwixw": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/KV-37.jpg",
+            "title": "Ambassador Name",
+            "role": "",
+            "text": "<p>Share something special about this ambassador</p>",
+            "badge_text": "PRO",
+            "link_label": "View profile",
+            "link": ""
+          }
+        },
+        "ambassador_Abz69H": {
+          "type": "ambassador",
+          "settings": {
+            "title": "Ambassador Name",
+            "role": "Brand Ambassador",
+            "text": "<p>Share something special about this ambassador</p>",
+            "badge_text": "PRO",
+            "link_label": "View profile",
+            "link": ""
+          }
+        },
+        "ambassador_apLcik": {
+          "type": "ambassador",
+          "settings": {
+            "title": "Ambassador Name",
+            "role": "Brand Ambassador",
+            "text": "<p>Share something special about this ambassador</p>",
+            "badge_text": "PRO",
+            "link_label": "View profile",
+            "link": ""
+          }
+        },
+        "ambassador_cgBL6c": {
+          "type": "ambassador",
+          "settings": {
+            "title": "Ambassador Name",
+            "role": "Brand Ambassador",
+            "text": "<p>Share something special about this ambassador</p>",
+            "badge_text": "PRO",
+            "link_label": "View profile",
+            "link": ""
+          }
+        },
+        "ambassador_8xfreM": {
+          "type": "ambassador",
+          "settings": {
+            "title": "Ambassador Name",
+            "role": "Brand Ambassador",
+            "text": "<p>Share something special about this ambassador</p>",
+            "badge_text": "PRO",
+            "link_label": "View profile",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "ambassador_jjwixw",
+        "ambassador_Abz69H",
+        "ambassador_apLcik",
+        "ambassador_cgBL6c",
+        "ambassador_8xfreM"
+      ],
+      "settings": {
+        "title": "Our Ambassadors",
+        "subtitle": "Meet our brand ambassadors",
+        "heading_size": "h1",
+        "columns_desktop": 4,
+        "grid_gap": 24,
+        "image_ratio": "square",
+        "card_background": "#ffffff",
+        "card_border": "#e0e0e0",
+        "card_border_radius": 12,
+        "card_padding": 20,
+        "badge_background": "#FF6B6B",
+        "badge_text": "#ffffff",
+        "swipe_on_mobile": true,
+        "mobile_image_width": 400,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
     "image_banner_rALkGg": {
       "type": "image-banner",
       "blocks": {
@@ -455,6 +541,7 @@
     "featured_blog_hcNHKd",
     "image_banner_AYjrAd",
     "rich_text_neCnki",
+    "community_ambassador_jNH89B",
     "image_banner_rALkGg"
   ]
 }
