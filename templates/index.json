@@ -188,23 +188,49 @@
           "type": "price",
           "settings": {}
         },
+        "variant_picker_inyGW9": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "rating_Eb9DYE": {
+          "type": "rating",
+          "settings": {}
+        },
         "quantity_selector_AAXmJM": {
           "type": "quantity_selector",
           "settings": {}
+        },
+        "buy_buttons_nPB4NP": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_quick_add": false
+          }
+        },
+        "share_xDKjkR": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
         }
       },
       "block_order": [
         "dual_image_jnJBUL",
         "title_PC6fMe",
         "price_GmKtfH",
-        "quantity_selector_AAXmJM"
+        "variant_picker_inyGW9",
+        "rating_Eb9DYE",
+        "quantity_selector_AAXmJM",
+        "buy_buttons_nPB4NP",
+        "share_xDKjkR"
       ],
       "settings": {
         "product": "natural-alkaline-water",
         "desktop_image_height": 500,
         "mobile_image_height": 350,
         "color_scheme": "",
-        "secondary_background": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
