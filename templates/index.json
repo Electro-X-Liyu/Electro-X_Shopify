@@ -213,6 +213,34 @@
         "padding_bottom": 36
       }
     },
+    "product_collection_kM3g7z": {
+      "type": "Product-Collection",
+      "settings": {
+        "collection": "electrolyte-sports-drink",
+        "products_to_show": 2,
+        "title": "Electrolyte Beverages",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "card_size": "large",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_desktop": 2,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "show_view_all": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "featured_collection_NBGF7K": {
       "type": "featured-collection",
       "settings": {
@@ -794,6 +822,7 @@
     "pic_border_m7m9TP",
     "rich_text_8tAG7w",
     "alkaline_water_info_3FrxGU",
+    "product_collection_kM3g7z",
     "featured_collection_NBGF7K",
     "featured_collection_aCmKJ3",
     "collage_zNtJH3",
