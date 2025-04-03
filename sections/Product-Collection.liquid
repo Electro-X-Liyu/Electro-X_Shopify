@@ -42,6 +42,7 @@
     width: 100%;
     padding-top: 100%; /* 初始比例 1:1 */
     overflow: hidden;
+    background: white; /* 添加白色背景 */
   }
 
   .product-collection .card__media .media img {
@@ -51,8 +52,6 @@
     width: 100%;
     height: 100%;
     object-fit: contain; /* 保持原始比例 */
-    padding: 20px; /* 添加内边距避免贴边 */
-    background: white;
   }
 
   /* 卡片内容区域 */
@@ -140,7 +139,7 @@
           <li class="grid__item">
             {% render 'card-product',
               card_product: product,
-              media_aspect_ratio: 'original',  {# 关键修改：使用原始比例 #}
+              media_aspect_ratio: 'original',
               show_secondary_image: section.settings.show_secondary_image,
               show_vendor: section.settings.show_vendor,
               show_rating: section.settings.show_rating
