@@ -10,19 +10,42 @@
       "label": "Featured product"
     },
     {
+      "type": "header",
+      "content": "Desktop Image Settings"
+    },
+    {
       "type": "range",
-      "id": "image_height",
-      "label": "Image height (px)",
+      "id": "desktop_image_height",
+      "label": "Desktop height (px)",
       "min": 300,
       "max": 800,
       "step": 10,
       "default": 500
     },
     {
+      "type": "header",
+      "content": "Mobile Image Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "label": "Mobile height (px)",
+      "min": 200,
+      "max": 600,
+      "step": 10,
+      "default": 350
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "label": "Enable Quick Add",
+      "default": true
     },
     {
       "type": "header",
@@ -136,6 +159,9 @@
 {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 <style>
   .alkaline-section {
@@ -168,12 +194,16 @@
       grid-template-columns: 1fr 1fr;
       align-items: center;
     }
+    
+    .dual-image-container {
+      height: {{ section.settings.desktop_image_height }}px;
+    }
   }
 
   .dual-image-container {
     position: relative;
     width: 100%;
-    height: {{ section.settings.image_height }}px;
+    height: {{ section.settings.mobile_image_height }}px;
     overflow: hidden;
     border-radius: 8px;
   }
@@ -225,21 +255,23 @@
     margin-bottom: 1.5rem;
   }
 
+  /* Quick Add Styles */
+  .quick-add__submit {
+    width: 100%;
+  }
+  
+  .quick-add__submit[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
   @media screen and (max-width: 989px) {
     .alkaline-grid {
       grid-template-columns: 1fr;
     }
-    
-    .dual-image-container {
-      height: {{ section.settings.image_height | times: 0.8 }}px;
-    }
   }
 
   @media screen and (max-width: 749px) {
-    .dual-image-container {
-      height: {{ section.settings.image_height | times: 0.7 }}px;
-    }
-    
     .alkaline-container {
       padding: 0 1rem;
     }
@@ -297,12 +329,47 @@
             {%- endcase -%}
           {% endfor %}
           
-          {%- form 'product', product -%}
-            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-            <button type="submit" class="button button--full-width">
-              {{ 'products.product.add_to_cart' | t }}
-            </button>
-          {%- endform -%}
+          {%- if section.settings.enable_quick_add -%}
+            <quick-add-buttons>
+              {%- assign product_form_id = 'quick-add-' | append: section.id | append: product.id -%}
+              {%- form 'product', product, id: product_form_id, class: 'form' -%}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <button
+                  id="{{ product_form_id }}-submit"
+                  type="submit"
+                  name="add"
+                  class="quick-add__submit button button--full-width"
+                  aria-haspopup="dialog"
+                  aria-label="{{ 'products.product.choose_options' | t: product_name: product.title | escape }}"
+                  aria-live="polite"
+                  data-sold-out-message="true"
+                >
+                  <span>
+                    {%- if product.selected_or_first_available_variant.available -%}
+                      {{ 'products.product.add_to_cart' | t }}
+                    {%- else -%}
+                      {{ 'products.product.sold_out' | t }}
+                    {%- endif -%}
+                  </span>
+                  <span class="sold-out-message hidden">
+                    {{ 'products.product.sold_out' | t }}
+                  </span>
+                  <div class="loading-overlay__spinner hidden">
+                    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                  </div>
+                </button>
+              {%- endform -%}
+            </quick-add-buttons>
+          {%- else -%}
+            {%- form 'product', product -%}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button type="submit" class="button button--full-width">
+                {{ 'products.product.add_to_cart' | t }}
+              </button>
+            {%- endform -%}
+          {%- endif -%}
           
           <a href="{{ product.url }}" class="link product__view-details">
             {{ 'products.product.view_full_details' | t }}
@@ -331,4 +398,73 @@
   </div>
 </div>
 
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof Shopify === 'undefined') return;
+
+    // Quick add functionality
+    class QuickAddButtons extends HTMLElement {
+      constructor() {
+        super();
+        this.querySelector('form').addEventListener('submit', this.onSubmitHandler.bind(this));
+      }
+
+      onSubmitHandler(evt) {
+        evt.preventDefault();
+        const submitButton = this.querySelector('[type="submit"]');
+        
+        if (submitButton.classList.contains('loading')) return;
+
+        this.handleErrorMessage();
+        submitButton.setAttribute('aria-disabled', true);
+        submitButton.classList.add('loading');
+        submitButton.querySelector('.loading-overlay__spinner').classList.remove('hidden');
+
+        const formData = new FormData(this.querySelector('form'));
+        
+        fetch(`${routes.cart_add_url}`, {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(response => {
+          if (response.status) {
+            this.handleErrorMessage(response.description);
+            return;
+          }
+
+          this.updateCart();
+        })
+        .catch(e => {
+          console.error(e);
+          this.handleErrorMessage();
+        })
+        .finally(() => {
+          submitButton.classList.remove('loading');
+          submitButton.removeAttribute('aria-disabled');
+          submitButton.querySelector('.loading-overlay__spinner').classList.add('hidden');
+        });
+      }
+
+      handleErrorMessage(errorMessage = false) {
+        // Implement error message display if needed
+      }
+
+      updateCart() {
+        fetch(`${routes.cart_url}`)
+        .then(response => response.text())
+        .then(cartData => {
+          // Update cart count or drawer if implemented
+          if (typeof updateCartCount === 'function') {
+            updateCartCount();
+          }
+        })
+        .catch(e => {
+          console.error(e);
+        });
+      }
+    }
+
+    customElements.define('quick-add-buttons', QuickAddButtons);
+  });
+</script>
