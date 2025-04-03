@@ -177,15 +177,24 @@
             "card_link": "shopify://collections/electrolyte-beverages",
             "alt_text": ""
           }
+        },
+        "title_PC6fMe": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
         }
       },
       "block_order": [
-        "dual_image_jnJBUL"
+        "dual_image_jnJBUL",
+        "title_PC6fMe"
       ],
       "settings": {
         "product": "natural-alkaline-water",
-        "image_height": 480,
+        "desktop_image_height": 500,
+        "mobile_image_height": 350,
         "color_scheme": "",
+        "secondary_background": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
