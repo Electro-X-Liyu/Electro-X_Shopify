@@ -9,101 +9,24 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
-  }
-
-  /* 基础卡片样式 */
-  .product-collection .card-wrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .product-collection .card {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    position: relative;
-  }
-
-  /* 自适应图片容器 - 关键部分 */
-  .product-collection .card__media {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .product-collection .card__media::before {
-    content: '';
-    display: block;
-    padding-bottom: var(--media-padding-bottom, 100%);
-  }
-
-  .product-collection .card__media img,
-  .product-collection .card__media .media img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-  }
-
-  /* 卡片内容区域 */
-  .product-collection .card__content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1rem;
-  }
-
-  /* 卡片内边距调整 */
-  .product-collection .card__information {
-    padding-top: 0.5rem;
-  }
-
-  /* PC端卡片尺寸控制 */
-  @media screen and (min-width: 750px) {
+    
+    /* PC端卡片尺寸控制 */
     .product-collection.card-size-small .card-wrapper {
-      width: 240px;
-      --media-padding-bottom: 120%; /* 可根据需要调整比例 */
+      max-width: 240px;
     }
     .product-collection.card-size-medium .card-wrapper {
-      width: 300px;
-      --media-padding-bottom: 120%;
+      max-width: 300px;
     }
     .product-collection.card-size-large .card-wrapper {
-      width: 360px;
-      --media-padding-bottom: 120%;
+      max-width: 360px;
     }
     .product-collection.card-size-xlarge .card-wrapper {
-      width: 420px;
-      --media-padding-bottom: 120%;
+      max-width: 420px;
     }
 
     /* 确保产品网格水平居中 */
     .product-collection .product-grid {
       justify-content: center;
-      gap: 1.5rem;
-    }
-  }
-
-  /* 移动端响应式调整 */
-  @media screen and (max-width: 749px) {
-    .product-collection .grid__item {
-      padding: 0.5rem;
-    }
-    
-    .product-collection .card-wrapper {
-      max-width: 100%;
-      --media-padding-bottom: 100%;
-    }
-    
-    .product-collection .product-grid {
-      gap: 0.75rem;
     }
   }
 
@@ -112,19 +35,21 @@
     display: flex;
     justify-content: center;
   }
-
-  /* 辅助类 - 根据需要添加不同比例 */
-  .product-collection .media-ratio-1-1 {
-    --media-padding-bottom: 100%;
+  .product-collection .card-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
-  .product-collection .media-ratio-4-3 {
-    --media-padding-bottom: 75%;
+  .product-collection .card {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
   }
-  .product-collection .media-ratio-16-9 {
-    --media-padding-bottom: 56.25%;
-  }
-  .product-collection .media-ratio-3-4 {
-    --media-padding-bottom: 133.33%;
+  .product-collection .card__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 {%- endstyle -%}
 
@@ -172,13 +97,10 @@
   endif
   
   assign card_size_class = 'card-size-' | append: section.settings.card_size
-  
-  # 设置图片比例变量
-  assign media_ratio_class = 'media-ratio-' | append: section.settings.media_ratio | default: 'media-ratio-1-1'
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} isolate gradient">
-  <div class="product-collection {{ card_size_class }} {{ media_ratio_class }} section-{{ section.id }}-padding{% if section.settings.full_width %} product-collection--full-width{% endif %}"
+  <div class="product-collection {{ card_size_class }} section-{{ section.id }}-padding{% if section.settings.full_width %} product-collection--full-width{% endif %}"
     id="ProductCollection-{{ section.id }}"
     data-id="{{ section.id }}"
   >
@@ -213,7 +135,7 @@
           >
             {% render 'card-product',
               card_product: product,
-              media_aspect_ratio: section.settings.media_ratio,
+              media_aspect_ratio: 'adapt',  {# 强制使用自适应比例 #}
               image_shape: section.settings.image_shape,
               show_secondary_image: section.settings.show_secondary_image,
               show_vendor: section.settings.show_vendor,
@@ -226,7 +148,7 @@
           {%- for i in (1..section.settings.columns_desktop) -%}
             <li class="grid__item">
               {% render 'card-product-placeholder', 
-                media_aspect_ratio: section.settings.media_ratio,
+                media_aspect_ratio: 'adapt',  {# 强制使用自适应比例 #}
                 image_shape: section.settings.image_shape
               %}
             </li>
@@ -371,30 +293,6 @@
       ],
       "default": "medium",
       "info": "Card width on desktop screens"
-    },
-    {
-      "type": "select",
-      "id": "media_ratio",
-      "label": "Image aspect ratio",
-      "options": [
-        {
-          "value": "1-1",
-          "label": "Square (1:1)"
-        },
-        {
-          "value": "4-3",
-          "label": "Standard (4:3)"
-        },
-        {
-          "value": "16-9",
-          "label": "Widescreen (16:9)"
-        },
-        {
-          "value": "3-4",
-          "label": "Portrait (3:4)"
-        }
-      ],
-      "default": "1-1"
     },
     {
       "type": "select",
