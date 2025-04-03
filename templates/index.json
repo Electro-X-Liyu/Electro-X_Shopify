@@ -411,6 +411,7 @@
         "member_FATJTx": {
           "type": "member",
           "settings": {
+            "image": "shopify://shop_images/KV-37.jpg",
             "title": "Member Name",
             "text": "<p>Community member description</p>"
           }
@@ -436,7 +437,7 @@
         "member_mjt8nF"
       ],
       "settings": {
-        "title": "Our Community",
+        "title": "",
         "heading_size": "h1",
         "mobile_image_width": 500,
         "desktop_image_width": 800,
