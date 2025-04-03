@@ -1,21 +1,12 @@
 {% schema %}
 {
-  "name": "滑动图片画廊",
+  "name": "简约图片画廊",
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "标题",
       "default": "图片展示"
-    },
-    {
-      "type": "range",
-      "id": "row_height",
-      "label": "图片高度(px)",
-      "min": 200,
-      "max": 600,
-      "step": 10,
-      "default": 400
     }
   ],
   "blocks": [
@@ -44,7 +35,7 @@
   ],
   "presets": [
     {
-      "name": "高级图片画廊",
+      "name": "简约图片画廊",
       "category": "图片展示",
       "blocks": [
         {"type": "image_block"},
@@ -58,27 +49,25 @@
 }
 {% endschema %}
 
-<div class="advanced-image-gallery" data-section-id="{{ section.id }}">
+<div class="minimal-image-gallery" data-section-id="{{ section.id }}">
   {% if section.settings.title != blank %}
     <h2 class="section-title">{{ section.settings.title }}</h2>
   {% endif %}
   
-  <div class="gallery-container">
+  <div class="gallery-container" style="margin-top: 18px;">
     <!-- 桌面端布局 -->
     <div class="gallery-track desktop-gallery">
       {% for block in section.blocks %}
         {% if block.settings.image != blank %}
           {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-          <div class="image-container" style="width: calc({{ aspect_ratio }} * {{ section.settings.row_height }}px); margin-right: 33px;" {{ block.shopify_attributes }}>
+          <div class="image-container" style="width: calc({{ aspect_ratio }} * 400px); margin-right: 33px;" {{ block.shopify_attributes }}>
             <a href="{{ block.settings.link | default: '#' }}" class="image-link">
               <img src="{{ block.settings.image | img_url: '1000x' }}"
                    alt="{{ block.settings.alt_text | default: 'Image' }}"
                    class="grid-image"
                    loading="lazy"
                    width="1000"
-                   height="{{ 1000 | divided_by: aspect_ratio | round }}"
-                   style="height: {{ section.settings.row_height }}px;">
-              <div class="image-hover-effect"></div>
+                   height="{{ 1000 | divided_by: aspect_ratio | round }}">
             </a>
           </div>
         {% endif %}
@@ -92,7 +81,24 @@
           {% if block.settings.image != blank %}
             {% assign aspect_ratio = block.settings.image.aspect_ratio %}
             <div class="mobile-slide" style="scroll-snap-align: start; flex: 0 0 calc(100% / {{ section.blocks.size }} - 33px * {{ section.blocks.size | minus: 1 | divided_by: section.blocks.size }}); margin-right: 33px;">
-              <div class="image-container" style="height: {{ section.settings.row_height | times: 0.8 }}px;">
+              <div class="image-container" style="height: 290px;">
+                <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+                  <img src="{{ block.settings.image | img_url: '800x' }}"
+                       alt="{{ block.settings.alt_text | default: 'Image' }}"
+                       class="grid-image"
+                       loading="lazy"
+                       style="height: 100%; width: auto; max-width: none; object-fit: contain;">
+                </a>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        <!-- 循环克隆第一组图片实现无缝滚动 -->
+        {% for block in section.blocks limit: 5 %}
+          {% if block.settings.image != blank %}
+            {% assign aspect_ratio = block.settings.image.aspect_ratio %}
+            <div class="mobile-slide" style="scroll-snap-align: start; flex: 0 0 calc(100% / {{ section.blocks.size }} - 33px * {{ section.blocks.size | minus: 1 | divided_by: section.blocks.size }}); margin-right: 33px;">
+              <div class="image-container" style="height: 290px;">
                 <a href="{{ block.settings.link | default: '#' }}" class="image-link">
                   <img src="{{ block.settings.image | img_url: '800x' }}"
                        alt="{{ block.settings.alt_text | default: 'Image' }}"
@@ -110,7 +116,7 @@
 </div>
 
 <style>
-.advanced-image-gallery {
+.minimal-image-gallery {
   max-width: calc(100% - 40px);
   margin: 0 auto;
   padding: 0 20px;
@@ -149,12 +155,11 @@
 .image-container {
   position: relative;
   flex-shrink: 0;
-  transition: all 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
   background: transparent;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .image-link {
@@ -170,26 +175,6 @@
   max-height: 100%;
   object-fit: contain;
   object-position: center;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              z-index 0.3s ease;
-  position: relative;
-  z-index: 1;
-  will-change: transform;
-}
-
-.image-container:hover .grid-image {
-  transform: scale(1.15);
-  z-index: 10;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.image-hover-effect {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
 }
 
 /* 移动端布局样式 */
@@ -217,7 +202,7 @@
 }
 
 .mobile-slide .image-container {
-  overflow: visible;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   background: transparent;
@@ -240,7 +225,7 @@
 }
 
 @media (max-width: 480px) {
-  .advanced-image-gallery {
+  .minimal-image-gallery {
     max-width: calc(100% - 20px);
     padding: 0 10px;
   }
@@ -260,55 +245,38 @@
 document.addEventListener('DOMContentLoaded', function() {
   const mobileGallery = document.querySelector('.mobile-gallery');
   
-  if (mobileGallery) {
-    let isDragging = false;
-    let startPos = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
-    let animationID;
+  if (mobileGallery && mobileGallery.children.length > 5) {
+    // 自动滚动实现循环效果
+    let scrollPosition = 0;
+    const slideWidth = mobileGallery.children[0].offsetWidth + 33;
+    const totalWidth = slideWidth * {{ section.blocks.size }};
     
-    // 触摸事件处理
-    mobileGallery.addEventListener('touchstart', touchStart);
-    mobileGallery.addEventListener('touchend', touchEnd);
-    mobileGallery.addEventListener('touchmove', touchMove);
-    
-    // 鼠标事件处理
-    mobileGallery.addEventListener('mousedown', touchStart);
-    mobileGallery.addEventListener('mouseup', touchEnd);
-    mobileGallery.addEventListener('mouseleave', touchEnd);
-    mobileGallery.addEventListener('mousemove', touchMove);
-    
-    function touchStart(e) {
-      if (e.type === 'touchstart') {
-        startPos = e.touches[0].clientX;
+    function autoScroll() {
+      scrollPosition += 0.5; // 控制滚动速度
+      
+      if (scrollPosition >= totalWidth) {
+        scrollPosition = 0;
+        mobileGallery.scrollLeft = 0;
       } else {
-        startPos = e.clientX;
-        e.preventDefault();
+        mobileGallery.scrollLeft = scrollPosition;
       }
       
-      isDragging = true;
-      animationID = requestAnimationFrame(animation);
-      mobileGallery.style.cursor = 'grabbing';
-      mobileGallery.style.scrollBehavior = 'auto';
+      requestAnimationFrame(autoScroll);
     }
     
-    function touchEnd() {
-      isDragging = false;
-      cancelAnimationFrame(animationID);
-      mobileGallery.style.cursor = 'grab';
-    }
+    // 触摸时暂停自动滚动
+    mobileGallery.addEventListener('touchstart', function() {
+      scrollPosition = mobileGallery.scrollLeft;
+      cancelAnimationFrame(autoScroll);
+    });
     
-    function touchMove(e) {
-      if (isDragging) {
-        const currentPosition = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-        currentTranslate = prevTranslate + currentPosition - startPos;
-      }
-    }
+    // 触摸结束后恢复自动滚动
+    mobileGallery.addEventListener('touchend', function() {
+      requestAnimationFrame(autoScroll);
+    });
     
-    function animation() {
-      mobileGallery.style.transform = `translateX(${currentTranslate}px)`;
-      if (isDragging) requestAnimationFrame(animation);
-    }
+    // 启动自动滚动
+    autoScroll();
   }
 });
 </script>
