@@ -166,6 +166,25 @@
         "padding_bottom": 52
       }
     },
+    "alkaline_water_ayHQYr": {
+      "type": "Alkaline-Water",
+      "blocks": {
+        "dual_image_card_AqfEYW": {
+          "type": "dual_image_card",
+          "settings": {
+            "image_1": "shopify://shop_images/KV-37.jpg",
+            "image_2": "shopify://shop_images/KV-31.jpg",
+            "card_link": "shopify://products/natural-alkaline-water"
+          }
+        }
+      },
+      "block_order": [
+        "dual_image_card_AqfEYW"
+      ],
+      "settings": {
+        "row_height": 400
+      }
+    },
     "product_collection_rYrG8U": {
       "type": "Product-Collection",
       "settings": {
@@ -607,6 +626,7 @@
     "rich_text_PtqKYk",
     "pic_border_m7m9TP",
     "rich_text_8tAG7w",
+    "alkaline_water_ayHQYr",
     "product_collection_rYrG8U",
     "product_collection_kM3g7z",
     "collage_zNtJH3",

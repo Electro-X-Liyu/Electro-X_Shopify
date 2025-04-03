@@ -1,192 +1,296 @@
 {% schema %}
 {
-  "name": "自适应双图卡片",
+  "name": "Alkaline Water Info",
+  "tag": "section",
+  "class": "section",
   "settings": [
     {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "ALKALINE WATER BENEFITS"
+    },
+    {
       "type": "range",
-      "id": "row_height",
-      "label": "卡片高度 (px)",
+      "id": "card_height",
+      "label": "Card height (px)",
       "min": 200,
       "max": 600,
       "step": 10,
       "default": 400
     },
     {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
       "type": "range",
-      "id": "spacing",
-      "label": "图片间距 (px)",
-      "min": 10,
-      "max": 50,
-      "step": 1,
-      "default": 33
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
     }
   ],
   "blocks": [
     {
-      "type": "dual_image_card",
-      "name": "双图卡片",
+      "type": "benefit_card",
+      "name": "Benefit Card",
       "settings": [
         {
           "type": "image_picker",
           "id": "image_1",
-          "label": "默认图片"
+          "label": "Default image"
         },
         {
           "type": "image_picker",
           "id": "image_2",
-          "label": "悬停图片"
+          "label": "Hover image"
         },
         {
-          "type": "url",
-          "id": "card_link",
-          "label": "卡片链接"
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Health Benefit"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Explain the health benefit of alkaline water here</p>"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "自适应双图卡片",
-      "category": "图片展示"
+      "name": "Alkaline Water Info",
+      "blocks": [
+        {
+          "type": "benefit_card"
+        },
+        {
+          "type": "benefit_card"
+        },
+        {
+          "type": "benefit_card"
+        }
+      ]
     }
   ]
 }
 {% endschema %}
 
-<div class="adaptive-dual-cards" style="--row-height: {{ section.settings.row_height }}px; --spacing: {{ section.settings.spacing }}px;">
-  {% for block in section.blocks %}
-    {% if block.settings.image_1 %}
-      {% assign aspect_ratio_1 = block.settings.image_1.aspect_ratio | default: 1 %}
-      {% assign aspect_ratio_2 = block.settings.image_2.aspect_ratio | default: aspect_ratio_1 %}
-      
-      <div class="dual-card" 
-           style="--card-width: calc(var(--row-height) * {{ aspect_ratio_1 }});"
-           {{ block.shopify_attributes }}>
-        <a href="{{ block.settings.card_link | default: '#' }}" class="card-link">
-          <div class="image-container">
-            <img src="{{ block.settings.image_1 | img_url: '800x' }}"
-                 alt="{{ block.settings.image_1.alt | escape }}"
-                 class="primary-img"
-                 loading="lazy"
-                 width="800"
-                 height="{{ 800 | divided_by: aspect_ratio_1 | round }}">
+{%- liquid
+  assign product = section.settings.featured_product
+  if product == null
+    assign placeholder = true
+  endif
+-%}
 
-            {% if block.settings.image_2 %}
-              <img src="{{ block.settings.image_2 | img_url: '800x' }}"
-                   alt="{{ block.settings.image_2.alt | escape }}"
-                   class="hover-img"
-                   loading="lazy"
-                   width="800"
-                   height="{{ 800 | divided_by: aspect_ratio_2 | round }}">
-            {% endif %}
-          </div>
-        </a>
-      </div>
-    {% endif %}
-  {% endfor %}
-</div>
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
 
 <style>
-.adaptive-dual-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--spacing);
-  padding: 15px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.adaptive-dual-cards::-webkit-scrollbar {
-  display: none;
-}
-
-.dual-card {
-  flex: 0 0 auto;
-  width: var(--card-width);
-  height: var(--row-height);
-  position: relative;
-  transition: transform 0.3s ease;
-  border-radius: 8px;
-  overflow: hidden;
-  scroll-snap-align: start;
-  margin-right: var(--spacing);
-}
-
-.card-link {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.image-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.primary-img,
-.hover-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.hover-img {
-  opacity: 0;
-}
-
-.dual-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.dual-card:hover .primary-img {
-  opacity: 0;
-  transform: scale(1.05);
-}
-
-.dual-card:hover .hover-img {
-  opacity: 1;
-  transform: scale(1.02);
-}
-
-/* 桌面端布局 */
-@media (min-width: 769px) {
-  .adaptive-dual-cards {
+  .alkaline-section {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  
+  .alkaline-benefits {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    overflow-x: visible;
+    gap: 30px;
+    margin-bottom: 50px;
   }
   
-  .dual-card {
-    margin-right: 0;
-  }
-}
-
-/* 移动端布局 */
-@media (max-width: 768px) {
-  .adaptive-dual-cards {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    padding-bottom: 20px;
+  .benefit-card {
+    flex: 0 0 auto;
+    width: calc({{ section.settings.card_height }}px * var(--aspect-ratio));
+    height: {{ section.settings.card_height }}px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
   }
   
-  .dual-card {
-    flex: 0 0 calc(100% / {{ section.blocks.size }} - var(--spacing) * {{ section.blocks.size | minus: 1 | divided_by: section.blocks.size }});
-    height: calc(var(--row-height) * 0.8);
+  .benefit-card:hover {
+    transform: translateY(-5px);
   }
-}
-
-@media (max-width: 480px) {
-  .dual-card {
-    height: calc(var(--row-height) * 0.7);
+  
+  .benefit-image-container {
+    position: relative;
+    width: 100%;
+    height: 70%;
   }
-}
+  
+  .benefit-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+  }
+  
+  .benefit-image.hover {
+    opacity: 0;
+  }
+  
+  .benefit-card:hover .benefit-image.default {
+    opacity: 0;
+  }
+  
+  .benefit-card:hover .benefit-image.hover {
+    opacity: 1;
+  }
+  
+  .benefit-content {
+    padding: 20px;
+    height: 30%;
+    background: rgba(var(--color-background), 0.9);
+  }
+  
+  .benefit-title {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .benefit-description {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .featured-product-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .alkaline-benefits {
+      gap: 20px;
+    }
+    
+    .benefit-card {
+      width: 100%;
+      height: auto;
+      aspect-ratio: var(--aspect-ratio);
+    }
+    
+    .benefit-image-container {
+      height: 60%;
+    }
+    
+    .benefit-content {
+      height: 40%;
+    }
+  }
 </style>
+
+<div class="alkaline-section color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="h1 text-center">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    <div class="alkaline-benefits">
+      {% for block in section.blocks %}
+        {% if block.settings.image_1 != blank %}
+          {% assign aspect_ratio = block.settings.image_1.aspect_ratio %}
+          <div class="benefit-card" style="--aspect-ratio: {{ aspect_ratio }}" {{ block.shopify_attributes }}>
+            <div class="benefit-image-container">
+              <img src="{{ block.settings.image_1 | img_url: '800x' }}"
+                   alt="{{ block.settings.title | escape }}"
+                   class="benefit-image default"
+                   loading="lazy"
+                   width="800"
+                   height="{{ 800 | divided_by: aspect_ratio | round }}">
+              
+              {% if block.settings.image_2 != blank %}
+                <img src="{{ block.settings.image_2 | img_url: '800x' }}"
+                     alt="{{ block.settings.title | escape }}"
+                     class="benefit-image hover"
+                     loading="lazy"
+                     width="800"
+                     height="{{ 800 | divided_by: aspect_ratio | round }}">
+              {% endif %}
+            </div>
+            
+            <div class="benefit-content">
+              <h3 class="benefit-title">{{ block.settings.title }}</h3>
+              <div class="benefit-description">{{ block.settings.description }}</div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    
+    {% if section.settings.featured_product != blank %}
+      <div class="featured-product-container">
+        <product-info
+          data-section="{{ section.id }}"
+          data-product-id="{{ product.id }}"
+          data-url="{{ product.url }}"
+        >
+          <div class="product product--medium grid grid--1-col grid--2-col-tablet">
+            <div class="grid__item product__media-wrapper">
+              {% render 'product-media-gallery', product: product %}
+            </div>
+            
+            <div class="product__info-wrapper grid__item">
+              <section id="ProductInfo-{{ section.id }}" class="product__info-container">
+                {%- assign product_form_id = 'product-form-' | append: section.id -%}
+                
+                <h2 class="product__title h1">
+                  {{ product.title | escape }}
+                </h2>
+                
+                <div id="price-{{ section.id }}" role="status">
+                  {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
+                </div>
+                
+                {%- render 'buy-buttons', product: product, product_form_id: product_form_id, section_id: section.id -%}
+                
+                <a href="{{ product.url }}" class="link product__view-details">
+                  {{ 'products.product.view_full_details' | t }}
+                </a>
+              </section>
+            </div>
+          </div>
+        </product-info>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
