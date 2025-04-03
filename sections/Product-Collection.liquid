@@ -1,4 +1,5 @@
 {%- style -%}
+  /* 基础样式保持不变 */
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -9,294 +10,65 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+    
+    /* 统一卡片尺寸控制 */
+    .product-collection.card-size-small .card-wrapper {
+      width: 240px;
+    }
+    .product-collection.card-size-medium .card-wrapper {
+      width: 300px;
+    }
+    .product-collection.card-size-large .card-wrapper {
+      width: 360px;
+    }
+    .product-collection.card-size-xlarge .card-wrapper {
+      width: 420px;
+    }
   }
 
-  /* 统一卡片容器样式 */
+  /* 确保卡片布局一致性 */
   .product-collection .grid__item {
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    padding-bottom: 20px; /* 统一间距 */
   }
-
+  
   .product-collection .card-wrapper {
-    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    width: 100%; /* 移动端满宽 */
   }
-
-  /* 卡片主体样式 */
+  
   .product-collection .card {
-    flex: 1;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    border-radius: var(--card-corner-radius);
-    overflow: hidden;
-    background: var(--color-background);
-    box-shadow: var(--card-shadow);
+    height: 100%; /* 确保高度一致 */
   }
-
-  /* 图片容器 - 关键修改部分 */
-  .product-collection .card__media {
-    position: relative;
-    width: 100%;
-    padding-top: 100%; /* 初始比例 1:1 */
-    overflow: hidden;
-    background: white; /* 添加白色背景 */
-  }
-
-  .product-collection .card__media .media img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* 保持原始比例 */
-  }
-
-  /* 卡片内容区域 */
+  
   .product-collection .card__content {
-    padding: 1.5rem;
-    flex: 1;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    padding: 16px; /* 统一内边距 */
   }
-
-  .product-collection .card__information {
-    margin-top: auto;
+  
+  /* 图片比例统一 */
+  .product-collection .card__media {
+    aspect-ratio: 1/1; /* 强制正方形比例 */
+    overflow: hidden;
   }
-
-  /* 统一标题样式 */
-  .product-collection .card__heading {
-    font-size: 1.4rem;
-    line-height: 1.3;
-    margin-bottom: 0.5rem;
-    word-break: break-word;
-  }
-
-  /* 价格样式 */
-  .product-collection .price {
-    font-size: 1.2rem;
-    color: var(--color-price);
-  }
-
-  /* 移动端适配 */
+  
+  /* 移动端调整 */
   @media screen and (max-width: 749px) {
-    .product-collection .card__content {
-      padding: 1rem;
+    .product-collection .card-wrapper {
+      max-width: 100%;
     }
     
-    .product-collection .card__heading {
-      font-size: 1.2rem;
-    }
-  }
-
-  /* 桌面端卡片尺寸控制 */
-  @media screen and (min-width: 750px) {
-    .product-collection.card-size-small .card-wrapper {
-      max-width: 240px;
-    }
-    .product-collection.card-size-medium .card-wrapper {
-      max-width: 300px;
-    }
-    .product-collection.card-size-large .card-wrapper {
-      max-width: 360px;
-    }
-    .product-collection.card-size-xlarge .card-wrapper {
-      max-width: 420px;
+    .product-collection .grid__item {
+      padding-bottom: 10px;
     }
   }
 {%- endstyle -%}
-
-<!-- 引入必要样式 -->
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-
-<div class="color-{{ section.settings.color_scheme }} isolate gradient">
-  <div class="product-collection card-size-{{ section.settings.card_size }} section-{{ section.id }}-padding{% if section.settings.full_width %} product-collection--full-width{% endif %}">
-    <!-- 标题部分保持不变 -->
-    <div class="product-collection__title title-wrapper title-wrapper--no-top-margin page-width">
-      {%- if section.settings.title != blank -%}
-        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
-          {{ section.settings.title }}
-        </h2>
-      {%- endif -%}
-      {%- if section.settings.description != blank or section.settings.show_description -%}
-        <div class="product-collection__description {{ section.settings.description_style }} rte">
-          {%- if section.settings.show_description -%}
-            {{ section.settings.collection.description }}
-          {%- else -%}
-            {{ section.settings.description -}}
-          {%- endif %}
-        </div>
-      {%- endif -%}
-    </div>
-
-    <!-- 产品网格 -->
-    <div class="product-grid-container page-width">
-      <ul class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down">
-        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-          <li class="grid__item">
-            {% render 'card-product',
-              card_product: product,
-              media_aspect_ratio: 'original',
-              show_secondary_image: section.settings.show_secondary_image,
-              show_vendor: section.settings.show_vendor,
-              show_rating: section.settings.show_rating
-            %}
-          </li>
-        {%- else -%}
-          {%- for i in (1..section.settings.columns_desktop) -%}
-            <li class="grid__item">
-              <div class="card-wrapper placeholder">
-                <div class="card card--product">
-                  <div class="card__inner">
-                    <div class="card__media">
-                      <div class="media media--transparent">
-                        {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
-                      </div>
-                    </div>
-                    <div class="card__content">
-                      <h3 class="card__heading h5">{{ 'onboarding.product_title' | t }}</h3>
-                      <div class="card-information">
-                        <div class="price">
-                          {{ 1999 | money }}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          {%- endfor -%}
-        {%- endfor -%}
-      </ul>
-    </div>
-
-    {%- if section.settings.show_view_all and more_in_collection -%}
-      <div class="center product-collection__view-all">
-        <a href="{{ section.settings.collection.url }}" class="button">
-          {{ 'sections.featured_collection.view_all' | t }}
-        </a>
-      </div>
-    {%- endif -%}
-  </div>
-</div>
-
-{% schema %}
-{
-  "name": "Product Collection",
-  "settings": [
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "range",
-      "id": "products_to_show",
-      "min": 2,
-      "max": 12,
-      "step": 1,
-      "default": 4,
-      "label": "Maximum products to show"
-    },
-    {
-      "type": "select",
-      "id": "card_size",
-      "label": "Desktop card size",
-      "options": [
-        {
-          "value": "small",
-          "label": "Small (240px)"
-        },
-        {
-          "value": "medium",
-          "label": "Medium (300px)"
-        },
-        {
-          "value": "large",
-          "label": "Large (360px)"
-        },
-        {
-          "value": "xlarge",
-          "label": "Extra large (420px)"
-        }
-      ],
-      "default": "medium"
-    },
-    {
-      "type": "range",
-      "id": "columns_desktop",
-      "min": 1,
-      "max": 5,
-      "step": 1,
-      "default": 4,
-      "label": "Desktop columns"
-    },
-    {
-      "type": "select",
-      "id": "columns_mobile",
-      "default": "2",
-      "label": "Mobile columns",
-      "options": [
-        {
-          "value": "1",
-          "label": "1 column"
-        },
-        {
-          "value": "2",
-          "label": "2 columns"
-        }
-      ]
-    },
-    {
-      "type": "checkbox",
-      "id": "show_secondary_image",
-      "default": false,
-      "label": "Show secondary image on hover"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "default": false,
-      "label": "Show vendor"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_rating",
-      "default": false,
-      "label": "Show product rating"
-    },
-    {
-      "type": "header",
-      "content": "Spacing"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Top padding",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Bottom padding",
-      "default": 36
-    }
-  ],
-  "presets": [
-    {
-      "name": "Product Collection"
-    }
-  ]
-}
-{% endschema %}
