@@ -1,6 +1,244 @@
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Alkaline Water",
+  "tag": "section",
+  "class": "section alkaline-water-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "主推产品"
+    },
+    {
+      "type": "header",
+      "content": "双图卡片设置"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "默认图片"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "悬停图片"
+    },
+    {
+      "type": "url",
+      "id": "card_link",
+      "label": "卡片链接"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "图片高度 (px)",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "default": 500
+    },
+    {
+      "type": "header",
+      "content": "布局设置"
+    },
+    {
+      "type": "select",
+      "id": "desktop_layout",
+      "label": "PC端布局顺序",
+      "options": [
+        {
+          "value": "image_left",
+          "label": "图片在左"
+        },
+        {
+          "value": "image_right",
+          "label": "图片在右"
+        }
+      ],
+      "default": "image_left"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "配色方案",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "间距设置"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "上间距",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "下间距",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "标题",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "价格",
+      "limit": 1
+    },
+    {
+      "type": "variant_picker",
+      "name": "变体选择器",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "picker_type",
+          "options": [
+            {
+              "value": "dropdown",
+              "label": "下拉菜单"
+            },
+            {
+              "value": "button",
+              "label": "按钮组"
+            }
+          ],
+          "default": "button",
+          "label": "选择器类型"
+        }
+      ]
+    },
+    {
+      "type": "buy_buttons",
+      "name": "购买按钮",
+      "limit": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alkaline Water",
+      "blocks": [
+        { "type": "title" },
+        { "type": "price" },
+        { "type": "variant_picker" },
+        { "type": "buy_buttons" }
+      ]
+    }
+  ]
+}
 {% endschema %}
+
+{%- liquid
+  assign product = section.settings.product
+  assign image_height = section.settings.image_height
+  assign desktop_layout = section.settings.desktop_layout
+  assign color_scheme = section.settings.color_scheme
+-%}
+
+{{ 'section-alkaline-water.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-dual-card.css' | asset_url | stylesheet_tag }}
+
+<div class="alkaline-water-container color-{{ color_scheme }} section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="alkaline-water-grid {% if desktop_layout == 'image_right' %}reverse-layout{% endif %}">
+      <!-- A部分：双图卡片 -->
+      <div class="alkaline-water-col image-col">
+        <div class="dual-image-card" style="--image-height: {{ image_height }}px;">
+          {% if section.settings.image_1 != blank %}
+            {% assign aspect_ratio = section.settings.image_1.aspect_ratio %}
+            <a href="{{ section.settings.card_link | default: '#' }}" class="card-link">
+              <div class="image-container">
+                <img src="{{ section.settings.image_1 | img_url: '1000x' }}"
+                     alt="{{ section.settings.image_1.alt | escape }}"
+                     class="primary-img"
+                     loading="lazy"
+                     width="1000"
+                     height="{{ 1000 | divided_by: aspect_ratio | round }}"
+                     style="height: {{ image_height }}px;">
+
+                {% if section.settings.image_2 != blank %}
+                  <img src="{{ section.settings.image_2 | img_url: '1000x' }}"
+                       alt="{{ section.settings.image_2.alt | escape }}"
+                       class="hover-img"
+                       loading="lazy"
+                       width="1000"
+                       height="{{ 1000 | divided_by: aspect_ratio | round }}"
+                       style="height: {{ image_height }}px;">
+                {% endif %}
+              </div>
+            </a>
+          {% else %}
+            <div class="placeholder-container" style="height: {{ image_height }}px;">
+              {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- B部分：产品信息 -->
+      <div class="alkaline-water-col info-col">
+        {% if product != blank %}
+          <div class="product-info-container">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'title' -%}
+                  <h2 class="product-title h1">
+                    {{ product.title | escape }}
+                  </h2>
+                
+                {%- when 'price' -%}
+                  <div class="product-price">
+                    {% render 'price', product: product, use_variant: true, show_badges: true %}
+                  </div>
+                
+                {%- when 'variant_picker' -%}
+                  {% render 'product-variant-picker', product: product, block: block %}
+                
+                {%- when 'buy_buttons' -%}
+                  {% render 'buy-buttons', product: product %}
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+        {% else %}
+          <div class="product-info-container">
+            <h2 class="product-title h1">{{ 'onboarding.product_title' | t }}</h2>
+            <div class="product-price">
+              <span class="price-item price-item--regular">$29.99</span>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+</style>
