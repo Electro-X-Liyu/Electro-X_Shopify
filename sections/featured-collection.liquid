@@ -4,15 +4,6 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  /* Mobile styles */
-  @media screen and (max-width: 749px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px;
-    }
-  }
-
-  /* Desktop styles */
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -39,7 +30,7 @@
     }
   }
 
-  /* Vertical centering for all cards */
+  /* 垂直居中所有卡片 */
   .product-collection .grid__item {
     display: flex;
     justify-content: center;
@@ -59,21 +50,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-
-  /* Make images adapt to their natural proportions */
-  .product-collection .card__media img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
-  .product-collection .card__media {
-    position: relative;
-    padding-bottom: 0 !important;
-    height: auto;
-  }
-  .product-collection .card__media::before {
-    content: none !important;
   }
 {%- endstyle -%}
 
@@ -159,7 +135,7 @@
           >
             {% render 'card-product',
               card_product: product,
-              media_aspect_ratio: 'adapt',
+              media_aspect_ratio: 'adapt',  {# 强制使用自适应比例 #}
               image_shape: section.settings.image_shape,
               show_secondary_image: section.settings.show_secondary_image,
               show_vendor: section.settings.show_vendor,
@@ -172,7 +148,7 @@
           {%- for i in (1..section.settings.columns_desktop) -%}
             <li class="grid__item">
               {% render 'card-product-placeholder', 
-                media_aspect_ratio: 'adapt',
+                media_aspect_ratio: 'adapt',  {# 强制使用自适应比例 #}
                 image_shape: section.settings.image_shape
               %}
             </li>
