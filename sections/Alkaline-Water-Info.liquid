@@ -1,276 +1,46 @@
-{% schema %}
-{
-  "name": "自适应双图悬停卡片",
-  "settings": [
-    {
-      "type": "range",
-      "id": "row_height",
-      "label": "卡片高度 (px)",
-      "min": 200,
-      "max": 600,
-      "step": 10,
-      "default": 400
-    },
-    {
-      "type": "range",
-      "id": "spacing",
-      "label": "卡片间距 (px)",
-      "min": 10,
-      "max": 50,
-      "step": 5,
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "price_spacing",
-      "label": "价格行间距 (px)",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "variant_spacing",
-      "label": "变体选择器间距 (px)",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "quantity_spacing",
-      "label": "数量选择器间距 (px)",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "button_spacing",
-      "label": "购买按钮间距 (px)",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "default": 20
+{%- style -%}
+  /* 保持原有的基础样式 */
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
-  ],
-  "blocks": [
-    {
-      "type": "dual_image_card",
-      "name": "双图卡片",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image_1",
-          "label": "默认图片"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_2",
-          "label": "悬停图片"
-        },
-        {
-          "type": "url",
-          "id": "card_link",
-          "label": "卡片链接"
-        },
-        {
-          "type": "product",
-          "id": "associated_product",
-          "label": "关联产品"
-        }
-      ]
+  }
+
+  /* 产品信息行间距优化 */
+  #ProductInfo-{{ section.id }} {
+    --product-info-spacing: 16px; /* 基础间距变量 */
+  }
+
+  /* 价格模块 */
+  #price-{{ section.id }} {
+    margin-bottom: var(--product-info-spacing);
+  }
+
+  /* 变体选择器 */
+  .product-form__input {
+    margin-bottom: var(--product-info-spacing);
+  }
+
+  /* 数量选择器 */
+  #Quantity-Form-{{ section.id }} {
+    margin: var(--product-info-spacing) 0;
+  }
+
+  /* 购买按钮 */
+  .product-form__buttons {
+    margin-top: calc(var(--product-info-spacing) * 1.5);
+  }
+
+  /* 移动端调整 */
+  @media (max-width: 749px) {
+    #ProductInfo-{{ section.id }} {
+      --product-info-spacing: 12px;
     }
-  ],
-  "presets": [
-    {
-      "name": "自适应双图卡片",
-      "category": "图片展示",
-      "blocks": [
-        {
-          "type": "dual_image_card"
-        }
-      ]
-    }
-  ]
-}
-{% endschema %}
-
-<div class="adaptive-dual-cards" 
-     style="--row-height: {{ section.settings.row_height }}px; 
-            --spacing: {{ section.settings.spacing }}px;
-            --price-spacing: {{ section.settings.price_spacing }}px;
-            --variant-spacing: {{ section.settings.variant_spacing }}px;
-            --quantity-spacing: {{ section.settings.quantity_spacing }}px;
-            --button-spacing: {{ section.settings.button_spacing }}px;">
-  {% for block in section.blocks %}
-    {% assign product = block.settings.associated_product %}
-    {% if block.settings.image_1 %}
-      {% assign aspect_ratio = block.settings.image_1.aspect_ratio | default: 1 %}
-      <div class="dual-card" 
-           style="--aspect-ratio: {{ aspect_ratio }};"
-           {{ block.shopify_attributes }}>
-        <a href="{{ block.settings.card_link | default: product.url | default: '#' }}" class="card-link">
-          <div class="image-container">
-            <img src="{{ block.settings.image_1 | img_url: '800x' }}"
-                 alt="{{ block.settings.image_1.alt | escape }}"
-                 class="primary-img"
-                 loading="lazy"
-                 width="800"
-                 height="{{ 800 | divided_by: aspect_ratio | round }}">
-
-            {% if block.settings.image_2 %}
-              <img src="{{ block.settings.image_2 | img_url: '800x' }}"
-                   alt="{{ block.settings.image_2.alt | escape }}"
-                   class="hover-img"
-                   loading="lazy"
-                   width="800"
-                   height="{{ 800 | divided_by: aspect_ratio | round }}">
-            {% endif %}
-          </div>
-        </a>
-        
-        <div class="product-info-wrapper">
-          {% if product != blank %}
-            <!-- 价格区块 -->
-            <div class="price-block" style="margin-bottom: var(--price-spacing);">
-              {% render 'price', product: product, price_class: 'price--large' %}
-            </div>
-            
-            <!-- 变体选择器 -->
-            {% if product.variants.size > 1 %}
-              <div class="variant-selector" style="margin-bottom: var(--variant-spacing);">
-                {% render 'product-variant-picker', product: product %}
-              </div>
-            {% endif %}
-            
-            <!-- 数量选择器 -->
-            <div class="quantity-selector" style="margin-bottom: var(--quantity-spacing);">
-              {% render 'quantity-selector' %}
-            </div>
-            
-            <!-- 购买按钮 -->
-            <div class="buy-buttons" style="margin-top: var(--button-spacing);">
-              {% render 'buy-buttons', product: product %}
-            </div>
-          {% endif %}
-        </div>
-      </div>
-    {% endif %}
-  {% endfor %}
-</div>
-
-<style>
-.adaptive-dual-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--spacing);
-  padding: calc(var(--spacing) / 2);
-  width: calc(100% - var(--spacing));
-}
-
-.dual-card {
-  flex: 0 0 auto;
-  width: calc(var(--row-height) * var(--aspect-ratio));
-  position: relative;
-  transition: transform 0.3s ease;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #fff;
-}
-
-.product-info-wrapper {
-  padding: 15px;
-}
-
-/* 价格样式 */
-.price-block {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #333;
-}
-
-/* 变体选择器样式 */
-.variant-selector .product-form__input {
-  margin-bottom: 0;
-}
-
-/* 数量选择器样式 */
-.quantity-selector .quantity {
-  margin-bottom: 0;
-}
-
-/* 购买按钮样式 */
-.buy-buttons .product-form__submit {
-  width: 100%;
-}
-
-/* 图片容器样式保持不变 */
-.card-link {
-  display: block;
-  width: 100%;
-}
-
-.image-container {
-  position: relative;
-  width: 100%;
-  padding-top: calc(100% / var(--aspect-ratio));
-  overflow: hidden;
-}
-
-.primary-img,
-.hover-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.hover-img {
-  opacity: 0;
-  transform: scale(1.05);
-}
-
-.dual-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.dual-card:hover .primary-img {
-  opacity: 0;
-  transform: scale(1.05);
-}
-
-.dual-card:hover .hover-img {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .adaptive-dual-cards {
-    gap: calc(var(--spacing) * 0.8);
   }
-  
-  .dual-card {
-    width: calc(50% - var(--spacing) / 2) !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .adaptive-dual-cards {
-    gap: calc(var(--spacing) * 0.6);
-  }
-  
-  .dual-card {
-    width: 100% !important;
-  }
-}
-</style>
+{%- endstyle -%}
