@@ -7,6 +7,15 @@
       "id": "title",
       "label": "标题",
       "default": "图片展示"
+    },
+    {
+      "type": "range",
+      "id": "row_height",
+      "label": "桌面端图片高度(px)",
+      "min": 200,
+      "max": 600,
+      "step": 10,
+      "default": 400
     }
   ],
   "blocks": [
@@ -60,7 +69,7 @@
       {% for block in section.blocks %}
         {% if block.settings.image != blank %}
           {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-          <div class="image-container" style="width: calc({{ aspect_ratio }} * 400px); margin-right: 33px;" {{ block.shopify_attributes }}>
+          <div class="image-container" style="width: calc({{ aspect_ratio }} * {{ section.settings.row_height }}px); margin-right: 33px;" {{ block.shopify_attributes }}>
             <a href="{{ block.settings.link | default: '#' }}" class="image-link">
               <img src="{{ block.settings.image | img_url: '1000x' }}"
                    alt="{{ block.settings.alt_text | default: 'Image' }}"
@@ -68,7 +77,7 @@
                    loading="lazy"
                    width="1000"
                    height="{{ 1000 | divided_by: aspect_ratio | round }}"
-                   style="height: 400px;">
+                   style="height: {{ section.settings.row_height }}px;">
             </a>
           </div>
         {% endif %}
@@ -86,7 +95,7 @@
                 <a href="{{ block.settings.link | default: '#' }}" class="image-link">
                   <img src="{{ block.settings.image | img_url: '800x' }}"
                        alt="{{ block.settings.alt_text | default: 'Image' }}"
-                       class="grid-image"
+                       class="mobile-grid-image"
                        loading="lazy"
                        style="height: 100%; width: auto; max-width: none; object-fit: contain;">
                 </a>
@@ -139,11 +148,12 @@
 .image-container {
   position: relative;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
   background: transparent;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .image-link {
@@ -159,7 +169,13 @@
   max-height: 100%;
   object-fit: contain;
   object-position: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  will-change: transform;
+}
+
+.image-container:hover .grid-image {
+  transform: scale(1.15);
 }
 
 /* 移动端布局样式 */
@@ -187,10 +203,18 @@
 }
 
 .mobile-slide .image-container {
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   justify-content: center;
   background: transparent;
+}
+
+.mobile-grid-image {
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 /* 响应式切换 */
@@ -228,117 +252,122 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // 移动端无限循环逻辑
   const mobileGallery = document.querySelector('.mobile-gallery');
   
-  if (mobileGallery && mobileGallery.children.length > 0) {
-    // 克隆第一个和最后一个元素实现无缝循环
-    const firstItem = mobileGallery.children[0].cloneNode(true);
-    const lastItem = mobileGallery.children[mobileGallery.children.length - 1].cloneNode(true);
-    
-    mobileGallery.insertBefore(lastItem, mobileGallery.children[0]);
-    mobileGallery.appendChild(firstItem);
-    
-    let currentIndex = 1;
-    const itemWidth = mobileGallery.children[0].offsetWidth + 33;
-    const totalItems = mobileGallery.children.length;
-    
-    mobileGallery.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-    
-    // 自动轮播
-    let autoScrollInterval = setInterval(() => {
-      currentIndex++;
-      smoothScrollTo(currentIndex * itemWidth);
-      
-      if (currentIndex >= totalItems - 1) {
-        setTimeout(() => {
-          currentIndex = 1;
-          mobileGallery.style.transition = 'none';
-          mobileGallery.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-          setTimeout(() => {
-            mobileGallery.style.transition = 'transform 0.5s ease';
-          }, 50);
-        }, 500);
-      }
-    }, 3000);
-    
-    function smoothScrollTo(position) {
-      mobileGallery.style.transition = 'transform 0.5s ease';
-      mobileGallery.style.transform = `translateX(-${position}px)`;
-    }
-    
-    // 触摸滑动事件
+  if (mobileGallery) {
     let isDragging = false;
     let startPos = 0;
     let currentTranslate = 0;
-    let prevTranslate = -currentIndex * itemWidth;
+    let prevTranslate = 0;
+    let animationID;
+    let currentIndex = 0;
+    let slides = mobileGallery.querySelectorAll('.mobile-slide');
+    let slideCount = slides.length;
     
+    // 无限循环准备
+    if (slideCount > 1) {
+      const firstClone = slides[0].cloneNode(true);
+      const lastClone = slides[slideCount - 1].cloneNode(true);
+      
+      mobileGallery.insertBefore(lastClone, slides[0]);
+      mobileGallery.appendChild(firstClone);
+      
+      slides = mobileGallery.querySelectorAll('.mobile-slide');
+      slideCount = slides.length;
+      currentIndex = 1;
+      
+      // 初始定位到第一个真实slide
+      goToSlide(currentIndex, false);
+    }
+    
+    // 触摸事件处理
     mobileGallery.addEventListener('touchstart', touchStart);
     mobileGallery.addEventListener('touchend', touchEnd);
     mobileGallery.addEventListener('touchmove', touchMove);
     
+    // 鼠标事件处理
     mobileGallery.addEventListener('mousedown', touchStart);
     mobileGallery.addEventListener('mouseup', touchEnd);
     mobileGallery.addEventListener('mouseleave', touchEnd);
     mobileGallery.addEventListener('mousemove', touchMove);
     
     function touchStart(e) {
-      clearInterval(autoScrollInterval);
+      if (e.type === 'touchstart') {
+        startPos = e.touches[0].clientX;
+      } else {
+        startPos = e.clientX;
+        e.preventDefault();
+      }
+      
       isDragging = true;
-      startPos = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-      mobileGallery.style.transition = 'none';
+      animationID = requestAnimationFrame(animation);
+      mobileGallery.style.cursor = 'grabbing';
+      mobileGallery.style.scrollBehavior = 'auto';
     }
     
     function touchEnd() {
+      if (!isDragging) return;
+      
       isDragging = false;
+      cancelAnimationFrame(animationID);
+      mobileGallery.style.cursor = 'grab';
+      
       const movedBy = currentTranslate - prevTranslate;
       
       if (movedBy < -50) {
         currentIndex++;
-      }
-      
-      if (movedBy > 50) {
+      } else if (movedBy > 50) {
         currentIndex--;
       }
       
-      // 边界检查
-      if (currentIndex <= 0) {
-        currentIndex = totalItems - 2;
-      } else if (currentIndex >= totalItems - 1) {
+      // 处理无限循环
+      if (currentIndex < 0) {
+        currentIndex = slideCount - 2;
+      } else if (currentIndex >= slideCount) {
         currentIndex = 1;
       }
       
-      mobileGallery.style.transition = 'transform 0.5s ease';
-      currentTranslate = -currentIndex * itemWidth;
-      mobileGallery.style.transform = `translateX(${currentTranslate}px)`;
-      prevTranslate = currentTranslate;
-      
-      // 重启自动轮播
-      autoScrollInterval = setInterval(autoScroll, 3000);
+      goToSlide(currentIndex);
     }
     
     function touchMove(e) {
       if (isDragging) {
         const currentPosition = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
         currentTranslate = prevTranslate + currentPosition - startPos;
-        mobileGallery.style.transform = `translateX(${currentTranslate}px)`;
       }
     }
     
-    function autoScroll() {
-      currentIndex++;
-      smoothScrollTo(currentIndex * itemWidth);
+    function animation() {
+      mobileGallery.style.transform = `translateX(${currentTranslate}px)`;
+      if (isDragging) requestAnimationFrame(animation);
+    }
+    
+    function goToSlide(index, animate = true) {
+      const slideWidth = slides[0].offsetWidth + 33;
+      currentTranslate = -(index * slideWidth);
+      prevTranslate = currentTranslate;
       
-      if (currentIndex >= totalItems - 1) {
-        setTimeout(() => {
-          currentIndex = 1;
-          mobileGallery.style.transition = 'none';
-          mobileGallery.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-          setTimeout(() => {
-            mobileGallery.style.transition = 'transform 0.5s ease';
-          }, 50);
-        }, 500);
+      if (animate) {
+        mobileGallery.style.transition = 'transform 0.5s ease';
+      } else {
+        mobileGallery.style.transition = 'none';
       }
+      
+      mobileGallery.style.transform = `translateX(${currentTranslate}px)`;
+      
+      // 重置过渡
+      mobileGallery.addEventListener('transitionend', () => {
+        mobileGallery.style.transition = '';
+        
+        // 无缝跳转
+        if (index === 0) {
+          currentIndex = slideCount - 2;
+          goToSlide(currentIndex, false);
+        } else if (index === slideCount - 1) {
+          currentIndex = 1;
+          goToSlide(currentIndex, false);
+        }
+      }, { once: true });
     }
   }
 });
