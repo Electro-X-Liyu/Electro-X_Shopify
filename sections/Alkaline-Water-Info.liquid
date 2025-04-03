@@ -19,37 +19,6 @@
       "max": 50,
       "step": 5,
       "default": 20
-    },
-    {
-      "type": "header",
-      "content": "产品信息间距"
-    },
-    {
-      "type": "range",
-      "id": "info_spacing",
-      "label": "信息元素间距 (px)",
-      "min": 8,
-      "max": 30,
-      "step": 1,
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "price_margin",
-      "label": "价格上下边距 (px)",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "variant_margin",
-      "label": "变体选择器边距 (px)",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "default": 8
     }
   ],
   "blocks": [
@@ -71,11 +40,6 @@
           "type": "url",
           "id": "card_link",
           "label": "卡片链接"
-        },
-        {
-          "type": "product",
-          "id": "product",
-          "label": "关联产品"
         }
       ]
     }
@@ -83,143 +47,24 @@
   "presets": [
     {
       "name": "自适应双图卡片",
-      "category": "图片展示"
+      "category": "图片展示",
+      "blocks": [
+        {
+          "type": "dual_image_card"
+        },
+        {
+          "type": "dual_image_card"
+        },
+        {
+          "type": "dual_image_card"
+        }
+      ]
     }
   ]
 }
 {% endschema %}
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-
-  /* 产品信息间距控制 */
-  #ProductInfo-{{ section.id }} .product__text,
-  #ProductInfo-{{ section.id }} .product__title {
-    margin-bottom: {{ section.settings.info_spacing }}px;
-  }
-
-  #ProductInfo-{{ section.id }} .price {
-    margin-top: {{ section.settings.price_margin }}px;
-    margin-bottom: {{ section.settings.price_margin }}px;
-  }
-
-  #ProductInfo-{{ section.id }} .product-form__input {
-    margin-top: {{ section.settings.variant_margin }}px;
-    margin-bottom: {{ section.settings.variant_margin }}px;
-  }
-
-  #ProductInfo-{{ section.id }} .product-form__quantity {
-    margin-top: {{ section.settings.info_spacing }}px;
-    margin-bottom: {{ section.settings.info_spacing }}px;
-  }
-
-  #ProductInfo-{{ section.id }} .product__tax {
-    margin-top: {{ section.settings.info_spacing | times: 0.5 }}px;
-  }
-
-  /* 双图卡片样式 */
-  .adaptive-dual-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: {{ section.settings.spacing }}px;
-    padding: calc({{ section.settings.spacing }}px / 2);
-    width: calc(100% - {{ section.settings.spacing }}px);
-  }
-
-  .dual-card {
-    flex: 0 0 auto;
-    width: calc({{ section.settings.row_height }}px * var(--aspect-ratio));
-    height: {{ section.settings.row_height }}px;
-    position: relative;
-    transition: transform 0.3s ease;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .card-link {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .image-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
-  .primary-img,
-  .hover-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .hover-img {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-
-  .dual-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  }
-
-  .dual-card:hover .primary-img {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-
-  .dual-card:hover .hover-img {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  /* 响应式设计 */
-  @media (max-width: 768px) {
-    .adaptive-dual-cards {
-      gap: calc({{ section.settings.spacing }}px * 0.8);
-    }
-    
-    .dual-card {
-      width: calc(50% - {{ section.settings.spacing }}px / 2) !important;
-      height: calc({{ section.settings.row_height }}px * 0.8) !important;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .adaptive-dual-cards {
-      gap: calc({{ section.settings.spacing }}px * 0.6);
-    }
-    
-    .dual-card {
-      width: 100% !important;
-      height: calc({{ section.settings.row_height }}px * 0.7) !important;
-    }
-  }
-{%- endstyle -%}
-
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-variant-picker.css' | asset_url | stylesheet_tag }}
-{{ 'component-quantity-selector.css' | asset_url | stylesheet_tag }}
-
-<div class="adaptive-dual-cards section-{{ section.id }}-padding">
+<div class="adaptive-dual-cards" style="--row-height: {{ section.settings.row_height }}px; --spacing: {{ section.settings.spacing }}px;">
   {% for block in section.blocks %}
     {% if block.settings.image_1 %}
       {% assign aspect_ratio = block.settings.image_1.aspect_ratio | default: 1 %}
@@ -245,47 +90,94 @@
             {% endif %}
           </div>
         </a>
-        
-        {% if block.settings.product %}
-          {% assign product = block.settings.product %}
-          <div id="ProductInfo-{{ section.id }}" class="product__info-container">
-            {%- assign product_form_id = 'product-form-' | append: section.id -%}
-            
-            <h2 class="product__title">
-              {{ product.title | escape }}
-            </h2>
-            
-            <div class="price">
-              {% render 'price', product: product, use_variant: true, show_badges: true %}
-            </div>
-            
-            {% unless product.has_only_default_variant %}
-              <div class="product-form__input">
-                {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
-              </div>
-            {% endunless %}
-            
-            <div class="product-form__quantity">
-              <label for="Quantity-{{ section.id }}">
-                {{ 'products.product.quantity.label' | t }}
-              </label>
-              <quantity-input class="quantity">
-                <button name="minus" type="button">-</button>
-                <input type="number" name="quantity" value="1" min="1">
-                <button name="plus" type="button">+</button>
-              </quantity-input>
-            </div>
-            
-            <div class="product-form__buttons">
-              <button type="submit" class="product-form__submit">
-                {{ 'products.product.add_to_cart' | t }}
-              </button>
-            </div>
-          </div>
-        {% endif %}
       </div>
     {% endif %}
   {% endfor %}
 </div>
 
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<style>
+.adaptive-dual-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing);
+  padding: calc(var(--spacing) / 2);
+  width: calc(100% - var(--spacing));
+}
+
+.dual-card {
+  flex: 0 0 auto;
+  width: calc(var(--row-height) * var(--aspect-ratio));
+  height: var(--row-height);
+  position: relative;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.primary-img,
+.hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-img {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.dual-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.dual-card:hover .primary-img {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.dual-card:hover .hover-img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .adaptive-dual-cards {
+    gap: calc(var(--spacing) * 0.8);
+  }
+  
+  .dual-card {
+    width: calc(50% - var(--spacing) / 2) !important;
+    height: calc(var(--row-height) * 0.8) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .adaptive-dual-cards {
+    gap: calc(var(--spacing) * 0.6);
+  }
+  
+  .dual-card {
+    width: 100% !important;
+    height: calc(var(--row-height) * 0.7) !important;
+  }
+}
+</style>
