@@ -1,6 +1,6 @@
 {% schema %}
 {
-  "name": "高级图片画廊",
+  "name": "优化图片画廊",
   "settings": [
     {
       "type": "text",
@@ -44,7 +44,7 @@
   ],
   "presets": [
     {
-      "name": "高级图片画廊",
+      "name": "优化图片画廊",
       "category": "图片展示",
       "blocks": [
         {"type": "image_block"},
@@ -58,7 +58,7 @@
 }
 {% endschema %}
 
-<div class="advanced-image-gallery" data-section-id="{{ section.id }}">
+<div class="enhanced-image-gallery" data-section-id="{{ section.id }}">
   {% if section.settings.title != blank %}
     <h2 class="section-title">{{ section.settings.title }}</h2>
   {% endif %}
@@ -78,6 +78,7 @@
                    width="1000"
                    height="{{ 1000 | divided_by: aspect_ratio | round }}"
                    style="height: {{ section.settings.row_height }}px;">
+              <div class="image-hover-effect"></div>
             </a>
           </div>
         {% endif %}
@@ -90,31 +91,31 @@
         {% for block in section.blocks %}
           {% if block.settings.image != blank %}
             {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-            <div class="mobile-slide" style="flex: 0 0 calc(100% / {{ section.blocks.size | at_least: 3 }}); padding: 0 7.5px;">
+            <div class="mobile-slide" style="scroll-snap-align: start; flex: 0 0 calc(80% - 20px); margin-right: 20px;">
               <div class="image-container" style="height: 290px;">
                 <a href="{{ block.settings.link | default: '#' }}" class="image-link">
                   <img src="{{ block.settings.image | img_url: '800x' }}"
                        alt="{{ block.settings.alt_text | default: 'Image' }}"
-                       class="grid-image"
+                       class="mobile-image"
                        loading="lazy"
-                       style="height: 100%; width: 100%; object-fit: contain;">
+                       style="height: 100%; width: auto; max-width: none; object-fit: contain;">
                 </a>
               </div>
             </div>
           {% endif %}
         {% endfor %}
-        <!-- 循环复制前几张图片实现无缝循环 -->
-        {% for block in section.blocks limit: 3 %}
+        <!-- 循环滑动需要的副本 -->
+        {% for block in section.blocks %}
           {% if block.settings.image != blank %}
             {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-            <div class="mobile-slide" style="flex: 0 0 calc(100% / {{ section.blocks.size | at_least: 3 }}); padding: 0 7.5px;">
+            <div class="mobile-slide" style="scroll-snap-align: start; flex: 0 0 calc(80% - 20px); margin-right: 20px;">
               <div class="image-container" style="height: 290px;">
                 <a href="{{ block.settings.link | default: '#' }}" class="image-link">
                   <img src="{{ block.settings.image | img_url: '800x' }}"
                        alt="{{ block.settings.alt_text | default: 'Image' }}"
-                       class="grid-image"
+                       class="mobile-image"
                        loading="lazy"
-                       style="height: 100%; width: 100%; object-fit: contain;">
+                       style="height: 100%; width: auto; max-width: none; object-fit: contain;">
                 </a>
               </div>
             </div>
@@ -126,7 +127,7 @@
 </div>
 
 <style>
-.advanced-image-gallery {
+.enhanced-image-gallery {
   max-width: calc(100% - 40px);
   margin: 0 auto;
   padding: 0 20px;
@@ -153,9 +154,17 @@
   background-color: #333;
 }
 
-/* 桌面端布局样式 */
-.desktop-gallery {
+.gallery-container {
+  position: relative;
+}
+
+/* 桌面端样式 */
+.gallery-track {
   display: flex;
+  align-items: center;
+}
+
+.desktop-gallery {
   flex-wrap: wrap;
   justify-content: center;
   gap: 33px;
@@ -165,18 +174,20 @@
 .image-container {
   position: relative;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
+  border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: transparent;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .image-link {
   display: block;
   position: relative;
-  width: 100%;
   height: 100%;
+  width: 100%;
 }
 
 .grid-image {
@@ -185,29 +196,44 @@
   max-height: 100%;
   object-fit: contain;
   object-position: center;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              z-index 0.3s ease;
+  position: relative;
+  z-index: 1;
+  will-change: transform;
 }
 
-.desktop-gallery .image-container:hover .grid-image {
-  transform: scale(1.1);
+.image-container:hover .grid-image {
+  transform: scale(1.15);
+  z-index: 10;
 }
 
-/* 移动端布局样式 */
+.image-hover-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.03);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* 移动端样式 */
 .mobile-gallery-wrapper {
   position: relative;
   display: none;
   width: 100%;
-  margin: 0 -20px;
-  padding: 0 20px;
 }
 
 .mobile-gallery {
-  display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
 }
 
 .mobile-gallery::-webkit-scrollbar {
@@ -215,24 +241,23 @@
 }
 
 .mobile-slide {
-  scroll-snap-align: start;
   flex-shrink: 0;
 }
 
 .mobile-slide .image-container {
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  background: transparent;
+  height: 290px !important;
+  margin: 0 10px;
+}
+
+.mobile-image {
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 /* 响应式切换 */
 @media (max-width: 768px) {
-  .advanced-image-gallery {
-    max-width: 100%;
-    padding: 0;
-  }
-  
   .desktop-gallery {
     display: none;
   }
@@ -242,20 +267,24 @@
   }
   
   .section-title {
-    padding-left: 20px;
-    padding-right: 20px;
     font-size: 24px;
     margin-bottom: 20px;
   }
 }
 
 @media (max-width: 480px) {
+  .enhanced-image-gallery {
+    max-width: calc(100% - 20px);
+    padding: 0 10px;
+  }
+  
   .section-title {
     font-size: 20px;
   }
   
   .mobile-slide {
-    flex: 0 0 calc(100% / {{ section.blocks.size | at_least: 2 }});
+    flex: 0 0 calc(85% - 15px);
+    margin-right: 15px;
   }
 }
 </style>
@@ -265,17 +294,24 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileGallery = document.querySelector('.mobile-gallery');
   
   if (mobileGallery) {
+    // 无限循环滑动逻辑
     let isDragging = false;
     let startPos = 0;
     let currentTranslate = 0;
     let prevTranslate = 0;
     let animationID;
-    let currentIndex = 0;
-    const slides = mobileGallery.querySelectorAll('.mobile-slide');
-    const slideCount = {{ section.blocks.size }};
     
-    // 初始化循环位置
-    mobileGallery.scrollLeft = 0;
+    // 克隆第一个和最后一个元素用于循环
+    const slides = mobileGallery.querySelectorAll('.mobile-slide');
+    if (slides.length > 0) {
+      const firstSlide = slides[0].cloneNode(true);
+      const lastSlide = slides[slides.length - 1].cloneNode(true);
+      mobileGallery.insertBefore(lastSlide, slides[0]);
+      mobileGallery.appendChild(firstSlide);
+    }
+    
+    // 初始化位置
+    mobileGallery.style.transform = `translateX(-${slides[0].offsetWidth}px)`;
     
     // 触摸事件处理
     mobileGallery.addEventListener('touchstart', touchStart);
@@ -288,49 +324,50 @@ document.addEventListener('DOMContentLoaded', function() {
     mobileGallery.addEventListener('mouseleave', touchEnd);
     mobileGallery.addEventListener('mousemove', touchMove);
     
-    // 自动重置位置实现循环
-    mobileGallery.addEventListener('scroll', function() {
-      const scrollWidth = mobileGallery.scrollWidth;
-      const scrollLeft = mobileGallery.scrollLeft;
-      const clientWidth = mobileGallery.clientWidth;
-      
-      if (scrollLeft === 0) {
-        // 滚动到开头时跳转到中间位置
-        setTimeout(() => {
-          mobileGallery.scrollTo({
-            left: scrollWidth / 2 - clientWidth,
-            behavior: 'instant'
-          });
-        }, 50);
-      } else if (scrollLeft >= scrollWidth - clientWidth * 1.5) {
-        // 滚动到结尾时跳转到中间位置
-        setTimeout(() => {
-          mobileGallery.scrollTo({
-            left: scrollWidth / 2 - clientWidth * 1.5,
-            behavior: 'instant'
-          });
-        }, 50);
-      }
-    });
-    
     function touchStart(e) {
       isDragging = true;
       startPos = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+      animationID = requestAnimationFrame(animation);
       mobileGallery.style.scrollBehavior = 'auto';
-      if (e.type !== 'touchstart') e.preventDefault();
     }
     
     function touchEnd() {
       isDragging = false;
-      mobileGallery.style.scrollBehavior = 'smooth';
+      cancelAnimationFrame(animationID);
+      
+      const movedBy = currentTranslate - prevTranslate;
+      const slideWidth = mobileGallery.querySelector('.mobile-slide').offsetWidth;
+      
+      if (movedBy < -50) {
+        currentTranslate += slideWidth;
+      } else if (movedBy > 50) {
+        currentTranslate -= slideWidth;
+      }
+      
+      setPositionByIndex();
     }
     
     function touchMove(e) {
-      if (!isDragging) return;
-      const currentPosition = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-      const diff = currentPosition - startPos;
-      mobileGallery.scrollLeft -= diff;
-      startPos = currentPosition;
+      if (isDragging) {
+        const currentPosition = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+        currentTranslate = prevTranslate + currentPosition - startPos;
+      }
+    }
+    
+    function animation() {
+      setGalleryPosition();
+      if (isDragging) requestAnimationFrame(animation);
+    }
+    
+    function setGalleryPosition() {
+      mobileGallery.style.transform = `translateX(${currentTranslate}px)`;
+    }
+    
+    function setPositionByIndex() {
+      const slideWidth = mobileGallery.querySelector('.mobile-slide').offsetWidth;
+      currentTranslate = -slideWidth;
+      prevTranslate = currentTranslate;
+      setGalleryPosition();
     }
   }
 });
