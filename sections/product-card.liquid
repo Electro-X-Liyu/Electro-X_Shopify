@@ -3,11 +3,11 @@
     <div class="product-card {% if section.settings.layout == 'right' %}product-card--reverse{% endif %}">
       <div class="product-card__image">
         {% if section.settings.image != blank %}
-          <img src="{{ section.settings.image | img_url: '1200x' }}" 
+          <img src="{{ section.settings.image | img_url: '1000x' }}" 
                alt="{{ section.settings.image.alt | escape }}" 
                loading="lazy"
-               width="1200"
-               height="{{ 1200 | divided_by: section.settings.image.aspect_ratio | round }}"
+               width="1000"
+               height="{{ 1000 | divided_by: section.settings.image.aspect_ratio | round }}"
                class="product-card__image-element">
         {% else %}
           <div class="product-card__placeholder">
@@ -67,16 +67,12 @@
     background-color: {{ section.settings.background_color }};
   }
   
-  .page-width {
-    max-width: 100%;
-    padding: 0;
-  }
-  
   .product-card {
     display: flex;
     align-items: center;
-    max-width: 100%;
-    margin: 0;
+    gap: {{ section.settings.content_gap }}px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
   .product-card--reverse {
@@ -84,14 +80,13 @@
   }
   
   .product-card__image {
-    flex: 1;
+    flex: 0 0 50%;
     width: 50%;
   }
   
   .product-card__image-element {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
   }
   
@@ -105,18 +100,17 @@
   }
   
   .product-card__content {
-    flex: 1;
+    flex: 0 0 50%;
     width: 50%;
-    padding: 60px;
-    box-sizing: border-box;
+    padding: 0 40px;
   }
   
   /* 标题样式 */
   .product-card__title {
-    font-size: 36px;
+    font-size: 32px;
     font-weight: 600;
     color: {{ section.settings.title_color }};
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     line-height: 1.2;
   }
   
@@ -125,15 +119,14 @@
     font-size: 18px;
     font-weight: 500;
     color: {{ section.settings.subtitle_color }};
-    margin-bottom: 30px;
-    line-height: 1.5;
+    margin-bottom: 20px;
   }
   
   /* 变体样式 */
   .product-card__variants {
     font-size: 16px;
     color: {{ section.settings.text_color }};
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
   }
@@ -142,21 +135,21 @@
   .product-card__description {
     font-size: 16px;
     color: {{ section.settings.text_color }};
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     line-height: 1.6;
   }
   
   /* 特性列表样式 */
   .product-card__features {
-    margin: 0 0 40px;
-    padding: 0;
+    margin: 0 0 30px;
+    padding-left: 0;
     list-style: none;
   }
   
   .product-card__feature-item {
     position: relative;
     padding-left: 25px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     font-size: 16px;
     color: {{ section.settings.text_color }};
     line-height: 1.5;
@@ -172,9 +165,9 @@
     background-color: {{ section.settings.accent_color }};
   }
   
-  /* 按钮样式 - 根据示例图片设计 */
+  /* 按钮样式 - 与示例一致 */
   .product-card__button-wrapper {
-    margin-top: 40px;
+    margin-top: 30px;
   }
   
   .product-card__button {
@@ -183,7 +176,8 @@
     text-decoration: none;
     font-size: 16px;
     font-weight: 500;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     position: relative;
     padding-bottom: 5px;
   }
@@ -195,7 +189,8 @@
     width: 100%;
     height: 2px;
     background-color: {{ section.settings.button_color }};
-    transform-origin: left;
+    transform: scaleX(1);
+    transform-origin: left center;
     transition: transform 0.3s ease;
   }
   
@@ -204,30 +199,40 @@
   }
   
   /* 响应式设计 */
-  @media (max-width: 990px) {
-    .product-card,
+  @media (max-width: 768px) {
+    .product-card-section.section-{{ section.id }} {
+      padding: {{ section.settings.mobile_section_padding_top }}px 0 {{ section.settings.mobile_section_padding_bottom }}px;
+    }
+    
+    .product-card {
+      flex-direction: column;
+      gap: 30px;
+    }
+    
     .product-card--reverse {
       flex-direction: column;
     }
     
     .product-card__image,
     .product-card__content {
+      flex: 1 1 100%;
       width: 100%;
-    }
-    
-    .product-card__content {
-      padding: 40px 20px;
+      padding: 0;
     }
     
     .product-card__title {
-      font-size: 28px;
+      font-size: 26px;
+    }
+    
+    .product-card__subtitle {
+      font-size: 16px;
     }
   }
 </style>
 
 {% schema %}
 {
-  "name": "等宽产品卡片",
+  "name": "高级产品卡片",
   "settings": [
     {
       "type": "select",
@@ -254,7 +259,7 @@
       "type": "color",
       "id": "title_color",
       "label": "标题颜色",
-      "default": "#000000"
+      "default": "#333333"
     },
     {
       "type": "color",
@@ -266,7 +271,7 @@
       "type": "color",
       "id": "text_color",
       "label": "正文颜色",
-      "default": "#333333"
+      "default": "#555555"
     },
     {
       "type": "color",
@@ -278,15 +283,25 @@
       "type": "color",
       "id": "button_color",
       "label": "按钮颜色",
-      "default": "#000000"
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "label": "内容间距",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
     },
     {
       "type": "range",
       "id": "section_padding_top",
       "label": "区域上边距",
       "min": 0,
-      "max": 100,
-      "step": 5,
+      "max": 200,
+      "step": 10,
       "unit": "px",
       "default": 80
     },
@@ -295,10 +310,30 @@
       "id": "section_padding_bottom",
       "label": "区域下边距",
       "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_padding_top",
+      "label": "移动端上边距",
+      "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 80
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_padding_bottom",
+      "label": "移动端下边距",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
     }
   ],
   "blocks": [
@@ -358,7 +393,7 @@
           "type": "textarea",
           "id": "text",
           "label": "特性(用|分隔)",
-          "default": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET"
+          "default": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET|Approximately 350-700 mg sodium bicarrobate per L"
         }
       ]
     },
@@ -382,7 +417,7 @@
   ],
   "presets": [
     {
-      "name": "等宽产品卡片",
+      "name": "产品卡片",
       "blocks": [
         {
           "type": "title",
@@ -411,7 +446,7 @@
         {
           "type": "features",
           "settings": {
-            "text": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET"
+            "text": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET|Approximately 350-700 mg sodium bicarrobate per L"
           }
         },
         {
