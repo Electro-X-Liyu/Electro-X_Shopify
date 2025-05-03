@@ -9,60 +9,19 @@
  */
 {
   "sections": {
-    "alkaline_water_iEJyQG": {
-      "type": "Alkaline-Water",
-      "blocks": {
-        "dual_image_card_WDKiXx": {
-          "type": "dual_image_card",
-          "settings": {
-            "image_1": "shopify://shop_images/2.jpg",
-            "image_2": "shopify://shop_images/2-1.jpg",
-            "card_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "dual_image_card_WDKiXx"
-      ],
-      "disabled": true,
-      "settings": {
-        "row_height": 600
-      }
-    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "ELECTRO X",
-            "heading_size": "h2"
-          }
-        },
         "text_cAgx7H": {
           "type": "text",
           "settings": {
-            "text": "MOVE TO BALANCE",
+            "text": "Clean Fuel. Pure Performance",
             "text_style": "body"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "disabled": true,
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
-        "heading",
-        "text_cAgx7H",
-        "button"
+        "text_cAgx7H"
       ],
       "settings": {
         "image": "shopify://shop_images/2-1.jpg",
@@ -701,7 +660,6 @@
     }
   },
   "order": [
-    "alkaline_water_iEJyQG",
     "image_banner",
     "rich_text_PtqKYk",
     "pic_border_m7m9TP",
