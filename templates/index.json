@@ -37,27 +37,62 @@
         "show_text_below": false
       }
     },
-    "rich_text_PtqKYk": {
-      "type": "rich-text",
+    "image_with_text_HT6mHr": {
+      "type": "image-with-text",
       "blocks": {
-        "heading_n7iUKb": {
+        "heading_h3heM8": {
           "type": "heading",
           "settings": {
-            "heading": "",
+            "heading": "Natural Alkaline Water",
             "heading_size": "h1"
+          }
+        },
+        "text_DeqGzh": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The First-Ever Naturally Alkaline Water</p><p>Sourced from the mineral-rich voclanic springs of China's Northern Border</p><p>380mL | 580mL | 1L</p>",
+            "text_style": "body"
+          }
+        },
+        "caption_aweAQr": {
+          "type": "caption",
+          "settings": {
+            "caption": "pH level of 8.8 and above",
+            "text_style": "subtitle",
+            "text_size": "small"
+          }
+        },
+        "button_GA8WxT": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
           }
         }
       },
       "block_order": [
-        "heading_n7iUKb"
+        "heading_h3heM8",
+        "text_DeqGzh",
+        "caption_aweAQr",
+        "button_GA8WxT"
       ],
+      "disabled": true,
+      "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "image": "shopify://shop_images/3_079288a1-caa8-4e7d-8c88-a15e2b6866f4.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-3",
+        "color_scheme": "scheme-3",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "pic_border_m7m9TP": {
@@ -111,38 +146,11 @@
         "image_block_tfGeLi",
         "image_block_gRrqgC"
       ],
+      "disabled": true,
       "settings": {
         "title": "",
         "desktop_height": 400,
         "mobile_height": 250
-      }
-    },
-    "rich_text_8tAG7w": {
-      "type": "rich-text",
-      "blocks": {
-        "button_84dcML": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "button_84dcML"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
       }
     },
     "alkaline_water_info_CjJNBr": {
@@ -214,6 +222,7 @@
         "buy_buttons_nPB4NP",
         "share_xDKjkR"
       ],
+      "disabled": true,
       "settings": {
         "product": "natural-alkaline-water",
         "desktop_image_height": 500,
@@ -225,6 +234,7 @@
     },
     "product_collection_rYrG8U": {
       "type": "Product-Collection",
+      "disabled": true,
       "settings": {
         "collection": "electrolyte-sports-drink",
         "products_to_show": 2,
@@ -252,6 +262,7 @@
     },
     "product_collection_kM3g7z": {
       "type": "Product-Collection",
+      "disabled": true,
       "settings": {
         "collection": "electrolyte-liquid-concentrate",
         "products_to_show": 2,
@@ -272,45 +283,6 @@
         "columns_mobile": "2",
         "swipe_on_mobile": false,
         "show_view_all": true,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "collage_zNtJH3": {
-      "type": "collage",
-      "blocks": {
-        "image_LLTpWC": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/slim.png"
-          }
-        },
-        "image_LkWxzD": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/580mL.png"
-          }
-        },
-        "image_WHLGgV": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/2_2f442a53-7a56-40ca-b918-8a0f93408740.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "image_LLTpWC",
-        "image_LkWxzD",
-        "image_WHLGgV"
-      ],
-      "disabled": true,
-      "settings": {
-        "heading": "Electro X",
-        "heading_size": "h1",
-        "desktop_layout": "right",
-        "mobile_layout": "collage",
-        "card_styles": "none",
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
@@ -661,13 +633,11 @@
   },
   "order": [
     "image_banner",
-    "rich_text_PtqKYk",
+    "image_with_text_HT6mHr",
     "pic_border_m7m9TP",
-    "rich_text_8tAG7w",
     "alkaline_water_info_CjJNBr",
     "product_collection_rYrG8U",
     "product_collection_kM3g7z",
-    "collage_zNtJH3",
     "image_banner_R9mHmC",
     "featured_blog_hcNHKd",
     "image_banner_AYjrAd",
