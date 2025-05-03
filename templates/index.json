@@ -95,6 +95,15 @@
         "padding_bottom": 36
       }
     },
+    "product_card_YEAFW8": {
+      "type": "product-card",
+      "name": "Product Card",
+      "settings": {
+        "layout": "left",
+        "image": "shopify://shop_images/4_9593bee4-6ac4-4c8f-9297-9b74c5b4a58e.jpg",
+        "background_color": "#121212"
+      }
+    },
     "pic_border_m7m9TP": {
       "type": "PicBorder",
       "blocks": {
@@ -634,6 +643,7 @@
   "order": [
     "image_banner",
     "image_with_text_HT6mHr",
+    "product_card_YEAFW8",
     "pic_border_m7m9TP",
     "alkaline_water_info_CjJNBr",
     "product_collection_rYrG8U",
