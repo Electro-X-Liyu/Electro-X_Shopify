@@ -1,13 +1,13 @@
 <div class="product-card-section section-{{ section.id }}" data-section-id="{{ section.id }}">
   <div class="page-width">
     <div class="product-card {% if section.settings.layout == 'right' %}product-card--reverse{% endif %}">
-      <div class="product-card__image" style="margin-left: {{ section.settings.image_margin_left }}px; margin-right: {{ section.settings.image_margin_right }}px;">
+      <div class="product-card__image">
         {% if section.settings.image != blank %}
-          <img src="{{ section.settings.image | img_url: '1000x' }}" 
+          <img src="{{ section.settings.image | img_url: '1200x' }}" 
                alt="{{ section.settings.image.alt | escape }}" 
                loading="lazy"
-               width="1000"
-               height="{{ 1000 | divided_by: section.settings.image.aspect_ratio | round }}"
+               width="1200"
+               height="{{ 1200 | divided_by: section.settings.image.aspect_ratio | round }}"
                class="product-card__image-element">
         {% else %}
           <div class="product-card__placeholder">
@@ -20,27 +20,27 @@
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'title' %}
-              <h2 class="product-card__title block-{{ block.id }}" style="color: {{ block.settings.color }};" {{ block.shopify_attributes }}>
+              <h2 class="product-card__title block-{{ block.id }}" {{ block.shopify_attributes }}>
                 {{ block.settings.text }}
               </h2>
             
             {% when 'subtitle' %}
-              <p class="product-card__subtitle block-{{ block.id }}" style="color: {{ block.settings.color }};" {{ block.shopify_attributes }}>
+              <p class="product-card__subtitle block-{{ block.id }}" {{ block.shopify_attributes }}>
                 {{ block.settings.text }}
               </p>
             
             {% when 'variants' %}
-              <p class="product-card__variants block-{{ block.id }}" style="color: {{ block.settings.color }};" {{ block.shopify_attributes }}>
+              <p class="product-card__variants block-{{ block.id }}" {{ block.shopify_attributes }}>
                 {{ block.settings.text }}
               </p>
             
             {% when 'description' %}
-              <div class="product-card__description block-{{ block.id }}" style="color: {{ block.settings.color }};" {{ block.shopify_attributes }}>
+              <div class="product-card__description block-{{ block.id }}" {{ block.shopify_attributes }}>
                 {{ block.settings.text }}
               </div>
             
             {% when 'features' %}
-              <ul class="product-card__features block-{{ block.id }}" style="color: {{ block.settings.color }};" {{ block.shopify_attributes }}>
+              <ul class="product-card__features block-{{ block.id }}" {{ block.shopify_attributes }}>
                 {% assign features = block.settings.text | split: '|' %}
                 {% for feature in features %}
                   <li class="product-card__feature-item">{{ feature | strip }}</li>
@@ -48,13 +48,12 @@
               </ul>
             
             {% when 'button' %}
-              <a href="{{ block.settings.link | default: '#' }}" 
-                 class="product-card__button block-{{ block.id }}" 
-                 style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; border: 1px solid {{ block.settings.border_color }};"
-                 {{ block.shopify_attributes }}>
-                <span class="button-text">{{ block.settings.text }}</span>
-                <span class="button-arrow">→</span>
-              </a>
+              <div class="product-card__button-wrapper block-{{ block.id }}" {{ block.shopify_attributes }}>
+                <a href="{{ block.settings.link | default: '#' }}" class="product-card__button">
+                  <span>{{ block.settings.text }}</span>
+                  <div class="button-underline"></div>
+                </a>
+              </div>
           {% endcase %}
         {% endfor %}
       </div>
@@ -68,12 +67,16 @@
     background-color: {{ section.settings.background_color }};
   }
   
+  .page-width {
+    max-width: 100%;
+    padding: 0;
+  }
+  
   .product-card {
     display: flex;
     align-items: center;
-    gap: {{ section.settings.content_gap }}px;
-    max-width: {{ section.settings.max_width }}px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
   }
   
   .product-card--reverse {
@@ -81,21 +84,20 @@
   }
   
   .product-card__image {
-    flex: 1 1 50%;
-    border-radius: {{ section.settings.image_border_radius }}px;
-    overflow: hidden;
+    flex: 1;
+    width: 50%;
   }
   
   .product-card__image-element {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    transition: transform 0.5s ease;
   }
   
   .product-card__placeholder {
     width: 100%;
-    height: {{ section.settings.image_min_height }}px;
+    height: 500px;
     background: #f5f5f5;
     display: flex;
     align-items: center;
@@ -103,111 +105,129 @@
   }
   
   .product-card__content {
-    flex: 1 1 50%;
-    padding: {{ section.settings.content_padding }}px;
+    flex: 1;
+    width: 50%;
+    padding: 60px;
+    box-sizing: border-box;
   }
   
+  /* 标题样式 */
   .product-card__title {
-    font-size: 28px;
+    font-size: 36px;
     font-weight: 600;
-    margin: 0 0 15px 0;
+    color: {{ section.settings.title_color }};
+    margin-bottom: 20px;
     line-height: 1.2;
   }
   
+  /* 副标题样式 */
   .product-card__subtitle {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
-    margin: 0 0 20px 0;
+    color: {{ section.settings.subtitle_color }};
+    margin-bottom: 30px;
+    line-height: 1.5;
   }
   
+  /* 变体样式 */
   .product-card__variants {
-    font-size: 14px;
-    margin: 0 0 25px 0;
-    padding-bottom: 15px;
+    font-size: 16px;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 30px;
+    padding-bottom: 20px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
   }
   
+  /* 描述样式 */
   .product-card__description {
     font-size: 16px;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 30px;
     line-height: 1.6;
-    margin: 0 0 20px 0;
   }
   
+  /* 特性列表样式 */
   .product-card__features {
-    margin: 0 0 30px 0;
-    padding-left: 0;
+    margin: 0 0 40px;
+    padding: 0;
     list-style: none;
   }
   
   .product-card__feature-item {
     position: relative;
     padding-left: 25px;
-    margin-bottom: 10px;
-    font-size: 15px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: {{ section.settings.text_color }};
+    line-height: 1.5;
   }
   
   .product-card__feature-item:before {
     content: "";
     position: absolute;
     left: 0;
-    top: 8px;
+    top: 10px;
     width: 12px;
     height: 2px;
-    background-color: currentColor;
+    background-color: {{ section.settings.accent_color }};
+  }
+  
+  /* 按钮样式 - 根据示例图片设计 */
+  .product-card__button-wrapper {
+    margin-top: 40px;
   }
   
   .product-card__button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 20px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
+    display: inline-block;
+    color: {{ section.settings.button_color }};
     text-decoration: none;
-    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-bottom: 5px;
+  }
+  
+  .button-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    max-width: 200px;
-  }
-  
-  .product-card__button:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-  }
-  
-  .product-card__button .button-arrow {
-    margin-left: 10px;
+    height: 2px;
+    background-color: {{ section.settings.button_color }};
+    transform-origin: left;
     transition: transform 0.3s ease;
   }
   
-  .product-card__button:hover .button-arrow {
-    transform: translateX(3px);
+  .product-card__button:hover .button-underline {
+    transform: scaleX(0.8);
   }
   
-  @media (max-width: 768px) {
-    .product-card {
-      flex-direction: column;
-      gap: 30px;
-    }
-    
+  /* 响应式设计 */
+  @media (max-width: 990px) {
+    .product-card,
     .product-card--reverse {
       flex-direction: column;
     }
     
-    .product-card__image {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
+    .product-card__image,
+    .product-card__content {
+      width: 100%;
     }
     
-    .product-card__button {
-      max-width: none;
+    .product-card__content {
+      padding: 40px 20px;
+    }
+    
+    .product-card__title {
+      font-size: 28px;
     }
   }
 </style>
 
 {% schema %}
 {
-  "name": "增强产品卡片",
+  "name": "等宽产品卡片",
   "settings": [
     {
       "type": "select",
@@ -225,44 +245,60 @@
       "label": "产品图片"
     },
     {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "标题颜色",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "副标题颜色",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "正文颜色",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "强调色",
+      "default": "#3a7bd5"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "按钮颜色",
+      "default": "#000000"
+    },
+    {
       "type": "range",
-      "id": "image_margin_left",
-      "label": "图片左边距",
+      "id": "section_padding_top",
+      "label": "区域上边距",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 0
+      "default": 80
     },
     {
       "type": "range",
-      "id": "image_margin_right",
-      "label": "图片右边距",
+      "id": "section_padding_bottom",
+      "label": "区域下边距",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "max_width",
-      "label": "最大宽度",
-      "min": 800,
-      "max": 1600,
-      "step": 20,
-      "unit": "px",
-      "default": 1200
-    },
-    {
-      "type": "range",
-      "id": "content_gap",
-      "label": "内容间距",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 60
+      "default": 80
     }
   ],
   "blocks": [
@@ -275,12 +311,6 @@
           "id": "text",
           "label": "文本",
           "default": "Natural Alkaline Water"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "文字颜色",
-          "default": "#333333"
         }
       ]
     },
@@ -293,12 +323,6 @@
           "id": "text",
           "label": "文本",
           "default": "The First-Ever Naturally Alkaline Water"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "文字颜色",
-          "default": "#666666"
         }
       ]
     },
@@ -311,12 +335,6 @@
           "id": "text",
           "label": "文本",
           "default": "380mL | 580mL | 1L"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "文字颜色",
-          "default": "#666666"
         }
       ]
     },
@@ -329,12 +347,6 @@
           "id": "text",
           "label": "文本",
           "default": "<p>Sourced from the mineral-rich volcanic springs of China's Northern Border</p>"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "文字颜色",
-          "default": "#555555"
         }
       ]
     },
@@ -347,12 +359,6 @@
           "id": "text",
           "label": "特性(用|分隔)",
           "default": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "文字颜色",
-          "default": "#555555"
         }
       ]
     },
@@ -370,74 +376,48 @@
           "type": "url",
           "id": "link",
           "label": "链接"
-        },
-        {
-          "type": "color",
-          "id": "background_color",
-          "label": "背景颜色",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "text_color",
-          "label": "文字颜色",
-          "default": "#333333"
-        },
-        {
-          "type": "color",
-          "id": "border_color",
-          "label": "边框颜色",
-          "default": "#333333"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "增强产品卡片",
+      "name": "等宽产品卡片",
       "blocks": [
         {
           "type": "title",
           "settings": {
-            "text": "Natural Alkaline Water",
-            "color": "#333333"
+            "text": "Natural Alkaline Water"
           }
         },
         {
           "type": "subtitle",
           "settings": {
-            "text": "The First-Ever Naturally Alkaline Water",
-            "color": "#666666"
+            "text": "The First-Ever Naturally Alkaline Water"
           }
         },
         {
           "type": "variants",
           "settings": {
-            "text": "380mL | 580mL | 1L",
-            "color": "#666666"
+            "text": "380mL | 580mL | 1L"
           }
         },
         {
           "type": "description",
           "settings": {
-            "text": "<p>Sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
-            "color": "#555555"
+            "text": "<p>Sourced from the mineral-rich volcanic springs of China's Northern Border</p>"
           }
         },
         {
           "type": "features",
           "settings": {
-            "text": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET",
-            "color": "#555555"
+            "text": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET"
           }
         },
         {
           "type": "button",
           "settings": {
-            "text": "LEARN MORE",
-            "background_color": "#ffffff",
-            "text_color": "#333333",
-            "border_color": "#333333"
+            "text": "LEARN MORE"
           }
         }
       ]
