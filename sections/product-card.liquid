@@ -1,329 +1,514 @@
-{% comment %}
-  文件名: sections/product-cards.liquid
-  功能: 双栏产品卡片布局，包含图片、描述和CTA按钮
-{% endcomment %}
-
-<div class="product-cards-section" data-section-id="{{ section.id }}">
+<div class="product-card-section section-{{ section.id }}" data-section-id="{{ section.id }}">
   <div class="page-width">
-    {% if section.settings.heading != blank %}
-      <h2 class="section-heading">{{ section.settings.heading }}</h2>
-    {% endif %}
-    
-    <div class="product-cards-container">
-      {% for block in section.blocks %}
-        <div class="product-card" {{ block.shopify_attributes }}>
-          {% comment %} 产品图片 {% endcomment %}
-          <div class="product-card-image">
-            {% if block.settings.image != blank %}
-              <img src="{{ block.settings.image | img_url: '800x' }}" 
-                   alt="{{ block.settings.image.alt | escape }}" 
-                   loading="lazy">
-            {% else %}
-              {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
-            {% endif %}
+    <div class="product-card {% if section.settings.layout == 'right' %}product-card--reverse{% endif %}">
+      <div class="product-card__image">
+        {% if section.settings.image != blank %}
+          <img src="{{ section.settings.image | img_url: '1000x' }}" 
+               alt="{{ section.settings.image.alt | escape }}" 
+               loading="lazy"
+               width="1000"
+               height="{{ 1000 | divided_by: section.settings.image.aspect_ratio | round }}"
+               class="product-card__image-element">
+        {% else %}
+          <div class="product-card__placeholder">
+            {{ 'product-1' | placeholder_svg_tag }}
           </div>
-          
-          {% comment %} 产品内容 {% endcomment %}
-          <div class="product-card-content">
-            <h3 class="product-title">{{ block.settings.title }}</h3>
+        {% endif %}
+      </div>
+      
+      <div class="product-card__content">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'title' %}
+              <h2 class="product-card__title block-{{ block.id }}" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+              </h2>
             
-            {% if block.settings.subtitle != blank %}
-              <p class="product-subtitle">{{ block.settings.subtitle }}</p>
-            {% endif %}
+            {% when 'subtitle' %}
+              <p class="product-card__subtitle block-{{ block.id }}" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+              </p>
             
-            {% if block.settings.description != blank %}
-              <div class="product-description">
-                {{ block.settings.description }}
+            {% when 'variants' %}
+              <p class="product-card__variants block-{{ block.id }}" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+              </p>
+            
+            {% when 'description' %}
+              <div class="product-card__description block-{{ block.id }}" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
               </div>
-            {% endif %}
             
-            {% if block.settings.variants != blank %}
-              <div class="product-variants">
-                {{ block.settings.variants }}
-              </div>
-            {% endif %}
-            
-            {% if block.settings.features != blank %}
-              <ul class="product-features">
-                {% assign features = block.settings.features | split: '|' %}
+            {% when 'features' %}
+              <ul class="product-card__features block-{{ block.id }}" {{ block.shopify_attributes }}>
+                {% assign features = block.settings.text | split: '|' %}
                 {% for feature in features %}
-                  <li>{{ feature | strip }}</li>
+                  <li class="product-card__feature-item">{{ feature | strip }}</li>
                 {% endfor %}
               </ul>
-            {% endif %}
             
-            {% if block.settings.button_label != blank and block.settings.button_link != blank %}
-              <a href="{{ block.settings.button_link }}" class="product-button">
-                {{ block.settings.button_label }}
+            {% when 'spacer' %}
+              <div class="product-card__spacer block-{{ block.id }}" style="height: {{ block.settings.height }}px;" {{ block.shopify_attributes }}></div>
+            
+            {% when 'button' %}
+              <a href="{{ block.settings.link | default: '#' }}" 
+                 class="product-card__button block-{{ block.id }}" 
+                 {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
               </a>
-            {% endif %}
-          </div>
-        </div>
-      {% endfor %}
+          {% endcase %}
+        {% endfor %}
+      </div>
     </div>
   </div>
 </div>
 
 <style>
-  .product-cards-section {
-    padding: 60px 0;
+  .product-card-section.section-{{ section.id }} {
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px;
     background-color: {{ section.settings.background_color }};
   }
   
-  .section-heading {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 32px;
-    color: {{ section.settings.heading_color }};
-  }
-  
-  .product-cards-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    max-width: 1200px;
+  .product-card {
+    display: flex;
+    align-items: center;
+    gap: {{ section.settings.content_gap }}px;
+    max-width: {{ section.settings.max_width }}px;
     margin: 0 auto;
   }
   
-  .product-card {
-    background: white;
-    border-radius: 8px;
+  .product-card--reverse {
+    flex-direction: row-reverse;
+  }
+  
+  .product-card__image {
+    flex: 1 1 50%;
+    border-radius: {{ section.settings.image_border_radius }}px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: {{ section.settings.image_shadow }};
   }
   
-  .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-  }
-  
-  .product-card-image {
-    height: 300px;
-    overflow: hidden;
-  }
-  
-  .product-card-image img {
+  .product-card__image-element {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    display: block;
     transition: transform 0.5s ease;
   }
   
-  .product-card:hover .product-card-image img {
-    transform: scale(1.05);
+  .product-card__placeholder {
+    width: 100%;
+    height: {{ section.settings.image_min_height }}px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
-  .product-card-content {
-    padding: 25px;
-  }
-  
-  .product-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .product-subtitle {
-    font-size: 16px;
-    font-weight: bold;
-    color: #666;
-    margin-bottom: 15px;
-  }
-  
-  .product-description {
-    margin-bottom: 20px;
-    line-height: 1.6;
-    color: #555;
-  }
-  
-  .product-variants {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .product-features {
-    margin-bottom: 20px;
-    padding-left: 20px;
-  }
-  
-  .product-features li {
-    margin-bottom: 8px;
-    color: #555;
-    position: relative;
-  }
-  
-  .product-features li:before {
-    content: "•";
-    color: {{ section.settings.accent_color }};
-    font-weight: bold;
-    position: absolute;
-    left: -15px;
-  }
-  
-  .product-button {
-    display: inline-block;
-    padding: 12px 30px;
-    background-color: {{ section.settings.button_color }};
-    color: {{ section.settings.button_text_color }};
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    text-align: center;
-  }
-  
-  .product-button:hover {
-    background-color: {{ section.settings.button_hover_color }};
+  .product-card__content {
+    flex: 1 1 50%;
+    padding: {{ section.settings.content_padding }}px;
   }
   
   @media (max-width: 768px) {
-    .product-cards-container {
-      grid-template-columns: 1fr;
+    .product-card-section.section-{{ section.id }} {
+      padding: {{ section.settings.mobile_section_padding_top }}px 0 {{ section.settings.mobile_section_padding_bottom }}px;
     }
     
-    .section-heading {
-      font-size: 26px;
+    .product-card {
+      flex-direction: column;
+      gap: {{ section.settings.mobile_content_gap }}px;
     }
     
-    .product-title {
-      font-size: 20px;
+    .product-card--reverse {
+      flex-direction: column;
     }
   }
+  
+  {% for block in section.blocks %}
+    {% if block.type == 'title' %}
+      .product-card__title.block-{{ block.id }} {
+        font-size: {{ block.settings.font_size }}px;
+        font-weight: {{ block.settings.font_weight }};
+        color: {{ block.settings.color }};
+        margin: {{ block.settings.margin_top }}px 0 {{ block.settings.margin_bottom }}px;
+        line-height: {{ block.settings.line_height }};
+        letter-spacing: {{ block.settings.letter_spacing }}em;
+        text-align: {{ block.settings.text_align }};
+        {% if block.settings.uppercase %}text-transform: uppercase;{% endif %}
+        {% if block.settings.font_style == 'italic' %}font-style: italic;{% endif %}
+        {% if block.settings.text_shadow != 'none' %}text-shadow: {{ block.settings.text_shadow }};{% endif %}
+      }
+    {% endif %}
+    
+    {% if block.type == 'subtitle' %}
+      .product-card__subtitle.block-{{ block.id }} {
+        font-size: {{ block.settings.font_size }}px;
+        font-weight: {{ block.settings.font_weight }};
+        color: {{ block.settings.color }};
+        margin: {{ block.settings.margin_top }}px 0 {{ block.settings.margin_bottom }}px;
+        line-height: {{ block.settings.line_height }};
+        letter-spacing: {{ block.settings.letter_spacing }}em;
+        text-align: {{ block.settings.text_align }};
+        {% if block.settings.uppercase %}text-transform: uppercase;{% endif %}
+        {% if block.settings.font_style == 'italic' %}font-style: italic;{% endif %}
+      }
+    {% endif %}
+    
+    {% if block.type == 'variants' %}
+      .product-card__variants.block-{{ block.id }} {
+        font-size: {{ block.settings.font_size }}px;
+        font-weight: {{ block.settings.font_weight }};
+        color: {{ block.settings.color }};
+        margin: {{ block.settings.margin_top }}px 0 {{ block.settings.margin_bottom }}px;
+        line-height: {{ block.settings.line_height }};
+        {% if block.settings.show_border %}
+          padding-bottom: {{ block.settings.border_spacing }}px;
+          border-bottom: {{ block.settings.border_width }}px {{ block.settings.border_style }} {{ block.settings.border_color }};
+        {% endif %}
+      }
+    {% endif %}
+    
+    {% if block.type == 'description' %}
+      .product-card__description.block-{{ block.id }} {
+        font-size: {{ block.settings.font_size }}px;
+        font-weight: {{ block.settings.font_weight }};
+        color: {{ block.settings.color }};
+        margin: {{ block.settings.margin_top }}px 0 {{ block.settings.margin_bottom }}px;
+        line-height: {{ block.settings.line_height }};
+      }
+    {% endif %}
+    
+    {% if block.type == 'features' %}
+      .product-card__features.block-{{ block.id }} {
+        margin: {{ block.settings.margin_top }}px 0 {{ block.settings.margin_bottom }}px;
+        padding-left: 0;
+        list-style: none;
+      }
+      
+      .product-card__features.block-{{ block.id }} .product-card__feature-item {
+        position: relative;
+        padding-left: {{ block.settings.bullet_size | plus: 10 }}px;
+        margin-bottom: {{ block.settings.item_spacing }}px;
+        font-size: {{ block.settings.font_size }}px;
+      }
+      
+      .product-card__features.block-{{ block.id }} .product-card__feature-item:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: {{ block.settings.bullet_position }}px;
+        width: {{ block.settings.bullet_size }}px;
+        height: {{ block.settings.bullet_size }}px;
+        background-color: {{ block.settings.bullet_color }};
+      }
+    {% endif %}
+    
+    {% if block.type == 'button' %}
+      .product-card__button.block-{{ block.id }} {
+        display: inline-block;
+        padding: {{ block.settings.padding_top }}px {{ block.settings.padding_right }}px {{ block.settings.padding_bottom }}px {{ block.settings.padding_left }}px;
+        background-color: {{ block.settings.background_color }};
+        color: {{ block.settings.text_color }};
+        border-radius: {{ block.settings.border_radius }}px;
+        font-size: {{ block.settings.font_size }}px;
+        font-weight: {{ block.settings.font_weight }};
+        border: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+        transition: all 0.3s ease;
+        {% if block.settings.full_width %}width: 100%;{% endif %}
+      }
+      
+      .product-card__button.block-{{ block.id }}:hover {
+        background-color: {{ block.settings.hover_background_color }};
+        color: {{ block.settings.hover_text_color }};
+        border-color: {{ block.settings.hover_border_color }};
+      }
+    {% endif %}
+  {% endfor %}
 </style>
 
 {% schema %}
 {
-  "name": "Product Cards",
-  "tag": "section",
-  "class": "section",
+  "name": "高级产品卡片",
   "settings": [
     {
-      "type": "text",
-      "id": "heading",
-      "label": "Section Heading",
-      "default": "Our Products"
+      "type": "select",
+      "id": "layout",
+      "label": "图片位置",
+      "options": [
+        {"value": "left", "label": "左侧"},
+        {"value": "right", "label": "右侧"}
+      ],
+      "default": "left"
     },
     {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading Color",
-      "default": "#333333"
+      "type": "image_picker",
+      "id": "image",
+      "label": "产品图片"
     },
     {
       "type": "color",
       "id": "background_color",
-      "label": "Background Color",
-      "default": "#f9f9f9"
-    },
-    {
-      "type": "color",
-      "id": "accent_color",
-      "label": "Accent Color",
-      "default": "#3a7bd5"
-    },
-    {
-      "type": "color",
-      "id": "button_color",
-      "label": "Button Color",
-      "default": "#3a7bd5"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button Text Color",
+      "label": "背景颜色",
       "default": "#ffffff"
     },
     {
-      "type": "color",
-      "id": "button_hover_color",
-      "label": "Button Hover Color",
-      "default": "#2c5fb3"
+      "type": "range",
+      "id": "max_width",
+      "label": "最大宽度",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "label": "内容间距",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "label": "内容内边距",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "图片圆角",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "image_min_height",
+      "label": "占位图高度",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "区域上边距",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "区域下边距",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_gap",
+      "label": "移动端内容间距",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_padding_top",
+      "label": "移动端上边距",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_padding_bottom",
+      "label": "移动端下边距",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
     }
   ],
   "blocks": [
     {
-      "type": "product",
-      "name": "Product Card",
+      "type": "title",
+      "name": "标题",
       "settings": [
         {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Product Image"
+          "type": "text",
+          "id": "text",
+          "label": "文本",
+          "default": "产品标题"
         },
         {
-          "type": "text",
-          "id": "title",
-          "label": "Product Title",
-          "default": "Product Name"
+          "type": "range",
+          "id": "font_size",
+          "label": "字体大小",
+          "min": 12,
+          "max": 72,
+          "step": 1,
+          "unit": "px",
+          "default": 32
         },
         {
-          "type": "text",
-          "id": "subtitle",
-          "label": "Product Subtitle",
-          "default": "Product Subtitle"
+          "type": "range",
+          "id": "margin_top",
+          "label": "上边距",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 0
         },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "下边距",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 15
+        }
+      ]
+    },
+    {
+      "type": "subtitle",
+      "name": "副标题",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "文本",
+          "default": "产品副标题"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "字体大小",
+          "min": 12,
+          "max": 36,
+          "step": 1,
+          "unit": "px",
+          "default": 18
+        }
+      ]
+    },
+    {
+      "type": "variants",
+      "name": "产品变体",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "文本",
+          "default": "380mL | 580mL | 1L"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "描述",
+      "settings": [
         {
           "type": "richtext",
-          "id": "description",
-          "label": "Product Description",
-          "default": "<p>Detailed product description goes here.</p>"
-        },
+          "id": "text",
+          "label": "文本",
+          "default": "<p>产品描述内容</p>"
+        }
+      ]
+    },
+    {
+      "type": "features",
+      "name": "特性列表",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "特性(用|分隔)",
+          "default": "特性1|特性2|特性3"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "按钮",
+      "settings": [
         {
           "type": "text",
-          "id": "variants",
-          "label": "Product Variants",
-          "default": "380mL | 580mL | 1L",
-          "info": "Separate variants with | character"
-        },
-        {
-          "type": "text",
-          "id": "features",
-          "label": "Product Features",
-          "default": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET",
-          "info": "Separate features with | character"
-        },
-        {
-          "type": "text",
-          "id": "button_label",
-          "label": "Button Label",
-          "default": "LEARN MORE"
+          "id": "text",
+          "label": "按钮文字",
+          "default": "了解更多"
         },
         {
           "type": "url",
-          "id": "button_link",
-          "label": "Button Link"
+          "id": "link",
+          "label": "链接"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Product Cards",
+      "name": "产品卡片",
       "blocks": [
         {
-          "type": "product",
+          "type": "title",
           "settings": {
-            "title": "Natural Alkaline Water",
-            "subtitle": "The First-Ever Naturally Alkaline Water",
-            "description": "<p>Sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
-            "variants": "380mL | 580mL | 1L",
-            "features": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET|Approximately 350-700 mg sodium bicaraclate per L",
-            "button_label": "LEARN MORE"
+            "text": "Natural Alkaline Water"
           }
         },
         {
-          "type": "product",
+          "type": "subtitle",
           "settings": {
-            "title": "ELECTRO X Sports Drink",
-            "subtitle": "Premium Hydration, Refined Taste",
-            "description": "<p>Carried for athletes and fitness enthusiasts, ELECTRO X offers a premium hydration choice with our additive-free sports drink, blended with premium tea leaves and globally sourced juices for a clean, balanced taste. Fuel your workout, naturally.</p>",
-            "variants": "500mL",
-            "features": "Flavors: Jasmine Green Gapes | Pineapple Meatess | Mixed Berry Flavors|Key Ingredients: Electrolytes | BOA | Ciamtine | Glucose | Vitamins",
-            "button_label": "LEARN MORE"
+            "text": "The First-Ever Naturally Alkaline Water"
+          }
+        },
+        {
+          "type": "variants",
+          "settings": {
+            "text": "380mL | 580mL | 1L"
+          }
+        },
+        {
+          "type": "description",
+          "settings": {
+            "text": "<p>Sourced from the mineral-rich volcanic springs of China's Northern Border</p>"
+          }
+        },
+        {
+          "type": "features",
+          "settings": {
+            "text": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET"
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "text": "LEARN MORE"
           }
         }
       ]
