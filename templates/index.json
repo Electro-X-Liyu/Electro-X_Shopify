@@ -97,11 +97,43 @@
     },
     "product_card_YEAFW8": {
       "type": "product-card",
+      "blocks": {
+        "title_N48aEe": {
+          "type": "title",
+          "settings": {
+            "text": "Natural Alkaline Water",
+            "font_size": 32,
+            "margin_top": 0,
+            "margin_bottom": 15
+          }
+        },
+        "button_mMBWLw": {
+          "type": "button",
+          "settings": {
+            "text": "了解更多",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "title_N48aEe",
+        "button_mMBWLw"
+      ],
       "name": "Product Card",
       "settings": {
         "layout": "left",
         "image": "shopify://shop_images/4_9593bee4-6ac4-4c8f-9297-9b74c5b4a58e.jpg",
-        "background_color": "#121212"
+        "background_color": "#121212",
+        "max_width": 1200,
+        "content_gap": 60,
+        "content_padding": 20,
+        "image_border_radius": 0,
+        "image_min_height": 400,
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "mobile_content_gap": 30,
+        "mobile_section_padding_top": 40,
+        "mobile_section_padding_bottom": 40
       }
     },
     "pic_border_m7m9TP": {
