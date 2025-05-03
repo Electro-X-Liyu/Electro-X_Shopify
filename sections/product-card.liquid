@@ -1,7 +1,7 @@
 <div class="product-card-section section-{{ section.id }}" data-section-id="{{ section.id }}">
   <div class="page-width">
     <div class="product-card {% if section.settings.layout == 'right' %}product-card--reverse{% endif %}">
-      <div class="product-card__image">
+      <div class="product-card__image" style="margin-left: {{ section.settings.image_margin_left }}px; margin-right: {{ section.settings.image_margin_right }}px;">
         {% if section.settings.image != blank %}
           <img src="{{ section.settings.image | img_url: '1000x' }}" 
                alt="{{ section.settings.image.alt | escape }}" 
@@ -20,41 +20,40 @@
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'title' %}
-              <h2 class="product-card__title block-{{ block.id }}" {{ block.shopify_attributes }}>
+              <h2 class="product-card__title block-{{ block.id }}" style="color: {{ block.settings.color }};" {{ block.shopify_attributes }}>
                 {{ block.settings.text }}
               </h2>
             
             {% when 'subtitle' %}
-              <p class="product-card__subtitle block-{{ block.id }}" {{ block.shopify_attributes }}>
+              <p class="product-card__subtitle block-{{ block.id }}" style="color: {{ block.settings.color }};" {{ block.shopify_attributes }}>
                 {{ block.settings.text }}
               </p>
             
             {% when 'variants' %}
-              <p class="product-card__variants block-{{ block.id }}" {{ block.shopify_attributes }}>
+              <p class="product-card__variants block-{{ block.id }}" style="color: {{ block.settings.color }};" {{ block.shopify_attributes }}>
                 {{ block.settings.text }}
               </p>
             
             {% when 'description' %}
-              <div class="product-card__description block-{{ block.id }}" {{ block.shopify_attributes }}>
+              <div class="product-card__description block-{{ block.id }}" style="color: {{ block.settings.color }};" {{ block.shopify_attributes }}>
                 {{ block.settings.text }}
               </div>
             
             {% when 'features' %}
-              <ul class="product-card__features block-{{ block.id }}" {{ block.shopify_attributes }}>
+              <ul class="product-card__features block-{{ block.id }}" style="color: {{ block.settings.color }};" {{ block.shopify_attributes }}>
                 {% assign features = block.settings.text | split: '|' %}
                 {% for feature in features %}
                   <li class="product-card__feature-item">{{ feature | strip }}</li>
                 {% endfor %}
               </ul>
             
-            {% when 'spacer' %}
-              <div class="product-card__spacer block-{{ block.id }}" style="height: {{ block.settings.height }}px;" {{ block.shopify_attributes }}></div>
-            
             {% when 'button' %}
               <a href="{{ block.settings.link | default: '#' }}" 
                  class="product-card__button block-{{ block.id }}" 
+                 style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; border: 1px solid {{ block.settings.border_color }};"
                  {{ block.shopify_attributes }}>
-                {{ block.settings.text }}
+                <span class="button-text">{{ block.settings.text }}</span>
+                <span class="button-arrow">→</span>
               </a>
           {% endcase %}
         {% endfor %}
@@ -85,7 +84,6 @@
     flex: 1 1 50%;
     border-radius: {{ section.settings.image_border_radius }}px;
     overflow: hidden;
-    box-shadow: {{ section.settings.image_shadow }};
   }
   
   .product-card__image-element {
@@ -109,126 +107,107 @@
     padding: {{ section.settings.content_padding }}px;
   }
   
+  .product-card__title {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+  }
+  
+  .product-card__subtitle {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+  }
+  
+  .product-card__variants {
+    font-size: 14px;
+    margin: 0 0 25px 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  
+  .product-card__description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+  }
+  
+  .product-card__features {
+    margin: 0 0 30px 0;
+    padding-left: 0;
+    list-style: none;
+  }
+  
+  .product-card__feature-item {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+  
+  .product-card__feature-item:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 12px;
+    height: 2px;
+    background-color: currentColor;
+  }
+  
+  .product-card__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .product-card__button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+  
+  .product-card__button .button-arrow {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .product-card__button:hover .button-arrow {
+    transform: translateX(3px);
+  }
+  
   @media (max-width: 768px) {
-    .product-card-section.section-{{ section.id }} {
-      padding: {{ section.settings.mobile_section_padding_top }}px 0 {{ section.settings.mobile_section_padding_bottom }}px;
-    }
-    
     .product-card {
       flex-direction: column;
-      gap: {{ section.settings.mobile_content_gap }}px;
+      gap: 30px;
     }
     
     .product-card--reverse {
       flex-direction: column;
     }
+    
+    .product-card__image {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    
+    .product-card__button {
+      max-width: none;
+    }
   }
-  
-  {% for block in section.blocks %}
-    {% if block.type == 'title' %}
-      .product-card__title.block-{{ block.id }} {
-        font-size: {{ block.settings.font_size }}px;
-        font-weight: {{ block.settings.font_weight }};
-        color: {{ block.settings.color }};
-        margin: {{ block.settings.margin_top }}px 0 {{ block.settings.margin_bottom }}px;
-        line-height: {{ block.settings.line_height }};
-        letter-spacing: {{ block.settings.letter_spacing }}em;
-        text-align: {{ block.settings.text_align }};
-        {% if block.settings.uppercase %}text-transform: uppercase;{% endif %}
-        {% if block.settings.font_style == 'italic' %}font-style: italic;{% endif %}
-        {% if block.settings.text_shadow != 'none' %}text-shadow: {{ block.settings.text_shadow }};{% endif %}
-      }
-    {% endif %}
-    
-    {% if block.type == 'subtitle' %}
-      .product-card__subtitle.block-{{ block.id }} {
-        font-size: {{ block.settings.font_size }}px;
-        font-weight: {{ block.settings.font_weight }};
-        color: {{ block.settings.color }};
-        margin: {{ block.settings.margin_top }}px 0 {{ block.settings.margin_bottom }}px;
-        line-height: {{ block.settings.line_height }};
-        letter-spacing: {{ block.settings.letter_spacing }}em;
-        text-align: {{ block.settings.text_align }};
-        {% if block.settings.uppercase %}text-transform: uppercase;{% endif %}
-        {% if block.settings.font_style == 'italic' %}font-style: italic;{% endif %}
-      }
-    {% endif %}
-    
-    {% if block.type == 'variants' %}
-      .product-card__variants.block-{{ block.id }} {
-        font-size: {{ block.settings.font_size }}px;
-        font-weight: {{ block.settings.font_weight }};
-        color: {{ block.settings.color }};
-        margin: {{ block.settings.margin_top }}px 0 {{ block.settings.margin_bottom }}px;
-        line-height: {{ block.settings.line_height }};
-        {% if block.settings.show_border %}
-          padding-bottom: {{ block.settings.border_spacing }}px;
-          border-bottom: {{ block.settings.border_width }}px {{ block.settings.border_style }} {{ block.settings.border_color }};
-        {% endif %}
-      }
-    {% endif %}
-    
-    {% if block.type == 'description' %}
-      .product-card__description.block-{{ block.id }} {
-        font-size: {{ block.settings.font_size }}px;
-        font-weight: {{ block.settings.font_weight }};
-        color: {{ block.settings.color }};
-        margin: {{ block.settings.margin_top }}px 0 {{ block.settings.margin_bottom }}px;
-        line-height: {{ block.settings.line_height }};
-      }
-    {% endif %}
-    
-    {% if block.type == 'features' %}
-      .product-card__features.block-{{ block.id }} {
-        margin: {{ block.settings.margin_top }}px 0 {{ block.settings.margin_bottom }}px;
-        padding-left: 0;
-        list-style: none;
-      }
-      
-      .product-card__features.block-{{ block.id }} .product-card__feature-item {
-        position: relative;
-        padding-left: {{ block.settings.bullet_size | plus: 10 }}px;
-        margin-bottom: {{ block.settings.item_spacing }}px;
-        font-size: {{ block.settings.font_size }}px;
-      }
-      
-      .product-card__features.block-{{ block.id }} .product-card__feature-item:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: {{ block.settings.bullet_position }}px;
-        width: {{ block.settings.bullet_size }}px;
-        height: {{ block.settings.bullet_size }}px;
-        background-color: {{ block.settings.bullet_color }};
-      }
-    {% endif %}
-    
-    {% if block.type == 'button' %}
-      .product-card__button.block-{{ block.id }} {
-        display: inline-block;
-        padding: {{ block.settings.padding_top }}px {{ block.settings.padding_right }}px {{ block.settings.padding_bottom }}px {{ block.settings.padding_left }}px;
-        background-color: {{ block.settings.background_color }};
-        color: {{ block.settings.text_color }};
-        border-radius: {{ block.settings.border_radius }}px;
-        font-size: {{ block.settings.font_size }}px;
-        font-weight: {{ block.settings.font_weight }};
-        border: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
-        transition: all 0.3s ease;
-        {% if block.settings.full_width %}width: 100%;{% endif %}
-      }
-      
-      .product-card__button.block-{{ block.id }}:hover {
-        background-color: {{ block.settings.hover_background_color }};
-        color: {{ block.settings.hover_text_color }};
-        border-color: {{ block.settings.hover_border_color }};
-      }
-    {% endif %}
-  {% endfor %}
 </style>
 
 {% schema %}
 {
-  "name": "高级产品卡片",
+  "name": "增强产品卡片",
   "settings": [
     {
       "type": "select",
@@ -246,10 +225,24 @@
       "label": "产品图片"
     },
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "背景颜色",
-      "default": "#ffffff"
+      "type": "range",
+      "id": "image_margin_left",
+      "label": "图片左边距",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "image_margin_right",
+      "label": "图片右边距",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "range",
@@ -270,86 +263,6 @@
       "step": 5,
       "unit": "px",
       "default": 60
-    },
-    {
-      "type": "range",
-      "id": "content_padding",
-      "label": "内容内边距",
-      "min": 0,
-      "max": 60,
-      "step": 5,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "image_border_radius",
-      "label": "图片圆角",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "image_min_height",
-      "label": "占位图高度",
-      "min": 200,
-      "max": 800,
-      "step": 50,
-      "unit": "px",
-      "default": 400
-    },
-    {
-      "type": "range",
-      "id": "section_padding_top",
-      "label": "区域上边距",
-      "min": 0,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "section_padding_bottom",
-      "label": "区域下边距",
-      "min": 0,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "mobile_content_gap",
-      "label": "移动端内容间距",
-      "min": 0,
-      "max": 80,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "mobile_section_padding_top",
-      "label": "移动端上边距",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "mobile_section_padding_bottom",
-      "label": "移动端下边距",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 40
     }
   ],
   "blocks": [
@@ -361,37 +274,13 @@
           "type": "text",
           "id": "text",
           "label": "文本",
-          "default": "产品标题"
+          "default": "Natural Alkaline Water"
         },
         {
-          "type": "range",
-          "id": "font_size",
-          "label": "字体大小",
-          "min": 12,
-          "max": 72,
-          "step": 1,
-          "unit": "px",
-          "default": 32
-        },
-        {
-          "type": "range",
-          "id": "margin_top",
-          "label": "上边距",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "unit": "px",
-          "default": 0
-        },
-        {
-          "type": "range",
-          "id": "margin_bottom",
-          "label": "下边距",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "unit": "px",
-          "default": 15
+          "type": "color",
+          "id": "color",
+          "label": "文字颜色",
+          "default": "#333333"
         }
       ]
     },
@@ -403,17 +292,13 @@
           "type": "text",
           "id": "text",
           "label": "文本",
-          "default": "产品副标题"
+          "default": "The First-Ever Naturally Alkaline Water"
         },
         {
-          "type": "range",
-          "id": "font_size",
-          "label": "字体大小",
-          "min": 12,
-          "max": 36,
-          "step": 1,
-          "unit": "px",
-          "default": 18
+          "type": "color",
+          "id": "color",
+          "label": "文字颜色",
+          "default": "#666666"
         }
       ]
     },
@@ -426,6 +311,12 @@
           "id": "text",
           "label": "文本",
           "default": "380mL | 580mL | 1L"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "文字颜色",
+          "default": "#666666"
         }
       ]
     },
@@ -437,7 +328,13 @@
           "type": "richtext",
           "id": "text",
           "label": "文本",
-          "default": "<p>产品描述内容</p>"
+          "default": "<p>Sourced from the mineral-rich volcanic springs of China's Northern Border</p>"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "文字颜色",
+          "default": "#555555"
         }
       ]
     },
@@ -449,7 +346,13 @@
           "type": "textarea",
           "id": "text",
           "label": "特性(用|分隔)",
-          "default": "特性1|特性2|特性3"
+          "default": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "文字颜色",
+          "default": "#555555"
         }
       ]
     },
@@ -461,54 +364,80 @@
           "type": "text",
           "id": "text",
           "label": "按钮文字",
-          "default": "了解更多"
+          "default": "LEARN MORE"
         },
         {
           "type": "url",
           "id": "link",
           "label": "链接"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "背景颜色",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "文字颜色",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "边框颜色",
+          "default": "#333333"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "产品卡片",
+      "name": "增强产品卡片",
       "blocks": [
         {
           "type": "title",
           "settings": {
-            "text": "Natural Alkaline Water"
+            "text": "Natural Alkaline Water",
+            "color": "#333333"
           }
         },
         {
           "type": "subtitle",
           "settings": {
-            "text": "The First-Ever Naturally Alkaline Water"
+            "text": "The First-Ever Naturally Alkaline Water",
+            "color": "#666666"
           }
         },
         {
           "type": "variants",
           "settings": {
-            "text": "380mL | 580mL | 1L"
+            "text": "380mL | 580mL | 1L",
+            "color": "#666666"
           }
         },
         {
           "type": "description",
           "settings": {
-            "text": "<p>Sourced from the mineral-rich volcanic springs of China's Northern Border</p>"
+            "text": "<p>Sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
+            "color": "#555555"
           }
         },
         {
           "type": "features",
           "settings": {
-            "text": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET"
+            "text": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET",
+            "color": "#555555"
           }
         },
         {
           "type": "button",
           "settings": {
-            "text": "LEARN MORE"
+            "text": "LEARN MORE",
+            "background_color": "#ffffff",
+            "text_color": "#333333",
+            "border_color": "#333333"
           }
         }
       ]
