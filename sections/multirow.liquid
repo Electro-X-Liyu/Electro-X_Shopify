@@ -12,6 +12,21 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .multirow__inner {
+    max-width: {{ section.settings.section_width }}px;
+  }
+
+  /* Custom text styles */
+  .text-bold {
+    font-weight: bold;
+  }
+  .text-italic {
+    font-style: italic;
+  }
+  .text-underline {
+    text-decoration: underline;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -75,18 +90,35 @@
           <div class="image-with-text__text-item grid__item">
             <div class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.image_height }} content-container{% unless no_content_background and no_content_styles %} gradient color-{{ section.settings.row_color_scheme }}{% else %} background-transparent{% endunless %}">
               {%- if block.settings.caption -%}
-                <p class="image-with-text__text image-with-text__text--caption caption-with-letter-spacing caption-with-letter-spacing--medium">
+                <p class="image-with-text__text image-with-text__text--caption caption-with-letter-spacing caption-with-letter-spacing--medium" style="color: {{ block.settings.caption_color }}; margin-bottom: {{ block.settings.caption_spacing }}px; {% if block.settings.caption_bold %}font-weight: bold;{% endif %} {% if block.settings.caption_italic %}font-style: italic;{% endif %}">
                   {{ block.settings.caption | escape }}
                 </p>
               {%- endif -%}
+              
+              {%- if block.settings.subheading -%}
+                <h3 class="image-with-text__subheading" style="color: {{ block.settings.subheading_color }}; margin-bottom: {{ block.settings.subheading_spacing }}px; {% if block.settings.subheading_bold %}font-weight: bold;{% endif %} {% if block.settings.subheading_italic %}font-style: italic;{% endif %}">
+                  {{ block.settings.subheading }}
+                </h3>
+              {%- endif -%}
+              
               {%- if block.settings.heading -%}
-                <h2 class="image-with-text__heading {{ section.settings.heading_size }} rte">
+                <h2 class="image-with-text__heading {{ section.settings.heading_size }} rte" style="color: {{ block.settings.heading_color }}; margin-bottom: {{ block.settings.heading_spacing }}px; {% if block.settings.heading_bold %}font-weight: bold;{% endif %} {% if block.settings.heading_italic %}font-style: italic;{% endif %}">
                   {{ block.settings.heading }}
                 </h2>
               {%- endif -%}
+              
               {%- if block.settings.text -%}
-                <div class="image-with-text__text rte {{ section.settings.text_style }}">{{ block.settings.text }}</div>
+                <div class="image-with-text__text rte {{ section.settings.text_style }}" style="color: {{ block.settings.text_color }}; margin-bottom: {{ block.settings.text_spacing }}px; {% if block.settings.text_bold %}font-weight: bold;{% endif %} {% if block.settings.text_italic %}font-style: italic;{% endif %}">
+                  {{ block.settings.text }}
+                </div>
               {%- endif -%}
+              
+              {%- if block.settings.additional_text -%}
+                <div class="image-with-text__additional-text" style="color: {{ block.settings.additional_text_color }}; margin-bottom: {{ block.settings.additional_text_spacing }}px; {% if block.settings.additional_text_bold %}font-weight: bold;{% endif %} {% if block.settings.additional_text_italic %}font-style: italic;{% endif %}">
+                  {{ block.settings.additional_text }}
+                </div>
+              {%- endif -%}
+              
               {%- if block.settings.button_label != blank -%}
                 <a
                   {% if block.settings.button_link == blank %}
@@ -95,6 +127,7 @@
                     href="{{ block.settings.button_link }}"
                   {% endif %}
                   class="button button--{{ section.settings.button_style }}"
+                  style="margin-top: {{ block.settings.button_spacing }}px;"
                 >
                   {{ block.settings.button_label | escape }}
                 </a>
@@ -109,15 +142,25 @@
 
 {% schema %}
 {
-  "name": "t:sections.multirow.name",
+  "name": "Enhanced Multirow",
   "class": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
   },
   "settings": [
     {
+      "type": "range",
+      "id": "section_width",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Section width",
+      "default": 1200
+    },
+    {
       "type": "header",
-      "content": "t:sections.multirow.settings.header.content"
+      "content": "Layout"
     },
     {
       "type": "select",
@@ -125,23 +168,23 @@
       "options": [
         {
           "value": "adapt",
-          "label": "t:sections.multirow.settings.image_height.options__1.label"
+          "label": "Adapt to image"
         },
         {
           "value": "small",
-          "label": "t:sections.multirow.settings.image_height.options__2.label"
+          "label": "Small"
         },
         {
           "value": "medium",
-          "label": "t:sections.multirow.settings.image_height.options__3.label"
+          "label": "Medium"
         },
         {
           "value": "large",
-          "label": "t:sections.multirow.settings.image_height.options__4.label"
+          "label": "Large"
         }
       ],
       "default": "medium",
-      "label": "t:sections.multirow.settings.image_height.label"
+      "label": "Image height"
     },
     {
       "type": "select",
@@ -149,19 +192,19 @@
       "options": [
         {
           "value": "small",
-          "label": "t:sections.multirow.settings.desktop_image_width.options__1.label"
+          "label": "Small"
         },
         {
           "value": "medium",
-          "label": "t:sections.multirow.settings.desktop_image_width.options__2.label"
+          "label": "Medium"
         },
         {
           "value": "large",
-          "label": "t:sections.multirow.settings.desktop_image_width.options__3.label"
+          "label": "Large"
         }
       ],
       "default": "medium",
-      "label": "t:sections.multirow.settings.desktop_image_width.label"
+      "label": "Desktop image width"
     },
     {
       "type": "select",
@@ -169,27 +212,27 @@
       "options": [
         {
           "value": "alternate-left",
-          "label": "t:sections.multirow.settings.image_layout.options__1.label"
+          "label": "Alternate left"
         },
         {
           "value": "alternate-right",
-          "label": "t:sections.multirow.settings.image_layout.options__2.label"
+          "label": "Alternate right"
         },
         {
           "value": "align-left",
-          "label": "t:sections.multirow.settings.image_layout.options__3.label"
+          "label": "Left aligned"
         },
         {
           "value": "align-right",
-          "label": "t:sections.multirow.settings.image_layout.options__4.label"
+          "label": "Right aligned"
         }
       ],
       "default": "alternate-left",
-      "label": "t:sections.multirow.settings.image_layout.label"
+      "label": "Image layout"
     },
     {
       "type": "header",
-      "content": "t:sections.multirow.settings.header_2.content"
+      "content": "Text styling"
     },
     {
       "type": "select",
@@ -197,27 +240,27 @@
       "options": [
         {
           "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
+          "label": "Small"
         },
         {
           "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
+          "label": "Medium"
         },
         {
           "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
+          "label": "Large"
         },
         {
           "value": "hxl",
-          "label": "t:sections.all.heading_size.options__4.label"
+          "label": "Extra large"
         },
         {
           "value": "hxxl",
-          "label": "t:sections.all.heading_size.options__5.label"
+          "label": "Extra extra large"
         }
       ],
       "default": "h1",
-      "label": "t:sections.all.heading_size.label"
+      "label": "Heading size"
     },
     {
       "type": "select",
@@ -225,15 +268,15 @@
       "options": [
         {
           "value": "body",
-          "label": "t:sections.multirow.settings.text_style.options__1.label"
+          "label": "Body"
         },
         {
           "value": "subtitle",
-          "label": "t:sections.multirow.settings.text_style.options__2.label"
+          "label": "Subtitle"
         }
       ],
       "default": "body",
-      "label": "t:sections.multirow.settings.text_style.label"
+      "label": "Text style"
     },
     {
       "type": "select",
@@ -241,15 +284,15 @@
       "options": [
         {
           "value": "primary",
-          "label": "t:sections.multirow.settings.button_style.options__1.label"
+          "label": "Primary"
         },
         {
           "value": "secondary",
-          "label": "t:sections.multirow.settings.button_style.options__2.label"
+          "label": "Secondary"
         }
       ],
       "default": "secondary",
-      "label": "t:sections.multirow.settings.button_style.label"
+      "label": "Button style"
     },
     {
       "type": "select",
@@ -257,19 +300,19 @@
       "options": [
         {
           "value": "top",
-          "label": "t:sections.multirow.settings.desktop_content_position.options__1.label"
+          "label": "Top"
         },
         {
           "value": "middle",
-          "label": "t:sections.multirow.settings.desktop_content_position.options__2.label"
+          "label": "Middle"
         },
         {
           "value": "bottom",
-          "label": "t:sections.multirow.settings.desktop_content_position.options__3.label"
+          "label": "Bottom"
         }
       ],
       "default": "middle",
-      "label": "t:sections.multirow.settings.desktop_content_position.label"
+      "label": "Desktop content position"
     },
     {
       "type": "select",
@@ -277,19 +320,19 @@
       "options": [
         {
           "value": "left",
-          "label": "t:sections.multirow.settings.desktop_content_alignment.options__1.label"
+          "label": "Left"
         },
         {
           "value": "center",
-          "label": "t:sections.multirow.settings.desktop_content_alignment.options__2.label"
+          "label": "Center"
         },
         {
           "value": "right",
-          "label": "t:sections.multirow.settings.desktop_content_alignment.options__3.label"
+          "label": "Right"
         }
       ],
       "default": "left",
-      "label": "t:sections.multirow.settings.desktop_content_alignment.label"
+      "label": "Desktop content alignment"
     },
     {
       "type": "select",
@@ -297,39 +340,39 @@
       "options": [
         {
           "value": "left",
-          "label": "t:sections.multirow.settings.mobile_content_alignment.options__1.label"
+          "label": "Left"
         },
         {
           "value": "center",
-          "label": "t:sections.multirow.settings.mobile_content_alignment.options__2.label"
+          "label": "Center"
         },
         {
           "value": "right",
-          "label": "t:sections.multirow.settings.mobile_content_alignment.options__3.label"
+          "label": "Right"
         }
       ],
       "default": "left",
-      "label": "t:sections.multirow.settings.mobile_content_alignment.label"
+      "label": "Mobile content alignment"
     },
     {
       "type": "header",
-      "content": "t:sections.multirow.settings.header_3.content"
+      "content": "Colors"
     },
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "t:sections.all.colors.label",
+      "label": "Section color scheme",
       "default": "scheme-1"
     },
     {
       "type": "color_scheme",
       "id": "row_color_scheme",
-      "label": "t:sections.multirow.settings.container_color_scheme.label",
+      "label": "Row color scheme",
       "default": "scheme-1"
     },
     {
       "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
+      "content": "Spacing"
     },
     {
       "type": "range",
@@ -338,7 +381,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
+      "label": "Padding top",
       "default": 36
     },
     {
@@ -348,56 +391,240 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
+      "label": "Padding bottom",
       "default": 36
     }
   ],
   "blocks": [
     {
       "type": "row",
-      "name": "t:sections.multirow.blocks.row.name",
+      "name": "Row",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:sections.multirow.blocks.row.settings.image.label"
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Caption"
         },
         {
           "type": "text",
           "id": "caption",
-          "default": "t:sections.multirow.blocks.row.settings.caption.default",
-          "label": "t:sections.multirow.blocks.row.settings.caption.label"
+          "default": "Caption",
+          "label": "Caption text"
+        },
+        {
+          "type": "color",
+          "id": "caption_color",
+          "label": "Caption color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "caption_spacing",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Caption spacing",
+          "default": 10
+        },
+        {
+          "type": "checkbox",
+          "id": "caption_bold",
+          "label": "Bold",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "caption_italic",
+          "label": "Italic",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Subheading"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "default": "Subheading",
+          "label": "Subheading text"
+        },
+        {
+          "type": "color",
+          "id": "subheading_color",
+          "label": "Subheading color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "subheading_spacing",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Subheading spacing",
+          "default": 15
+        },
+        {
+          "type": "checkbox",
+          "id": "subheading_bold",
+          "label": "Bold",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "subheading_italic",
+          "label": "Italic",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Heading"
         },
         {
           "type": "inline_richtext",
           "id": "heading",
-          "default": "t:sections.multirow.blocks.row.settings.heading.default",
-          "label": "t:sections.multirow.blocks.row.settings.heading.label"
+          "default": "Heading",
+          "label": "Heading text"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "heading_spacing",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Heading spacing",
+          "default": 20
+        },
+        {
+          "type": "checkbox",
+          "id": "heading_bold",
+          "label": "Bold",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "heading_italic",
+          "label": "Italic",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Text"
         },
         {
           "type": "richtext",
           "id": "text",
-          "default": "t:sections.multirow.blocks.row.settings.text.default",
-          "label": "t:sections.multirow.blocks.row.settings.text.label"
+          "default": "<p>Description text goes here</p>",
+          "label": "Text"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "text_spacing",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Text spacing",
+          "default": 15
+        },
+        {
+          "type": "checkbox",
+          "id": "text_bold",
+          "label": "Bold",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "text_italic",
+          "label": "Italic",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Additional Text"
+        },
+        {
+          "type": "richtext",
+          "id": "additional_text",
+          "label": "Additional text"
+        },
+        {
+          "type": "color",
+          "id": "additional_text_color",
+          "label": "Additional text color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "additional_text_spacing",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Additional text spacing",
+          "default": 15
+        },
+        {
+          "type": "checkbox",
+          "id": "additional_text_bold",
+          "label": "Bold",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "additional_text_italic",
+          "label": "Italic",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Button"
         },
         {
           "type": "text",
           "id": "button_label",
-          "default": "t:sections.multirow.blocks.row.settings.button_label.default",
-          "label": "t:sections.multirow.blocks.row.settings.button_label.label", 
-          "info": "t:sections.multirow.blocks.row.settings.button_label.info"
+          "default": "Button label",
+          "label": "Button label"
         },
         {
           "type": "url",
           "id": "button_link",
-          "label": "t:sections.multirow.blocks.row.settings.button_link.label"
+          "label": "Button link"
+        },
+        {
+          "type": "range",
+          "id": "button_spacing",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Button spacing",
+          "default": 20
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "t:sections.multirow.presets.name",
+      "name": "Enhanced Multirow",
       "blocks": [
         {
           "type": "row"
