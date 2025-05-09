@@ -197,42 +197,60 @@
           "type": "heading",
           "settings": {
             "heading": "Natural Alkaline Water",
-            "heading_size": "h1"
-          }
-        },
-        "text_DeqGzh": {
-          "type": "text",
-          "settings": {
-            "text": "<p>The First-Ever Naturally Alkaline Water</p><p>Sourced from the mineral-rich voclanic springs of China's Northern Border</p><p>380mL | 580mL | 1L</p>",
-            "text_style": "body"
+            "heading_size": "h3"
           }
         },
         "caption_aweAQr": {
           "type": "caption",
           "settings": {
-            "caption": "pH level of 8.8 and above",
+            "caption": "The First-Ever Naturally Alkaline",
             "text_style": "subtitle",
             "text_size": "small"
+          }
+        },
+        "caption_6c8zmQ": {
+          "type": "caption",
+          "settings": {
+            "caption": "WaterSourced from the mineral-rich voclanic springs of China's Northern Border",
+            "text_style": "subtitle",
+            "text_size": "small"
+          }
+        },
+        "caption_4WLLWQ": {
+          "type": "caption",
+          "settings": {
+            "caption": "380mL | 580mL | 1L",
+            "text_style": "subtitle",
+            "text_size": "small"
+          }
+        },
+        "small_text_VBmxCx": {
+          "type": "small_text",
+          "settings": {
+            "text": "<p>pH level of 8.8 and above</p><p>Naturally Alkaline Spring Water</p><p>100% Recyclable PET</p><p>Approximately 350-700 mg sodium bicarbonate per L</p>",
+            "text_style": "caption"
           }
         },
         "button_GA8WxT": {
           "type": "button",
           "settings": {
-            "button_label": "Button label",
-            "button_link": "",
+            "button_label": "LEARN MORE",
+            "button_link": "shopify://collections/natural-alkaline-water",
             "button_style_secondary": false
           }
         }
       },
       "block_order": [
         "heading_h3heM8",
-        "text_DeqGzh",
         "caption_aweAQr",
+        "caption_6c8zmQ",
+        "caption_4WLLWQ",
+        "small_text_VBmxCx",
         "button_GA8WxT"
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/3_079288a1-caa8-4e7d-8c88-a15e2b6866f4.jpg",
+        "image": "shopify://shop_images/4cut.png",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
