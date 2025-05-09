@@ -173,23 +173,29 @@
           "type": "heading",
           "settings": {
             "heading": "Natural Alkaline Water",
-            "heading_size": "h3"
+            "heading_size": "h3",
+            "spacing_top": 0,
+            "spacing_bottom": 20
           }
         },
         "caption_aweAQr": {
           "type": "caption",
           "settings": {
-            "caption": "The First-Ever Naturally Alkaline",
+            "caption": "The First-Ever Naturally Alkaline Water",
             "text_style": "subtitle",
-            "text_size": "small"
+            "text_size": "small",
+            "spacing_top": 0,
+            "spacing_bottom": 0
           }
         },
         "caption_6c8zmQ": {
           "type": "caption",
           "settings": {
-            "caption": "WaterSourced from the mineral-rich voclanic springs of China's Northern Border",
+            "caption": "Sourced from the mineral-rich voclanic springs of China's Northern Border",
             "text_style": "subtitle",
-            "text_size": "small"
+            "text_size": "small",
+            "spacing_top": 0,
+            "spacing_bottom": 0
           }
         },
         "caption_4WLLWQ": {
@@ -197,14 +203,49 @@
           "settings": {
             "caption": "380mL | 580mL | 1L",
             "text_style": "subtitle",
-            "text_size": "small"
+            "text_size": "small",
+            "spacing_top": 15,
+            "spacing_bottom": 15
           }
         },
-        "small_text_VBmxCx": {
-          "type": "small_text",
+        "caption_HJ6q49": {
+          "type": "caption",
           "settings": {
-            "text": "<p>pH level of 8.8 and above</p><p>Naturally Alkaline Spring Water</p><p>100% Recyclable PET</p><p>Approximately 350-700 mg sodium bicarbonate per L</p>",
-            "text_style": "caption"
+            "caption": "pH level of 8.8 and above",
+            "text_style": "subtitle",
+            "text_size": "small",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "caption_HgYxDC": {
+          "type": "caption",
+          "settings": {
+            "caption": "Naturally Alkaline Spring Water",
+            "text_style": "subtitle",
+            "text_size": "small",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "caption_kkWQPf": {
+          "type": "caption",
+          "settings": {
+            "caption": "100% Recyclable PET",
+            "text_style": "subtitle",
+            "text_size": "small",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "caption_m8RMPA": {
+          "type": "caption",
+          "settings": {
+            "caption": "Approximately 350-700 mg sodium bicarbonate per L",
+            "text_style": "subtitle",
+            "text_size": "small",
+            "spacing_top": 0,
+            "spacing_bottom": 15
           }
         },
         "button_GA8WxT": {
@@ -212,7 +253,9 @@
           "settings": {
             "button_label": "LEARN MORE",
             "button_link": "shopify://collections/natural-alkaline-water",
-            "button_style_secondary": false
+            "button_style_secondary": false,
+            "spacing_top": 20,
+            "spacing_bottom": 0
           }
         }
       },
@@ -221,7 +264,10 @@
         "caption_aweAQr",
         "caption_6c8zmQ",
         "caption_4WLLWQ",
-        "small_text_VBmxCx",
+        "caption_HJ6q49",
+        "caption_HgYxDC",
+        "caption_kkWQPf",
+        "caption_m8RMPA",
         "button_GA8WxT"
       ],
       "name": "t:sections.image-with-text.presets.name",
