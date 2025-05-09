@@ -149,23 +149,6 @@
         "padding_bottom": 52
       }
     },
-    "image_banner_ErpyBP": {
-      "type": "image-banner",
-      "name": "t:sections.image-banner.presets.name",
-      "settings": {
-        "image": "shopify://shop_images/web_____1.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
-    },
     "image_with_text_HT6mHr": {
       "type": "image-with-text",
       "blocks": {
@@ -285,6 +268,98 @@
         "color_scheme": "scheme-3",
         "padding_top": 0,
         "padding_bottom": 0
+      }
+    },
+    "image_with_text_88PpK8": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_hdCVz3": {
+          "type": "heading",
+          "settings": {
+            "heading": "ELECTRO X Sports Drink",
+            "heading_size": "h2",
+            "spacing_top": 0,
+            "spacing_bottom": 20
+          }
+        },
+        "subheading_xz3Qen": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Premium Hydration, Refined Taste",
+            "subheading_size": "h3",
+            "spacing_top": 0,
+            "spacing_bottom": 15
+          }
+        },
+        "text_TLqMRG": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Crafted for athletes and fitness enthusiasts, ELECTRO. X offers a premium hydration choice with our additive-free sports drink, blended with premium tea leaves and globally sourced juices for a clean balanced taste. Fuel your workout, naturally.</p>",
+            "text_style": "body",
+            "spacing_top": 0,
+            "spacing_bottom": 15
+          }
+        },
+        "caption_jJxTbP": {
+          "type": "caption",
+          "settings": {
+            "caption": "500mL",
+            "text_style": "subtitle",
+            "text_size": "small",
+            "spacing_top": 0,
+            "spacing_bottom": 15
+          }
+        },
+        "button_dmNHG7": {
+          "type": "button",
+          "settings": {
+            "button_label": "LEARN MORE",
+            "button_link": "shopify://collections/electrolyte-sports-drink",
+            "button_style_secondary": false,
+            "spacing_top": 20,
+            "spacing_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "heading_hdCVz3",
+        "subheading_xz3Qen",
+        "text_TLqMRG",
+        "caption_jJxTbP",
+        "button_dmNHG7"
+      ],
+      "name": "Enhanced Image with Text",
+      "settings": {
+        "image": "shopify://shop_images/7cut.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-3",
+        "color_scheme": "scheme-3",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "image_banner_ErpyBP": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/web___-05.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
       }
     },
     "alkaline_water_info_CjJNBr": {
@@ -835,8 +910,9 @@
     "image_banner",
     "pic_border_m7m9TP",
     "rich_text_gUynad",
-    "image_banner_ErpyBP",
     "image_with_text_HT6mHr",
+    "image_with_text_88PpK8",
+    "image_banner_ErpyBP",
     "alkaline_water_info_CjJNBr",
     "product_collection_rYrG8U",
     "product_collection_kM3g7z",
