@@ -437,12 +437,13 @@
       "settings": {
         "title": "多列布局",
         "columns_desktop": 3,
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "swipe_on_mobile": true
       }
     },
     "featured_blog_hcNHKd": {
       "type": "featured-blog",
+      "disabled": true,
       "settings": {
         "blog": "sports-sponsorship-1",
         "post_limit": 10,
