@@ -24,9 +24,9 @@
         "text_cAgx7H"
       ],
       "settings": {
-        "image": "shopify://shop_images/2-1.jpg",
+        "image": "shopify://shop_images/kv.jpg",
         "image_overlay_opacity": 0,
-        "image_height": "large",
+        "image_height": "adapt",
         "image_behavior": "zoom-in",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
@@ -183,7 +183,7 @@
           "settings": {
             "caption": "The First-Ever Naturally Alkaline Water",
             "text_style": "subtitle",
-            "text_size": "small",
+            "text_size": "medium",
             "spacing_top": 0,
             "spacing_bottom": 0
           }
@@ -193,7 +193,7 @@
           "settings": {
             "caption": "Sourced from the mineral-rich voclanic springs of China's Northern Border",
             "text_style": "subtitle",
-            "text_size": "small",
+            "text_size": "medium",
             "spacing_top": 0,
             "spacing_bottom": 0
           }
