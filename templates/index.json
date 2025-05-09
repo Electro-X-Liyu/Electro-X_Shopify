@@ -151,8 +151,8 @@
         "button_VMU4JD": {
           "type": "button",
           "settings": {
-            "button_label": "Button label",
-            "button_link": "",
+            "button_label": "Shop All",
+            "button_link": "shopify://collections",
             "button_style_secondary": false,
             "button_label_2": "",
             "button_link_2": "",
