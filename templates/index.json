@@ -149,6 +149,23 @@
         "padding_bottom": 52
       }
     },
+    "image_banner_D9MHcV": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/web_____1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "image_with_text_HT6mHr": {
       "type": "image-with-text",
       "blocks": {
@@ -156,7 +173,9 @@
           "type": "heading",
           "settings": {
             "heading": "Natural Alkaline Water",
-            "heading_size": "h3",
+            "heading_size": "h2",
+            "text_color": "#ffffff",
+            "bold_text": false,
             "spacing_top": 0,
             "spacing_bottom": 20
           }
@@ -166,7 +185,9 @@
           "settings": {
             "caption": "The First-Ever Naturally Alkaline Water",
             "text_style": "subtitle",
-            "text_size": "medium",
+            "text_size": "small",
+            "text_color": "#ffffff",
+            "bold_text": false,
             "spacing_top": 0,
             "spacing_bottom": 0
           }
@@ -176,7 +197,9 @@
           "settings": {
             "caption": "Sourced from the mineral-rich voclanic springs of China's Northern Border",
             "text_style": "subtitle",
-            "text_size": "medium",
+            "text_size": "small",
+            "text_color": "#ffffff",
+            "bold_text": false,
             "spacing_top": 0,
             "spacing_bottom": 0
           }
@@ -187,6 +210,8 @@
             "caption": "380mL | 580mL | 1L",
             "text_style": "subtitle",
             "text_size": "small",
+            "text_color": "#ffffff",
+            "bold_text": false,
             "spacing_top": 15,
             "spacing_bottom": 15
           }
@@ -197,6 +222,8 @@
             "caption": "pH level of 8.8 and above",
             "text_style": "subtitle",
             "text_size": "small",
+            "text_color": "#c7c7c7",
+            "bold_text": false,
             "spacing_top": 0,
             "spacing_bottom": 0
           }
@@ -207,6 +234,8 @@
             "caption": "Naturally Alkaline Spring Water",
             "text_style": "subtitle",
             "text_size": "small",
+            "text_color": "#c7c7c7",
+            "bold_text": false,
             "spacing_top": 0,
             "spacing_bottom": 0
           }
@@ -217,6 +246,8 @@
             "caption": "100% Recyclable PET",
             "text_style": "subtitle",
             "text_size": "small",
+            "text_color": "#c7c7c7",
+            "bold_text": false,
             "spacing_top": 0,
             "spacing_bottom": 0
           }
@@ -227,6 +258,8 @@
             "caption": "Approximately 350-700 mg sodium bicarbonate per L",
             "text_style": "subtitle",
             "text_size": "small",
+            "text_color": "#c7c7c7",
+            "bold_text": false,
             "spacing_top": 0,
             "spacing_bottom": 15
           }
@@ -256,6 +289,7 @@
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "image": "shopify://shop_images/4cut.png",
+        "section_width": 1200,
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -278,6 +312,8 @@
           "settings": {
             "heading": "ELECTRO X Sports Drink",
             "heading_size": "h2",
+            "text_color": "rgba(0,0,0,0)",
+            "bold_text": false,
             "spacing_top": 0,
             "spacing_bottom": 20
           }
@@ -287,6 +323,8 @@
           "settings": {
             "subheading": "Premium Hydration, Refined Taste",
             "subheading_size": "h3",
+            "text_color": "rgba(0,0,0,0)",
+            "bold_text": false,
             "spacing_top": 0,
             "spacing_bottom": 15
           }
@@ -296,6 +334,8 @@
           "settings": {
             "text": "<p>Crafted for athletes and fitness enthusiasts, ELECTRO X offers a premium hydration choice with our additive-free sports drink, blended with premium tea leaves and globally sourced juices for a clean balanced taste. Fuel your workout, naturally.</p>",
             "text_style": "body",
+            "text_color": "rgba(0,0,0,0)",
+            "bold_text": false,
             "spacing_top": 0,
             "spacing_bottom": 15
           }
@@ -306,6 +346,8 @@
             "caption": "500mL",
             "text_style": "subtitle",
             "text_size": "small",
+            "text_color": "rgba(0,0,0,0)",
+            "bold_text": false,
             "spacing_top": 0,
             "spacing_bottom": 15
           }
@@ -316,6 +358,8 @@
             "caption": "Flavors: Jasmine Green Grapes | Pineapple Matte | Mixed Berry Flavors",
             "text_style": "subtitle",
             "text_size": "small",
+            "text_color": "rgba(0,0,0,0)",
+            "bold_text": false,
             "spacing_top": 0,
             "spacing_bottom": 0
           }
@@ -326,6 +370,8 @@
             "caption": "Key Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Vitamins",
             "text_style": "subtitle",
             "text_size": "small",
+            "text_color": "rgba(0,0,0,0)",
+            "bold_text": false,
             "spacing_top": 0,
             "spacing_bottom": 15
           }
@@ -353,6 +399,7 @@
       "name": "Enhanced Image with Text",
       "settings": {
         "image": "shopify://shop_images/7cut.png",
+        "section_width": 1200,
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "text_first",
@@ -932,6 +979,7 @@
     "image_banner",
     "pic_border_m7m9TP",
     "rich_text_gUynad",
+    "image_banner_D9MHcV",
     "image_with_text_HT6mHr",
     "image_with_text_88PpK8",
     "image_banner_ErpyBP",
