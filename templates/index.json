@@ -43,7 +43,7 @@
         "heading_dwF6Rh": {
           "type": "heading",
           "settings": {
-            "heading": "All Products",
+            "heading": "Products",
             "heading_size": "h1"
           }
         }
@@ -185,7 +185,6 @@
         "caption_aweAQr",
         "button_GA8WxT"
       ],
-      "disabled": true,
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "image": "shopify://shop_images/3_079288a1-caa8-4e7d-8c88-a15e2b6866f4.jpg",
@@ -194,66 +193,13 @@
         "layout": "image_first",
         "image_behavior": "none",
         "content_layout": "no-overlap",
-        "desktop_content_position": "top",
+        "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
         "section_color_scheme": "scheme-3",
         "color_scheme": "scheme-3",
         "padding_top": 36,
         "padding_bottom": 36
-      }
-    },
-    "product_card_YEAFW8": {
-      "type": "product-card",
-      "blocks": {
-        "title_N48aEe": {
-          "type": "title",
-          "settings": {
-            "text": "Natural Alkaline Water",
-            "color": "#000000",
-            "font_size": 32,
-            "font_weight": "600",
-            "uppercase": false,
-            "italic": false,
-            "line_height": 1.2,
-            "letter_spacing": 0,
-            "text_align": "left",
-            "margin_top": 0,
-            "margin_bottom": 15
-          }
-        },
-        "button_mMBWLw": {
-          "type": "button",
-          "settings": {
-            "text": "了解更多",
-            "link": "",
-            "color": "#000000",
-            "font_size": 16,
-            "font_weight": "500",
-            "uppercase": false,
-            "italic": false,
-            "margin_top": 20,
-            "margin_bottom": 0
-          }
-        }
-      },
-      "block_order": [
-        "title_N48aEe",
-        "button_mMBWLw"
-      ],
-      "name": "Product Card",
-      "settings": {
-        "layout": "left",
-        "image": "shopify://shop_images/4_9593bee4-6ac4-4c8f-9297-9b74c5b4a58e.jpg",
-        "background_color": "#121212",
-        "max_width": 1200,
-        "content_gap": 60,
-        "content_padding": 20,
-        "image_border_radius": 0,
-        "image_min_height": 400,
-        "section_padding_top": 0,
-        "section_padding_bottom": 0,
-        "mobile_content_gap": 30
       }
     },
     "alkaline_water_info_CjJNBr": {
@@ -739,7 +685,6 @@
     "rich_text_UwWdHT",
     "pic_border_m7m9TP",
     "image_with_text_HT6mHr",
-    "product_card_YEAFW8",
     "alkaline_water_info_CjJNBr",
     "product_collection_rYrG8U",
     "product_collection_kM3g7z",
