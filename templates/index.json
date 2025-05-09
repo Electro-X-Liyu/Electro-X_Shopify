@@ -289,7 +289,7 @@
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "image": "shopify://shop_images/4cut.png",
-        "section_width": 1200,
+        "section_width": 2100,
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -397,7 +397,7 @@
       "name": "Enhanced Image with Text",
       "settings": {
         "image": "shopify://shop_images/7cut.png",
-        "section_width": 1200,
+        "section_width": 2100,
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "text_first",
