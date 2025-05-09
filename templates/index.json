@@ -76,7 +76,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-2.png",
-            "link": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
+            "link": "shopify://products/natural-alkaline-water-580ml",
             "alt_text": ""
           }
         },
@@ -84,7 +84,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-3.png",
-            "link": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor",
+            "link": "shopify://products/natural-alkaline-water-1l",
             "alt_text": ""
           }
         },
@@ -92,7 +92,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-4.png",
-            "link": "shopify://products/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
+            "link": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
             "alt_text": ""
           }
         },
@@ -100,7 +100,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-5.png",
-            "link": "shopify://products/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade",
+            "link": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor",
             "alt_text": ""
           }
         },
@@ -116,7 +116,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-7.png",
-            "link": "",
+            "link": "shopify://products/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
             "alt_text": ""
           }
         },
@@ -124,7 +124,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-8.png",
-            "link": "",
+            "link": "shopify://products/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade",
             "alt_text": ""
           }
         }
@@ -143,6 +143,34 @@
         "title": "",
         "desktop_height": 330,
         "mobile_height": 250
+      }
+    },
+    "rich_text_gUynad": {
+      "type": "rich-text",
+      "blocks": {
+        "button_VMU4JD": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "button_VMU4JD"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     },
     "image_with_text_HT6mHr": {
@@ -684,6 +712,7 @@
     "image_banner",
     "rich_text_UwWdHT",
     "pic_border_m7m9TP",
+    "rich_text_gUynad",
     "image_with_text_HT6mHr",
     "alkaline_water_info_CjJNBr",
     "product_collection_rYrG8U",
