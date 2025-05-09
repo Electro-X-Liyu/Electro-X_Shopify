@@ -108,7 +108,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-6.png",
-            "link": "",
+            "link": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor",
             "alt_text": ""
           }
         },
@@ -171,6 +171,23 @@
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
+      }
+    },
+    "image_banner_ErpyBP": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/web_____1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
       }
     },
     "image_with_text_HT6mHr": {
@@ -713,6 +730,7 @@
     "rich_text_UwWdHT",
     "pic_border_m7m9TP",
     "rich_text_gUynad",
+    "image_banner_ErpyBP",
     "image_with_text_HT6mHr",
     "alkaline_water_info_CjJNBr",
     "product_collection_rYrG8U",
