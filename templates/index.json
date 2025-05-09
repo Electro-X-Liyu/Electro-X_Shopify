@@ -376,20 +376,69 @@
         "padding_bottom": 36
       }
     },
-    "image_banner_R9mHmC": {
-      "type": "image-banner",
+    "rich_text_VpEQaY": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_meqA8e": {
+          "type": "heading",
+          "settings": {
+            "heading": "Sports Sponsors",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_meqA8e"
+      ],
+      "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/1.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
         "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "multicolumn_848RDK": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_wxxtxH": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9cut.png",
+            "title": "标题",
+            "text": "<p>内容描述</p>"
+          }
+        },
+        "column_Cih4jE": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/10cut.png",
+            "title": "标题",
+            "text": "<p>内容描述</p>"
+          }
+        },
+        "column_xiJtcx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/11cut.png",
+            "title": "标题",
+            "text": "<p>内容描述</p>"
+          }
+        }
+      },
+      "block_order": [
+        "column_wxxtxH",
+        "column_Cih4jE",
+        "column_xiJtcx"
+      ],
+      "name": "可点击图片多列",
+      "settings": {
+        "title": "多列布局",
+        "columns_desktop": 3,
+        "image_ratio": "adapt",
+        "swipe_on_mobile": true
       }
     },
     "featured_blog_hcNHKd": {
@@ -397,7 +446,7 @@
       "settings": {
         "blog": "sports-sponsorship-1",
         "post_limit": 10,
-        "heading": "Sports Sponsors",
+        "heading": "",
         "heading_size": "h1",
         "columns_desktop": 3,
         "show_view_all": true,
@@ -473,6 +522,22 @@
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 20
+      }
+    },
+    "image_banner_R9mHmC": {
+      "type": "image-banner",
+      "settings": {
+        "image": "shopify://shop_images/1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
       }
     },
     "community_ambassador_jNH89B": {
@@ -728,10 +793,12 @@
     "alkaline_water_info_CjJNBr",
     "product_collection_rYrG8U",
     "product_collection_kM3g7z",
-    "image_banner_R9mHmC",
+    "rich_text_VpEQaY",
+    "multicolumn_848RDK",
     "featured_blog_hcNHKd",
     "image_banner_AYjrAd",
     "rich_text_neCnki",
+    "image_banner_R9mHmC",
     "community_ambassador_jNH89B",
     "image_banner_rALkGg"
   ]
