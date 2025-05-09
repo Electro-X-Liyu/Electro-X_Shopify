@@ -362,64 +362,6 @@
         "show_text_below": true
       }
     },
-    "multirow_HgExwa": {
-      "type": "multirow",
-      "blocks": {
-        "row_xLJ4Dr": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/7cut.png",
-            "caption": "Caption",
-            "heading": "Row",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "button_label": "Button label",
-            "button_link": ""
-          }
-        },
-        "row_rAbW6g": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/4cut.png",
-            "caption": "Caption",
-            "heading": "Row",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "button_label": "Button label",
-            "button_link": ""
-          }
-        },
-        "row_PWayCN": {
-          "type": "row",
-          "settings": {
-            "caption": "Caption",
-            "heading": "Row",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "button_label": "Button label",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "row_xLJ4Dr",
-        "row_rAbW6g",
-        "row_PWayCN"
-      ],
-      "name": "t:sections.multirow.presets.name",
-      "settings": {
-        "image_height": "adapt",
-        "desktop_image_width": "medium",
-        "image_layout": "alternate-left",
-        "heading_size": "h1",
-        "text_style": "body",
-        "button_style": "secondary",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "left",
-        "section_color_scheme": "scheme-3",
-        "row_color_scheme": "scheme-3",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "alkaline_water_info_CjJNBr": {
       "type": "Alkaline-Water-Info",
       "blocks": {
@@ -971,7 +913,6 @@
     "image_with_text_HT6mHr",
     "image_with_text_88PpK8",
     "image_banner_ErpyBP",
-    "multirow_HgExwa",
     "alkaline_water_info_CjJNBr",
     "product_collection_rYrG8U",
     "product_collection_kM3g7z",
