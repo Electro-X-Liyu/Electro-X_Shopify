@@ -166,6 +166,52 @@
         "show_text_below": true
       }
     },
+    "multirow_jAkT6d": {
+      "type": "multirow",
+      "blocks": {
+        "row_zEUbqM": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/4cut.png",
+            "caption": "Caption",
+            "heading": "Row",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Button label",
+            "button_link": ""
+          }
+        },
+        "row_HhWTwV": {
+          "type": "row",
+          "settings": {
+            "caption": "Caption",
+            "heading": "Row",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_zEUbqM",
+        "row_HhWTwV"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-3",
+        "row_color_scheme": "scheme-3",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "image_with_text_HT6mHr": {
       "type": "image-with-text",
       "blocks": {
@@ -980,6 +1026,7 @@
     "pic_border_m7m9TP",
     "rich_text_gUynad",
     "image_banner_D9MHcV",
+    "multirow_jAkT6d",
     "image_with_text_HT6mHr",
     "image_with_text_88PpK8",
     "image_banner_ErpyBP",
