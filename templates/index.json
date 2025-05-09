@@ -37,6 +37,114 @@
         "show_text_below": false
       }
     },
+    "rich_text_UwWdHT": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_dwF6Rh": {
+          "type": "heading",
+          "settings": {
+            "heading": "All Products",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_dwF6Rh"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "pic_border_m7m9TP": {
+      "type": "PicBorder",
+      "blocks": {
+        "image_block_FxkFdq": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-1.png",
+            "link": "shopify://products/natural-alkaline-water",
+            "alt_text": ""
+          }
+        },
+        "image_block_ckz3La": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-2.png",
+            "link": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
+            "alt_text": ""
+          }
+        },
+        "image_block_mxWmxj": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-3.png",
+            "link": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor",
+            "alt_text": ""
+          }
+        },
+        "image_block_tfGeLi": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-4.png",
+            "link": "shopify://products/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
+            "alt_text": ""
+          }
+        },
+        "image_block_gRrqgC": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-5.png",
+            "link": "shopify://products/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade",
+            "alt_text": ""
+          }
+        },
+        "image_block_atKhtM": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-6.png",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_zTNzTA": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-7.png",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_wKn4UQ": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-8.png",
+            "link": "",
+            "alt_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_block_FxkFdq",
+        "image_block_ckz3La",
+        "image_block_mxWmxj",
+        "image_block_tfGeLi",
+        "image_block_gRrqgC",
+        "image_block_atKhtM",
+        "image_block_zTNzTA",
+        "image_block_wKn4UQ"
+      ],
+      "settings": {
+        "title": "",
+        "desktop_height": 400,
+        "mobile_height": 250
+      }
+    },
     "image_with_text_HT6mHr": {
       "type": "image-with-text",
       "blocks": {
@@ -102,7 +210,14 @@
           "type": "title",
           "settings": {
             "text": "Natural Alkaline Water",
+            "color": "#000000",
             "font_size": 32,
+            "font_weight": "600",
+            "uppercase": false,
+            "italic": false,
+            "line_height": 1.2,
+            "letter_spacing": 0,
+            "text_align": "left",
             "margin_top": 0,
             "margin_bottom": 15
           }
@@ -111,7 +226,14 @@
           "type": "button",
           "settings": {
             "text": "了解更多",
-            "link": ""
+            "link": "",
+            "color": "#000000",
+            "font_size": 16,
+            "font_weight": "500",
+            "uppercase": false,
+            "italic": false,
+            "margin_top": 20,
+            "margin_bottom": 0
           }
         }
       },
@@ -131,67 +253,7 @@
         "image_min_height": 400,
         "section_padding_top": 0,
         "section_padding_bottom": 0,
-        "mobile_content_gap": 30,
-        "mobile_section_padding_top": 40,
-        "mobile_section_padding_bottom": 40
-      }
-    },
-    "pic_border_m7m9TP": {
-      "type": "PicBorder",
-      "blocks": {
-        "image_block_FxkFdq": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/banner-1.png",
-            "link": "shopify://products/natural-alkaline-water",
-            "alt_text": ""
-          }
-        },
-        "image_block_ckz3La": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/banner-2.png",
-            "link": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
-            "alt_text": ""
-          }
-        },
-        "image_block_mxWmxj": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/banner-3.png",
-            "link": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor",
-            "alt_text": ""
-          }
-        },
-        "image_block_tfGeLi": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/banner-4.png",
-            "link": "shopify://products/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
-            "alt_text": ""
-          }
-        },
-        "image_block_gRrqgC": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/banner-5.png",
-            "link": "shopify://products/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade",
-            "alt_text": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_block_FxkFdq",
-        "image_block_ckz3La",
-        "image_block_mxWmxj",
-        "image_block_tfGeLi",
-        "image_block_gRrqgC"
-      ],
-      "disabled": true,
-      "settings": {
-        "title": "",
-        "desktop_height": 400,
-        "mobile_height": 250
+        "mobile_content_gap": 30
       }
     },
     "alkaline_water_info_CjJNBr": {
@@ -674,9 +736,10 @@
   },
   "order": [
     "image_banner",
+    "rich_text_UwWdHT",
+    "pic_border_m7m9TP",
     "image_with_text_HT6mHr",
     "product_card_YEAFW8",
-    "pic_border_m7m9TP",
     "alkaline_water_info_CjJNBr",
     "product_collection_rYrG8U",
     "product_collection_kM3g7z",
