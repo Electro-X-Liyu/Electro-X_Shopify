@@ -310,6 +310,26 @@
             "spacing_bottom": 15
           }
         },
+        "caption_cF6a9F": {
+          "type": "caption",
+          "settings": {
+            "caption": "Flavors: Jasmine Green Grapes | Pineapple Matte | Mixed Berry Flavors",
+            "text_style": "subtitle",
+            "text_size": "small",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "caption_Urdine": {
+          "type": "caption",
+          "settings": {
+            "caption": "Key Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Vitamins",
+            "text_style": "subtitle",
+            "text_size": "small",
+            "spacing_top": 0,
+            "spacing_bottom": 15
+          }
+        },
         "button_dmNHG7": {
           "type": "button",
           "settings": {
@@ -326,6 +346,8 @@
         "subheading_xz3Qen",
         "text_TLqMRG",
         "caption_jJxTbP",
+        "caption_cF6a9F",
+        "caption_Urdine",
         "button_dmNHG7"
       ],
       "name": "Enhanced Image with Text",
