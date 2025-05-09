@@ -388,7 +388,7 @@
       ],
       "name": "t:sections.multirow.presets.name",
       "settings": {
-        "image_height": "medium",
+        "image_height": "adapt",
         "desktop_image_width": "medium",
         "image_layout": "alternate-left",
         "heading_size": "h1",
@@ -970,8 +970,8 @@
     "rich_text_gUynad",
     "image_with_text_HT6mHr",
     "image_with_text_88PpK8",
-    "multirow_HgExwa",
     "image_banner_ErpyBP",
+    "multirow_HgExwa",
     "alkaline_water_info_CjJNBr",
     "product_collection_rYrG8U",
     "product_collection_kM3g7z",
