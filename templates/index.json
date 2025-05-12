@@ -421,86 +421,143 @@
         "padding_bottom": 0
       }
     },
-    "image_banner_AYjrAd": {
-      "type": "image-banner",
+    "multicolumn_3riQ79": {
+      "type": "multicolumn",
       "blocks": {
-        "heading_FgW6xC": {
-          "type": "heading",
+        "column_PHb9XW": {
+          "type": "column",
           "settings": {
-            "heading": "Community",
-            "heading_size": "h1"
+            "image": "shopify://shop_images/9cut.png",
+            "title": "2024/2025 HYROX CHINA",
+            "text": "",
+            "link_label": "Learn More",
+            "link": "shopify://blogs/sports-sponsorship-1/hyrox-beijing-shanghai"
           }
         },
-        "text_wmp3KA": {
-          "type": "text",
+        "column_X69x7D": {
+          "type": "column",
           "settings": {
-            "text": "ELECTRO X has built a strong community culture",
-            "text_style": "body"
+            "image": "shopify://shop_images/10cut.png",
+            "title": "2025 Ironman Shanghai",
+            "text": "",
+            "link_label": "Learn More",
+            "link": "shopify://blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming"
+          }
+        },
+        "column_8FmJEG": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/11cut.png",
+            "title": "NINGBO OPEN WTA 500",
+            "text": "",
+            "link_label": "Learn More",
+            "link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open"
           }
         }
       },
       "block_order": [
-        "heading_FgW6xC",
-        "text_wmp3KA"
+        "column_PHb9XW",
+        "column_X69x7D",
+        "column_8FmJEG"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "shopify://blogs/sports-sponsorship-1",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_banner_R9mHmC": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_9ypTAh": {
+          "type": "heading",
+          "settings": {
+            "heading": "COMMUNITY",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_9ypTAh"
       ],
       "settings": {
-        "image": "shopify://shop_images/KV_demo__1.jpg",
-        "image_overlay_opacity": 50,
+        "image": "shopify://shop_images/1.jpg",
+        "image_overlay_opacity": 30,
         "image_height": "medium",
-        "image_behavior": "none",
+        "image_behavior": "fixed",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "scheme-3",
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
-        "show_text_below": false
+        "show_text_below": true
       }
     },
-    "rich_text_neCnki": {
-      "type": "rich-text",
+    "multicolumn_mBC8fB": {
+      "type": "multicolumn",
       "blocks": {
-        "heading_i8z9Pe": {
-          "type": "heading",
+        "column_iWEKRt": {
+          "type": "column",
           "settings": {
-            "heading": "Community Ambassador",
-            "heading_size": "h1"
+            "title": "Column",
+            "text": "",
+            "link_label": "Learn More",
+            "link": ""
           }
         },
-        "text_K7wnnM": {
-          "type": "text",
+        "column_8yqwzE": {
+          "type": "column",
           "settings": {
-            "text": "<p>ELECTRO X has built partnership with community leaders across diverse sportsTogether with our community leaders, we are redefeining the hydration</p>"
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_nrkHEP": {
+          "type": "column",
+          "settings": {
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "heading_i8z9Pe",
-        "text_K7wnnM"
+        "column_iWEKRt",
+        "column_8yqwzE",
+        "column_nrkHEP"
       ],
+      "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 20
-      }
-    },
-    "image_banner_R9mHmC": {
-      "type": "image-banner",
-      "settings": {
-        "image": "shopify://shop_images/1.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
+        "title": "Multicolumn",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "Button label",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
         "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "community_ambassador_jNH89B": {
@@ -701,6 +758,7 @@
         "ambassador_3hLXA7",
         "ambassador_6CDbVH"
       ],
+      "disabled": true,
       "settings": {
         "title": "",
         "heading_size": "h0",
@@ -755,9 +813,9 @@
     "image_with_text_HT6mHr",
     "image_with_text_88PpK8",
     "rich_text_VpEQaY",
-    "image_banner_AYjrAd",
-    "rich_text_neCnki",
+    "multicolumn_3riQ79",
     "image_banner_R9mHmC",
+    "multicolumn_mBC8fB",
     "community_ambassador_jNH89B",
     "image_banner_rALkGg"
   ]
