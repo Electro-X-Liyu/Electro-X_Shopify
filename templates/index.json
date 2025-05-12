@@ -421,23 +421,6 @@
         "padding_bottom": 0
       }
     },
-    "featured_blog_hcNHKd": {
-      "type": "featured-blog",
-      "settings": {
-        "blog": "sports-sponsorship-1",
-        "post_limit": 3,
-        "heading": "",
-        "heading_size": "h1",
-        "columns_desktop": 3,
-        "show_view_all": true,
-        "show_image": true,
-        "show_date": false,
-        "show_author": false,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "image_banner_AYjrAd": {
       "type": "image-banner",
       "blocks": {
@@ -772,7 +755,6 @@
     "image_with_text_HT6mHr",
     "image_with_text_88PpK8",
     "rich_text_VpEQaY",
-    "featured_blog_hcNHKd",
     "image_banner_AYjrAd",
     "rich_text_neCnki",
     "image_banner_R9mHmC",
