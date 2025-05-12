@@ -453,12 +453,34 @@
             "link_label": "Learn More",
             "link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open"
           }
+        },
+        "column_HTXJVe": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/17cut.png",
+            "title": "2024 Beijing Half Marathron",
+            "text": "",
+            "link_label": "Learn More",
+            "link": "shopify://blogs/sports-sponsorship-1/2024-beijing-half-marathron"
+          }
+        },
+        "column_6dGKhf": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/16cut.png",
+            "title": "2024 Desafio Beijin",
+            "text": "",
+            "link_label": "Learn More",
+            "link": "shopify://blogs/sports-sponsorship-1/2024-desafio-beijing"
+          }
         }
       },
       "block_order": [
         "column_PHb9XW",
         "column_X69x7D",
-        "column_8FmJEG"
+        "column_8FmJEG",
+        "column_HTXJVe",
+        "column_6dGKhf"
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
@@ -512,7 +534,8 @@
         "column_iWEKRt": {
           "type": "column",
           "settings": {
-            "title": "Column",
+            "image": "shopify://shop_images/7_4x_9a318ac9-9b17-4e33-a505-aa2ce2ac8fc2.png",
+            "title": "Community Ambassadors",
             "text": "",
             "link_label": "Learn More",
             "link": ""
@@ -521,18 +544,20 @@
         "column_8yqwzE": {
           "type": "column",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
+            "image": "shopify://shop_images/6_4x_376bf75d-c610-421d-9aef-412d29ff4639.png",
+            "title": "U.C.P - Urban Challenge Project",
+            "text": "",
+            "link_label": "Learn More",
             "link": ""
           }
         },
         "column_nrkHEP": {
           "type": "column",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
+            "image": "shopify://shop_images/5_4x_809db5c1-7915-4239-b8bf-d110cba0d540.png",
+            "title": "Elite Athletes",
+            "text": "",
+            "link_label": "Learn More",
             "link": ""
           }
         }
@@ -548,7 +573,7 @@
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
-        "button_label": "Button label",
+        "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
         "column_alignment": "left",
@@ -770,31 +795,11 @@
     },
     "image_banner_rALkGg": {
       "type": "image-banner",
-      "blocks": {
-        "heading_6d7cBD": {
-          "type": "heading",
-          "settings": {
-            "heading": "About Us",
-            "heading_size": "h1"
-          }
-        },
-        "text_qPWrPW": {
-          "type": "text",
-          "settings": {
-            "text": "Established in 2021, ELECTRO X is a premium sports beverage brand dedicated to delivering functional hydration solutions. Our product portfolio includes. Natural Alkaline Water,Electrolyte & BCAA Drinks, andElectrolyte Liquid Concentrates, designed to meet the needs of athletes, fitness enthusiasts, and health-conscious individuals.",
-            "text_style": "body"
-          }
-        }
-      },
-      "block_order": [
-        "heading_6d7cBD",
-        "text_qPWrPW"
-      ],
       "settings": {
-        "image": "shopify://shop_images/3.jpg",
+        "image": "shopify://shop_images/14cut.png",
         "image_overlay_opacity": 20,
-        "image_height": "medium",
-        "image_behavior": "ambient",
+        "image_height": "small",
+        "image_behavior": "none",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
