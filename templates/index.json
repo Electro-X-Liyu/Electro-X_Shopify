@@ -135,6 +135,7 @@
     },
     "image_banner_D9MHcV": {
       "type": "image-banner",
+      "disabled": true,
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "image": "shopify://shop_images/web_____1.jpg",
@@ -396,141 +397,6 @@
         "padding_bottom": 0
       }
     },
-    "alkaline_water_info_CjJNBr": {
-      "type": "Alkaline-Water-Info",
-      "blocks": {
-        "dual_image_jnJBUL": {
-          "type": "dual_image",
-          "settings": {
-            "image_1": "shopify://shop_images/3a2e0a835929a74e3f7881023c653e1b.jpg",
-            "image_2": "shopify://shop_images/3_079288a1-caa8-4e7d-8c88-a15e2b6866f4.jpg",
-            "card_link": "shopify://products/natural-alkaline-water",
-            "alt_text": ""
-          }
-        },
-        "title_PC6fMe": {
-          "type": "title",
-          "settings": {
-            "heading_size": "h1"
-          }
-        },
-        "text_4jdwUf": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "{{ section.settings.product.vendor }}",
-            "text_style": "body"
-          }
-        },
-        "price_GmKtfH": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker_inyGW9": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button"
-          }
-        },
-        "rating_Eb9DYE": {
-          "type": "rating",
-          "settings": {}
-        },
-        "quantity_selector_AAXmJM": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons_nPB4NP": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": false,
-            "show_quick_add": false
-          }
-        },
-        "share_xDKjkR": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
-        }
-      },
-      "block_order": [
-        "dual_image_jnJBUL",
-        "title_PC6fMe",
-        "text_4jdwUf",
-        "price_GmKtfH",
-        "variant_picker_inyGW9",
-        "rating_Eb9DYE",
-        "quantity_selector_AAXmJM",
-        "buy_buttons_nPB4NP",
-        "share_xDKjkR"
-      ],
-      "disabled": true,
-      "settings": {
-        "product": "natural-alkaline-water",
-        "desktop_image_height": 500,
-        "mobile_image_height": 350,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "product_collection_rYrG8U": {
-      "type": "Product-Collection",
-      "disabled": true,
-      "settings": {
-        "collection": "electrolyte-sports-drink",
-        "products_to_show": 2,
-        "title": "Electrolyte Baverages",
-        "heading_size": "h1",
-        "description": "<p>In the Electrolyte Beverage segment, ELECTRO X's PLUS series have already established a strong presence and consolidated its position as a premium sports beverage brand within the cycling, CrossFit, and running communities.</p>",
-        "show_description": false,
-        "description_style": "body",
-        "card_size": "xlarge",
-        "image_shape": "arch",
-        "show_secondary_image": true,
-        "show_vendor": true,
-        "show_rating": true,
-        "quick_add": "standard",
-        "columns_desktop": 2,
-        "enable_desktop_slider": false,
-        "full_width": true,
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "show_view_all": true,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "product_collection_kM3g7z": {
-      "type": "Product-Collection",
-      "disabled": true,
-      "settings": {
-        "collection": "electrolyte-liquid-concentrate",
-        "products_to_show": 2,
-        "title": "",
-        "heading_size": "h1",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "card_size": "xlarge",
-        "image_shape": "arch",
-        "show_secondary_image": true,
-        "show_vendor": true,
-        "show_rating": true,
-        "quick_add": "standard",
-        "columns_desktop": 2,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "show_view_all": true,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "rich_text_VpEQaY": {
       "type": "rich-text",
       "blocks": {
@@ -555,53 +421,11 @@
         "padding_bottom": 0
       }
     },
-    "multicolumn_848RDK": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_wxxtxH": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/9cut.png",
-            "title": "标题",
-            "text": "<p>内容描述</p>"
-          }
-        },
-        "column_Cih4jE": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/10cut.png",
-            "title": "标题",
-            "text": "<p>内容描述</p>"
-          }
-        },
-        "column_xiJtcx": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/11cut.png",
-            "title": "标题",
-            "text": "<p>内容描述</p>"
-          }
-        }
-      },
-      "block_order": [
-        "column_wxxtxH",
-        "column_Cih4jE",
-        "column_xiJtcx"
-      ],
-      "name": "可点击图片多列",
-      "settings": {
-        "title": "多列布局",
-        "columns_desktop": 3,
-        "image_ratio": "square",
-        "swipe_on_mobile": true
-      }
-    },
     "featured_blog_hcNHKd": {
       "type": "featured-blog",
-      "disabled": true,
       "settings": {
         "blog": "sports-sponsorship-1",
-        "post_limit": 10,
+        "post_limit": 3,
         "heading": "",
         "heading_size": "h1",
         "columns_desktop": 3,
@@ -611,7 +435,7 @@
         "show_author": false,
         "color_scheme": "",
         "padding_top": 36,
-        "padding_bottom": 0
+        "padding_bottom": 36
       }
     },
     "image_banner_AYjrAd": {
@@ -947,11 +771,7 @@
     "image_banner_D9MHcV",
     "image_with_text_HT6mHr",
     "image_with_text_88PpK8",
-    "alkaline_water_info_CjJNBr",
-    "product_collection_rYrG8U",
-    "product_collection_kM3g7z",
     "rich_text_VpEQaY",
-    "multicolumn_848RDK",
     "featured_blog_hcNHKd",
     "image_banner_AYjrAd",
     "rich_text_neCnki",
