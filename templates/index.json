@@ -26,7 +26,7 @@
       "settings": {
         "image": "shopify://shop_images/kv-2.jpg",
         "image_overlay_opacity": 0,
-        "image_height": "adapt",
+        "image_height": "large",
         "image_behavior": "zoom-in",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
@@ -517,15 +517,15 @@
       "settings": {
         "image": "shopify://shop_images/1.jpg",
         "image_overlay_opacity": 30,
-        "image_height": "medium",
+        "image_height": "large",
         "image_behavior": "fixed",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "scheme-3",
-        "stack_images_on_mobile": true,
+        "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
-        "show_text_below": true
+        "show_text_below": false
       }
     },
     "multicolumn_mBC8fB": {
@@ -579,8 +579,8 @@
         "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 36
       }
