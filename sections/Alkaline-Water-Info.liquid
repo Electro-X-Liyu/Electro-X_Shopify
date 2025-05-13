@@ -1,32 +1,315 @@
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+{{ 'section-footer-product.css' | asset_url | stylesheet_tag }}
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .footer {
+    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .footer {
+      margin-top: {{ section.settings.margin_top }}px;
+    }
+
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* Custom column styles */
+  .footer__custom-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .footer__custom-column {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .footer__custom-column--1 {
+    flex: {{ section.settings.column_1_width }}%;
+  }
+
+  .footer__custom-column--2 {
+    flex: {{ section.settings.column_2_width }}%;
+  }
+
+  .footer__custom-column--3 {
+    flex: {{ section.settings.column_3_width }}%;
+  }
+
+  .footer__custom-heading {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+  }
+
+  .footer__custom-text {
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .footer__custom-link {
+    display: block;
+    margin-bottom: 8px;
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .footer__custom-link:hover {
+    opacity: 0.8;
+  }
+{%- endstyle -%}
+
+<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  {%- liquid
+    assign has_social_icons = true
+    if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+      assign has_social_icons = false
+    endif
+  -%}
+
+  <div class="footer__content-top page-width">
+    <!-- Custom Columns Section -->
+    <div class="footer__custom-columns">
+      <!-- Column 1 -->
+      <div class="footer__custom-column footer__custom-column--1">
+        {%- if section.settings.column_1_heading != blank -%}
+          <h3 class="footer__custom-heading">{{ section.settings.column_1_heading }}</h3>
+        {%- endif -%}
+        
+        {%- if section.settings.column_1_text != blank -%}
+          <div class="footer__custom-text">{{ section.settings.column_1_text }}</div>
+        {%- endif -%}
+        
+        {%- if section.settings.column_1_link_1_text != blank -%}
+          <a href="{{ section.settings.column_1_link_1_url }}" class="footer__custom-link">
+            {{ section.settings.column_1_link_1_text }}
+          </a>
+        {%- endif -%}
+        
+        {%- if section.settings.column_1_link_2_text != blank -%}
+          <a href="{{ section.settings.column_1_link_2_url }}" class="footer__custom-link">
+            {{ section.settings.column_1_link_2_text }}
+          </a>
+        {%- endif -%}
+      </div>
+      
+      <!-- Column 2 -->
+      <div class="footer__custom-column footer__custom-column--2">
+        {%- if section.settings.column_2_heading != blank -%}
+          <h3 class="footer__custom-heading">{{ section.settings.column_2_heading }}</h3>
+        {%- endif -%}
+        
+        {%- if section.settings.column_2_text != blank -%}
+          <div class="footer__custom-text">{{ section.settings.column_2_text }}</div>
+        {%- endif -%}
+        
+        {%- if section.settings.column_2_link_1_text != blank -%}
+          <a href="{{ section.settings.column_2_link_1_url }}" class="footer__custom-link">
+            {{ section.settings.column_2_link_1_text }}
+          </a>
+        {%- endif -%}
+        
+        {%- if section.settings.column_2_link_2_text != blank -%}
+          <a href="{{ section.settings.column_2_link_2_url }}" class="footer__custom-link">
+            {{ section.settings.column_2_link_2_text }}
+          </a>
+        {%- endif -%}
+      </div>
+      
+      <!-- Column 3 -->
+      <div class="footer__custom-column footer__custom-column--3">
+        {%- if section.settings.column_3_heading != blank -%}
+          <h3 class="footer__custom-heading">{{ section.settings.column_3_heading }}</h3>
+        {%- endif -%}
+        
+        {%- if section.settings.column_3_text != blank -%}
+          <div class="footer__custom-text">{{ section.settings.column_3_text }}</div>
+        {%- endif -%}
+        
+        {%- if section.settings.column_3_link_1_text != blank -%}
+          <a href="{{ section.settings.column_3_link_1_url }}" class="footer__custom-link">
+            {{ section.settings.column_3_link_1_text }}
+          </a>
+        {%- endif -%}
+        
+        {%- if section.settings.column_3_link_2_text != blank -%}
+          <a href="{{ section.settings.column_3_link_2_url }}" class="footer__custom-link">
+            {{ section.settings.column_3_link_2_text }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- Newsletter Section (Retained from original) -->
+    <div class="footer-block--newsletter">
+      {%- if section.settings.newsletter_enable -%}
+        <div class="footer-block__newsletter">
+          {%- if section.settings.newsletter_heading != blank -%}
+            <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
+          {%- endif -%}
+          {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="newsletter-form__field-wrapper">
+              <div class="field">
+                <input
+                  id="NewsletterForm--{{ section.id }}"
+                  type="email"
+                  name="contact[email]"
+                  class="field__input"
+                  value="{{ form.email }}"
+                  aria-required="true"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  autocomplete="email"
+                  {% if form.errors %}
+                    autofocus
+                    aria-invalid="true"
+                    aria-describedby="ContactFooter-error"
+                  {% elsif form.posted_successfully? %}
+                    aria-describedby="ContactFooter-success"
+                  {% endif %}
+                  placeholder="{{ 'newsletter.label' | t }}"
+                  required
+                >
+                <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                  {{ 'newsletter.label' | t }}
+                </label>
+                <button
+                  type="submit"
+                  class="newsletter-form__button field__button"
+                  name="commit"
+                  id="Subscribe"
+                  aria-label="{{ 'newsletter.button_label' | t }}"
+                >
+                  <span class="svg-wrapper">
+                    {{- 'icon-arrow.svg' | inline_asset_content -}}
+                  </span>
+                </button>
+              </div>
+              {%- if form.errors -%}
+                <small class="newsletter-form__message form__message" id="ContactFooter-error">
+                  <span class="svg-wrapper">
+                    {{- 'icon-error.svg' | inline_asset_content -}}
+                  </span>
+                  {{- form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email -}}
+                </small>
+              {%- endif -%}
+            </div>
+            {%- if form.posted_successfully? -%}
+              <h3
+                class="newsletter-form__message newsletter-form__message--success form__message"
+                id="ContactFooter-success"
+                tabindex="-1"
+                autofocus
+              >
+                <span class="svg-wrapper">
+                  {{- 'icon-success.svg' | inline_asset_content -}}
+                </span>
+                {{- 'newsletter.success' | t }}
+              </h3>
+            {%- endif -%}
+          {%- endform -%}
+        </div>
+      {%- endif -%}
+
+      {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
+        <div class="footer__follow-on-shop">
+          {{ shop | login_button: action: 'follow' }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_social and has_social_icons -%}
+        {%- render 'social-icons', class: 'footer__list-social' -%}
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="footer__content-bottom">
+    <div class="footer__content-bottom-wrapper page-width">
+      <div class="footer__column footer__localization isolate">
+        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+          <localization-form>
+            {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                {%- render 'country-localization', localPosition: 'FooterCountry' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- endif -%}
+
+        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+          <localization-form>
+            {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="caption-large text-body" id="FooterLanguageLabel">
+                  {{ 'localization.language_label' | t }}
+                </h2>
+                {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- endif -%}
+      </div>
+      <div class="footer__column footer__column--info">
+        {%- if section.settings.payment_enable -%}
+          <div class="footer__payment">
+            <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+            <ul class="list list-payment" role="list">
+              {%- for type in shop.enabled_payment_types -%}
+                <li class="list-payment__item">
+                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
+      <div class="footer__copyright caption">
+        <small class="copyright__content"
+          >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
+        </small>
+        <small class="copyright__content">{{ powered_by_link }}</small>
+        {%- if section.settings.show_policy -%}
+          <ul class="policies list-unstyled">
+            {%- for policy in shop.policies -%}
+              {%- if policy != blank -%}
+                <li>
+                  <small class="copyright__content"
+                    ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small
+                  >
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
 {% schema %}
 {
-  "name": "Alkaline Water Info",
-  "tag": "section",
-  "class": "section",
+  "name": "Footer Product",
   "settings": [
-    {
-      "type": "product",
-      "id": "product",
-      "label": "Featured product"
-    },
-    {
-      "type": "range",
-      "id": "desktop_image_height",
-      "label": "Desktop image height (px)",
-      "min": 300,
-      "max": 800,
-      "step": 10,
-      "default": 500
-    },
-    {
-      "type": "range",
-      "id": "mobile_image_height",
-      "label": "Mobile image height (px)",
-      "min": 200,
-      "max": 600,
-      "step": 10,
-      "default": 350
-    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
@@ -35,7 +318,208 @@
     },
     {
       "type": "header",
-      "content": "Section padding"
+      "content": "Custom Columns"
+    },
+    {
+      "type": "range",
+      "id": "column_1_width",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Column 1 width",
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "column_1_heading",
+      "label": "Column 1 heading",
+      "default": "Column 1"
+    },
+    {
+      "type": "richtext",
+      "id": "column_1_text",
+      "label": "Column 1 text"
+    },
+    {
+      "type": "text",
+      "id": "column_1_link_1_text",
+      "label": "Column 1 link 1 text"
+    },
+    {
+      "type": "url",
+      "id": "column_1_link_1_url",
+      "label": "Column 1 link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "column_1_link_2_text",
+      "label": "Column 1 link 2 text"
+    },
+    {
+      "type": "url",
+      "id": "column_1_link_2_url",
+      "label": "Column 1 link 2 URL"
+    },
+    {
+      "type": "range",
+      "id": "column_2_width",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Column 2 width",
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "column_2_heading",
+      "label": "Column 2 heading",
+      "default": "Column 2"
+    },
+    {
+      "type": "richtext",
+      "id": "column_2_text",
+      "label": "Column 2 text"
+    },
+    {
+      "type": "text",
+      "id": "column_2_link_1_text",
+      "label": "Column 2 link 1 text"
+    },
+    {
+      "type": "url",
+      "id": "column_2_link_1_url",
+      "label": "Column 2 link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "column_2_link_2_text",
+      "label": "Column 2 link 2 text"
+    },
+    {
+      "type": "url",
+      "id": "column_2_link_2_url",
+      "label": "Column 2 link 2 URL"
+    },
+    {
+      "type": "range",
+      "id": "column_3_width",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Column 3 width",
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "column_3_heading",
+      "label": "Column 3 heading",
+      "default": "Column 3"
+    },
+    {
+      "type": "richtext",
+      "id": "column_3_text",
+      "label": "Column 3 text"
+    },
+    {
+      "type": "text",
+      "id": "column_3_link_1_text",
+      "label": "Column 3 link 1 text"
+    },
+    {
+      "type": "url",
+      "id": "column_3_link_1_url",
+      "label": "Column 3 link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "column_3_link_2_text",
+      "label": "Column 3 link 2 text"
+    },
+    {
+      "type": "url",
+      "id": "column_3_link_2_url",
+      "label": "Column 3 link 2 URL"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "default": true,
+      "label": "Enable newsletter"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "newsletter_heading",
+      "default": "Subscribe to our emails",
+      "label": "Newsletter heading"
+    },
+    {
+      "type": "header",
+      "content": "Social media"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_follow_on_shop",
+      "default": true,
+      "label": "Enable follow on shop"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": true,
+      "label": "Show social icons"
+    },
+    {
+      "type": "header",
+      "content": "Language/Country selector"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": true,
+      "label": "Enable country selector"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": true,
+      "label": "Enable language selector"
+    },
+    {
+      "type": "header",
+      "content": "Payment methods"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": true,
+      "label": "Show payment methods"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy",
+      "default": true,
+      "label": "Show policy links"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin top",
+      "default": 0
     },
     {
       "type": "range",
@@ -44,7 +528,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
+      "label": "Padding top",
       "default": 36
     },
     {
@@ -54,662 +538,9 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "Padding bottom",
       "default": 36
-    }
-  ],
-  "blocks": [
-    {
-      "type": "dual_image",
-      "name": "Dual Image Card",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image_1",
-          "label": "Default image"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_2",
-          "label": "Hover image"
-        },
-        {
-          "type": "url",
-          "id": "card_link",
-          "label": "Card link"
-        },
-        {
-          "type": "text",
-          "id": "alt_text",
-          "label": "Alt text",
-          "info": "For SEO accessibility"
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "t:sections.featured-product.blocks.text.name",
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "text",
-          "default": "Share information about your brand with your customers.",
-          "label": "t:sections.featured-product.blocks.text.settings.text.label"
-        },
-        {
-          "type": "select",
-          "id": "text_style",
-          "options": [
-            {
-              "value": "body",
-              "label": "t:sections.featured-product.blocks.text.settings.text_style.options__1.label"
-            },
-            {
-              "value": "subtitle",
-              "label": "t:sections.featured-product.blocks.text.settings.text_style.options__2.label"
-            },
-            {
-              "value": "uppercase",
-              "label": "t:sections.featured-product.blocks.text.settings.text_style.options__3.label"
-            }
-          ],
-          "default": "body",
-          "label": "t:sections.featured-product.blocks.text.settings.text_style.label"
-        }
-      ]
-    },
-    {
-      "type": "title",
-      "name": "t:sections.featured-product.blocks.title.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "select",
-          "id": "heading_size",
-          "options": [
-            {
-              "value": "h2",
-              "label": "t:sections.all.heading_size.options__1.label"
-            },
-            {
-              "value": "h1",
-              "label": "t:sections.all.heading_size.options__2.label"
-            },
-            {
-              "value": "h0",
-              "label": "t:sections.all.heading_size.options__3.label"
-            }
-          ],
-          "default": "h1",
-          "label": "t:sections.all.heading_size.label"
-        }
-      ]
-    },
-    {
-      "type": "price",
-      "name": "t:sections.featured-product.blocks.price.name",
-      "limit": 1
-    },
-    {
-      "type": "sku",
-      "name": "t:sections.featured-product.blocks.sku.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "select",
-          "id": "text_style",
-          "options": [
-            {
-              "value": "body",
-              "label": "t:sections.featured-product.blocks.sku.settings.text_style.options__1.label"
-            },
-            {
-              "value": "subtitle",
-              "label": "t:sections.featured-product.blocks.sku.settings.text_style.options__2.label"
-            },
-            {
-              "value": "uppercase",
-              "label": "t:sections.featured-product.blocks.sku.settings.text_style.options__3.label"
-            }
-          ],
-          "default": "body",
-          "label": "t:sections.featured-product.blocks.sku.settings.text_style.label"
-        }
-      ]
-    },
-    {
-      "type": "quantity_selector",
-      "name": "t:sections.featured-product.blocks.quantity_selector.name",
-      "limit": 1
-    },
-    {
-      "type": "variant_picker",
-      "name": "t:sections.featured-product.blocks.variant_picker.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "select",
-          "id": "picker_type",
-          "options": [
-            {
-              "value": "dropdown",
-              "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.options__1.label"
-            },
-            {
-              "value": "button",
-              "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.options__2.label"
-            }
-          ],
-          "default": "button",
-          "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.label"
-        }
-      ]
-    },
-    {
-      "type": "buy_buttons",
-      "name": "t:sections.featured-product.blocks.buy_buttons.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "checkbox",
-          "id": "show_dynamic_checkout",
-          "default": true,
-          "label": "t:sections.featured-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
-          "info": "t:sections.featured-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_quick_add",
-          "label": "Enable quick add",
-          "default": true
-        }
-      ]
-    },
-    {
-      "type": "share",
-      "name": "t:sections.featured-product.blocks.share.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "share_label",
-          "label": "t:sections.featured-product.blocks.share.settings.text.label",
-          "default": "Share"
-        }
-      ]
-    },
-    {
-      "type": "rating",
-      "name": "t:sections.featured-product.blocks.rating.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "paragraph",
-          "content": "t:sections.featured-product.blocks.rating.settings.paragraph.content"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Alkaline Water Info",
-      "blocks": [
-        {
-          "type": "dual_image"
-        },
-        {
-          "type": "title"
-        },
-        {
-          "type": "price"
-        },
-        {
-          "type": "variant_picker"
-        },
-        {
-          "type": "quantity_selector"
-        },
-        {
-          "type": "buy_buttons"
-        }
-      ]
     }
   ]
 }
 {% endschema %}
-
-{%- liquid
-  assign product = section.settings.product
-  if product == null
-    assign placeholder = true
-  endif
--%}
-
-{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-rating.css' | asset_url | stylesheet_tag }}
-{{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
-{{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
-
-<style>
-  .alkaline-section {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-  
-  @media screen and (min-width: 750px) {
-    .alkaline-section {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-
-  .alkaline-container {
-    display: flex;
-    flex-direction: column;
-    max-width: var(--page-width);
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  .alkaline-grid {
-    display: grid;
-    gap: 3rem;
-  }
-
-  @media screen and (min-width: 990px) {
-    .alkaline-grid {
-      grid-template-columns: 1fr 1fr;
-      align-items: flex-start;
-    }
-  }
-
-  .dual-image-card {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 8px;
-  }
-
-  .dual-image-container {
-    position: relative;
-    width: 100%;
-    height: {{ section.settings.desktop_image_height }}px;
-  }
-
-  .dual-image-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
-  .dual-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-
-  .hover-image {
-    opacity: 0;
-  }
-
-  .dual-image-card:hover .hover-image {
-    opacity: 1;
-    transform: scale(1.03);
-  }
-
-  .dual-image-card:hover .default-image {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-
-  .product-info-container {
-    padding: 0;
-  }
-
-  /* 精确匹配featured-product的间距标准 */
-  .product__title {
-    margin: 0 0 1.2rem;
-  }
-
-  .product__price {
-    margin: 0 0 1.4rem;
-  }
-
-  .product__sku {
-    margin: 0 0 1.4rem;
-  }
-
-  .product__variants {
-    margin: 0 0 1.8rem;
-  }
-
-  .product__quantity {
-    margin: 0 0 2.2rem;
-  }
-
-  .product__buttons {
-    margin: 0 0 1.6rem;
-  }
-
-  .product__share {
-    margin: 0 0 2rem;
-  }
-
-  .product__rating {
-    margin: 0 0 1.6rem;
-  }
-
-  .product__text {
-    margin: 0 0 1.4rem;
-  }
-
-  .product__view-details {
-    display: inline-block;
-    margin: 2.5rem 0 0;
-  }
-
-  .quick-add-button {
-    margin: 0 0 1.2rem;
-  }
-
-  @media screen and (max-width: 989px) {
-    .alkaline-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .dual-image-container {
-      height: {{ section.settings.mobile_image_height }}px;
-    }
-  }
-
-  @media screen and (max-width: 749px) {
-    .alkaline-container {
-      padding: 0 1rem;
-    }
-
-    .product__title {
-      margin: 0 0 1rem;
-    }
-
-    .product__price,
-    .product__sku,
-    .product__text {
-      margin: 0 0 1.2rem;
-    }
-
-    .product__variants {
-      margin: 0 0 1.6rem;
-    }
-
-    .product__quantity {
-      margin: 0 0 1.8rem;
-    }
-
-    .product__buttons {
-      margin: 0 0 1.4rem;
-    }
-
-    .product__share {
-      margin: 0 0 1.6rem;
-    }
-
-    .product__rating {
-      margin: 0 0 1.2rem;
-    }
-  }
-</style>
-
-<div class="alkaline-section color-{{ section.settings.color_scheme }}">
-  <div class="alkaline-container">
-    <div class="alkaline-grid">
-      <!-- Dual Image Card Section -->
-      <div class="dual-image-card">
-        {% for block in section.blocks %}
-          {% if block.type == 'dual_image' and block.settings.image_1 != blank %}
-            {% assign aspect_ratio = block.settings.image_1.aspect_ratio %}
-            <a href="{{ block.settings.card_link | default: '#' }}" class="dual-image-link">
-              <div class="dual-image-container">
-                <div class="dual-image-wrapper">
-                  <img src="{{ block.settings.image_1 | img_url: '1000x' }}"
-                       alt="{{ block.settings.alt_text | default: 'Alkaline water' }}"
-                       class="dual-image default-image"
-                       loading="lazy"
-                       width="1000"
-                       height="{{ 1000 | divided_by: aspect_ratio | round }}">
-                  
-                  {% if block.settings.image_2 != blank %}
-                    <img src="{{ block.settings.image_2 | img_url: '1000x' }}"
-                         alt="{{ block.settings.alt_text | default: 'Alkaline water hover' }}"
-                         class="dual-image hover-image"
-                         loading="lazy"
-                         width="1000"
-                         height="{{ 1000 | divided_by: aspect_ratio | round }}">
-                  {% endif %}
-                </div>
-              </div>
-            </a>
-          {% endif %}
-        {% endfor %}
-      </div>
-
-      <!-- Product Info Section -->
-      <div class="product-info-container">
-        {%- assign product_form_id = 'product-form-' | append: section.id -%}
-        
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when 'title' -%}
-              <h2 class="product__title {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
-                {%- unless placeholder -%}
-                  {{ product.title | escape }}
-                {%- else -%}
-                  {{ 'onboarding.product_title' | t }}
-                {%- endunless -%}
-              </h2>
-            
-            {%- when 'price' -%}
-              <div class="product__price" {{ block.shopify_attributes }}>
-                {%- render 'price', product: product, use_variant: true, show_badges: true -%}
-              </div>
-            
-            {%- when 'sku' -%}
-              <p class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}" {{ block.shopify_attributes }}>
-                <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>
-                {{- product.selected_or_first_available_variant.sku -}}
-              </p>
-            
-            {%- when 'text' -%}
-              <p class="product__text{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}" {{ block.shopify_attributes }}>
-                {{- block.settings.text -}}
-              </p>
-            
-            {%- when 'rating' -%}
-              {%- if product.metafields.reviews.rating.value != blank -%}
-                <div class="product__rating" {{ block.shopify_attributes }}>
-                  {% liquid
-                    assign rating_decimal = 0
-                    assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
-                    if decimal >= 0.3 and decimal <= 0.7
-                      assign rating_decimal = 0.5
-                    elsif decimal > 0.7
-                      assign rating_decimal = 1
-                    endif
-                  %}
-                  <div class="rating" role="img">
-                    <span class="rating-star" style="--rating: {{ product.metafields.reviews.rating.value.rating | floor }}; --rating-max: 5; --rating-decimal: {{ rating_decimal }};"></span>
-                  </div>
-                  <p class="rating-text">
-                    {{ product.metafields.reviews.rating.value | round: 1 }} / 5
-                  </p>
-                  <p class="rating-count">
-                    ({{ product.metafields.reviews.rating_count }})
-                  </p>
-                </div>
-              {%- endif -%}
-            
-            {%- when 'variant_picker' -%}
-              {%- unless product.has_only_default_variant -%}
-                <div class="product__variants" {{ block.shopify_attributes }}>
-                  {%- render 'product-variant-picker',
-                    product: product,
-                    block: block,
-                    product_form_id: product_form_id
-                  -%}
-                </div>
-              {%- endunless -%}
-            
-            {%- when 'quantity_selector' -%}
-              <div class="product__quantity" {{ block.shopify_attributes }}>
-                <label class="quantity__label form__label" for="Quantity-{{ section.id }}">
-                  {{ 'products.product.quantity.label' | t }}
-                </label>
-                <quantity-input class="quantity">
-                  <button class="quantity__button" name="minus" type="button">
-                    <span class="visually-hidden">
-                      {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
-                    </span>
-                    <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 1H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                  </button>
-                  <input class="quantity__input"
-                    type="number"
-                    name="quantity"
-                    id="Quantity-{{ section.id }}"
-                    min="1"
-                    value="1"
-                    form="{{ product_form_id }}">
-                  <button class="quantity__button" name="plus" type="button">
-                    <span class="visually-hidden">
-                      {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
-                    </span>
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 5H9M5 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                  </button>
-                </quantity-input>
-              </div>
-            
-            {%- when 'buy_buttons' -%}
-              <div class="product__buttons" {{ block.shopify_attributes }}>
-                {%- if block.settings.show_quick_add -%}
-                  <div class="quick-add-button">
-                    <button type="button"
-                      class="button button--full-width"
-                      data-quick-add
-                      data-variant-id="{{ product.selected_or_first_available_variant.id }}">
-                      {{ 'products.product.quick_add' | t }}
-                    </button>
-                  </div>
-                {%- endif -%}
-                
-                {%- form 'product', product, id: product_form_id -%}
-                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                  <div class="product-form__buttons">
-                    <button
-                      type="submit"
-                      name="add"
-                      class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-                      {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
-                    >
-                      {%- if product.selected_or_first_available_variant.available -%}
-                        {{ 'products.product.add_to_cart' | t }}
-                      {%- else -%}
-                        {{ 'products.product.sold_out' | t }}
-                      {%- endif -%}
-                    </button>
-                    {%- if block.settings.show_dynamic_checkout -%}
-                      {{ form | payment_button }}
-                    {%- endif -%}
-                  </div>
-                {%- endform -%}
-              </div>
-            
-            {%- when 'share' -%}
-              <div class="product__share" {{ block.shopify_attributes }}>
-                {% assign share_url = product.url | prepend: request.origin %}
-                {% render 'share-button',
-                  block: block,
-                  share_link: share_url,
-                  share_label: block.settings.share_label
-                %}
-              </div>
-          {%- endcase -%}
-        {%- endfor -%}
-        
-        <a
-          {% if product == blank %}
-            role="link" aria-disabled="true"
-          {% else %}
-            href="{{ product.url }}"
-          {% endif %}
-          class="link product__view-details animate-arrow"
-        >
-          {{ 'products.product.view_full_details' | t }}
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Quick add functionality
-    document.querySelectorAll('[data-quick-add]').forEach(button => {
-      button.addEventListener('click', async function() {
-        const variantId = this.dataset.variantId;
-        const formData = {
-          'items': [{
-            'id': variantId,
-            'quantity': 1
-          }]
-        };
-        
-        try {
-          const response = await fetch(window.Shopify.routes.root + 'cart/add.js', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-          });
-          
-          const result = await response.json();
-          
-          // Update cart count
-          fetch(window.Shopify.routes.root + 'cart.js')
-            .then(response => response.json())
-            .then(cart => {
-              document.querySelectorAll('.cart-count-bubble').forEach(el => {
-                el.textContent = cart.item_count;
-                el.classList.remove('hidden');
-              });
-            });
-          
-          // Show success message
-          const message = document.createElement('div');
-          message.className = 'quick-add-message';
-          message.textContent = '{{ "products.product.added_to_cart" | t }}';
-          this.parentNode.appendChild(message);
-          
-          setTimeout(() => {
-            message.remove();
-          }, 3000);
-          
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      });
-    });
-  });
-</script>
-
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
