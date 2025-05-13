@@ -13,18 +13,6 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "blocks": {
-        "text_zMpLTM": {
-          "type": "text",
-          "settings": {
-            "heading": "Heading",
-            "subtext": "<p>Share contact information, store details, and brand content with your customers.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "text_zMpLTM"
-      ],
       "settings": {
         "color_scheme": "scheme-3",
         "newsletter_enable": true,
