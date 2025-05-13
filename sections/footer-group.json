@@ -11,64 +11,9 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "alkaline_water_info_cR8rd8": {
-      "type": "Alkaline-Water-Info",
-      "blocks": {
-        "dual_image_heknUF": {
-          "type": "dual_image",
-          "settings": {
-            "card_link": "",
-            "alt_text": ""
-          }
-        },
-        "title_8FPMrX": {
-          "type": "title",
-          "settings": {
-            "heading_size": "h1"
-          }
-        },
-        "price_gT8i7D": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker_RwiFGa": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button"
-          }
-        },
-        "quantity_selector_pkCYKz": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons_wYeRLM": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_quick_add": true
-          }
-        }
-      },
-      "block_order": [
-        "dual_image_heknUF",
-        "title_8FPMrX",
-        "price_gT8i7D",
-        "variant_picker_RwiFGa",
-        "quantity_selector_pkCYKz",
-        "buy_buttons_wYeRLM"
-      ],
-      "name": "Alkaline Water Info",
-      "settings": {
-        "product": "",
-        "desktop_image_height": 500,
-        "mobile_image_height": 350,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "footer": {
       "type": "footer",
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-4",
         "newsletter_enable": true,
@@ -86,7 +31,6 @@
     }
   },
   "order": [
-    "alkaline_water_info_cR8rd8",
     "footer"
   ]
 }

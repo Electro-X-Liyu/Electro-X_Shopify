@@ -24,7 +24,7 @@
         "text_cAgx7H"
       ],
       "settings": {
-        "image": "shopify://shop_images/kv-2.jpg",
+        "image": "shopify://shop_images/2-1.jpg",
         "image_overlay_opacity": 0,
         "image_height": "large",
         "image_behavior": "zoom-in",
@@ -796,7 +796,20 @@
     "page_tBQPbK": {
       "type": "page",
       "name": "t:sections.page.presets.name",
-      "settings": {}
+      "settings": {
+        "page": "about-us",
+        "layout_direction": "row",
+        "gap": 5,
+        "vertical_alignment": "center",
+        "title_width": 20,
+        "content_width": 80,
+        "title_alignment": "text-left",
+        "content_alignment": "text-left",
+        "heading_size": "h2",
+        "color_scheme": "scheme-3",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
     }
   },
   "order": [
