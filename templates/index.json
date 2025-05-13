@@ -793,22 +793,6 @@
         "padding_bottom": 48
       }
     },
-    "image_banner_rALkGg": {
-      "type": "image-banner",
-      "settings": {
-        "image": "shopify://shop_images/14cut.png",
-        "image_overlay_opacity": 20,
-        "image_height": "small",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
-    },
     "page_tBQPbK": {
       "type": "page",
       "name": "t:sections.page.presets.name",
@@ -833,7 +817,6 @@
     "image_banner_R9mHmC",
     "multicolumn_mBC8fB",
     "community_ambassador_jNH89B",
-    "image_banner_rALkGg",
     "page_tBQPbK"
   ]
 }

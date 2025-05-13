@@ -13,12 +13,26 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "text_zMpLTM": {
+          "type": "text",
+          "settings": {
+            "heading": "Heading",
+            "subtext": "<p>Share contact information, store details, and brand content with your customers.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_zMpLTM"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "products_link_1": "",
-        "products_link_2": "",
-        "products_link_3": "",
-        "community_link": "",
+        "color_scheme": "scheme-3",
+        "newsletter_enable": true,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
         "payment_enable": false,
         "show_policy": true,
         "margin_top": 0,
