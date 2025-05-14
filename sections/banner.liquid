@@ -1,4 +1,4 @@
-{{ 'section-banner.css' | asset_url | stylesheet_tag }}
+{{ 'banner.css' | asset_url | stylesheet_tag }}
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
@@ -28,47 +28,59 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
   
-  {%- for block in section.blocks -%}
-    {%- if block.type == 'picture_in_picture' -%}
-      #PIP-{{ block.id }} {
-        width: {{ block.settings.pip_width }}%;
-        {% case block.settings.pip_position %}
-          {% when 'top-left' %}
-            top: 20px;
-            left: 20px;
-          {% when 'top-center' %}
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-          {% when 'top-right' %}
-            top: 20px;
-            right: 20px;
-          {% when 'middle-left' %}
-            top: 50%;
-            left: 20px;
-            transform: translateY(-50%);
-          {% when 'middle-center' %}
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-          {% when 'middle-right' %}
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-          {% when 'bottom-left' %}
-            bottom: 20px;
-            left: 20px;
-          {% when 'bottom-center' %}
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-          {% when 'bottom-right' %}
-            bottom: 20px;
-            right: 20px;
-        {% endcase %}
-      }
-    {%- endif -%}
-  {%- endfor -%}
+  /* 画中画样式 */
+  .banner__pip-wrapper {
+    position: absolute;
+    z-index: 2;
+    width: {{ section.settings.pip_width }}%;
+    {% if section.settings.pip_position == 'custom' %}
+      top: {{ section.settings.pip_position_vertical }}%;
+      left: {{ section.settings.pip_position_horizontal }}%;
+      transform: translate(-{{ section.settings.pip_position_horizontal }}%, -{{ section.settings.pip_position_vertical }}%);
+    {% elsif section.settings.pip_position == 'top-left' %}
+      top: 5%;
+      left: 5%;
+    {% elsif section.settings.pip_position == 'top-right' %}
+      top: 5%;
+      right: 5%;
+    {% elsif section.settings.pip_position == 'bottom-left' %}
+      bottom: 5%;
+      left: 5%;
+    {% elsif section.settings.pip_position == 'bottom-right' %}
+      bottom: 5%;
+      right: 5%;
+    {% elsif section.settings.pip_position == 'center' %}
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    {% endif %}
+  }
+  
+  .banner__pip {
+    position: relative;
+    width: 100%;
+    padding-bottom: {{ 1 | divided_by: section.settings.pip_image.aspect_ratio | times: 100 }}%;
+    border: {{ section.settings.pip_border_width }}px solid {{ section.settings.pip_border_color }};
+    border-radius: {{ section.settings.pip_border_radius }}px;
+    box-shadow: {{ section.settings.pip_box_shadow }};
+    overflow: hidden;
+    background-color: {{ section.settings.pip_background }};
+  }
+  
+  .banner__pip-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  @media screen and (max-width: 749px) {
+    .banner__pip-wrapper {
+      width: {{ section.settings.pip_width_mobile }}% !important;
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -158,28 +170,17 @@
     </div>
   {%- endif -%}
   
-  {%- for block in section.blocks -%}
-    {%- if block.type == 'picture_in_picture' -%}
-      <div id="PIP-{{ block.id }}" class="banner__pip" {{ block.shopify_attributes }}>
-        {%- if block.settings.pip_image != blank -%}
-          <div class="banner__pip-media media">
-            {{
-              block.settings.pip_image
-              | image_url: width: 1500
-              | image_tag:
-                loading: 'lazy',
-                sizes: 'auto',
-                widths: '375, 550, 750, 1100, 1500'
-            }}
-          </div>
-        {%- else -%}
-          <div class="banner__pip-media media placeholder">
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-          </div>
-        {%- endif -%}
+  {%- if section.settings.pip_enable and section.settings.pip_image != blank -%}
+    <div class="banner__pip-wrapper">
+      <div class="banner__pip">
+        {{
+          section.settings.pip_image
+          | image_url: width: 800
+          | image_tag: class: 'banner__pip-image'
+        }}
       </div>
-    {%- endif -%}
-  {%- endfor -%}
+    </div>
+  {%- endif -%}
   
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
@@ -234,7 +235,7 @@
 
 {% schema %}
 {
-  "name": "Banner",
+  "name": "Banner with PIP",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -244,12 +245,12 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "t:sections.image-banner.settings.image.label"
+      "label": "主横幅图片"
     },
     {
       "type": "image_picker",
       "id": "image_2",
-      "label": "t:sections.image-banner.settings.image_2.label"
+      "label": "第二横幅图片(可选)"
     },
     {
       "type": "range",
@@ -258,7 +259,7 @@
       "max": 100,
       "step": 10,
       "unit": "%",
-      "label": "t:sections.image-banner.settings.image_overlay_opacity.label",
+      "label": "图片叠加层透明度",
       "default": 0
     },
     {
@@ -267,23 +268,23 @@
       "options": [
         {
           "value": "adapt",
-          "label": "t:sections.image-banner.settings.image_height.options__1.label"
+          "label": "适应图片比例"
         },
         {
           "value": "small",
-          "label": "t:sections.image-banner.settings.image_height.options__2.label"
+          "label": "小"
         },
         {
           "value": "medium",
-          "label": "t:sections.image-banner.settings.image_height.options__3.label"
+          "label": "中"
         },
         {
           "value": "large",
-          "label": "t:sections.image-banner.settings.image_height.options__4.label"
+          "label": "大"
         }
       ],
       "default": "medium",
-      "label": "t:sections.image-banner.settings.image_height.label"
+      "label": "图片高度"
     },
     {
       "type": "select",
@@ -291,27 +292,157 @@
       "options": [
         {
           "value": "none",
-          "label": "t:sections.all.animation.image_behavior.options__1.label"
+          "label": "无效果"
         },
         {
           "value": "ambient",
-          "label": "t:sections.all.animation.image_behavior.options__2.label"
+          "label": "环境效果"
         },
         {
           "value": "fixed",
-          "label": "t:sections.all.animation.image_behavior.options__3.label"
+          "label": "固定效果"
         },
         {
           "value": "zoom-in",
-          "label": "t:sections.all.animation.image_behavior.options__4.label"
+          "label": "缩放效果"
         }
       ],
       "default": "none",
-      "label": "t:sections.all.animation.image_behavior.label"
+      "label": "图片动画效果"
     },
     {
       "type": "header",
-      "content": "t:sections.image-banner.settings.content.content"
+      "content": "画中画设置"
+    },
+    {
+      "type": "checkbox",
+      "id": "pip_enable",
+      "label": "启用画中画",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "pip_image",
+      "label": "画中画图片"
+    },
+    {
+      "type": "range",
+      "id": "pip_width",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "画中画宽度(桌面端)",
+      "default": 20,
+      "info": "相对于横幅宽度的百分比"
+    },
+    {
+      "type": "range",
+      "id": "pip_width_mobile",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "画中画宽度(移动端)",
+      "default": 30,
+      "info": "相对于横幅宽度的百分比"
+    },
+    {
+      "type": "select",
+      "id": "pip_position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "左上角"
+        },
+        {
+          "value": "top-right",
+          "label": "右上角"
+        },
+        {
+          "value": "bottom-left",
+          "label": "左下角"
+        },
+        {
+          "value": "bottom-right",
+          "label": "右下角"
+        },
+        {
+          "value": "center",
+          "label": "居中"
+        },
+        {
+          "value": "custom",
+          "label": "自定义位置"
+        }
+      ],
+      "default": "bottom-right",
+      "label": "画中画位置"
+    },
+    {
+      "type": "range",
+      "id": "pip_position_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "水平位置",
+      "default": 20,
+      "info": "仅当选择'自定义位置'时生效"
+    },
+    {
+      "type": "range",
+      "id": "pip_position_vertical",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "垂直位置",
+      "default": 20,
+      "info": "仅当选择'自定义位置'时生效"
+    },
+    {
+      "type": "range",
+      "id": "pip_border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "边框宽度",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "pip_border_color",
+      "label": "边框颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "pip_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "边框圆角",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "pip_background",
+      "label": "背景颜色",
+      "default": "transparent"
+    },
+    {
+      "type": "text",
+      "id": "pip_box_shadow",
+      "label": "阴影效果",
+      "default": "0 4px 8px rgba(0,0,0,0.2)",
+      "info": "使用CSS box-shadow语法"
+    },
+    {
+      "type": "header",
+      "content": "内容设置"
     },
     {
       "type": "select",
@@ -319,43 +450,43 @@
       "options": [
         {
           "value": "top-left",
-          "label": "t:sections.image-banner.settings.desktop_content_position.options__1.label"
+          "label": "左上"
         },
         {
           "value": "top-center",
-          "label": "t:sections.image-banner.settings.desktop_content_position.options__2.label"
+          "label": "顶部居中"
         },
         {
           "value": "top-right",
-          "label": "t:sections.image-banner.settings.desktop_content_position.options__3.label"
+          "label": "右上"
         },
         {
           "value": "middle-left",
-          "label": "t:sections.image-banner.settings.desktop_content_position.options__4.label"
+          "label": "中间左侧"
         },
         {
           "value": "middle-center",
-          "label": "t:sections.image-banner.settings.desktop_content_position.options__5.label"
+          "label": "正中间"
         },
         {
           "value": "middle-right",
-          "label": "t:sections.image-banner.settings.desktop_content_position.options__6.label"
+          "label": "中间右侧"
         },
         {
           "value": "bottom-left",
-          "label": "t:sections.image-banner.settings.desktop_content_position.options__7.label"
+          "label": "左下"
         },
         {
           "value": "bottom-center",
-          "label": "t:sections.image-banner.settings.desktop_content_position.options__8.label"
+          "label": "底部居中"
         },
         {
           "value": "bottom-right",
-          "label": "t:sections.image-banner.settings.desktop_content_position.options__9.label"
+          "label": "右下"
         }
       ],
       "default": "middle-center",
-      "label": "t:sections.image-banner.settings.desktop_content_position.label"
+      "label": "内容位置(桌面端)"
     },
     {
       "type": "select",
@@ -363,80 +494,80 @@
       "options": [
         {
           "value": "left",
-          "label": "t:sections.image-banner.settings.desktop_content_alignment.options__1.label"
+          "label": "左对齐"
         },
         {
           "value": "center",
-          "label": "t:sections.image-banner.settings.desktop_content_alignment.options__2.label"
+          "label": "居中"
         },
         {
           "value": "right",
-          "label": "t:sections.image-banner.settings.desktop_content_alignment.options__3.label"
+          "label": "右对齐"
         }
       ],
       "default": "center",
-      "label": "t:sections.image-banner.settings.desktop_content_alignment.label"
+      "label": "内容对齐方式(桌面端)"
     },
     {
       "type": "checkbox",
       "id": "show_text_box",
       "default": true,
-      "label": "t:sections.image-banner.settings.show_text_box.label"
+      "label": "显示文本框"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
+      "label": "色彩方案",
       "default": "scheme-1"
     },
     {
       "type": "header",
-      "content": "t:sections.image-banner.settings.mobile.content"
+      "content": "移动端设置"
     },
     {
       "type": "checkbox",
       "id": "stack_images_on_mobile",
       "default": true,
-      "label": "t:sections.image-banner.settings.stack_images_on_mobile.label"
-    },    
+      "label": "在移动端堆叠图片"
+    },
     {
       "type": "select",
       "id": "mobile_content_alignment",
       "options": [
         {
           "value": "left",
-          "label": "t:sections.image-banner.settings.mobile_content_alignment.options__1.label"
+          "label": "左对齐"
         },
         {
           "value": "center",
-          "label": "t:sections.image-banner.settings.mobile_content_alignment.options__2.label"
+          "label": "居中"
         },
         {
           "value": "right",
-          "label": "t:sections.image-banner.settings.mobile_content_alignment.options__3.label"
+          "label": "右对齐"
         }
       ],
       "default": "center",
-      "label": "t:sections.image-banner.settings.mobile_content_alignment.label"
+      "label": "内容对齐方式(移动端)"
     },
     {
       "type": "checkbox",
       "id": "show_text_below",
       "default": true,
-      "label": "t:sections.image-banner.settings.show_text_below.label"
+      "label": "在移动端将内容显示在图片下方"
     }
   ],
   "blocks": [
     {
       "type": "heading",
-      "name": "t:sections.image-banner.blocks.heading.name",
+      "name": "标题",
       "limit": 1,
       "settings": [
         {
           "type": "inline_richtext",
           "id": "heading",
-          "default": "t:sections.image-banner.blocks.heading.settings.heading.default",
-          "label": "t:sections.image-banner.blocks.heading.settings.heading.label"
+          "default": "图片横幅标题",
+          "label": "标题内容"
         },
         {
           "type": "select",
@@ -444,40 +575,40 @@
           "options": [
             {
               "value": "h2",
-              "label": "t:sections.all.heading_size.options__1.label"
+              "label": "小"
             },
             {
               "value": "h1",
-              "label": "t:sections.all.heading_size.options__2.label"
+              "label": "中"
             },
             {
               "value": "h0",
-              "label": "t:sections.all.heading_size.options__3.label"
+              "label": "大"
             },
             {
               "value": "hxl",
-              "label": "t:sections.all.heading_size.options__4.label"
+              "label": "超大"
             },
             {
               "value": "hxxl",
-              "label": "t:sections.all.heading_size.options__5.label"
+              "label": "特大"
             }
           ],
           "default": "h1",
-          "label": "t:sections.all.heading_size.label"
+          "label": "标题大小"
         }
       ]
     },
     {
       "type": "text",
-      "name": "t:sections.image-banner.blocks.text.name",
+      "name": "文本",
       "limit": 1,
       "settings": [
         {
           "type": "inline_richtext",
           "id": "text",
-          "default": "t:sections.image-banner.blocks.text.settings.text.default",
-          "label": "t:sections.image-banner.blocks.text.settings.text.label"
+          "default": "用横幅图片和文字内容讲述您的品牌故事",
+          "label": "文本内容"
         },
         {
           "type": "select",
@@ -485,143 +616,69 @@
           "options": [
             {
               "value": "body",
-              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__1.label"
+              "label": "正文"
             },
             {
               "value": "subtitle",
-              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__2.label"
+              "label": "副标题"
             },
             {
               "value": "caption-with-letter-spacing",
-              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__3.label"
+              "label": "说明文字"
             }
           ],
           "default": "body",
-          "label": "t:sections.image-banner.blocks.text.settings.text_style.label"
+          "label": "文本样式"
         }
       ]
     },
     {
       "type": "buttons",
-      "name": "t:sections.image-banner.blocks.buttons.name",
+      "name": "按钮",
       "limit": 1,
       "settings": [
         {
-        "type": "header",
-        "content": "t:sections.image-banner.blocks.buttons.settings.header_1.content"
-        },
-        {
           "type": "text",
           "id": "button_label_1",
-          "default": "t:sections.image-banner.blocks.buttons.settings.button_label_1.default",
-          "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label",
-          "info": "t:sections.image-banner.blocks.buttons.settings.button_label_1.info"
+          "default": "按钮标签1",
+          "label": "第一个按钮标签",
+          "info": "留空则隐藏按钮"
         },
         {
           "type": "url",
           "id": "button_link_1",
-          "label": "t:sections.image-banner.blocks.buttons.settings.button_link_1.label"
+          "label": "第一个按钮链接"
         },
         {
           "type": "checkbox",
           "id": "button_style_secondary_1",
           "default": false,
-          "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
-        },
-        {
-        "type": "header",
-        "content": "t:sections.image-banner.blocks.buttons.settings.header_2.content"
+          "label": "第一个按钮使用次要样式"
         },
         {
           "type": "text",
           "id": "button_label_2",
-          "default": "t:sections.image-banner.blocks.buttons.settings.button_label_2.default",
-          "label": "t:sections.image-banner.blocks.buttons.settings.button_label_2.label",
-          "info": "t:sections.image-banner.blocks.buttons.settings.button_label_2.info"
+          "default": "按钮标签2",
+          "label": "第二个按钮标签",
+          "info": "留空则隐藏按钮"
         },
         {
           "type": "url",
           "id": "button_link_2",
-          "label": "t:sections.image-banner.blocks.buttons.settings.button_link_2.label"
+          "label": "第二个按钮链接"
         },
         {
           "type": "checkbox",
           "id": "button_style_secondary_2",
           "default": false,
-          "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_2.label"
-        }
-      ]
-    },
-    {
-      "type": "picture_in_picture",
-      "name": "Picture in Picture",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "pip_image",
-          "label": "Image"
-        },
-        {
-          "type": "range",
-          "id": "pip_width",
-          "min": 10,
-          "max": 50,
-          "step": 5,
-          "unit": "%",
-          "label": "Width",
-          "default": 30
-        },
-        {
-          "type": "select",
-          "id": "pip_position",
-          "options": [
-            {
-              "value": "top-left",
-              "label": "Top left"
-            },
-            {
-              "value": "top-center",
-              "label": "Top center"
-            },
-            {
-              "value": "top-right",
-              "label": "Top right"
-            },
-            {
-              "value": "middle-left",
-              "label": "Middle left"
-            },
-            {
-              "value": "middle-center",
-              "label": "Middle center"
-            },
-            {
-              "value": "middle-right",
-              "label": "Middle right"
-            },
-            {
-              "value": "bottom-left",
-              "label": "Bottom left"
-            },
-            {
-              "value": "bottom-center",
-              "label": "Bottom center"
-            },
-            {
-              "value": "bottom-right",
-              "label": "Bottom right"
-            }
-          ],
-          "default": "bottom-right",
-          "label": "Position"
+          "label": "第二个按钮使用次要样式"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Banner",
+      "name": "带画中画的横幅",
       "blocks": [
         {
           "type": "heading"
