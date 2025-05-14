@@ -9,6 +9,45 @@
  */
 {
   "sections": {
+    "banner_89aeKn": {
+      "type": "banner",
+      "blocks": {
+        "text_fCYKWq": {
+          "type": "text",
+          "settings": {
+            "text": "Clean Fuel. Pure Performance",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "text_fCYKWq"
+      ],
+      "name": "带画中画的横幅",
+      "settings": {
+        "image": "shopify://shop_images/2-1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "pip_enable": true,
+        "pip_image": "shopify://shop_images/2.svg",
+        "pip_width": 490,
+        "pip_height": 100,
+        "pip_position_horizontal": 20,
+        "pip_position_vertical": 20,
+        "pip_border_width": 0,
+        "pip_border_color": "#ffffff",
+        "pip_border_radius": 8,
+        "pip_box_shadow": "0 4px 8px rgba(0,0,0,0.2)",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -813,6 +852,7 @@
     }
   },
   "order": [
+    "banner_89aeKn",
     "image_banner",
     "pic_border_m7m9TP",
     "rich_text_gUynad",
