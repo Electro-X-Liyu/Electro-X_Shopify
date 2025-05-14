@@ -33,7 +33,7 @@
         "pip_image": "shopify://shop_images/8.svg",
         "pip_width": 26,
         "pip_width_mobile": 56,
-        "pip_position": "center",
+        "pip_position": "bottom-center",
         "pip_position_horizontal": 50,
         "pip_position_vertical": 50,
         "pip_border_width": 0,
@@ -47,7 +47,7 @@
         "color_scheme": "scheme-3",
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
-        "show_text_below": true
+        "show_text_below": false
       }
     },
     "rich_text_waQVNB": {
