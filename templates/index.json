@@ -33,21 +33,21 @@
         "pip_image": "shopify://shop_images/8.svg",
         "pip_width": 26,
         "pip_width_mobile": 56,
-        "pip_position": "bottom-center",
+        "pip_position": "center",
         "pip_position_horizontal": 50,
         "pip_position_vertical": 50,
         "pip_border_width": 0,
         "pip_border_color": "#ffffff",
         "pip_border_radius": 0,
         "pip_background": "rgba(0,0,0,0)",
-        "pip_box_shadow": "0 4px 8px rgba(0,0,0,0.2)",
+        "pip_box_shadow": "",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "scheme-3",
         "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "mobile_content_position": "bottom-center",
+        "use_container_on_mobile": false
       }
     },
     "rich_text_waQVNB": {
