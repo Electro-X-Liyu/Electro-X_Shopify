@@ -33,31 +33,32 @@
     position: absolute;
     z-index: 2;
     width: {{ section.settings.pip_width }}%;
-    {% if section.settings.pip_position == 'custom' %}
-      top: {{ section.settings.pip_position_vertical }}%;
-      left: {{ section.settings.pip_position_horizontal }}%;
-      transform: translate(-{{ section.settings.pip_position_horizontal }}%, -{{ section.settings.pip_position_vertical }}%);
-    {% elsif section.settings.pip_position == 'top-left' %}
-      top: 5%;
-      left: 5%;
-    {% elsif section.settings.pip_position == 'top-right' %}
-      top: 5%;
-      right: 5%;
-    {% elsif section.settings.pip_position == 'bottom-left' %}
-      bottom: 5%;
-      left: 5%;
-    {% elsif section.settings.pip_position == 'bottom-right' %}
-      bottom: 5%;
-      right: 5%;
-    {% elsif section.settings.pip_position == 'center' %}
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    {% elsif section.settings.pip_position == 'bottom-center' %}
-      bottom: 5%;
-      left: 50%;
-      transform: translateX(-50%);
-    {% endif %}
+    {% case section.settings.pip_position %}
+      {% when 'custom' %}
+        top: {{ section.settings.pip_position_vertical }}%;
+        left: {{ section.settings.pip_position_horizontal }}%;
+        transform: translate(-{{ section.settings.pip_position_horizontal }}%, -{{ section.settings.pip_position_vertical }}%);
+      {% when 'top-left' %}
+        top: 5%;
+        left: 5%;
+      {% when 'top-right' %}
+        top: 5%;
+        right: 5%;
+      {% when 'bottom-left' %}
+        bottom: 5%;
+        left: 5%;
+      {% when 'bottom-right' %}
+        bottom: 5%;
+        right: 5%;
+      {% when 'bottom-center' %}
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+      {% when 'center' %}
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    {% endcase %}
   }
   
   .banner__pip {
@@ -83,11 +84,32 @@
   @media screen and (max-width: 749px) {
     .banner__pip-wrapper {
       width: {{ section.settings.pip_width_mobile }}% !important;
-      {% if section.settings.pip_position == 'bottom-center' %}
-        bottom: 5%;
-        left: 50%;
-        transform: translateX(-50%) !important;
-      {% endif %}
+      {% case section.settings.pip_position %}
+        {% when 'custom' %}
+          top: {{ section.settings.pip_position_vertical }}%;
+          left: {{ section.settings.pip_position_horizontal }}%;
+          transform: translate(-{{ section.settings.pip_position_horizontal }}%, -{{ section.settings.pip_position_vertical }}%) !important;
+        {% when 'top-left' %}
+          top: 5%;
+          left: 5%;
+        {% when 'top-right' %}
+          top: 5%;
+          right: 5%;
+        {% when 'bottom-left' %}
+          bottom: 5%;
+          left: 5%;
+        {% when 'bottom-right' %}
+          bottom: 5%;
+          right: 5%;
+        {% when 'bottom-center' %}
+          bottom: 5%;
+          left: 50%;
+          transform: translateX(-50%) !important;
+        {% when 'center' %}
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) !important;
+      {% endcase %}
     }
     
     {% if section.settings.show_text_below %}
