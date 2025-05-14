@@ -28,37 +28,32 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
   
-  /* PIP Styles */
+  /* PIP styles */
   .banner__pip-wrapper {
     position: absolute;
     z-index: 2;
     width: {{ section.settings.pip_width }}%;
-    {% case section.settings.pip_position %}
-      {% when 'custom' %}
-        top: {{ section.settings.pip_position_vertical }}%;
-        left: {{ section.settings.pip_position_horizontal }}%;
-        transform: translate(-{{ section.settings.pip_position_horizontal }}%, -{{ section.settings.pip_position_vertical }}%);
-      {% when 'top-left' %}
-        top: 5%;
-        left: 5%;
-      {% when 'top-right' %}
-        top: 5%;
-        right: 5%;
-      {% when 'bottom-left' %}
-        bottom: 5%;
-        left: 5%;
-      {% when 'bottom-right' %}
-        bottom: 5%;
-        right: 5%;
-      {% when 'bottom-center' %}
-        bottom: 5%;
-        left: 50%;
-        transform: translateX(-50%);
-      {% when 'center' %}
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    {% endcase %}
+    {% if section.settings.pip_position == 'custom' %}
+      top: {{ section.settings.pip_position_vertical }}%;
+      left: {{ section.settings.pip_position_horizontal }}%;
+      transform: translate(-{{ section.settings.pip_position_horizontal }}%, -{{ section.settings.pip_position_vertical }}%);
+    {% elsif section.settings.pip_position == 'top-left' %}
+      top: 5%;
+      left: 5%;
+    {% elsif section.settings.pip_position == 'top-right' %}
+      top: 5%;
+      right: 5%;
+    {% elsif section.settings.pip_position == 'bottom-left' %}
+      bottom: 5%;
+      left: 5%;
+    {% elsif section.settings.pip_position == 'bottom-right' %}
+      bottom: 5%;
+      right: 5%;
+    {% elsif section.settings.pip_position == 'center' %}
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    {% endif %}
   }
   
   .banner__pip {
@@ -84,68 +79,14 @@
   @media screen and (max-width: 749px) {
     .banner__pip-wrapper {
       width: {{ section.settings.pip_width_mobile }}% !important;
-      {% case section.settings.pip_position %}
-        {% when 'custom' %}
-          top: {{ section.settings.pip_position_vertical }}%;
-          left: {{ section.settings.pip_position_horizontal }}%;
-          transform: translate(-{{ section.settings.pip_position_horizontal }}%, -{{ section.settings.pip_position_vertical }}%) !important;
-        {% when 'top-left' %}
-          top: 5%;
-          left: 5%;
-        {% when 'top-right' %}
-          top: 5%;
-          right: 5%;
-        {% when 'bottom-left' %}
-          bottom: 5%;
-          left: 5%;
-        {% when 'bottom-right' %}
-          bottom: 5%;
-          right: 5%;
-        {% when 'bottom-center' %}
-          bottom: 5%;
-          left: 50%;
-          transform: translateX(-50%) !important;
-        {% when 'center' %}
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%) !important;
-      {% endcase %}
     }
     
-    .banner__content {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 90%;
-      text-align: center;
-      z-index: 3;
-    }
-    
-    .banner__box {
-      width: 100%;
-      margin: 0 auto;
-    }
-    
-    {% if section.settings.show_text_below %}
-      .banner__content {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        transform: none;
-        margin-top: calc({{ section.settings.pip_width_mobile }}% * {{ 1 | divided_by: section.settings.pip_image.aspect_ratio | times: 100 | divided_by: 100 }} + 20px);
+    {% unless section.settings.use_container_on_mobile %}
+      .banner__content .content-container--full-width-mobile {
+        max-width: 100%;
+        padding: 0;
       }
-      .banner__pip-wrapper {
-        position: relative;
-        margin: 0 auto;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        transform: none !important;
-      }
-    {% endif %}
+    {% endunless %}
   }
 {%- endstyle -%}
 
@@ -173,7 +114,7 @@
 
 <div
   id="Banner-{{ section.id }}"
-  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-below-pip{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
   {%- if section.settings.image != blank -%}
     <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
@@ -248,8 +189,8 @@
     </div>
   {%- endif -%}
   
-  <div class="banner__content banner__content--{{ section.settings.desktop_content_position }}{% unless section.settings.show_text_below %} page-width{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    <div class="banner__box content-container{% unless section.settings.show_text_below %} content-container--full-width-mobile{% endunless %} color-{{ section.settings.color_scheme }} gradient">
+  <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
@@ -370,15 +311,15 @@
         },
         {
           "value": "zoom-in",
-          "label": "Zoom in"
+          "label": "Zoom-in"
         }
       ],
       "default": "none",
-      "label": "Image behavior"
+      "label": "Image animation"
     },
     {
       "type": "header",
-      "content": "Picture-in-Picture Settings"
+      "content": "Picture in Picture Settings"
     },
     {
       "type": "checkbox",
@@ -432,10 +373,6 @@
         {
           "value": "bottom-right",
           "label": "Bottom right"
-        },
-        {
-          "value": "bottom-center",
-          "label": "Bottom center"
         },
         {
           "value": "center",
@@ -622,10 +559,10 @@
     },
     {
       "type": "checkbox",
-      "id": "show_text_below",
+      "id": "use_container_on_mobile",
       "default": true,
-      "label": "Show content below PIP on mobile",
-      "info": "When enabled, content will appear below PIP and container constraints will be removed"
+      "label": "Use container for mobile content",
+      "info": "When disabled, content will span full width on mobile"
     }
   ],
   "blocks": [
@@ -662,7 +599,7 @@
             },
             {
               "value": "hxxl",
-              "label": "Extra Extra Large"
+              "label": "Huge"
             }
           ],
           "default": "h1",
@@ -678,7 +615,7 @@
         {
           "type": "inline_richtext",
           "id": "text",
-          "default": "Tell your brand's story through images and text",
+          "default": "Give customers details about the banner image(s) or content on the template.",
           "label": "Text"
         },
         {
@@ -724,7 +661,7 @@
           "type": "checkbox",
           "id": "button_style_secondary_1",
           "default": false,
-          "label": "First button secondary style"
+          "label": "Use secondary style for first button"
         },
         {
           "type": "text",
@@ -742,7 +679,7 @@
           "type": "checkbox",
           "id": "button_style_secondary_2",
           "default": false,
-          "label": "Second button secondary style"
+          "label": "Use secondary style for second button"
         }
       ]
     }
