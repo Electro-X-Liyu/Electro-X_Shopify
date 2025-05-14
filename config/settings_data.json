@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/2.svg",
+    "logo": "shopify://shop_images/10.svg",
     "logo_width": 150,
     "favicon": "shopify://shop_images/1.svg",
     "type_header_font": "muli_n4",
@@ -123,7 +123,7 @@
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
     "currency_code_enabled": false,
-    "cart_type": "notification",
+    "cart_type": "drawer",
     "show_vendor": false,
     "show_cart_note": false,
     "cart_drawer_collection": "",
