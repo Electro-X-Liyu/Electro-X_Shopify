@@ -28,7 +28,7 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
   
-  /* 画中画样式 */
+  /* PIP Styles */
   .banner__pip-wrapper {
     position: absolute;
     z-index: 2;
@@ -53,6 +53,10 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+    {% elsif section.settings.pip_position == 'bottom-center' %}
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
     {% endif %}
   }
   
@@ -79,6 +83,11 @@
   @media screen and (max-width: 749px) {
     .banner__pip-wrapper {
       width: {{ section.settings.pip_width_mobile }}% !important;
+      {% if section.settings.pip_position == 'bottom-center' %}
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%) !important;
+      {% endif %}
     }
     
     {% if section.settings.show_text_below %}
@@ -262,12 +271,12 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "主横幅图片"
+      "label": "Main banner image"
     },
     {
       "type": "image_picker",
       "id": "image_2",
-      "label": "第二横幅图片(可选)"
+      "label": "Secondary banner image (optional)"
     },
     {
       "type": "range",
@@ -276,7 +285,7 @@
       "max": 100,
       "step": 10,
       "unit": "%",
-      "label": "图片叠加层透明度",
+      "label": "Image overlay opacity",
       "default": 0
     },
     {
@@ -285,23 +294,23 @@
       "options": [
         {
           "value": "adapt",
-          "label": "适应图片比例"
+          "label": "Adapt to image"
         },
         {
           "value": "small",
-          "label": "小"
+          "label": "Small"
         },
         {
           "value": "medium",
-          "label": "中"
+          "label": "Medium"
         },
         {
           "value": "large",
-          "label": "大"
+          "label": "Large"
         }
       ],
       "default": "medium",
-      "label": "图片高度"
+      "label": "Image height"
     },
     {
       "type": "select",
@@ -309,38 +318,38 @@
       "options": [
         {
           "value": "none",
-          "label": "无效果"
+          "label": "None"
         },
         {
           "value": "ambient",
-          "label": "环境效果"
+          "label": "Ambient"
         },
         {
           "value": "fixed",
-          "label": "固定效果"
+          "label": "Fixed"
         },
         {
           "value": "zoom-in",
-          "label": "缩放效果"
+          "label": "Zoom in"
         }
       ],
       "default": "none",
-      "label": "图片动画效果"
+      "label": "Image behavior"
     },
     {
       "type": "header",
-      "content": "画中画设置"
+      "content": "Picture-in-Picture Settings"
     },
     {
       "type": "checkbox",
       "id": "pip_enable",
-      "label": "启用画中画",
+      "label": "Enable PIP",
       "default": false
     },
     {
       "type": "image_picker",
       "id": "pip_image",
-      "label": "画中画图片"
+      "label": "PIP image"
     },
     {
       "type": "range",
@@ -349,9 +358,9 @@
       "max": 50,
       "step": 1,
       "unit": "%",
-      "label": "画中画宽度(桌面端)",
+      "label": "PIP width (desktop)",
       "default": 20,
-      "info": "相对于横幅宽度的百分比"
+      "info": "Percentage of banner width"
     },
     {
       "type": "range",
@@ -360,9 +369,9 @@
       "max": 100,
       "step": 1,
       "unit": "%",
-      "label": "画中画宽度(移动端)",
+      "label": "PIP width (mobile)",
       "default": 30,
-      "info": "相对于横幅宽度的百分比"
+      "info": "Percentage of banner width"
     },
     {
       "type": "select",
@@ -370,31 +379,35 @@
       "options": [
         {
           "value": "top-left",
-          "label": "左上角"
+          "label": "Top left"
         },
         {
           "value": "top-right",
-          "label": "右上角"
+          "label": "Top right"
         },
         {
           "value": "bottom-left",
-          "label": "左下角"
+          "label": "Bottom left"
         },
         {
           "value": "bottom-right",
-          "label": "右下角"
+          "label": "Bottom right"
+        },
+        {
+          "value": "bottom-center",
+          "label": "Bottom center"
         },
         {
           "value": "center",
-          "label": "居中"
+          "label": "Center"
         },
         {
           "value": "custom",
-          "label": "自定义位置"
+          "label": "Custom position"
         }
       ],
       "default": "bottom-right",
-      "label": "画中画位置"
+      "label": "PIP position"
     },
     {
       "type": "range",
@@ -403,9 +416,9 @@
       "max": 100,
       "step": 1,
       "unit": "%",
-      "label": "水平位置",
+      "label": "Horizontal position",
       "default": 20,
-      "info": "仅当选择'自定义位置'时生效"
+      "info": "Only works with 'Custom position'"
     },
     {
       "type": "range",
@@ -414,9 +427,9 @@
       "max": 100,
       "step": 1,
       "unit": "%",
-      "label": "垂直位置",
+      "label": "Vertical position",
       "default": 20,
-      "info": "仅当选择'自定义位置'时生效"
+      "info": "Only works with 'Custom position'"
     },
     {
       "type": "range",
@@ -425,13 +438,13 @@
       "max": 10,
       "step": 1,
       "unit": "px",
-      "label": "边框宽度",
+      "label": "Border width",
       "default": 2
     },
     {
       "type": "color",
       "id": "pip_border_color",
-      "label": "边框颜色",
+      "label": "Border color",
       "default": "#ffffff"
     },
     {
@@ -441,25 +454,25 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "边框圆角",
+      "label": "Border radius",
       "default": 8
     },
     {
       "type": "color",
       "id": "pip_background",
-      "label": "背景颜色",
+      "label": "Background color",
       "default": "transparent"
     },
     {
       "type": "text",
       "id": "pip_box_shadow",
-      "label": "阴影效果",
+      "label": "Box shadow",
       "default": "0 4px 8px rgba(0,0,0,0.2)",
-      "info": "使用CSS box-shadow语法"
+      "info": "CSS box-shadow syntax"
     },
     {
       "type": "header",
-      "content": "内容设置"
+      "content": "Content Settings"
     },
     {
       "type": "select",
@@ -467,43 +480,43 @@
       "options": [
         {
           "value": "top-left",
-          "label": "左上"
+          "label": "Top left"
         },
         {
           "value": "top-center",
-          "label": "顶部居中"
+          "label": "Top center"
         },
         {
           "value": "top-right",
-          "label": "右上"
+          "label": "Top right"
         },
         {
           "value": "middle-left",
-          "label": "中间左侧"
+          "label": "Middle left"
         },
         {
           "value": "middle-center",
-          "label": "正中间"
+          "label": "Middle center"
         },
         {
           "value": "middle-right",
-          "label": "中间右侧"
+          "label": "Middle right"
         },
         {
           "value": "bottom-left",
-          "label": "左下"
+          "label": "Bottom left"
         },
         {
           "value": "bottom-center",
-          "label": "底部居中"
+          "label": "Bottom center"
         },
         {
           "value": "bottom-right",
-          "label": "右下"
+          "label": "Bottom right"
         }
       ],
       "default": "middle-center",
-      "label": "内容位置(桌面端)"
+      "label": "Content position (desktop)"
     },
     {
       "type": "select",
@@ -511,41 +524,41 @@
       "options": [
         {
           "value": "left",
-          "label": "左对齐"
+          "label": "Left"
         },
         {
           "value": "center",
-          "label": "居中"
+          "label": "Center"
         },
         {
           "value": "right",
-          "label": "右对齐"
+          "label": "Right"
         }
       ],
       "default": "center",
-      "label": "内容对齐方式(桌面端)"
+      "label": "Content alignment (desktop)"
     },
     {
       "type": "checkbox",
       "id": "show_text_box",
       "default": true,
-      "label": "显示文本框"
+      "label": "Show text box"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "色彩方案",
+      "label": "Color scheme",
       "default": "scheme-1"
     },
     {
       "type": "header",
-      "content": "移动端设置"
+      "content": "Mobile Settings"
     },
     {
       "type": "checkbox",
       "id": "stack_images_on_mobile",
       "default": true,
-      "label": "在移动端堆叠图片"
+      "label": "Stack images on mobile"
     },
     {
       "type": "select",
@@ -553,39 +566,39 @@
       "options": [
         {
           "value": "left",
-          "label": "左对齐"
+          "label": "Left"
         },
         {
           "value": "center",
-          "label": "居中"
+          "label": "Center"
         },
         {
           "value": "right",
-          "label": "右对齐"
+          "label": "Right"
         }
       ],
       "default": "center",
-      "label": "内容对齐方式(移动端)"
+      "label": "Content alignment (mobile)"
     },
     {
       "type": "checkbox",
       "id": "show_text_below",
       "default": true,
-      "label": "在移动端将内容显示在画中画下方",
-      "info": "启用后内容将显示在画中画下方并取消容器限制"
+      "label": "Show content below PIP on mobile",
+      "info": "When enabled, content will appear below PIP and container constraints will be removed"
     }
   ],
   "blocks": [
     {
       "type": "heading",
-      "name": "标题",
+      "name": "Heading",
       "limit": 1,
       "settings": [
         {
           "type": "inline_richtext",
           "id": "heading",
-          "default": "图片横幅标题",
-          "label": "标题内容"
+          "default": "Image banner",
+          "label": "Heading"
         },
         {
           "type": "select",
@@ -593,40 +606,40 @@
           "options": [
             {
               "value": "h2",
-              "label": "小"
+              "label": "Small"
             },
             {
               "value": "h1",
-              "label": "中"
+              "label": "Medium"
             },
             {
               "value": "h0",
-              "label": "大"
+              "label": "Large"
             },
             {
               "value": "hxl",
-              "label": "超大"
+              "label": "Extra Large"
             },
             {
               "value": "hxxl",
-              "label": "特大"
+              "label": "Extra Extra Large"
             }
           ],
           "default": "h1",
-          "label": "标题大小"
+          "label": "Heading size"
         }
       ]
     },
     {
       "type": "text",
-      "name": "文本",
+      "name": "Text",
       "limit": 1,
       "settings": [
         {
           "type": "inline_richtext",
           "id": "text",
-          "default": "用横幅图片和文字内容讲述您的品牌故事",
-          "label": "文本内容"
+          "default": "Tell your brand's story through images and text",
+          "label": "Text"
         },
         {
           "type": "select",
@@ -634,69 +647,69 @@
           "options": [
             {
               "value": "body",
-              "label": "正文"
+              "label": "Body"
             },
             {
               "value": "subtitle",
-              "label": "副标题"
+              "label": "Subtitle"
             },
             {
               "value": "caption-with-letter-spacing",
-              "label": "说明文字"
+              "label": "Caption"
             }
           ],
           "default": "body",
-          "label": "文本样式"
+          "label": "Text style"
         }
       ]
     },
     {
       "type": "buttons",
-      "name": "按钮",
+      "name": "Buttons",
       "limit": 1,
       "settings": [
         {
           "type": "text",
           "id": "button_label_1",
-          "default": "按钮标签1",
-          "label": "第一个按钮标签",
-          "info": "留空则隐藏按钮"
+          "default": "Button label",
+          "label": "First button label",
+          "info": "Leave blank to hide button"
         },
         {
           "type": "url",
           "id": "button_link_1",
-          "label": "第一个按钮链接"
+          "label": "First button link"
         },
         {
           "type": "checkbox",
           "id": "button_style_secondary_1",
           "default": false,
-          "label": "第一个按钮使用次要样式"
+          "label": "First button secondary style"
         },
         {
           "type": "text",
           "id": "button_label_2",
-          "default": "按钮标签2",
-          "label": "第二个按钮标签",
-          "info": "留空则隐藏按钮"
+          "default": "Button label",
+          "label": "Second button label",
+          "info": "Leave blank to hide button"
         },
         {
           "type": "url",
           "id": "button_link_2",
-          "label": "第二个按钮链接"
+          "label": "Second button link"
         },
         {
           "type": "checkbox",
           "id": "button_style_secondary_2",
           "default": false,
-          "label": "第二个按钮使用次要样式"
+          "label": "Second button secondary style"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "带画中画的横幅",
+      "name": "Banner with PIP",
       "blocks": [
         {
           "type": "heading"
