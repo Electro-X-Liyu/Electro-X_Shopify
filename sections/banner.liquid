@@ -112,10 +112,28 @@
       {% endcase %}
     }
     
+    .banner__content {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 90%;
+      text-align: center;
+      z-index: 3;
+    }
+    
+    .banner__box {
+      width: 100%;
+      margin: 0 auto;
+    }
+    
     {% if section.settings.show_text_below %}
       .banner__content {
         position: relative;
-        z-index: 1;
+        bottom: auto;
+        left: auto;
+        transform: none;
         margin-top: calc({{ section.settings.pip_width_mobile }}% * {{ 1 | divided_by: section.settings.pip_image.aspect_ratio | times: 100 | divided_by: 100 }} + 20px);
       }
       .banner__pip-wrapper {
