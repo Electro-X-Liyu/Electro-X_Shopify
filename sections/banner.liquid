@@ -87,6 +87,46 @@
         padding: 0;
       }
     {% endunless %}
+    
+    .banner__content {
+      {% if section.settings.mobile_content_position == 'top-left' %}
+        top: 5%;
+        left: 5%;
+        transform: none;
+      {% elsif section.settings.mobile_content_position == 'top-center' %}
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+      {% elsif section.settings.mobile_content_position == 'top-right' %}
+        top: 5%;
+        right: 5%;
+        transform: none;
+      {% elsif section.settings.mobile_content_position == 'middle-left' %}
+        top: 50%;
+        left: 5%;
+        transform: translateY(-50%);
+      {% elsif section.settings.mobile_content_position == 'middle-center' %}
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      {% elsif section.settings.mobile_content_position == 'middle-right' %}
+        top: 50%;
+        right: 5%;
+        transform: translateY(-50%);
+      {% elsif section.settings.mobile_content_position == 'bottom-left' %}
+        bottom: 5%;
+        left: 5%;
+        transform: none;
+      {% elsif section.settings.mobile_content_position == 'bottom-center' %}
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+      {% elsif section.settings.mobile_content_position == 'bottom-right' %}
+        bottom: 5%;
+        right: 5%;
+        transform: none;
+      {% endif %}
+    }
   }
 {%- endstyle -%}
 
@@ -110,26 +150,11 @@
   if section.index == 1
     assign fetch_priority = 'high'
   endif
-  
-  # Determine mobile content alignment based on desktop position if not explicitly set
-  assign mobile_alignment = 'center'
-  if section.settings.mobile_content_alignment != 'same-as-desktop'
-    assign mobile_alignment = section.settings.mobile_content_alignment
-  else
-    case section.settings.desktop_content_position
-      when 'top-left', 'middle-left', 'bottom-left'
-        assign mobile_alignment = 'left'
-      when 'top-center', 'middle-center', 'bottom-center'
-        assign mobile_alignment = 'center'
-      when 'top-right', 'middle-right', 'bottom-right'
-        assign mobile_alignment = 'right'
-    endcase
-  endif
 -%}
 
 <div
   id="Banner-{{ section.id }}"
-  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ mobile_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
   {%- if section.settings.image != blank -%}
     <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
@@ -554,27 +579,47 @@
     },
     {
       "type": "select",
-      "id": "mobile_content_alignment",
+      "id": "mobile_content_position",
       "options": [
         {
-          "value": "same-as-desktop",
-          "label": "Same as desktop position"
+          "value": "top-left",
+          "label": "Top left"
         },
         {
-          "value": "left",
-          "label": "Left"
+          "value": "top-center",
+          "label": "Top center"
         },
         {
-          "value": "center",
-          "label": "Center"
+          "value": "top-right",
+          "label": "Top right"
         },
         {
-          "value": "right",
-          "label": "Right"
+          "value": "middle-left",
+          "label": "Middle left"
+        },
+        {
+          "value": "middle-center",
+          "label": "Middle center"
+        },
+        {
+          "value": "middle-right",
+          "label": "Middle right"
+        },
+        {
+          "value": "bottom-left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom-center",
+          "label": "Bottom center"
+        },
+        {
+          "value": "bottom-right",
+          "label": "Bottom right"
         }
       ],
-      "default": "same-as-desktop",
-      "label": "Content alignment (mobile)"
+      "default": "middle-center",
+      "label": "Content Position (mobile)"
     },
     {
       "type": "checkbox",
