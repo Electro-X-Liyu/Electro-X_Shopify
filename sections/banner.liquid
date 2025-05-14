@@ -1,4 +1,4 @@
-{{ 'banner.css' | asset_url | stylesheet_tag }}
+{{ 'section-banner.css' | asset_url | stylesheet_tag }}
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
@@ -27,41 +27,48 @@
   #Banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
-
-  {%- if section.settings.pip_enable -%}
-    .banner__pip {
-      width: {{ section.settings.pip_width }}%;
-      position: absolute;
-      {%- case section.settings.pip_position -%}
-        {%- when 'top-left' -%}
-          top: {{ section.settings.pip_offset_y }}%;
-          left: {{ section.settings.pip_offset_x }}%;
-        {%- when 'top-right' -%}
-          top: {{ section.settings.pip_offset_y }}%;
-          right: {{ section.settings.pip_offset_x }}%;
-        {%- when 'bottom-left' -%}
-          bottom: {{ section.settings.pip_offset_y }}%;
-          left: {{ section.settings.pip_offset_x }}%;
-        {%- when 'bottom-right' -%}
-          bottom: {{ section.settings.pip_offset_y }}%;
-          right: {{ section.settings.pip_offset_x }}%;
-        {%- when 'center' -%}
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-      {%- endcase -%}
-      z-index: 2;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      border-radius: {{ section.settings.pip_border_radius }}px;
-      overflow: hidden;
-    }
-
-    @media screen and (max-width: 749px) {
-      .banner__pip {
-        width: {{ section.settings.pip_width_mobile }}% !important;
+  
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'picture_in_picture' -%}
+      #PIP-{{ block.id }} {
+        width: {{ block.settings.pip_width }}%;
+        {% case block.settings.pip_position %}
+          {% when 'top-left' %}
+            top: 20px;
+            left: 20px;
+          {% when 'top-center' %}
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+          {% when 'top-right' %}
+            top: 20px;
+            right: 20px;
+          {% when 'middle-left' %}
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+          {% when 'middle-center' %}
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          {% when 'middle-right' %}
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+          {% when 'bottom-left' %}
+            bottom: 20px;
+            left: 20px;
+          {% when 'bottom-center' %}
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+          {% when 'bottom-right' %}
+            bottom: 20px;
+            right: 20px;
+        {% endcase %}
       }
-    }
-  {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
 {%- endstyle -%}
 
 {%- liquid
@@ -150,22 +157,30 @@
       }}
     </div>
   {%- endif -%}
-
-  {%- if section.settings.pip_enable and section.settings.pip_image != blank -%}
-    <div class="banner__pip{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-      {%- assign pip_image_height = section.settings.pip_image.width | divided_by: section.settings.pip_image.aspect_ratio -%}
-      {{
-        section.settings.pip_image
-        | image_url: width: 1500
-        | image_tag:
-          width: section.settings.pip_image.width,
-          height: pip_image_height,
-          class: 'banner__pip-image',
-          loading: 'lazy'
-      }}
-    </div>
-  {%- endif -%}
-
+  
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'picture_in_picture' -%}
+      <div id="PIP-{{ block.id }}" class="banner__pip" {{ block.shopify_attributes }}>
+        {%- if block.settings.pip_image != blank -%}
+          <div class="banner__pip-media media">
+            {{
+              block.settings.pip_image
+              | image_url: width: 1500
+              | image_tag:
+                loading: 'lazy',
+                sizes: 'auto',
+                widths: '375, 550, 750, 1100, 1500'
+            }}
+          </div>
+        {%- else -%}
+          <div class="banner__pip-media media placeholder">
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+  
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}
@@ -293,99 +308,6 @@
       ],
       "default": "none",
       "label": "t:sections.all.animation.image_behavior.label"
-    },
-    {
-      "type": "header",
-      "content": "Picture in Picture Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "pip_enable",
-      "label": "Enable Picture in Picture",
-      "default": false
-    },
-    {
-      "type": "image_picker",
-      "id": "pip_image",
-      "label": "PIP Image"
-    },
-    {
-      "type": "range",
-      "id": "pip_width",
-      "min": 10,
-      "max": 50,
-      "step": 1,
-      "unit": "%",
-      "label": "PIP Width (Desktop)",
-      "default": 25
-    },
-    {
-      "type": "range",
-      "id": "pip_width_mobile",
-      "min": 15,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "label": "PIP Width (Mobile)",
-      "default": 40
-    },
-    {
-      "type": "select",
-      "id": "pip_position",
-      "options": [
-        {
-          "value": "top-left",
-          "label": "Top Left"
-        },
-        {
-          "value": "top-right",
-          "label": "Top Right"
-        },
-        {
-          "value": "bottom-left",
-          "label": "Bottom Left"
-        },
-        {
-          "value": "bottom-right",
-          "label": "Bottom Right"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        }
-      ],
-      "default": "bottom-right",
-      "label": "PIP Position"
-    },
-    {
-      "type": "range",
-      "id": "pip_offset_x",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "%",
-      "label": "Horizontal Offset",
-      "default": 5
-    },
-    {
-      "type": "range",
-      "id": "pip_offset_y",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "%",
-      "label": "Vertical Offset",
-      "default": 5
-    },
-    {
-      "type": "range",
-      "id": "pip_border_radius",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Border Radius",
-      "default": 8
     },
     {
       "type": "header",
@@ -627,6 +549,72 @@
           "id": "button_style_secondary_2",
           "default": false,
           "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_2.label"
+        }
+      ]
+    },
+    {
+      "type": "picture_in_picture",
+      "name": "Picture in Picture",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "pip_image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "pip_width",
+          "min": 10,
+          "max": 50,
+          "step": 5,
+          "unit": "%",
+          "label": "Width",
+          "default": 30
+        },
+        {
+          "type": "select",
+          "id": "pip_position",
+          "options": [
+            {
+              "value": "top-left",
+              "label": "Top left"
+            },
+            {
+              "value": "top-center",
+              "label": "Top center"
+            },
+            {
+              "value": "top-right",
+              "label": "Top right"
+            },
+            {
+              "value": "middle-left",
+              "label": "Middle left"
+            },
+            {
+              "value": "middle-center",
+              "label": "Middle center"
+            },
+            {
+              "value": "middle-right",
+              "label": "Middle right"
+            },
+            {
+              "value": "bottom-left",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom-center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "bottom-right",
+              "label": "Bottom right"
+            }
+          ],
+          "default": "bottom-right",
+          "label": "Position"
         }
       ]
     }
