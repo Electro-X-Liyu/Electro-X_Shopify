@@ -27,21 +27,15 @@
       "settings": {
         "image": "shopify://shop_images/2-1.jpg",
         "image_overlay_opacity": 0,
-        "image_height": "medium",
+        "image_height": "large",
         "image_behavior": "zoom-in",
-        "pip_enable": true,
-        "pip_image": "shopify://shop_images/8.svg",
-        "pip_width": 25,
-        "pip_width_mobile": 50,
-        "pip_position": "center",
-        "pip_border_radius": 0,
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "scheme-3",
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
-        "show_text_below": true
+        "show_text_below": false
       }
     },
     "rich_text_waQVNB": {
