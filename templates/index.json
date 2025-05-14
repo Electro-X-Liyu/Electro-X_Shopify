@@ -12,14 +12,6 @@
     "banner_89aeKn": {
       "type": "banner",
       "blocks": {
-        "picture_in_picture_gb7NeC": {
-          "type": "picture_in_picture",
-          "settings": {
-            "pip_image": "shopify://shop_images/8.svg",
-            "pip_width": 25,
-            "pip_position": "bottom-center"
-          }
-        },
         "text_fCYKWq": {
           "type": "text",
           "settings": {
@@ -29,7 +21,6 @@
         }
       },
       "block_order": [
-        "picture_in_picture_gb7NeC",
         "text_fCYKWq"
       ],
       "name": "带画中画的横幅",
@@ -38,13 +29,25 @@
         "image_overlay_opacity": 0,
         "image_height": "large",
         "image_behavior": "zoom-in",
+        "pip_enable": true,
+        "pip_image": "shopify://shop_images/8.svg",
+        "pip_width": 26,
+        "pip_width_mobile": 30,
+        "pip_position": "center",
+        "pip_position_horizontal": 20,
+        "pip_position_vertical": 20,
+        "pip_border_width": 0,
+        "pip_border_color": "#ffffff",
+        "pip_border_radius": 0,
+        "pip_background": "rgba(0,0,0,0)",
+        "pip_box_shadow": "0 4px 8px rgba(0,0,0,0.2)",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "scheme-3",
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
-        "show_text_below": false
+        "show_text_below": true
       }
     },
     "rich_text_waQVNB": {
