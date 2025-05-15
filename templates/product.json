@@ -129,6 +129,46 @@
         "padding_bottom": 0
       }
     },
+    "community_ambassador_8UjVaN": {
+      "type": "Community-Ambassador",
+      "blocks": {
+        "ambassador_TybqnE": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/12.png",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_qR774t": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/14.png",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_hbF633": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/10.png",
+            "title": "Ambassador Name"
+          }
+        }
+      },
+      "block_order": [
+        "ambassador_TybqnE",
+        "ambassador_qR774t",
+        "ambassador_hbF633"
+      ],
+      "name": "Community Ambassador",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "columns_desktop": 3,
+        "grid_gap": 22,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "multicolumn_N3dUdX": {
       "type": "multicolumn",
       "blocks": {
@@ -191,6 +231,7 @@
     "main",
     "related-products",
     "rich_text_UMkNcV",
+    "community_ambassador_8UjVaN",
     "multicolumn_N3dUdX"
   ]
 }
