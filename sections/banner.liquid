@@ -75,8 +75,7 @@
     height: 100%;
     object-fit: cover;
   }
-
-  /* Mobile content positioning fixes */
+  
   @media screen and (max-width: 749px) {
     .banner__pip-wrapper {
       width: {{ section.settings.pip_width_mobile }}% !important;
@@ -90,67 +89,44 @@
     {% endunless %}
     
     .banner__content {
+      top: auto !important;
+      bottom: 25% !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
       width: 100%;
-      text-align: {{ section.settings.mobile_content_alignment }};
-      
-      {% if section.settings.mobile_content_position == 'top-left' %}
-        top: 5%;
-        left: 5%;
-        right: auto;
-        transform: none;
-      {% elsif section.settings.mobile_content_position == 'top-center' %}
-        top: 5%;
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-      {% elsif section.settings.mobile_content_position == 'top-right' %}
-        top: 5%;
-        right: 5%;
-        left: auto;
-        transform: none;
-      {% elsif section.settings.mobile_content_position == 'middle-left' %}
-        top: 50%;
-        left: 5%;
-        right: auto;
-        transform: translateY(-50%);
-      {% elsif section.settings.mobile_content_position == 'middle-center' %}
-        top: 50%;
-        left: 50%;
-        right: auto;
-        transform: translate(-50%, -50%);
-      {% elsif section.settings.mobile_content_position == 'middle-right' %}
-        top: 50%;
-        right: 5%;
-        left: auto;
-        transform: translateY(-50%);
-      {% elsif section.settings.mobile_content_position == 'bottom-left' %}
-        bottom: 5%;
-        left: 5%;
-        right: auto;
-        transform: none;
-      {% elsif section.settings.mobile_content_position == 'bottom-center' %}
-        bottom: 5%;
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-      {% elsif section.settings.mobile_content_position == 'bottom-right' %}
-        bottom: 5%;
-        right: 5%;
-        left: auto;
-        transform: none;
-      {% endif %}
+      text-align: center;
     }
     
     .banner__box {
-      text-align: {{ section.settings.mobile_content_alignment }};
-    }
-    
-    .banner__heading,
-    .banner__text {
-      text-align: inherit;
+      display: inline-block;
+      text-align: center;
+      width: auto;
+      max-width: 90%;
     }
   }
 {%- endstyle -%}
+
+{%- liquid
+  assign full_width = '100vw'
+  assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+
+  if section.settings.image_behavior == 'ambient'
+    assign half_width = '60vw'
+    assign full_width = '120vw'
+    assign stacked_sizes = '(min-width: 750px) 60vw, 120vw'
+    assign widths = '450, 660, 900, 1320, 1800, 2136, 2400, 3600, 7680'
+  elsif section.settings.image_behavior == 'fixed' or section.settings.image_behavior == 'zoom-in'
+    assign half_width = '100vw'
+    assign stacked_sizes = '100vw'
+  else
+    assign half_width = '50vw'
+    assign stacked_sizes = '(min-width: 750px) 50vw, 100vw'
+  endif
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+-%}
 
 <div
   id="Banner-{{ section.id }}"
@@ -576,70 +552,6 @@
       "id": "stack_images_on_mobile",
       "default": true,
       "label": "Stack images on mobile"
-    },
-    {
-      "type": "select",
-      "id": "mobile_content_position",
-      "options": [
-        {
-          "value": "top-left",
-          "label": "Top left"
-        },
-        {
-          "value": "top-center",
-          "label": "Top center"
-        },
-        {
-          "value": "top-right",
-          "label": "Top right"
-        },
-        {
-          "value": "middle-left",
-          "label": "Middle left"
-        },
-        {
-          "value": "middle-center",
-          "label": "Middle center"
-        },
-        {
-          "value": "middle-right",
-          "label": "Middle right"
-        },
-        {
-          "value": "bottom-left",
-          "label": "Bottom left"
-        },
-        {
-          "value": "bottom-center",
-          "label": "Bottom center"
-        },
-        {
-          "value": "bottom-right",
-          "label": "Bottom right"
-        }
-      ],
-      "default": "middle-center",
-      "label": "Content Position (mobile)"
-    },
-    {
-      "type": "select",
-      "id": "mobile_content_alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "center",
-      "label": "Content Alignment (mobile)"
     },
     {
       "type": "checkbox",
