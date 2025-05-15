@@ -46,7 +46,8 @@
         "show_text_box": false,
         "color_scheme": "scheme-3",
         "stack_images_on_mobile": false,
-        "mobile_content_position": "bottom-center",
+        "mobile_content_position": "bottom-right",
+        "mobile_content_alignment": "center",
         "use_container_on_mobile": false
       }
     },
