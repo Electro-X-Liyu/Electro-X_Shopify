@@ -90,7 +90,7 @@
     
     .banner__content {
       top: auto !important;
-      bottom: 25% !important;
+      bottom: {{ 100 | minus: section.settings.mobile_content_position }}% !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
       width: 100%;
@@ -552,6 +552,17 @@
       "id": "stack_images_on_mobile",
       "default": true,
       "label": "Stack images on mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Content vertical position (mobile)",
+      "default": 25,
+      "info": "Position from bottom of section (0% = bottom, 100% = top)"
     },
     {
       "type": "checkbox",
