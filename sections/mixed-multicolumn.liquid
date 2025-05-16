@@ -13,25 +13,6 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
-  /* Custom text styling */
-  #Slider-{{ section.id }} .multicolumn-card__info h3 {
-    color: {{ section.settings.heading_color }};
-    font-size: {{ section.settings.heading_size }}px;
-  }
-
-  #Slider-{{ section.id }} .multicolumn-card__info .rte {
-    color: {{ section.settings.text_color }};
-    font-size: {{ section.settings.text_size }}px;
-  }
-
-  /* Mobile column width */
-  @media screen and (max-width: 749px) {
-    .multicolumn-list--mobile-custom .multicolumn-list__item {
-      width: {{ 100 | divided_by: section.settings.columns_mobile }}%;
-      min-width: {{ 100 | divided_by: section.settings.columns_mobile }}%;
-    }
-  }
 {%- endstyle -%}
 
 {%- liquid
@@ -43,27 +24,29 @@
 -%}
 
 <div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
-  <div class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  <div
+    class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    {% if settings.animations_reveal_on_scroll %}
+      data-cascade
+    {% endif %}
+  >
     {%- unless section.settings.title == blank -%}
-      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
-        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title" style="color: {{ section.settings.heading_color }}; font-size: {{ section.settings.heading_size }}px;">
+        <h2 class="title inline-richtext">
           {{ section.settings.title }}
         </h2>
         {%- if section.settings.button_label != blank and show_mobile_slider -%}
-          <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">
+          <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide" style="color: {{ section.settings.button_color }}; font-size: {{ section.settings.button_font_size }}px;">
             {{- section.settings.button_label | escape -}}
           </a>
         {%- endif -%}
       </div>
     {%- endunless -%}
-
     <slider-component class="slider-mobile-gutter">
       <ul
-        class="multicolumn-list contains-content-container{% if show_mobile_slider %} slider slider--tablet slider--mobile grid--peek{% endif %}{% if section.settings.columns_mobile > 1 %} multicolumn-list--mobile-custom{% endif %}"
+        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
         id="Slider-{{ section.id }}"
         role="list"
-        data-desktop-columns="3"
-        data-mobile-columns="{{ section.settings.columns_mobile }}"
       >
         {%- liquid
           assign highest_ratio = 0
@@ -74,9 +57,18 @@
           endfor
         -%}
         {%- for block in section.blocks -%}
+          {%- assign empty_column = '' -%}
+          {%- if block.settings.image == blank
+            and block.settings.title == blank
+            and block.settings.text == blank
+            and block.settings.link_label == blank
+          -%}
+            {%- assign empty_column = ' multicolumn-list__item--empty' -%}
+          {%- endif -%}
+
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="multicolumn-list__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
@@ -85,14 +77,18 @@
           >
             <div class="multicolumn-card content-container">
               {%- if block.settings.image != blank -%}
-                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' %} multicolumn-card-spacing{% endif %}">
-                  <div class="media media--transparent media--{{ section.settings.image_ratio }}"
+                {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
+                  {% assign spaced_image = true %}
+                {% endif %}
+                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}">
+                  <div
+                    class="media media--transparent media--{{ section.settings.image_ratio }}"
                     {% if section.settings.image_ratio == 'adapt' %}
                       style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
                     {% endif %}
                   >
                     {%- liquid
-                      assign number_of_columns = 3
+                      assign number_of_columns = section.settings.columns_desktop
                       assign number_of_columns_mobile = section.settings.columns_mobile
                       assign grid_space_desktop = number_of_columns | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
                       assign grid_space_tablet = number_of_columns_mobile | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
@@ -124,14 +120,15 @@
               {%- endif -%}
               <div class="multicolumn-card__info">
                 {%- if block.settings.title != blank -%}
-                  <h3 class="inline-richtext">{{ block.settings.title }}</h3>
+                  <h3 class="inline-richtext" style="color: {{ block.settings.title_color }}; font-size: {{ block.settings.title_font_size }}px;">{{ block.settings.title }}</h3>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
-                  <div class="rte">{{ block.settings.text }}</div>
+                  <div class="rte" style="color: {{ block.settings.text_color }}; font-size: {{ block.settings.text_font_size }}px;">{{ block.settings.text }}</div>
                 {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
                   <a
                     class="link animate-arrow"
+                    style="color: {{ block.settings.link_color }}; font-size: {{ block.settings.link_font_size }}px;"
                     {% if block.settings.link == blank %}
                       role="link" aria-disabled="true"
                     {% else %}
@@ -150,8 +147,8 @@
         {%- endfor -%}
       </ul>
 
-      {%- if section.blocks.size > 3 or show_mobile_slider -%}
-        <div class="slider-buttons no-js-hidden">
+      {%- if show_mobile_slider -%}
+        <div class="slider-buttons large-up-hide">
           <button
             type="button"
             class="slider-button slider-button--prev"
@@ -177,11 +174,11 @@
         </div>
       {%- endif -%}
     </slider-component>
-
     <div class="center{% if show_mobile_slider %} small-hide medium-hide{% endif %}">
       {%- if section.settings.button_label != blank -%}
         <a
           class="button button--primary"
+          style="color: {{ section.settings.button_color }}; font-size: {{ section.settings.button_font_size }}px;"
           {% if section.settings.button_link == blank %}
             role="link" aria-disabled="true"
           {% else %}
@@ -207,32 +204,8 @@
     {
       "type": "inline_richtext",
       "id": "title",
-      "default": "Mixed multicolumn",
+      "default": "Multicolumn",
       "label": "Heading"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "Small"
-        },
-        {
-          "value": "h1",
-          "label": "Medium"
-        },
-        {
-          "value": "h0",
-          "label": "Large"
-        }
-      ],
-      "default": "h1",
-      "label": "Heading size"
-    },
-    {
-      "type": "header",
-      "content": "Text styling"
     },
     {
       "type": "color",
@@ -242,33 +215,48 @@
     },
     {
       "type": "range",
-      "id": "heading_size_px",
+      "id": "heading_size",
       "min": 12,
-      "max": 50,
+      "max": 72,
       "step": 1,
       "unit": "px",
-      "label": "Heading font size",
+      "label": "Heading size",
       "default": 24
     },
     {
+      "type": "header",
+      "content": "Button settings"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Button label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
       "type": "color",
-      "id": "text_color",
-      "label": "Text color",
-      "default": "#333333"
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#FFFFFF"
     },
     {
       "type": "range",
-      "id": "text_size",
+      "id": "button_font_size",
       "min": 12,
-      "max": 30,
+      "max": 36,
       "step": 1,
       "unit": "px",
-      "label": "Text font size",
+      "label": "Button font size",
       "default": 16
     },
     {
       "type": "header",
-      "content": "Images"
+      "content": "Image settings"
     },
     {
       "type": "select",
@@ -276,15 +264,15 @@
       "options": [
         {
           "value": "third",
-          "label": "Small"
+          "label": "Third"
         },
         {
           "value": "half",
-          "label": "Medium"
+          "label": "Half"
         },
         {
           "value": "full",
-          "label": "Full width"
+          "label": "Full"
         }
       ],
       "default": "full",
@@ -316,22 +304,16 @@
     },
     {
       "type": "header",
-      "content": "Layout"
+      "content": "Layout settings"
     },
     {
       "type": "range",
-      "id": "columns_mobile",
+      "id": "columns_desktop",
       "min": 1,
-      "max": 4,
+      "max": 6,
       "step": 1,
-      "default": 2,
-      "label": "Columns on mobile"
-    },
-    {
-      "type": "checkbox",
-      "id": "swipe_on_mobile",
-      "default": true,
-      "label": "Enable swipe on mobile"
+      "default": 3,
+      "label": "Columns on desktop"
     },
     {
       "type": "select",
@@ -359,7 +341,7 @@
         },
         {
           "value": "primary",
-          "label": "Primary background"
+          "label": "Primary"
         }
       ],
       "default": "primary",
@@ -373,18 +355,29 @@
     },
     {
       "type": "header",
-      "content": "Button"
+      "content": "Mobile settings"
     },
     {
-      "type": "text",
-      "id": "button_label",
-      "default": "View all",
-      "label": "Button label"
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        }
+      ],
+      "default": "1",
+      "label": "Columns on mobile"
     },
     {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button link"
+      "type": "checkbox",
+      "id": "swipe_on_mobile",
+      "default": false,
+      "label": "Enable swipe on mobile"
     },
     {
       "type": "header",
@@ -422,16 +415,60 @@
           "label": "Image"
         },
         {
+          "type": "header",
+          "content": "Title settings"
+        },
+        {
           "type": "inline_richtext",
           "id": "title",
           "default": "Column title",
           "label": "Title"
         },
         {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "title_font_size",
+          "min": 12,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Title font size",
+          "default": 18
+        },
+        {
+          "type": "header",
+          "content": "Text settings"
+        },
+        {
           "type": "richtext",
           "id": "text",
-          "default": "<p>Column content</p>",
+          "default": "<p>Column content. Add details about this item.</p>",
           "label": "Text"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#333333"
+        },
+        {
+          "type": "range",
+          "id": "text_font_size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Text font size",
+          "default": 14
+        },
+        {
+          "type": "header",
+          "content": "Link settings"
         },
         {
           "type": "text",
@@ -442,6 +479,22 @@
           "type": "url",
           "id": "link",
           "label": "Link"
+        },
+        {
+          "type": "color",
+          "id": "link_color",
+          "label": "Link color",
+          "default": "#2563EB"
+        },
+        {
+          "type": "range",
+          "id": "link_font_size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Link font size",
+          "default": 16
         }
       ]
     }
@@ -450,12 +503,6 @@
     {
       "name": "Mixed multicolumn",
       "blocks": [
-        {
-          "type": "column"
-        },
-        {
-          "type": "column"
-        },
         {
           "type": "column"
         },
