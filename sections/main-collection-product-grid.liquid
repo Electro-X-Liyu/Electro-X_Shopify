@@ -1,6 +1,5 @@
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
@@ -18,7 +17,6 @@
 {%- if section.settings.quick_add == 'bulk' -%}
   <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
@@ -172,14 +170,11 @@
                     show_secondary_image: section.settings.show_secondary_image,
                     show_vendor: section.settings.show_vendor,
                     show_rating: section.settings.show_rating,
-                    show_price: section.settings.show_price,
-                    show_title: section.settings.show_title,
-                    linked_text: section.settings.linked_text,
-                    linked_url: section.settings.linked_url,
                     lazy_load: lazy_load,
                     skip_styles: skip_card_product_styles,
                     quick_add: section.settings.quick_add,
-                    section_id: section.id
+                    section_id: section.id,
+                    hide_price: true
                   %}
                 </li>
                 {%- assign skip_card_product_styles = true -%}
@@ -244,35 +239,6 @@
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "Product card content"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_price",
-      "default": true,
-      "label": "Show product price"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_title",
-      "default": true,
-      "label": "Show product title"
-    },
-    {
-      "type": "text",
-      "id": "linked_text",
-      "label": "Linked text label",
-      "default": "View details",
-      "info": "Text for the additional link on product cards"
-    },
-    {
-      "type": "url",
-      "id": "linked_url",
-      "label": "Linked text URL",
-      "info": "Leave empty to link to the product page"
     },
     {
       "type": "header",
