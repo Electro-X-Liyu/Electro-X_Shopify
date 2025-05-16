@@ -37,6 +37,7 @@
         "paragraph_yxBCmF",
         "email_form_8RD4Ux"
       ],
+      "disabled": true,
       "name": "t:sections.newsletter.presets.name",
       "settings": {
         "color_scheme": "scheme-4",
@@ -47,6 +48,7 @@
     },
     "footer": {
       "type": "footer",
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-4",
         "newsletter_enable": true,
