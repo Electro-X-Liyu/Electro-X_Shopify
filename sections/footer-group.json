@@ -47,22 +47,10 @@
     },
     "footer": {
       "type": "footer",
-      "blocks": {
-        "text_XtGxEz": {
-          "type": "text",
-          "settings": {
-            "heading": "Find the ELECTRO X",
-            "subtext": "<p>Subscribe for product updates, insight and offers.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "text_XtGxEz"
-      ],
       "settings": {
         "color_scheme": "scheme-4",
         "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
+        "newsletter_heading": "Subscribe for product updates, insight and offers.",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": true,
