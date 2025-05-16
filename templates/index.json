@@ -474,6 +474,86 @@
         "padding_bottom": 0
       }
     },
+    "mixed_multicolumn_DFedAG": {
+      "type": "mixed-multicolumn",
+      "blocks": {
+        "column_Urkcg4": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/13cut.png",
+            "title": "Column title",
+            "text": "<p>Column content</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_6PE64z": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/10cut.png",
+            "title": "Column title",
+            "text": "",
+            "link_label": "Learn More",
+            "link": ""
+          }
+        },
+        "column_rWFfdJ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/11cut.png",
+            "title": "Column title",
+            "text": "",
+            "link_label": "Learn More",
+            "link": ""
+          }
+        },
+        "column_kfYTC4": {
+          "type": "column",
+          "settings": {
+            "title": "Column title",
+            "text": "<p>Column content</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_VhtXNi": {
+          "type": "column",
+          "settings": {
+            "title": "Column title",
+            "text": "<p>Column content</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_Urkcg4",
+        "column_6PE64z",
+        "column_rWFfdJ",
+        "column_kfYTC4",
+        "column_VhtXNi"
+      ],
+      "name": "Mixed multicolumn",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "heading_color": "#000000",
+        "heading_size_px": 24,
+        "text_color": "#333333",
+        "text_size": 16,
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_mobile": 2,
+        "swipe_on_mobile": true,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "",
+        "button_label": "View all",
+        "button_link": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "multicolumn_3riQ79": {
       "type": "multicolumn",
       "blocks": {
@@ -873,6 +953,7 @@
     "image_with_text_HT6mHr",
     "image_with_text_88PpK8",
     "rich_text_VpEQaY",
+    "mixed_multicolumn_DFedAG",
     "multicolumn_3riQ79",
     "image_banner_R9mHmC",
     "multicolumn_mBC8fB",
