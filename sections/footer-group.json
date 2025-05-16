@@ -47,6 +47,18 @@
     },
     "footer": {
       "type": "footer",
+      "blocks": {
+        "text_XtGxEz": {
+          "type": "text",
+          "settings": {
+            "heading": "Find the ELECTRO X",
+            "subtext": "<p>Subscribe for product updates, insight and offers.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_XtGxEz"
+      ],
       "settings": {
         "color_scheme": "scheme-4",
         "newsletter_enable": true,
