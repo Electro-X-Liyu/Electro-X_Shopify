@@ -538,95 +538,32 @@
       "name": "Mixed multicolumn",
       "settings": {
         "title": "",
+        "title_color": "#000000",
+        "title_size": 24,
+        "title_margin_top": 0,
+        "title_margin_bottom": 0,
         "heading_size": "h1",
+        "block_title_color": "#333333",
+        "block_title_size": 18,
+        "block_title_margin_top": 0,
+        "block_title_margin_bottom": 0,
+        "block_text_color": "#666666",
+        "block_text_size": 14,
+        "block_text_margin_top": 0,
+        "block_text_margin_bottom": 10,
+        "block_link_color": "#8d8d8d",
+        "block_link_size": 14,
+        "block_link_margin_top": 0,
+        "block_link_margin_bottom": 0,
         "image_width": "full",
         "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
-        "column_alignment": "center",
+        "columns_desktop": 6,
+        "column_alignment": "left",
         "background_style": "none",
         "color_scheme": "",
         "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn_3riQ79": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_PHb9XW": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/9cut.png",
-            "title": "2024/2025 HYROX CHINA",
-            "text": "",
-            "link_label": "Learn More",
-            "link": "shopify://blogs/sports-sponsorship-1/hyrox-beijing-shanghai"
-          }
-        },
-        "column_X69x7D": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/10cut.png",
-            "title": "2025 Ironman Shanghai",
-            "text": "",
-            "link_label": "Learn More",
-            "link": "shopify://blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming"
-          }
-        },
-        "column_8FmJEG": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/11cut.png",
-            "title": "NINGBO OPEN WTA 500",
-            "text": "",
-            "link_label": "Learn More",
-            "link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open"
-          }
-        },
-        "column_HTXJVe": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/17cut.png",
-            "title": "2024 Beijing Half Marathron",
-            "text": "",
-            "link_label": "Learn More",
-            "link": "shopify://blogs/sports-sponsorship-1/2024-beijing-half-marathron"
-          }
-        },
-        "column_6dGKhf": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/16cut.png",
-            "title": "2024 Desafio Beijin",
-            "text": "",
-            "link_label": "Learn More",
-            "link": "shopify://blogs/sports-sponsorship-1/2024-desafio-beijing"
-          }
-        }
-      },
-      "block_order": [
-        "column_PHb9XW",
-        "column_X69x7D",
-        "column_8FmJEG",
-        "column_HTXJVe",
-        "column_6dGKhf"
-      ],
-      "disabled": true,
-      "name": "t:sections.multicolumn.presets.name",
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "square",
-        "button_label": "",
-        "button_link": "shopify://blogs/sports-sponsorship-1",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "none",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 36
@@ -953,7 +890,6 @@
     "image_with_text_88PpK8",
     "rich_text_VpEQaY",
     "mixed_multicolumn_DFedAG",
-    "multicolumn_3riQ79",
     "image_banner_R9mHmC",
     "multicolumn_mBC8fB",
     "community_ambassador_jNH89B",
