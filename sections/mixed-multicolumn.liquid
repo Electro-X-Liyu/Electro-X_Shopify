@@ -43,6 +43,55 @@
     margin-top: {{ section.settings.block_link_margin_top }}px;
     margin-bottom: {{ section.settings.block_link_margin_bottom }}px;
   }
+
+  /* PC端 Carousel Arrows */
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .slider-component {
+      position: relative;
+    }
+    #shopify-section-{{ section.id }} .slider-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #shopify-section-{{ section.id }} .slider-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.1);
+      border: none;
+      cursor: pointer;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #shopify-section-{{ section.id }} .slider-button--prev {
+      left: -20px;
+    }
+    #shopify-section-{{ section.id }} .slider-button--next {
+      right: -20px;
+    }
+    #shopify-section-{{ section.id }} .slider-button .svg-wrapper {
+      width: 20px;
+      height: 20px;
+    }
+    #shopify-section-{{ section.id }} .multicolumn-list {
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+    #shopify-section-{{ section.id }} .multicolumn-list.slider {
+      overflow-x: auto;
+    }
+    #shopify-section-{{ section.id }} .multicolumn-list__item {
+      scroll-snap-align: start;
+      min-width: calc(33.33% - 20px);
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -50,6 +99,10 @@
   assign show_mobile_slider = false
   if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
     assign show_mobile_slider = true
+  endif
+  assign show_desktop_slider = false
+  if section.blocks.size > section.settings.columns_desktop
+    assign show_desktop_slider = true
   endif
 -%}
 
@@ -72,9 +125,10 @@
         {%- endif -%}
       </div>
     {%- endunless -%}
+
     <slider-component class="slider-mobile-gutter">
       <ul
-        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
+        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider or show_desktop_slider %} slider slider--tablet grid--peek{% endif %}"
         id="Slider-{{ section.id }}"
         role="list"
       >
@@ -98,7 +152,7 @@
 
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile or show_desktop_slider %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
@@ -176,13 +230,14 @@
         {%- endfor -%}
       </ul>
 
-      {%- if show_mobile_slider -%}
-        <div class="slider-buttons large-up-hide">
+      {%- if show_mobile_slider or show_desktop_slider -%}
+        <div class="slider-buttons no-js-hidden">
           <button
             type="button"
             class="slider-button slider-button--prev"
             name="previous"
             aria-label="{{ 'general.slider.previous_slide' | t }}"
+            aria-controls="Slider-{{ section.id }}"
           >
             <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
           </button>
@@ -197,6 +252,7 @@
             class="slider-button slider-button--next"
             name="next"
             aria-label="{{ 'general.slider.next_slide' | t }}"
+            aria-controls="Slider-{{ section.id }}"
           >
             <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
           </button>
@@ -485,7 +541,8 @@
       "max": 6,
       "step": 1,
       "default": 3,
-      "label": "t:sections.multicolumn.settings.columns_desktop.label"
+      "label": "Desktop columns",
+      "info": "Number of columns visible at once (will enable carousel if more blocks exist)"
     },
     {
       "type": "select",
@@ -549,7 +606,8 @@
       "type": "checkbox",
       "id": "swipe_on_mobile",
       "default": false,
-      "label": "t:sections.multicolumn.settings.swipe_on_mobile.label"
+      "label": "Enable mobile swipe",
+      "info": "Allows swiping between slides on mobile"
     },
     {
       "type": "header",
