@@ -480,49 +480,51 @@
         "column_Urkcg4": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/13cut.png",
-            "title": "Column title",
-            "text": "<p>Column content</p>",
-            "link_label": "",
-            "link": ""
+            "image": "shopify://shop_images/9cut.png",
+            "title": "2024/2025 HYROX CHINA",
+            "text": "",
+            "link_label": "Learn More",
+            "link": "shopify://blogs/sports-sponsorship-1/hyrox-beijing-shanghai"
           }
         },
         "column_6PE64z": {
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/10cut.png",
-            "title": "Column title",
+            "title": "2025 Ironman Shanghai",
             "text": "",
             "link_label": "Learn More",
-            "link": ""
+            "link": "shopify://blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming"
           }
         },
         "column_rWFfdJ": {
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/11cut.png",
-            "title": "Column title",
+            "title": "NINGBO OPEN WTA 500",
             "text": "",
             "link_label": "Learn More",
-            "link": ""
+            "link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open"
           }
         },
         "column_kfYTC4": {
           "type": "column",
           "settings": {
-            "title": "Column title",
-            "text": "<p>Column content</p>",
-            "link_label": "",
-            "link": ""
+            "image": "shopify://shop_images/17cut.png",
+            "title": "2024 Beijing Half Marathron",
+            "text": "",
+            "link_label": "Learn More",
+            "link": "shopify://blogs/sports-sponsorship-1/2024-beijing-half-marathron"
           }
         },
-        "column_VhtXNi": {
+        "column_kXbgWq": {
           "type": "column",
           "settings": {
-            "title": "Column title",
-            "text": "<p>Column content</p>",
-            "link_label": "",
-            "link": ""
+            "image": "shopify://shop_images/16cut.png",
+            "title": "2024 Desafio Beiing",
+            "text": "",
+            "link_label": "Learn More",
+            "link": "shopify://blogs/sports-sponsorship-1/2024-desafio-beijing"
           }
         }
       },
@@ -531,25 +533,38 @@
         "column_6PE64z",
         "column_rWFfdJ",
         "column_kfYTC4",
-        "column_VhtXNi"
+        "column_kXbgWq"
       ],
       "name": "Mixed multicolumn",
       "settings": {
         "title": "",
+        "title_color": "#000000",
+        "title_size": 24,
+        "title_margin_top": 0,
+        "title_margin_bottom": 20,
         "heading_size": "h1",
-        "heading_color": "#000000",
-        "heading_size_px": 24,
-        "text_color": "#333333",
-        "text_size": 16,
+        "block_title_color": "#333333",
+        "block_title_size": 18,
+        "block_title_margin_top": 0,
+        "block_title_margin_bottom": 0,
+        "block_text_color": "#666666",
+        "block_text_size": 14,
+        "block_text_margin_top": 0,
+        "block_text_margin_bottom": 10,
+        "block_link_color": "#0066cc",
+        "block_link_size": 14,
+        "block_link_margin_top": 0,
+        "block_link_margin_bottom": 0,
         "image_width": "full",
         "image_ratio": "adapt",
-        "columns_mobile": 2,
-        "swipe_on_mobile": true,
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
         "column_alignment": "center",
         "background_style": "primary",
         "color_scheme": "",
-        "button_label": "View all",
-        "button_link": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -615,6 +630,7 @@
         "column_HTXJVe",
         "column_6dGKhf"
       ],
+      "disabled": true,
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "",
