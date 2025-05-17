@@ -13,32 +13,29 @@
     }
   }
 
+  /* 2:1 aspect ratio container */
+  .section-{{ section.id }} {
+    aspect-ratio: 2/1;
+  }
+
   /* Custom container width */
   .section-{{ section.id }} .page-width {
     max-width: {{ section.settings.section_width }}px;
+    height: 100%;
   }
 
-  /* 1:2 aspect ratio for section */
-  .section-{{ section.id }} {
-    aspect-ratio: 1/2;
-  }
-
-  /* Image container takes 50% width */
-  .image-with-text__media-item {
-    width: 50%;
-  }
-
-  /* Remove all borders and ensure flush image */
+  /* 50% image width and 1:1 aspect ratio */
   .image-with-text__media {
+    width: 50%;
+    aspect-ratio: 1/1;
     border: none !important;
     padding: 0 !important;
-    margin: 0 !important;
   }
 
-  /* Force 1:1 aspect ratio for images */
-  .image-with-text__media.media {
-    aspect-ratio: 1/1;
-    padding-bottom: 0 !important;
+  /* Remove all media borders and shadows */
+  .image-with-text__media-item {
+    border: none !important;
+    box-shadow: none !important;
   }
 
   /* Custom spacing and styling for text blocks */
@@ -81,12 +78,9 @@
   <div class="page-width">
     <div class="image-with-text image-with-text--{{ section.settings.content_layout }} isolate{% unless section.settings.color_scheme == section.settings.section_color_scheme and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <div class="image-with-text__grid grid grid--gapless grid--1-col grid--2-col-tablet{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
-        <div class="image-with-text__media-item image-with-text__media-item--small image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
+        <div class="image-with-text__media-item grid__item">
           <div
-            class="image-with-text__media image-with-text__media--{{ section.settings.height }} global-media-settings{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}{% if section.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}"
-            {% if section.settings.image != blank %}
-              style="padding-bottom: 100%;"
-            {% endif %}
+            class="image-with-text__media global-media-settings{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}{% if section.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}"
           >
             {%- if section.settings.image != blank -%}
               {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
@@ -115,7 +109,7 @@
         <div class="image-with-text__text-item grid__item">
           <div
             id="ImageWithText--{{ section.id }}"
-            class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
+            class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
           >
             {%- for block in section.blocks -%}
               <div id="block-{{ block.id }}" {{ block.shopify_attributes }}>
@@ -199,50 +193,6 @@
       "unit": "px",
       "label": "Section width",
       "default": 1200
-    },
-    {
-      "type": "select",
-      "id": "height",
-      "options": [
-        {
-          "value": "adapt",
-          "label": "Adapt to image"
-        },
-        {
-          "value": "small",
-          "label": "Small"
-        },
-        {
-          "value": "medium",
-          "label": "Medium"
-        },
-        {
-          "value": "large",
-          "label": "Large"
-        }
-      ],
-      "default": "adapt",
-      "label": "Image height"
-    },
-    {
-      "type": "select",
-      "id": "desktop_image_width",
-      "options": [
-        {
-          "value": "small",
-          "label": "Small"
-        },
-        {
-          "value": "medium",
-          "label": "Medium"
-        },
-        {
-          "value": "large",
-          "label": "Large"
-        }
-      ],
-      "default": "small",
-      "label": "Desktop image width"
     },
     {
       "type": "select",
