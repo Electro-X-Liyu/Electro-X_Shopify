@@ -1,9 +1,16 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  .section-{{ section.id }} {
+    aspect-ratio: 2/1;
+    position: relative;
+    overflow: hidden;
+  }
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    height: 100%;
   }
 
   @media screen and (min-width: 750px) {
@@ -13,32 +20,42 @@
     }
   }
 
-  /* 2:1 aspect ratio container */
-  .section-{{ section.id }} {
-    aspect-ratio: 2/1;
+  .section-{{ section.id }} .page-width {
+    max-width: 100%;
+    height: 100%;
+    padding: 0;
   }
 
-  /* Custom container width */
-  .section-{{ section.id }} .page-width {
-    max-width: {{ section.settings.section_width }}px;
+  .section-{{ section.id }} .image-with-text__grid {
     height: 100%;
   }
 
-  /* 50% image width and 1:1 aspect ratio */
-  .image-with-text__media {
+  .section-{{ section.id }} .image-with-text__media-item {
     width: 50%;
-    aspect-ratio: 1/1;
-    border: none !important;
-    padding: 0 !important;
+    padding: 0;
   }
 
-  /* Remove all media borders and shadows */
-  .image-with-text__media-item {
-    border: none !important;
-    box-shadow: none !important;
+  .section-{{ section.id }} .image-with-text__media {
+    height: 100%;
+    padding-bottom: 0 !important;
   }
 
-  /* Custom spacing and styling for text blocks */
+  .section-{{ section.id }} .image-with-text__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .section-{{ section.id }} .image-with-text__text-item {
+    width: 50%;
+    padding: 0;
+  }
+
+  .section-{{ section.id }} .image-with-text__content {
+    height: 100%;
+    padding: 2rem;
+  }
+
   {%- for block in section.blocks -%}
     {%- if block.type contains 'text' or block.type == 'heading' or block.type == 'subheading' or block.type == 'caption' -%}
       #block-{{ block.id }} {
@@ -76,29 +93,20 @@
 
 <div class="section-{{ section.id }} section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
   <div class="page-width">
-    <div class="image-with-text image-with-text--{{ section.settings.content_layout }} isolate{% unless section.settings.color_scheme == section.settings.section_color_scheme and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <div class="image-with-text image-with-text--{{ section.settings.content_layout }} isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == section.settings.section_color_scheme and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <div class="image-with-text__grid grid grid--gapless grid--1-col grid--2-col-tablet{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
-        <div class="image-with-text__media-item grid__item">
+        <div class="image-with-text__media-item image-with-text__media-item--medium image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
           <div
-            class="image-with-text__media global-media-settings{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}{% if section.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}"
+            class="image-with-text__media image-with-text__media--adapt global-media-settings{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}{% if section.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}"
           >
             {%- if section.settings.image != blank -%}
-              {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
-                {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
-                {%- capture sizes -%}
-                  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
-                  (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
-                {%- endcapture -%}
-              {%- else -%}
-                {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
-                {%- capture sizes -%}
-                  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
-                  (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
-                {%- endcapture -%}
-              {%- endif -%}
+              {%- liquid
+                assign widths = '165, 360, 535, 750, 1070, 1500, 1780, 2000, 3000, 3840'
+                assign sizes = '50vw'
+              -%}
               {{
                 section.settings.image
-                | image_url: width: 1500
+                | image_url: width: 3000
                 | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
               }}
             {%- else -%}
@@ -109,7 +117,7 @@
         <div class="image-with-text__text-item grid__item">
           <div
             id="ImageWithText--{{ section.id }}"
-            class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
+            class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--adapt content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
           >
             {%- for block in section.blocks -%}
               <div id="block-{{ block.id }}" {{ block.shopify_attributes }}>
@@ -173,7 +181,7 @@
 
 {% schema %}
 {
-  "name": "Enhanced Image with Text",
+  "name": "2:1 Image with Text",
   "class": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
@@ -183,16 +191,6 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
-    },
-    {
-      "type": "range",
-      "id": "section_width",
-      "min": 800,
-      "max": 2100,
-      "step": 20,
-      "unit": "px",
-      "label": "Section width",
-      "default": 1200
     },
     {
       "type": "select",
@@ -267,7 +265,7 @@
           "label": "Bottom"
         }
       ],
-      "default": "top",
+      "default": "middle",
       "label": "Desktop content position"
     },
     {
@@ -796,13 +794,10 @@
   ],
   "presets": [
     {
-      "name": "Enhanced Image with Text",
+      "name": "2:1 Image with Text",
       "blocks": [
         {
           "type": "heading"
-        },
-        {
-          "type": "subheading"
         },
         {
           "type": "text"
