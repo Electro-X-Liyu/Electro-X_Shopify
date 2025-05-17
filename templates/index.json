@@ -356,13 +356,14 @@
             "spacing_bottom": 20
           }
         },
-        "subheading_xz3Qen": {
-          "type": "subheading",
+        "caption_nbnThL": {
+          "type": "caption",
           "settings": {
-            "subheading": "Premium Hydration, Refined Taste",
-            "subheading_size": "h3",
+            "caption": "Premium Hydration, Refined Taste",
+            "text_style": "subtitle",
+            "text_size": "medium",
             "text_color": "#ffffff",
-            "bold_text": false,
+            "bold_text": true,
             "spacing_top": 0,
             "spacing_bottom": 15
           }
@@ -425,7 +426,7 @@
       },
       "block_order": [
         "heading_hdCVz3",
-        "subheading_xz3Qen",
+        "caption_nbnThL",
         "text_TLqMRG",
         "caption_jJxTbP",
         "text_xW49Um",
