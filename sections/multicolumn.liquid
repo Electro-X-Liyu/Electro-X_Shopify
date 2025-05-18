@@ -2,6 +2,7 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  /* Section Padding */
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -18,30 +19,52 @@
   #shopify-section-{{ section.id }} .multicolumn__title .title {
     color: {{ section.settings.title_color }};
     font-size: {{ section.settings.title_size }}px;
-    margin-top: {{ section.settings.title_margin_top }}px;
-    margin-bottom: {{ section.settings.title_margin_bottom }}px;
+    margin: {{ section.settings.title_margin_top }}px 0 {{ section.settings.title_margin_bottom }}px;
+    {% if section.settings.title_custom_font %}
+      font-family: var(--font-{{ section.settings.title_font_family }});
+      font-weight: {{ section.settings.title_font_weight }};
+    {% endif %}
   }
 
   /* Column Content Styles */
+  #shopify-section-{{ section.id }} .multicolumn-card__info {
+    text-align: {{ section.settings.text_alignment }};
+  }
+
   #shopify-section-{{ section.id }} .multicolumn-card__info h3 {
     color: {{ section.settings.block_title_color }};
     font-size: {{ section.settings.block_title_size }}px;
-    margin-top: {{ section.settings.block_title_margin_top }}px;
-    margin-bottom: {{ section.settings.block_title_margin_bottom }}px;
+    margin: {{ section.settings.block_title_margin_top }}px 0 {{ section.settings.block_title_margin_bottom }}px;
+    {% if section.settings.block_title_custom_font %}
+      font-family: var(--font-{{ section.settings.block_title_font_family }});
+      font-weight: {{ section.settings.block_title_font_weight }};
+    {% endif %}
   }
 
   #shopify-section-{{ section.id }} .multicolumn-card__info .rte {
     color: {{ section.settings.block_text_color }};
     font-size: {{ section.settings.block_text_size }}px;
-    margin-top: {{ section.settings.block_text_margin_top }}px;
-    margin-bottom: {{ section.settings.block_text_margin_bottom }}px;
+    margin: {{ section.settings.block_text_margin_top }}px 0 {{ section.settings.block_text_margin_bottom }}px;
+    line-height: 1.5;
   }
 
   #shopify-section-{{ section.id }} .multicolumn-card__info .link {
     color: {{ section.settings.block_link_color }};
     font-size: {{ section.settings.block_link_size }}px;
-    margin-top: {{ section.settings.block_link_margin_top }}px;
-    margin-bottom: {{ section.settings.block_link_margin_bottom }}px;
+    margin: {{ section.settings.block_link_margin_top }}px 0 {{ section.settings.block_link_margin_bottom }}px;
+    display: inline-block;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  #shopify-section-{{ section.id }} .multicolumn-card__info .link:hover {
+    color: {{ section.settings.block_link_hover_color }};
+  }
+
+  /* Image Styles */
+  #shopify-section-{{ section.id }} .multicolumn-card__image-wrapper {
+    border-radius: {{ section.settings.image_border_radius }}px;
+    overflow: hidden;
   }
 {%- endstyle -%}
 
@@ -144,7 +167,10 @@
                       | image_tag:
                         widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200',
                         sizes: sizes,
-                        class: 'multicolumn-card__image'
+                        class: 'multicolumn-card__image',
+                        loading: 'lazy',
+                        alt: block.settings.image.alt
+                      | escape
                     }}
                   </div>
                 </div>
@@ -233,10 +259,34 @@
   },
   "settings": [
     {
+      "type": "header",
+      "content": "Heading Settings"
+    },
+    {
       "type": "inline_richtext",
       "id": "title",
       "default": "Multicolumn",
       "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Medium"
+        },
+        {
+          "value": "h1",
+          "label": "Large"
+        },
+        {
+          "value": "h0",
+          "label": "Extra large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
     },
     {
       "type": "color",
@@ -275,28 +325,70 @@
       "default": 20
     },
     {
+      "type": "checkbox",
+      "id": "title_custom_font",
+      "label": "Use custom font",
+      "default": false
+    },
+    {
       "type": "select",
-      "id": "heading_size",
+      "id": "title_font_family",
+      "label": "Font family",
       "options": [
         {
-          "value": "h2",
-          "label": "Medium"
+          "value": "heading",
+          "label": "Heading font"
         },
         {
-          "value": "h1",
-          "label": "Large"
-        },
-        {
-          "value": "h0",
-          "label": "Extra large"
+          "value": "body",
+          "label": "Body font"
         }
       ],
-      "default": "h1",
-      "label": "Heading size"
+      "default": "heading"
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        },
+        {
+          "value": "bolder",
+          "label": "Bolder"
+        }
+      ],
+      "default": "bold"
     },
     {
       "type": "header",
-      "content": "Column content styling"
+      "content": "Column Content"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text alignment"
     },
     {
       "type": "color",
@@ -333,6 +425,44 @@
       "unit": "px",
       "label": "Column title bottom margin",
       "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "block_title_custom_font",
+      "label": "Use custom font for titles",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "block_title_font_family",
+      "label": "Title font family",
+      "options": [
+        {
+          "value": "heading",
+          "label": "Heading font"
+        },
+        {
+          "value": "body",
+          "label": "Body font"
+        }
+      ],
+      "default": "heading"
+    },
+    {
+      "type": "select",
+      "id": "block_title_font_weight",
+      "label": "Title font weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        }
+      ],
+      "default": "bold"
     },
     {
       "type": "color",
@@ -377,6 +507,12 @@
       "default": "#0066CC"
     },
     {
+      "type": "color",
+      "id": "block_link_hover_color",
+      "label": "Column link hover color",
+      "default": "#004499"
+    },
+    {
       "type": "range",
       "id": "block_link_size",
       "min": 12,
@@ -408,7 +544,7 @@
     },
     {
       "type": "header",
-      "content": "Image settings"
+      "content": "Image Settings"
     },
     {
       "type": "select",
@@ -455,8 +591,18 @@
       "label": "Image ratio"
     },
     {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 0
+    },
+    {
       "type": "header",
-      "content": "Button settings"
+      "content": "Button Settings"
     },
     {
       "type": "text",
@@ -471,7 +617,7 @@
     },
     {
       "type": "header",
-      "content": "Layout settings"
+      "content": "Layout Settings"
     },
     {
       "type": "range",
@@ -522,7 +668,7 @@
     },
     {
       "type": "header",
-      "content": "Mobile settings"
+      "content": "Mobile Settings"
     },
     {
       "type": "select",
@@ -548,7 +694,7 @@
     },
     {
       "type": "header",
-      "content": "Section padding"
+      "content": "Section Padding"
     },
     {
       "type": "range",
