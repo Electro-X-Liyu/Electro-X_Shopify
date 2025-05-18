@@ -1,12 +1,6 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }} {
-    aspect-ratio: 2/1;
-    position: relative;
-    overflow: hidden;
-  }
-
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -19,69 +13,12 @@
     }
   }
 
-  /* Grid layout */
-  .section-{{ section.id }} .image-with-text__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 100%;
-  }
-
-  /* Image container */
-  .section-{{ section.id }} .image-with-text__media-item {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-  }
-
-  /* Image styling */
-  .section-{{ section.id }} .image-with-text__media {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-  }
-
-  .section-{{ section.id }} .image-with-text__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* Text container */
-  .section-{{ section.id }} .image-with-text__text-item {
-    display: flex;
-    align-items: center;
-    padding: 2rem;
-  }
-
-  /* Content alignment */
-  .section-{{ section.id }} .image-with-text__content {
-    width: 100%;
-    text-align: {{ section.settings.desktop_content_alignment }};
-  }
-
-  /* Block spacing */
+  /* Custom spacing for text blocks */
   {%- for block in section.blocks -%}
     {%- if block.type contains 'text' or block.type == 'heading' or block.type == 'subheading' or block.type == 'caption' -%}
       #block-{{ block.id }} {
         margin-top: {{ block.settings.spacing_top }}px;
         margin-bottom: {{ block.settings.spacing_bottom }}px;
-        {%- if block.settings.text_color != blank -%}
-          color: {{ block.settings.text_color }};
-        {%- endif -%}
-      }
-
-      #block-{{ block.id }} p,
-      #block-{{ block.id }} h2,
-      #block-{{ block.id }} h3,
-      #block-{{ block.id }} .rte {
-        {%- if block.settings.text_color != blank -%}
-          color: inherit;
-        {%- endif -%}
-        {%- if block.settings.bold_text -%}
-          font-weight: bold;
-        {%- endif -%}
       }
     {%- endif -%}
   {%- endfor -%}
@@ -97,27 +34,30 @@
   endif
 -%}
 
-<div class="section-{{ section.id }} section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
   <div class="page-width">
     <div class="image-with-text image-with-text--{{ section.settings.content_layout }} isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == section.settings.section_color_scheme and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-      <div class="image-with-text__grid grid grid--gapless grid--1-col grid--2-col-tablet{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
-        <div class="image-with-text__media-item image-with-text__media-item--medium image-with-text__media-item--middle grid__item">
+      <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
+        <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
           <div
-            class="image-with-text__media image-with-text__media--adapt global-media-settings{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}{% if section.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}"
+            class="image-with-text__media image-with-text__media--{{ section.settings.height }} global-media-settings{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}{% if section.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}"
+            {% if section.settings.height == 'adapt' and section.settings.image != blank %}
+              style="padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;"
+            {% endif %}
           >
             {%- if section.settings.image != blank -%}
               {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
                 {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
                 {%- capture sizes -%}
-                  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
-                  (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
-                {%- endcapture -%}
+              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
+              (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
+            {%- endcapture -%}
               {%- else -%}
                 {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
                 {%- capture sizes -%}
-                  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
-                  (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
-                {%- endcapture -%}
+              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+              (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+            {%- endcapture -%}
               {%- endif -%}
               {{
                 section.settings.image
@@ -132,7 +72,7 @@
         <div class="image-with-text__text-item grid__item">
           <div
             id="ImageWithText--{{ section.id }}"
-            class="image-with-text__content image-with-text__content--middle image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--adapt content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
+            class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
           >
             {%- for block in section.blocks -%}
               <div id="block-{{ block.id }}" {{ block.shopify_attributes }}>
@@ -209,6 +149,50 @@
     },
     {
       "type": "select",
+      "id": "height",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "adapt",
+      "label": "Image height"
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_width",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium",
+      "label": "Desktop image width"
+    },
+    {
+      "type": "select",
       "id": "layout",
       "options": [
         {
@@ -265,6 +249,26 @@
     },
     {
       "type": "select",
+      "id": "desktop_content_position",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "top",
+      "label": "Desktop content position"
+    },
+    {
+      "type": "select",
       "id": "desktop_content_alignment",
       "options": [
         {
@@ -280,7 +284,7 @@
           "label": "Right"
         }
       ],
-      "default": "center",
+      "default": "left",
       "label": "Desktop content alignment"
     },
     {
@@ -300,7 +304,7 @@
           "label": "Right"
         }
       ],
-      "default": "center",
+      "default": "left",
       "label": "Mobile content alignment"
     },
     {
@@ -328,20 +332,20 @@
       "id": "padding_top",
       "min": 0,
       "max": 100,
-      "step": 1,
+      "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 0
+      "default": 36
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
       "max": 100,
-      "step": 1,
+      "step": 4,
       "unit": "px",
       "label": "Bottom padding",
-      "default": 0
+      "default": 36
     }
   ],
   "blocks": [
@@ -383,18 +387,6 @@
           ],
           "default": "h1",
           "label": "Heading size"
-        },
-        {
-          "type": "color",
-          "id": "text_color",
-          "label": "Text color",
-          "default": "rgba(0,0,0,0)"
-        },
-        {
-          "type": "checkbox",
-          "id": "bold_text",
-          "label": "Bold text",
-          "default": false
         },
         {
           "type": "range",
@@ -447,18 +439,6 @@
           ],
           "default": "h2",
           "label": "Subheading size"
-        },
-        {
-          "type": "color",
-          "id": "text_color",
-          "label": "Text color",
-          "default": "rgba(0,0,0,0)"
-        },
-        {
-          "type": "checkbox",
-          "id": "bold_text",
-          "label": "Bold text",
-          "default": false
         },
         {
           "type": "range",
@@ -529,18 +509,6 @@
           "label": "Text size"
         },
         {
-          "type": "color",
-          "id": "text_color",
-          "label": "Text color",
-          "default": "rgba(0,0,0,0)"
-        },
-        {
-          "type": "checkbox",
-          "id": "bold_text",
-          "label": "Bold text",
-          "default": false
-        },
-        {
           "type": "range",
           "id": "spacing_top",
           "min": 0,
@@ -587,18 +555,6 @@
           ],
           "default": "body",
           "label": "Text style"
-        },
-        {
-          "type": "color",
-          "id": "text_color",
-          "label": "Text color",
-          "default": "rgba(0,0,0,0)"
-        },
-        {
-          "type": "checkbox",
-          "id": "bold_text",
-          "label": "Bold text",
-          "default": false
         },
         {
           "type": "range",
@@ -649,18 +605,6 @@
           "label": "Text style"
         },
         {
-          "type": "color",
-          "id": "text_color",
-          "label": "Text color",
-          "default": "rgba(0,0,0,0)"
-        },
-        {
-          "type": "checkbox",
-          "id": "bold_text",
-          "label": "Bold text",
-          "default": false
-        },
-        {
           "type": "range",
           "id": "spacing_top",
           "min": 0,
@@ -707,18 +651,6 @@
           ],
           "default": "body",
           "label": "Text style"
-        },
-        {
-          "type": "color",
-          "id": "text_color",
-          "label": "Text color",
-          "default": "rgba(0,0,0,0)"
-        },
-        {
-          "type": "checkbox",
-          "id": "bold_text",
-          "label": "Bold text",
-          "default": false
         },
         {
           "type": "range",
