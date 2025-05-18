@@ -13,36 +13,6 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
-  /* Custom Title Styles */
-  #shopify-section-{{ section.id }} .multicolumn__title .title {
-    color: {{ section.settings.title_color }};
-    font-size: {{ section.settings.title_size }}px;
-    margin-top: {{ section.settings.title_margin_top }}px;
-    margin-bottom: {{ section.settings.title_margin_bottom }}px;
-  }
-
-  /* Custom Block Content Styles */
-  #shopify-section-{{ section.id }} .multicolumn-card__info h3 {
-    color: {{ section.settings.block_title_color }};
-    font-size: {{ section.settings.block_title_size }}px;
-    margin-top: {{ section.settings.block_title_margin_top }}px;
-    margin-bottom: {{ section.settings.block_title_margin_bottom }}px;
-  }
-
-  #shopify-section-{{ section.id }} .multicolumn-card__info .rte {
-    color: {{ section.settings.block_text_color }};
-    font-size: {{ section.settings.block_text_size }}px;
-    margin-top: {{ section.settings.block_text_margin_top }}px;
-    margin-bottom: {{ section.settings.block_text_margin_bottom }}px;
-  }
-
-  #shopify-section-{{ section.id }} .multicolumn-card__info .link {
-    color: {{ section.settings.block_link_color }};
-    font-size: {{ section.settings.block_link_size }}px;
-    margin-top: {{ section.settings.block_link_margin_top }}px;
-    margin-bottom: {{ section.settings.block_link_margin_bottom }}px;
-  }
 {%- endstyle -%}
 
 {%- liquid
@@ -222,7 +192,7 @@
 
 {% schema %}
 {
-  "name": "Mixed multicolumn",
+  "name": "t:sections.multicolumn.name",
   "class": "section",
   "tag": "section",
   "disabled_on": {
@@ -232,44 +202,8 @@
     {
       "type": "inline_richtext",
       "id": "title",
-      "default": "Multicolumn",
-      "label": "Heading"
-    },
-    {
-      "type": "color",
-      "id": "title_color",
-      "label": "Heading color",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "title_size",
-      "min": 12,
-      "max": 72,
-      "step": 1,
-      "unit": "px",
-      "label": "Heading size",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "title_margin_top",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Heading top margin",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "title_margin_bottom",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Heading bottom margin",
-      "default": 20
+      "default": "t:sections.multicolumn.settings.title.default",
+      "label": "t:sections.multicolumn.settings.title.label"
     },
     {
       "type": "select",
@@ -301,119 +235,7 @@
     },
     {
       "type": "header",
-      "content": "Block content styling"
-    },
-    {
-      "type": "color",
-      "id": "block_title_color",
-      "label": "Column title color",
-      "default": "#333333"
-    },
-    {
-      "type": "range",
-      "id": "block_title_size",
-      "min": 12,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Column title size",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "block_title_margin_top",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Column title top margin",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "block_title_margin_bottom",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Column title bottom margin",
-      "default": 10
-    },
-    {
-      "type": "color",
-      "id": "block_text_color",
-      "label": "Column text color",
-      "default": "#666666"
-    },
-    {
-      "type": "range",
-      "id": "block_text_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Column text size",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "block_text_margin_top",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Column text top margin",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "block_text_margin_bottom",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Column text bottom margin",
-      "default": 10
-    },
-    {
-      "type": "color",
-      "id": "block_link_color",
-      "label": "Column link color",
-      "default": "#0066CC"
-    },
-    {
-      "type": "range",
-      "id": "block_link_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Column link size",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "block_link_margin_top",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Column link top margin",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "block_link_margin_bottom",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Column link bottom margin",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Image settings"
+      "content": "t:sections.multicolumn.settings.header_image.content"
     },
     {
       "type": "select",
@@ -461,13 +283,14 @@
     },
     {
       "type": "header",
-      "content": "Button settings"
+      "content": "t:sections.multicolumn.settings.header_button.content"
     },
     {
       "type": "text",
       "id": "button_label",
-      "default": "Button label",
-      "label": "t:sections.multicolumn.settings.button_label.label"
+      "default": "t:sections.multicolumn.settings.button_label.default",
+      "label": "t:sections.multicolumn.settings.button_label.label",
+      "info": "t:sections.multicolumn.settings.button_label.info"
     },
     {
       "type": "url",
@@ -476,7 +299,7 @@
     },
     {
       "type": "header",
-      "content": "Layout settings"
+      "content": "t:sections.multicolumn.settings.header_layout.content"
     },
     {
       "type": "range",
@@ -527,7 +350,7 @@
     },
     {
       "type": "header",
-      "content": "Mobile settings"
+      "content": "t:sections.multicolumn.settings.header_mobile.content"
     },
     {
       "type": "select",
@@ -553,7 +376,7 @@
     },
     {
       "type": "header",
-      "content": "Section padding"
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
@@ -579,7 +402,7 @@
   "blocks": [
     {
       "type": "column",
-      "name": "Column",
+      "name": "t:sections.multicolumn.blocks.column.name",
       "settings": [
         {
           "type": "image_picker",
@@ -589,19 +412,20 @@
         {
           "type": "inline_richtext",
           "id": "title",
-          "default": "Column title",
+          "default": "t:sections.multicolumn.blocks.column.settings.title.default",
           "label": "t:sections.multicolumn.blocks.column.settings.title.label"
         },
         {
           "type": "richtext",
           "id": "text",
-          "default": "<p>Column content. Describe your product or feature here.</p>",
+          "default": "t:sections.multicolumn.blocks.column.settings.text.default",
           "label": "t:sections.multicolumn.blocks.column.settings.text.label"
         },
         {
           "type": "text",
           "id": "link_label",
-          "label": "t:sections.multicolumn.blocks.column.settings.link_label.label"
+          "label": "t:sections.multicolumn.blocks.column.settings.link_label.label",
+          "info": "t:sections.multicolumn.blocks.column.settings.link_label.info"
         },
         {
           "type": "url",
@@ -613,7 +437,7 @@
   ],
   "presets": [
     {
-      "name": "Mixed multicolumn",
+      "name": "t:sections.multicolumn.presets.name",
       "blocks": [
         {
           "type": "column"
