@@ -53,11 +53,46 @@
         "mobile_content_alignment": "center",
         "show_text_below": true
       }
+    },
+    "newsletter_iYx9d9": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_mcbTh7": {
+          "type": "heading",
+          "settings": {
+            "heading": "Find the ELECTRO X",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph_HQqcPF": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Subscribe for product updates, insight and offers.</p>"
+          }
+        },
+        "email_form_pWCJgK": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_mcbTh7",
+        "paragraph_HQqcPF",
+        "email_form_pWCJgK"
+      ],
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
     "banner",
     "product-grid",
-    "image_banner_LpVwBW"
+    "image_banner_LpVwBW",
+    "newsletter_iYx9d9"
   ]
 }
