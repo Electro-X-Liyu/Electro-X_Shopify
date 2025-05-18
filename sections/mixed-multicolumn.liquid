@@ -105,7 +105,7 @@
     {%- endunless -%}
 
     <slider-component class="slider-mobile-gutter">
-      {%- if section.blocks.size > 3 -%}
+      {%- if section.settings.show_desktop_arrows and section.blocks.size > 3 -%}
         <div class="slider-buttons desktop-only">
           <button
             type="button"
@@ -275,13 +275,17 @@
     const nextBtn = document.querySelector('.desktop-next');
     const itemWidth = document.querySelector('.multicolumn-list__item').offsetWidth + 20; // Include margin
 
-    prevBtn.addEventListener('click', () => {
-      desktopSlider.scrollBy({ left: -itemWidth * 3, behavior: 'smooth' });
-    });
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        desktopSlider.scrollBy({ left: -itemWidth * 3, behavior: 'smooth' });
+      });
+    }
 
-    nextBtn.addEventListener('click', () => {
-      desktopSlider.scrollBy({ left: itemWidth * 3, behavior: 'smooth' });
-    });
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        desktopSlider.scrollBy({ left: itemWidth * 3, behavior: 'smooth' });
+      });
+    }
   });
 </script>
 
@@ -355,6 +359,17 @@
       ],
       "default": "h1",
       "label": "Heading size preset"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Slider Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_desktop_arrows",
+      "default": true,
+      "label": "Show navigation arrows",
+      "info": "Visible when more than 3 columns exist"
     },
     {
       "type": "header",
