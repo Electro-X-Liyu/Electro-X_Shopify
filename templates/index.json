@@ -521,14 +521,14 @@
         "block_text_color": "#666666",
         "block_text_size": 14,
         "block_text_margin_top": 0,
-        "block_text_margin_bottom": 10,
+        "block_text_margin_bottom": 0,
         "block_link_color": "#8d8d8d",
         "block_link_size": 14,
         "block_link_margin_top": 0,
         "block_link_margin_bottom": 0,
         "image_width": "full",
         "image_ratio": "adapt",
-        "button_label": "Learn More",
+        "button_label": "VIEW ALL",
         "button_link": "shopify://blogs/sports-sponsorship-1",
         "button_bg_color": "#000000",
         "button_text_color": "#ffffff",
@@ -543,7 +543,7 @@
         "mobile_button_text_size": 14,
         "mobile_button_padding_top": 8,
         "mobile_button_padding_right": 20,
-        "mobile_button_padding_bottom": 10,
+        "mobile_button_padding_bottom": 8,
         "mobile_button_padding_left": 20,
         "columns_desktop": 6,
         "column_alignment": "left",
@@ -583,6 +583,93 @@
         "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
         "show_text_below": false
+      }
+    },
+    "mixed_multicolumn_WDCCNH": {
+      "type": "mixed-multicolumn",
+      "blocks": {
+        "column_cAJ76i": {
+          "type": "column",
+          "settings": {
+            "title": "Community Ambassadors",
+            "text": "",
+            "link_label": "Learn More",
+            "link": ""
+          }
+        },
+        "column_xjHzLi": {
+          "type": "column",
+          "settings": {
+            "title": "Column title",
+            "text": "<p>Column content. Describe your product or feature here.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_fXWrUP": {
+          "type": "column",
+          "settings": {
+            "title": "Column title",
+            "text": "<p>Column content. Describe your product or feature here.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_cAJ76i",
+        "column_xjHzLi",
+        "column_fXWrUP"
+      ],
+      "name": "Mixed multicolumn",
+      "settings": {
+        "title": "",
+        "title_color": "#000000",
+        "title_size": 24,
+        "title_margin_top": 0,
+        "title_margin_bottom": 20,
+        "heading_size": "h1",
+        "block_title_color": "#333333",
+        "block_title_size": 18,
+        "block_title_margin_top": 0,
+        "block_title_margin_bottom": 10,
+        "block_text_color": "#666666",
+        "block_text_size": 14,
+        "block_text_margin_top": 0,
+        "block_text_margin_bottom": 10,
+        "block_link_color": "#0066CC",
+        "block_link_size": 14,
+        "block_link_margin_top": 0,
+        "block_link_margin_bottom": 0,
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "Button label",
+        "button_link": "",
+        "button_bg_color": "#000000",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 4,
+        "button_padding_top": 12,
+        "button_padding_right": 24,
+        "button_padding_bottom": 12,
+        "button_padding_left": 24,
+        "button_margin_top": 20,
+        "button_margin_bottom": 0,
+        "button_text_size": 16,
+        "mobile_button_text_size": 14,
+        "mobile_button_padding_top": 10,
+        "mobile_button_padding_right": 20,
+        "mobile_button_padding_bottom": 10,
+        "mobile_button_padding_left": 20,
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "mobile_column_width": 80,
+        "mobile_column_gap": 10,
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "multicolumn_mBC8fB": {
@@ -697,6 +784,7 @@
     "rich_text_VpEQaY",
     "mixed_multicolumn_DFedAG",
     "image_banner_R9mHmC",
+    "mixed_multicolumn_WDCCNH",
     "multicolumn_mBC8fB",
     "page_tBQPbK"
   ]
