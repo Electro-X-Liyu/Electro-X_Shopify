@@ -16,14 +16,29 @@
     .multicolumn-list[data-desktop-slider] {
       display: flex;
       flex-wrap: nowrap;
-      overflow: hidden;
+      overflow-x: auto;
       scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+      cursor: grab;
+    }
+    .multicolumn-list[data-desktop-slider]:active {
+      cursor: grabbing;
+    }
+    /* Hide scrollbar */
+    .multicolumn-list[data-desktop-slider]::-webkit-scrollbar {
+      display: none;
+    }
+    .multicolumn-list[data-desktop-slider] {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
     /* Visible 3 columns */
     .multicolumn-list__item {
       min-width: calc(33.33% - 20px);
       margin-right: 20px;
       flex-shrink: 0;
+      scroll-snap-align: start;
     }
     /* Side arrows - Larger size */
     .slider-buttons.desktop-only {
@@ -47,6 +62,11 @@
       width: 40px;
       height: 40px;
     }
+  }
+
+  /* Hide mobile slider buttons and bullets */
+  .slider-buttons.no-arrows {
+    display: none !important;
   }
 
   /* Original text styling */
@@ -233,7 +253,7 @@
       </ul>
 
       {%- if show_mobile_slider -%}
-        <div class="slider-buttons large-up-hide no-arrows">
+        <div class="slider-buttons no-arrows large-up-hide">
           <button
             type="button"
             class="slider-button slider-button--prev visually-hidden"
@@ -275,13 +295,62 @@
     const nextBtn = document.querySelector('.desktop-next');
     const itemWidth = document.querySelector('.multicolumn-list__item').offsetWidth + 20; // Include margin
 
-    prevBtn.addEventListener('click', () => {
+    // Click arrow navigation
+    prevBtn?.addEventListener('click', () => {
       desktopSlider.scrollBy({ left: -itemWidth * 3, behavior: 'smooth' });
     });
 
-    nextBtn.addEventListener('click', () => {
+    nextBtn?.addEventListener('click', () => {
       desktopSlider.scrollBy({ left: itemWidth * 3, behavior: 'smooth' });
     });
+
+    // Drag to scroll functionality
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    desktopSlider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      desktopSlider.style.cursor = 'grabbing';
+      startX = e.pageX - desktopSlider.offsetLeft;
+      scrollLeft = desktopSlider.scrollLeft;
+    });
+
+    desktopSlider.addEventListener('mouseleave', () => {
+      isDown = false;
+      desktopSlider.style.cursor = 'grab';
+    });
+
+    desktopSlider.addEventListener('mouseup', () => {
+      isDown = false;
+      desktopSlider.style.cursor = 'grab';
+    });
+
+    desktopSlider.addEventListener('mousemove', (e) => {
+      if(!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - desktopSlider.offsetLeft;
+      const walk = (x - startX) * 2; // Scroll speed multiplier
+      desktopSlider.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch support for mobile/tablet
+    desktopSlider.addEventListener('touchstart', (e) => {
+      isDown = true;
+      startX = e.touches[0].pageX - desktopSlider.offsetLeft;
+      scrollLeft = desktopSlider.scrollLeft;
+    }, { passive: true });
+
+    desktopSlider.addEventListener('touchend', () => {
+      isDown = false;
+    });
+
+    desktopSlider.addEventListener('touchmove', (e) => {
+      if(!isDown) return;
+      const x = e.touches[0].pageX - desktopSlider.offsetLeft;
+      const walk = (x - startX) * 2;
+      desktopSlider.scrollLeft = scrollLeft - walk;
+    }, { passive: true });
   });
 </script>
 
