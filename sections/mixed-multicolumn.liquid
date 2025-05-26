@@ -7,6 +7,33 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  /* Mobile styles */
+  @media screen and (max-width: 749px) {
+    .multicolumn-list {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 10px;
+    }
+    .multicolumn-list::-webkit-scrollbar {
+      display: none;
+    }
+    .multicolumn-list__item {
+      min-width: calc({{ section.settings.mobile_column_width }}% - {{ section.settings.mobile_column_gap }}px);
+      margin-right: {{ section.settings.mobile_column_gap }}px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+    }
+    /* Hide all mobile slider buttons */
+    .slider-component .slider-buttons {
+      display: none !important;
+    }
+  }
+
+  /* Desktop styles */
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -19,21 +46,17 @@
       overflow-x: auto;
       scroll-behavior: smooth;
       scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+      -webkit-overflow-scrolling: touch;
       cursor: grab;
+      scrollbar-width: none;
+    }
+    .multicolumn-list[data-desktop-slider]::-webkit-scrollbar {
+      display: none;
     }
     .multicolumn-list[data-desktop-slider]:active {
       cursor: grabbing;
     }
-    /* Hide scrollbar */
-    .multicolumn-list[data-desktop-slider]::-webkit-scrollbar {
-      display: none;
-    }
-    .multicolumn-list[data-desktop-slider] {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    /* Visible 3 columns */
+    /* Visible columns */
     .multicolumn-list__item {
       min-width: calc(33.33% - 20px);
       margin-right: 20px;
@@ -62,11 +85,6 @@
       width: 40px;
       height: 40px;
     }
-  }
-
-  /* Hide mobile slider buttons and bullets */
-  .slider-buttons.no-arrows {
-    display: none !important;
   }
 
   /* Original text styling */
@@ -251,23 +269,6 @@
           </li>
         {%- endfor -%}
       </ul>
-
-      {%- if show_mobile_slider -%}
-        <div class="slider-buttons no-arrows large-up-hide">
-          <button
-            type="button"
-            class="slider-button slider-button--prev visually-hidden"
-            name="previous"
-            aria-label="{{ 'general.slider.previous_slide' | t }}"
-          ></button>
-          <button
-            type="button"
-            class="slider-button slider-button--next visually-hidden"
-            name="next"
-            aria-label="{{ 'general.slider.next_slide' | t }}"
-          ></button>
-        </div>
-      {%- endif -%}
     </slider-component>
     <div class="center{% if show_mobile_slider %} small-hide medium-hide{% endif %}">
       {%- if section.settings.button_label != blank -%}
@@ -288,69 +289,72 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    // Desktop slider functionality
     const desktopSlider = document.querySelector('[data-desktop-slider]');
-    if (!desktopSlider) return;
+    if (desktopSlider) {
+      const prevBtn = document.querySelector('.desktop-prev');
+      const nextBtn = document.querySelector('.desktop-next');
+      const itemWidth = document.querySelector('.multicolumn-list__item').offsetWidth + 20; // Include margin
 
-    const prevBtn = document.querySelector('.desktop-prev');
-    const nextBtn = document.querySelector('.desktop-next');
-    const itemWidth = document.querySelector('.multicolumn-list__item').offsetWidth + 20; // Include margin
+      // Click arrow navigation
+      prevBtn?.addEventListener('click', () => {
+        desktopSlider.scrollBy({ left: -itemWidth * 3, behavior: 'smooth' });
+      });
 
-    // Click arrow navigation
-    prevBtn?.addEventListener('click', () => {
-      desktopSlider.scrollBy({ left: -itemWidth * 3, behavior: 'smooth' });
-    });
+      nextBtn?.addEventListener('click', () => {
+        desktopSlider.scrollBy({ left: itemWidth * 3, behavior: 'smooth' });
+      });
 
-    nextBtn?.addEventListener('click', () => {
-      desktopSlider.scrollBy({ left: itemWidth * 3, behavior: 'smooth' });
-    });
+      // Drag to scroll functionality
+      let isDown = false;
+      let startX;
+      let scrollLeft;
 
-    // Drag to scroll functionality
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+      desktopSlider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        desktopSlider.style.cursor = 'grabbing';
+        startX = e.pageX - desktopSlider.offsetLeft;
+        scrollLeft = desktopSlider.scrollLeft;
+      });
 
-    desktopSlider.addEventListener('mousedown', (e) => {
-      isDown = true;
-      desktopSlider.style.cursor = 'grabbing';
-      startX = e.pageX - desktopSlider.offsetLeft;
-      scrollLeft = desktopSlider.scrollLeft;
-    });
+      desktopSlider.addEventListener('mouseleave', () => {
+        isDown = false;
+        desktopSlider.style.cursor = 'grab';
+      });
 
-    desktopSlider.addEventListener('mouseleave', () => {
-      isDown = false;
-      desktopSlider.style.cursor = 'grab';
-    });
+      desktopSlider.addEventListener('mouseup', () => {
+        isDown = false;
+        desktopSlider.style.cursor = 'grab';
+      });
 
-    desktopSlider.addEventListener('mouseup', () => {
-      isDown = false;
-      desktopSlider.style.cursor = 'grab';
-    });
+      desktopSlider.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - desktopSlider.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed multiplier
+        desktopSlider.scrollLeft = scrollLeft - walk;
+      });
 
-    desktopSlider.addEventListener('mousemove', (e) => {
-      if(!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - desktopSlider.offsetLeft;
-      const walk = (x - startX) * 2; // Scroll speed multiplier
-      desktopSlider.scrollLeft = scrollLeft - walk;
-    });
+      // Touch support for mobile/tablet
+      desktopSlider.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - desktopSlider.offsetLeft;
+        scrollLeft = desktopSlider.scrollLeft;
+      }, { passive: true });
 
-    // Touch support for mobile/tablet
-    desktopSlider.addEventListener('touchstart', (e) => {
-      isDown = true;
-      startX = e.touches[0].pageX - desktopSlider.offsetLeft;
-      scrollLeft = desktopSlider.scrollLeft;
-    }, { passive: true });
+      desktopSlider.addEventListener('touchend', () => {
+        isDown = false;
+      });
 
-    desktopSlider.addEventListener('touchend', () => {
-      isDown = false;
-    });
+      desktopSlider.addEventListener('touchmove', (e) => {
+        if(!isDown) return;
+        const x = e.touches[0].pageX - desktopSlider.offsetLeft;
+        const walk = (x - startX) * 2;
+        desktopSlider.scrollLeft = scrollLeft - walk;
+      }, { passive: true });
+    }
 
-    desktopSlider.addEventListener('touchmove', (e) => {
-      if(!isDown) return;
-      const x = e.touches[0].pageX - desktopSlider.offsetLeft;
-      const walk = (x - startX) * 2;
-      desktopSlider.scrollLeft = scrollLeft - walk;
-    }, { passive: true });
+    // Mobile slider functionality - pure CSS based, no JS needed
   });
 </script>
 
@@ -673,10 +677,33 @@
       "label": "Columns on mobile"
     },
     {
+      "type": "range",
+      "id": "mobile_column_width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Mobile column width",
+      "default": 80,
+      "info": "Width of each column on mobile devices"
+    },
+    {
+      "type": "range",
+      "id": "mobile_column_gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile column gap",
+      "default": 10,
+      "info": "Space between columns on mobile"
+    },
+    {
       "type": "checkbox",
       "id": "swipe_on_mobile",
-      "default": false,
-      "label": "Enable swipe on mobile"
+      "default": true,
+      "label": "Enable swipe on mobile",
+      "info": "Always enabled with this design"
     },
     {
       "type": "header",
