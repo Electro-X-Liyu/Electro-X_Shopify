@@ -1,98 +1,88 @@
-{{ 'component-related-products.css' | asset_url | stylesheet_tag }}
+{{ 'section-community-ambassador.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .related-products-{{ section.id }}-padding {
+  .ambassador-section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
-    .related-products-{{ section.id }}-padding {
+    .ambassador-section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
 
-  /* Image container */
-  .related-products__card .media {
-    padding-bottom: 100%;
-    position: relative;
+  /* 图片自适应容器 */
+  .ambassador-card__image-container {
+    width: 100%;
     overflow: hidden;
   }
 
-  .related-products__card .media img {
-    position: absolute;
-    height: 100%;
+  .ambassador-card__image {
     width: 100%;
-    object-fit: cover;
+    height: auto;
+    display: block;
   }
 
-  /* Mobile slider */
+  /* 移动端滑动样式 */
   @media screen and (max-width: 749px) {
-    .related-products__list {
+    .ambassador-list {
       display: flex;
-      flex-wrap: nowrap;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
-      padding-bottom: 1rem;
-      margin-bottom: -1rem;
-      column-gap: 1.5rem;
+      padding-bottom: 15px;
+      gap: 15px;
     }
     
-    .related-products__item {
+    .ambassador-item {
       flex: 0 0 75%;
       scroll-snap-align: start;
     }
   }
 
-  /* Desktop grid */
+  /* 桌面端网格布局 */
   @media screen and (min-width: 750px) {
-    .related-products__list {
+    .ambassador-list {
       display: grid;
       grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
-      column-gap: {{ section.settings.column_gap }}px;
-      row-gap: {{ section.settings.row_gap }}px;
+      gap: {{ section.settings.grid_gap }}px;
     }
   }
 
-  /* Title */
-  .related-products__title {
-    margin: 0.5rem 0 0;
-    font-size: calc(var(--font-heading-scale) * 1.4rem);
+  /* 姓名样式 */
+  .ambassador-name {
+    margin-top: 12px;
+    font-size: 1.1rem;
     text-align: center;
   }
 {%- endstyle -%}
 
-<div class="related-products color-{{ section.settings.color_scheme }} gradient">
-  <div class="page-width related-products-{{ section.id }}-padding isolate">
+<div class="ambassador-section">
+  <div class="page-width ambassador-section-{{ section.id }}-padding">
     {%- unless section.settings.title == blank -%}
-      <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }} text-center">
-        {{ section.settings.title }}
+      <h2 class="ambassador-title center {{ section.settings.heading_size }}">
+        {{ section.settings.title | escape }}
       </h2>
     {%- endunless -%}
 
-    <div class="related-products__list">
+    <div class="ambassador-list">
       {%- for block in section.blocks -%}
-        <div class="related-products__item" {{ block.shopify_attributes }}>
-          <div class="related-products__card card">
+        <div class="ambassador-item" {{ block.shopify_attributes }}>
+          <div class="ambassador-card">
             {%- if block.settings.image != blank -%}
-              <div class="related-products__card-media media media--transparent">
+              <div class="ambassador-card__image-container">
                 {{ block.settings.image | image_url: width: 800 | image_tag:
                   loading: 'lazy',
-                  class: 'motion-reduce',
+                  class: 'ambassador-card__image',
                   alt: block.settings.title | escape
                 }}
-              </div>
-            {%- else -%}
-              <div class="related-products__card-media media media--transparent">
-                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
               </div>
             {%- endif -%}
             
             {%- if block.settings.title != blank -%}
-              <h3 class="related-products__title">{{ block.settings.title | escape }}</h3>
+              <h3 class="ambassador-name">{{ block.settings.title | escape }}</h3>
             {%- endif -%}
           </div>
         </div>
@@ -103,62 +93,25 @@
 
 {% schema %}
 {
-  "name": "Related products",
+  "name": "Community Ambassador",
   "class": "section",
   "settings": [
     {
-      "type": "inline_richtext",
+      "type": "text",
       "id": "title",
-      "default": "Related products",
+      "default": "Our Ambassadors",
       "label": "Heading"
     },
     {
       "type": "select",
       "id": "heading_size",
       "options": [
-        {
-          "value": "h2",
-          "label": "Small"
-        },
-        {
-          "value": "h1",
-          "label": "Medium"
-        },
-        {
-          "value": "h0",
-          "label": "Large"
-        }
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
       ],
       "default": "h1",
       "label": "Heading size"
-    },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "options": [
-        {
-          "value": "accent-1",
-          "label": "Accent 1"
-        },
-        {
-          "value": "accent-2",
-          "label": "Accent 2"
-        },
-        {
-          "value": "background-1",
-          "label": "Background 1"
-        },
-        {
-          "value": "background-2",
-          "label": "Background 2"
-        },
-        {
-          "value": "inverse",
-          "label": "Inverse"
-        }
-      ],
-      "default": "background-1",
-      "label": "Color scheme"
     },
     {
       "type": "range",
@@ -167,26 +120,16 @@
       "max": 6,
       "step": 1,
       "default": 4,
-      "label": "Number of columns on desktop"
+      "label": "Desktop columns"
     },
     {
       "type": "range",
-      "id": "column_gap",
+      "id": "grid_gap",
       "min": 0,
       "max": 50,
       "step": 2,
       "unit": "px",
       "label": "Column spacing",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "row_gap",
-      "min": 0,
-      "max": 50,
-      "step": 2,
-      "unit": "px",
-      "label": "Row spacing",
       "default": 20
     },
     {
@@ -216,19 +159,19 @@
   ],
   "blocks": [
     {
-      "type": "product",
-      "name": "Product",
+      "type": "ambassador",
+      "name": "Ambassador",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
           "label": "Image",
-          "info": "Recommended size: 800x800px"
+          "info": "Will display in original aspect ratio"
         },
         {
           "type": "text",
           "id": "title",
-          "default": "Product name",
+          "default": "Ambassador Name",
           "label": "Name"
         }
       ]
@@ -236,20 +179,12 @@
   ],
   "presets": [
     {
-      "name": "Related products",
+      "name": "Community Ambassador",
       "blocks": [
-        {
-          "type": "product"
-        },
-        {
-          "type": "product"
-        },
-        {
-          "type": "product"
-        },
-        {
-          "type": "product"
-        }
+        { "type": "ambassador" },
+        { "type": "ambassador" },
+        { "type": "ambassador" },
+        { "type": "ambassador" }
       ]
     }
   ]
