@@ -1,0 +1,102 @@
+/* Custom Section Styles */
+.section-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-wrapper.full-width {
+  width: 100%;
+}
+
+.section-wrapper.page-width {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-container {
+  display: flex;
+  position: relative;
+  z-index: 2;
+}
+
+.row-direction {
+  flex-direction: row;
+}
+
+.column-direction {
+  flex-direction: column;
+}
+
+/* 响应式布局 */
+@media screen and (max-width: 750px) {
+  .vertical-on-mobile.row-direction {
+    flex-direction: column;
+  }
+}
+
+/* 高度设置 */
+.section-height-small {
+  min-height: 30rem;
+}
+
+.section-height-medium {
+  min-height: 50rem;
+}
+
+.section-height-large {
+  min-height: 70rem;
+}
+
+.section-height-full-screen {
+  min-height: 100vh;
+}
+
+/* 背景设置 */
+.section-background-image,
+.section-background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.section-background-image img,
+.section-background-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section-background-image.fit img {
+  object-fit: contain;
+}
+
+.section-background-video.contain video {
+  object-fit: contain;
+}
+
+/* 覆盖层 */
+.section-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* 边框样式 */
+.has-border {
+  border-style: solid;
+  border-color: rgba(var(--color-border), var(--border-opacity));
+}
+
+/* 块组样式 */
+.block-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
