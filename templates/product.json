@@ -87,24 +87,6 @@
         "padding_bottom": 12
       }
     },
-    "related-products": {
-      "type": "related-products",
-      "settings": {
-        "heading": "RELATED PRODUCTS{{ product.metafields.shopify.flavor | metafield_text: field: 'label' }}",
-        "heading_size": "h1",
-        "products_to_show": 3,
-        "columns_desktop": 4,
-        "columns_mobile": "2",
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": true,
-        "show_rating": true,
-        "padding_top": 36,
-        "padding_bottom": 28
-      }
-    },
     "rich_text_UMkNcV": {
       "type": "rich-text",
       "blocks": {
@@ -128,109 +110,27 @@
         "padding_bottom": 0
       }
     },
-    "community_ambassador_8UjVaN": {
-      "type": "Community-Ambassador",
-      "blocks": {
-        "ambassador_TybqnE": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/12.png",
-            "title": "Ambassador Name"
-          }
-        },
-        "ambassador_qR774t": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/14.png",
-            "title": "Ambassador Name"
-          }
-        },
-        "ambassador_hbF633": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/10.png",
-            "title": "Ambassador Name"
-          }
-        }
-      },
-      "block_order": [
-        "ambassador_TybqnE",
-        "ambassador_qR774t",
-        "ambassador_hbF633"
-      ],
-      "disabled": true,
+    "related-products": {
+      "type": "related-products",
       "settings": {
-        "title": "",
-        "heading_size": "h2",
-        "columns_desktop": 3,
-        "grid_gap": 22,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn_N3dUdX": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_GWmAxD": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/12.png",
-            "title": "Plus - Electrolyte Sports Drink",
-            "text": "",
-            "link_label": "Jasmine Green Grapes Flavor",
-            "link": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor"
-          }
-        },
-        "column_EJEfy4": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/14.png",
-            "title": "Slim - Electrolyte Sports Drink",
-            "text": "",
-            "link_label": "Razzmazz Berry Flavor",
-            "link": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor"
-          }
-        },
-        "column_iiyT3T": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/15related.png",
-            "title": "Natural Alkaline water",
-            "text": "",
-            "link_label": "1 L",
-            "link": "shopify://products/natural-alkaline-water-1l"
-          }
-        }
-      },
-      "block_order": [
-        "column_GWmAxD",
-        "column_EJEfy4",
-        "column_iiyT3T"
-      ],
-      "disabled": true,
-      "settings": {
-        "title": "",
+        "heading": "",
         "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "View All",
-        "button_link": "shopify://collections",
+        "products_to_show": 3,
         "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_vendor": false,
+        "show_rating": true,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 28
       }
     }
   },
   "order": [
     "main",
-    "related-products",
     "rich_text_UMkNcV",
-    "community_ambassador_8UjVaN",
-    "multicolumn_N3dUdX"
+    "related-products"
   ]
 }
