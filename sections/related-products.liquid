@@ -12,13 +12,13 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  /* 自定义标题样式 */
+  /* 标题样式 */
   .section-{{ section.id }}-padding .related-products__heading {
-    text-align: center;
+    text-align: {{ section.settings.heading_alignment }};
     color: {{ section.settings.heading_color }};
     font-size: {{ section.settings.heading_font_size }}px;
     font-weight: {{ section.settings.heading_font_weight }};
-    margin-bottom: 30px;
+    margin-bottom: {{ section.settings.heading_spacing }}px;
   }
 
   /* 产品标签样式 */
@@ -26,31 +26,39 @@
     background: {{ section.settings.badge_background }};
     color: {{ section.settings.badge_text_color }};
     font-size: {{ section.settings.badge_font_size }}px;
-    padding: 4px 8px;
-    border-radius: 3px;
-  }
-
-  /* 隐藏价格 */
-  .price {
-    display: none !important;
+    padding: {{ section.settings.badge_padding }}px;
+    border-radius: {{ section.settings.badge_border_radius }}px;
   }
 
   /* 图片悬停效果 */
-  .card__media .media--first {
+  .card-wrapper .card__media {
+    position: relative;
+  }
+
+  .card-wrapper .media--first {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .card-wrapper .media--second {
     opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     transition: opacity 0.3s ease;
   }
-  .card__media .media--second {
-    opacity: 1;
-    transition: opacity 0.3s ease;
-  }
-  .card:hover .card__media .media--first {
-    opacity: 1;
-  }
-  .card:hover .card__media .media--second {
+
+  .card-wrapper:hover .media--first {
     opacity: 0;
   }
 
+  .card-wrapper:hover .media--second {
+    opacity: 1;
+  }
+
+  /* 响应式调整 */
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -62,9 +70,8 @@
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <product-recommendations
     class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.products_to_show }}"
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
     data-section-id="{{ section.id }}"
-    data-product-id="{{ product.id }}"
   >
     {% if recommendations.performed and recommendations.products_count > 0 %}
       <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
@@ -81,10 +88,11 @@
               card_product: recommendation,
               media_aspect_ratio: section.settings.image_ratio,
               image_shape: section.settings.image_shape,
-              show_secondary_image: true,  {# 强制显示第二张图片 #}
+              show_secondary_image: true,
               show_vendor: section.settings.show_vendor,
               show_rating: section.settings.show_rating,
-              show_badge: true,  {# 显示产品标签 #}
+              show_badge: true,
+              show_quick_add: section.settings.show_quick_add,
               skip_styles: skip_card_product_styles
             %}
           </li>
@@ -94,7 +102,7 @@
     {% endif %}
   </product-recommendations>
   {% if section.settings.image_shape == 'arch' %}
-    {{ 'mask-arch.svg' | inline_asset_content }}
+    {{ 'mask-arch.svg' | asset_url | split: '?' | first | replace: '.svg', '.css' | stylesheet_tag }}
   {%- endif -%}
 </div>
 
@@ -109,9 +117,13 @@
       "content": "t:sections.related-products.settings.paragraph__1.content"
     },
     {
+      "type": "header",
+      "content": "标题设置"
+    },
+    {
       "type": "inline_richtext",
       "id": "heading",
-      "default": "You may also like",
+      "default": "您可能也会喜欢",
       "label": "标题文本"
     },
     {
@@ -120,27 +132,19 @@
       "options": [
         {
           "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
+          "label": "小"
         },
         {
           "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
+          "label": "中"
         },
         {
           "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
-        },
-        {
-          "value": "hxl",
-          "label": "t:sections.all.heading_size.options__4.label"
-        },
-        {
-          "value": "hxxl",
-          "label": "t:sections.all.heading_size.options__5.label"
+          "label": "大"
         }
       ],
       "default": "h1",
-      "label": "t:sections.all.heading_size.label"
+      "label": "标题大小"
     },
     {
       "type": "color",
@@ -175,6 +179,36 @@
       "default": "bold"
     },
     {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "标题对齐方式",
+      "options": [
+        {
+          "value": "left",
+          "label": "左对齐"
+        },
+        {
+          "value": "center",
+          "label": "居中"
+        },
+        {
+          "value": "right",
+          "label": "右对齐"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "标题下方间距",
+      "default": 30
+    },
+    {
       "type": "header",
       "content": "产品标签设置"
     },
@@ -202,12 +236,36 @@
     },
     {
       "type": "range",
+      "id": "badge_padding",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "标签内边距",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "badge_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "标签圆角",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "布局设置"
+    },
+    {
+      "type": "range",
       "id": "products_to_show",
       "min": 2,
       "max": 10,
       "step": 1,
       "default": 4,
-      "label": "t:sections.related-products.settings.products_to_show.label"
+      "label": "显示产品数量"
     },
     {
       "type": "range",
@@ -216,34 +274,51 @@
       "max": 6,
       "step": 1,
       "default": 4,
-      "label": "t:sections.related-products.settings.columns_desktop.label"
+      "label": "桌面端列数"
     },
     {
       "type": "select",
       "id": "columns_mobile",
       "default": "2",
-      "label": "t:sections.related-products.settings.columns_mobile.label",
+      "label": "移动端列数",
       "options": [
         {
           "value": "1",
-          "label": "t:sections.related-products.settings.columns_mobile.options__1.label"
+          "label": "1列"
         },
         {
           "value": "2",
-          "label": "t:sections.related-products.settings.columns_mobile.options__2.label"
+          "label": "2列"
         }
-      ]    
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "info": "t:sections.all.colors.has_cards_info",
-      "default": "scheme-1"
+      ]
     },
     {
       "type": "header",
-      "content": "t:sections.related-products.settings.header__2.content"
+      "content": "产品卡片设置"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": true,
+      "label": "显示第二张图片(悬停效果)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "显示供应商"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "显示评分"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_add",
+      "default": false,
+      "label": "显示快速加入购物车按钮"
     },
     {
       "type": "select",
@@ -251,19 +326,19 @@
       "options": [
         {
           "value": "adapt",
-          "label": "t:sections.related-products.settings.image_ratio.options__1.label"
+          "label": "适应"
         },
         {
           "value": "portrait",
-          "label": "t:sections.related-products.settings.image_ratio.options__2.label"
+          "label": "纵向"
         },
         {
           "value": "square",
-          "label": "t:sections.related-products.settings.image_ratio.options__3.label"
+          "label": "方形"
         }
       ],
       "default": "adapt",
-      "label": "t:sections.related-products.settings.image_ratio.label"
+      "label": "图片比例"
     },
     {
       "type": "select",
@@ -271,56 +346,27 @@
       "options": [
         {
           "value": "default",
-          "label": "t:sections.all.image_shape.options__1.label"
+          "label": "默认"
         },
         {
           "value": "arch",
-          "label": "t:sections.all.image_shape.options__2.label"
+          "label": "拱形"
         },
         {
           "value": "blob",
-          "label": "t:sections.all.image_shape.options__3.label"
-        },
-        {
-          "value": "chevronleft",
-          "label": "t:sections.all.image_shape.options__4.label"
-        },
-        {
-          "value": "chevronright",
-          "label": "t:sections.all.image_shape.options__5.label"
-        },
-        {
-          "value": "diamond",
-          "label": "t:sections.all.image_shape.options__6.label"
-        },
-        {
-          "value": "parallelogram",
-          "label": "t:sections.all.image_shape.options__7.label"
+          "label": "斑点"
         },
         {
           "value": "round",
-          "label": "t:sections.all.image_shape.options__8.label"
+          "label": "圆形"
         }
       ],
       "default": "default",
-      "label": "t:sections.all.image_shape.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "default": false,
-      "label": "t:sections.related-products.settings.show_vendor.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_rating",
-      "default": false,
-      "label": "t:sections.related-products.settings.show_rating.label",
-      "info": "t:sections.related-products.settings.show_rating.info"
+      "label": "图片形状"
     },
     {
       "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
+      "content": "区块间距"
     },
     {
       "type": "range",
@@ -329,7 +375,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
+      "label": "上内边距",
       "default": 36
     },
     {
@@ -339,8 +385,14 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
+      "label": "下内边距",
       "default": 36
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "配色方案",
+      "default": "scheme-1"
     }
   ]
 }
