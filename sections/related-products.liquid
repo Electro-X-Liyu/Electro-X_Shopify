@@ -12,72 +12,43 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  /* 彻底隐藏所有价格元素 */
-  .card-information__wrapper .price,
-  .price .price-item,
-  .price__sale,
-  .price--on-sale .price__sale,
-  .price__regular,
-  .price-item--regular,
-  .price-item--sale,
-  .price__badge-sale,
-  .price__badge-regular {
+  /* 自定义标题样式 */
+  .section-{{ section.id }}-padding .related-products__heading {
+    text-align: center;
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_font_size }}px;
+    font-weight: {{ section.settings.heading_font_weight }};
+    margin-bottom: 30px;
+  }
+
+  /* 产品标签样式 */
+  .card__badge {
+    background: {{ section.settings.badge_background }};
+    color: {{ section.settings.badge_text_color }};
+    font-size: {{ section.settings.badge_font_size }}px;
+    padding: 4px 8px;
+    border-radius: 3px;
+  }
+
+  /* 隐藏价格 */
+  .price {
     display: none !important;
   }
 
-  /* 卡片无背景设置 */
-  .card-wrapper {
-    background-color: transparent !important;
-  }
-  .card {
-    background: transparent !important;
-    box-shadow: none !important;
-  }
-
-  /* 图片容器设置 */
-  .card__media {
-    position: relative;
-    overflow: hidden;
-    padding-bottom: var(--media-padding-bottom);
-  }
-
-  /* 默认显示第二张图片 */
+  /* 图片悬停效果 */
   .card__media .media--first {
     opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 1;
     transition: opacity 0.3s ease;
   }
-  
   .card__media .media--second {
     opacity: 1;
-    position: relative;
-    z-index: 0;
     transition: opacity 0.3s ease;
   }
-  
-  /* PC端悬停效果 */
-  @media screen and (min-width: 750px) {
-    .card-wrapper:hover .card__media .media--first {
-      opacity: 1;
-    }
-    .card-wrapper:hover .card__media .media--second {
-      opacity: 0;
-    }
+  .card:hover .card__media .media--first {
+    opacity: 1;
   }
-
-  /* 移动端设置 - 只显示第二张图片 */
-  @media screen and (max-width: 749px) {
-    .card__media .media--first {
-      display: none !important;
-    }
-    .card__media .media--second {
-      opacity: 1 !important;
-    }
+  .card:hover .card__media .media--second {
+    opacity: 0;
   }
 
   @media screen and (min-width: 750px) {
@@ -88,37 +59,44 @@
   }
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient no-js-hidden">
-  <product-recommendations class="related-products page-width section-{{ section.id }}-padding isolate" 
-    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}&intent=related">
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <product-recommendations
+    class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.products_to_show }}"
+    data-section-id="{{ section.id }}"
+    data-product-id="{{ product.id }}"
+  >
     {% if recommendations.performed and recommendations.products_count > 0 %}
       <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
         {{ section.settings.heading }}
       </h2>
-      <ul class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down" role="list">
+      <ul
+        class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+        role="list"
+      >
+        {% assign skip_card_product_styles = false %}
         {% for recommendation in recommendations.products %}
           <li class="grid__item">
             {% render 'card-product',
               card_product: recommendation,
               media_aspect_ratio: section.settings.image_ratio,
               image_shape: section.settings.image_shape,
-              show_secondary_image: true,
+              show_secondary_image: true,  {# 强制显示第二张图片 #}
               show_vendor: section.settings.show_vendor,
               show_rating: section.settings.show_rating,
-              show_price: false,
-              show_quick_add: false,
-              section_id: section.id
+              show_badge: true,  {# 显示产品标签 #}
+              skip_styles: skip_card_product_styles
             %}
           </li>
+          {%- assign skip_card_product_styles = true -%}
         {% endfor %}
       </ul>
     {% endif %}
   </product-recommendations>
+  {% if section.settings.image_shape == 'arch' %}
+    {{ 'mask-arch.svg' | inline_asset_content }}
+  {%- endif -%}
 </div>
-
-{% if section.settings.image_shape == 'arch' %}
-  {% render 'mask-arch' %}
-{%- endif -%}
 
 {% schema %}
 {
@@ -134,7 +112,7 @@
       "type": "inline_richtext",
       "id": "heading",
       "default": "You may also like",
-      "label": "t:sections.related-products.settings.heading.label"
+      "label": "标题文本"
     },
     {
       "type": "select",
@@ -165,6 +143,64 @@
       "label": "t:sections.all.heading_size.label"
     },
     {
+      "type": "color",
+      "id": "heading_color",
+      "label": "标题颜色",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "标题字体大小",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "标题字体粗细",
+      "options": [
+        {
+          "value": "normal",
+          "label": "正常"
+        },
+        {
+          "value": "bold",
+          "label": "加粗"
+        }
+      ],
+      "default": "bold"
+    },
+    {
+      "type": "header",
+      "content": "产品标签设置"
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "标签背景色",
+      "default": "#FF0000"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "标签文字颜色",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "标签字体大小",
+      "default": 12
+    },
+    {
       "type": "range",
       "id": "products_to_show",
       "min": 2,
@@ -185,6 +221,8 @@
     {
       "type": "select",
       "id": "columns_mobile",
+      "default": "2",
+      "label": "t:sections.related-products.settings.columns_mobile.label",
       "options": [
         {
           "value": "1",
@@ -194,20 +232,18 @@
           "value": "2",
           "label": "t:sections.related-products.settings.columns_mobile.options__2.label"
         }
-      ],
-      "default": "2",
-      "label": "t:sections.related-products.settings.columns_mobile.label"
+      ]    
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
-      "default": "background-1"
+      "default": "scheme-1"
     },
     {
       "type": "header",
-      "content": "Product card settings"
+      "content": "t:sections.related-products.settings.header__2.content"
     },
     {
       "type": "select",
@@ -215,19 +251,19 @@
       "options": [
         {
           "value": "adapt",
-          "label": "Adapt to image"
+          "label": "t:sections.related-products.settings.image_ratio.options__1.label"
         },
         {
           "value": "portrait",
-          "label": "Portrait"
+          "label": "t:sections.related-products.settings.image_ratio.options__2.label"
         },
         {
           "value": "square",
-          "label": "Square"
+          "label": "t:sections.related-products.settings.image_ratio.options__3.label"
         }
       ],
       "default": "adapt",
-      "label": "Image ratio"
+      "label": "t:sections.related-products.settings.image_ratio.label"
     },
     {
       "type": "select",
@@ -235,40 +271,56 @@
       "options": [
         {
           "value": "default",
-          "label": "Default"
+          "label": "t:sections.all.image_shape.options__1.label"
         },
         {
           "value": "arch",
-          "label": "Arch"
+          "label": "t:sections.all.image_shape.options__2.label"
         },
         {
           "value": "blob",
-          "label": "Blob"
+          "label": "t:sections.all.image_shape.options__3.label"
+        },
+        {
+          "value": "chevronleft",
+          "label": "t:sections.all.image_shape.options__4.label"
+        },
+        {
+          "value": "chevronright",
+          "label": "t:sections.all.image_shape.options__5.label"
+        },
+        {
+          "value": "diamond",
+          "label": "t:sections.all.image_shape.options__6.label"
+        },
+        {
+          "value": "parallelogram",
+          "label": "t:sections.all.image_shape.options__7.label"
         },
         {
           "value": "round",
-          "label": "Round"
+          "label": "t:sections.all.image_shape.options__8.label"
         }
       ],
       "default": "default",
-      "label": "Image shape"
+      "label": "t:sections.all.image_shape.label"
     },
     {
       "type": "checkbox",
       "id": "show_vendor",
       "default": false,
-      "label": "Show vendor"
+      "label": "t:sections.related-products.settings.show_vendor.label"
     },
     {
       "type": "checkbox",
       "id": "show_rating",
       "default": false,
-      "label": "Show product rating",
-      "info": "To display a rating, add a product rating app"
+      "label": "t:sections.related-products.settings.show_rating.label",
+      "info": "t:sections.related-products.settings.show_rating.info"
     },
     {
       "type": "header",
-      "content": "Spacing"
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
@@ -277,7 +329,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
+      "label": "t:sections.all.padding.padding_top",
       "default": 36
     },
     {
@@ -287,7 +339,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 36
     }
   ]
