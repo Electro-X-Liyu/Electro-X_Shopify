@@ -13,36 +13,32 @@
   }
 
   /* 彻底隐藏所有价格元素 */
-  .price,
-  .price-item,
+  .card-information__wrapper .price,
+  .price .price-item,
   .price__sale,
   .price--on-sale .price__sale,
   .price__regular,
   .price-item--regular,
-  .price-item--sale {
+  .price-item--sale,
+  .price__badge-sale,
+  .price__badge-regular {
     display: none !important;
-    visibility: hidden !important;
   }
 
   /* 卡片无背景设置 */
-  .card {
+  .card-wrapper {
     background-color: transparent !important;
+  }
+  .card {
+    background: transparent !important;
     box-shadow: none !important;
-    transform: translateZ(0);
-    backface-visibility: hidden;
   }
 
   /* 图片容器设置 */
   .card__media {
     position: relative;
     overflow: hidden;
-  }
-
-  /* 图片切换动画设置 */
-  .card__media .media--first,
-  .card__media .media--second {
-    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: opacity;
+    padding-bottom: var(--media-padding-bottom);
   }
 
   /* 默认显示第二张图片 */
@@ -51,23 +47,25 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
     height: 100%;
+    width: 100%;
     z-index: 1;
+    transition: opacity 0.3s ease;
   }
   
   .card__media .media--second {
     opacity: 1;
     position: relative;
     z-index: 0;
+    transition: opacity 0.3s ease;
   }
   
   /* PC端悬停效果 */
-  @media (hover: hover) {
-    .card:hover .card__media .media--first {
+  @media screen and (min-width: 750px) {
+    .card-wrapper:hover .card__media .media--first {
       opacity: 1;
     }
-    .card:hover .card__media .media--second {
+    .card-wrapper:hover .card__media .media--second {
       opacity: 0;
     }
   }
@@ -91,19 +89,13 @@
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient no-js-hidden">
-  <product-recommendations
-    class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
-    data-section-id="{{ section.id }}"
-  >
+  <product-recommendations class="related-products page-width section-{{ section.id }}-padding isolate" 
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}&intent=related">
     {% if recommendations.performed and recommendations.products_count > 0 %}
       <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
         {{ section.settings.heading }}
       </h2>
-      <ul
-        class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
-        role="list"
-      >
+      <ul class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down" role="list">
         {% for recommendation in recommendations.products %}
           <li class="grid__item">
             {% render 'card-product',
@@ -193,8 +185,6 @@
     {
       "type": "select",
       "id": "columns_mobile",
-      "default": "2",
-      "label": "t:sections.related-products.settings.columns_mobile.label",
       "options": [
         {
           "value": "1",
@@ -204,18 +194,20 @@
           "value": "2",
           "label": "t:sections.related-products.settings.columns_mobile.options__2.label"
         }
-      ]    
+      ],
+      "default": "2",
+      "label": "t:sections.related-products.settings.columns_mobile.label"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
-      "default": "scheme-1"
+      "default": "background-1"
     },
     {
       "type": "header",
-      "content": "t:sections.related-products.settings.header__2.content"
+      "content": "Product card settings"
     },
     {
       "type": "select",
@@ -223,19 +215,19 @@
       "options": [
         {
           "value": "adapt",
-          "label": "t:sections.related-products.settings.image_ratio.options__1.label"
+          "label": "Adapt to image"
         },
         {
           "value": "portrait",
-          "label": "t:sections.related-products.settings.image_ratio.options__2.label"
+          "label": "Portrait"
         },
         {
           "value": "square",
-          "label": "t:sections.related-products.settings.image_ratio.options__3.label"
+          "label": "Square"
         }
       ],
       "default": "adapt",
-      "label": "t:sections.related-products.settings.image_ratio.label"
+      "label": "Image ratio"
     },
     {
       "type": "select",
@@ -243,56 +235,40 @@
       "options": [
         {
           "value": "default",
-          "label": "t:sections.all.image_shape.options__1.label"
+          "label": "Default"
         },
         {
           "value": "arch",
-          "label": "t:sections.all.image_shape.options__2.label"
+          "label": "Arch"
         },
         {
           "value": "blob",
-          "label": "t:sections.all.image_shape.options__3.label"
-        },
-        {
-          "value": "chevronleft",
-          "label": "t:sections.all.image_shape.options__4.label"
-        },
-        {
-          "value": "chevronright",
-          "label": "t:sections.all.image_shape.options__5.label"
-        },
-        {
-          "value": "diamond",
-          "label": "t:sections.all.image_shape.options__6.label"
-        },
-        {
-          "value": "parallelogram",
-          "label": "t:sections.all.image_shape.options__7.label"
+          "label": "Blob"
         },
         {
           "value": "round",
-          "label": "t:sections.all.image_shape.options__8.label"
+          "label": "Round"
         }
       ],
       "default": "default",
-      "label": "t:sections.all.image_shape.label"
+      "label": "Image shape"
     },
     {
       "type": "checkbox",
       "id": "show_vendor",
       "default": false,
-      "label": "t:sections.related-products.settings.show_vendor.label"
+      "label": "Show vendor"
     },
     {
       "type": "checkbox",
       "id": "show_rating",
       "default": false,
-      "label": "t:sections.related-products.settings.show_rating.label",
-      "info": "t:sections.related-products.settings.show_rating.info"
+      "label": "Show product rating",
+      "info": "To display a rating, add a product rating app"
     },
     {
       "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
+      "content": "Spacing"
     },
     {
       "type": "range",
@@ -301,7 +277,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
+      "label": "Top padding",
       "default": 36
     },
     {
@@ -311,7 +287,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
+      "label": "Bottom padding",
       "default": 36
     }
   ]
