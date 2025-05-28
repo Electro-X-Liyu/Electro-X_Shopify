@@ -9,6 +9,23 @@
  */
 {
   "sections": {
+    "image_banner_Yw4dUN": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/3.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "main": {
       "type": "main-blog",
       "settings": {
@@ -23,6 +40,7 @@
     }
   },
   "order": [
+    "image_banner_Yw4dUN",
     "main"
   ]
 }
