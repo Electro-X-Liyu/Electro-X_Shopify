@@ -9,6 +9,23 @@
  */
 {
   "sections": {
+    "image_banner_TPVbKP": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/KV_demo__1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -75,6 +92,7 @@
     }
   },
   "order": [
+    "image_banner_TPVbKP",
     "main",
     "new_blog_CEKBjn"
   ]
