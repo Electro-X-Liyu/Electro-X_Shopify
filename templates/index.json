@@ -63,6 +63,7 @@
       "block_order": [
         "heading_fBqUiy"
       ],
+      "name": "Products-Heading",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -174,6 +175,7 @@
       "block_order": [
         "button_76TWLm"
       ],
+      "name": "Products-Button",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -181,23 +183,6 @@
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
-      }
-    },
-    "image_banner_D9MHcV": {
-      "type": "image-banner",
-      "disabled": true,
-      "settings": {
-        "image": "shopify://shop_images/web_____1.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
       }
     },
     "image_with_text_HT6mHr": {
@@ -304,6 +289,7 @@
         "caption_m8RMPA",
         "button_GA8WxT"
       ],
+      "name": "Alkaline Water",
       "settings": {
         "image": "shopify://shop_images/4cut.png",
         "height": "adapt",
@@ -399,6 +385,7 @@
         "text_mAYbfr",
         "button_dmNHG7"
       ],
+      "name": "Sports Drink",
       "settings": {
         "image": "shopify://shop_images/7cut.png",
         "height": "adapt",
@@ -429,6 +416,7 @@
       "block_order": [
         "heading_meqA8e"
       ],
+      "name": "Sports Sponsors-Heading",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -475,7 +463,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/17cut.png",
-            "title": "2024 Beijing Half Marathron",
+            "title": "2024 Beijing Half Marathon",
             "text": "",
             "link_label": "Learn More",
             "link": "shopify://blogs/sports-sponsorship-1/2024-beijing-half-marathron"
@@ -485,7 +473,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/16cut.png",
-            "title": "2024 Desafio Beiing",
+            "title": "2024 Desafio Beijing",
             "text": "",
             "link_label": "Learn More",
             "link": "shopify://blogs/sports-sponsorship-1/2024-desafio-beijing"
@@ -499,6 +487,7 @@
         "column_kfYTC4",
         "column_kXbgWq"
       ],
+      "name": "Sports Sponsors",
       "settings": {
         "title": "",
         "title_color": "#000000",
@@ -563,6 +552,7 @@
       "block_order": [
         "heading_9ypTAh"
       ],
+      "name": "Community-Heading",
       "settings": {
         "image": "shopify://shop_images/1.jpg",
         "image_overlay_opacity": 30,
@@ -616,6 +606,7 @@
         "column_8yqwzE",
         "column_nrkHEP"
       ],
+      "name": "Community",
       "settings": {
         "title": "",
         "heading_size": "h1",
@@ -660,6 +651,7 @@
     },
     "page_tBQPbK": {
       "type": "page",
+      "name": "About Us",
       "settings": {
         "page": "about-us",
         "layout_direction": "row",
@@ -671,8 +663,8 @@
         "content_alignment": "text-left",
         "heading_size": "h2",
         "color_scheme": "scheme-3",
-        "padding_top": 72,
-        "padding_bottom": 72
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     }
   },
@@ -681,7 +673,6 @@
     "rich_text_waQVNB",
     "pic_border_m7m9TP",
     "rich_text_gUynad",
-    "image_banner_D9MHcV",
     "image_with_text_HT6mHr",
     "image_with_text_88PpK8",
     "rich_text_VpEQaY",
