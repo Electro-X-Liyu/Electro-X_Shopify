@@ -11,7 +11,6 @@
   "sections": {
     "image_banner_TPVbKP": {
       "type": "image-banner",
-      "name": "t:sections.image-banner.presets.name",
       "settings": {
         "image": "shopify://shop_images/KV_demo__1.jpg",
         "image_overlay_opacity": 0,
@@ -65,22 +64,31 @@
             "link_label": "",
             "link": ""
           }
+        },
+        "column_WRtFWf": {
+          "type": "column",
+          "settings": {
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
         "column_b7Rikd",
         "column_iLhmtp",
-        "column_8wDYxd"
+        "column_8wDYxd",
+        "column_WRtFWf"
       ],
-      "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "",
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
-        "button_label": "Button label",
+        "button_label": "",
         "button_link": "",
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "",
@@ -89,11 +97,70 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "pic_border_z3NWEJ": {
+      "type": "PicBorder",
+      "blocks": {
+        "image_block_NdGDJa": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV__1.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_FrkG4y": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-03.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_Pa8NtF": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-05.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_mhCE6M": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-07.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_aDd3UF": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-09.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_block_NdGDJa",
+        "image_block_FrkG4y",
+        "image_block_Pa8NtF",
+        "image_block_mhCE6M",
+        "image_block_aDd3UF"
+      ],
+      "name": "All Product",
+      "settings": {
+        "title": "",
+        "desktop_height": 310,
+        "mobile_height": 300
+      }
     }
   },
   "order": [
     "image_banner_TPVbKP",
     "main",
-    "new_blog_CEKBjn"
+    "new_blog_CEKBjn",
+    "pic_border_z3NWEJ"
   ]
 }
