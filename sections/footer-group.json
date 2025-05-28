@@ -13,6 +13,7 @@
   "sections": {
     "section_CNakph": {
       "type": "section",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h1",

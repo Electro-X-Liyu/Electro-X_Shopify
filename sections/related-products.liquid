@@ -12,7 +12,7 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  /* 自定义标题样式 */
+  /* Custom heading styles */
   .section-{{ section.id }}-padding .related-products__heading {
     text-align: center;
     color: {{ section.settings.heading_color }};
@@ -21,7 +21,7 @@
     margin-bottom: 30px;
   }
 
-  /* 产品标签样式 */
+  /* Product badge styles */
   .card__badge {
     background: {{ section.settings.badge_background }};
     color: {{ section.settings.badge_text_color }};
@@ -30,14 +30,17 @@
     border-radius: 3px;
   }
 
-  /* 隐藏价格 */
+  /* Hide price */
   .price {
     display: none !important;
   }
 
-  /* 图片悬停效果 */
+  /* Image hover effect - Show second image by default, first image on hover */
   .card__media .media--first {
     opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
     transition: opacity 0.3s ease;
   }
   .card__media .media--second {
@@ -49,6 +52,16 @@
   }
   .card:hover .card__media .media--second {
     opacity: 0;
+  }
+
+  /* Center align product name */
+  .card__information {
+    text-align: center;
+  }
+
+  /* Ensure image container has relative positioning */
+  .card__media {
+    position: relative;
   }
 
   @media screen and (min-width: 750px) {
@@ -81,10 +94,10 @@
               card_product: recommendation,
               media_aspect_ratio: section.settings.image_ratio,
               image_shape: section.settings.image_shape,
-              show_secondary_image: true,  {# 强制显示第二张图片 #}
+              show_secondary_image: true,
               show_vendor: section.settings.show_vendor,
               show_rating: section.settings.show_rating,
-              show_badge: true,  {# 显示产品标签 #}
+              show_badge: true,
               skip_styles: skip_card_product_styles
             %}
           </li>
@@ -112,7 +125,7 @@
       "type": "inline_richtext",
       "id": "heading",
       "default": "You may also like",
-      "label": "标题文本"
+      "label": "Heading text"
     },
     {
       "type": "select",
@@ -145,7 +158,7 @@
     {
       "type": "color",
       "id": "heading_color",
-      "label": "标题颜色",
+      "label": "Heading color",
       "default": "#000000"
     },
     {
@@ -155,39 +168,39 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "标题字体大小",
+      "label": "Heading font size",
       "default": 24
     },
     {
       "type": "select",
       "id": "heading_font_weight",
-      "label": "标题字体粗细",
+      "label": "Heading font weight",
       "options": [
         {
           "value": "normal",
-          "label": "正常"
+          "label": "Normal"
         },
         {
           "value": "bold",
-          "label": "加粗"
+          "label": "Bold"
         }
       ],
       "default": "bold"
     },
     {
       "type": "header",
-      "content": "产品标签设置"
+      "content": "Product badge settings"
     },
     {
       "type": "color",
       "id": "badge_background",
-      "label": "标签背景色",
+      "label": "Badge background color",
       "default": "#FF0000"
     },
     {
       "type": "color",
       "id": "badge_text_color",
-      "label": "标签文字颜色",
+      "label": "Badge text color",
       "default": "#FFFFFF"
     },
     {
@@ -197,7 +210,7 @@
       "max": 20,
       "step": 1,
       "unit": "px",
-      "label": "标签字体大小",
+      "label": "Badge font size",
       "default": 12
     },
     {
