@@ -63,7 +63,6 @@
       "block_order": [
         "heading_fBqUiy"
       ],
-      "name": "Products-Heading",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -175,7 +174,6 @@
       "block_order": [
         "button_76TWLm"
       ],
-      "name": "Products-Button",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -289,7 +287,6 @@
         "caption_m8RMPA",
         "button_GA8WxT"
       ],
-      "name": "Alkaline Water",
       "settings": {
         "image": "shopify://shop_images/4cut.png",
         "height": "adapt",
@@ -385,7 +382,6 @@
         "text_mAYbfr",
         "button_dmNHG7"
       ],
-      "name": "Sports Drink",
       "settings": {
         "image": "shopify://shop_images/7cut.png",
         "height": "adapt",
@@ -416,7 +412,6 @@
       "block_order": [
         "heading_meqA8e"
       ],
-      "name": "Sports Sponsors-Heading",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -487,7 +482,6 @@
         "column_kfYTC4",
         "column_kXbgWq"
       ],
-      "name": "Sports Sponsors",
       "settings": {
         "title": "",
         "title_color": "#000000",
@@ -552,7 +546,6 @@
       "block_order": [
         "heading_9ypTAh"
       ],
-      "name": "Community-Heading",
       "settings": {
         "image": "shopify://shop_images/1.jpg",
         "image_overlay_opacity": 30,
@@ -577,7 +570,7 @@
             "title": "Community Ambassadors",
             "text": "",
             "link_label": "Learn More",
-            "link": ""
+            "link": "shopify://pages/community-ambassadors"
           }
         },
         "column_8yqwzE": {
@@ -606,7 +599,6 @@
         "column_8yqwzE",
         "column_nrkHEP"
       ],
-      "name": "Community",
       "settings": {
         "title": "",
         "heading_size": "h1",
@@ -651,7 +643,6 @@
     },
     "page_tBQPbK": {
       "type": "page",
-      "name": "About Us",
       "settings": {
         "page": "about-us",
         "layout_direction": "row",
