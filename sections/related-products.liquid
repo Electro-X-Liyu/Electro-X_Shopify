@@ -12,6 +12,76 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  /* 彻底隐藏所有价格元素 */
+  .price,
+  .price-item,
+  .price__sale,
+  .price--on-sale .price__sale,
+  .price__regular,
+  .price-item--regular,
+  .price-item--sale {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* 卡片无背景设置 */
+  .card {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* 图片容器设置 */
+  .card__media {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 图片切换动画设置 */
+  .card__media .media--first,
+  .card__media .media--second {
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity;
+  }
+
+  /* 默认显示第二张图片 */
+  .card__media .media--first {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  .card__media .media--second {
+    opacity: 1;
+    position: relative;
+    z-index: 0;
+  }
+  
+  /* PC端悬停效果 */
+  @media (hover: hover) {
+    .card:hover .card__media .media--first {
+      opacity: 1;
+    }
+    .card:hover .card__media .media--second {
+      opacity: 0;
+    }
+  }
+
+  /* 移动端设置 - 只显示第二张图片 */
+  @media screen and (max-width: 749px) {
+    .card__media .media--first {
+      display: none !important;
+    }
+    .card__media .media--second {
+      opacity: 1 !important;
+    }
+  }
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -20,12 +90,11 @@
   }
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
+<div class="color-{{ section.settings.color_scheme }} gradient no-js-hidden">
   <product-recommendations
     class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.products_to_show }}"
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
     data-section-id="{{ section.id }}"
-    data-product-id="{{ product.id }}"
   >
     {% if recommendations.performed and recommendations.products_count > 0 %}
       <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
@@ -35,28 +104,29 @@
         class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
         role="list"
       >
-        {% assign skip_card_product_styles = false %}
         {% for recommendation in recommendations.products %}
           <li class="grid__item">
             {% render 'card-product',
               card_product: recommendation,
               media_aspect_ratio: section.settings.image_ratio,
               image_shape: section.settings.image_shape,
-              show_secondary_image: section.settings.show_secondary_image,
+              show_secondary_image: true,
               show_vendor: section.settings.show_vendor,
               show_rating: section.settings.show_rating,
-              skip_styles: skip_card_product_styles
+              show_price: false,
+              show_quick_add: false,
+              section_id: section.id
             %}
           </li>
-          {%- assign skip_card_product_styles = true -%}
         {% endfor %}
       </ul>
     {% endif %}
   </product-recommendations>
-  {% if section.settings.image_shape == 'arch' %}
-    {{ 'mask-arch.svg' | inline_asset_content }}
-  {%- endif -%}
 </div>
+
+{% if section.settings.image_shape == 'arch' %}
+  {% render 'mask-arch' %}
+{%- endif -%}
 
 {% schema %}
 {
@@ -71,7 +141,7 @@
     {
       "type": "inline_richtext",
       "id": "heading",
-      "default": "t:sections.related-products.settings.paragraph__1.default",
+      "default": "You may also like",
       "label": "t:sections.related-products.settings.heading.label"
     },
     {
@@ -206,12 +276,6 @@
       ],
       "default": "default",
       "label": "t:sections.all.image_shape.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_secondary_image",
-      "default": false,
-      "label": "t:sections.related-products.settings.show_secondary_image.label"
     },
     {
       "type": "checkbox",
