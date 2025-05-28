@@ -1,0 +1,14 @@
+{%- liquid
+  assign settings = block.settings
+  assign text = settings.text
+  assign type_preset = settings.type_preset
+  assign alignment = settings.alignment
+  assign max_width = settings.max_width
+-%}
+
+<div
+  class="text-block {{ type_preset }}"
+  style="text-align: {{ alignment }}; max-width: {% case max_width %}{% when 'narrow' %}45rem{% when 'normal' %}65rem{% else %}100%{% endcase %};"
+>
+  {{ text }}
+</div>
