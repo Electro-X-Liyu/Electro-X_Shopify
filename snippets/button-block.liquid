@@ -1,0 +1,10 @@
+{%- liquid
+  assign settings = block.settings
+  assign label = settings.label
+  assign link = settings.link
+  assign style_class = settings.style_class
+-%}
+
+<a href="{{ link }}" class="button {{ style_class }}">
+  {{ label }}
+</a>
