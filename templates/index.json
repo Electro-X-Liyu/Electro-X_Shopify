@@ -23,7 +23,6 @@
       "block_order": [
         "text_fCYKWq"
       ],
-      "name": "带画中画的横幅",
       "settings": {
         "image": "shopify://shop_images/2-1.jpg",
         "image_overlay_opacity": 0,
@@ -64,7 +63,6 @@
       "block_order": [
         "heading_fBqUiy"
       ],
-      "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -176,7 +174,6 @@
       "block_order": [
         "button_76TWLm"
       ],
-      "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -189,7 +186,6 @@
     "image_banner_D9MHcV": {
       "type": "image-banner",
       "disabled": true,
-      "name": "t:sections.image-banner.presets.name",
       "settings": {
         "image": "shopify://shop_images/web_____1.jpg",
         "image_overlay_opacity": 0,
@@ -308,7 +304,6 @@
         "caption_m8RMPA",
         "button_GA8WxT"
       ],
-      "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "image": "shopify://shop_images/4cut.png",
         "height": "adapt",
@@ -404,7 +399,6 @@
         "text_mAYbfr",
         "button_dmNHG7"
       ],
-      "name": "Enhanced Image with Text",
       "settings": {
         "image": "shopify://shop_images/7cut.png",
         "height": "adapt",
@@ -435,7 +429,6 @@
       "block_order": [
         "heading_meqA8e"
       ],
-      "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -506,7 +499,6 @@
         "column_kfYTC4",
         "column_kXbgWq"
       ],
-      "name": "Mixed multicolumn",
       "settings": {
         "title": "",
         "title_color": "#000000",
@@ -624,7 +616,6 @@
         "column_8yqwzE",
         "column_nrkHEP"
       ],
-      "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "",
         "heading_size": "h1",
@@ -669,7 +660,6 @@
     },
     "page_tBQPbK": {
       "type": "page",
-      "name": "t:sections.page.presets.name",
       "settings": {
         "page": "about-us",
         "layout_direction": "row",
