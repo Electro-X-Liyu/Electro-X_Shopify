@@ -28,8 +28,9 @@
     "main": {
       "type": "main-page",
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
+        "padding_top": 56,
+        "padding_bottom": 28,
+        "text_alignment": "center"
       }
     },
     "new_blog_CEKBjn": {
@@ -321,7 +322,6 @@
         "image_block_DhdBMq",
         "image_block_86KccQ"
       ],
-      "name": "Ambassadors",
       "settings": {
         "title": "",
         "desktop_height": 310,
