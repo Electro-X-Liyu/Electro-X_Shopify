@@ -81,6 +81,7 @@
         "column_8wDYxd",
         "column_WRtFWf"
       ],
+      "disabled": true,
       "settings": {
         "title": "",
         "heading_size": "h1",
@@ -140,6 +141,158 @@
             "link": "",
             "alt_text": ""
           }
+        },
+        "image_block_Y6Ltex": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-11.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_mEDjbJ": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-13.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_tmhbJB": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-15.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_YhEqB6": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-17.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_ee8pKz": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-19.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_nAzc87": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-21.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_DRCBLg": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-23.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_P6fQX7": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-25.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_WgKwjW": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-27.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_DVbhjX": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-29.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_ca3KtU": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-31.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_CjtNAU": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-33.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_qkaYAg": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-35.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_df3ajD": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-37.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_maAFjC": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-39.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_TBar6f": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-41.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_DH3GxP": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-43.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_DhdBMq": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-45.jpg",
+            "link": "",
+            "alt_text": ""
+          }
+        },
+        "image_block_86KccQ": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/KV-47.jpg",
+            "link": "",
+            "alt_text": ""
+          }
         }
       },
       "block_order": [
@@ -147,13 +300,32 @@
         "image_block_FrkG4y",
         "image_block_Pa8NtF",
         "image_block_mhCE6M",
-        "image_block_aDd3UF"
+        "image_block_aDd3UF",
+        "image_block_Y6Ltex",
+        "image_block_mEDjbJ",
+        "image_block_tmhbJB",
+        "image_block_YhEqB6",
+        "image_block_ee8pKz",
+        "image_block_nAzc87",
+        "image_block_DRCBLg",
+        "image_block_P6fQX7",
+        "image_block_WgKwjW",
+        "image_block_DVbhjX",
+        "image_block_ca3KtU",
+        "image_block_CjtNAU",
+        "image_block_qkaYAg",
+        "image_block_df3ajD",
+        "image_block_maAFjC",
+        "image_block_TBar6f",
+        "image_block_DH3GxP",
+        "image_block_DhdBMq",
+        "image_block_86KccQ"
       ],
       "name": "All Product",
       "settings": {
         "title": "",
         "desktop_height": 310,
-        "mobile_height": 300
+        "mobile_height": 220
       }
     }
   },
