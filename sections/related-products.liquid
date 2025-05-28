@@ -12,6 +12,45 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  /* 自定义标题样式 */
+  .section-{{ section.id }}-padding .related-products__heading {
+    text-align: center;
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_font_size }}px;
+    font-weight: {{ section.settings.heading_font_weight }};
+    margin-bottom: 30px;
+  }
+
+  /* 产品标签样式 */
+  .card__badge {
+    background: {{ section.settings.badge_background }};
+    color: {{ section.settings.badge_text_color }};
+    font-size: {{ section.settings.badge_font_size }}px;
+    padding: 4px 8px;
+    border-radius: 3px;
+  }
+
+  /* 隐藏价格 */
+  .price {
+    display: none !important;
+  }
+
+  /* 图片悬停效果 */
+  .card__media .media--first {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .card__media .media--second {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  .card:hover .card__media .media--first {
+    opacity: 1;
+  }
+  .card:hover .card__media .media--second {
+    opacity: 0;
+  }
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -38,13 +77,15 @@
         {% assign skip_card_product_styles = false %}
         {% for recommendation in recommendations.products %}
           <li class="grid__item">
-            {% render 'card-product',
+            {%
+              render 'card-product',
               card_product: recommendation,
               media_aspect_ratio: section.settings.image_ratio,
               image_shape: section.settings.image_shape,
-              show_secondary_image: section.settings.show_secondary_image,
+              show_secondary_image: true,  {# 强制显示第二张图片 #}
               show_vendor: section.settings.show_vendor,
               show_rating: section.settings.show_rating,
+              show_badge: true,  {# 显示产品标签 #}
               skip_styles: skip_card_product_styles
             %}
           </li>
@@ -71,8 +112,8 @@
     {
       "type": "inline_richtext",
       "id": "heading",
-      "default": "t:sections.related-products.settings.paragraph__1.default",
-      "label": "t:sections.related-products.settings.heading.label"
+      "default": "You may also like",
+      "label": "标题文本"
     },
     {
       "type": "select",
@@ -101,6 +142,64 @@
       ],
       "default": "h1",
       "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "标题颜色",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "标题字体大小",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "标题字体粗细",
+      "options": [
+        {
+          "value": "normal",
+          "label": "正常"
+        },
+        {
+          "value": "bold",
+          "label": "加粗"
+        }
+      ],
+      "default": "bold"
+    },
+    {
+      "type": "header",
+      "content": "产品标签设置"
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "标签背景色",
+      "default": "#FF0000"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "标签文字颜色",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "标签字体大小",
+      "default": 12
     },
     {
       "type": "range",
@@ -206,12 +305,6 @@
       ],
       "default": "default",
       "label": "t:sections.all.image_shape.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_secondary_image",
-      "default": false,
-      "label": "t:sections.related-products.settings.show_secondary_image.label"
     },
     {
       "type": "checkbox",
