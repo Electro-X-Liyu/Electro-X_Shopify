@@ -1,0 +1,25 @@
+{%- liquid
+  assign block_id = block.id
+  assign settings = block.settings
+-%}
+
+{%- case block.type -%}
+  {%- when 'text' -%}
+    <div class="block-{{ block_id }} block-text">
+      {{ settings.text }}
+    </div>
+
+  {%- when 'image' -%}
+    <div class="block-{{ block_id }} block-image">
+      {%- if settings.image != blank -%}
+        {{ settings.image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+      {%- endif -%}
+    </div>
+
+  {%- when 'button' -%}
+    <div class="block-{{ block_id }} block-button">
+      <a href="{{ settings.link }}" class="button button--{{ settings.style_class }}">
+        {{ settings.label }}
+      </a>
+    </div>
+{%- endcase -%}
