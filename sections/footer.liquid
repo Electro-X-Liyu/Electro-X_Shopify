@@ -6,151 +6,64 @@
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 
 <style>
-  /* 自定义页脚样式 */
-  .footer__content-top {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
-    margin-bottom: 30px;
+  /* 自定义布局样式 - 与Dawn风格一致 */
+  .footer__content-top-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    padding-bottom: 5rem;
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
+    margin-bottom: 3rem;
   }
 
-  .footer__newsletter-section {
-    flex: 1;
-    min-width: 300px;
-    padding: 30px;
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-    border-radius: 10px;
+  @media screen and (max-width: 750px) {
+    .footer__content-top-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
   }
 
-  .footer__newsletter-title {
-    font-size: 1.8rem;
-    color: rgb(var(--color-button));
-    margin-bottom: 20px;
-    font-weight: 700;
+  .footer-newsletter {
+    max-width: 44rem;
+  }
+
+  .footer__heading {
+    font-size: calc(var(--font-heading-scale) * 1.8rem);
+    margin-bottom: 2rem;
+  }
+
+  .footer__menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 3rem;
+  }
+
+  .footer-block__details-content {
+    margin-top: 0;
+  }
+
+  .footer-block__details-content .list-menu__item {
+    padding: 0.7rem 0;
+    font-size: 1.4rem;
   }
 
   .footer__newsletter-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 25px;
+    margin-top: 2rem;
   }
 
-  .footer__form-group {
-    flex: 1;
-    min-width: 250px;
+  .footer__newsletter-form .field__input {
+    padding-right: 5rem;
   }
 
-  .footer__form-group input {
-    width: 100%;
-    padding: 15px;
-    border: 2px solid rgba(var(--color-foreground), 0.1);
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .footer__form-group input:focus {
-    outline: none;
-    border-color: rgb(var(--color-button));
-    box-shadow: 0 0 0 3px rgba(var(--color-button), 0.2);
-  }
-
-  .footer__subscribe-btn {
-    background-color: rgb(var(--color-button));
-    color: rgb(var(--color-button-text));
-    border: none;
-    padding: 15px 30px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    min-width: 150px;
-  }
-
-  .footer__subscribe-btn:hover {
-    background-color: rgba(var(--color-button), 0.9);
-    transform: translateY(-2px);
+  .newsletter-form__button {
+    width: 4.4rem;
   }
 
   .footer__newsletter-description {
-    color: rgba(var(--color-foreground), 0.7);
-    margin-top: 15px;
-    font-size: 0.95rem;
-    line-height: 1.7;
-  }
-
-  .footer__menu-section {
-    flex: 2;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-  }
-
-  .footer__menu-column {
-    padding: 15px;
-  }
-
-  .footer__menu-title {
-    font-size: 1.1rem;
-    color: rgb(var(--color-button));
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid rgba(var(--color-foreground), 0.1);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .footer__menu-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .footer__menu-links li {
-    margin-bottom: 12px;
-  }
-
-  .footer__menu-links a {
-    text-decoration: none;
-    color: rgba(var(--color-foreground), 0.9);
-    transition: all 0.3s ease;
-    display: block;
-    padding: 5px 0;
-    font-weight: 500;
-  }
-
-  .footer__menu-links a:hover {
-    color: rgb(var(--color-button));
-    padding-left: 5px;
-  }
-
-  /* 响应式调整 */
-  @media (max-width: 750px) {
-    .footer__content-top {
-      flex-direction: column;
-    }
-
-    .footer__newsletter-form {
-      flex-direction: column;
-    }
-
-    .footer__subscribe-btn {
-      width: 100%;
-    }
-  }
-
-  /* 覆盖原有样式 */
-  .footer__content-bottom {
-    padding-top: 0;
-  }
-
-  .footer__content-bottom-wrapper {
-    justify-content: center;
+    margin-top: 1.5rem;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: rgba(var(--color-foreground), 0.75);
   }
 </style>
 
@@ -170,77 +83,119 @@
 -%}
 
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
-  <div class="footer__content-top page-width">
-    <!-- 左侧：电子邮件注册区 -->
-    <div class="footer__newsletter-section">
-      <h2 class="footer__newsletter-title">Fine the ELECTRO X</h2>
-      {%- if section.settings.newsletter_enable -%}
-        {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter-form' -%}
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          <div class="footer__form-group">
-            <input
-              id="NewsletterForm--{{ section.id }}"
-              type="email"
-              name="contact[email]"
-              class="field__input"
-              value="{{ form.email }}"
-              aria-required="true"
-              autocorrect="off"
-              autocapitalize="off"
-              autocomplete="email"
-              {% if form.errors %}
-                autofocus
-                aria-invalid="true"
-                aria-describedby="ContactFooter-error"
-              {% elsif form.posted_successfully? %}
-                aria-describedby="ContactFooter-success"
-              {% endif %}
-              placeholder="{{ 'newsletter.label' | t }}"
-              required
-            >
-          </div>
-          <button
-            type="submit"
-            class="footer__subscribe-btn"
-            name="commit"
-            id="Subscribe"
-            aria-label="{{ 'newsletter.button_label' | t }}"
-          >
-            {{ 'newsletter.button_label' | t }}
-          </button>
-        {%- endform -%}
-      {%- endif -%}
-      <p class="footer__newsletter-description">
-        {{ section.settings.newsletter_description }}
-      </p>
-    </div>
-
-    <!-- 右侧：菜单区 -->
-    <div class="footer__menu-section">
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-          {%- when 'custom_menu' -%}
-            <div class="footer__menu-column" {{ block.shopify_attributes }}>
-              {%- if block.settings.heading != blank -%}
-                <h3 class="footer__menu-title">{{ block.settings.heading }}</h3>
+  {%- unless only_empty_brand -%}
+    <div class="footer__content-top page-width">
+      <div class="footer__content-top-grid">
+        <!-- 左侧：电子邮件注册区 - 使用Dawn原版样式 -->
+        <div class="footer-newsletter">
+          {%- if section.settings.newsletter_enable -%}
+            <div class="footer-block__newsletter">
+              {%- if section.settings.newsletter_heading != blank -%}
+                <h2 class="footer__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
               {%- endif -%}
-
-              {%- if block.settings.menu != blank -%}
-                <ul class="footer__menu-links">
-                  {%- for link in block.settings.menu.links -%}
-                    <li>
-                      <a href="{{ link.url }}" class="link link--text">
-                        {{ link.title | escape }}
-                      </a>
-                    </li>
-                  {%- endfor -%}
-                </ul>
-              {%- endif -%}
+              {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="newsletter-form__field-wrapper">
+                  <div class="field">
+                    <input
+                      id="NewsletterForm--{{ section.id }}"
+                      type="email"
+                      name="contact[email]"
+                      class="field__input"
+                      value="{{ form.email }}"
+                      aria-required="true"
+                      autocorrect="off"
+                      autocapitalize="off"
+                      autocomplete="email"
+                      {% if form.errors %}
+                        autofocus
+                        aria-invalid="true"
+                        aria-describedby="ContactFooter-error"
+                      {% elsif form.posted_successfully? %}
+                        aria-describedby="ContactFooter-success"
+                      {% endif %}
+                      placeholder="{{ 'newsletter.label' | t }}"
+                      required
+                    >
+                    <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                      {{ 'newsletter.label' | t }}
+                    </label>
+                    <button
+                      type="submit"
+                      class="newsletter-form__button field__button"
+                      name="commit"
+                      id="Subscribe"
+                      aria-label="{{ 'newsletter.button_label' | t }}"
+                    >
+                      {% render 'icon-arrow' %}
+                    </button>
+                  </div>
+                  {%- if form.errors -%}
+                    <small class="newsletter-form__message form__message" id="ContactFooter-error">
+                      {% render 'icon-error' -%}
+                      {{- form.errors.translated_fields.email | capitalize }}
+                      {{ form.errors.messages.email }}
+                    </small>
+                  {%- endif -%}
+                </div>
+                {%- if form.posted_successfully? -%}
+                  <h3
+                    class="newsletter-form__message newsletter-form__message--success form__message"
+                    id="ContactFooter-success"
+                    tabindex="-1"
+                    autofocus
+                  >
+                    {% render 'icon-success' -%}
+                    {{- 'newsletter.success' | t }}
+                  </h3>
+                {%- endif -%}
+              {%- endform -%}
             </div>
-        {%- endcase -%}
-      {%- endfor -%}
+          {%- endif -%}
+
+          {%- if section.settings.newsletter_description != blank -%}
+            <div class="footer__newsletter-description rte">{{ section.settings.newsletter_description }}</div>
+          {%- endif -%}
+        </div>
+
+        <!-- 右侧：自定义菜单区 -->
+        <div class="footer__menu-grid">
+          {%- for block in section.blocks -%}
+            <div
+              class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {{ block.shopify_attributes }}
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+              {% endif %}
+            >
+              {%- if block.settings.heading != blank -%}
+                <h2 class="footer-block__heading inline-richtext">{{- block.settings.heading -}}</h2>
+              {%- endif -%}
+
+              {%- case block.type -%}
+                {%- when 'link_list' -%}
+                  {%- if block.settings.menu != blank -%}
+                    <ul class="footer-block__details-content list-unstyled">
+                      {%- for link in block.settings.menu.links -%}
+                        <li>
+                          <a
+                            href="{{ link.url }}"
+                            class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
+                          >
+                            {{ link.title | escape }}
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+              {%- endcase -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
     </div>
-  </div>
+  {%- endunless -%}
 
   <div
     class="footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -315,21 +270,22 @@
 
 {% schema %}
 {
-  "name": "自定义页脚",
+  "name": "t:sections.footer.name",
   "blocks": [
     {
-      "type": "custom_menu",
-      "name": "自定义菜单",
+      "type": "link_list",
+      "name": "t:sections.footer.blocks.link_list.name",
       "settings": [
         {
-          "type": "text",
+          "type": "inline_richtext",
           "id": "heading",
-          "label": "菜单标题",
-          "default": "菜单标题"
+          "default": "菜单标题",
+          "label": "菜单标题"
         },
         {
           "type": "link_list",
           "id": "menu",
+          "default": "footer",
           "label": "选择菜单"
         }
       ]
@@ -340,7 +296,7 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
+      "default": "background-1"
     },
     {
       "type": "header",
@@ -353,10 +309,32 @@
       "label": "启用电子邮件订阅"
     },
     {
+      "type": "inline_richtext",
+      "id": "newsletter_heading",
+      "default": "Fine the ELECTRO X",
+      "label": "订阅标题"
+    },
+    {
       "type": "richtext",
       "id": "newsletter_description",
-      "label": "订阅描述文本",
-      "default": "<p>订阅以获取产品更新、行业洞察和特别优惠</p>"
+      "label": "订阅描述",
+      "default": "<p>Subscribe for product updates, insight and offers</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__9.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_follow_on_shop",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_follow_on_shop.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": true,
+      "label": "t:sections.footer.settings.show_social.label"
     },
     {
       "type": "header",
@@ -366,13 +344,13 @@
       "type": "checkbox",
       "id": "enable_country_selector",
       "default": true,
-      "label": "启用国家选择器"
+      "label": "t:sections.footer.settings.enable_country_selector.label"
     },
     {
       "type": "checkbox",
       "id": "enable_language_selector",
       "default": true,
-      "label": "启用语言选择器"
+      "label": "t:sections.footer.settings.enable_language_selector.label"
     },
     {
       "type": "header",
@@ -382,7 +360,7 @@
       "type": "checkbox",
       "id": "payment_enable",
       "default": true,
-      "label": "显示支付方式图标"
+      "label": "t:sections.footer.settings.payment_enable.label"
     },
     {
       "type": "header",
@@ -392,11 +370,11 @@
       "type": "checkbox",
       "id": "show_policy",
       "default": true,
-      "label": "显示策略链接"
+      "label": "t:sections.footer.settings.show_policy.label"
     },
     {
       "type": "header",
-      "content": "间距设置"
+      "content": "t:sections.all.spacing"
     },
     {
       "type": "range",
@@ -405,8 +383,12 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "上边距",
+      "label": "t:sections.footer.settings.margin_top.label",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
@@ -415,7 +397,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "上内边距",
+      "label": "t:sections.all.padding.padding_top",
       "default": 36
     },
     {
@@ -425,37 +407,30 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "下内边距",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 36
     }
   ],
   "default": {
     "blocks": [
       {
-        "type": "custom_menu",
+        "type": "link_list",
         "settings": {
           "heading": "产品",
           "menu": "footer"
         }
       },
       {
-        "type": "custom_menu",
+        "type": "link_list",
         "settings": {
           "heading": "社区",
           "menu": "footer"
         }
       },
       {
-        "type": "custom_menu",
+        "type": "link_list",
         "settings": {
           "heading": "关于我们",
-          "menu": "footer"
-        }
-      },
-      {
-        "type": "custom_menu",
-        "settings": {
-          "heading": "支持",
           "menu": "footer"
         }
       }
