@@ -31,7 +31,7 @@
     .slider-mobile-gutter .slider-buttons {
       display: none !important;
     }
-    
+
     /* Mobile button adjustments */
     #shopify-section-{{ section.id }} .button--primary {
       font-size: {{ section.settings.mobile_button_text_size }}px;
@@ -131,6 +131,20 @@
     display: inline-block;
     text-align: center;
   }
+
+  /* Image link styling */
+  .multicolumn-card__image-wrapper {
+    position: relative;
+  }
+  .multicolumn-card__image-link {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -142,11 +156,12 @@
 -%}
 
 <div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
-  <div class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+  <div
+    class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
     {% if settings.animations_reveal_on_scroll %}
       data-cascade
-    {% endif %}>
-    
+    {% endif %}
+  >
     {%- unless section.settings.title == blank -%}
       <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
         <h2 class="title inline-richtext {{ section.settings.heading_size }}">
@@ -158,22 +173,33 @@
     <div class="slider-mobile-gutter">
       {%- if section.blocks.size > 3 -%}
         <div class="slider-buttons desktop-only">
-          <button type="button" class="slider-button slider-button--prev desktop-prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}">
+          <button
+            type="button"
+            class="slider-button slider-button--prev desktop-prev"
+            name="previous"
+            aria-label="{{ 'general.slider.previous_slide' | t }}"
+          >
             <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
           </button>
-          <button type="button" class="slider-button slider-button--next desktop-next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}">
+          <button
+            type="button"
+            class="slider-button slider-button--next desktop-next"
+            name="next"
+            aria-label="{{ 'general.slider.next_slide' | t }}"
+          >
             <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
           </button>
         </div>
       {%- endif -%}
 
-      <ul class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.blocks.size > 3 %} desktop-slider{% endif %}"
+      <ul
+        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.blocks.size > 3 %} desktop-slider{% endif %}"
         id="Slider-{{ section.id }}"
         role="list"
         {% if section.blocks.size > 3 %}
           data-desktop-slider
-        {% endif %}>
-        
+        {% endif %}
+      >
         {%- liquid
           assign highest_ratio = 0
           for block in section.blocks
@@ -182,32 +208,38 @@
             endif
           endfor
         -%}
-        
+
         {%- for block in section.blocks -%}
           {%- assign empty_column = '' -%}
-          {%- if block.settings.image == blank and block.settings.title == blank and block.settings.text == blank and block.settings.link_label == blank -%}
+          {%- if block.settings.image == blank
+            and block.settings.title == blank
+            and block.settings.text == blank
+            and block.settings.link_label == blank
+          -%}
             {%- assign empty_column = ' multicolumn-list__item--empty' -%}
           {%- endif -%}
 
-          <li id="Slide-{{ section.id }}-{{ forloop.index }}"
+          <li
+            id="Slide-{{ section.id }}-{{ forloop.index }}"
             class="multicolumn-list__item grid__item{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
               style="--animation-order: {{ forloop.index }};"
-            {% endif %}>
-            
+            {% endif %}
+          >
             <div class="multicolumn-card content-container">
               {%- if block.settings.image != blank -%}
                 {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
                   {% assign spaced_image = true %}
                 {% endif %}
                 <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}">
-                  <div class="media media--transparent media--{{ section.settings.image_ratio }}"
+                  <div
+                    class="media media--transparent media--{{ section.settings.image_ratio }}"
                     {% if section.settings.image_ratio == 'adapt' %}
                       style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
-                    {% endif %}>
-                    
+                    {% endif %}
+                  >
                     {%- liquid
                       assign number_of_columns = 3
                       assign number_of_columns_mobile = section.settings.columns_mobile
@@ -222,23 +254,34 @@
                         assign image_width = 1
                       endif
                     -%}
-                    
+
                     {% capture sizes %}
                       (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width }}px - {{ grid_space_desktop }}) * {{ image_width }} / {{ number_of_columns }}),
                       (min-width: 990px) calc((100vw - {{ grid_space_desktop }}) * {{ image_width }} / {{ number_of_columns }}),
                       (min-width: 750px) calc((100vw - {{ grid_space_tablet }}) * {{ image_width }} / {{ number_of_columns_mobile }}),
                       calc((100vw - {{ grid_space_mobile }}) * {{ image_width }} / {{ number_of_columns_mobile }})
                     {% endcapture %}
-                    
-                    {{ block.settings.image | image_url: width: 3200 | image_tag:
-                      widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200',
-                      sizes: sizes,
-                      class: 'multicolumn-card__image'
+
+                    {{
+                      block.settings.image
+                      | image_url: width: 3200
+                      | image_tag:
+                        widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200',
+                        sizes: sizes,
+                        class: 'multicolumn-card__image'
                     }}
+
+                    {%- if block.settings.image_link != blank -%}
+                      <a
+                        href="{{ block.settings.image_link }}"
+                        class="multicolumn-card__image-link"
+                        aria-label="{% if block.settings.title != blank %}{{ block.settings.title | escape }}{% else %}Learn more{% endif %}"
+                      ></a>
+                    {%- endif -%}
                   </div>
                 </div>
               {%- endif -%}
-              
+
               <div class="multicolumn-card__info">
                 {%- if block.settings.title != blank -%}
                   <h3 class="inline-richtext">{{ block.settings.title }}</h3>
@@ -247,12 +290,14 @@
                   <div class="rte">{{ block.settings.text }}</div>
                 {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
-                  <a class="link animate-arrow"
+                  <a
+                    class="link animate-arrow"
                     {% if block.settings.link == blank %}
                       role="link" aria-disabled="true"
                     {% else %}
                       href="{{ block.settings.link }}"
-                    {% endif %}>
+                    {% endif %}
+                  >
                     {{- block.settings.link_label | escape -}}
                     <span class="svg-wrapper">
                       <span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span>
@@ -265,15 +310,17 @@
         {%- endfor -%}
       </ul>
     </div>
-    
+
     {%- if section.settings.button_label != blank -%}
       <div class="center" style="margin-top: 20px;">
-        <a class="button button--primary"
+        <a
+          class="button button--primary"
           {% if section.settings.button_link == blank %}
             role="link" aria-disabled="true"
           {% else %}
             href="{{ section.settings.button_link }}"
-          {% endif %}>
+          {% endif %}
+        >
           {{ section.settings.button_label | escape }}
         </a>
       </div>
@@ -282,72 +329,72 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Desktop slider functionality
-  const desktopSlider = document.querySelector('[data-desktop-slider]');
-  if (desktopSlider) {
-    const prevBtn = document.querySelector('.desktop-prev');
-    const nextBtn = document.querySelector('.desktop-next');
-    const itemWidth = document.querySelector('.multicolumn-list__item').offsetWidth + 20;
+  document.addEventListener('DOMContentLoaded', function() {
+    // Desktop slider functionality
+    const desktopSlider = document.querySelector('[data-desktop-slider]');
+    if (desktopSlider) {
+      const prevBtn = document.querySelector('.desktop-prev');
+      const nextBtn = document.querySelector('.desktop-next');
+      const itemWidth = document.querySelector('.multicolumn-list__item').offsetWidth + 20;
 
-    // Arrow navigation
-    prevBtn?.addEventListener('click', () => {
-      desktopSlider.scrollBy({ left: -itemWidth * 3, behavior: 'smooth' });
-    });
+      // Arrow navigation
+      prevBtn?.addEventListener('click', () => {
+        desktopSlider.scrollBy({ left: -itemWidth * 3, behavior: 'smooth' });
+      });
 
-    nextBtn?.addEventListener('click', () => {
-      desktopSlider.scrollBy({ left: itemWidth * 3, behavior: 'smooth' });
-    });
+      nextBtn?.addEventListener('click', () => {
+        desktopSlider.scrollBy({ left: itemWidth * 3, behavior: 'smooth' });
+      });
 
-    // Drag functionality
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+      // Drag functionality
+      let isDown = false;
+      let startX;
+      let scrollLeft;
 
-    desktopSlider.addEventListener('mousedown', (e) => {
-      isDown = true;
-      desktopSlider.style.cursor = 'grabbing';
-      startX = e.pageX - desktopSlider.offsetLeft;
-      scrollLeft = desktopSlider.scrollLeft;
-    });
+      desktopSlider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        desktopSlider.style.cursor = 'grabbing';
+        startX = e.pageX - desktopSlider.offsetLeft;
+        scrollLeft = desktopSlider.scrollLeft;
+      });
 
-    desktopSlider.addEventListener('mouseleave', () => {
-      isDown = false;
-      desktopSlider.style.cursor = 'grab';
-    });
+      desktopSlider.addEventListener('mouseleave', () => {
+        isDown = false;
+        desktopSlider.style.cursor = 'grab';
+      });
 
-    desktopSlider.addEventListener('mouseup', () => {
-      isDown = false;
-      desktopSlider.style.cursor = 'grab';
-    });
+      desktopSlider.addEventListener('mouseup', () => {
+        isDown = false;
+        desktopSlider.style.cursor = 'grab';
+      });
 
-    desktopSlider.addEventListener('mousemove', (e) => {
-      if(!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - desktopSlider.offsetLeft;
-      const walk = (x - startX) * 2;
-      desktopSlider.scrollLeft = scrollLeft - walk;
-    });
+      desktopSlider.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - desktopSlider.offsetLeft;
+        const walk = (x - startX) * 2;
+        desktopSlider.scrollLeft = scrollLeft - walk;
+      });
 
-    // Touch support
-    desktopSlider.addEventListener('touchstart', (e) => {
-      isDown = true;
-      startX = e.touches[0].pageX - desktopSlider.offsetLeft;
-      scrollLeft = desktopSlider.scrollLeft;
-    }, { passive: true });
+      // Touch support
+      desktopSlider.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - desktopSlider.offsetLeft;
+        scrollLeft = desktopSlider.scrollLeft;
+      }, { passive: true });
 
-    desktopSlider.addEventListener('touchend', () => {
-      isDown = false;
-    });
+      desktopSlider.addEventListener('touchend', () => {
+        isDown = false;
+      });
 
-    desktopSlider.addEventListener('touchmove', (e) => {
-      if(!isDown) return;
-      const x = e.touches[0].pageX - desktopSlider.offsetLeft;
-      const walk = (x - startX) * 2;
-      desktopSlider.scrollLeft = scrollLeft - walk;
-    }, { passive: true });
-  }
-});
+      desktopSlider.addEventListener('touchmove', (e) => {
+        if(!isDown) return;
+        const x = e.touches[0].pageX - desktopSlider.offsetLeft;
+        const walk = (x - startX) * 2;
+        desktopSlider.scrollLeft = scrollLeft - walk;
+      }, { passive: true });
+    }
+  });
 </script>
 
 {% schema %}
@@ -873,6 +920,12 @@ document.addEventListener('DOMContentLoaded', function() {
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image link to blog post",
+          "info": "Link to a specific blog post"
         },
         {
           "type": "inline_richtext",
