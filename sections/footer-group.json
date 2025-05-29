@@ -48,24 +48,38 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "link_list_zCXHBF": {
-          "type": "link_list",
+        "custom_menu_en93Wd": {
+          "type": "custom_menu",
           "settings": {
-            "heading": "菜单标题",
+            "heading": "Products",
             "menu": "footer"
+          }
+        },
+        "custom_menu_LtfWaF": {
+          "type": "custom_menu",
+          "settings": {
+            "heading": "Community",
+            "menu": "community"
+          }
+        },
+        "custom_menu_CHt7dM": {
+          "type": "custom_menu",
+          "settings": {
+            "heading": "About Us",
+            "menu": "about-us"
           }
         }
       },
       "block_order": [
-        "link_list_zCXHBF"
+        "custom_menu_en93Wd",
+        "custom_menu_LtfWaF",
+        "custom_menu_CHt7dM"
       ],
       "settings": {
         "color_scheme": "scheme-4",
         "newsletter_enable": true,
         "newsletter_heading": "Subscribe to our emails",
         "newsletter_description": "<p>Subscribe for product updates, insight and offers</p>",
-        "enable_follow_on_shop": true,
-        "show_social": true,
         "enable_country_selector": true,
         "enable_language_selector": true,
         "payment_enable": false,
