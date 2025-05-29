@@ -94,7 +94,7 @@
         "newsletter_description": "<p>Subscribe for product updates, insight and offers</p>",
         "newsletter_color_scheme": "scheme-4",
         "newsletter_title_size": 24,
-        "newsletter_title_line_height": 1.2,
+        "newsletter_title_line_height": 1,
         "newsletter_title_color": "#000000",
         "newsletter_title_weight": "700",
         "newsletter_text_size": 12,
