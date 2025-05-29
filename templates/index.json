@@ -428,7 +428,7 @@
           "settings": {
             "image": "shopify://shop_images/9cut.png",
             "image_link": "shopify://blogs/sports-sponsorship-1/hyrox-beijing-shanghai",
-            "title": "2024/2025 HYROX CHINA",
+            "title": "<a href=\"/blogs/sports-sponsorship-1/hyrox-beijing-shanghai\" title=\"2024/2025 HYROX CHINA\">2024/2025 HYROX CHINA</a>",
             "text": "",
             "link_label": "Learn More",
             "link": "shopify://blogs/sports-sponsorship-1/hyrox-beijing-shanghai"
@@ -439,7 +439,7 @@
           "settings": {
             "image": "shopify://shop_images/10cut.png",
             "image_link": "shopify://blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming",
-            "title": "2025 Ironman Shanghai",
+            "title": "<a href=\"/blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming\" title=\"2025 Ironman Shanghai\">2025 Ironman Shanghai</a>",
             "text": "",
             "link_label": "Learn More",
             "link": "shopify://blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming"
@@ -450,7 +450,7 @@
           "settings": {
             "image": "shopify://shop_images/11cut.png",
             "image_link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open",
-            "title": "NINGBO OPEN WTA 500",
+            "title": "<a href=\"/blogs/sports-sponsorship-1/wta-500-niingbo-open\" title=\"NINGBO OPEN WTA 500\">NINGBO OPEN WTA 500</a>",
             "text": "",
             "link_label": "Learn More",
             "link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open"
@@ -461,7 +461,7 @@
           "settings": {
             "image": "shopify://shop_images/17cut.png",
             "image_link": "shopify://blogs/sports-sponsorship-1/2024-beijing-half-marathron",
-            "title": "2024 Beijing Half Marathon",
+            "title": "<a href=\"/blogs/sports-sponsorship-1/2024-beijing-half-marathron\" title=\"2024 Beijing Half Marathron\">2024 Beijing Half Marathon</a>",
             "text": "",
             "link_label": "Learn More",
             "link": "shopify://blogs/sports-sponsorship-1/2024-beijing-half-marathron"
@@ -472,7 +472,7 @@
           "settings": {
             "image": "shopify://shop_images/16cut.png",
             "image_link": "shopify://blogs/sports-sponsorship-1/2024-desafio-beijing",
-            "title": "2024 Desafio Beijing",
+            "title": "<a href=\"/blogs/sports-sponsorship-1/2024-desafio-beijing\" title=\"2024 Desafio Beijing\">2024 Desafio Beijing</a>",
             "text": "",
             "link_label": "Learn More",
             "link": "shopify://blogs/sports-sponsorship-1/2024-desafio-beijing"
@@ -571,8 +571,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/7_4x_9a318ac9-9b17-4e33-a505-aa2ce2ac8fc2.png",
-            "image_link": "shopify://pages/community-ambassadors",
-            "title": "Community Ambassadors",
+            "title": "<a href=\"/pages/community-ambassadors\" title=\"AMBASSADORS （TBD\">Community Ambassadors</a>",
             "text": "",
             "link_label": "Learn More",
             "link": "shopify://pages/community-ambassadors"
@@ -582,7 +581,6 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/6_4x_376bf75d-c610-421d-9aef-412d29ff4639.png",
-            "image_link": "",
             "title": "U.C.P - Urban Challenge Project",
             "text": "",
             "link_label": "Learn More",
@@ -593,7 +591,6 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/5_4x_809db5c1-7915-4239-b8bf-d110cba0d540.png",
-            "image_link": "",
             "title": "Elite Athletes",
             "text": "",
             "link_label": "Learn More",
@@ -609,33 +606,8 @@
       "settings": {
         "title": "",
         "heading_size": "h1",
-        "title_color": "#000000",
-        "title_size": 24,
-        "title_margin_top": 0,
-        "title_margin_bottom": 20,
-        "title_custom_font": false,
-        "title_font_family": "heading",
-        "title_font_weight": "bold",
-        "text_alignment": "left",
-        "block_title_color": "#333333",
-        "block_title_size": 18,
-        "block_title_margin_top": 0,
-        "block_title_margin_bottom": 0,
-        "block_title_custom_font": true,
-        "block_title_font_family": "heading",
-        "block_title_font_weight": "bold",
-        "block_text_color": "#666666",
-        "block_text_size": 14,
-        "block_text_margin_top": 0,
-        "block_text_margin_bottom": 0,
-        "block_link_color": "#8d8d8d",
-        "block_link_hover_color": "#8d8d8d",
-        "block_link_size": 14,
-        "block_link_margin_top": 0,
-        "block_link_margin_bottom": 0,
         "image_width": "full",
         "image_ratio": "square",
-        "image_border_radius": 0,
         "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
