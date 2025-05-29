@@ -571,6 +571,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/7_4x_9a318ac9-9b17-4e33-a505-aa2ce2ac8fc2.png",
+            "image_link": "shopify://pages/community-ambassadors",
             "title": "Community Ambassadors",
             "text": "",
             "link_label": "Learn More",
@@ -581,6 +582,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/6_4x_376bf75d-c610-421d-9aef-412d29ff4639.png",
+            "image_link": "",
             "title": "U.C.P - Urban Challenge Project",
             "text": "",
             "link_label": "Learn More",
@@ -591,6 +593,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/5_4x_809db5c1-7915-4239-b8bf-d110cba0d540.png",
+            "image_link": "",
             "title": "Elite Athletes",
             "text": "",
             "link_label": "Learn More",
