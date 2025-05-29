@@ -427,6 +427,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/9cut.png",
+            "image_link": "shopify://blogs/sports-sponsorship-1/hyrox-beijing-shanghai",
             "title": "2024/2025 HYROX CHINA",
             "text": "",
             "link_label": "Learn More",
@@ -437,6 +438,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/10cut.png",
+            "image_link": "shopify://blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming",
             "title": "2025 Ironman Shanghai",
             "text": "",
             "link_label": "Learn More",
@@ -447,6 +449,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/11cut.png",
+            "image_link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open",
             "title": "NINGBO OPEN WTA 500",
             "text": "",
             "link_label": "Learn More",
@@ -457,6 +460,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/17cut.png",
+            "image_link": "shopify://blogs/sports-sponsorship-1/2024-beijing-half-marathron",
             "title": "2024 Beijing Half Marathon",
             "text": "",
             "link_label": "Learn More",
@@ -467,6 +471,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/16cut.png",
+            "image_link": "shopify://blogs/sports-sponsorship-1/2024-desafio-beijing",
             "title": "2024 Desafio Beijing",
             "text": "",
             "link_label": "Learn More",
