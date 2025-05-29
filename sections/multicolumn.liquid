@@ -66,6 +66,13 @@
     border-radius: {{ section.settings.image_border_radius }}px;
     overflow: hidden;
   }
+
+  /* 添加图片链接样式 */
+  .multicolumn-card__image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -134,6 +141,16 @@
                 {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
                   {% assign spaced_image = true %}
                 {% endif %}
+
+                <!-- 修改开始：添加图片链接 -->
+                {%- if block.settings.image_link != blank -%}
+                  <a
+                    href="{{ block.settings.image_link }}"
+                    class="multicolumn-card__image-link"
+                    aria-label="{{ block.settings.title | default: 'Image link' | escape }}"
+                  >
+                {%- endif -%}
+
                 <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}">
                   <div
                     class="media media--transparent media--{{ section.settings.image_ratio }}"
@@ -174,6 +191,11 @@
                     }}
                   </div>
                 </div>
+
+                {%- if block.settings.image_link != blank -%}
+                  </a>
+                {%- endif -%}
+                <!-- 修改结束 -->
               {%- endif -%}
 
               <div class="multicolumn-card__info">
@@ -726,6 +748,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image link",
+          "info": "Optional link for the image"
         },
         {
           "type": "inline_richtext",
