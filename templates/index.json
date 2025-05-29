@@ -294,7 +294,7 @@
         "layout": "image_first",
         "image_behavior": "none",
         "content_layout": "no-overlap",
-        "desktop_content_position": "top",
+        "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
         "section_color_scheme": "scheme-3",
@@ -315,12 +315,11 @@
             "spacing_bottom": 20
           }
         },
-        "caption_nbnThL": {
-          "type": "caption",
+        "text_9KMN3h": {
+          "type": "text",
           "settings": {
-            "caption": "Premium Hydration, Refined Taste",
-            "text_style": "subtitle",
-            "text_size": "medium",
+            "text": "<p><strong>Premium Hydration, Refined Taste</strong></p>",
+            "text_style": "body",
             "spacing_top": 0,
             "spacing_bottom": 15
           }
@@ -375,7 +374,7 @@
       },
       "block_order": [
         "heading_hdCVz3",
-        "caption_nbnThL",
+        "text_9KMN3h",
         "text_TLqMRG",
         "caption_jJxTbP",
         "text_xW49Um",
@@ -389,7 +388,7 @@
         "layout": "text_first",
         "image_behavior": "none",
         "content_layout": "no-overlap",
-        "desktop_content_position": "top",
+        "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
         "section_color_scheme": "scheme-3",
