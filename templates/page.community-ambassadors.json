@@ -327,12 +327,37 @@
         "desktop_height": 310,
         "mobile_height": 220
       }
+    },
+    "rich_text_NxRYCQ": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_7piNcd": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_7piNcd"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 100
+      }
     }
   },
   "order": [
     "image_banner_TPVbKP",
     "main",
     "new_blog_CEKBjn",
-    "pic_border_z3NWEJ"
+    "pic_border_z3NWEJ",
+    "rich_text_NxRYCQ"
   ]
 }
