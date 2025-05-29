@@ -1,12 +1,33 @@
 {% comment %}theme-check-disable UndefinedObject{% endcomment %}
 {{ 'section-footer.css' | asset_url | stylesheet_tag }}
 {{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 
-<style>
-  /* 自定义页脚布局 */
+{%- style -%}
+  .footer {
+    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .footer {
+      margin-top: {{ section.settings.margin_top }}px;
+    }
+
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* 自定义页脚样式 */
   .footer__content-top {
     display: flex;
     flex-wrap: wrap;
@@ -19,6 +40,24 @@
   .footer__newsletter-section {
     flex: 1;
     min-width: 300px;
+    padding: 30px;
+    background: {{ section.settings.newsletter_bg }};
+    border-radius: 10px;
+  }
+
+  .footer__newsletter-title {
+    font-size: {{ section.settings.newsletter_title_size }}px;
+    line-height: {{ section.settings.newsletter_title_line_height }};
+    color: {{ section.settings.newsletter_title_color }};
+    margin-bottom: 20px;
+    font-weight: {{ section.settings.newsletter_title_weight }};
+  }
+
+  .footer__newsletter-description {
+    color: {{ section.settings.newsletter_text_color }};
+    margin-top: 15px;
+    font-size: {{ section.settings.newsletter_text_size }}px;
+    line-height: {{ section.settings.newsletter_text_line_height }};
   }
 
   .footer__menu-section {
@@ -29,16 +68,19 @@
   }
 
   .footer__menu-column {
-    padding: 0 15px;
+    padding: 15px;
   }
 
   .footer__menu-title {
-    font-size: calc(var(--font-heading-scale) * 1.6rem);
+    font-size: {{ section.settings.menu_title_size }}px;
+    line-height: {{ section.settings.menu_title_line_height }};
+    color: {{ section.settings.menu_title_color }};
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    border-bottom: 2px solid rgba(var(--color-foreground), 0.1);
+    font-weight: {{ section.settings.menu_title_weight }};
+    text-transform: {{ section.settings.menu_title_transform }};
+    letter-spacing: {{ section.settings.menu_title_letter_spacing }}px;
   }
 
   .footer__menu-links {
@@ -53,35 +95,42 @@
 
   .footer__menu-links a {
     text-decoration: none;
-    color: rgba(var(--color-foreground), 0.75);
+    color: {{ section.settings.menu_item_color }};
     transition: all 0.3s ease;
     display: block;
     padding: 5px 0;
+    font-size: {{ section.settings.menu_item_size }}px;
+    line-height: {{ section.settings.menu_item_line_height }};
+    font-weight: {{ section.settings.menu_item_weight }};
   }
 
   .footer__menu-links a:hover {
-    color: rgb(var(--color-foreground));
-    text-decoration: underline;
-    text-underline-offset: 0.3rem;
+    color: {{ section.settings.menu_item_hover_color }};
+    padding-left: 5px;
+  }
+
+  .footer-bottom__text {
+    font-size: {{ section.settings.bottom_text_size }}px;
+    line-height: {{ section.settings.bottom_text_line_height }};
+    color: {{ section.settings.bottom_text_color }};
   }
 
   /* 响应式调整 */
   @media (max-width: 750px) {
     .footer__content-top {
       flex-direction: column;
-      gap: 30px;
-    }
-
-    .footer__menu-section {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-
-    .footer__menu-column {
-      padding: 0;
     }
   }
-</style>
+
+  /* 覆盖原有样式 */
+  .footer__content-bottom {
+    padding-top: 0;
+  }
+
+  .footer__content-bottom-wrapper {
+    justify-content: center;
+  }
+{%- endstyle -%}
 
 {%- liquid
   assign has_social_icons = true
@@ -100,76 +149,117 @@
 
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
   <div class="footer__content-top page-width">
-    <!-- 左侧：电子邮件注册区（使用Dawn原版样式） -->
+    <!-- 左侧：电子邮件注册区 -->
     <div class="footer__newsletter-section">
+      <h2 class="footer__newsletter-title">{{ section.settings.newsletter_title }}</h2>
+
       {%- if section.settings.newsletter_enable -%}
-        <div class="footer-block__newsletter">
-          {%- if section.settings.newsletter_heading != blank -%}
-            <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
-          {%- endif -%}
-          {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
-            <input type="hidden" name="contact[tags]" value="newsletter">
-            <div class="newsletter-form__field-wrapper">
-              <div class="field">
-                <input
-                  id="NewsletterForm--{{ section.id }}"
-                  type="email"
-                  name="contact[email]"
-                  class="field__input"
-                  value="{{ form.email }}"
-                  aria-required="true"
-                  autocorrect="off"
-                  autocapitalize="off"
-                  autocomplete="email"
-                  {% if form.errors %}
-                    autofocus
-                    aria-invalid="true"
-                    aria-describedby="ContactFooter-error"
-                  {% elsif form.posted_successfully? %}
-                    aria-describedby="ContactFooter-success"
+        <div class="newsletter center newsletter--narrow">
+          <div class="newsletter__wrapper color-{{ section.settings.newsletter_color_scheme }} gradient content-container isolate">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'newsletter_heading' -%}
+                <h2
+                  class="inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  {{ block.shopify_attributes }}
+                  {% if settings.animations_reveal_on_scroll %}
+                    data-cascade
+                    style="--animation-order: {{ forloop.index }};"
                   {% endif %}
-                  placeholder="{{ 'newsletter.label' | t }}"
-                  required
                 >
-                <label class="field__label" for="NewsletterForm--{{ section.id }}">
-                  {{ 'newsletter.label' | t }}
-                </label>
-                <button
-                  type="submit"
-                  class="newsletter-form__button field__button"
-                  name="commit"
-                  id="Subscribe"
-                  aria-label="{{ 'newsletter.button_label' | t }}"
+                  {{ block.settings.heading }}
+                </h2>
+              {%- elsif block.type == 'newsletter_paragraph' -%}
+                <div
+                  class="newsletter__subheading rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  {{ block.shopify_attributes }}
+                  {% if settings.animations_reveal_on_scroll %}
+                    data-cascade
+                    style="--animation-order: {{ forloop.index }};"
+                  {% endif %}
                 >
-                  {{ 'newsletter.button_label' | t }}
-                </button>
-              </div>
-              {%- if form.errors -%}
-                <small class="newsletter-form__message form__message" id="ContactFooter-error">
-                  {{ form.errors.translated_fields.email | capitalize }}
-                  {{ form.errors.messages.email -}}
-                </small>
+                  {{ block.settings.text }}
+                </div>
+              {%- elsif block.type == 'newsletter_email_form' -%}
+                <div {{ block.shopify_attributes }}>
+                  {% form 'customer', class: 'newsletter-form' %}
+                    <input type="hidden" name="contact[tags]" value="newsletter">
+                    <div
+                      class="newsletter-form__field-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                      {% if settings.animations_reveal_on_scroll %}
+                        data-cascade
+                        style="--animation-order: {{ forloop.index }};"
+                      {% endif %}
+                    >
+                      <div class="field">
+                        <input
+                          id="NewsletterForm--{{ section.id }}"
+                          type="email"
+                          name="contact[email]"
+                          class="field__input"
+                          value="{{ form.email }}"
+                          aria-required="true"
+                          autocorrect="off"
+                          autocapitalize="off"
+                          autocomplete="email"
+                          {% if form.errors %}
+                            autofocus
+                            aria-invalid="true"
+                            aria-describedby="Newsletter-error--{{ section.id }}"
+                          {% elsif form.posted_successfully? %}
+                            aria-describedby="Newsletter-success--{{ section.id }}"
+                          {% endif %}
+                          placeholder="{{ 'newsletter.label' | t }}"
+                          required
+                        >
+                        <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                          {{ 'newsletter.label' | t }}
+                        </label>
+                        <button
+                          type="submit"
+                          class="newsletter-form__button field__button"
+                          name="commit"
+                          id="Subscribe"
+                          aria-label="{{ 'newsletter.button_label' | t }}"
+                        >
+                          <span class="svg-wrapper">
+                            {{- 'icon-arrow.svg' | inline_asset_content -}}
+                          </span>
+                        </button>
+                      </div>
+                      {%- if form.errors -%}
+                        <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
+                          <span class="svg-wrapper">
+                            {{- 'icon-error.svg' | inline_asset_content -}}
+                          </span>
+                          {{- form.errors.translated_fields.email | capitalize }}
+                          {{ form.errors.messages.email -}}
+                        </small>
+                      {%- endif -%}
+                    </div>
+                    {%- if form.posted_successfully? -%}
+                      <h3
+                        class="newsletter-form__message newsletter-form__message--success form__message"
+                        id="Newsletter-success--{{ section.id }}"
+                        tabindex="-1"
+                        autofocus
+                      >
+                        <span class="svg-wrapper">
+                          {{- 'icon-success.svg' | inline_asset_content -}}
+                        </span>
+                        {{- 'newsletter.success' | t }}
+                      </h3>
+                    {%- endif -%}
+                  {% endform %}
+                </div>
               {%- endif -%}
-            </div>
-            {%- if form.posted_successfully? -%}
-              <h3
-                class="newsletter-form__message newsletter-form__message--success form__message"
-                id="ContactFooter-success"
-                tabindex="-1"
-                autofocus
-              >
-                {{- 'newsletter.success' | t }}
-              </h3>
-            {%- endif -%}
-          {%- endform -%}
+            {%- endfor -%}
+          </div>
         </div>
       {%- endif -%}
 
-      {%- if section.settings.newsletter_description != blank -%}
-        <div class="footer__newsletter-description rte">
-          {{ section.settings.newsletter_description }}
-        </div>
-      {%- endif -%}
+      <p class="footer__newsletter-description">
+        {{ section.settings.newsletter_description }}
+      </p>
     </div>
 
     <!-- 右侧：菜单区 -->
@@ -248,16 +338,16 @@
     </div>
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
-        <small class="copyright__content"
+        <small class="copyright__content footer-bottom__text"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
         </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
+        <small class="copyright__content footer-bottom__text">{{ powered_by_link }}</small>
         {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
               {%- if policy != blank -%}
                 <li>
-                  <small class="copyright__content"
+                  <small class="copyright__content footer-bottom__text"
                     ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small
                   >
                 </li>
@@ -287,17 +377,60 @@
         {
           "type": "link_list",
           "id": "menu",
-          "label": "选择菜单",
-          "default": "footer"
+          "label": "选择菜单"
         }
       ]
+    },
+    {
+      "type": "newsletter_heading",
+      "name": "邮件标题",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "订阅更新",
+          "label": "标题"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {"value": "h2", "label": "小"},
+            {"value": "h1", "label": "中"},
+            {"value": "h0", "label": "大"},
+            {"value": "hxl", "label": "超大"},
+            {"value": "hxxl", "label": "特大"}
+          ],
+          "default": "h1",
+          "label": "标题大小"
+        }
+      ]
+    },
+    {
+      "type": "newsletter_paragraph",
+      "name": "邮件描述",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>订阅获取最新产品信息和优惠</p>",
+          "label": "文本"
+        }
+      ]
+    },
+    {
+      "type": "newsletter_email_form",
+      "name": "邮件表单",
+      "limit": 1
     }
   ],
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
+      "label": "整体配色方案",
       "default": "scheme-1"
     },
     {
@@ -311,16 +444,227 @@
       "label": "启用电子邮件订阅"
     },
     {
-      "type": "inline_richtext",
-      "id": "newsletter_heading",
-      "default": "订阅更新",
-      "label": "订阅标题"
+      "type": "text",
+      "id": "newsletter_title",
+      "label": "邮件区主标题",
+      "default": "Fine the ELECTRO X"
     },
     {
       "type": "richtext",
       "id": "newsletter_description",
-      "label": "订阅描述文本",
+      "label": "邮件区描述",
       "default": "<p>订阅以获取产品更新、行业洞察和特别优惠</p>"
+    },
+    {
+      "type": "color_scheme",
+      "id": "newsletter_color_scheme",
+      "label": "邮件表单配色方案",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "newsletter_bg",
+      "label": "邮件区背景色",
+      "default": "#f0f9ff"
+    },
+    {
+      "type": "header",
+      "content": "文字样式 - 邮件区"
+    },
+    {
+      "type": "range",
+      "id": "newsletter_title_size",
+      "min": 16,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "邮件标题字号",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "newsletter_title_line_height",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "邮件标题行高",
+      "default": 1.2
+    },
+    {
+      "type": "color",
+      "id": "newsletter_title_color",
+      "label": "邮件标题颜色",
+      "default": "#2563eb"
+    },
+    {
+      "type": "select",
+      "id": "newsletter_title_weight",
+      "options": [
+        {"value": "400", "label": "正常"},
+        {"value": "500", "label": "中等"},
+        {"value": "600", "label": "粗体"},
+        {"value": "700", "label": "加粗"}
+      ],
+      "default": "700",
+      "label": "邮件标题字重"
+    },
+    {
+      "type": "range",
+      "id": "newsletter_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "描述文字字号",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "newsletter_text_line_height",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "描述文字行高",
+      "default": 1.6
+    },
+    {
+      "type": "color",
+      "id": "newsletter_text_color",
+      "label": "描述文字颜色",
+      "default": "#6b7280"
+    },
+    {
+      "type": "header",
+      "content": "文字样式 - 菜单区"
+    },
+    {
+      "type": "range",
+      "id": "menu_title_size",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "菜单标题字号",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "menu_title_line_height",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "菜单标题行高",
+      "default": 1.3
+    },
+    {
+      "type": "color",
+      "id": "menu_title_color",
+      "label": "菜单标题颜色",
+      "default": "#2563eb"
+    },
+    {
+      "type": "select",
+      "id": "menu_title_weight",
+      "options": [
+        {"value": "400", "label": "正常"},
+        {"value": "500", "label": "中等"},
+        {"value": "600", "label": "粗体"},
+        {"value": "700", "label": "加粗"}
+      ],
+      "default": "700",
+      "label": "菜单标题字重"
+    },
+    {
+      "type": "select",
+      "id": "menu_title_transform",
+      "options": [
+        {"value": "none", "label": "无转换"},
+        {"value": "uppercase", "label": "大写"},
+        {"value": "capitalize", "label": "首字母大写"}
+      ],
+      "default": "uppercase",
+      "label": "菜单标题转换"
+    },
+    {
+      "type": "range",
+      "id": "menu_title_letter_spacing",
+      "min": 0,
+      "max": 5,
+      "step": 0.1,
+      "unit": "px",
+      "label": "菜单标题字间距",
+      "default": 0.5
+    },
+    {
+      "type": "range",
+      "id": "menu_item_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "菜单项字号",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "menu_item_line_height",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "菜单项行高",
+      "default": 1.5
+    },
+    {
+      "type": "color",
+      "id": "menu_item_color",
+      "label": "菜单项颜色",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "menu_item_hover_color",
+      "label": "菜单项悬停颜色",
+      "default": "#2563eb"
+    },
+    {
+      "type": "select",
+      "id": "menu_item_weight",
+      "options": [
+        {"value": "400", "label": "正常"},
+        {"value": "500", "label": "中等"},
+        {"value": "600", "label": "粗体"}
+      ],
+      "default": "500",
+      "label": "菜单项字重"
+    },
+    {
+      "type": "header",
+      "content": "文字样式 - 底部文本"
+    },
+    {
+      "type": "range",
+      "id": "bottom_text_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "底部文字字号",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "bottom_text_line_height",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "底部文字行高",
+      "default": 1.4
+    },
+    {
+      "type": "color",
+      "id": "bottom_text_color",
+      "label": "底部文字颜色",
+      "default": "#6b7280"
     },
     {
       "type": "header",
@@ -395,6 +739,22 @@
   ],
   "default": {
     "blocks": [
+      {
+        "type": "newsletter_heading",
+        "settings": {
+          "heading": "订阅更新",
+          "heading_size": "h1"
+        }
+      },
+      {
+        "type": "newsletter_paragraph",
+        "settings": {
+          "text": "<p>订阅获取最新产品信息和优惠</p>"
+        }
+      },
+      {
+        "type": "newsletter_email_form"
+      },
       {
         "type": "custom_menu",
         "settings": {
