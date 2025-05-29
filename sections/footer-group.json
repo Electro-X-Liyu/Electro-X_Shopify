@@ -48,29 +48,22 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "text_V6a88D": {
-          "type": "text",
+        "link_list_zCXHBF": {
+          "type": "link_list",
           "settings": {
-            "heading": "Heading",
-            "subtext": "<p>Share store details, promotions, or brand content with your customers.</p>"
-          }
-        },
-        "text_LqnHaF": {
-          "type": "text",
-          "settings": {
-            "heading": "Heading",
-            "subtext": "<p>Share store details, promotions, or brand content with your customers.</p>"
+            "heading": "菜单标题",
+            "menu": "footer"
           }
         }
       },
       "block_order": [
-        "text_V6a88D",
-        "text_LqnHaF"
+        "link_list_zCXHBF"
       ],
       "settings": {
         "color_scheme": "scheme-4",
         "newsletter_enable": true,
         "newsletter_heading": "Subscribe to our emails",
+        "newsletter_description": "<p>Subscribe for product updates, insight and offers</p>",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": true,
