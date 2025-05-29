@@ -1,329 +1,351 @@
-<footer class="footer color-{{ section.settings.color_scheme }}">
-  <div class="footer__content-top page-width">
-    <div
-      class="
-        footer__blocks-wrapper
-        {% if section.settings.content_direction == 'row' %} footer__blocks-wrapper--horizontal{% endif %}
-        {% if section.settings.vertical_on_mobile and section.settings.content_direction == 'row' %} footer__blocks-wrapper--vertical-mobile{% endif %}
-      "
-      style="
-        {% if section.settings.content_direction == 'row' %}
-          justify-content: {{ section.settings.horizontal_alignment }};
-          align-items: {{ section.settings.vertical_alignment }};
-        {% else %}
-          align-items: {{ section.settings.horizontal_alignment_flex_direction_column }};
-          justify-content: {{ section.settings.vertical_alignment_flex_direction_column }};
-        {% endif %}
-        gap: {{ section.settings.gap }}px;
-      "
-    >
-      {% for block in section.blocks %}
-        <div class="footer-block" {{ block.shopify_attributes }}>
-          {% case block.type %}
-            {% when '@app' %}
-              {% render block %}
-            {% when 'text' %}
-              <div class="footer-block__details-content rte">
-                {{ block.settings.subtext }}
-              </div>
-            {% when 'link_list' %}
-              {%- assign footer_linklist = block.settings.menu -%}
-              <h2 class="footer-block__heading">{{ block.settings.heading }}</h2>
-              <ul class="footer-block__details-content list-unstyled">
-                {% for link in linklists[footer_linklist].links %}
-                  <li>
-                    <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link">
-                      {{ link.title }}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% when 'email_signup' %}
-              <div class="footer-block__newsletter">
-                {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
-                  <input type="hidden" name="contact[tags]" value="newsletter">
-                  <div class="newsletter-form__field-wrapper">
-                    <div class="field">
-                      <input
-                        id="NewsletterForm--{{ section.id }}"
-                        type="email"
-                        name="contact[email]"
-                        class="field__input"
-                        value="{{ form.email }}"
-                        aria-required="true"
-                        autocorrect="off"
-                        autocapitalize="off"
-                        autocomplete="email"
-                        {% if form.errors %}
-                          autofocus
-                          aria-invalid="true"
-                          aria-describedby="ContactFooter-error"
-                        {% elsif form.posted_successfully? %}
-                          aria-describedby="ContactFooter-success"
-                        {% endif %}
-                        placeholder="{{ 'newsletter.label' | t }}"
-                        required
-                      >
-                      <label class="field__label" for="NewsletterForm--{{ section.id }}">
-                        {{ 'newsletter.label' | t }}
-                      </label>
-                      <button
-                        type="submit"
-                        class="newsletter-form__button field__button"
-                        name="commit"
-                        id="Subscribe"
-                        aria-label="{{ 'newsletter.button_label' | t }}"
-                      >
-                        {% render 'icon-arrow' %}
-                      </button>
-                    </div>
-                    {%- if form.errors -%}
-                      <small class="newsletter-form__message form__message" id="ContactFooter-error">
-                        {% render 'icon-error' -%}
-                        {{- form.errors.translated_fields.email | capitalize }}
-                        {{ form.errors.messages.email }}
-                      </small>
-                    {%- endif -%}
-                  </div>
-                  {%- if form.posted_successfully? -%}
-                    <h3
-                      class="newsletter-form__message newsletter-form__message--success form__message"
-                      id="ContactFooter-success"
-                      tabindex="-1"
-                      autofocus
-                    >
-                      {% render 'icon-success' -%}
-                      {{- 'newsletter.success' | t }}
-                    </h3>
-                  {%- endif -%}
-                {%- endform -%}
-              </div>
-          {% endcase %}
-        </div>
-      {% endfor %}
-    </div>
-  </div>
+{%- liquid
+  assign section_id = section.id
+  assign blocks = section.blocks
+  assign settings = section.settings
+-%}
 
-  <div class="footer__content-bottom">
-    <div class="footer__content-bottom-wrapper page-width">
-      <div class="footer__column footer__localization">
-        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-          <noscript>
-            {%- form 'localization', id: 'FooterCountryFormNoScript', class: 'localization-form' -%}
-              <div class="localization-form__select">
-                <h2 class="visually-hidden" id="FooterCountryLabelNoScript">{{ 'localization.country_label' | t }}</h2>
-                <select
-                  class="localization-selector link"
-                  name="country_code"
-                  aria-labelledby="FooterCountryLabelNoScript"
-                >
-                  {%- for country in localization.available_countries -%}
-                    <option
-                      value="{{ country.iso_code }}"
-                      {%- if country.iso_code == localization.country.iso_code %}
-                        selected
-                      {% endif %}
-                    >
-                      {{ country.name }} ({{ country.currency.iso_code }}
-                      {{ country.currency.symbol }})
-                    </option>
-                  {%- endfor -%}
-                </select>
-                {% render 'icon-caret' %}
-              </div>
-              <button class="button button--tertiary">{{ 'localization.update_country' | t }}</button>
-            {%- endform -%}
-          </noscript>
-          <localization-form>
-            {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
-              <div class="no-js-hidden">
-                <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                <div class="disclosure">
-                  <button
-                    type="button"
-                    class="disclosure__button localization-form__select localization-selector link link--text caption-large"
-                    aria-expanded="false"
-                    aria-controls="FooterCountryList"
-                    aria-describedby="FooterCountryLabel"
-                  >
-                    {{ localization.country.name }} ({{ localization.country.currency.iso_code }}
-                    {{ localization.country.currency.symbol }})
-                    {% render 'icon-caret' %}
-                  </button>
-                  <ul id="FooterCountryList" role="list" class="disclosure__list list-unstyled" hidden>
-                    {%- for country in localization.available_countries -%}
-                      <li class="disclosure__item" tabindex="-1">
-                        <a
-                          class="link link--text disclosure__link caption-large{% if country.iso_code == localization.country.iso_code %} disclosure__link--active{% endif %} focus-inset"
-                          href="#"
-                          {% if country.iso_code == localization.country.iso_code %}
-                            aria-current="true"
-                          {% endif %}
-                          data-value="{{ country.iso_code }}"
-                        >
-                          {{ country.name }}
-                          <span class="localization-form__currency"
-                            >({{ country.currency.iso_code }}
-                            {{ country.currency.symbol }})</span
-                          >
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
-                <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
-              </div>
-            {%- endform -%}
-          </localization-form>
-        {%- endif -%}
-
-        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-          <noscript>
-            {%- form 'localization', id: 'FooterLanguageFormNoScript', class: 'localization-form' -%}
-              <div class="localization-form__select">
-                <h2 class="visually-hidden" id="FooterLanguageLabelNoScript">
-                  {{ 'localization.language_label' | t }}
-                </h2>
-                <select
-                  class="localization-selector link"
-                  name="locale_code"
-                  aria-labelledby="FooterLanguageLabelNoScript"
-                >
-                  {%- for language in localization.available_languages -%}
-                    <option
-                      value="{{ language.iso_code }}"
-                      lang="{{ language.iso_code }}"
-                      {%- if language.iso_code == localization.language.iso_code %}
-                        selected
-                      {% endif %}
-                    >
-                      {{ language.endonym_name | capitalize }}
-                    </option>
-                  {%- endfor -%}
-                </select>
-                {% render 'icon-caret' %}
-              </div>
-              <button class="button button--tertiary">{{ 'localization.update_language' | t }}</button>
-            {%- endform -%}
-          </noscript>
-          <localization-form>
-            {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
-              <div class="no-js-hidden">
-                <h2 class="caption-large text-body" id="FooterLanguageLabel">
-                  {{ 'localization.language_label' | t }}
-                </h2>
-                <div class="disclosure">
-                  <button
-                    type="button"
-                    class="disclosure__button localization-form__select localization-selector link link--text caption-large"
-                    aria-expanded="false"
-                    aria-controls="FooterLanguageList"
-                    aria-describedby="FooterLanguageLabel"
-                  >
-                    {{ localization.language.endonym_name | capitalize }}
-                    {% render 'icon-caret' %}
-                  </button>
-                  <ul id="FooterLanguageList" role="list" class="disclosure__list list-unstyled" hidden>
-                    {%- for language in localization.available_languages -%}
-                      <li class="disclosure__item" tabindex="-1">
-                        <a
-                          class="link link--text disclosure__link caption-large focus-inset"
-                          href="#"
-                          hreflang="{{ language.iso_code }}"
-                          lang="{{ language.iso_code }}"
-                          {% if language.iso_code == localization.language.iso_code %}
-                            aria-current="true"
-                          {% endif %}
-                          data-value="{{ language.iso_code }}"
-                        >
-                          {{ language.endonym_name | capitalize }}
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
-                <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
-              </div>
-            {%- endform -%}
-          </localization-form>
-        {%- endif -%}
+<div
+  class="section-{{ section_id }} color-{{ settings.color_scheme }} gradient{% if settings.section_width == 'full-width' %} full-width{% else %} page-width{% endif %}"
+  style="
+    {% if settings.section_height == 'custom' %}--section-height: {{ settings.section_height_custom }}vh;{% endif %}
+    {% if settings.border != 'none' %}--border-width: {{ settings.border_width }}px; --border-opacity: {{ settings.border_opacity }}%;{% endif %}
+    --border-radius: {{ settings.border_radius }}px;
+  "
+>
+  <div
+    class="
+      section-{{ section_id }}__inner section-{{ section_id }}__inner--{{ settings.section_height }}
+      {% if settings.content_direction == 'row' %}row-direction{% else %}column-direction{% endif %}
+    "
+    style="
+      --gap: {{ settings.gap }}px;
+      --padding-top: {{ settings.padding_block_start }}px;
+      --padding-bottom: {{ settings.padding_block_end }}px;
+    "
+  >
+    <!-- 背景媒体 -->
+    {%- if settings.background_media == 'image' and settings.background_image != blank -%}
+      <div class="section-{{ section_id }}__bg-media section-{{ section_id }}__bg-image{% if settings.background_image_position == 'cover' %} bg-cover{% else %} bg-fit{% endif %}">
+        {{ settings.background_image | image_url: width: 2000 | image_tag: loading: 'lazy' }}
       </div>
-      <div class="footer__column footer__column--info">
-        <div class="footer__copyright caption">
-          <small class="copyright__content"
-            >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
-          </small>
-          <small class="copyright__content">{{ powered_by_link }}</small>
-        </div>
-        {%- if section.settings.payment_enable -%}
-          <div class="footer__payment">
-            <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
-            <ul class="list list-payment" role="list">
-              {%- for type in shop.enabled_payment_types -%}
-                <li class="list-payment__item">
-                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-                </li>
+    {%- elsif settings.background_media == 'video' and settings.video != blank -%}
+      <div class="section-{{ section_id }}__bg-media section-{{ section_id }}__bg-video{% if settings.video_position == 'cover' %} bg-cover{% else %} bg-contain{% endif %}">
+        {{ settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+      </div>
+    {%- endif -%}
+
+    <!-- 覆盖层 -->
+    {%- if settings.toggle_overlay -%}
+      <div
+        class="section-{{ section_id }}__overlay{% if settings.overlay_style == 'gradient' %} gradient-{{ settings.gradient_direction }}{% endif %}"
+        style="--overlay-color: {{ settings.overlay_color }};"
+      ></div>
+    {%- endif -%}
+
+    <!-- 内容区域 -->
+    <div class="section-{{ section_id }}__content">
+      {%- for block in blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            {% render block %}
+
+          {%- when 'divider' -%}
+            <hr class="section-{{ section_id }}__divider" {{ block.shopify_attributes }}>
+
+          {%- when 'text' -%}
+            <div class="section-{{ section_id }}__text block-{{ block.id }}" {{ block.shopify_attributes }}>
+              {{ block.settings.text }}
+            </div>
+
+          {%- when 'image' -%}
+            <div class="section-{{ section_id }}__image block-{{ block.id }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+              {%- endif -%}
+            </div>
+
+          {%- when 'button' -%}
+            <div class="section-{{ section_id }}__button block-{{ block.id }}" {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.link }}" class="button button--{{ block.settings.style_class }}">
+                {{ block.settings.label }}
+              </a>
+            </div>
+
+          {%- when 'group' -%}
+            <div
+              class="section-{{ section_id }}__group block-{{ block.id }}"
+              style="
+                display: flex;
+                flex-direction: {{ block.settings.content_direction }};
+                gap: {{ block.settings.gap | default: settings.gap }}px;
+              "
+              {{ block.shopify_attributes }}
+            >
+              {%- for i in (1..5) -%}
+                {%- assign text_key = 'text_' | append: i -%}
+                {%- if block.settings[text_key] != blank -%}
+                  <div class="group-text">{{ block.settings[text_key] }}</div>
+                {%- endif -%}
               {%- endfor -%}
-            </ul>
-          </div>
-        {%- endif -%}
-      </div>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
     </div>
   </div>
-</footer>
+</div>
+
+<style>
+  .section-{{ section_id }} {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    {% if settings.border != 'none' %}
+      border: var(--border-width) solid rgba(0,0,0,calc(var(--border-opacity)/100));
+    {% endif %}
+  }
+
+  .section-{{ section_id }}__inner {
+    display: flex;
+    position: relative;
+    z-index: 1;
+    padding: var(--padding-top) 0 var(--padding-bottom);
+    min-height: {% if settings.section_height == 'small' %}200px{% elsif settings.section_height == 'medium' %}400px{% elsif settings.section_height == 'large' %}600px{% elsif settings.section_height == 'full-screen' %}100vh{% elsif settings.section_height == 'custom' %}var(--section-height){% else %}auto{% endif %};
+  }
+
+  .row-direction {
+    flex-direction: row;
+    {% if settings.horizontal_alignment == 'flex-start' %}justify-content: flex-start;
+    {% elsif settings.horizontal_alignment == 'center' %}justify-content: center;
+    {% elsif settings.horizontal_alignment == 'flex-end' %}justify-content: flex-end;
+    {% elsif settings.horizontal_alignment == 'space-between' %}justify-content: space-between;{% endif %}
+    {% if settings.vertical_alignment == 'flex-start' %}align-items: flex-start;
+    {% elsif settings.vertical_alignment == 'center' %}align-items: center;
+    {% elsif settings.vertical_alignment == 'flex-end' %}align-items: flex-end;{% endif %}
+    {% if settings.align_baseline %}align-items: baseline;{% endif %}
+  }
+
+  .column-direction {
+    flex-direction: column;
+    {% if settings.horizontal_alignment_flex_direction_column == 'flex-start' %}align-items: flex-start;
+    {% elsif settings.horizontal_alignment_flex_direction_column == 'center' %}align-items: center;
+    {% elsif settings.horizontal_alignment_flex_direction_column == 'flex-end' %}align-items: flex-end;{% endif %}
+    {% if settings.vertical_alignment_flex_direction_column == 'flex-start' %}justify-content: flex-start;
+    {% elsif settings.vertical_alignment_flex_direction_column == 'center' %}justify-content: center;
+    {% elsif settings.vertical_alignment_flex_direction_column == 'flex-end' %}justify-content: flex-end;
+    {% elsif settings.vertical_alignment_flex_direction_column == 'space-between' %}justify-content: space-between;{% endif %}
+  }
+
+  .section-{{ section_id }}__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap);
+    width: 100%;
+    z-index: 2;
+    position: relative;
+  }
+
+  .section-{{ section_id }}__bg-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .section-{{ section_id }}__bg-media img,
+  .section-{{ section_id }}__bg-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .bg-contain video {
+    object-fit: contain;
+  }
+
+  .bg-fit img {
+    object-fit: contain;
+  }
+
+  .section-{{ section_id }}__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-color);
+    z-index: 1;
+  }
+
+  .gradient-to-top {
+    background: linear-gradient(to top, var(--overlay-color), transparent);
+  }
+
+  .gradient-to-bottom {
+    background: linear-gradient(to bottom, var(--overlay-color), transparent);
+  }
+
+  .section-{{ section_id }}__divider {
+    width: 100%;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    margin: 10px 0;
+  }
+
+  .section-{{ section_id }}__group {
+    display: flex;
+    padding: 20px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 8px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .section-{{ section_id }}__inner {
+      {% if settings.vertical_on_mobile %}flex-direction: column;{% endif %}
+    }
+
+    .section-{{ section_id }}__inner.row-direction {
+      flex-direction: column;
+    }
+  }
+</style>
 
 {% schema %}
 {
-  "name": "Footer",
+  "name": "Custom section",
+  "class": "section",
+  "tag": "section",
   "blocks": [
     {
-      "type": "link_list",
-      "name": "Menu",
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "default": "Quick links",
-          "label": "Heading"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "default": "footer",
-          "label": "Menu",
-          "info": "This menu won't show dropdown items"
-        }
-      ]
+      "type": "@app"
+    },
+    {
+      "type": "divider",
+      "name": "Divider",
+      "settings": []
     },
     {
       "type": "text",
       "name": "Text",
       "settings": [
         {
-          "type": "text",
-          "id": "heading",
-          "default": "Heading",
-          "label": "Heading"
-        },
-        {
           "type": "richtext",
-          "id": "subtext",
-          "default": "<p>Share store details, promotions, or brand content with your customers.</p>",
-          "label": "Text"
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Share information about your brand with your customers.</p>"
         }
       ]
     },
     {
-      "type": "email_signup",
-      "name": "Email signup",
-      "limit": 1,
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
       "settings": [
         {
           "type": "text",
-          "id": "heading",
-          "default": "Newsletter",
-          "label": "Heading",
-          "info": "Subscribers will be added to your \"accepts marketing\" [customer list.](/admin/customers?query=&accepts_marketing=1)"
+          "id": "label",
+          "label": "Label",
+          "default": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "style_class",
+          "label": "Style",
+          "options": [
+            {
+              "value": "primary",
+              "label": "Primary"
+            },
+            {
+              "value": "secondary",
+              "label": "Secondary"
+            },
+            {
+              "value": "link",
+              "label": "Link"
+            }
+          ],
+          "default": "primary"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "name": "Content Group",
+      "settings": [
+        {
+          "type": "select",
+          "id": "content_direction",
+          "label": "Direction",
+          "options": [
+            {
+              "value": "row",
+              "label": "Horizontal"
+            },
+            {
+              "value": "column",
+              "label": "Vertical"
+            }
+          ],
+          "default": "row"
+        },
+        {
+          "type": "range",
+          "id": "gap",
+          "label": "Gap between items",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "header",
+          "content": "Content Items"
+        },
+        {
+          "type": "richtext",
+          "id": "text_1",
+          "label": "Text 1",
+          "default": "<p>First content item</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "text_2",
+          "label": "Text 2",
+          "default": "<p>Second content item</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "text_3",
+          "label": "Text 3"
+        },
+        {
+          "type": "richtext",
+          "id": "text_4",
+          "label": "Text 4"
+        },
+        {
+          "type": "richtext",
+          "id": "text_5",
+          "label": "Text 5"
         }
       ]
     }
@@ -335,36 +357,8 @@
     },
     {
       "type": "select",
-      "id": "color_scheme",
-      "options": [
-        {
-          "value": "accent-1",
-          "label": "Accent 1"
-        },
-        {
-          "value": "accent-2",
-          "label": "Accent 2"
-        },
-        {
-          "value": "background-1",
-          "label": "Background 1"
-        },
-        {
-          "value": "background-2",
-          "label": "Background 2"
-        },
-        {
-          "value": "inverse",
-          "label": "Inverse"
-        }
-      ],
-      "default": "background-1",
-      "label": "Color scheme"
-    },
-    {
-      "type": "select",
       "id": "content_direction",
-      "label": "Content direction",
+      "label": "Direction",
       "options": [
         {
           "value": "column",
@@ -375,19 +369,18 @@
           "label": "Horizontal"
         }
       ],
-      "default": "row"
+      "default": "column"
     },
     {
       "type": "checkbox",
       "id": "vertical_on_mobile",
-      "label": "Vertical on mobile",
-      "default": true,
-      "info": "Only applies when content direction is horizontal"
+      "label": "Stack vertically on mobile",
+      "default": true
     },
     {
       "type": "select",
       "id": "horizontal_alignment",
-      "label": "Horizontal alignment",
+      "label": "Horizontal Alignment",
       "options": [
         {
           "value": "flex-start",
@@ -403,16 +396,15 @@
         },
         {
           "value": "space-between",
-          "label": "Space between"
+          "label": "Space Between"
         }
       ],
-      "default": "flex-start",
-      "info": "Only applies when content direction is horizontal"
+      "default": "flex-start"
     },
     {
       "type": "select",
       "id": "vertical_alignment",
-      "label": "Vertical alignment",
+      "label": "Vertical Alignment",
       "options": [
         {
           "value": "flex-start",
@@ -427,13 +419,18 @@
           "label": "Bottom"
         }
       ],
-      "default": "center",
-      "info": "Only applies when content direction is horizontal"
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "align_baseline",
+      "label": "Align to baseline",
+      "default": false
     },
     {
       "type": "select",
       "id": "horizontal_alignment_flex_direction_column",
-      "label": "Horizontal alignment",
+      "label": "Content Alignment (Vertical Layout)",
       "options": [
         {
           "value": "flex-start",
@@ -448,13 +445,12 @@
           "label": "Right"
         }
       ],
-      "default": "flex-start",
-      "info": "Only applies when content direction is vertical"
+      "default": "flex-start"
     },
     {
       "type": "select",
       "id": "vertical_alignment_flex_direction_column",
-      "label": "Vertical alignment",
+      "label": "Content Distribution (Vertical Layout)",
       "options": [
         {
           "value": "flex-start",
@@ -470,11 +466,10 @@
         },
         {
           "value": "space-between",
-          "label": "Space between"
+          "label": "Space Between"
         }
       ],
-      "default": "center",
-      "info": "Only applies when content direction is vertical"
+      "default": "center"
     },
     {
       "type": "range",
@@ -488,49 +483,312 @@
     },
     {
       "type": "header",
-      "content": "Bottom section"
+      "content": "Size"
     },
     {
-      "type": "checkbox",
-      "id": "payment_enable",
-      "default": true,
-      "label": "Enable payment methods"
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "Page width"
+        },
+        {
+          "value": "full-width",
+          "label": "Full width"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": "Height",
+      "options": [
+        {
+          "value": "",
+          "label": "Auto"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "full-screen",
+          "label": "Full Screen"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": ""
+    },
+    {
+      "type": "range",
+      "id": "section_height_custom",
+      "label": "Custom Height",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 50,
+      "unit": "%"
     },
     {
       "type": "header",
-      "content": "Language selector",
-      "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+      "content": "Appearance"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        },
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        }
+      ],
+      "default": "background-1"
+    },
+    {
+      "type": "select",
+      "id": "background_media",
+      "label": "Background Media",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "select",
+      "id": "video_position",
+      "label": "Video Position",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "background_image_position",
+      "label": "Image Position",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "fit",
+          "label": "Fit"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "border",
+      "label": "Border",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "solid",
+          "label": "Solid"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Border Width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Border Opacity",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "checkbox",
-      "id": "enable_language_selector",
-      "default": true,
-      "label": "Enable language selector"
+      "id": "toggle_overlay",
+      "label": "Background Overlay",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#00000026"
+    },
+    {
+      "type": "select",
+      "id": "overlay_style",
+      "label": "Overlay Style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "gradient",
+          "label": "Gradient"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "select",
+      "id": "gradient_direction",
+      "label": "Gradient Direction",
+      "options": [
+        {
+          "value": "to top",
+          "label": "To Top"
+        },
+        {
+          "value": "to bottom",
+          "label": "To Bottom"
+        }
+      ],
+      "default": "to top"
     },
     {
       "type": "header",
-      "content": "Country/region selector",
-      "info": "To add a country/region, go to your [markets settings.](/admin/settings/markets)"
+      "content": "Padding"
     },
     {
-      "type": "checkbox",
-      "id": "enable_country_selector",
-      "default": true,
-      "label": "Enable country/region selector"
+      "type": "range",
+      "id": "padding_block_start",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_block_end",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
     }
   ],
-  "default": {
-    "blocks": [
-      {
-        "type": "link_list"
-      },
-      {
-        "type": "text"
-      },
-      {
-        "type": "email_signup"
-      }
-    ]
+  "presets": [
+    {
+      "name": "Custom section",
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p>Welcome to our store</p>"
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "label": "Shop now",
+            "link": "shopify://collections/all",
+            "style_class": "primary"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Content group",
+      "blocks": [
+        {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "text_1": "<h3>Feature 1</h3><p>Description of first feature</p>",
+            "text_2": "<h3>Feature 2</h3><p>Description of second feature</p>",
+            "text_3": "<h3>Feature 3</h3><p>Description of third feature</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
   }
 }
 {% endschema %}
