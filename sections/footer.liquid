@@ -231,12 +231,39 @@
                     id="Subscribe"
                     aria-label="{{ 'newsletter.button_label' | t }}"
                   >
-                    {% render 'icon-arrow' %}
+                    <!-- 使用内联SVG代替缺失的icon-arrow.liquid -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="icon icon-arrow"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
                   </button>
                 </div>
                 {%- if form.errors -%}
                   <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
-                    {% render 'icon-error' %}
+                    <!-- 使用内联SVG代替缺失的icon-error.liquid -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="icon icon-error"
+                    >
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="8" x2="12" y2="12"></line>
+                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
                     {{- form.errors.translated_fields.email | capitalize }}
                     {{ form.errors.messages.email -}}
                   </small>
@@ -248,7 +275,20 @@
                     tabindex="-1"
                     autofocus
                   >
-                    {% render 'icon-success' %}
+                    <!-- 使用内联SVG代替缺失的icon-success.liquid -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="icon icon-success"
+                    >
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
                     {{- 'newsletter.success' | t }}
                   </h3>
                 {%- endif -%}
