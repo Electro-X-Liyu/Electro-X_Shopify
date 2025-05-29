@@ -41,7 +41,7 @@
     flex: 1;
     min-width: 300px;
     padding: 30px;
-    background: {{ section.settings.newsletter_bg }};
+    /* 已移除背景色设置 */
     border-radius: 10px;
   }
 
@@ -120,6 +120,10 @@
     .footer__content-top {
       flex-direction: column;
     }
+
+    .footer__newsletter-section {
+      padding: 20px 15px;
+    }
   }
 
   /* 覆盖原有样式 */
@@ -129,6 +133,30 @@
 
   .footer__content-bottom-wrapper {
     justify-content: center;
+  }
+
+  /* 修复邮件表单显示问题 */
+  .footer__newsletter-section .newsletter__wrapper {
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .footer__newsletter-section .field {
+    max-width: 100%;
+  }
+
+  .footer__newsletter-section .field__input {
+    border-color: rgba(var(--color-foreground), 0.2);
+  }
+
+  .footer__newsletter-section .newsletter-form__button {
+    background: transparent;
+    color: rgb(var(--color-button-text));
+  }
+
+  .footer__newsletter-section .newsletter-form__button .svg-wrapper {
+    color: rgb(var(--color-button));
   }
 {%- endstyle -%}
 
@@ -460,12 +488,6 @@
       "id": "newsletter_color_scheme",
       "label": "邮件表单配色方案",
       "default": "scheme-1"
-    },
-    {
-      "type": "color",
-      "id": "newsletter_bg",
-      "label": "邮件区背景色",
-      "default": "#f0f9ff"
     },
     {
       "type": "header",
