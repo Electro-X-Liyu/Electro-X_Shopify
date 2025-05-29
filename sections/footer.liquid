@@ -41,7 +41,6 @@
     flex: 1;
     min-width: 300px;
     padding: 30px;
-    /* 已移除背景色设置 */
     border-radius: 10px;
   }
 
@@ -144,19 +143,31 @@
 
   .footer__newsletter-section .field {
     max-width: 100%;
+    position: relative;
   }
 
   .footer__newsletter-section .field__input {
     border-color: rgba(var(--color-foreground), 0.2);
+    padding-right: 5rem;
   }
 
   .footer__newsletter-section .newsletter-form__button {
+    position: absolute;
+    right: var(--inputs-border-width);
+    top: var(--inputs-border-width);
+    height: calc(100% - calc(var(--inputs-border-width) * 2));
+    padding: 0 1.5rem;
     background: transparent;
-    color: rgb(var(--color-button-text));
+    color: rgb(var(--color-button));
   }
 
   .footer__newsletter-section .newsletter-form__button .svg-wrapper {
-    color: rgb(var(--color-button));
+    width: 1.5rem;
+  }
+
+  .footer__newsletter-section .newsletter-form__button .icon-arrow {
+    width: 100%;
+    height: 100%;
   }
 {%- endstyle -%}
 
@@ -249,16 +260,12 @@
                           id="Subscribe"
                           aria-label="{{ 'newsletter.button_label' | t }}"
                         >
-                          <span class="svg-wrapper">
-                            {{- 'icon-arrow.svg' | inline_asset_content -}}
-                          </span>
+                          {{ 'icon-arrow' | placeholder_svg_tag: 'icon icon-arrow' }}
                         </button>
                       </div>
                       {%- if form.errors -%}
                         <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
-                          <span class="svg-wrapper">
-                            {{- 'icon-error.svg' | inline_asset_content -}}
-                          </span>
+                          {{- 'icon-error' | placeholder_svg_tag: 'icon' -}}
                           {{- form.errors.translated_fields.email | capitalize }}
                           {{ form.errors.messages.email -}}
                         </small>
@@ -271,9 +278,7 @@
                         tabindex="-1"
                         autofocus
                       >
-                        <span class="svg-wrapper">
-                          {{- 'icon-success.svg' | inline_asset_content -}}
-                        </span>
+                        {{- 'icon-success' | placeholder_svg_tag: 'icon' -}}
                         {{- 'newsletter.success' | t }}
                       </h3>
                     {%- endif -%}
