@@ -621,7 +621,7 @@
         "block_title_size": 18,
         "block_title_margin_top": 0,
         "block_title_margin_bottom": 0,
-        "block_title_custom_font": false,
+        "block_title_custom_font": true,
         "block_title_font_family": "heading",
         "block_title_font_weight": "bold",
         "block_text_color": "#666666",
