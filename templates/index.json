@@ -183,6 +183,88 @@
         "padding_bottom": 52
       }
     },
+    "rich_text_c6awaG": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_bfQakn": {
+          "type": "heading",
+          "settings": {
+            "heading": "以下为测试",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_bfQakn"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "image_banner_6MNCkd": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/web_____1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "image_banner_QF3hzj": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/web___-05.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_Wm6MRz": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_en8Ycp": {
+          "type": "heading",
+          "settings": {
+            "heading": "以上为测试",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_en8Ycp"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "image_with_text_HT6mHr": {
       "type": "image-with-text",
       "blocks": {
@@ -668,6 +750,10 @@
     "rich_text_waQVNB",
     "pic_border_m7m9TP",
     "rich_text_gUynad",
+    "rich_text_c6awaG",
+    "image_banner_6MNCkd",
+    "image_banner_QF3hzj",
+    "rich_text_Wm6MRz",
     "image_with_text_HT6mHr",
     "image_with_text_88PpK8",
     "rich_text_VpEQaY",
