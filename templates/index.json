@@ -646,6 +646,41 @@
         "show_text_below": false
       }
     },
+    "rich_text_9YYbxe": {
+      "type": "rich-text",
+      "blocks": {
+        "text_PyKczQ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.</p>"
+          }
+        },
+        "button_adMbQD": {
+          "type": "button",
+          "settings": {
+            "button_label": "LEARN MORE",
+            "button_link": "",
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "text_PyKczQ",
+        "button_adMbQD"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "multicolumn_mBC8fB": {
       "type": "multicolumn",
       "blocks": {
@@ -653,9 +688,9 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/7_4x_9a318ac9-9b17-4e33-a505-aa2ce2ac8fc2.png",
-            "title": "<a href=\"/pages/community-ambassadors\" title=\"AMBASSADORS （TBD\">Community Ambassadors</a>",
+            "title": "Community Ambassadors",
             "text": "",
-            "link_label": "Learn More",
+            "link_label": "",
             "link": "shopify://pages/community-ambassadors"
           }
         },
@@ -665,7 +700,7 @@
             "image": "shopify://shop_images/6_4x_376bf75d-c610-421d-9aef-412d29ff4639.png",
             "title": "U.C.P - Urban Challenge Project",
             "text": "",
-            "link_label": "Learn More",
+            "link_label": "",
             "link": ""
           }
         },
@@ -675,7 +710,7 @@
             "image": "shopify://shop_images/5_4x_809db5c1-7915-4239-b8bf-d110cba0d540.png",
             "title": "Elite Athletes",
             "text": "",
-            "link_label": "Learn More",
+            "link_label": "",
             "link": ""
           }
         }
@@ -759,6 +794,7 @@
     "rich_text_VpEQaY",
     "mixed_multicolumn_DFedAG",
     "image_banner_R9mHmC",
+    "rich_text_9YYbxe",
     "multicolumn_mBC8fB",
     "page_tBQPbK"
   ]
