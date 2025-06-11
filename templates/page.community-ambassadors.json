@@ -25,23 +25,23 @@
         },
         "row_nQmkcm": {
           "type": "row",
-          "disabled": true,
           "settings": {
-            "caption": "Caption",
-            "heading": "Row",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "button_label": "Button label",
+            "image": "shopify://shop_images/5cut.png",
+            "caption": "",
+            "heading": "Elite Athletes - TEAM ELECTRO X",
+            "text": "<p>Our elite athletes compete in diverse sports disciplines year-round,</p><p>from HYROX and CrossFit to Triathlon and Cycling.</p><p>We back our athletes with the cleanest hydration fuel on the market: science-backed, additive-free formulas to elevate in game performance, accelerate post training recovery, and optimize daily hydration.</p>",
+            "button_label": "",
             "button_link": ""
           }
         },
         "row_Q6AhQa": {
           "type": "row",
-          "disabled": true,
           "settings": {
-            "caption": "Caption",
-            "heading": "Row",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "button_label": "Button label",
+            "image": "shopify://shop_images/3cut.png",
+            "caption": "",
+            "heading": "Urban Challenger Project",
+            "text": "<p>Powered by ELECTRO X, U.C.P is a hybrid training community inspiring urban athletes to push their limits and realize their physical potential through dedicated training and running programs.</p>",
+            "button_label": "",
             "button_link": ""
           }
         }
@@ -66,22 +66,6 @@
         "row_color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
-      }
-    },
-    "image_banner_TPVbKP": {
-      "type": "image-banner",
-      "settings": {
-        "image": "shopify://shop_images/20250612-014206.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
       }
     },
     "image_banner_jmJd7h": {
@@ -342,7 +326,6 @@
   },
   "order": [
     "multirow_NBxXcW",
-    "image_banner_TPVbKP",
     "image_banner_jmJd7h",
     "main",
     "pic_border_z3NWEJ"
