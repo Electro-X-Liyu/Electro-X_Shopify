@@ -7,7 +7,7 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  /* Mobile styles */
+  /* 优化移动端滑动体验 */
   @media screen and (max-width: 749px) {
     .multicolumn-list {
       display: flex;
@@ -17,6 +17,12 @@
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       padding-bottom: 10px;
+      /* 添加以下优化属性 */
+      overscroll-behavior-x: contain;
+      scroll-behavior: smooth;
+      scroll-padding: 0 10px;
+      will-change: transform;
+      touch-action: pan-y;
     }
     .multicolumn-list::-webkit-scrollbar {
       display: none;
@@ -26,26 +32,30 @@
       scroll-snap-align: start;
       flex: 0 0 {{ section.settings.mobile_column_width }}%;
       padding: 0 {{ section.settings.mobile_column_gap | divided_by: 2 }}px;
+      /* 优化移动端渲染 */
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
-    /* Hide all slider buttons on mobile */
+    /* 隐藏所有移动端滑块按钮 */
     .slider-mobile-gutter .slider-buttons {
       display: none !important;
     }
 
-    /* Mobile button adjustments */
+    /* 移动按钮调整 */
     #shopify-section-{{ section.id }} .button--primary {
       font-size: {{ section.settings.mobile_button_text_size }}px;
       padding: {{ section.settings.mobile_button_padding_top }}px {{ section.settings.mobile_button_padding_right }}px {{ section.settings.mobile_button_padding_bottom }}px {{ section.settings.mobile_button_padding_left }}px;
     }
   }
 
-  /* Desktop styles */
+  /* 桌面端样式保持不变 */
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
-    /* Desktop slider container */
+    /* 桌面端滑块容器 */
     .multicolumn-list[data-desktop-slider] {
       display: flex;
       flex-wrap: nowrap;
@@ -62,13 +72,13 @@
     .multicolumn-list[data-desktop-slider]:active {
       cursor: grabbing;
     }
-    /* Column sizing */
+    /* 列尺寸 */
     .multicolumn-list__item {
       min-width: calc(33.33% - 20px);
       flex-shrink: 0;
       scroll-snap-align: start;
     }
-    /* Desktop navigation arrows */
+    /* 桌面导航箭头 */
     .slider-buttons.desktop-only {
       display: flex;
       justify-content: space-between;
@@ -92,7 +102,7 @@
     }
   }
 
-  /* Text styling */
+  /* 文本样式保持不变 */
   #shopify-section-{{ section.id }} .multicolumn__title .title {
     color: {{ section.settings.title_color }};
     font-size: {{ section.settings.title_size }}px;
@@ -118,7 +128,7 @@
     margin-bottom: {{ section.settings.block_link_margin_bottom }}px;
   }
 
-  /* Button styling */
+  /* 按钮样式保持不变 */
   #shopify-section-{{ section.id }} .button--primary {
     background-color: {{ section.settings.button_bg_color }};
     color: {{ section.settings.button_text_color }};
@@ -131,7 +141,7 @@
     text-align: center;
   }
 
-  /* Image link styling */
+  /* 图片链接样式保持不变 */
   .multicolumn-card__image-wrapper {
     position: relative;
   }
@@ -267,7 +277,9 @@
                       | image_tag:
                         widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200',
                         sizes: sizes,
-                        class: 'multicolumn-card__image'
+                        class: 'multicolumn-card__image',
+                        loading: 'lazy',
+                        decoding: 'async'
                     }}
 
                     {%- if block.settings.image_link != blank -%}
@@ -329,14 +341,14 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Desktop slider functionality
+    // 桌面滑块功能保持不变
     const desktopSlider = document.querySelector('[data-desktop-slider]');
     if (desktopSlider) {
       const prevBtn = document.querySelector('.desktop-prev');
       const nextBtn = document.querySelector('.desktop-next');
       const itemWidth = document.querySelector('.multicolumn-list__item').offsetWidth + 20;
 
-      // Arrow navigation
+      // 箭头导航
       prevBtn?.addEventListener('click', () => {
         desktopSlider.scrollBy({ left: -itemWidth * 3, behavior: 'smooth' });
       });
@@ -345,7 +357,7 @@
         desktopSlider.scrollBy({ left: itemWidth * 3, behavior: 'smooth' });
       });
 
-      // Drag functionality
+      // 拖拽功能
       let isDown = false;
       let startX;
       let scrollLeft;
@@ -375,7 +387,7 @@
         desktopSlider.scrollLeft = scrollLeft - walk;
       });
 
-      // Touch support
+      // 触摸支持
       desktopSlider.addEventListener('touchstart', (e) => {
         isDown = true;
         startX = e.touches[0].pageX - desktopSlider.offsetLeft;
@@ -391,6 +403,36 @@
         const x = e.touches[0].pageX - desktopSlider.offsetLeft;
         const walk = (x - startX) * 2;
         desktopSlider.scrollLeft = scrollLeft - walk;
+      }, { passive: true });
+    }
+    
+    // 移动端滚动优化 - 添加惯性滚动支持
+    const mobileSlider = document.querySelector('.multicolumn-list');
+    if (mobileSlider && window.innerWidth <= 749) {
+      let startX = 0;
+      let startY = 0;
+      let isScrolling = false;
+      
+      mobileSlider.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isScrolling = false;
+      }, { passive: true });
+      
+      mobileSlider.addEventListener('touchmove', (e) => {
+        if (!isScrolling) {
+          const x = e.touches[0].clientX;
+          const y = e.touches[0].clientY;
+          const dx = Math.abs(x - startX);
+          const dy = Math.abs(y - startY);
+          
+          // 确定用户是否主要是水平滑动
+          isScrolling = dx > dy;
+        }
+      }, { passive: true });
+      
+      mobileSlider.addEventListener('touchend', () => {
+        isScrolling = false;
       }, { passive: true });
     }
   });
