@@ -63,6 +63,7 @@
       "block_order": [
         "heading_fBqUiy"
       ],
+      "name": "Heading",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -150,6 +151,7 @@
         "image_block_zTNzTA",
         "image_block_wKn4UQ"
       ],
+      "name": "All Products",
       "settings": {
         "title": "",
         "desktop_height": 330,
