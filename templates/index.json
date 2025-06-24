@@ -185,6 +185,53 @@
         "padding_bottom": 52
       }
     },
+    "multirow_YY88cn": {
+      "type": "multirow",
+      "blocks": {
+        "row_JR9pk9": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/4cut.png",
+            "caption": "380mL | 580mL | 1L",
+            "heading": "Natural Alkaline Water",
+            "text": "<p>The First-Ever Naturally Alkaline Water</p><p>Sourced from the mineral-rich voclanic springs of China's Northern Border</p><p></p><p></p><ul><li>pH level of 8.8 and above</li><li>Naturally Alkaline Spring Water</li><li>100% Recyclable PET</li><li>Approximately 350-700 mg sodium bicarbonate per L</li></ul>",
+            "button_label": "LEARN MORE",
+            "button_link": "shopify://products/natural-alkaline-water"
+          }
+        },
+        "row_mEaLgd": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/7cut.png",
+            "caption": "500mL",
+            "heading": "ELECTRO X Sports Drink",
+            "text": "<p><strong>Premium Hydration, Refined Taste</strong></p><p>Crafted for athletes and fitness enthusiasts, ELECTRO X offers a premium hydration choice with our additive-free sports drink, blended with premium tea leaves and globally sourced juices for a clean balanced taste. Fuel your workout, naturally.</p><p><strong>Flavors: </strong>Jasmine Green Grapes | Pineapple Matte | Mixed Berry Flavors</p><p><strong>Key Ingredients:</strong> Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p>",
+            "button_label": "LEARN MORE",
+            "button_link": "shopify://collections/electrolyte-sports-drink"
+          }
+        }
+      },
+      "block_order": [
+        "row_JR9pk9",
+        "row_mEaLgd"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "adapt",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "primary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "image_with_text_HT6mHr": {
       "type": "image-with-text",
       "blocks": {
@@ -197,20 +244,20 @@
             "spacing_bottom": 20
           }
         },
-        "caption_aweAQr": {
+        "caption_6c8zmQ": {
           "type": "caption",
           "settings": {
-            "caption": "The First-Ever Naturally Alkaline Water",
+            "caption": "Sourced from the mineral-rich voclanic springs of China's Northern Border",
             "text_style": "subtitle",
             "text_size": "small",
             "spacing_top": 0,
             "spacing_bottom": 0
           }
         },
-        "caption_6c8zmQ": {
+        "caption_aweAQr": {
           "type": "caption",
           "settings": {
-            "caption": "Sourced from the mineral-rich voclanic springs of China's Northern Border",
+            "caption": "The First-Ever Naturally Alkaline Water",
             "text_style": "subtitle",
             "text_size": "small",
             "spacing_top": 0,
@@ -280,8 +327,8 @@
       },
       "block_order": [
         "heading_h3heM8",
-        "caption_aweAQr",
         "caption_6c8zmQ",
+        "caption_aweAQr",
         "caption_4WLLWQ",
         "caption_HJ6q49",
         "caption_HgYxDC",
@@ -289,6 +336,7 @@
         "caption_m8RMPA",
         "button_GA8WxT"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/4cut.png",
         "height": "adapt",
@@ -383,6 +431,7 @@
         "text_mAYbfr",
         "button_dmNHG7"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/7cut.png",
         "height": "adapt",
@@ -556,7 +605,7 @@
         "image": "shopify://shop_images/1.jpg",
         "image_overlay_opacity": 30,
         "image_height": "large",
-        "image_behavior": "fixed",
+        "image_behavior": "none",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
@@ -704,6 +753,7 @@
     "rich_text_waQVNB",
     "pic_border_m7m9TP",
     "rich_text_gUynad",
+    "multirow_YY88cn",
     "image_with_text_HT6mHr",
     "image_with_text_88PpK8",
     "rich_text_VpEQaY",
