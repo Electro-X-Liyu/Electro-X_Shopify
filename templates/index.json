@@ -191,7 +191,7 @@
         "row_JR9pk9": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/4cut.png",
+            "image": "shopify://shop_images/15related.png",
             "caption": "380mL | 580mL | 1L",
             "heading": "Natural Alkaline Water",
             "text": "<p>The First-Ever Naturally Alkaline Water</p><p>Sourced from the mineral-rich voclanic springs of China's Northern Border</p><p></p><p></p><ul><li>pH level of 8.8 and above</li><li>Naturally Alkaline Spring Water</li><li>100% Recyclable PET</li><li>Approximately 350-700 mg sodium bicarbonate per L</li></ul>",
@@ -202,7 +202,7 @@
         "row_mEaLgd": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/7cut.png",
+            "image": "shopify://shop_images/5.png",
             "caption": "500mL",
             "heading": "ELECTRO X Sports Drink",
             "text": "<p><strong>Premium Hydration, Refined Taste</strong></p><p>Crafted for athletes and fitness enthusiasts, ELECTRO X offers a premium hydration choice with our additive-free sports drink, blended with premium tea leaves and globally sourced juices for a clean balanced taste. Fuel your workout, naturally.</p><p><strong>Flavors: </strong>Jasmine Green Grapes | Pineapple Matte | Mixed Berry Flavors</p><p><strong>Key Ingredients:</strong> Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p>",
@@ -217,7 +217,7 @@
       ],
       "name": "t:sections.multirow.presets.name",
       "settings": {
-        "image_height": "adapt",
+        "image_height": "large",
         "desktop_image_width": "medium",
         "image_layout": "alternate-left",
         "heading_size": "h1",
