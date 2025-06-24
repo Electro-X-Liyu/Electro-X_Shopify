@@ -87,6 +87,7 @@
         "custom_menu_LtfWaF",
         "custom_menu_CHt7dM"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-4",
         "newsletter_enable": true,
