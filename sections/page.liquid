@@ -6,31 +6,6 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  .page-layout-{{ section.id }} {
-    display: flex;
-    flex-direction: {{ section.settings.layout_direction }};
-    gap: {{ section.settings.gap }}px;
-    align-items: {{ section.settings.vertical_alignment }};
-  }
-
-  .page-title-column-{{ section.id }} {
-    width: {{ section.settings.title_width }}%;
-  }
-
-  .page-content-column-{{ section.id }} {
-    width: {{ section.settings.content_width }}%;
-  }
-
-  @media screen and (max-width: 749px) {
-    .page-layout-{{ section.id }} {
-      flex-direction: column;
-    }
-    .page-title-column-{{ section.id }},
-    .page-content-column-{{ section.id }} {
-      width: 100%;
-    }
-  }
-
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -40,35 +15,29 @@
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="page-width section-{{ section.id }}-padding">
-    <div class="page-layout-{{ section.id }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-      <div class="page-title-column-{{ section.id }}">
-        <h2 class="page-title {{ section.settings.heading_size }} {{ section.settings.title_alignment }}">
-          {%- if section.settings.page.title != blank -%}
-            {{ section.settings.page.title | escape }}
-          {%- else -%}
-            {{ 'sections.page.title' | t }}
-          {%- endif -%}
-        </h2>
-      </div>
-      <div class="page-content-column-{{ section.id }} {{ section.settings.content_alignment }}">
-        <div class="rte">
-          {%- if section.settings.page.content != blank -%}
-            {{ section.settings.page.content }}
-          {%- else -%}
-            <div class="page-placeholder-wrapper placeholder">
-              {{ 'page' | placeholder_svg_tag: 'page-placeholder' }}
-            </div>
-          {%- endif -%}
+  <div class="page-width page-width--narrow section-{{ section.id }}-padding">
+    <h2 class="page-title {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      {%- if section.settings.page.title != blank -%}
+        {{ section.settings.page.title | escape }}
+      {%- else -%}
+        {{ 'sections.page.title' | t }}
+      {%- endif -%}
+    </h2>
+    <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      {%- if section.settings.page.content != blank -%}
+        {{ section.settings.page.content }}
+      {%- else -%}
+        <div class="page-placeholder-wrapper placeholder">
+          {{ 'page' | placeholder_svg_tag: 'page-placeholder' }}
         </div>
-      </div>
+      {%- endif -%}
     </div>
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "左右布局页面",
+  "name": "t:sections.page.name",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -78,167 +47,45 @@
     {
       "type": "page",
       "id": "page",
-      "label": "选择页面"
-    },
-    {
-      "type": "header",
-      "content": "布局设置"
-    },
-    {
-      "type": "select",
-      "id": "layout_direction",
-      "label": "布局方向",
-      "options": [
-        {
-          "value": "row",
-          "label": "左右排列"
-        },
-        {
-          "value": "row-reverse",
-          "label": "右左排列"
-        }
-      ],
-      "default": "row"
-    },
-    {
-      "type": "range",
-      "id": "gap",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "列间距",
-      "default": 30
-    },
-    {
-      "type": "select",
-      "id": "vertical_alignment",
-      "label": "垂直对齐",
-      "options": [
-        {
-          "value": "flex-start",
-          "label": "顶部对齐"
-        },
-        {
-          "value": "center",
-          "label": "居中对齐"
-        },
-        {
-          "value": "flex-end",
-          "label": "底部对齐"
-        }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "header",
-      "content": "列宽设置"
-    },
-    {
-      "type": "range",
-      "id": "title_width",
-      "min": 10,
-      "max": 50,
-      "step": 5,
-      "unit": "%",
-      "label": "标题列宽度",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "content_width",
-      "min": 50,
-      "max": 90,
-      "step": 5,
-      "unit": "%",
-      "label": "内容列宽度",
-      "default": 70
-    },
-    {
-      "type": "header",
-      "content": "对齐方式"
-    },
-    {
-      "type": "select",
-      "id": "title_alignment",
-      "label": "标题对齐",
-      "options": [
-        {
-          "value": "text-left",
-          "label": "左对齐"
-        },
-        {
-          "value": "text-center",
-          "label": "居中对齐"
-        },
-        {
-          "value": "text-right",
-          "label": "右对齐"
-        }
-      ],
-      "default": "text-left"
-    },
-    {
-      "type": "select",
-      "id": "content_alignment",
-      "label": "内容对齐",
-      "options": [
-        {
-          "value": "text-left",
-          "label": "左对齐"
-        },
-        {
-          "value": "text-center",
-          "label": "居中对齐"
-        },
-        {
-          "value": "text-right",
-          "label": "右对齐"
-        }
-      ],
-      "default": "text-left"
-    },
-    {
-      "type": "header",
-      "content": "样式设置"
+      "label": "t:sections.page.settings.page.label"
     },
     {
       "type": "select",
       "id": "heading_size",
-      "label": "标题大小",
       "options": [
         {
           "value": "h2",
-          "label": "小"
+          "label": "t:sections.all.heading_size.options__1.label"
         },
         {
           "value": "h1",
-          "label": "中"
+          "label": "t:sections.all.heading_size.options__2.label"
         },
         {
           "value": "h0",
-          "label": "大"
+          "label": "t:sections.all.heading_size.options__3.label"
         },
         {
           "value": "hxl",
-          "label": "特大"
+          "label": "t:sections.all.heading_size.options__4.label"
         },
         {
           "value": "hxxl",
-          "label": "超大"
+          "label": "t:sections.all.heading_size.options__5.label"
         }
       ],
-      "default": "h1"
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "配色方案",
+      "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
     {
       "type": "header",
-      "content": "间距设置"
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
@@ -247,7 +94,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "上边距",
+      "label": "t:sections.all.padding.padding_top",
       "default": 36
     },
     {
@@ -257,13 +104,13 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "下边距",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 36
     }
   ],
   "presets": [
     {
-      "name": "左右布局页面"
+      "name": "t:sections.page.presets.name"
     }
   ]
 }
