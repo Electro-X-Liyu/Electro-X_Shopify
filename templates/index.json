@@ -676,6 +676,7 @@
         },
         "buttons_8wgzYU": {
           "type": "buttons",
+          "disabled": true,
           "settings": {
             "button_label_1": "Learn More",
             "button_link_1": "",
@@ -703,41 +704,6 @@
         "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
         "show_text_below": false
-      }
-    },
-    "rich_text_9YYbxe": {
-      "type": "rich-text",
-      "blocks": {
-        "text_PyKczQ": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.</p>"
-          }
-        },
-        "button_adMbQD": {
-          "type": "button",
-          "settings": {
-            "button_label": "LEARN MORE",
-            "button_link": "shopify://pages/community-ambassadors",
-            "button_style_secondary": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "text_PyKczQ",
-        "button_adMbQD"
-      ],
-      "disabled": true,
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
       }
     },
     "multicolumn_mBC8fB": {
@@ -821,6 +787,41 @@
         "padding_bottom": 36
       }
     },
+    "rich_text_9YYbxe": {
+      "type": "rich-text",
+      "blocks": {
+        "text_PyKczQ": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.</p>"
+          }
+        },
+        "button_adMbQD": {
+          "type": "button",
+          "settings": {
+            "button_label": "LEARN MORE",
+            "button_link": "shopify://pages/community-ambassadors",
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "text_PyKczQ",
+        "button_adMbQD"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
     "page_tBQPbK": {
       "type": "page",
       "disabled": true,
@@ -870,8 +871,8 @@
     "rich_text_VpEQaY",
     "mixed_multicolumn_DFedAG",
     "image_banner_R9mHmC",
-    "rich_text_9YYbxe",
     "multicolumn_mBC8fB",
+    "rich_text_9YYbxe",
     "page_tBQPbK",
     "rich_text_xBeWBr"
   ]
