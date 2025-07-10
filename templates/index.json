@@ -185,6 +185,66 @@
         "padding_bottom": 52
       }
     },
+    "multirow_8rDemJ": {
+      "type": "multirow",
+      "blocks": {
+        "row_BjnPfP": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/201cut.jpg",
+            "caption": "",
+            "heading": "Natural Alkaline Water",
+            "text": "<p><strong>The First-Ever Naturally Alkaline Water sourced from the mineral-rich </strong>volcanic<strong> springs of China's Northern Border</strong></p><p></p><p></p><ul><li>pH level of 8.8 and above</li><li>Naturally Alkaline Spring Water</li><li>100% Recyclable PET</li></ul>",
+            "button_label": "LEARN MORE",
+            "button_link": "shopify://products/natural-alkaline-water"
+          }
+        },
+        "row_M7qA3D": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/211cut.jpg",
+            "caption": "",
+            "heading": "ELECTRO X Sports Drink",
+            "text": "<p><strong>Premium Hydration, Refined Taste</strong></p><p>Crafted for athletes and fitness enthusiasts, ELECTRO X offers a premium hydration choice with our additive-free sports drink, blended with premium tea leaves and globally sourced juices for a clean balanced taste. Fuel your workout, naturally.</p><p>500mL</p><p><strong>Flavors: </strong>Jasmine Green Grapes | Pineapple Matte | Mixed Berry Flavors</p><p><strong>Key Ingredients:</strong> Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p>",
+            "button_label": "LEARN MORE",
+            "button_link": "shopify://collections/electrolyte-sports-drink"
+          }
+        },
+        "row_tQjND8": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/221cut.jpg",
+            "caption": "",
+            "heading": "Electrolyte Liquid Concentrate",
+            "text": "<p><strong>The First-Ever Naturally Alkaline Water sourced from the mineral-rich </strong>volcanic<strong> springs of China's Northern Border</strong></p><ul><li>pH level of 8.8 and above</li><li>Naturally Alkaline Spring Water</li><li>100% Recyclable PET</li></ul>",
+            "button_label": "LEARN MORE",
+            "button_link": "shopify://collections/electrolyte-liquid-concentrate"
+          }
+        }
+      },
+      "block_order": [
+        "row_BjnPfP",
+        "row_M7qA3D",
+        "row_tQjND8"
+      ],
+      "disabled": true,
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "large",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "primary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-3",
+        "row_color_scheme": "scheme-3",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "multirow_YY88cn": {
       "type": "multirow",
       "blocks": {
@@ -194,7 +254,7 @@
             "image": "shopify://shop_images/201cut.jpg",
             "caption": "",
             "heading": "Natural Alkaline Water",
-            "text": "<p><strong>The First-Ever Naturally Alkaline Water sourced from the mineral-rich </strong>volcanic<strong> springs of China's Northern Border</strong></p><p></p><p></p><ul><li>pH level of 8.8 and above</li><li>Naturally Alkaline Spring Water</li><li>100% Recyclable PET</li></ul>",
+            "text": "<p><strong>The First-Ever Naturally Alkaline Water sourced from the mineral-rich </strong>volcanic<strong> springs of China's Northern Border</strong></p>",
             "button_label": "LEARN MORE",
             "button_link": "shopify://products/natural-alkaline-water"
           }
@@ -238,8 +298,8 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
-        "section_color_scheme": "scheme-3",
-        "row_color_scheme": "scheme-3",
+        "section_color_scheme": "scheme-1",
+        "row_color_scheme": "scheme-1",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -803,6 +863,7 @@
     "rich_text_waQVNB",
     "pic_border_m7m9TP",
     "rich_text_gUynad",
+    "multirow_8rDemJ",
     "multirow_YY88cn",
     "image_with_text_HT6mHr",
     "image_with_text_88PpK8",
