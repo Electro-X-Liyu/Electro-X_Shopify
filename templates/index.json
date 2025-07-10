@@ -191,7 +191,7 @@
         "row_JR9pk9": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/15related.png",
+            "image": "shopify://shop_images/201cut.png",
             "caption": "380mL | 580mL | 1L",
             "heading": "Natural Alkaline Water",
             "text": "<p>The First-Ever Naturally Alkaline Water</p><p>Sourced from the mineral-rich voclanic springs of China's Northern Border</p><p></p><p></p><ul><li>pH level of 8.8 and above</li><li>Naturally Alkaline Spring Water</li><li>100% Recyclable PET</li><li>Approximately 350-700 mg sodium bicarbonate per L</li></ul>",
@@ -226,8 +226,8 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
-        "section_color_scheme": "",
-        "row_color_scheme": "",
+        "section_color_scheme": "scheme-3",
+        "row_color_scheme": "scheme-3",
         "padding_top": 0,
         "padding_bottom": 0
       }
