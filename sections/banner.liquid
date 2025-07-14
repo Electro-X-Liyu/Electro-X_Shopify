@@ -2,22 +2,20 @@
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
-    @media screen and (min-width: 750px) {
+    @media screen and (max-width: 749px) {
       #Banner-{{ section.id }}::before,
-      #Banner-{{ section.id }} .banner__media::before {
+      #Banner-{{ section.id }} .banner__media::before,
+      #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
         padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
         content: '';
         display: block;
       }
     }
-    @media screen and (max-width: 749px) {
+
+    @media screen and (min-width: 750px) {
       #Banner-{{ section.id }}::before,
       #Banner-{{ section.id }} .banner__media::before {
-        {% if section.settings.mobile_image != blank %}
-          padding-bottom: {{ 1 | divided_by: section.settings.mobile_image.aspect_ratio | times: 100 }}%;
-        {% else %}
-          padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
-        {% endif %}
+        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
         content: '';
         display: block;
       }
@@ -61,9 +59,7 @@
   .banner__pip {
     position: relative;
     width: 100%;
-    {% if section.settings.pip_image != blank %}
-      padding-bottom: {{ 1 | divided_by: section.settings.pip_image.aspect_ratio | times: 100 }}%;
-    {% endif %}
+    padding-bottom: {{ 1 | divided_by: section.settings.pip_image.aspect_ratio | times: 100 }}%;
     border: {{ section.settings.pip_border_width }}px solid {{ section.settings.pip_border_color }};
     border-radius: {{ section.settings.pip_border_radius }}px;
     box-shadow: {{ section.settings.pip_box_shadow }};
@@ -94,7 +90,7 @@
     
     .banner__content {
       top: auto !important;
-      bottom: {{ 100 | minus: section.settings.mobile_content_position }}% !important;
+      bottom: 25% !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
       width: 100%;
@@ -163,31 +159,11 @@
           fetchpriority: fetch_priority
       }}
     </div>
-  {%- elsif section.settings.image_2 == blank and section.settings.mobile_image == blank -%}
+  {%- elsif section.settings.image_2 == blank -%}
     <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
     </div>
   {%- endif -%}
-  
-  {%- if section.settings.mobile_image != blank -%}
-    <div class="banner__media media mobile-only{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {%- liquid
-        assign mobile_image_height = section.settings.mobile_image.width | divided_by: section.settings.mobile_image.aspect_ratio
-      -%}
-      {{
-        section.settings.mobile_image
-        | image_url: width: 750
-        | image_tag:
-          width: section.settings.mobile_image.width,
-          height: mobile_image_height,
-          class: 'banner__media-image',
-          sizes: '100vw',
-          widths: '375, 550, 750',
-          fetchpriority: fetch_priority
-      }}
-    </div>
-  {%- endif -%}
-  
   {%- if section.settings.image_2 != blank -%}
     <div class="banner__media media{% if section.settings.image != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {%- liquid
@@ -282,7 +258,7 @@
 
 {% schema %}
 {
-  "name": "PIP-banner (Desktop)",
+  "name": "Banner with PIP",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -290,28 +266,14 @@
   },
   "settings": [
     {
-      "type": "header",
-      "content": "Desktop Images"
-    },
-    {
       "type": "image_picker",
       "id": "image",
-      "label": "Primary desktop image"
+      "label": "Main banner image"
     },
     {
       "type": "image_picker",
       "id": "image_2",
-      "label": "Secondary desktop image (optional)"
-    },
-    {
-      "type": "header",
-      "content": "Mobile Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "mobile_image",
-      "label": "Mobile image (optional)",
-      "info": "Will replace desktop image on mobile if set"
+      "label": "Secondary banner image (optional)"
     },
     {
       "type": "range",
@@ -592,17 +554,6 @@
       "label": "Stack images on mobile"
     },
     {
-      "type": "range",
-      "id": "mobile_content_position",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "label": "Content vertical position (mobile)",
-      "default": 25,
-      "info": "Position from bottom of section (0% = bottom, 100% = top)"
-    },
-    {
       "type": "checkbox",
       "id": "use_container_on_mobile",
       "default": true,
@@ -731,7 +682,7 @@
   ],
   "presets": [
     {
-      "name": "PIP-banner (Desktop)",
+      "name": "Banner with PIP",
       "blocks": [
         {
           "type": "heading"
