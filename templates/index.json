@@ -236,8 +236,15 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
+        "mobile_color_scheme": "",
+        "desktop_color_scheme": "",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "pc_margin_top": 20,
+        "pc_margin_bottom": 20,
+        "pc_border_width": 1,
+        "pc_border_color": "#e0e0e0",
+        "pc_padding": 15
       }
     },
     "multirow_YY88cn": {
@@ -246,6 +253,8 @@
         "row_JR9pk9": {
           "type": "row",
           "settings": {
+            "image_desktop": "shopify://shop_images/201cut.jpg",
+            "image_mobile": "shopify://shop_images/131cut.png",
             "caption": "",
             "heading": "Natural Alkaline Water",
             "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p><p></p>",
@@ -281,17 +290,24 @@
       ],
       "name": "t:sections.multirow.presets.name",
       "settings": {
-        "image_height": "large",
+        "image_height": "adapt",
         "desktop_image_width": "medium",
         "image_layout": "alternate-left",
         "heading_size": "h1",
         "text_style": "body",
-        "button_style": "primary",
+        "button_style": "secondary",
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "center",
+        "mobile_color_scheme": "scheme-1",
+        "desktop_color_scheme": "scheme-3",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "pc_margin_top": 20,
+        "pc_margin_bottom": 20,
+        "pc_border_width": 1,
+        "pc_border_color": "#e0e0e0",
+        "pc_padding": 0
       }
     },
     "image_with_text_HT6mHr": {
