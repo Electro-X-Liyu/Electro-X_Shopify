@@ -26,12 +26,11 @@
       "settings": {
         "image": "shopify://shop_images/2-1.jpg",
         "image_overlay_opacity": 0,
-        "image_height": "adapt",
+        "image_height": "large",
         "image_behavior": "zoom-in",
         "pip_enable": true,
         "pip_image": "shopify://shop_images/8.svg",
         "pip_width": 26,
-        "pip_width_mobile": 30,
         "pip_position": "center",
         "pip_position_horizontal": 50,
         "pip_position_vertical": 50,
@@ -43,9 +42,7 @@
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "use_container_on_mobile": false
+        "color_scheme": "scheme-3"
       }
     },
     "rich_text_waQVNB": {
