@@ -26,7 +26,7 @@
       "settings": {
         "image": "shopify://shop_images/2-1.jpg",
         "image_overlay_opacity": 0,
-        "image_height": "large",
+        "image_height": "adapt",
         "image_behavior": "zoom-in",
         "pip_enable": true,
         "pip_image": "shopify://shop_images/8.svg",
@@ -45,7 +45,6 @@
         "show_text_box": false,
         "color_scheme": "scheme-3",
         "stack_images_on_mobile": false,
-        "mobile_content_position": 0,
         "use_container_on_mobile": false
       }
     },
