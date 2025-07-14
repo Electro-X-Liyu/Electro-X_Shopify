@@ -11,31 +11,6 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "announcement-bar": {
-      "type": "announcement-bar",
-      "blocks": {
-        "announcement_Xy4zyj": {
-          "type": "announcement",
-          "settings": {
-            "text": "Move to Balance",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "announcement_Xy4zyj"
-      ],
-      "disabled": true,
-      "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "scheme-5",
-        "show_line_separator": true,
-        "show_social": true,
-        "enable_country_selector": false,
-        "enable_language_selector": false
-      }
-    },
     "header": {
       "type": "header",
       "settings": {
@@ -49,7 +24,7 @@
         "menu_color_scheme": "scheme-1",
         "enable_country_selector": true,
         "enable_language_selector": true,
-        "enable_customer_avatar": true,
+        "enable_customer_avatar": false,
         "margin_bottom": 0,
         "padding_top": 4,
         "padding_bottom": 4
@@ -57,7 +32,6 @@
     }
   },
   "order": [
-    "announcement-bar",
     "header"
   ]
 }
