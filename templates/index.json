@@ -45,6 +45,34 @@
         "color_scheme": "scheme-3"
       }
     },
+    "mobile_banner_kByUUW": {
+      "type": "Mobile-banner",
+      "blocks": {
+        "text_fAPmC7": {
+          "type": "text",
+          "settings": {
+            "text": "Clean Fuel. Pure Performance",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "text_fAPmC7"
+      ],
+      "name": "Mobile banner",
+      "settings": {
+        "image": "shopify://shop_images/121cut.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "mobile_content_position": "middle-center",
+        "mobile_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
     "rich_text_waQVNB": {
       "type": "rich-text",
       "blocks": {
@@ -884,6 +912,7 @@
   },
   "order": [
     "banner_89aeKn",
+    "mobile_banner_kByUUW",
     "rich_text_waQVNB",
     "pic_border_m7m9TP",
     "rich_text_gUynad",
