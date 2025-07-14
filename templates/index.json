@@ -637,17 +637,61 @@
         "padding_bottom": 36
       }
     },
-    "2images_banner_cBMKHm": {
-      "type": "2images-banner",
+    "banner_BM3DgA": {
+      "type": "banner",
       "blocks": {
-        "heading_6Fzp4f": {
+        "heading_kUWXUr": {
           "type": "heading",
           "settings": {
             "heading": "COMMUNITY",
             "heading_size": "h1"
           }
         },
-        "text_XxNKPh": {
+        "text_iN6bLB": {
+          "type": "text",
+          "settings": {
+            "text": "Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading_kUWXUr",
+        "text_iN6bLB"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/1.jpg",
+        "image_overlay_opacity": 30,
+        "image_height": "large",
+        "image_behavior": "zoom-in",
+        "pip_enable": false,
+        "pip_image": "shopify://shop_images/8.svg",
+        "pip_width": 26,
+        "pip_position": "center",
+        "pip_position_horizontal": 50,
+        "pip_position_vertical": 50,
+        "pip_border_width": 0,
+        "pip_border_color": "#ffffff",
+        "pip_border_radius": 0,
+        "pip_background": "rgba(0,0,0,0)",
+        "pip_box_shadow": "",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-3"
+      }
+    },
+    "mobile_banner_PGtzXU": {
+      "type": "Mobile-banner",
+      "blocks": {
+        "heading_aCxhfq": {
+          "type": "heading",
+          "settings": {
+            "heading": "COMMUNITY",
+            "heading_size": "h1"
+          }
+        },
+        "text_aDmUXx": {
           "type": "text",
           "settings": {
             "text": "Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.",
@@ -656,70 +700,20 @@
         }
       },
       "block_order": [
-        "heading_6Fzp4f",
-        "text_XxNKPh"
+        "heading_aCxhfq",
+        "text_aDmUXx"
       ],
-      "name": "2Images Banner",
+      "name": "Mobile banner",
       "settings": {
-        "image_desktop": "shopify://shop_images/1.jpg",
-        "image_mobile": "shopify://shop_images/3cut.png",
-        "image_overlay_opacity": 50,
+        "image": "shopify://shop_images/3cut.png",
+        "image_overlay_opacity": 40,
         "image_height": "adapt",
         "image_behavior": "none",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
-    },
-    "image_banner_R9mHmC": {
-      "type": "image-banner",
-      "blocks": {
-        "heading_9ypTAh": {
-          "type": "heading",
-          "settings": {
-            "heading": "COMMUNITY",
-            "heading_size": "h1"
-          }
-        },
-        "text_qh4qk4": {
-          "type": "text",
-          "settings": {
-            "text": "Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.",
-            "text_style": "body"
-          }
-        },
-        "buttons_8wgzYU": {
-          "type": "buttons",
-          "disabled": true,
-          "settings": {
-            "button_label_1": "Learn More",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_9ypTAh",
-        "text_qh4qk4",
-        "buttons_8wgzYU"
-      ],
-      "disabled": true,
-      "settings": {
-        "image": "shopify://shop_images/1.jpg",
-        "image_overlay_opacity": 30,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
+        "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
         "show_text_below": false
       }
@@ -883,8 +877,8 @@
     "image_with_text_88PpK8",
     "rich_text_VpEQaY",
     "mixed_multicolumn_DFedAG",
-    "2images_banner_cBMKHm",
-    "image_banner_R9mHmC",
+    "banner_BM3DgA",
+    "mobile_banner_PGtzXU",
     "multicolumn_mBC8fB",
     "rich_text_9YYbxe",
     "rich_text_xBeWBr"
