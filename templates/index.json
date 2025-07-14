@@ -186,6 +186,7 @@
       "blocks": {
         "heading_MFFgQG": {
           "type": "heading",
+          "disabled": true,
           "settings": {
             "heading": "<a href=\"/collections/all-products\" title=\"All Products\">BROWSE ALL PRODUCTS</a>",
             "heading_size": "h2"
@@ -195,7 +196,6 @@
       "block_order": [
         "heading_MFFgQG"
       ],
-      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
@@ -206,13 +206,13 @@
         "padding_bottom": 52
       }
     },
-    "mobile_multirow_jDNdjC": {
-      "type": "mobile-multirow",
+    "desktop_multirow_Q3mdjw": {
+      "type": "desktop-multirow",
       "blocks": {
-        "row_FmwDjQ": {
+        "row_z8tQaq": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/131cut.png",
+            "image": "shopify://shop_images/201cut.jpg",
             "caption": "",
             "heading": "Natural Alkaline Water",
             "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p><p></p>",
@@ -220,37 +220,37 @@
             "button_link": "shopify://products/natural-alkaline-water"
           }
         },
-        "row_EbGaN4": {
+        "row_gkeKcc": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/111cut.png",
+            "image": "shopify://shop_images/211cut.jpg",
             "caption": "",
-            "heading": "ELECTRO X Sports Drink",
+            "heading": "ELECTRO  X Sports Drink",
             "text": "<p><strong>Premium Hydration, Refined Taste</strong></p><p><strong>Key Ingredients:</strong> Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p><p></p>",
-            "button_label": "Button label",
-            "button_link": ""
+            "button_label": "Learn More",
+            "button_link": "shopify://collections/electrolyte-sports-drink"
           }
         },
-        "row_NdDpE4": {
+        "row_QChGmN": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/11cut_3bb7705f-422b-43af-80ed-c1d91036dfb2.png",
+            "image": "shopify://shop_images/221cut.jpg",
             "caption": "",
             "heading": "Electrolyte Liquid Concentrate",
             "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p><p></p>",
-            "button_label": "Button label",
-            "button_link": ""
+            "button_label": "Learn More",
+            "button_link": "shopify://collections/electrolyte-liquid-concentrate"
           }
         }
       },
       "block_order": [
-        "row_FmwDjQ",
-        "row_EbGaN4",
-        "row_NdDpE4"
+        "row_z8tQaq",
+        "row_gkeKcc",
+        "row_QChGmN"
       ],
-      "name": "Collations-Mobile",
+      "name": "Desktop Multirow",
       "settings": {
-        "image_height": "medium",
+        "image_height": "large",
         "desktop_image_width": "medium",
         "image_layout": "alternate-left",
         "heading_size": "h1",
@@ -259,10 +259,10 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
-        "section_color_scheme": "",
-        "row_color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "section_color_scheme": "scheme-3",
+        "row_color_scheme": "scheme-3",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "multirow_YY88cn": {
@@ -320,6 +320,65 @@
         "row_color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
+      }
+    },
+    "mobile_multirow_jDNdjC": {
+      "type": "mobile-multirow",
+      "blocks": {
+        "row_FmwDjQ": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/131cut.png",
+            "caption": "",
+            "heading": "Natural Alkaline Water",
+            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p><p></p>",
+            "button_label": "Learn More",
+            "button_link": "shopify://products/natural-alkaline-water"
+          }
+        },
+        "row_EbGaN4": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/111cut.png",
+            "caption": "",
+            "heading": "ELECTRO X Sports Drink",
+            "text": "<p><strong>Premium Hydration, Refined Taste</strong></p><p><strong>Key Ingredients:</strong> Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p><p></p>",
+            "button_label": "Button label",
+            "button_link": ""
+          }
+        },
+        "row_NdDpE4": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/11cut_3bb7705f-422b-43af-80ed-c1d91036dfb2.png",
+            "caption": "",
+            "heading": "Electrolyte Liquid Concentrate",
+            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p><p></p>",
+            "button_label": "Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_FmwDjQ",
+        "row_EbGaN4",
+        "row_NdDpE4"
+      ],
+      "name": "Collations-Mobile",
+      "settings": {
+        "image_height": "adapt",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "rich_text_VpEQaY": {
@@ -696,8 +755,9 @@
     "rich_text_waQVNB",
     "all_products_qw33dH",
     "rich_text_krjN6Y",
-    "mobile_multirow_jDNdjC",
+    "desktop_multirow_Q3mdjw",
     "multirow_YY88cn",
+    "mobile_multirow_jDNdjC",
     "rich_text_VpEQaY",
     "mixed_multicolumn_DFedAG",
     "banner_BM3DgA",
