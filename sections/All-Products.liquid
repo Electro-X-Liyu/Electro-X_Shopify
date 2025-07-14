@@ -51,8 +51,9 @@
       ]
     },
     {
-      "type": "arrow_link",
-      "name": "Arrow Link",
+      "type": "browse_link",
+      "name": "Browse All Link",
+      "limit": 1,
       "settings": [
         {
           "type": "text",
@@ -66,30 +67,28 @@
           "label": "Link URL"
         },
         {
+          "type": "range",
+          "id": "font_weight",
+          "label": "Font Weight",
+          "min": 300,
+          "max": 900,
+          "step": 100,
+          "default": 600
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "Font Size (px)",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "default": 16
+        },
+        {
           "type": "color",
           "id": "text_color",
           "label": "Text Color",
           "default": "#000000"
-        },
-        {
-          "type": "select",
-          "id": "text_size",
-          "label": "Text Size",
-          "options": [
-            {
-              "value": "small",
-              "label": "Small"
-            },
-            {
-              "value": "medium",
-              "label": "Medium"
-            },
-            {
-              "value": "large",
-              "label": "Large"
-            }
-          ],
-          "default": "medium"
         }
       ]
     }
@@ -113,34 +112,21 @@
     <!-- Desktop Grid Layout -->
     <div class="gallery-grid desktop-gallery">
       {% for block in section.blocks %}
-        {% case block.type %}
-          {% when 'image_block' %}
-            {% if block.settings.image != blank %}
-              {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-              <div class="image-card" style="--aspect-ratio: {{ aspect_ratio }}; flex: 0 0 calc({{ aspect_ratio }} * {{ section.settings.desktop_height }}px);" {{ block.shopify_attributes }}>
-                <a href="{{ block.settings.link | default: '#' }}" class="image-link">
-                  <div class="image-wrapper" style="height: {{ section.settings.desktop_height }}px;">
-                    <img src="{{ block.settings.image | img_url: '1200x' }}"
-                         alt="{{ block.settings.alt_text | default: 'Product image' }}"
-                         class="gallery-image"
-                         loading="lazy"
-                         width="1200"
-                         height="{{ 1200 | divided_by: aspect_ratio | round }}">
-                  </div>
-                </a>
+        {% if block.type == 'image_block' and block.settings.image != blank %}
+          {% assign aspect_ratio = block.settings.image.aspect_ratio %}
+          <div class="image-card" style="--aspect-ratio: {{ aspect_ratio }}; flex: 0 0 calc({{ aspect_ratio }} * {{ section.settings.desktop_height }}px);" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+              <div class="image-wrapper" style="height: {{ section.settings.desktop_height }}px;">
+                <img src="{{ block.settings.image | img_url: '1200x' }}"
+                     alt="{{ block.settings.alt_text | default: 'Product image' }}"
+                     class="gallery-image"
+                     loading="lazy"
+                     width="1200"
+                     height="{{ 1200 | divided_by: aspect_ratio | round }}">
               </div>
-            {% endif %}
-          
-          {% when 'arrow_link' %}
-            <div class="arrow-link-container" {{ block.shopify_attributes }}>
-              <a href="{{ block.settings.link_url }}" class="arrow-link" style="color: {{ block.settings.text_color }}; font-size: {% case block.settings.text_size %}{% when 'small' %}14px{% when 'medium' %}16px{% when 'large' %}18px{% endcase %};">
-                <span class="arrow-link-text">{{ block.settings.link_text }}</span>
-                <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-        {% endcase %}
+            </a>
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
     
@@ -169,6 +155,18 @@
       </div>
     </div>
   </div>
+
+  <!-- Browse All Products Link Block -->
+  {% for block in section.blocks %}
+    {% if block.type == 'browse_link' %}
+      <div class="browse-all-container" {{ block.shopify_attributes }}>
+        <a href="{{ block.settings.link_url }}" class="browse-all-link" style="color: {{ block.settings.text_color }}; font-weight: {{ block.settings.font_weight }}; font-size: {{ block.settings.font_size }}px;">
+          <span class="link-text">{{ block.settings.link_text }}</span>
+          <span class="arrow-icon">→</span>
+        </a>
+      </div>
+    {% endif %}
+  {% endfor %}
 </div>
 
 <style>
@@ -237,37 +235,6 @@
   will-change: transform;
 }
 
-/* Arrow Link Styles */
-.arrow-link-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.arrow-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-}
-
-.arrow-link:hover {
-  opacity: 0.8;
-}
-
-.arrow-link:hover .arrow-icon {
-  transform: translateX(4px);
-}
-
-.arrow-icon {
-  transition: transform 0.3s ease;
-}
-
 /* Desktop Hover Effect */
 .desktop-gallery .image-card:hover .gallery-image {
   transform: scale(1.15);
@@ -320,6 +287,38 @@
   border-radius: 8px;
 }
 
+/* Browse All Link Styles */
+.browse-all-container {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.browse-all-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.browse-all-link:hover {
+  opacity: 0.8;
+}
+
+.link-text {
+  margin-right: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.arrow-icon {
+  font-size: 1.2em;
+  transition: transform 0.3s ease;
+}
+
+.browse-all-link:hover .arrow-icon {
+  transform: translateX(5px);
+}
+
 /* Responsive Switching */
 @media (min-width: 769px) {
   .mobile-gallery-container {
@@ -342,8 +341,8 @@
     padding: 0 16px;
   }
 
-  .arrow-link-container {
-    display: none;
+  .browse-all-link {
+    font-size: 14px !important;
   }
 }
 
