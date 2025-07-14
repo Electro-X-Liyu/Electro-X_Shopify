@@ -55,7 +55,7 @@
     {
       "name": "All Products",
       "category": "Image Gallery",
-      "blocks": []
+      "blocks": [] 
     }
   ]
 }
@@ -67,12 +67,12 @@
   {% endif %}
   
   <div class="gallery-container">
-    <!-- Desktop single-row layout -->
-    <div class="gallery-row desktop-gallery">
+    <!-- Desktop Grid Layout -->
+    <div class="gallery-grid desktop-gallery">
       {% for block in section.blocks %}
         {% if block.settings.image != blank %}
           {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-          <div class="image-card" style="--aspect-ratio: {{ aspect_ratio }};" {{ block.shopify_attributes }}>
+          <div class="image-card" style="--aspect-ratio: {{ aspect_ratio }}; flex: 0 0 calc({{ aspect_ratio }} * {{ section.settings.desktop_height }}px);" {{ block.shopify_attributes }}>
             <a href="{{ block.settings.link | default: '#' }}" class="image-link">
               <div class="image-wrapper" style="height: {{ section.settings.desktop_height }}px;">
                 <img src="{{ block.settings.image | img_url: '1200x' }}"
@@ -88,7 +88,7 @@
       {% endfor %}
     </div>
     
-    <!-- Mobile slider layout -->
+    <!-- Mobile Slider Layout -->
     <div class="mobile-gallery-container">
       <div class="mobile-slider-wrapper">
         <div class="mobile-slider">
@@ -143,23 +143,17 @@
   background-color: #333;
 }
 
-/* Desktop single-row styles */
-.gallery-row {
+/* Desktop Styles */
+.gallery-grid {
   display: flex;
-  flex-wrap: nowrap; /* Prevent wrapping to new line */
-  overflow-x: auto; /* Enable horizontal scrolling if needed */
-  -webkit-overflow-scrolling: touch;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 33px;
   width: 100%;
-  max-width: 100vw;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px;
   box-sizing: border-box;
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
-}
-
-.gallery-row::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome/Safari */
 }
 
 .image-card {
@@ -167,7 +161,6 @@
   transition: transform 0.3s ease;
   margin: 0;
   padding: 0;
-  flex: 0 0 auto; /* Prevent flex shrinking/growing */
 }
 
 .image-wrapper {
@@ -188,13 +181,13 @@
   will-change: transform;
 }
 
-/* Desktop hover effect */
+/* Desktop Hover Effect */
 .desktop-gallery .image-card:hover .gallery-image {
   transform: scale(1.15);
   z-index: 10;
 }
 
-/* Mobile slider styles */
+/* Mobile Styles */
 .mobile-gallery-container {
   display: none;
   width: 100%;
@@ -240,7 +233,7 @@
   border-radius: 8px;
 }
 
-/* Responsive switching */
+/* Responsive Switching */
 @media (min-width: 769px) {
   .mobile-gallery-container {
     display: none !important;
@@ -248,7 +241,7 @@
 }
 
 @media (max-width: 768px) {
-  .gallery-row {
+  .gallery-grid {
     display: none;
   }
   
