@@ -31,7 +31,6 @@
         "pip_enable": true,
         "pip_image": "shopify://shop_images/8.svg",
         "pip_width": 26,
-        "pip_width_mobile": 56,
         "pip_position": "center",
         "pip_position_horizontal": 50,
         "pip_position_vertical": 50,
@@ -42,7 +41,7 @@
         "pip_box_shadow": "",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
-        "show_text_box": false,
+        "show_text_box": true,
         "color_scheme": "scheme-3",
         "stack_images_on_mobile": false,
         "mobile_content_position": 0,
@@ -236,15 +235,10 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
-        "mobile_color_scheme": "",
-        "desktop_color_scheme": "",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
         "padding_top": 0,
-        "padding_bottom": 0,
-        "pc_margin_top": 20,
-        "pc_margin_bottom": 20,
-        "pc_border_width": 1,
-        "pc_border_color": "#e0e0e0",
-        "pc_padding": 15
+        "padding_bottom": 0
       }
     },
     "multirow_YY88cn": {
@@ -253,8 +247,6 @@
         "row_JR9pk9": {
           "type": "row",
           "settings": {
-            "image_desktop": "shopify://shop_images/201cut.jpg",
-            "image_mobile": "shopify://shop_images/131cut.png",
             "caption": "",
             "heading": "Natural Alkaline Water",
             "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p><p></p>",
@@ -299,15 +291,10 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "center",
-        "mobile_color_scheme": "scheme-1",
-        "desktop_color_scheme": "scheme-3",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
         "padding_top": 0,
-        "padding_bottom": 0,
-        "pc_margin_top": 20,
-        "pc_margin_bottom": 20,
-        "pc_border_width": 1,
-        "pc_border_color": "#e0e0e0",
-        "pc_padding": 0
+        "padding_bottom": 0
       }
     },
     "image_with_text_HT6mHr": {

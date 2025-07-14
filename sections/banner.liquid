@@ -10,6 +10,18 @@
         display: block;
       }
     }
+    @media screen and (max-width: 749px) {
+      #Banner-{{ section.id }}::before,
+      #Banner-{{ section.id }} .banner__media::before {
+        {% if section.settings.mobile_image != blank %}
+          padding-bottom: {{ 1 | divided_by: section.settings.mobile_image.aspect_ratio | times: 100 }}%;
+        {% else %}
+          padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+        {% endif %}
+        content: '';
+        display: block;
+      }
+    }
   {%- endstyle -%}
 {%- endif -%}
 
@@ -18,53 +30,82 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
   
-  /* PIP styles - Desktop only */
-  @media screen and (min-width: 750px) {
-    .banner__pip-wrapper {
-      position: absolute;
-      z-index: 2;
-      width: {{ section.settings.pip_width }}%;
-      {% if section.settings.pip_position == 'custom' %}
-        top: {{ section.settings.pip_position_vertical }}%;
-        left: {{ section.settings.pip_position_horizontal }}%;
-        transform: translate(-{{ section.settings.pip_position_horizontal }}%, -{{ section.settings.pip_position_vertical }}%);
-      {% elsif section.settings.pip_position == 'top-left' %}
-        top: 5%;
-        left: 5%;
-      {% elsif section.settings.pip_position == 'top-right' %}
-        top: 5%;
-        right: 5%;
-      {% elsif section.settings.pip_position == 'bottom-left' %}
-        bottom: 5%;
-        left: 5%;
-      {% elsif section.settings.pip_position == 'bottom-right' %}
-        bottom: 5%;
-        right: 5%;
-      {% elsif section.settings.pip_position == 'center' %}
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      {% endif %}
-    }
-    
-    .banner__pip {
-      position: relative;
-      width: 100%;
+  /* PIP styles */
+  .banner__pip-wrapper {
+    position: absolute;
+    z-index: 2;
+    width: {{ section.settings.pip_width }}%;
+    {% if section.settings.pip_position == 'custom' %}
+      top: {{ section.settings.pip_position_vertical }}%;
+      left: {{ section.settings.pip_position_horizontal }}%;
+      transform: translate(-{{ section.settings.pip_position_horizontal }}%, -{{ section.settings.pip_position_vertical }}%);
+    {% elsif section.settings.pip_position == 'top-left' %}
+      top: 5%;
+      left: 5%;
+    {% elsif section.settings.pip_position == 'top-right' %}
+      top: 5%;
+      right: 5%;
+    {% elsif section.settings.pip_position == 'bottom-left' %}
+      bottom: 5%;
+      left: 5%;
+    {% elsif section.settings.pip_position == 'bottom-right' %}
+      bottom: 5%;
+      right: 5%;
+    {% elsif section.settings.pip_position == 'center' %}
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    {% endif %}
+  }
+  
+  .banner__pip {
+    position: relative;
+    width: 100%;
+    {% if section.settings.pip_image != blank %}
       padding-bottom: {{ 1 | divided_by: section.settings.pip_image.aspect_ratio | times: 100 }}%;
-      border: {{ section.settings.pip_border_width }}px solid {{ section.settings.pip_border_color }};
-      border-radius: {{ section.settings.pip_border_radius }}px;
-      box-shadow: {{ section.settings.pip_box_shadow }};
-      overflow: hidden;
-      background-color: {{ section.settings.pip_background }};
+    {% endif %}
+    border: {{ section.settings.pip_border_width }}px solid {{ section.settings.pip_border_color }};
+    border-radius: {{ section.settings.pip_border_radius }}px;
+    box-shadow: {{ section.settings.pip_box_shadow }};
+    overflow: hidden;
+    background-color: {{ section.settings.pip_background }};
+  }
+  
+  .banner__pip-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  @media screen and (max-width: 749px) {
+    .banner__pip-wrapper {
+      width: {{ section.settings.pip_width_mobile }}% !important;
     }
     
-    .banner__pip-image {
-      position: absolute;
-      top: 0;
-      left: 0;
+    {% unless section.settings.use_container_on_mobile %}
+      .banner__content .content-container--full-width-mobile {
+        max-width: 100%;
+        padding: 0;
+      }
+    {% endunless %}
+    
+    .banner__content {
+      top: auto !important;
+      bottom: {{ 100 | minus: section.settings.mobile_content_position }}% !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      text-align: center;
+    }
+    
+    .banner__box {
+      display: inline-block;
+      text-align: center;
+      width: auto;
+      max-width: 90%;
     }
   }
 {%- endstyle -%}
@@ -122,11 +163,31 @@
           fetchpriority: fetch_priority
       }}
     </div>
-  {%- elsif section.settings.image_2 == blank -%}
+  {%- elsif section.settings.image_2 == blank and section.settings.mobile_image == blank -%}
     <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
     </div>
   {%- endif -%}
+  
+  {%- if section.settings.mobile_image != blank -%}
+    <div class="banner__media media mobile-only{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {%- liquid
+        assign mobile_image_height = section.settings.mobile_image.width | divided_by: section.settings.mobile_image.aspect_ratio
+      -%}
+      {{
+        section.settings.mobile_image
+        | image_url: width: 750
+        | image_tag:
+          width: section.settings.mobile_image.width,
+          height: mobile_image_height,
+          class: 'banner__media-image',
+          sizes: '100vw',
+          widths: '375, 550, 750',
+          fetchpriority: fetch_priority
+      }}
+    </div>
+  {%- endif -%}
+  
   {%- if section.settings.image_2 != blank -%}
     <div class="banner__media media{% if section.settings.image != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {%- liquid
@@ -229,14 +290,28 @@
   },
   "settings": [
     {
+      "type": "header",
+      "content": "Desktop Images"
+    },
+    {
       "type": "image_picker",
       "id": "image",
-      "label": "Main banner image"
+      "label": "Primary desktop image"
     },
     {
       "type": "image_picker",
       "id": "image_2",
-      "label": "Secondary banner image (optional)"
+      "label": "Secondary desktop image (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image (optional)",
+      "info": "Will replace desktop image on mobile if set"
     },
     {
       "type": "range",
@@ -318,8 +393,19 @@
       "max": 50,
       "step": 1,
       "unit": "%",
-      "label": "PIP width",
+      "label": "PIP width (desktop)",
       "default": 20,
+      "info": "Percentage of banner width"
+    },
+    {
+      "type": "range",
+      "id": "pip_width_mobile",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "PIP width (mobile)",
+      "default": 30,
       "info": "Percentage of banner width"
     },
     {
