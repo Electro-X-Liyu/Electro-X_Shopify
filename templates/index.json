@@ -50,6 +50,7 @@
       "blocks": {
         "text_fAPmC7": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "Clean Fuel. Pure Performance",
             "text_style": "body"
@@ -65,11 +66,10 @@
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
-        "mobile_content_position": "middle-center",
-        "mobile_content_alignment": "center",
         "show_text_box": true,
         "color_scheme": "",
         "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
         "show_text_below": true
       }
     },
