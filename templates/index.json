@@ -167,10 +167,10 @@
       "name": "All Product",
       "settings": {
         "title": "",
-        "browse_text": "BROWSE ALL PRODUCTS",
-        "browse_link": "",
         "desktop_height": 370,
-        "mobile_height": 290
+        "mobile_height": 290,
+        "browse_text": "BROWSE ALL PRODUCTS",
+        "browse_link": ""
       }
     },
     "rich_text_krjN6Y": {
@@ -179,32 +179,13 @@
         "heading_MFFgQG": {
           "type": "heading",
           "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
-          }
-        },
-        "text_qKepVx": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
-          }
-        },
-        "button_YKgDyn": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "heading": "<a href=\"/collections/all-products\" title=\"All Products\">BROWSE ALL PRODUCTS</a>",
+            "heading_size": "h2"
           }
         }
       },
       "block_order": [
-        "heading_MFFgQG",
-        "text_qKepVx",
-        "button_YKgDyn"
+        "heading_MFFgQG"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
