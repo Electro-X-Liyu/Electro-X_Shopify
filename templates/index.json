@@ -53,6 +53,8 @@
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "",
         "stack_images_on_mobile": true,
@@ -84,10 +86,10 @@
         "padding_bottom": 52
       }
     },
-    "pic_border_m7m9TP": {
-      "type": "PicBorder",
+    "all_products_qw33dH": {
+      "type": "All-Products",
       "blocks": {
-        "image_block_FxkFdq": {
+        "image_block_6bNCWw": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-1.png",
@@ -95,7 +97,7 @@
             "alt_text": ""
           }
         },
-        "image_block_ckz3La": {
+        "image_block_ErhQi3": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-2.png",
@@ -103,7 +105,7 @@
             "alt_text": ""
           }
         },
-        "image_block_mxWmxj": {
+        "image_block_nbzPdU": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-3.png",
@@ -111,7 +113,7 @@
             "alt_text": ""
           }
         },
-        "image_block_tfGeLi": {
+        "image_block_TqxTqt": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-4.png",
@@ -119,7 +121,7 @@
             "alt_text": ""
           }
         },
-        "image_block_gRrqgC": {
+        "image_block_cbz4pH": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-5.png",
@@ -127,15 +129,15 @@
             "alt_text": ""
           }
         },
-        "image_block_atKhtM": {
+        "image_block_Hb84Bc": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-6.png",
-            "link": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor",
+            "link": "shopify://products/plus-electrolyte-sports-drink-berry",
             "alt_text": ""
           }
         },
-        "image_block_zTNzTA": {
+        "image_block_y6iUcR": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-7.png",
@@ -143,7 +145,7 @@
             "alt_text": ""
           }
         },
-        "image_block_wKn4UQ": {
+        "image_block_wR6wDy": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-8.png",
@@ -153,47 +155,20 @@
         }
       },
       "block_order": [
-        "image_block_FxkFdq",
-        "image_block_ckz3La",
-        "image_block_mxWmxj",
-        "image_block_tfGeLi",
-        "image_block_gRrqgC",
-        "image_block_atKhtM",
-        "image_block_zTNzTA",
-        "image_block_wKn4UQ"
+        "image_block_6bNCWw",
+        "image_block_ErhQi3",
+        "image_block_nbzPdU",
+        "image_block_TqxTqt",
+        "image_block_cbz4pH",
+        "image_block_Hb84Bc",
+        "image_block_y6iUcR",
+        "image_block_wR6wDy"
       ],
-      "name": "All Products",
+      "name": "All Product",
       "settings": {
         "title": "",
-        "desktop_height": 330,
-        "mobile_height": 250
-      }
-    },
-    "rich_text_gUynad": {
-      "type": "rich-text",
-      "blocks": {
-        "button_76TWLm": {
-          "type": "button",
-          "settings": {
-            "button_label": "View All",
-            "button_link": "shopify://collections/all-products",
-            "button_style_secondary": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "button_76TWLm"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "desktop_height": 350,
+        "mobile_height": 290
       }
     },
     "multirow_8rDemJ": {
@@ -901,8 +876,7 @@
     "banner_89aeKn",
     "mobile_banner_kByUUW",
     "rich_text_waQVNB",
-    "pic_border_m7m9TP",
-    "rich_text_gUynad",
+    "all_products_qw33dH",
     "multirow_8rDemJ",
     "multirow_YY88cn",
     "image_with_text_HT6mHr",
