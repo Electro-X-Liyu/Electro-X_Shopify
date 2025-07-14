@@ -2,19 +2,9 @@
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
-    @media screen and (max-width: 749px) {
-      #Banner-{{ section.id }}::before,
-      #Banner-{{ section.id }} .banner__media::before,
-      #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
-        display: block;
-      }
-    }
-
     @media screen and (min-width: 750px) {
-      #Banner-{{ section.id }}::before,
-      #Banner-{{ section.id }} .banner__media::before {
+      #Desktop-PIP-banner-{{ section.id }}::before,
+      #Desktop-PIP-banner-{{ section.id }} .banner__media::before {
         padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
         content: '';
         display: block;
@@ -24,84 +14,64 @@
 {%- endif -%}
 
 {%- style -%}
-  #Banner-{{ section.id }}::after {
+  #Desktop-PIP-banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
   
-  /* PIP styles */
-  .banner__pip-wrapper {
-    position: absolute;
-    z-index: 2;
-    width: {{ section.settings.pip_width }}%;
-    {% if section.settings.pip_position == 'custom' %}
-      top: {{ section.settings.pip_position_vertical }}%;
-      left: {{ section.settings.pip_position_horizontal }}%;
-      transform: translate(-{{ section.settings.pip_position_horizontal }}%, -{{ section.settings.pip_position_vertical }}%);
-    {% elsif section.settings.pip_position == 'top-left' %}
-      top: 5%;
-      left: 5%;
-    {% elsif section.settings.pip_position == 'top-right' %}
-      top: 5%;
-      right: 5%;
-    {% elsif section.settings.pip_position == 'bottom-left' %}
-      bottom: 5%;
-      left: 5%;
-    {% elsif section.settings.pip_position == 'bottom-right' %}
-      bottom: 5%;
-      right: 5%;
-    {% elsif section.settings.pip_position == 'center' %}
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    {% endif %}
-  }
-  
-  .banner__pip {
-    position: relative;
-    width: 100%;
-    padding-bottom: {{ 1 | divided_by: section.settings.pip_image.aspect_ratio | times: 100 }}%;
-    border: {{ section.settings.pip_border_width }}px solid {{ section.settings.pip_border_color }};
-    border-radius: {{ section.settings.pip_border_radius }}px;
-    box-shadow: {{ section.settings.pip_box_shadow }};
-    overflow: hidden;
-    background-color: {{ section.settings.pip_background }};
-  }
-  
-  .banner__pip-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  @media screen and (max-width: 749px) {
+  /* PIP styles - desktop only */
+  @media screen and (min-width: 750px) {
     .banner__pip-wrapper {
-      width: {{ section.settings.pip_width_mobile }}% !important;
+      position: absolute;
+      z-index: 2;
+      width: {{ section.settings.pip_width }}%;
+      {% if section.settings.pip_position == 'custom' %}
+        top: {{ section.settings.pip_position_vertical }}%;
+        left: {{ section.settings.pip_position_horizontal }}%;
+        transform: translate(-{{ section.settings.pip_position_horizontal }}%, -{{ section.settings.pip_position_vertical }}%);
+      {% elsif section.settings.pip_position == 'top-left' %}
+        top: 5%;
+        left: 5%;
+      {% elsif section.settings.pip_position == 'top-right' %}
+        top: 5%;
+        right: 5%;
+      {% elsif section.settings.pip_position == 'bottom-left' %}
+        bottom: 5%;
+        left: 5%;
+      {% elsif section.settings.pip_position == 'bottom-right' %}
+        bottom: 5%;
+        right: 5%;
+      {% elsif section.settings.pip_position == 'center' %}
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      {% endif %}
     }
     
-    {% unless section.settings.use_container_on_mobile %}
-      .banner__content .content-container--full-width-mobile {
-        max-width: 100%;
-        padding: 0;
-      }
-    {% endunless %}
-    
-    .banner__content {
-      top: auto !important;
-      bottom: 25% !important;
-      left: 50% !important;
-      transform: translateX(-50%) !important;
+    .banner__pip {
+      position: relative;
       width: 100%;
-      text-align: center;
+      padding-bottom: {{ 1 | divided_by: section.settings.pip_image.aspect_ratio | times: 100 }}%;
+      border: {{ section.settings.pip_border_width }}px solid {{ section.settings.pip_border_color }};
+      border-radius: {{ section.settings.pip_border_radius }}px;
+      box-shadow: {{ section.settings.pip_box_shadow }};
+      overflow: hidden;
+      background-color: {{ section.settings.pip_background }};
     }
     
-    .banner__box {
-      display: inline-block;
-      text-align: center;
-      width: auto;
-      max-width: 90%;
+    .banner__pip-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  /* Hide entire section on mobile */
+  @media screen and (max-width: 749px) {
+    #Desktop-PIP-banner-{{ section.id }} {
+      display: none !important;
     }
   }
 {%- endstyle -%}
@@ -129,7 +99,7 @@
 -%}
 
 <div
-  id="Banner-{{ section.id }}"
+  id="Desktop-PIP-banner-{{ section.id }}"
   class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
   {%- if section.settings.image != blank -%}
@@ -258,7 +228,7 @@
 
 {% schema %}
 {
-  "name": "Banner with PIP",
+  "name": "Desktop PIP banner",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -355,19 +325,8 @@
       "max": 50,
       "step": 1,
       "unit": "%",
-      "label": "PIP width (desktop)",
+      "label": "PIP width",
       "default": 20,
-      "info": "Percentage of banner width"
-    },
-    {
-      "type": "range",
-      "id": "pip_width_mobile",
-      "min": 10,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "label": "PIP width (mobile)",
-      "default": 30,
       "info": "Percentage of banner width"
     },
     {
@@ -509,7 +468,7 @@
         }
       ],
       "default": "middle-center",
-      "label": "Content position (desktop)"
+      "label": "Content position"
     },
     {
       "type": "select",
@@ -529,7 +488,7 @@
         }
       ],
       "default": "center",
-      "label": "Content alignment (desktop)"
+      "label": "Content alignment"
     },
     {
       "type": "checkbox",
@@ -542,23 +501,6 @@
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "Mobile Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "stack_images_on_mobile",
-      "default": true,
-      "label": "Stack images on mobile"
-    },
-    {
-      "type": "checkbox",
-      "id": "use_container_on_mobile",
-      "default": true,
-      "label": "Use container for mobile content",
-      "info": "When disabled, content will span full width on mobile"
     }
   ],
   "blocks": [
@@ -682,7 +624,7 @@
   ],
   "presets": [
     {
-      "name": "Banner with PIP",
+      "name": "Desktop PIP banner",
       "blocks": [
         {
           "type": "heading"
