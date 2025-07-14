@@ -1,0 +1,56 @@
+<div class="smart-thirst-quenchers-section" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+  <div class="flex-container" style="display: flex; justify-content: space-between; align-items: center;">
+    <!-- Left side - Customizable text box -->
+    <div class="text-box" style="flex: 1;">
+      <h2 style="font-size: 24px; font-weight: bold; margin: 0;">{{ section.settings.heading | default: 'SMART THIRST-QUENCHERS' }}</h2>
+      <p style="margin: 10px 0 0 0;">{{ section.settings.subtext | default: 'Browse all products' }}</p>
+    </div>
+    
+    <!-- Right side - Arrow symbol -->
+    <div class="arrow-container" style="margin-left: 20px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(-45deg);">
+        <path d="M10 17L15 12L10 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Smart Thirst-Quenchers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "SMART THIRST-QUENCHERS"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Browse all products"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Smart Thirst-Quenchers",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  /* Optional: Add responsive behavior */
+  @media (max-width: 767px) {
+    .flex-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .arrow-container {
+      margin-left: 0;
+      margin-top: 15px;
+    }
+  }
+</style>
