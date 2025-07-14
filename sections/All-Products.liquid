@@ -1,23 +1,12 @@
 {% schema %}
 {
-  "name": "Product Gallery",
+  "name": "All Products",
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "SMART THIRST-QUENCHERS"
-    },
-    {
-      "type": "text",
-      "id": "browse_text",
-      "label": "Browse Text",
-      "default": "BROWSE ALL PRODUCTS"
-    },
-    {
-      "type": "url",
-      "id": "browse_link",
-      "label": "Browse Link"
+      "default": "Product Gallery"
     },
     {
       "type": "range",
@@ -36,6 +25,17 @@
       "max": 500,
       "step": 10,
       "default": 300
+    },
+    {
+      "type": "text",
+      "id": "browse_text",
+      "label": "Browse Button Text",
+      "default": "BROWSE ALL PRODUCTS"
+    },
+    {
+      "type": "url",
+      "id": "browse_link",
+      "label": "Browse Button Link"
     }
   ],
   "blocks": [
@@ -64,7 +64,7 @@
   ],
   "presets": [
     {
-      "name": "Product Gallery",
+      "name": "All Products",
       "category": "Image Gallery",
       "blocks": [] 
     }
@@ -72,22 +72,10 @@
 }
 {% endschema %}
 
-<div class="product-gallery-section" data-section-id="{{ section.id }}">
-  <div class="section-header">
-    {% if section.settings.title != blank %}
-      <h2 class="section-title">{{ section.settings.title }}</h2>
-    {% endif %}
-    
-    {% if section.settings.browse_text != blank and section.settings.browse_link != blank %}
-      <a href="{{ section.settings.browse_link }}" class="browse-all">
-        <span>{{ section.settings.browse_text }}</span>
-        <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </a>
-    {% endif %}
-  </div>
+<div class="all-product-gallery" data-section-id="{{ section.id }}">
+  {% if section.settings.title != blank %}
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+  {% endif %}
   
   <div class="gallery-container">
     <!-- Desktop Grid Layout -->
@@ -136,55 +124,42 @@
       </div>
     </div>
   </div>
+
+  <!-- Browse All Products Section -->
+  <div class="browse-all-container">
+    <a href="{{ section.settings.browse_link }}" class="browse-all-link">
+      <span class="browse-text">{{ section.settings.browse_text }}</span>
+      <span class="browse-arrow">→</span>
+    </a>
+  </div>
 </div>
 
 <style>
-.product-gallery-section {
+.all-product-gallery {
   width: 100%;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1440px;
-  margin: 0 auto 30px;
-  padding: 0 20px;
-}
-
 .section-title {
-  font-size: 32px;
-  font-weight: 500;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
   color: #333;
-  margin: 0;
+  position: relative;
+  padding-bottom: 15px;
 }
 
-.browse-all {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #333;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: color 0.3s ease;
-}
-
-.browse-all:hover {
-  color: #000;
-}
-
-.browse-all:hover .arrow-icon {
-  transform: translateX(4px);
-}
-
-.arrow-icon {
-  transition: transform 0.3s ease;
+.section-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background-color: #333;
 }
 
 /* Desktop Styles */
@@ -277,6 +252,41 @@
   border-radius: 8px;
 }
 
+/* Browse All Products Section */
+.browse-all-container {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.browse-all-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.browse-all-link:hover {
+  color: #000;
+}
+
+.browse-text {
+  margin-right: 8px;
+}
+
+.browse-arrow {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.browse-all-link:hover .browse-arrow {
+  transform: translateX(4px);
+}
+
 /* Responsive Switching */
 @media (min-width: 769px) {
   .mobile-gallery-container {
@@ -293,21 +303,21 @@
     display: block;
   }
   
-  .section-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 0 16px;
-  }
-  
   .section-title {
     font-size: 24px;
+    margin-bottom: 20px;
+    padding: 0 16px;
+  }
+
+  .browse-all-container {
+    margin: 30px 0;
   }
 }
 
 @media (max-width: 480px) {
   .section-title {
     font-size: 20px;
+    padding: 0 12px;
   }
   
   .mobile-slide {
@@ -317,6 +327,10 @@
   
   .mobile-slider-wrapper {
     padding: 0 6px;
+  }
+
+  .browse-all-link {
+    font-size: 14px;
   }
 }
 </style>
