@@ -1,12 +1,23 @@
 {% schema %}
 {
-  "name": "All Products",
+  "name": "Product Gallery",
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "Product Gallery"
+      "default": "SMART THIRST-QUENCHERS"
+    },
+    {
+      "type": "text",
+      "id": "browse_text",
+      "label": "Browse Text",
+      "default": "BROWSE ALL PRODUCTS"
+    },
+    {
+      "type": "url",
+      "id": "browse_link",
+      "label": "Browse Link"
     },
     {
       "type": "range",
@@ -53,7 +64,7 @@
   ],
   "presets": [
     {
-      "name": "All Products",
+      "name": "Product Gallery",
       "category": "Image Gallery",
       "blocks": [] 
     }
@@ -61,10 +72,22 @@
 }
 {% endschema %}
 
-<div class="all-product-gallery" data-section-id="{{ section.id }}">
-  {% if section.settings.title != blank %}
-    <h2 class="section-title">{{ section.settings.title }}</h2>
-  {% endif %}
+<div class="product-gallery-section" data-section-id="{{ section.id }}">
+  <div class="section-header">
+    {% if section.settings.title != blank %}
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+    {% endif %}
+    
+    {% if section.settings.browse_text != blank and section.settings.browse_link != blank %}
+      <a href="{{ section.settings.browse_link }}" class="browse-all">
+        <span>{{ section.settings.browse_text }}</span>
+        <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    {% endif %}
+  </div>
   
   <div class="gallery-container">
     <!-- Desktop Grid Layout -->
@@ -116,31 +139,52 @@
 </div>
 
 <style>
-.all-product-gallery {
+.product-gallery-section {
   width: 100%;
   margin: 0 auto;
-  padding: 0;
+  padding: 40px 0;
   box-sizing: border-box;
 }
 
-.section-title {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 28px;
-  color: #333;
-  position: relative;
-  padding-bottom: 15px;
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto 30px;
+  padding: 0 20px;
 }
 
-.section-title:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 2px;
-  background-color: #333;
+.section-title {
+  font-size: 32px;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+.browse-all {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.browse-all:hover {
+  color: #000;
+}
+
+.browse-all:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
 }
 
 /* Desktop Styles */
@@ -249,17 +293,21 @@
     display: block;
   }
   
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 0 16px;
+  }
+  
   .section-title {
     font-size: 24px;
-    margin-bottom: 20px;
-    padding: 0 16px;
   }
 }
 
 @media (max-width: 480px) {
   .section-title {
     font-size: 20px;
-    padding: 0 12px;
   }
   
   .mobile-slide {
