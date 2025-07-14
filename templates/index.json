@@ -191,7 +191,6 @@
         "row_BjnPfP": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/201cut.jpg",
             "caption": "",
             "heading": "Natural Alkaline Water",
             "text": "<p><strong>The First-Ever Naturally Alkaline Water sourced from the mineral-rich </strong>volcanic<strong> springs of China's Northern Border</strong></p><p></p><p></p><ul><li>pH level of 8.8 and above</li><li>Naturally Alkaline Spring Water</li><li>100% Recyclable PET</li></ul>",
@@ -202,7 +201,6 @@
         "row_M7qA3D": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/211cut.jpg",
             "caption": "",
             "heading": "ELECTRO X Sports Drink",
             "text": "<p><strong>Premium Hydration, Refined Taste</strong></p><p>Crafted for athletes and fitness enthusiasts, ELECTRO X offers a premium hydration choice with our additive-free sports drink, blended with premium tea leaves and globally sourced juices for a clean balanced taste. Fuel your workout, naturally.</p><p>500mL</p><p><strong>Flavors: </strong>Jasmine Green Grapes | Pineapple Matte | Mixed Berry Flavors</p><p><strong>Key Ingredients:</strong> Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p>",
@@ -213,7 +211,6 @@
         "row_tQjND8": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/221cut.jpg",
             "caption": "",
             "heading": "Electrolyte Liquid Concentrate",
             "text": "<p><strong>The First-Ever Naturally Alkaline Water sourced from the mineral-rich </strong>volcanic<strong> springs of China's Northern Border</strong></p><ul><li>pH level of 8.8 and above</li><li>Naturally Alkaline Spring Water</li><li>100% Recyclable PET</li></ul>",
@@ -239,8 +236,6 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
-        "section_color_scheme": "scheme-3",
-        "row_color_scheme": "scheme-3",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -251,10 +246,9 @@
         "row_JR9pk9": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/131cut.png",
             "caption": "",
             "heading": "Natural Alkaline Water",
-            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
+            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p><p></p>",
             "button_label": "LEARN MORE",
             "button_link": "shopify://products/natural-alkaline-water"
           }
@@ -262,10 +256,9 @@
         "row_mEaLgd": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/111cut.png",
             "caption": "",
             "heading": "ELECTRO X Sports Drink",
-            "text": "<p><strong>Premium Hydration, Refined Taste</strong></p><p></p><p><strong>Key Ingredients:</strong> Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p>",
+            "text": "<p><strong>Premium Hydration, Refined Taste</strong></p><p><strong>Key Ingredients:</strong> Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p><p></p>",
             "button_label": "LEARN MORE",
             "button_link": "shopify://collections/electrolyte-sports-drink"
           }
@@ -273,10 +266,9 @@
         "row_XPwxLD": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/11cut_3bb7705f-422b-43af-80ed-c1d91036dfb2.png",
             "caption": "",
             "heading": "Electrolyte Liquid Concentrate",
-            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
+            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p><p></p>",
             "button_label": "LEARN MORE",
             "button_link": "shopify://collections/electrolyte-liquid-concentrate"
           }
@@ -298,8 +290,6 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "center",
-        "section_color_scheme": "scheme-1",
-        "row_color_scheme": "scheme-1",
         "padding_top": 0,
         "padding_bottom": 0
       }
