@@ -152,6 +152,15 @@
             "link": "shopify://products/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade",
             "alt_text": ""
           }
+        },
+        "arrow_link_nCCGx9": {
+          "type": "arrow_link",
+          "settings": {
+            "link_text": "BROWSE ALL PRODUCTS",
+            "link_url": "",
+            "text_color": "#000000",
+            "text_size": "large"
+          }
         }
       },
       "block_order": [
@@ -162,16 +171,14 @@
         "image_block_cbz4pH",
         "image_block_Hb84Bc",
         "image_block_y6iUcR",
-        "image_block_wR6wDy"
+        "image_block_wR6wDy",
+        "arrow_link_nCCGx9"
       ],
       "name": "All Product",
       "settings": {
         "title": "",
         "desktop_height": 370,
-        "mobile_height": 290,
-        "button_text": "VIEW ALL PRODUCTS",
-        "button_link": "",
-        "button_color": "#000000"
+        "mobile_height": 290
       }
     },
     "rich_text_krjN6Y": {
@@ -188,6 +195,7 @@
       "block_order": [
         "heading_MFFgQG"
       ],
+      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
@@ -252,7 +260,9 @@
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
         "section_color_scheme": "",
-        "row_color_scheme": ""
+        "row_color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "multirow_YY88cn": {
