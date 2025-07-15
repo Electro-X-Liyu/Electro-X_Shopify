@@ -627,6 +627,98 @@
         "show_text_below": false
       }
     },
+    "mixed_multicolumn_QERq8y": {
+      "type": "mixed-multicolumn",
+      "blocks": {
+        "column_Gh3tRE": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9cut.png",
+            "image_link": "shopify://blogs/sports-sponsorship-1/hyrox-beijing-shanghai",
+            "title": "<a href=\"/blogs/sports-sponsorship-1/hyrox-beijing-shanghai\" title=\"2024/2025 HYROX CHINA\">2024/2025 HYROX CHINA</a>",
+            "text": "",
+            "link_label": "Learn More",
+            "link": "shopify://blogs/sports-sponsorship-1/hyrox-beijing-shanghai"
+          }
+        },
+        "column_F4d6Aq": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/10cut.png",
+            "image_link": "shopify://blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming",
+            "title": "<a href=\"/blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming\" title=\"2025 Ironman Shanghai\">2025 Ironman Shanghai</a>",
+            "text": "",
+            "link_label": "Learn More",
+            "link": "shopify://blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming"
+          }
+        },
+        "column_GDnbc6": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/11cut.png",
+            "image_link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open",
+            "title": "<a href=\"/blogs/sports-sponsorship-1/wta-500-niingbo-open\" title=\"NINGBO OPEN WTA 500\">NINGBO OPEN WTA 500</a>",
+            "text": "",
+            "link_label": "Learn More",
+            "link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open"
+          }
+        }
+      },
+      "block_order": [
+        "column_Gh3tRE",
+        "column_F4d6Aq",
+        "column_GDnbc6"
+      ],
+      "settings": {
+        "title": "",
+        "title_color": "#000000",
+        "title_size": 24,
+        "title_margin_top": 0,
+        "title_margin_bottom": 0,
+        "heading_size": "h1",
+        "block_title_color": "#333333",
+        "block_title_size": 18,
+        "block_title_margin_top": 0,
+        "block_title_margin_bottom": 0,
+        "block_text_color": "#666666",
+        "block_text_size": 14,
+        "block_text_margin_top": 0,
+        "block_text_margin_bottom": 0,
+        "block_link_color": "#8d8d8d",
+        "block_link_size": 14,
+        "block_link_margin_top": 0,
+        "block_link_margin_bottom": 0,
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "VIEW ALL",
+        "button_link": "shopify://blogs/sports-sponsorship-1",
+        "button_bg_color": "#000000",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 4,
+        "button_padding_top": 12,
+        "button_padding_right": 24,
+        "button_padding_bottom": 12,
+        "button_padding_left": 24,
+        "button_margin_top": 0,
+        "button_margin_bottom": 0,
+        "button_text_size": 16,
+        "mobile_button_text_size": 14,
+        "mobile_button_padding_top": 8,
+        "mobile_button_padding_right": 20,
+        "mobile_button_padding_bottom": 8,
+        "mobile_button_padding_left": 20,
+        "columns_desktop": 6,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "mobile_column_width": 85,
+        "mobile_column_gap": 18,
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "mixed_multicolumn_gy7jer": {
       "type": "mixed-multicolumn",
       "blocks": {
@@ -846,6 +938,7 @@
     "mixed_multicolumn_DFedAG",
     "banner_BM3DgA",
     "mobile_banner_PGtzXU",
+    "mixed_multicolumn_QERq8y",
     "mixed_multicolumn_gy7jer",
     "multicolumn_mBC8fB",
     "rich_text_xBeWBr"
