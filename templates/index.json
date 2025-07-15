@@ -665,7 +665,7 @@
         "block_link_margin_top": 0,
         "block_link_margin_bottom": 0,
         "image_width": "full",
-        "image_ratio": "adapt",
+        "image_ratio": "portrait",
         "button_label": "LEARN MORE",
         "button_link": "shopify://pages/community-ambassadors",
         "button_bg_color": "#000000",
