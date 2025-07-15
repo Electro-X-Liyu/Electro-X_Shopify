@@ -538,11 +538,23 @@
             "text": "Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.",
             "text_style": "subtitle"
           }
+        },
+        "buttons_zpGtgC": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Learn More",
+            "button_link_1": "shopify://pages/community-ambassadors",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
         }
       },
       "block_order": [
         "heading_kUWXUr",
-        "text_iN6bLB"
+        "text_iN6bLB",
+        "buttons_zpGtgC"
       ],
       "settings": {
         "image": "shopify://shop_images/1.jpg",
@@ -582,11 +594,23 @@
             "text": "Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.",
             "text_style": "body"
           }
+        },
+        "buttons_VP3jMh": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Learn More",
+            "button_link_1": "shopify://pages/community-ambassadors",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
         }
       },
       "block_order": [
         "heading_aCxhfq",
-        "text_aDmUXx"
+        "text_aDmUXx",
+        "buttons_VP3jMh"
       ],
       "name": "Mobile banner",
       "settings": {
@@ -666,7 +690,7 @@
         "block_link_margin_bottom": 0,
         "image_width": "full",
         "image_ratio": "portrait",
-        "button_label": "LEARN MORE",
+        "button_label": "",
         "button_link": "shopify://pages/community-ambassadors",
         "button_bg_color": "#000000",
         "button_text_color": "#ffffff",
@@ -777,42 +801,6 @@
         "padding_bottom": 0
       }
     },
-    "rich_text_9YYbxe": {
-      "type": "rich-text",
-      "blocks": {
-        "text_PyKczQ": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "<p>Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.</p>"
-          }
-        },
-        "button_adMbQD": {
-          "type": "button",
-          "settings": {
-            "button_label": "LEARN MORE",
-            "button_link": "shopify://pages/community-ambassadors",
-            "button_style_secondary": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "text_PyKczQ",
-        "button_adMbQD"
-      ],
-      "disabled": true,
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 0,
-        "padding_bottom": 36
-      }
-    },
     "rich_text_xBeWBr": {
       "type": "rich-text",
       "blocks": {
@@ -860,7 +848,6 @@
     "mobile_banner_PGtzXU",
     "mixed_multicolumn_gy7jer",
     "multicolumn_mBC8fB",
-    "rich_text_9YYbxe",
     "rich_text_xBeWBr"
   ]
 }
