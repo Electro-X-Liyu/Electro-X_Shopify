@@ -1,118 +1,112 @@
 {%- style -%}
   .banner-footer {
-    padding: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px 0 {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px {{ section.settings.padding_right | times: 0.75 | round: 0 }}px {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px {{ section.settings.padding_left | times: 0.75 | round: 0 }}px;
     background-color: {{ section.settings.background_color }};
-    color: {{ section.settings.text_color }};
     text-align: center;
   }
 
-  .banner-footer__content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
   .banner-footer__heading {
-    font-size: {{ section.settings.heading_size | times: 0.8 }}px;
-    margin-bottom: 1.5rem;
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size }}px;
+    margin-bottom: {{ section.settings.heading_margin_bottom }}px;
     font-weight: {{ section.settings.heading_weight }};
   }
 
-  .banner-footer__text {
-    font-size: {{ section.settings.text_size }}px;
+  .banner-footer__subheading {
+    color: {{ section.settings.subheading_color }};
+    font-size: {{ section.settings.subheading_size }}px;
+    margin-bottom: {{ section.settings.subheading_margin_bottom }}px;
     max-width: 800px;
-    margin: 0 auto 2rem;
-    line-height: 1.5;
-  }
-
-  .banner-footer__items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .banner-footer__item {
-    flex: 1;
-    min-width: 200px;
-    max-width: 300px;
-  }
-
-  .banner-footer__item-icon {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 1rem;
-  }
-
-  .banner-footer__item-heading {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-  }
-
-  .banner-footer__item-text {
-    font-size: 0.9rem;
-    line-height: 1.4;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .banner-footer__button {
-    margin-top: 2rem;
-    display: inline-block;
-    padding: 12px 24px;
     background-color: {{ section.settings.button_background_color }};
     color: {{ section.settings.button_text_color }};
+    padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
+    border-radius: {{ section.settings.button_border_radius }}px;
+    font-size: {{ section.settings.button_font_size }}px;
+    font-weight: {{ section.settings.button_font_weight }};
+    display: inline-block;
+    margin-top: {{ section.settings.button_margin_top }}px;
     text-decoration: none;
-    border-radius: 4px;
-    font-weight: 600;
     transition: all 0.3s ease;
+    border: {{ section.settings.button_border_width }}px solid {{ section.settings.button_border_color }};
   }
 
   .banner-footer__button:hover {
     background-color: {{ section.settings.button_hover_background_color }};
     color: {{ section.settings.button_hover_text_color }};
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .banner-footer__products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: {{ section.settings.grid_gap }}px;
+    margin-top: {{ section.settings.grid_margin_top }}px;
+  }
+
+  .banner-footer__product {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .banner-footer__product-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+
+  .banner-footer__product-title {
+    color: {{ section.settings.product_title_color }};
+    font-size: {{ section.settings.product_title_size }}px;
+    margin-bottom: 10px;
+  }
+
+  .banner-footer__product-price {
+    color: {{ section.settings.product_price_color }};
+    font-size: {{ section.settings.product_price_size }}px;
+    font-weight: bold;
   }
 
   @media screen and (min-width: 750px) {
     .banner-footer {
-      padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
-    }
-
-    .banner-footer__heading {
-      font-size: {{ section.settings.heading_size }}px;
+      padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
     }
   }
 {%- endstyle -%}
 
-<div class="banner-footer">
-  <div class="banner-footer__content">
-    {%- if section.settings.heading != blank -%}
-      <h2 class="banner-footer__heading">{{ section.settings.heading }}</h2>
-    {%- endif -%}
-
-    {%- if section.settings.text != blank -%}
-      <div class="banner-footer__text">{{ section.settings.text }}</div>
-    {%- endif -%}
-
-    <div class="banner-footer__items">
-      {%- for block in section.blocks -%}
-        <div class="banner-footer__item" {{ block.shopify_attributes }}>
-          {%- if block.settings.icon != blank -%}
-            <img src="{{ block.settings.icon | img_url: '120x120' }}" alt="{{ block.settings.heading }}" class="banner-footer__item-icon" loading="lazy">
+<div class="banner-footer page-width">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="banner-footer__heading">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+  
+  {%- if section.settings.subheading != blank -%}
+    <div class="banner-footer__subheading">{{ section.settings.subheading }}</div>
+  {%- endif -%}
+  
+  {%- if section.settings.button_label != blank -%}
+    <a href="{{ section.settings.button_link }}" class="banner-footer__button">
+      {{ section.settings.button_label }}
+    </a>
+  {%- endif -%}
+  
+  {%- if section.settings.show_products -%}
+    <div class="banner-footer__products">
+      {%- for product in section.settings.product_list -%}
+        <div class="banner-footer__product">
+          {%- if product.featured_image -%}
+            <img src="{{ product.featured_image | img_url: '300x' }}" alt="{{ product.title }}" class="banner-footer__product-image">
           {%- endif -%}
-          <h3 class="banner-footer__item-heading">{{ block.settings.heading }}</h3>
-          <p class="banner-footer__item-text">{{ block.settings.text }}</p>
+          <h3 class="banner-footer__product-title">{{ product.title }}</h3>
+          <div class="banner-footer__product-price">{{ product.price | money }}</div>
         </div>
       {%- endfor -%}
     </div>
-
-    {%- if section.settings.button_label != blank -%}
-      <a href="{{ section.settings.button_link }}" class="banner-footer__button">
-        {{ section.settings.button_label | escape }}
-      </a>
-    {%- endif -%}
-  </div>
+  {%- endif -%}
 </div>
 
 {% schema %}
@@ -122,102 +116,52 @@
   "class": "section",
   "settings": [
     {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
       "type": "text",
       "id": "heading",
-      "default": "Smart Thirst-Quenchers",
-      "label": "Heading"
-    },
-    {
-      "type": "range",
-      "id": "heading_size",
-      "min": 20,
-      "max": 60,
-      "step": 1,
-      "unit": "px",
-      "label": "Heading size",
-      "default": 36
-    },
-    {
-      "type": "select",
-      "id": "heading_weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Normal"
-        },
-        {
-          "value": "600",
-          "label": "Semi-bold"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "600",
-      "label": "Heading weight"
+      "label": "Heading",
+      "default": "SMART THIRST-QUENCHERS"
     },
     {
       "type": "richtext",
-      "id": "text",
-      "default": "<p>Describe your product benefits or key features here.</p>",
-      "label": "Text"
-    },
-    {
-      "type": "range",
-      "id": "text_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Text size",
-      "default": 16
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Discover our range of refreshing and nutritious drinks</p>"
     },
     {
       "type": "text",
       "id": "button_label",
-      "default": "Shop Now",
-      "label": "Button label"
+      "label": "Button Label",
+      "default": "BROWSE ALL PRODUCTS"
     },
     {
       "type": "url",
       "id": "button_link",
-      "label": "Button link"
+      "label": "Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_products",
+      "label": "Show Products",
+      "default": true
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products",
+      "limit": 4
+    },
+    {
+      "type": "header",
+      "content": "Style Settings"
     },
     {
       "type": "color",
       "id": "background_color",
-      "label": "Background color",
-      "default": "#f5f5f5"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text color",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "button_background_color",
-      "label": "Button background color",
-      "default": "#1a1a1a"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button text color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "button_hover_background_color",
-      "label": "Button hover background",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "button_hover_text_color",
-      "label": "Button hover text",
+      "label": "Background Color",
       "default": "#ffffff"
     },
     {
@@ -227,7 +171,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Padding top",
+      "label": "Padding Top",
       "default": 60
     },
     {
@@ -237,61 +181,266 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Padding bottom",
+      "label": "Padding Bottom",
       "default": 60
-    }
-  ],
-  "blocks": [
+    },
     {
-      "type": "feature",
-      "name": "Feature",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "icon",
-          "label": "Icon"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "default": "Feature heading",
-          "label": "Heading"
-        },
-        {
-          "type": "text",
-          "id": "text",
-          "default": "Describe this feature of your product.",
-          "label": "Text"
-        }
-      ]
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Heading Style"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Margin Bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "heading_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Heading Font Weight",
+      "default": 700
+    },
+    {
+      "type": "header",
+      "content": "Subheading Style"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading Font Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "subheading_margin_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading Margin Bottom",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Button Style"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background_color",
+      "label": "Button Hover Background Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Vertical Padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Horizontal Padding",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Button Font Weight",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "button_margin_top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Margin Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Product Grid Style"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Grid Gap",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "grid_margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Grid Margin Top",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Product Style"
+    },
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "label": "Product Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "product_title_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Product Title Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "product_price_color",
+      "label": "Product Price Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "product_price_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Product Price Size",
+      "default": 16
     }
   ],
   "presets": [
     {
       "name": "Banner Footer",
-      "blocks": [
-        {
-          "type": "feature",
-          "settings": {
-            "heading": "Hydration",
-            "text": "Perfect balance of electrolytes for optimal hydration."
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "heading": "Vitamins",
-            "text": "Essential vitamins to support your daily needs."
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "heading": "Natural",
-            "text": "Made with natural ingredients, no artificial additives."
-          }
-        }
-      ]
+      "category": "Custom Sections"
     }
   ]
 }
