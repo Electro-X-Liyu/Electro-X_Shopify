@@ -1,224 +1,339 @@
 {%- style -%}
-  .banner-footer {
-    padding: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px {{ section.settings.padding_right | times: 0.75 | round: 0 }}px {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px {{ section.settings.padding_left | times: 0.75 | round: 0 }}px;
+  .smart-thirst-section {
+    padding: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px {{ section.settings.padding_left }}px;
     background-color: {{ section.settings.background_color }};
-    color: {{ section.settings.text_color }};
-    text-align: {{ section.settings.text_alignment }};
   }
-
-  .banner-footer__heading {
-    font-size: {{ section.settings.heading_size }}px;
-    margin-bottom: {{ section.settings.heading_spacing }}px;
-    font-weight: {{ section.settings.heading_weight }};
-  }
-
-  .banner-footer__content {
-    max-width: {{ section.settings.content_width }}px;
-    margin: 0 auto;
-    font-size: {{ section.settings.text_size }}px;
-    line-height: 1.5;
-  }
-
-  .banner-footer__button {
-    margin-top: {{ section.settings.button_spacing }}px;
-    display: inline-block;
-    padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
-    background-color: {{ section.settings.button_background_color }};
-    color: {{ section.settings.button_text_color }};
-    border-radius: {{ section.settings.button_border_radius }}px;
-    text-decoration: none;
-    font-weight: {{ section.settings.button_font_weight }};
-    transition: all 0.3s ease;
-  }
-
-  .banner-footer__button:hover {
-    background-color: {{ section.settings.button_hover_background_color }};
-    color: {{ section.settings.button_hover_text_color }};
-    transform: translateY(-2px);
-  }
-
+  
   @media screen and (min-width: 750px) {
-    .banner-footer {
+    .smart-thirst-section {
       padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
     }
   }
+  
+  .smart-thirst-container {
+    max-width: {{ section.settings.content_width }}px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .smart-thirst-title {
+    color: {{ section.settings.title_color }};
+    font-size: {{ section.settings.title_size }}px;
+    margin-bottom: {{ section.settings.title_spacing }}px;
+  }
+  
+  .smart-thirst-subtitle {
+    color: {{ section.settings.subtitle_color }};
+    font-size: {{ section.settings.subtitle_size }}px;
+    margin-bottom: {{ section.settings.subtitle_spacing }}px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .smart-thirst-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: {{ section.settings.grid_gap }}px;
+    margin-top: {{ section.settings.grid_spacing }}px;
+  }
+  
+  .smart-thirst-card {
+    background: {{ section.settings.card_background }};
+    border-radius: {{ section.settings.card_radius }}px;
+    padding: {{ section.settings.card_padding }}px;
+    transition: transform 0.3s ease;
+  }
+  
+  .smart-thirst-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .smart-thirst-card-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  
+  .smart-thirst-card-title {
+    color: {{ section.settings.card_title_color }};
+    font-size: {{ section.settings.card_title_size }}px;
+    margin-bottom: 10px;
+  }
+  
+  .smart-thirst-card-text {
+    color: {{ section.settings.card_text_color }};
+    font-size: {{ section.settings.card_text_size }}px;
+  }
+  
+  .smart-thirst-button {
+    margin-top: {{ section.settings.button_spacing }}px;
+    display: inline-block;
+    padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
+    background-color: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    border-radius: {{ section.settings.button_radius }}px;
+    text-decoration: none;
+    font-weight: {{ section.settings.button_weight }};
+    transition: all 0.3s ease;
+  }
+  
+  .smart-thirst-button:hover {
+    background-color: {{ section.settings.button_hover_background }};
+    color: {{ section.settings.button_hover_text_color }};
+  }
 {%- endstyle -%}
 
-<div class="banner-footer page-width">
-  {%- if section.settings.heading != blank -%}
-    <h2 class="banner-footer__heading">{{ section.settings.heading }}</h2>
-  {%- endif -%}
-  
-  {%- if section.settings.text != blank -%}
-    <div class="banner-footer__content">{{ section.settings.text }}</div>
-  {%- endif -%}
-  
-  {%- if section.settings.button_label != blank -%}
-    <a href="{{ section.settings.button_link }}" class="banner-footer__button">
-      {{ section.settings.button_label }}
-    </a>
-  {%- endif -%}
+<div class="smart-thirst-section">
+  <div class="smart-thirst-container">
+    {%- if section.settings.title != blank -%}
+      <h2 class="smart-thirst-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+    
+    {%- if section.settings.subtitle != blank -%}
+      <div class="smart-thirst-subtitle">{{ section.settings.subtitle }}</div>
+    {%- endif -%}
+    
+    <div class="smart-thirst-grid">
+      {%- for block in section.blocks -%}
+        <div class="smart-thirst-card">
+          {%- if block.settings.image != blank -%}
+            <img src="{{ block.settings.image | img_url: '500x' }}" alt="{{ block.settings.title }}" class="smart-thirst-card-image">
+          {%- endif -%}
+          
+          {%- if block.settings.title != blank -%}
+            <h3 class="smart-thirst-card-title">{{ block.settings.title }}</h3>
+          {%- endif -%}
+          
+          {%- if block.settings.text != blank -%}
+            <div class="smart-thirst-card-text">{{ block.settings.text }}</div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+    
+    {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
+      <a href="{{ section.settings.button_link }}" class="smart-thirst-button">{{ section.settings.button_text }}</a>
+    {%- endif -%}
+  </div>
 </div>
 
 {% schema %}
 {
-  "name": "Banner Footer",
+  "name": "Smart Thirst-Quenchers",
   "tag": "section",
   "class": "section",
   "settings": [
     {
       "type": "text",
-      "id": "heading",
-      "default": "Smart Thirst-Quenchers",
-      "label": "Heading"
+      "id": "title",
+      "label": "Title",
+      "default": "SMART THIRST-QUENCHERS"
     },
     {
       "type": "richtext",
-      "id": "text",
-      "default": "<p>Discover our refreshing and nutritious drinks designed to quench your thirst the smart way.</p>",
-      "label": "Text"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "default": "Shop Now",
-      "label": "Button label"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button link"
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "<p>Discover our range of intelligent hydration solutions</p>"
     },
     {
       "type": "header",
-      "content": "Style"
+      "content": "Styling"
     },
     {
       "type": "color",
       "id": "background_color",
-      "label": "Background color",
-      "default": "#f5f5f5"
+      "label": "Background Color",
+      "default": "#ffffff"
     },
     {
       "type": "color",
-      "id": "text_color",
-      "label": "Text color",
-      "default": "#333333"
-    },
-    {
-      "type": "select",
-      "id": "text_alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "center",
-      "label": "Text alignment"
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
     },
     {
       "type": "range",
-      "id": "content_width",
-      "min": 400,
-      "max": 1200,
-      "step": 50,
-      "unit": "px",
-      "label": "Content max width",
-      "default": 800
-    },
-    {
-      "type": "header",
-      "content": "Heading style"
-    },
-    {
-      "type": "range",
-      "id": "heading_size",
+      "id": "title_size",
       "min": 12,
       "max": 72,
       "step": 1,
       "unit": "px",
-      "label": "Heading size",
+      "label": "Title Font Size",
       "default": 36
     },
     {
       "type": "range",
-      "id": "heading_weight",
-      "min": 300,
-      "max": 900,
-      "step": 100,
-      "label": "Heading font weight",
-      "default": 700
-    },
-    {
-      "type": "range",
-      "id": "heading_spacing",
+      "id": "title_spacing",
       "min": 0,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Heading bottom spacing",
+      "label": "Title Bottom Spacing",
       "default": 20
     },
     {
-      "type": "header",
-      "content": "Text style"
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#555555"
     },
     {
       "type": "range",
-      "id": "text_size",
+      "id": "subtitle_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle Font Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "subtitle_spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle Bottom Spacing",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Content Max Width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Grid Gap",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "grid_spacing",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Grid Top Spacing",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card Background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Border Radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Padding",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Title Font Size",
+      "default": 22
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card Text Color",
+      "default": "#555555"
+    },
+    {
+      "type": "range",
+      "id": "card_text_size",
       "min": 12,
       "max": 24,
       "step": 1,
       "unit": "px",
-      "label": "Text size",
+      "label": "Card Text Font Size",
       "default": 16
     },
     {
       "type": "header",
-      "content": "Button style"
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "SHOP ALL"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
     },
     {
       "type": "color",
-      "id": "button_background_color",
-      "label": "Button background",
+      "id": "button_background",
+      "label": "Button Background",
       "default": "#000000"
     },
     {
       "type": "color",
       "id": "button_text_color",
-      "label": "Button text",
+      "label": "Button Text Color",
       "default": "#ffffff"
     },
     {
       "type": "color",
-      "id": "button_hover_background_color",
-      "label": "Button hover background",
+      "id": "button_hover_background",
+      "label": "Button Hover Background",
       "default": "#333333"
     },
     {
       "type": "color",
       "id": "button_hover_text_color",
-      "label": "Button hover text",
+      "label": "Button Hover Text Color",
       "default": "#ffffff"
     },
     {
       "type": "range",
-      "id": "button_border_radius",
+      "id": "button_radius",
       "min": 0,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Button border radius",
-      "default": 4
+      "label": "Button Border Radius",
+      "default": 25
     },
     {
       "type": "range",
@@ -227,41 +342,41 @@
       "max": 30,
       "step": 1,
       "unit": "px",
-      "label": "Button padding vertical",
+      "label": "Button Vertical Padding",
       "default": 12
     },
     {
       "type": "range",
       "id": "button_padding_horizontal",
       "min": 10,
-      "max": 50,
+      "max": 60,
       "step": 1,
       "unit": "px",
-      "label": "Button padding horizontal",
-      "default": 24
+      "label": "Button Horizontal Padding",
+      "default": 30
     },
     {
       "type": "range",
-      "id": "button_font_weight",
+      "id": "button_weight",
       "min": 300,
       "max": 900,
       "step": 100,
-      "label": "Button font weight",
+      "label": "Button Font Weight",
       "default": 600
     },
     {
       "type": "range",
       "id": "button_spacing",
       "min": 0,
-      "max": 50,
-      "step": 1,
+      "max": 100,
+      "step": 5,
       "unit": "px",
-      "label": "Button top spacing",
-      "default": 30
+      "label": "Button Top Spacing",
+      "default": 40
     },
     {
       "type": "header",
-      "content": "Section padding"
+      "content": "Section Padding"
     },
     {
       "type": "range",
@@ -270,18 +385,8 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Padding top",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "padding_right",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding right",
-      "default": 20
+      "label": "Top Padding",
+      "default": 36
     },
     {
       "type": "range",
@@ -290,8 +395,8 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Padding bottom",
-      "default": 60
+      "label": "Bottom Padding",
+      "default": 36
     },
     {
       "type": "range",
@@ -300,14 +405,71 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Padding left",
+      "label": "Left Padding",
       "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Right Padding",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Product Name"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>Product description goes here</p>"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Banner Footer",
-      "category": "Custom"
+      "name": "Smart Thirst-Quenchers",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "title": "Energy Boost",
+            "text": "<p>Perfect for when you need an extra kick</p>"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "title": "Hydration Plus",
+            "text": "<p>Stay refreshed all day long</p>"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "title": "Recovery",
+            "text": "<p>Help your body bounce back</p>"
+          }
+        }
+      ]
     }
   ]
 }
