@@ -1,112 +1,110 @@
+{%- comment -%}
+  Banner Footer Section
+  Inspired by VitaminWell's "BROWSE ALL PRODUCTS" module
+  Customizable for Shopify Dawn theme
+{%- endcomment -%}
+
 {%- style -%}
   .banner-footer {
     padding: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px {{ section.settings.padding_right | times: 0.75 | round: 0 }}px {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px {{ section.settings.padding_left | times: 0.75 | round: 0 }}px;
     background-color: {{ section.settings.background_color }};
     text-align: center;
+    margin: 0 auto;
+    max-width: {{ section.settings.max_width }}px;
   }
 
   .banner-footer__heading {
     color: {{ section.settings.heading_color }};
-    font-size: {{ section.settings.heading_size }}px;
-    margin-bottom: {{ section.settings.heading_margin_bottom }}px;
+    font-size: {{ section.settings.heading_size | times: 0.75 | round: 0 }}px;
     font-weight: {{ section.settings.heading_weight }};
+    margin-bottom: {{ section.settings.heading_spacing }}px;
   }
 
-  .banner-footer__subheading {
-    color: {{ section.settings.subheading_color }};
-    font-size: {{ section.settings.subheading_size }}px;
-    margin-bottom: {{ section.settings.subheading_margin_bottom }}px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .banner-footer__button {
-    background-color: {{ section.settings.button_background_color }};
-    color: {{ section.settings.button_text_color }};
-    padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
-    border-radius: {{ section.settings.button_border_radius }}px;
-    font-size: {{ section.settings.button_font_size }}px;
-    font-weight: {{ section.settings.button_font_weight }};
-    display: inline-block;
-    margin-top: {{ section.settings.button_margin_top }}px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border: {{ section.settings.button_border_width }}px solid {{ section.settings.button_border_color }};
-  }
-
-  .banner-footer__button:hover {
-    background-color: {{ section.settings.button_hover_background_color }};
-    color: {{ section.settings.button_hover_text_color }};
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
-
-  .banner-footer__products {
+  .banner-footer__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: {{ section.settings.grid_gap }}px;
-    margin-top: {{ section.settings.grid_margin_top }}px;
+    margin: 0 auto;
+    max-width: {{ section.settings.grid_max_width }}px;
   }
 
-  .banner-footer__product {
-    text-align: center;
-    padding: 20px;
+  .banner-footer__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
   }
 
-  .banner-footer__product-image {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 15px;
+  .banner-footer__item:hover {
+    transform: translateY(-5px);
   }
 
-  .banner-footer__product-title {
-    color: {{ section.settings.product_title_color }};
-    font-size: {{ section.settings.product_title_size }}px;
-    margin-bottom: 10px;
+  .banner-footer__image-container {
+    width: {{ section.settings.image_size }}px;
+    height: {{ section.settings.image_size }}px;
+    margin-bottom: {{ section.settings.image_spacing }}px;
+    overflow: hidden;
+    border-radius: {{ section.settings.image_border_radius }}%;
   }
 
-  .banner-footer__product-price {
-    color: {{ section.settings.product_price_color }};
-    font-size: {{ section.settings.product_price_size }}px;
-    font-weight: bold;
+  .banner-footer__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .banner-footer__text {
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.text_size }}px;
+    font-weight: {{ section.settings.text_weight }};
   }
 
   @media screen and (min-width: 750px) {
     .banner-footer {
       padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
     }
+
+    .banner-footer__heading {
+      font-size: {{ section.settings.heading_size }}px;
+    }
   }
 {%- endstyle -%}
 
-<div class="banner-footer page-width">
+<div class="banner-footer color-{{ section.settings.color_scheme }}">
   {%- if section.settings.heading != blank -%}
     <h2 class="banner-footer__heading">{{ section.settings.heading }}</h2>
   {%- endif -%}
-  
-  {%- if section.settings.subheading != blank -%}
-    <div class="banner-footer__subheading">{{ section.settings.subheading }}</div>
-  {%- endif -%}
-  
-  {%- if section.settings.button_label != blank -%}
-    <a href="{{ section.settings.button_link }}" class="banner-footer__button">
-      {{ section.settings.button_label }}
-    </a>
-  {%- endif -%}
-  
-  {%- if section.settings.show_products -%}
-    <div class="banner-footer__products">
-      {%- for product in section.settings.product_list -%}
-        <div class="banner-footer__product">
-          {%- if product.featured_image -%}
-            <img src="{{ product.featured_image | img_url: '300x' }}" alt="{{ product.title }}" class="banner-footer__product-image">
-          {%- endif -%}
-          <h3 class="banner-footer__product-title">{{ product.title }}</h3>
-          <div class="banner-footer__product-price">{{ product.price | money }}</div>
-        </div>
-      {%- endfor -%}
-    </div>
-  {%- endif -%}
+
+  <div class="banner-footer__grid">
+    {%- for block in section.blocks -%}
+      <a href="{{ block.settings.link }}" class="banner-footer__item" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+          <div class="banner-footer__image-container">
+            {%- assign image = block.settings.image -%}
+            <img
+              srcset="{%- if image.width >= 165 -%}{{ image | image_url: width: 165 }} 165w,{%- endif -%}
+                {%- if image.width >= 330 -%}{{ image | image_url: width: 330 }} 330w,{%- endif -%}
+                {%- if image.width >= 535 -%}{{ image | image_url: width: 535 }} 535w,{%- endif -%}
+                {%- if image.width >= 750 -%}{{ image | image_url: width: 750 }} 750w,{%- endif -%}
+                {%- if image.width >= 1000 -%}{{ image | image_url: width: 1000 }} 1000w,{%- endif -%}
+                {%- if image.width >= 1500 -%}{{ image | image_url: width: 1500 }} 1500w,{%- endif -%}"
+              src="{{ image | image_url: width: 1500 }}"
+              sizes="(min-width: 750px) calc(100vw - 10rem), 100vw"
+              alt="{{ image.alt | escape }}"
+              loading="lazy"
+              width="{{ image.width }}"
+              height="{{ image.height }}"
+              class="banner-footer__image"
+            >
+          </div>
+        {%- endif -%}
+        {%- if block.settings.text != blank -%}
+          <span class="banner-footer__text">{{ block.settings.text }}</span>
+        {%- endif -%}
+      </a>
+    {%- endfor -%}
+  </div>
 </div>
 
 {% schema %}
@@ -116,53 +114,166 @@
   "class": "section",
   "settings": [
     {
-      "type": "header",
-      "content": "Content Settings"
-    },
-    {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
-      "default": "SMART THIRST-QUENCHERS"
+      "default": "BROWSE ALL PRODUCTS",
+      "label": "Heading"
     },
     {
-      "type": "richtext",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "<p>Discover our range of refreshing and nutritious drinks</p>"
+      "type": "range",
+      "id": "heading_size",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 24
     },
     {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button Label",
-      "default": "BROWSE ALL PRODUCTS"
+      "type": "select",
+      "id": "heading_weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600",
+      "label": "Heading weight"
     },
     {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button Link"
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
     },
     {
-      "type": "checkbox",
-      "id": "show_products",
-      "label": "Show Products",
-      "default": true
-    },
-    {
-      "type": "product_list",
-      "id": "product_list",
-      "label": "Products",
-      "limit": 4
-    },
-    {
-      "type": "header",
-      "content": "Style Settings"
+      "type": "range",
+      "id": "heading_spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading bottom spacing",
+      "default": 20
     },
     {
       "type": "color",
       "id": "background_color",
-      "label": "Background Color",
+      "label": "Background color",
       "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Section max width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "grid_max_width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Grid max width",
+      "default": 1000
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Grid gap",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "min": 50,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Image size",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "image_spacing",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Image bottom spacing",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Image border radius",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "text_weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500",
+      "label": "Text weight"
     },
     {
       "type": "range",
@@ -171,8 +282,8 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
-      "default": 60
+      "label": "Padding top",
+      "default": 36
     },
     {
       "type": "range",
@@ -181,8 +292,8 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
-      "default": 60
+      "label": "Padding bottom",
+      "default": 36
     },
     {
       "type": "range",
@@ -191,7 +302,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Padding Left",
+      "label": "Padding left",
       "default": 20
     },
     {
@@ -201,246 +312,69 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Padding Right",
+      "label": "Padding right",
       "default": 20
-    },
+    }
+  ],
+  "blocks": [
     {
-      "type": "header",
-      "content": "Heading Style"
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading Color",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "heading_size",
-      "min": 12,
-      "max": 60,
-      "step": 1,
-      "unit": "px",
-      "label": "Heading Font Size",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "heading_margin_bottom",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Heading Margin Bottom",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "heading_weight",
-      "min": 100,
-      "max": 900,
-      "step": 100,
-      "label": "Heading Font Weight",
-      "default": 700
-    },
-    {
-      "type": "header",
-      "content": "Subheading Style"
-    },
-    {
-      "type": "color",
-      "id": "subheading_color",
-      "label": "Subheading Color",
-      "default": "#666666"
-    },
-    {
-      "type": "range",
-      "id": "subheading_size",
-      "min": 12,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "label": "Subheading Font Size",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "subheading_margin_bottom",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Subheading Margin Bottom",
-      "default": 30
-    },
-    {
-      "type": "header",
-      "content": "Button Style"
-    },
-    {
-      "type": "color",
-      "id": "button_background_color",
-      "label": "Button Background Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button Text Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "button_hover_background_color",
-      "label": "Button Hover Background Color",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "button_hover_text_color",
-      "label": "Button Hover Text Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "range",
-      "id": "button_padding_vertical",
-      "min": 8,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Button Vertical Padding",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "button_padding_horizontal",
-      "min": 16,
-      "max": 60,
-      "step": 1,
-      "unit": "px",
-      "label": "Button Horizontal Padding",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "button_border_radius",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Button Border Radius",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "button_font_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Button Font Size",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "button_font_weight",
-      "min": 100,
-      "max": 900,
-      "step": 100,
-      "label": "Button Font Weight",
-      "default": 600
-    },
-    {
-      "type": "range",
-      "id": "button_margin_top",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Button Margin Top",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "button_border_width",
-      "min": 0,
-      "max": 5,
-      "step": 1,
-      "unit": "px",
-      "label": "Button Border Width",
-      "default": 0
-    },
-    {
-      "type": "color",
-      "id": "button_border_color",
-      "label": "Button Border Color",
-      "default": "#000000"
-    },
-    {
-      "type": "header",
-      "content": "Product Grid Style"
-    },
-    {
-      "type": "range",
-      "id": "grid_gap",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Grid Gap",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "grid_margin_top",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Grid Margin Top",
-      "default": 40
-    },
-    {
-      "type": "header",
-      "content": "Product Style"
-    },
-    {
-      "type": "color",
-      "id": "product_title_color",
-      "label": "Product Title Color",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "product_title_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Product Title Size",
-      "default": 16
-    },
-    {
-      "type": "color",
-      "id": "product_price_color",
-      "label": "Product Price Color",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "product_price_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Product Price Size",
-      "default": 16
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Product category"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
     }
   ],
   "presets": [
     {
       "name": "Banner Footer",
-      "category": "Custom Sections"
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "text": "Energy"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Immunity"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Relax"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Sport"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Kids"
+          }
+        }
+      ]
     }
   ]
 }
