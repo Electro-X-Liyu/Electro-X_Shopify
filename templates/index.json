@@ -53,6 +53,7 @@
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
+        "text_container_width": "default",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
@@ -393,6 +394,7 @@
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
+        "text_container_width": "800",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
@@ -409,7 +411,7 @@
           "type": "heading",
           "settings": {
             "heading": "ELECTRO X Sports Drink",
-            "heading_size": "h2"
+            "heading_size": "h1"
           }
         },
         "text_dHm7Px": {
@@ -442,6 +444,7 @@
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
+        "text_container_width": "800",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
@@ -458,7 +461,7 @@
           "type": "heading",
           "settings": {
             "heading": "Electrolyte Liquid Concentrate",
-            "heading_size": "h2"
+            "heading_size": "h1"
           }
         },
         "text_XgJgcq": {
@@ -485,12 +488,13 @@
         "text_XgJgcq",
         "buttons_CFTwHX"
       ],
-      "name": "ELECTRO X Sports Drink",
+      "name": "Electrolyte Liquid Concentrate",
       "settings": {
         "image": "shopify://shop_images/11cut_3bb7705f-422b-43af-80ed-c1d91036dfb2.png",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
+        "text_container_width": "default",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
@@ -792,6 +796,7 @@
         "image_overlay_opacity": 40,
         "image_height": "adapt",
         "image_behavior": "none",
+        "text_container_width": "default",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
