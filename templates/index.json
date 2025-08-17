@@ -92,6 +92,7 @@
       "blocks": {
         "image_block_6bNCWw": {
           "type": "image_block",
+          "name": "Natural Alkaline Water 380mL",
           "settings": {
             "image": "shopify://shop_images/banner-1.png",
             "link": "shopify://products/natural-alkaline-water",
@@ -100,6 +101,7 @@
         },
         "image_block_ErhQi3": {
           "type": "image_block",
+          "name": "Natural Alkaline Water 580mL",
           "settings": {
             "image": "shopify://shop_images/banner-2.png",
             "link": "shopify://products/natural-alkaline-water",
@@ -108,6 +110,7 @@
         },
         "image_block_nbzPdU": {
           "type": "image_block",
+          "name": "Natural Alkaline Water 1L",
           "settings": {
             "image": "shopify://shop_images/banner-3.png",
             "link": "shopify://products/natural-alkaline-water",
@@ -116,6 +119,7 @@
         },
         "image_block_TqxTqt": {
           "type": "image_block",
+          "name": "PLUS - BCAA Sports Drink",
           "settings": {
             "image": "shopify://shop_images/banner-4.png",
             "link": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
@@ -124,6 +128,7 @@
         },
         "image_block_cbz4pH": {
           "type": "image_block",
+          "name": "PLUS - Electrolyte Sports Drink",
           "settings": {
             "image": "shopify://shop_images/banner-5.png",
             "link": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor",
@@ -132,6 +137,7 @@
         },
         "image_block_Hb84Bc": {
           "type": "image_block",
+          "name": "SLIM - Electrolyte Sports Drink",
           "settings": {
             "image": "shopify://shop_images/banner-6.png",
             "link": "shopify://products/plus-electrolyte-sports-drink-berry",
@@ -140,6 +146,7 @@
         },
         "image_block_y6iUcR": {
           "type": "image_block",
+          "name": "PLUS - Electrolyte Liquid Concentrate",
           "settings": {
             "image": "shopify://shop_images/banner-7.png",
             "link": "shopify://products/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
@@ -148,6 +155,7 @@
         },
         "image_block_wR6wDy": {
           "type": "image_block",
+          "name": "SLIM - Electrolyte Liquid Concentrate",
           "settings": {
             "image": "shopify://shop_images/banner-8.png",
             "link": "shopify://products/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade",
@@ -156,6 +164,7 @@
         },
         "browse_link_FigUqT": {
           "type": "browse_link",
+          "name": "Browse All",
           "settings": {
             "link_text": "BROWSE ALL PRODUCTS",
             "link_url": "shopify://collections/all",
