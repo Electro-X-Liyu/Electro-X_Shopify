@@ -19,14 +19,11 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
   
-  /* 文本框宽度样式 */
+  /* 文本框宽度设置 */
   #MobileBanner-{{ section.id }} .banner__box {
-    {%- if section.settings.text_box_width != 'auto' -%}
-      width: {{ section.settings.text_box_width }}px;
-      max-width: 100%;
-    {%- endif -%}
-    {%- if section.settings.text_box_max_width != 'none' -%}
-      max-width: {{ section.settings.text_box_max_width }}px;
+    {%- if section.settings.text_box_width != blank -%}
+      max-width: {{ section.settings.text_box_width }}px;
+      width: 100%;
     {%- endif -%}
   }
   
@@ -205,6 +202,17 @@
       "default": 0
     },
     {
+      "type": "range",
+      "id": "text_box_width",
+      "min": 200,
+      "max": 760,
+      "step": 10,
+      "unit": "px",
+      "label": "Text box width",
+      "default": 400,
+      "info": "Maximum width of the text box (200-760px)"
+    },
+    {
       "type": "select",
       "id": "image_height",
       "options": [
@@ -251,66 +259,6 @@
       ],
       "default": "none",
       "label": "t:sections.all.animation.image_behavior.label"
-    },
-    {
-      "type": "header",
-      "content": "文本框设置"
-    },
-    {
-      "type": "select",
-      "id": "text_box_width",
-      "label": "文本框宽度",
-      "options": [
-        {
-          "value": "auto",
-          "label": "自动"
-        },
-        {
-          "value": "200",
-          "label": "小 (200px)"
-        },
-        {
-          "value": "300",
-          "label": "中 (300px)"
-        },
-        {
-          "value": "400",
-          "label": "大 (400px)"
-        },
-        {
-          "value": "500",
-          "label": "特大 (500px)"
-        }
-      ],
-      "default": "auto"
-    },
-    {
-      "type": "select",
-      "id": "text_box_max_width",
-      "label": "文本框最大宽度",
-      "options": [
-        {
-          "value": "none",
-          "label": "无限制"
-        },
-        {
-          "value": "300",
-          "label": "小 (300px)"
-        },
-        {
-          "value": "400",
-          "label": "中 (400px)"
-        },
-        {
-          "value": "500",
-          "label": "大 (500px)"
-        },
-        {
-          "value": "600",
-          "label": "特大 (600px)"
-        }
-      ],
-      "default": "none"
     },
     {
       "type": "header",
