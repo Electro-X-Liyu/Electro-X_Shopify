@@ -19,6 +19,14 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
   
+  /* Text container width */
+  #MobileBanner-{{ section.id }} .banner__box {
+    {% if section.settings.text_container_width != 'default' %}
+      width: {{ section.settings.text_container_width }}px;
+      max-width: 100%;
+    {% endif %}
+  }
+  
   /* Hide on desktop */
   @media screen and (min-width: 750px) {
     #MobileBanner-{{ section.id }} {
@@ -114,7 +122,7 @@
     </div>
   {%- endif -%}
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
+    <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient" style="{% if section.settings.text_container_width != 'default' %}width: {{ section.settings.text_container_width }}px; max-width: 100%;{% endif %}">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
@@ -240,6 +248,47 @@
       ],
       "default": "none",
       "label": "t:sections.all.animation.image_behavior.label"
+    },
+    {
+      "type": "header",
+      "content": "Text container settings"
+    },
+    {
+      "type": "select",
+      "id": "text_container_width",
+      "label": "Text container width",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default width"
+        },
+        {
+          "value": "300",
+          "label": "300px"
+        },
+        {
+          "value": "400",
+          "label": "400px"
+        },
+        {
+          "value": "500",
+          "label": "500px"
+        },
+        {
+          "value": "600",
+          "label": "600px"
+        },
+        {
+          "value": "700",
+          "label": "700px"
+        },
+        {
+          "value": "800",
+          "label": "800px"
+        }
+      ],
+      "default": "default",
+      "info": "Select width for the text container. Choose 'Default width' to use theme's default styling."
     },
     {
       "type": "header",
