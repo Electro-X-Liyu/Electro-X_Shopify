@@ -19,19 +19,19 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
   
-  /* 文本框宽度设置 */
-  #MobileBanner-{{ section.id }} .banner__box {
-    {%- if section.settings.text_box_width != blank -%}
-      max-width: {{ section.settings.text_box_width }}px;
-      width: 100%;
-    {%- endif -%}
-  }
-  
   /* Hide on desktop */
   @media screen and (min-width: 750px) {
     #MobileBanner-{{ section.id }} {
       display: none !important;
     }
+  }
+  
+  /* Custom text box width */
+  #MobileBanner-{{ section.id }} .banner__box {
+    {%- if section.settings.text_box_width != blank -%}
+      max-width: {{ section.settings.text_box_width }}px;
+      width: 100%;
+    {%- endif -%}
   }
 {%- endstyle -%}
 
@@ -205,12 +205,12 @@
       "type": "range",
       "id": "text_box_width",
       "min": 200,
-      "max": 760,
+      "max": 960,
       "step": 10,
       "unit": "px",
       "label": "Text box width",
-      "default": 400,
-      "info": "Maximum width of the text box (200-760px)"
+      "default": 500,
+      "info": "Maximum width of the text box (200-960px)"
     },
     {
       "type": "select",
