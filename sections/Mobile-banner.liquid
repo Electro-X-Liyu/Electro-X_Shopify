@@ -25,14 +25,6 @@
       display: none !important;
     }
   }
-  
-  /* Custom text box width */
-  #MobileBanner-{{ section.id }} .banner__box {
-    {%- if section.settings.text_box_width != blank -%}
-      max-width: {{ section.settings.text_box_width }}px;
-      width: 100%;
-    {%- endif -%}
-  }
 {%- endstyle -%}
 
 {%- liquid
@@ -200,17 +192,6 @@
       "unit": "%",
       "label": "t:sections.image-banner.settings.image_overlay_opacity.label",
       "default": 0
-    },
-    {
-      "type": "range",
-      "id": "text_box_width",
-      "min": 200,
-      "max": 960,
-      "step": 10,
-      "unit": "px",
-      "label": "Text box width",
-      "default": 500,
-      "info": "Maximum width of the text box (200-960px)"
     },
     {
       "type": "select",
