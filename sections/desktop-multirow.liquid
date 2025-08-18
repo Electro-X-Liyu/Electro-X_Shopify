@@ -20,17 +20,37 @@
     }
   }
 
-  /* Remove all gaps and margins */
+  /* Full width modifications */
   .desktop-multirow .multirow__inner {
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     row-gap: 0 !important;
   }
+  
   .desktop-multirow .image-with-text__grid {
     margin: 0 !important;
     gap: 0 !important;
+    max-width: 100% !important;
   }
+  
   .desktop-multirow .image-with-text__media {
     margin: 0 !important;
     padding: 0 !important;
+  }
+  
+  .desktop-multirow .image-with-text__media-item {
+    width: 100%;
+  }
+  
+  /* Adjust grid columns for full width */
+  @media screen and (min-width: 750px) {
+    .desktop-multirow .image-with-text__grid.grid--2-col-tablet {
+      grid-template-columns: 1fr 1fr !important;
+    }
+    .desktop-multirow .image-with-text__grid.grid--3-col-tablet {
+      grid-template-columns: 1fr 1fr 1fr !important;
+    }
   }
 {%- endstyle -%}
 
@@ -63,7 +83,7 @@
 -%}
 
 <div class="desktop-multirow multirow section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
-  <div class="multirow__inner page-width">
+  <div class="multirow__inner">
     {%- for block in section.blocks -%}
       <div
         class="image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -79,8 +99,8 @@
             >
               {%- if block.settings.image != blank -%}
                 {%- capture sizes -%}
-                  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
-                  (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+                  (min-width: {{ settings.page_width }}px) 50vw,
+                  (min-width: 750px) 50vw, calc(100vw - 30px)
                 {%- endcapture -%}
                 {{
                   block.settings.image
