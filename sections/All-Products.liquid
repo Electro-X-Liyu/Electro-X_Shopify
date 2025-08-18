@@ -287,41 +287,53 @@
   border-radius: 8px;
 }
 
+/* Browse All Link Styles */
 .browse-all-container {
   text-align: center;
   margin: 40px 0;
-  width: 100%;
-  display: flex;
-  justify-content: center; /* 确保容器内内容居中 */
 }
 
 .browse-all-link {
   display: inline-flex;
-  align-items: center;
+  align-items: center; /* 确保垂直居中 */
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative; /* 为绝对定位的箭头提供参考 */
-  padding-right: 20px; /* 为箭头留出空间 */
+  padding-right: 8px; /* 为拉伸的箭头预留空间 */
+}
+
+.browse-all-link:hover {
+  opacity: 0.8;
 }
 
 .link-text {
-  margin-right: 8px; /* 调整文字和箭头间距 */
+  margin-right: 8px; /* 调整与箭头的间距 */
   text-transform: uppercase;
   letter-spacing: 0.05em;
   position: relative;
+  z-index: 1; /* 确保文字在箭头上层 */
 }
 
 .arrow-icon {
-  position: absolute; /* 改为绝对定位 */
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%) scaleX(8); /* 初始状态不拉伸 */
+  position: relative;
+  display: inline-block;
   transition: transform 0.3s ease;
-  font-size: 1.2em;
+  width: 16px; /* 设置箭头原始宽度 */
+  text-align: center; /* 保持箭头居中 */
 }
 
 .browse-all-link:hover .arrow-icon {
-  transform: translateY(-50%) scaleX(1.5) translateX(2px); /* 悬停时轻微拉伸 */
+  transform: scaleX(8); /* 横向拉伸8倍 */
+  transform-origin: left center; /* 从左侧拉伸并保持垂直居中 */
+}
+
+/* 确保拉伸后的箭头不会影响文字位置 */
+.browse-all-link::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 16px; /* 与原始箭头宽度相同 */
+  height: 100%;
 }
 
 /* Responsive Switching */
