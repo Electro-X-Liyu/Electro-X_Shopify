@@ -493,7 +493,7 @@
         "heading_meqA8e": {
           "type": "heading",
           "settings": {
-            "heading": "Sports Sponsorship",
+            "heading": "<strong>Sports Sponsorship</strong>",
             "heading_size": "h1"
           }
         }
@@ -632,7 +632,7 @@
         "heading_kUWXUr": {
           "type": "heading",
           "settings": {
-            "heading": "COMMUNITY",
+            "heading": "<strong>Community</strong>",
             "heading_size": "h1"
           }
         },
@@ -688,7 +688,7 @@
         "heading_aCxhfq": {
           "type": "heading",
           "settings": {
-            "heading": "COMMUNITY",
+            "heading": "<strong>COMMUNITY</strong>",
             "heading_size": "h1"
           }
         },
@@ -830,7 +830,7 @@
         "heading_Uy4fmC": {
           "type": "heading",
           "settings": {
-            "heading": "ABOUT US",
+            "heading": "<strong>About Us</strong>",
             "heading_size": "h1"
           }
         },
