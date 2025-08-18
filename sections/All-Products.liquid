@@ -287,10 +287,12 @@
   border-radius: 8px;
 }
 
-/* Browse All Link Styles */
+/* Browse All Link Styles - MODIFIED */
 .browse-all-container {
   text-align: center;
   margin: 40px 0;
+  position: relative;
+  left: -128px; /* This moves the entire container left by 128px */
 }
 
 .browse-all-link {
@@ -347,6 +349,10 @@
   .browse-all-link {
     font-size: 14px !important;
   }
+  
+  .browse-all-container {
+    left: -64px; /* Half the desktop offset for mobile */
+  }
 }
 
 @media (max-width: 480px) {
@@ -362,6 +368,10 @@
   
   .mobile-slider-wrapper {
     padding: 0 6px;
+  }
+  
+  .browse-all-container {
+    left: -32px; /* Quarter the desktop offset for small mobile */
   }
 }
 </style>
