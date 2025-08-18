@@ -291,15 +291,18 @@
 .browse-all-container {
   text-align: center;
   margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .browse-all-link {
   display: inline-flex;
-  align-items: center; /* 确保垂直居中 */
+  align-items: center;
   text-decoration: none;
   transition: all 0.3s ease;
-  position: relative; /* 为箭头定位提供参考 */
-  padding-right: 16px; /* 为拉伸的箭头预留空间 */
+  position: relative;
 }
 
 .browse-all-link:hover {
@@ -307,24 +310,22 @@
 }
 
 .link-text {
-  margin-right: 8px; /* 调整文字与箭头的间距 */
+  margin-right: 8px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .arrow-icon {
-  position: absolute;
-  right: 0;
-  font-size: 1.2em;
-  width: 96px; /* 原始箭头宽度 */
-  text-align: right;
+  display: inline-block;
+  width: 128px;
+  text-align: left;
   transition: transform 0.3s ease;
-  transform: scaleX(1); /* 初始状态 */
+  position: relative;
+  left: 0;
 }
 
 .browse-all-link:hover .arrow-icon {
-  transform: scaleX(1); /* 悬停时拉伸1倍 */
-  right: -56px; /* 补偿拉伸后的位置 (16px * (8-1) / 2) */
+  transform: translateX(4px);
 }
 
 /* Responsive Switching */
@@ -352,6 +353,10 @@
   .browse-all-link {
     font-size: 14px !important;
   }
+  
+  .arrow-icon {
+    width: 96px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -367,6 +372,10 @@
   
   .mobile-slider-wrapper {
     padding: 0 6px;
+  }
+  
+  .arrow-icon {
+    width: 64px;
   }
 }
 </style>
