@@ -39,18 +39,10 @@
     padding: 0 !important;
   }
 
-  .desktop-multirow .image-with-text__media-item {
-    width: 100%;
-  }
-  
-  /* Adjust grid columns for full width */
-  @media screen and (min-width: 750px) {
-    .desktop-multirow .image-with-text__grid.grid--2-col-tablet {
-      grid-template-columns: 1fr 1fr !important;
-    }
-    .desktop-multirow .image-with-text__grid.grid--3-col-tablet {
-      grid-template-columns: 1fr 1fr 1fr !important;
-    }
+  /* 可选：图片拉伸 */
+  .image-with-text__media img {
+    width: 100% !important;
+    height: auto;
   }
 {%- endstyle -%}
 
