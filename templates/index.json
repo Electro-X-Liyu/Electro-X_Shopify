@@ -165,6 +165,7 @@
         "browse_link_FigUqT": {
           "type": "browse_link",
           "name": "Browse All",
+          "disabled": true,
           "settings": {
             "link_text": "BROWSE ALL PRODUCTS",
             "link_url": "shopify://collections/all",

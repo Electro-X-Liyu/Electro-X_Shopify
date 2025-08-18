@@ -1,0 +1,33 @@
+{% comment %}
+  Browse all products section
+  Replicates the WordPress styled link with arrow
+{% endcomment %}
+
+{% style %}
+  .browse-all-products {
+    margin-top: 0;
+    text-align: center;
+  }
+  .browse-all-products__link {
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    padding-right: 20px;
+  }
+  .browse-all-products__link::after {
+    content: "→";
+    position: absolute;
+    right: 0;
+    transition: transform 0.3s ease;
+  }
+  .browse-all-products__link:hover::after {
+    transform: translateX(4px);
+  }
+{% endstyle %}
+
+<div class="browse-all-products">
+  <a href="{{ routes.all_products_collection_url }}" class="browse-all-products__link">
+    Browse all products
+  </a>
+</div>
