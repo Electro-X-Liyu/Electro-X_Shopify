@@ -316,14 +316,14 @@
   position: absolute;
   right: 0;
   font-size: 1.2em;
-  width: 16px; /* 原始箭头宽度 */
-  text-align: center;
+  width: 96px; /* 原始箭头宽度 */
+  text-align: right;
   transition: transform 0.3s ease;
   transform: scaleX(1); /* 初始状态 */
 }
 
 .browse-all-link:hover .arrow-icon {
-  transform: scaleX(8); /* 悬停时拉伸8倍 */
+  transform: scaleX(1); /* 悬停时拉伸1倍 */
   right: -56px; /* 补偿拉伸后的位置 (16px * (8-1) / 2) */
 }
 
