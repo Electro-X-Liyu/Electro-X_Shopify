@@ -316,11 +316,12 @@
 }
 
 .arrow-icon {
-  font-size: 1.2em;
-  display: inline-block;
-  transform: scaleX(8); /* 关键修改：横向拉伸8倍 */
-  transform-origin: left center; /* 从左侧拉伸 */
+  position: absolute; /* 改为绝对定位 */
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleX(1); /* 初始状态不拉伸 */
   transition: transform 0.3s ease;
+  font-size: 1.2em;
 }
 
 .browse-all-link:hover .arrow-icon {
