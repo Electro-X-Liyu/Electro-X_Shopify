@@ -774,6 +774,7 @@
         "column_jgpFWz",
         "column_GxQfcX"
       ],
+      "disabled": true,
       "settings": {
         "title": "",
         "title_color": "#000000",
@@ -831,7 +832,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/2cut.png",
-            "title": "Column",
+            "title": "Community Ambassadors",
             "text": "",
             "link_label": "",
             "link": ""
@@ -841,7 +842,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/20250612-154943.jpg",
-            "title": "Column",
+            "title": "U.C.P - Urban Challenge Project",
             "text": "",
             "link_label": "",
             "link": ""
@@ -851,7 +852,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/5cut.png",
-            "title": "Column",
+            "title": "Elite Athletes",
             "text": "",
             "link_label": "",
             "link": ""
@@ -875,7 +876,7 @@
         "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "",
-        "columns_mobile": "1",
+        "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 36
