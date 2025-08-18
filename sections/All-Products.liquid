@@ -298,8 +298,8 @@
   align-items: center; /* 确保垂直居中 */
   text-decoration: none;
   transition: all 0.3s ease;
-  position: relative; /* 为绝对定位的箭头提供参考 */
-  padding-right: 8px; /* 为拉伸的箭头预留空间 */
+  position: relative; /* 为箭头定位提供参考 */
+  padding-right: 16px; /* 为拉伸的箭头预留空间 */
 }
 
 .browse-all-link:hover {
@@ -307,33 +307,24 @@
 }
 
 .link-text {
-  margin-right: 8px; /* 调整与箭头的间距 */
+  margin-right: 8px; /* 调整文字与箭头的间距 */
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  position: relative;
-  z-index: 1; /* 确保文字在箭头上层 */
 }
 
 .arrow-icon {
-  position: relative;
-  display: inline-block;
+  position: absolute;
+  right: 0;
+  font-size: 1.2em;
+  width: 16px; /* 原始箭头宽度 */
+  text-align: center;
   transition: transform 0.3s ease;
-  width: 16px; /* 设置箭头原始宽度 */
-  text-align: center; /* 保持箭头居中 */
+  transform: scaleX(1); /* 初始状态 */
 }
 
 .browse-all-link:hover .arrow-icon {
-  transform: scaleX(8); /* 横向拉伸8倍 */
-  transform-origin: left center; /* 从左侧拉伸并保持垂直居中 */
-}
-
-/* 确保拉伸后的箭头不会影响文字位置 */
-.browse-all-link::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  width: 16px; /* 与原始箭头宽度相同 */
-  height: 100%;
+  transform: scaleX(8); /* 悬停时拉伸8倍 */
+  right: -56px; /* 补偿拉伸后的位置 (16px * (8-1) / 2) */
 }
 
 /* Responsive Switching */
