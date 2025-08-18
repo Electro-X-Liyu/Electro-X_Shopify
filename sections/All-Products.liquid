@@ -312,11 +312,14 @@
 
 .arrow-icon {
   font-size: 1.2em;
+  display: inline-block;
+  transform: scaleX(2); /* 关键修改：横向拉伸2倍 */
+  transform-origin: left center; /* 从左侧拉伸 */
   transition: transform 0.3s ease;
 }
 
 .browse-all-link:hover .arrow-icon {
-  transform: translateX(5px);
+  transform: scaleX(2) translateX(5px); /* 保持拉伸状态下的移动 */
 }
 
 /* Responsive Switching */
