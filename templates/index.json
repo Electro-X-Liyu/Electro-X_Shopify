@@ -69,7 +69,7 @@
         "heading_fBqUiy": {
           "type": "heading",
           "settings": {
-            "heading": "Products",
+            "heading": "<strong>Products</strong>",
             "heading_size": "h1"
           }
         }
@@ -443,8 +443,8 @@
         "heading_YG7KcE": {
           "type": "heading",
           "settings": {
-            "heading": "<strong>Electrolyte Liquid Concentrate</strong>",
-            "heading_size": "h2"
+            "heading": "Electrolyte Liquid Concentrate",
+            "heading_size": "h1"
           }
         },
         "text_XgJgcq": {
