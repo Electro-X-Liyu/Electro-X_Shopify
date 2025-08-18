@@ -262,7 +262,7 @@
       "name": "Desktop Multirow",
       "settings": {
         "image_height": "large",
-        "desktop_image_width": "large",
+        "desktop_image_width": "medium",
         "image_layout": "alternate-left",
         "heading_size": "h1",
         "text_style": "body",
