@@ -393,8 +393,8 @@
         "heading_wtEV6G": {
           "type": "heading",
           "settings": {
-            "heading": "ELECTRO X Sports Drink",
-            "heading_size": "h1"
+            "heading": "<strong>ELECTRO X Sports Drink</strong>",
+            "heading_size": "h2"
           }
         },
         "text_dHm7Px": {
