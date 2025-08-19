@@ -69,7 +69,7 @@
         "heading_fBqUiy": {
           "type": "heading",
           "settings": {
-            "heading": "<strong>Products</strong>",
+            "heading": "PRODUCTS",
             "heading_size": "h1"
           }
         }
@@ -189,7 +189,7 @@
       "settings": {
         "title": "",
         "desktop_height": 370,
-        "mobile_height": 290
+        "mobile_height": 200
       }
     },
     "rich_text_krjN6Y": {
@@ -344,7 +344,7 @@
           "type": "heading",
           "settings": {
             "heading": "Natural Alkaline Water",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "text_nhw3CV": {
