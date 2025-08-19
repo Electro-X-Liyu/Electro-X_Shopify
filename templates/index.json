@@ -444,13 +444,13 @@
           "type": "heading",
           "settings": {
             "heading": "Electrolyte Liquid Concentrate",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "text_XgJgcq": {
           "type": "text",
           "settings": {
-            "text": "<strong>Premium Hydration, Refined TasteKey Ingredients:</strong> Electrolytes | BCAA | L Carnitine | Glucose | Vitamins",
+            "text": "Premium Hydration, Refined TasteKey Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Vitamins",
             "text_style": "body"
           }
         },
@@ -493,8 +493,8 @@
         "heading_meqA8e": {
           "type": "heading",
           "settings": {
-            "heading": "<strong>Sports Sponsorship</strong>",
-            "heading_size": "h1"
+            "heading": "SPORT SPONSORSHIP",
+            "heading_size": "h2"
           }
         }
       },
@@ -687,6 +687,7 @@
       "blocks": {
         "heading_aCxhfq": {
           "type": "heading",
+          "disabled": true,
           "settings": {
             "heading": "<strong>COMMUNITY</strong>",
             "heading_size": "h1"
@@ -694,6 +695,7 @@
         },
         "text_aDmUXx": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.",
             "text_style": "body"
@@ -701,6 +703,7 @@
         },
         "buttons_VP3jMh": {
           "type": "buttons",
+          "disabled": true,
           "settings": {
             "button_label_1": "Learn More",
             "button_link_1": "shopify://pages/community-ambassadors",
@@ -718,7 +721,7 @@
       ],
       "name": "Mobile banner",
       "settings": {
-        "image": "shopify://shop_images/3cut.png",
+        "image": "shopify://shop_images/71cut.png",
         "image_overlay_opacity": 40,
         "image_height": "adapt",
         "image_behavior": "none",
