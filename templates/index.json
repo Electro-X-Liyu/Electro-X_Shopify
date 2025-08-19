@@ -631,7 +631,6 @@
       "blocks": {
         "heading_kUWXUr": {
           "type": "heading",
-          "disabled": true,
           "settings": {
             "heading": "COMMUNITY",
             "heading_size": "h2"
@@ -690,9 +689,10 @@
       "blocks": {
         "heading_d37dWP": {
           "type": "heading",
+          "disabled": true,
           "settings": {
             "heading": "COMMUNITY",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "text_6C3rka": {
