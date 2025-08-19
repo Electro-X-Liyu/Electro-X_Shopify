@@ -631,13 +631,15 @@
       "blocks": {
         "heading_kUWXUr": {
           "type": "heading",
+          "disabled": true,
           "settings": {
-            "heading": "<strong>Community</strong>",
-            "heading_size": "h1"
+            "heading": "COMMUNITY",
+            "heading_size": "h2"
           }
         },
         "text_iN6bLB": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.",
             "text_style": "subtitle"
@@ -645,6 +647,7 @@
         },
         "buttons_zpGtgC": {
           "type": "buttons",
+          "disabled": true,
           "settings": {
             "button_label_1": "Learn More",
             "button_link_1": "shopify://pages/community-ambassadors",
@@ -680,6 +683,49 @@
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "scheme-3"
+      }
+    },
+    "rich_text_7zrTRQ": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_d37dWP": {
+          "type": "heading",
+          "settings": {
+            "heading": "COMMUNITY",
+            "heading_size": "h1"
+          }
+        },
+        "text_6C3rka": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_8hf8CT": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_d37dWP",
+        "text_6C3rka",
+        "button_8hf8CT"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     },
     "mobile_banner_PGtzXU": {
@@ -931,6 +977,7 @@
     "rich_text_VpEQaY",
     "mixed_multicolumn_DFedAG",
     "banner_BM3DgA",
+    "rich_text_7zrTRQ",
     "mobile_banner_PGtzXU",
     "mixed_multicolumn_gy7jer",
     "new_blog_pMAgYq",
