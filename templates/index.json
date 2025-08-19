@@ -596,7 +596,7 @@
         "block_link_margin_top": 0,
         "block_link_margin_bottom": 0,
         "image_width": "full",
-        "image_ratio": "portrait",
+        "image_ratio": "square",
         "button_label": "View All",
         "button_link": "shopify://blogs/sports-sponsorship-1",
         "button_bg_color": "#000000",
