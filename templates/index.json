@@ -90,9 +90,85 @@
     },
     "all_products_mobile_LfijDi": {
       "type": "All-Products-Mobile",
+      "blocks": {
+        "image_block_yVtfB3": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-1.png",
+            "link": "shopify://products/natural-alkaline-water",
+            "alt_text": ""
+          }
+        },
+        "image_block_r46xgc": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-2.png",
+            "link": "shopify://products/natural-alkaline-water",
+            "alt_text": ""
+          }
+        },
+        "image_block_U6TpdT": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-3.png",
+            "link": "shopify://products/natural-alkaline-water",
+            "alt_text": ""
+          }
+        },
+        "image_block_pzczja": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-4.png",
+            "link": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
+            "alt_text": ""
+          }
+        },
+        "image_block_GizBak": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-5.png",
+            "link": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor",
+            "alt_text": ""
+          }
+        },
+        "image_block_XUpDPy": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-6.png",
+            "link": "shopify://products/plus-electrolyte-sports-drink-berry",
+            "alt_text": ""
+          }
+        },
+        "image_block_mx8LKw": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-7.png",
+            "link": "shopify://products/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
+            "alt_text": ""
+          }
+        },
+        "image_block_ipt7dP": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/banner-8.png",
+            "link": "shopify://products/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade",
+            "alt_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_block_yVtfB3",
+        "image_block_r46xgc",
+        "image_block_U6TpdT",
+        "image_block_pzczja",
+        "image_block_GizBak",
+        "image_block_XUpDPy",
+        "image_block_mx8LKw",
+        "image_block_ipt7dP"
+      ],
       "name": "Mobile Products Gallery",
       "settings": {
-        "title": "Product Gallery",
+        "title": "",
         "mobile_height": 300
       }
     },
