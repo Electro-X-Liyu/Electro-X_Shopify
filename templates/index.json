@@ -169,7 +169,8 @@
       "name": "Mobile Products Gallery",
       "settings": {
         "title": "",
-        "mobile_height": 180
+        "mobile_height": 180,
+        "show_indicators": true
       }
     },
     "rich_text_krjN6Y": {
@@ -187,6 +188,7 @@
       "block_order": [
         "heading_MFFgQG"
       ],
+      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
