@@ -88,110 +88,12 @@
         "padding_bottom": 36
       }
     },
-    "all_products_qw33dH": {
-      "type": "All-Products",
-      "blocks": {
-        "image_block_6bNCWw": {
-          "type": "image_block",
-          "name": "Natural Alkaline Water 380mL",
-          "settings": {
-            "image": "shopify://shop_images/banner-1.png",
-            "link": "shopify://products/natural-alkaline-water",
-            "alt_text": ""
-          }
-        },
-        "image_block_ErhQi3": {
-          "type": "image_block",
-          "name": "Natural Alkaline Water 580mL",
-          "settings": {
-            "image": "shopify://shop_images/banner-2.png",
-            "link": "shopify://products/natural-alkaline-water",
-            "alt_text": ""
-          }
-        },
-        "image_block_nbzPdU": {
-          "type": "image_block",
-          "name": "Natural Alkaline Water 1L",
-          "settings": {
-            "image": "shopify://shop_images/banner-3.png",
-            "link": "shopify://products/natural-alkaline-water",
-            "alt_text": ""
-          }
-        },
-        "image_block_TqxTqt": {
-          "type": "image_block",
-          "name": "PLUS - BCAA Sports Drink",
-          "settings": {
-            "image": "shopify://shop_images/banner-4.png",
-            "link": "shopify://products/plus-electrolyte-sports-drink-pineapple-mate-tea-flavor",
-            "alt_text": ""
-          }
-        },
-        "image_block_cbz4pH": {
-          "type": "image_block",
-          "name": "PLUS - Electrolyte Sports Drink",
-          "settings": {
-            "image": "shopify://shop_images/banner-5.png",
-            "link": "shopify://products/plus-electrolyte-sports-drink-jasmine-green-grapes-flavor",
-            "alt_text": ""
-          }
-        },
-        "image_block_Hb84Bc": {
-          "type": "image_block",
-          "name": "SLIM - Electrolyte Sports Drink",
-          "settings": {
-            "image": "shopify://shop_images/banner-6.png",
-            "link": "shopify://products/plus-electrolyte-sports-drink-berry",
-            "alt_text": ""
-          }
-        },
-        "image_block_y6iUcR": {
-          "type": "image_block",
-          "name": "PLUS - Electrolyte Liquid Concentrate",
-          "settings": {
-            "image": "shopify://shop_images/banner-7.png",
-            "link": "shopify://products/plus-electrolyte-liquid-concentrate-pineapple-mate-tea",
-            "alt_text": ""
-          }
-        },
-        "image_block_wR6wDy": {
-          "type": "image_block",
-          "name": "SLIM - Electrolyte Liquid Concentrate",
-          "settings": {
-            "image": "shopify://shop_images/banner-8.png",
-            "link": "shopify://products/slim-electrolyte-liquid-concentrate-pomegranate-pink-lemonade",
-            "alt_text": ""
-          }
-        },
-        "browse_link_FigUqT": {
-          "type": "browse_link",
-          "name": "Browse All",
-          "disabled": true,
-          "settings": {
-            "link_text": "Browse All Products",
-            "link_url": "shopify://collections/all",
-            "font_weight": 400,
-            "font_size": 16,
-            "text_color": "#000000"
-          }
-        }
-      },
-      "block_order": [
-        "image_block_6bNCWw",
-        "image_block_ErhQi3",
-        "image_block_nbzPdU",
-        "image_block_TqxTqt",
-        "image_block_cbz4pH",
-        "image_block_Hb84Bc",
-        "image_block_y6iUcR",
-        "image_block_wR6wDy",
-        "browse_link_FigUqT"
-      ],
-      "name": "All Product",
+    "all_products_mobile_LfijDi": {
+      "type": "All-Products-Mobile",
+      "name": "Mobile Products Gallery",
       "settings": {
-        "title": "",
-        "desktop_height": 340,
-        "mobile_height": 180
+        "title": "Product Gallery",
+        "mobile_height": 300
       }
     },
     "rich_text_krjN6Y": {
@@ -968,7 +870,7 @@
     "banner_89aeKn",
     "mobile_banner_kByUUW",
     "rich_text_waQVNB",
-    "all_products_qw33dH",
+    "all_products_mobile_LfijDi",
     "rich_text_krjN6Y",
     "desktop_multirow_Q3mdjw",
     "mobile_multirow_jDNdjC",
