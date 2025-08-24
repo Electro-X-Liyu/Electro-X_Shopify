@@ -142,13 +142,13 @@
   flex-shrink: 0;
   margin-right: 16px;
   scroll-snap-align: start;
-  padding: 0;
+  padding: 0 5px;
   box-sizing: border-box;
 }
 
-/* 第一个图片块左侧增加87.8px的边距 */
+/* 第一个图片块左侧增加12px的边距 */
 .mobile-slide.first-slide {
-  margin-left: 87.8px;
+  margin-left: 12px;
 }
 
 .mobile-slide:last-child {
@@ -184,24 +184,12 @@
     padding: 0 12px;
   }
   
-  /* 在小屏幕上适当减小第一个块的左边距 */
-  .mobile-slide.first-slide {
-    margin-left: 40px;
-  }
-  
   .mobile-slide {
-    margin-right: 10px;
+    margin-right: 16px;
   }
   
   .mobile-slide:last-child {
-    margin-right: 10px;
-  }
-}
-
-/* 超小屏幕适配 */
-@media (max-width: 360px) {
-  .mobile-slide.first-slide {
-    margin-left: 20px;
+    margin-right: 16px;
   }
 }
 </style>
