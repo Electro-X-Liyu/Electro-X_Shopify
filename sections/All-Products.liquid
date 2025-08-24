@@ -1,21 +1,12 @@
 {% schema %}
 {
-  "name": "All Products",
+  "name": "Mobile Products Gallery",
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "Heading",
       "default": "Product Gallery"
-    },
-    {
-      "type": "range",
-      "id": "desktop_height",
-      "label": "Desktop Image Height (px)",
-      "min": 200,
-      "max": 800,
-      "step": 10,
-      "default": 400
     },
     {
       "type": "range",
@@ -49,53 +40,11 @@
           "info": "Image description (for SEO)"
         }
       ]
-    },
-    {
-      "type": "browse_link",
-      "name": "Browse All Link",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "link_text",
-          "label": "Link Text",
-          "default": "BROWSE ALL PRODUCTS"
-        },
-        {
-          "type": "url",
-          "id": "link_url",
-          "label": "Link URL"
-        },
-        {
-          "type": "range",
-          "id": "font_weight",
-          "label": "Font Weight",
-          "min": 300,
-          "max": 900,
-          "step": 100,
-          "default": 600
-        },
-        {
-          "type": "range",
-          "id": "font_size",
-          "label": "Font Size (px)",
-          "min": 12,
-          "max": 24,
-          "step": 1,
-          "default": 16
-        },
-        {
-          "type": "color",
-          "id": "text_color",
-          "label": "Text Color",
-          "default": "#000000"
-        }
-      ]
     }
   ],
   "presets": [
     {
-      "name": "All Products",
+      "name": "Mobile Products Gallery",
       "category": "Image Gallery",
       "blocks": []
     }
@@ -103,74 +52,39 @@
 }
 {% endschema %}
 
-<div class="all-product-gallery" data-section-id="{{ section.id }}">
+<div class="mobile-product-gallery" data-section-id="{{ section.id }}">
   {% if section.settings.title != blank %}
     <h2 class="section-title">{{ section.settings.title }}</h2>
   {% endif %}
   
-  <div class="gallery-container">
-    <!-- Desktop Grid Layout -->
-    <div class="gallery-grid desktop-gallery">
-      {% for block in section.blocks %}
-        {% if block.type == 'image_block' and block.settings.image != blank %}
-          {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-          <div class="image-card" style="--aspect-ratio: {{ aspect_ratio }}; flex: 0 0 calc({{ aspect_ratio }} * {{ section.settings.desktop_height }}px);" {{ block.shopify_attributes }}>
-            <a href="{{ block.settings.link | default: '#' }}" class="image-link">
-              <div class="image-wrapper" style="height: {{ section.settings.desktop_height }}px;">
-                <img src="{{ block.settings.image | img_url: '1200x' }}"
-                     alt="{{ block.settings.alt_text | default: 'Product image' }}"
-                     class="gallery-image"
-                     loading="lazy"
-                     width="1200"
-                     height="{{ 1200 | divided_by: aspect_ratio | round }}">
-              </div>
-            </a>
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-    
-    <!-- Mobile Slider Layout -->
-    <div class="mobile-gallery-container">
-      <div class="mobile-slider-wrapper">
-        <div class="mobile-slider">
-          {% for block in section.blocks %}
-            {% if block.type == 'image_block' and block.settings.image != blank %}
-              {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-              <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px + 16px);">
-                <a href="{{ block.settings.link | default: '#' }}" class="image-link">
-                  <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
-                    <img src="{{ block.settings.image | img_url: '800x' }}"
-                         alt="{{ block.settings.alt_text | default: 'Product image' }}"
-                         class="gallery-image"
-                         loading="lazy"
-                         width="800"
-                         height="{{ 800 | divided_by: aspect_ratio | round }}">
-                  </div>
-                </a>
-              </div>
-            {% endif %}
-          {% endfor %}
-        </div>
+  <!-- Mobile Slider Layout -->
+  <div class="mobile-gallery-container">
+    <div class="mobile-slider-wrapper">
+      <div class="mobile-slider">
+        {% for block in section.blocks %}
+          {% if block.type == 'image_block' and block.settings.image != blank %}
+            {% assign aspect_ratio = block.settings.image.aspect_ratio %}
+            <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px + 16px);">
+              <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+                <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
+                  <img src="{{ block.settings.image | img_url: '800x' }}"
+                       alt="{{ block.settings.alt_text | default: 'Product image' }}"
+                       class="gallery-image"
+                       loading="lazy"
+                       width="800"
+                       height="{{ 800 | divided_by: aspect_ratio | round }}">
+                </div>
+              </a>
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>
-
-  <!-- Browse All Products Link Block -->
-  {% for block in section.blocks %}
-    {% if block.type == 'browse_link' %}
-      <div class="browse-all-container" {{ block.shopify_attributes }}>
-        <a href="{{ block.settings.link_url }}" class="browse-all-link" style="color: {{ block.settings.text_color }}; font-weight: {{ block.settings.font_weight }}; font-size: {{ block.settings.font_size }}px;">
-          <span class="link-text">{{ block.settings.link_text }}</span>
-          <span class="arrow-icon">→</span>
-        </a>
-      </div>
-    {% endif %}
-  {% endfor %}
 </div>
 
 <style>
-.all-product-gallery {
+.mobile-product-gallery {
   width: 100%;
   margin: 0 auto;
   padding: 0;
@@ -179,71 +93,15 @@
 
 .section-title {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 28px;
+  margin-bottom: 20px;
+  font-size: 24px;
   color: #333;
   position: relative;
-  padding-bottom: 15px;
+  padding: 0 16px;
 }
 
-.section-title:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 2px;
-  background-color: #333;
-}
-
-/* Desktop Styles */
-.gallery-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 33px;
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
-.image-card {
-  position: relative;
-  transition: transform 0.3s ease;
-  margin: 0;
-  padding: 0;
-}
-
-.image-wrapper {
-  position: relative;
-  overflow: visible;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  width: 100%;
-}
-
-.gallery-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: transform;
-}
-
-/* Desktop Hover Effect */
-.desktop-gallery .image-card:hover .gallery-image {
-  transform: scale(1.15);
-  z-index: 10;
-}
-
-/* Mobile Styles */
 .mobile-gallery-container {
-  display: none;
+  display: block;
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -285,73 +143,21 @@
   overflow: hidden;
   width: 100%;
   border-radius: 8px;
-}
-
-/* Browse All Link Styles - MODIFIED */
-.browse-all-container {
-  text-align: center;
-  margin: 40px 0;
-  position: relative;
-  left: -90px; /* This moves the entire container left by 90px */
-}
-
-.browse-all-link {
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  text-decoration: none;
-  transition: all 0.3s ease;
 }
 
-.browse-all-link:hover {
-  opacity: 0.8;
+.gallery-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
-.link-text {
-  margin-right: 2px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.arrow-icon {
-  font-size: 1.2em;
-  display: inline-block;
-  transform: scaleX(8); /* 关键修改：横向拉伸8倍 */
-  transform-origin: left center; /* 从左侧拉伸 */
-  transition: transform 0.3s ease;
-}
-
-.browse-all-link:hover .arrow-icon {
-  transform: scaleX(8) translateX(1px); /* 保持拉伸状态下的移动 */
-}
-
-/* Responsive Switching */
+/* 桌面端隐藏 */
 @media (min-width: 769px) {
-  .mobile-gallery-container {
-    display: none !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .gallery-grid {
+  .mobile-product-gallery {
     display: none;
-  }
-  
-  .mobile-gallery-container {
-    display: block;
-  }
-  
-  .section-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-    padding: 0 16px;
-  }
-
-  .browse-all-link {
-    font-size: 14px !important;
-  }
-  
-  .browse-all-container {
-    left: -74px; /* Half the desktop offset for mobile */
   }
 }
 
@@ -368,10 +174,6 @@
   
   .mobile-slider-wrapper {
     padding: 0 6px;
-  }
-  
-  .browse-all-container {
-    left: -32px; /* Quarter the desktop offset for small mobile */
   }
 }
 </style>
