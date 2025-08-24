@@ -74,7 +74,7 @@
         {% for block in section.blocks %}
           {% if block.type == 'image_block' and block.settings.image != blank %}
             {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-            <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px + 16px);">
+            <div class="mobile-slide {% if forloop.first %}first-slide{% endif %}" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px + 16px);">
               <a href="{{ block.settings.link | default: '#' }}" class="image-link">
                 <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
                   <img src="{{ block.settings.image | img_url: '800x' }}"
@@ -145,6 +145,11 @@
   box-sizing: border-box;
 }
 
+/* 为第一个滑动块添加左侧边距 */
+.mobile-slide.first-slide {
+  margin-left: 87.8px;
+}
+
 .mobile-slide:last-child {
   margin-right: 0;
 }
@@ -180,6 +185,11 @@
   .mobile-slide {
     margin-right: 12px;
     padding: 0 6px;
+  }
+  
+  /* 移动端调整第一个滑动块的边距 */
+  .mobile-slide.first-slide {
+    margin-left: 43.9px; /* 桌面端值的一半 */
   }
   
   .mobile-slider-wrapper {
