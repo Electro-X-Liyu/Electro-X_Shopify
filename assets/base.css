@@ -1,3 +1,37 @@
+/* 声明第一种字体: Font Primary */
+@font-face {
+  font-family: 'Font Primary';
+  src: url('{{ "Electro X SANS.woff2" | asset_url }}') format('woff2');
+  font-weight: 400; /* Normal weight */
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Font Primary';
+  src: url('{{ "Electro X SANS.woff2" | asset_url }}') format('woff2');
+  font-weight: 700; /* Bold weight */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 声明第二种字体: Font Secondary */
+@font-face {
+  font-family: 'Stolzl-Book';
+  src: url('{{ "Stolzl-Book.woff2" | asset_url }}') format('woff2');
+  font-weight: 600; /* SemiBold weight */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 声明第三种字体: Font Accent */
+@font-face {
+  font-family: 'Stolzl-Light';
+  src: url('{{ "Stolzl-Light.woff2" | asset_url }}') format('woff2');
+  font-weight: 400; /* Normal weight */
+  font-style: italic; /* Italic style */
+  font-display: swap;
+}
+
 :root {
   --alpha-button-background: 1;
   --alpha-button-border: 1;
