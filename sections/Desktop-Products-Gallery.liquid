@@ -1,0 +1,162 @@
+{% schema %}
+{
+  "name": "Desktop Products Gallery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Product Gallery"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Desktop Image Height (px)",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "default": 400
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_block",
+      "name": "Image Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt Text",
+          "info": "Image description (for SEO)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Desktop Products Gallery",
+      "category": "Image Gallery",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}
+
+<div class="desktop-product-gallery" data-section-id="{{ section.id }}">
+  {% if section.settings.title != blank %}
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+  {% endif %}
+  
+  <div class="gallery-container">
+    <!-- Desktop Grid Layout -->
+    <div class="gallery-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'image_block' and block.settings.image != blank %}
+          {% assign aspect_ratio = block.settings.image.aspect_ratio %}
+          <div class="image-card" style="--aspect-ratio: {{ aspect_ratio }}; flex: 0 0 calc({{ aspect_ratio }} * {{ section.settings.desktop_height }}px);" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link | default: '#' }}" class="image-link">
+              <div class="image-wrapper" style="height: {{ section.settings.desktop_height }}px;">
+                <img src="{{ block.settings.image | img_url: '1200x' }}"
+                     alt="{{ block.settings.alt_text | default: 'Product image' }}"
+                     class="gallery-image"
+                     loading="lazy"
+                     width="1200"
+                     height="{{ 1200 | divided_by: aspect_ratio | round }}">
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.desktop-product-gallery {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.section-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background-color: #333;
+}
+
+/* Desktop Styles */
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 33px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.image-card {
+  position: relative;
+  transition: transform 0.3s ease;
+  margin: 0;
+  padding: 0;
+}
+
+.image-wrapper {
+  position: relative;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  width: 100%;
+}
+
+.gallery-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+/* Desktop Hover Effect */
+.image-card:hover .gallery-image {
+  transform: scale(1.15);
+  z-index: 10;
+}
+
+/* Mobile Hidden */
+@media (max-width: 768px) {
+  .desktop-product-gallery {
+    display: none;
+  }
+}
+</style>
