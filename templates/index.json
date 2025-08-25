@@ -172,6 +172,23 @@
         "mobile_height": 180
       }
     },
+    "mobile_banner_3KNFri": {
+      "type": "Mobile-banner",
+      "name": "Mobile banner",
+      "settings": {
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "text_container_width": "default",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
     "rich_text_krjN6Y": {
       "type": "rich-text",
       "blocks": {
@@ -948,6 +965,7 @@
     "mobile_banner_kByUUW",
     "rich_text_waQVNB",
     "all_products_mobile_LfijDi",
+    "mobile_banner_3KNFri",
     "rich_text_krjN6Y",
     "desktop_multirow_Q3mdjw",
     "mobile_multirow_jDNdjC",
