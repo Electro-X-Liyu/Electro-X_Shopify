@@ -176,8 +176,9 @@
       "type": "Mobile-banner",
       "name": "Mobile banner",
       "settings": {
+        "image": "shopify://shop_images/1_449ac263-782c-41f8-80de-5237ce165839.svg",
         "image_overlay_opacity": 0,
-        "image_height": "medium",
+        "image_height": "adapt",
         "image_behavior": "none",
         "text_container_width": "default",
         "desktop_content_position": "middle-center",
