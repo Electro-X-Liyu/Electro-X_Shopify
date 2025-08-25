@@ -71,10 +71,13 @@
   <div class="mobile-gallery-container">
     <div class="mobile-slider-wrapper">
       <div class="mobile-slider">
+        <!-- 左侧空白占位符 -->
+        <div class="spacer-placeholder left-spacer"></div>
+        
         {% for block in section.blocks %}
           {% if block.type == 'image_block' and block.settings.image != blank %}
             {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-            <div class="mobile-slide {% if forloop.first %}first-slide{% endif %} {% if forloop.last %}last-slide{% endif %}" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px + 16px);">
+            <div class="mobile-slide" style="--aspect-ratio: {{ aspect_ratio }}; width: calc(var(--aspect-ratio) * {{ section.settings.mobile_height }}px);">
               <a href="{{ block.settings.link | default: '#' }}" class="image-link">
                 <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
                   <img src="{{ block.settings.image | img_url: '800x' }}"
@@ -88,6 +91,9 @@
             </div>
           {% endif %}
         {% endfor %}
+        
+        <!-- 右侧空白占位符 -->
+        <div class="spacer-placeholder right-spacer"></div>
       </div>
     </div>
   </div>
@@ -124,8 +130,7 @@
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  /* 移除左右内边距，现在通过首尾slide的伪元素实现 */
-  padding: 0 0;
+  padding: 0;
 }
 
 .mobile-slider-wrapper::-webkit-scrollbar {
@@ -134,34 +139,29 @@
 
 .mobile-slider {
   display: flex;
+  align-items: center;
   width: max-content;
   padding: 10px 0;
-  /* 使用伪元素为首尾slide创建空白 */
-  position: relative;
 }
 
-.mobile-slider::before,
-.mobile-slider::after {
-  content: '';
+/* 空白占位符 - 为首尾提供16px空白 */
+.spacer-placeholder {
   flex-shrink: 0;
   width: 16px;
-  height: 1px;
+  /* 设置最小高度以确保占位符可见 */
+  min-height: 1px;
+  align-self: stretch;
 }
 
 .mobile-slide {
   flex-shrink: 0;
   margin-right: 16px;
   scroll-snap-align: start;
-  padding: 0 0; /* 移除内边距，现在通过margin控制间距 */
   box-sizing: border-box;
 }
 
-.mobile-slide:last-child {
-  margin-right: 16px;
-}
-
-.mobile-slide:first-child {
-  margin-left: 16px;
+.mobile-slide:last-of-type {
+  margin-right: 0;
 }
 
 .mobile-slide .image-wrapper {
@@ -196,8 +196,7 @@
     margin-right: 12px;
   }
   
-  .mobile-slider::before,
-  .mobile-slider::after {
+  .spacer-placeholder {
     width: 12px;
   }
 }
