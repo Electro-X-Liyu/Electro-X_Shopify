@@ -88,6 +88,14 @@
         "padding_bottom": 36
       }
     },
+    "desktop_products_gallery_gTVJRE": {
+      "type": "Desktop-Products-Gallery",
+      "name": "Desktop Products Gallery",
+      "settings": {
+        "title": "Product Gallery",
+        "desktop_height": 400
+      }
+    },
     "all_products_mobile_LfijDi": {
       "type": "All-Products-Mobile",
       "blocks": {
@@ -965,6 +973,7 @@
     "banner_89aeKn",
     "mobile_banner_kByUUW",
     "rich_text_waQVNB",
+    "desktop_products_gallery_gTVJRE",
     "all_products_mobile_LfijDi",
     "mobile_banner_3KNFri",
     "rich_text_krjN6Y",
