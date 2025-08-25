@@ -63,29 +63,28 @@
         "show_text_below": false
       }
     },
-    "rich_text_waQVNB": {
-      "type": "rich-text",
+    "desktop_rich_text_xDN4gp": {
+      "type": "Desktop-Rich-Text",
       "blocks": {
-        "heading_fBqUiy": {
+        "heading_BanTVc": {
           "type": "heading",
           "settings": {
             "heading": "PRODUCTS",
-            "heading_size": "h2"
+            "heading_size": "h1"
           }
         }
       },
       "block_order": [
-        "heading_fBqUiy"
+        "heading_BanTVc"
       ],
-      "custom_css": [],
-      "name": "Heading",
+      "name": "Desktop Rich Text",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
-        "padding_bottom": 36
+        "padding_bottom": 52
       }
     },
     "desktop_products_gallery_gTVJRE": {
@@ -175,6 +174,30 @@
     "desktop_rich_text_LpLnNM": {
       "type": "Desktop-Rich-Text",
       "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "mobile_rich_text_zz4CY4": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_bJMRT6": {
+          "type": "heading",
+          "settings": {
+            "heading": "PRODUCTS",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_bJMRT6"
+      ],
+      "name": "Mobile rich text",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -1060,9 +1083,10 @@
   "order": [
     "banner_89aeKn",
     "mobile_banner_kByUUW",
-    "rich_text_waQVNB",
+    "desktop_rich_text_xDN4gp",
     "desktop_products_gallery_gTVJRE",
     "desktop_rich_text_LpLnNM",
+    "mobile_rich_text_zz4CY4",
     "all_products_mobile_LfijDi",
     "mobile_banner_3KNFri",
     "rich_text_krjN6Y",
