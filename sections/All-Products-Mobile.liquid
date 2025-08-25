@@ -46,7 +46,17 @@
     {
       "name": "Mobile Products Gallery",
       "category": "Image Gallery",
-      "blocks": []
+      "blocks": [
+        {
+          "type": "image_block"
+        },
+        {
+          "type": "image_block"
+        },
+        {
+          "type": "image_block"
+        }
+      ]
     }
   ]
 }
@@ -64,7 +74,7 @@
         {% for block in section.blocks %}
           {% if block.type == 'image_block' and block.settings.image != blank %}
             {% assign aspect_ratio = block.settings.image.aspect_ratio %}
-            <div class="mobile-slide" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px + 16px);">
+            <div class="mobile-slide {% if forloop.first %}first-slide{% endif %} {% if forloop.last %}last-slide{% endif %}" style="width: calc({{ aspect_ratio }} * {{ section.settings.mobile_height }}px + 16px);">
               <a href="{{ block.settings.link | default: '#' }}" class="image-link">
                 <div class="image-wrapper" style="height: {{ section.settings.mobile_height }}px;">
                   <img src="{{ block.settings.image | img_url: '800x' }}"
@@ -114,7 +124,8 @@
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  padding: 0 8px;
+  /* 移除左右内边距，现在通过首尾slide的伪元素实现 */
+  padding: 0 0;
 }
 
 .mobile-slider-wrapper::-webkit-scrollbar {
@@ -125,13 +136,23 @@
   display: flex;
   width: max-content;
   padding: 10px 0;
+  /* 使用伪元素为首尾slide创建空白 */
+  position: relative;
+}
+
+.mobile-slider::before,
+.mobile-slider::after {
+  content: '';
+  flex-shrink: 0;
+  width: 16px;
+  height: 1px;
 }
 
 .mobile-slide {
   flex-shrink: 0;
   margin-right: 16px;
   scroll-snap-align: start;
-  padding: 0 8px;
+  padding: 0 0; /* 移除内边距，现在通过margin控制间距 */
   box-sizing: border-box;
 }
 
@@ -169,11 +190,11 @@
   
   .mobile-slide {
     margin-right: 12px;
-    padding: 0 6px;
   }
   
-  .mobile-slider-wrapper {
-    padding: 0 6px;
+  .mobile-slider::before,
+  .mobile-slider::after {
+    width: 12px;
   }
 }
 </style>
