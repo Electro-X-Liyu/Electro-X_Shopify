@@ -124,8 +124,7 @@
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  /* 移除左右内边距，现在通过首尾slide的伪元素实现 */
-  padding: 0 0;
+  padding: 0 8px;
 }
 
 .mobile-slider-wrapper::-webkit-scrollbar {
@@ -136,28 +135,22 @@
   display: flex;
   width: max-content;
   padding: 10px 0;
-  /* 使用伪元素为首尾slide创建空白 */
-  position: relative;
-}
-
-.mobile-slider::before,
-.mobile-slider::after {
-  content: '';
-  flex-shrink: 0;
-  width: 16px;
-  height: 1px;
+  /* 为首张图片左侧添加空白 */
+  padding-left: 88px;
 }
 
 .mobile-slide {
   flex-shrink: 0;
   margin-right: 16px;
   scroll-snap-align: start;
-  padding: 0 0; /* 移除内边距，现在通过margin控制间距 */
+  padding: 0 8px;
   box-sizing: border-box;
 }
 
 .mobile-slide:last-child {
   margin-right: 0;
+  /* 为最后一张图片右侧添加空白 */
+  padding-right: 16px;
 }
 
 .mobile-slide .image-wrapper {
@@ -190,11 +183,31 @@
   
   .mobile-slide {
     margin-right: 12px;
+    padding: 0 6px;
   }
   
-  .mobile-slider::before,
-  .mobile-slider::after {
-    width: 12px;
+  .mobile-slider-wrapper {
+    padding: 0 6px;
+  }
+  
+  /* 移动端调整首尾空白 */
+  .mobile-slider {
+    padding-left: 44px; /* 桌面端的一半 */
+  }
+  
+  .mobile-slide:last-child {
+    padding-right: 8px; /* 桌面端的一半 */
+  }
+}
+
+/* 小屏幕手机进一步调整 */
+@media (max-width: 360px) {
+  .mobile-slider {
+    padding-left: 32px; /* 更小的左侧空白 */
+  }
+  
+  .mobile-slide:last-child {
+    padding-right: 6px; /* 更小的右侧空白 */
   }
 }
 </style>
