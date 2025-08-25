@@ -172,6 +172,27 @@
         "mobile_height": 210
       }
     },
+    "all_products_mobile_P7jF97": {
+      "type": "All-Products-Mobile",
+      "blocks": {
+        "image_block_awXi3n": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/browse_all_products.svg",
+            "link": "",
+            "alt_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_block_awXi3n"
+      ],
+      "name": "Mobile Products Gallery",
+      "settings": {
+        "title": "",
+        "mobile_height": 300
+      }
+    },
     "rich_text_krjN6Y": {
       "type": "rich-text",
       "blocks": {
@@ -948,6 +969,7 @@
     "mobile_banner_kByUUW",
     "rich_text_waQVNB",
     "all_products_mobile_LfijDi",
+    "all_products_mobile_P7jF97",
     "rich_text_krjN6Y",
     "desktop_multirow_Q3mdjw",
     "mobile_multirow_jDNdjC",
