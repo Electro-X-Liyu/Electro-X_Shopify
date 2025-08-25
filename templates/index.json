@@ -172,6 +172,18 @@
         "desktop_height": 400
       }
     },
+    "desktop_rich_text_LpLnNM": {
+      "type": "Desktop-Rich-Text",
+      "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "all_products_mobile_LfijDi": {
       "type": "All-Products-Mobile",
       "blocks": {
@@ -1050,6 +1062,7 @@
     "mobile_banner_kByUUW",
     "rich_text_waQVNB",
     "desktop_products_gallery_gTVJRE",
+    "desktop_rich_text_LpLnNM",
     "all_products_mobile_LfijDi",
     "mobile_banner_3KNFri",
     "rich_text_krjN6Y",
