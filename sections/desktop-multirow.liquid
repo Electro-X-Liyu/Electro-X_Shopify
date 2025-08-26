@@ -45,9 +45,18 @@
     height: auto;
   }
 
-  /* 取消副标题全大写 */
+  /* 取消副标题全大写和letter-spacing */
   .image-with-text__text--caption {
     text-transform: none !important;
+    letter-spacing: normal !important;
+  }
+
+  /* 按钮样式 */
+  .image-with-text__content .button {
+    min-height: calc(2.5rem + var(--buttons-border-width) * 2) !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    border-radius: 8px !important;
   }
 
   /* 自定义文字样式 */
@@ -65,16 +74,16 @@
       {%- endif -%}
     }
 
-    /* 副标题样式 */
+    /* 副标题样式 - 与正文样式一致 */
     #block-{{ block.id }} .image-with-text__text--caption {
-      {%- if block.settings.caption_font_weight != 'default' -%}
-        font-weight: {{ block.settings.caption_font_weight }} !important;
+      {%- if block.settings.text_font_weight != 'default' -%}
+        font-weight: {{ block.settings.text_font_weight }} !important;
       {%- endif -%}
-      {%- if block.settings.caption_font_size != 'default' -%}
-        font-size: {{ block.settings.caption_font_size }}px !important;
+      {%- if block.settings.text_font_size != 'default' -%}
+        font-size: {{ block.settings.text_font_size }}px !important;
       {%- endif -%}
-      {%- if block.settings.caption_color != 'rgba(0,0,0,0)' -%}
-        color: {{ block.settings.caption_color }} !important;
+      {%- if block.settings.text_color != 'rgba(0,0,0,0)' -%}
+        color: {{ block.settings.text_color }} !important;
       {%- endif -%}
     }
 
@@ -179,7 +188,7 @@
                 </h2>
               {%- endif -%}
               {%- if block.settings.caption -%}
-                <p class="image-with-text__text image-with-text__text--caption caption-with-letter-spacing caption-with-letter-spacing--medium">
+                <p class="image-with-text__text image-with-text__text--caption">
                   {{ block.settings.caption | escape }}
                 </p>
               {%- endif -%}
@@ -544,70 +553,6 @@
           "id": "caption",
           "default": "Add a tagline",
           "label": "Caption"
-        },
-        {
-          "type": "select",
-          "id": "caption_font_weight",
-          "label": "Caption font weight",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "100",
-              "label": "Thin (100)"
-            },
-            {
-              "value": "200",
-              "label": "Extra Light (200)"
-            },
-            {
-              "value": "300",
-              "label": "Light (300)"
-            },
-            {
-              "value": "400",
-              "label": "Normal (400)"
-            },
-            {
-              "value": "500",
-              "label": "Medium (500)"
-            },
-            {
-              "value": "600",
-              "label": "Semi Bold (600)"
-            },
-            {
-              "value": "700",
-              "label": "Bold (700)"
-            },
-            {
-              "value": "800",
-              "label": "Extra Bold (800)"
-            },
-            {
-              "value": "900",
-              "label": "Black (900)"
-            }
-          ],
-          "default": "default"
-        },
-        {
-          "type": "range",
-          "id": "caption_font_size",
-          "min": 10,
-          "max": 50,
-          "step": 1,
-          "unit": "px",
-          "label": "Caption font size",
-          "default": 14
-        },
-        {
-          "type": "color",
-          "id": "caption_color",
-          "label": "Caption color",
-          "default": "rgba(0,0,0,0)"
         },
         {
           "type": "header",
