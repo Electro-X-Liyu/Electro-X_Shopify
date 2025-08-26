@@ -316,46 +316,80 @@
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/201cut.jpg",
-            "caption": "",
             "heading": "Natural Alkaline Water",
-            "button_label": "Learn More",
-            "button_link": "shopify://products/natural-alkaline-water"
-          }
-        },
-        "text_content_hYeYJL": {
-          "type": "text_content",
-          "settings": {
-            "content": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-            "font_weight": "default",
-            "font_size": "default",
+            "heading_font_weight": "default",
+            "heading_font_size": 34,
+            "heading_color": "#ffffff",
+            "caption": "Natural Alkaline Water",
+            "caption_font_weight": "default",
+            "caption_font_size": 14,
+            "caption_color": "#ffffff",
+            "text": "<p><strong>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</strong></p><ul><li>pH Level of 8.8 and above</li><li>Natural Alkaline Spring Water</li><li>100% Recyclable PET</li></ul>",
+            "text_font_weight": "default",
+            "text_font_size": 16,
             "text_color": "#ffffff",
-            "row_id": ""
+            "button_label": "Learn More",
+            "button_link": "shopify://products/natural-alkaline-water",
+            "button_font_weight": "default",
+            "button_font_size": 16,
+            "button_text_color": "#ffffff",
+            "button_bg_color": "rgba(0,0,0,0)",
+            "button_border_color": "rgba(0,0,0,0)"
           }
         },
         "row_gkeKcc": {
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/211cut.jpg",
-            "caption": "",
             "heading": "ELECTRO  X Sports Drink",
+            "heading_font_weight": "default",
+            "heading_font_size": 24,
+            "heading_color": "rgba(0,0,0,0)",
+            "caption": "",
+            "caption_font_weight": "default",
+            "caption_font_size": 14,
+            "caption_color": "rgba(0,0,0,0)",
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "text_font_weight": "default",
+            "text_font_size": 16,
+            "text_color": "rgba(0,0,0,0)",
             "button_label": "Learn More",
-            "button_link": "shopify://collections/electrolyte-sports-drink"
+            "button_link": "shopify://collections/electrolyte-sports-drink",
+            "button_font_weight": "default",
+            "button_font_size": 16,
+            "button_text_color": "rgba(0,0,0,0)",
+            "button_bg_color": "rgba(0,0,0,0)",
+            "button_border_color": "rgba(0,0,0,0)"
           }
         },
         "row_QChGmN": {
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/221cut.jpg",
-            "caption": "",
             "heading": "Electrolyte Liquid Concentrate",
+            "heading_font_weight": "default",
+            "heading_font_size": 24,
+            "heading_color": "rgba(0,0,0,0)",
+            "caption": "",
+            "caption_font_weight": "default",
+            "caption_font_size": 14,
+            "caption_color": "rgba(0,0,0,0)",
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "text_font_weight": "default",
+            "text_font_size": 16,
+            "text_color": "rgba(0,0,0,0)",
             "button_label": "Learn More",
-            "button_link": "shopify://collections/electrolyte-liquid-concentrate"
+            "button_link": "shopify://collections/electrolyte-liquid-concentrate",
+            "button_font_weight": "default",
+            "button_font_size": 16,
+            "button_text_color": "rgba(0,0,0,0)",
+            "button_bg_color": "rgba(0,0,0,0)",
+            "button_border_color": "rgba(0,0,0,0)"
           }
         }
       },
       "block_order": [
         "row_z8tQaq",
-        "text_content_hYeYJL",
         "row_gkeKcc",
         "row_QChGmN"
       ],
