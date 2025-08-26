@@ -309,32 +309,6 @@
         "show_text_below": true
       }
     },
-    "rich_text_krjN6Y": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_MFFgQG": {
-          "type": "heading",
-          "disabled": true,
-          "settings": {
-            "heading": "<a href=\"/collections/all-products\" title=\"All Products\">BROWSE ALL PRODUCTS</a>",
-            "heading_size": "h2"
-          }
-        }
-      },
-      "block_order": [
-        "heading_MFFgQG"
-      ],
-      "disabled": true,
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
     "desktop_multirow_Q3mdjw": {
       "type": "desktop-multirow",
       "blocks": {
@@ -399,66 +373,6 @@
         "section_color_scheme": "scheme-3",
         "row_color_scheme": "scheme-3",
         "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "mobile_multirow_jDNdjC": {
-      "type": "mobile-multirow",
-      "blocks": {
-        "row_FmwDjQ": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/131cut.png",
-            "caption": "",
-            "heading": "Natural Alkaline Water",
-            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p><p></p>",
-            "button_label": "Learn More",
-            "button_link": "shopify://products/natural-alkaline-water"
-          }
-        },
-        "row_EbGaN4": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/111cut.png",
-            "caption": "",
-            "heading": "ELECTRO X Sports Drink",
-            "text": "<p><strong>Premium Hydration, Refined Taste</strong></p><p><strong>Key Ingredients:</strong> Electrolytes | BCAA | </p><p>L Carnitine | Glucose | Vitamins</p><p></p>",
-            "button_label": "Learn More",
-            "button_link": "shopify://collections/electrolyte-sports-drink"
-          }
-        },
-        "row_NdDpE4": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/11cut_3bb7705f-422b-43af-80ed-c1d91036dfb2.png",
-            "caption": "",
-            "heading": "Electrolyte Liquid Concentrate",
-            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p><p></p>",
-            "button_label": "Learn More",
-            "button_link": "shopify://collections/electrolyte-liquid-concentrate"
-          }
-        }
-      },
-      "block_order": [
-        "row_FmwDjQ",
-        "row_EbGaN4",
-        "row_NdDpE4"
-      ],
-      "disabled": true,
-      "name": "Collations-Mobile",
-      "settings": {
-        "image_height": "adapt",
-        "desktop_image_width": "medium",
-        "image_layout": "alternate-left",
-        "heading_size": "h1",
-        "text_style": "body",
-        "button_style": "secondary",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "center",
-        "section_color_scheme": "",
-        "row_color_scheme": "",
-        "padding_top": 36,
         "padding_bottom": 0
       }
     },
@@ -1097,9 +1011,7 @@
     "mobile_rich_text_zz4CY4",
     "all_products_mobile_LfijDi",
     "mobile_banner_3KNFri",
-    "rich_text_krjN6Y",
     "desktop_multirow_Q3mdjw",
-    "mobile_multirow_jDNdjC",
     "mobile_banner_TGWQrB",
     "mobile_banner_J4BarX",
     "mobile_banner_c7zzMD",
