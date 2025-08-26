@@ -45,6 +45,11 @@
     height: auto;
   }
 
+  /* 取消副标题全大写 */
+  .image-with-text__text--caption {
+    text-transform: none !important;
+  }
+
   /* 自定义文字样式 */
   {%- for block in section.blocks -%}
     /* 标题样式 */
@@ -168,15 +173,15 @@
           </div>
           <div class="image-with-text__text-item grid__item">
             <div class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.image_height }} content-container{% unless no_content_background and no_content_styles %} gradient color-{{ section.settings.row_color_scheme }}{% else %} background-transparent{% endunless %}">
-              {%- if block.settings.caption -%}
-                <p class="image-with-text__text image-with-text__text--caption caption-with-letter-spacing caption-with-letter-spacing--medium">
-                  {{ block.settings.caption | escape }}
-                </p>
-              {%- endif -%}
               {%- if block.settings.heading -%}
                 <h2 class="image-with-text__heading {{ section.settings.heading_size }} rte">
                   {{ block.settings.heading }}
                 </h2>
+              {%- endif -%}
+              {%- if block.settings.caption -%}
+                <p class="image-with-text__text image-with-text__text--caption caption-with-letter-spacing caption-with-letter-spacing--medium">
+                  {{ block.settings.caption | escape }}
+                </p>
               {%- endif -%}
               {%- if block.settings.text -%}
                 <div class="image-with-text__text rte {{ section.settings.text_style }}">{{ block.settings.text }}</div>
@@ -458,80 +463,6 @@
         },
         {
           "type": "header",
-          "content": "Caption styling"
-        },
-        {
-          "type": "text",
-          "id": "caption",
-          "default": "Add a tagline",
-          "label": "Caption"
-        },
-        {
-          "type": "select",
-          "id": "caption_font_weight",
-          "label": "Caption font weight",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "100",
-              "label": "Thin (100)"
-            },
-            {
-              "value": "200",
-              "label": "Extra Light (200)"
-            },
-            {
-              "value": "300",
-              "label": "Light (300)"
-            },
-            {
-              "value": "400",
-              "label": "Normal (400)"
-            },
-            {
-              "value": "500",
-              "label": "Medium (500)"
-            },
-            {
-              "value": "600",
-              "label": "Semi Bold (600)"
-            },
-            {
-              "value": "700",
-              "label": "Bold (700)"
-            },
-            {
-              "value": "800",
-              "label": "Extra Bold (800)"
-            },
-            {
-              "value": "900",
-              "label": "Black (900)"
-            }
-          ],
-          "default": "default"
-        },
-        {
-          "type": "range",
-          "id": "caption_font_size",
-          "min": 10,
-          "max": 50,
-          "step": 1,
-          "unit": "px",
-          "label": "Caption font size",
-          "default": 14
-        },
-        {
-          "type": "color",
-          "id": "caption_color",
-          "label": "Caption color",
-          "default": "rgba(0,0,0,0)"
-        },
-        {
-          "type": "header",
           "content": "Heading styling"
         },
         {
@@ -602,6 +533,80 @@
           "type": "color",
           "id": "heading_color",
           "label": "Heading color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "header",
+          "content": "Caption styling"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "default": "Add a tagline",
+          "label": "Caption"
+        },
+        {
+          "type": "select",
+          "id": "caption_font_weight",
+          "label": "Caption font weight",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
+            },
+            {
+              "value": "300",
+              "label": "Light (300)"
+            },
+            {
+              "value": "400",
+              "label": "Normal (400)"
+            },
+            {
+              "value": "500",
+              "label": "Medium (500)"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold (600)"
+            },
+            {
+              "value": "700",
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
+            }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "range",
+          "id": "caption_font_size",
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Caption font size",
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "caption_color",
+          "label": "Caption color",
           "default": "rgba(0,0,0,0)"
         },
         {
