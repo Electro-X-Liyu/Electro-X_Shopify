@@ -45,23 +45,65 @@
     height: auto;
   }
 
-  /* 自定义文本块样式 */
+  /* 自定义文字样式 */
   {%- for block in section.blocks -%}
-    {%- if block.type == 'text_content' -%}
-      #block-{{ block.id }} .custom-text-content {
-        {%- if block.settings.font_weight != 'default' -%}
-          font-weight: {{ block.settings.font_weight }};
-        {%- endif -%}
-        
-        {%- if block.settings.font_size != 'default' -%}
-          font-size: {{ block.settings.font_size }}px;
-        {%- endif -%}
-        
-        {%- if block.settings.text_color != 'rgba(0,0,0,0)' -%}
-          color: {{ block.settings.text_color }};
-        {%- endif -%}
-      }
-    {%- endif -%}
+    /* 标题样式 */
+    #block-{{ block.id }} .image-with-text__heading {
+      {%- if block.settings.heading_font_weight != 'default' -%}
+        font-weight: {{ block.settings.heading_font_weight }} !important;
+      {%- endif -%}
+      {%- if block.settings.heading_font_size != 'default' -%}
+        font-size: {{ block.settings.heading_font_size }}px !important;
+      {%- endif -%}
+      {%- if block.settings.heading_color != 'rgba(0,0,0,0)' -%}
+        color: {{ block.settings.heading_color }} !important;
+      {%- endif -%}
+    }
+
+    /* 副标题样式 */
+    #block-{{ block.id }} .image-with-text__text--caption {
+      {%- if block.settings.caption_font_weight != 'default' -%}
+        font-weight: {{ block.settings.caption_font_weight }} !important;
+      {%- endif -%}
+      {%- if block.settings.caption_font_size != 'default' -%}
+        font-size: {{ block.settings.caption_font_size }}px !important;
+      {%- endif -%}
+      {%- if block.settings.caption_color != 'rgba(0,0,0,0)' -%}
+        color: {{ block.settings.caption_color }} !important;
+      {%- endif -%}
+    }
+
+    /* 正文样式 */
+    #block-{{ block.id }} .image-with-text__text.rte {
+      {%- if block.settings.text_font_weight != 'default' -%}
+        font-weight: {{ block.settings.text_font_weight }} !important;
+      {%- endif -%}
+      {%- if block.settings.text_font_size != 'default' -%}
+        font-size: {{ block.settings.text_font_size }}px !important;
+      {%- endif -%}
+      {%- if block.settings.text_color != 'rgba(0,0,0,0)' -%}
+        color: {{ block.settings.text_color }} !important;
+      {%- endif -%}
+    }
+
+    /* 按钮样式 */
+    #block-{{ block.id }} .button {
+      {%- if block.settings.button_font_weight != 'default' -%}
+        font-weight: {{ block.settings.button_font_weight }} !important;
+      {%- endif -%}
+      {%- if block.settings.button_font_size != 'default' -%}
+        font-size: {{ block.settings.button_font_size }}px !important;
+      {%- endif -%}
+      {%- if block.settings.button_text_color != 'rgba(0,0,0,0)' -%}
+        color: {{ block.settings.button_text_color }} !important;
+      {%- endif -%}
+      {%- if block.settings.button_bg_color != 'rgba(0,0,0,0)' -%}
+        background-color: {{ block.settings.button_bg_color }} !important;
+      {%- endif -%}
+      {%- if block.settings.button_border_color != 'rgba(0,0,0,0)' -%}
+        border-color: {{ block.settings.button_border_color }} !important;
+      {%- endif -%}
+    }
   {%- endfor -%}
 {%- endstyle -%}
 
@@ -96,75 +138,65 @@
 <div class="desktop-multirow multirow section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
   <div class="multirow__inner">
     {%- for block in section.blocks -%}
-      {%- if block.type == 'row' -%}
-        <div
-          class="image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {{ block.shopify_attributes }}
-        >
-          <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.image_layout contains 'alternate' %}{% cycle odd_class, even_class %}{% else %}{{ odd_class }}{% endif %}">
-            <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
-              <div
-                class="image-with-text__media image-with-text__media--{{ section.settings.image_height }} gradient color-{{ section.settings.row_color_scheme }} global-media-settings{% if block.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}"
-                {% if section.settings.image_height == 'adapt' and block.settings.image != blank %}
-                  style="padding-bottom: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;"
-                {% endif %}
-              >
-                {%- if block.settings.image != blank -%}
-                  {%- capture sizes -%}
-                    (min-width: {{ settings.page_width }}px) 50vw,
-                    (min-width: 750px) 50vw, calc(100vw - 30px)
-                  {%- endcapture -%}
-                  {{
-                    block.settings.image
-                    | image_url: width: 1500
-                    | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500'
-                  }}
-                {%- else -%}
-                  {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                {%- endif -%}
-              </div>
+      <div
+        id="block-{{ block.id }}"
+        class="image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        {{ block.shopify_attributes }}
+      >
+        <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.image_layout contains 'alternate' %}{% cycle odd_class, even_class %}{% else %}{{ odd_class }}{% endif %}">
+          <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
+            <div
+              class="image-with-text__media image-with-text__media--{{ section.settings.image_height }} gradient color-{{ section.settings.row_color_scheme }} global-media-settings{% if block.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}"
+              {% if section.settings.image_height == 'adapt' and block.settings.image != blank %}
+                style="padding-bottom: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;"
+              {% endif %}
+            >
+              {%- if block.settings.image != blank -%}
+                {%- capture sizes -%}
+                  (min-width: {{ settings.page_width }}px) 50vw,
+                  (min-width: 750px) 50vw, calc(100vw - 30px)
+                {%- endcapture -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 1500
+                  | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500'
+                }}
+              {%- else -%}
+                {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
             </div>
-            <div class="image-with-text__text-item grid__item">
-              <div class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.image_height }} content-container{% unless no_content_background and no_content_styles %} gradient color-{{ section.settings.row_color_scheme }}{% else %} background-transparent{% endunless %}">
-                {%- if block.settings.caption -%}
-                  <p class="image-with-text__text image-with-text__text--caption caption-with-letter-spacing caption-with-letter-spacing--medium">
-                    {{ block.settings.caption | escape }}
-                  </p>
-                {%- endif -%}
-                {%- if block.settings.heading -%}
-                  <h2 class="image-with-text__heading {{ section.settings.heading_size }} rte">
-                    {{ block.settings.heading }}
-                  </h2>
-                {%- endif -%}
-                
-                <!-- 自定义文本内容块 -->
-                {%- for inner_block in section.blocks -%}
-                  {%- if inner_block.type == 'text_content' and inner_block.settings.row_id == block.id -%}
-                    <div id="block-{{ inner_block.id }}" class="custom-text-block">
-                      <div class="custom-text-content rte {{ section.settings.text_style }}">
-                        {{ inner_block.settings.content }}
-                      </div>
-                    </div>
-                  {%- endif -%}
-                {%- endfor -%}
-                
-                {%- if block.settings.button_label != blank -%}
-                  <a
-                    {% if block.settings.button_link == blank %}
-                      role="link" aria-disabled="true"
-                    {% else %}
-                      href="{{ block.settings.button_link }}"
-                    {% endif %}
-                    class="button button--{{ section.settings.button_style }}"
-                  >
-                    {{ block.settings.button_label | escape }}
-                  </a>
-                {%- endif -%}
-              </div>
+          </div>
+          <div class="image-with-text__text-item grid__item">
+            <div class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.image_height }} content-container{% unless no_content_background and no_content_styles %} gradient color-{{ section.settings.row_color_scheme }}{% else %} background-transparent{% endunless %}">
+              {%- if block.settings.caption -%}
+                <p class="image-with-text__text image-with-text__text--caption caption-with-letter-spacing caption-with-letter-spacing--medium">
+                  {{ block.settings.caption | escape }}
+                </p>
+              {%- endif -%}
+              {%- if block.settings.heading -%}
+                <h2 class="image-with-text__heading {{ section.settings.heading_size }} rte">
+                  {{ block.settings.heading }}
+                </h2>
+              {%- endif -%}
+              {%- if block.settings.text -%}
+                <div class="image-with-text__text rte {{ section.settings.text_style }}">{{ block.settings.text }}</div>
+              {%- endif -%}
+              {%- if block.settings.button_label != blank -%}
+                <a
+                  {% if block.settings.button_link == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ block.settings.button_link }}"
+                  {% endif %}
+                  class="button button--{{ section.settings.button_style }}"
+                >
+                  {{ block.settings.button_label | escape }}
+                </a>
+              {%- endif -%}
             </div>
           </div>
         </div>
-      {%- endif -%}
+      </div>
     {%- endfor -%}
   </div>
 </div>
@@ -425,16 +457,230 @@
           "label": "Image"
         },
         {
+          "type": "header",
+          "content": "Caption styling"
+        },
+        {
           "type": "text",
           "id": "caption",
           "default": "Add a tagline",
           "label": "Caption"
         },
         {
+          "type": "select",
+          "id": "caption_font_weight",
+          "label": "Caption font weight",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
+            },
+            {
+              "value": "300",
+              "label": "Light (300)"
+            },
+            {
+              "value": "400",
+              "label": "Normal (400)"
+            },
+            {
+              "value": "500",
+              "label": "Medium (500)"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold (600)"
+            },
+            {
+              "value": "700",
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
+            }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "range",
+          "id": "caption_font_size",
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Caption font size",
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "caption_color",
+          "label": "Caption color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "header",
+          "content": "Heading styling"
+        },
+        {
           "type": "inline_richtext",
           "id": "heading",
           "default": "Multirow heading",
           "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_font_weight",
+          "label": "Heading font weight",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
+            },
+            {
+              "value": "300",
+              "label": "Light (300)"
+            },
+            {
+              "value": "400",
+              "label": "Normal (400)"
+            },
+            {
+              "value": "500",
+              "label": "Medium (500)"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold (600)"
+            },
+            {
+              "value": "700",
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
+            }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "range",
+          "id": "heading_font_size",
+          "min": 10,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Heading font size",
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "header",
+          "content": "Text styling"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "text_font_weight",
+          "label": "Text font weight",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
+            },
+            {
+              "value": "300",
+              "label": "Light (300)"
+            },
+            {
+              "value": "400",
+              "label": "Normal (400)"
+            },
+            {
+              "value": "500",
+              "label": "Medium (500)"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold (600)"
+            },
+            {
+              "value": "700",
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
+            }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "range",
+          "id": "text_font_size",
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Text font size",
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "header",
+          "content": "Button styling"
         },
         {
           "type": "text",
@@ -446,106 +692,82 @@
           "type": "url",
           "id": "button_link",
           "label": "Button link"
-        }
-      ]
-    },
-    {
-      "type": "text_content",
-      "name": "Text content",
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "content",
-          "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-          "label": "Content"
         },
         {
           "type": "select",
-          "id": "font_weight",
-          "label": "Font weight",
+          "id": "button_font_weight",
+          "label": "Button font weight",
           "options": [
             {
               "value": "default",
               "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
             },
             {
               "value": "300",
-              "label": "Light"
+              "label": "Light (300)"
             },
             {
               "value": "400",
-              "label": "Regular"
+              "label": "Normal (400)"
             },
             {
               "value": "500",
-              "label": "Medium"
+              "label": "Medium (500)"
             },
             {
               "value": "600",
-              "label": "Semi bold"
+              "label": "Semi Bold (600)"
             },
             {
               "value": "700",
-              "label": "Bold"
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
             }
           ],
           "default": "default"
         },
         {
-          "type": "select",
-          "id": "font_size",
-          "label": "Font size",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "12",
-              "label": "12px"
-            },
-            {
-              "value": "14",
-              "label": "14px"
-            },
-            {
-              "value": "16",
-              "label": "16px"
-            },
-            {
-              "value": "18",
-              "label": "18px"
-            },
-            {
-              "value": "20",
-              "label": "20px"
-            },
-            {
-              "value": "24",
-              "label": "24px"
-            },
-            {
-              "value": "28",
-              "label": "28px"
-            },
-            {
-              "value": "32",
-              "label": "32px"
-            }
-          ],
-          "default": "default"
+          "type": "range",
+          "id": "button_font_size",
+          "min": 10,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "label": "Button font size",
+          "default": 16
         },
         {
           "type": "color",
-          "id": "text_color",
-          "label": "Text color",
+          "id": "button_text_color",
+          "label": "Button text color",
           "default": "rgba(0,0,0,0)"
         },
         {
-          "type": "text",
-          "id": "row_id",
-          "label": "Row ID",
-          "info": "Enter the ID of the row this text belongs to (you can find this in the URL when editing a row)"
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button background color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "button_border_color",
+          "label": "Button border color",
+          "default": "rgba(0,0,0,0)"
         }
       ]
     }
@@ -558,13 +780,10 @@
           "type": "row"
         },
         {
-          "type": "text_content"
-        },
-        {
           "type": "row"
         },
         {
-          "type": "text_content"
+          "type": "row"
         }
       ]
     }
