@@ -592,9 +592,9 @@
           "settings": {
             "image": "shopify://shop_images/9cut.png",
             "image_link": "shopify://blogs/sports-sponsorship-1/hyrox-beijing-shanghai",
-            "title": "<a href=\"/blogs/sports-sponsorship-1/hyrox-beijing-shanghai\" title=\"2024/2025 HYROX CHINA\">2024/2025 HYROX CHINA</a>",
-            "text": "",
-            "link_label": "Learn More",
+            "title": "2024/2025 HYROX CHINA",
+            "text": "<h6>LEARN MORE</h6>",
+            "link_label": "",
             "link": "shopify://blogs/sports-sponsorship-1/hyrox-beijing-shanghai"
           }
         },
@@ -662,7 +662,7 @@
         "block_title_margin_top": 0,
         "block_title_margin_bottom": 0,
         "block_text_color": "#666666",
-        "block_text_size": 14,
+        "block_text_size": 16,
         "block_text_margin_top": 0,
         "block_text_margin_bottom": 0,
         "block_link_color": "#8d8d8d",
