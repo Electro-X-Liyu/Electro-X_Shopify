@@ -584,121 +584,63 @@
         "padding_bottom": 52
       }
     },
-    "mixed_multicolumn_DFedAG": {
-      "type": "mixed-multicolumn",
+    "new_blog_7JHwKx": {
+      "type": "new-blog",
       "blocks": {
-        "column_Urkcg4": {
+        "column_weyBdy": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/9cut.png",
-            "image_link": "shopify://blogs/sports-sponsorship-1/hyrox-beijing-shanghai",
-            "title": "2024/2025 HYROX CHINA",
-            "text": "<p><a href=\"/blogs/sports-sponsorship-1/hyrox-beijing-shanghai\" title=\"2024/2025 HYROX CHINA\">LEARN MORE</a></p>",
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
-            "link": "shopify://blogs/sports-sponsorship-1/hyrox-beijing-shanghai"
+            "link": ""
           }
         },
-        "column_6PE64z": {
+        "column_FqXfrL": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/10cut.png",
-            "image_link": "shopify://blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming",
-            "title": "2025 Ironman Shanghai",
-            "text": "<p><a href=\"/blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming\" title=\"2025 Ironman Shanghai\">LEARN MORE</a></p>",
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
-            "link": "shopify://blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming"
+            "link": ""
           }
         },
-        "column_rWFfdJ": {
+        "column_pqfRWF": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/11cut.png",
-            "image_link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open",
-            "title": "NINGBO OPEN WTA 500",
-            "text": "<p><a href=\"/blogs/sports-sponsorship-1/wta-500-niingbo-open\" title=\"NINGBO OPEN WTA 500\">LEARN MORE</a></p>",
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
-            "link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open"
-          }
-        },
-        "column_kfYTC4": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/17cut.png",
-            "image_link": "shopify://blogs/sports-sponsorship-1/2024-beijing-half-marathron",
-            "title": "2024 Beijing Half Marathon",
-            "text": "<p><a href=\"/blogs/sports-sponsorship-1/2024-beijing-half-marathron\" title=\"2024 Beijing Half Marathron\">LEARN MORE</a></p>",
-            "link_label": "",
-            "link": "shopify://blogs/sports-sponsorship-1/2024-beijing-half-marathron"
-          }
-        },
-        "column_kXbgWq": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/16cut.png",
-            "image_link": "shopify://blogs/sports-sponsorship-1/2024-desafio-beijing",
-            "title": "2024 Desafio Beijing",
-            "text": "<p><a href=\"/blogs/sports-sponsorship-1/2024-desafio-beijing\" title=\"2024 Desafío Beijing\">LEARN MORE</a></p>",
-            "link_label": "",
-            "link": "shopify://blogs/sports-sponsorship-1/2024-desafio-beijing"
+            "link": ""
           }
         }
       },
       "block_order": [
-        "column_Urkcg4",
-        "column_6PE64z",
-        "column_rWFfdJ",
-        "column_kfYTC4",
-        "column_kXbgWq"
+        "column_weyBdy",
+        "column_FqXfrL",
+        "column_pqfRWF"
       ],
+      "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "",
-        "title_color": "#000000",
-        "title_size": 24,
-        "title_margin_top": 0,
-        "title_margin_bottom": 0,
-        "heading_size": "h0",
-        "block_title_color": "#333333",
-        "block_title_size": 19,
-        "block_title_margin_top": 10,
-        "block_title_margin_bottom": 26,
-        "block_text_color": "#121212",
-        "block_text_size": 14,
-        "block_text_margin_top": 0,
-        "block_text_margin_bottom": 0,
-        "block_link_color": "#8d8d8d",
-        "block_link_size": 14,
-        "block_link_margin_top": 0,
-        "block_link_margin_bottom": 0,
+        "heading_size": "h1",
         "image_width": "full",
-        "image_ratio": "square",
+        "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
-        "button_bg_color": "#000000",
-        "button_text_color": "#ffffff",
-        "button_border_radius": 4,
-        "button_padding_top": 12,
-        "button_padding_right": 24,
-        "button_padding_bottom": 12,
-        "button_padding_left": 24,
-        "button_margin_top": 0,
-        "button_margin_bottom": 0,
-        "button_text_size": 16,
-        "mobile_button_text_size": 14,
-        "mobile_button_padding_top": 8,
-        "mobile_button_padding_right": 20,
-        "mobile_button_padding_bottom": 8,
-        "mobile_button_padding_left": 20,
-        "columns_desktop": 6,
+        "columns_desktop": 3,
         "column_alignment": "left",
-        "background_style": "none",
+        "background_style": "primary",
         "color_scheme": "",
         "columns_mobile": "1",
-        "mobile_column_width": 85,
-        "mobile_column_gap": 18,
-        "swipe_on_mobile": true,
+        "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "mixed_multicolumn_DFedAG": {
+      "type": "mixed-multicolumn",
+      "settings": {}
     },
     "banner_BM3DgA": {
       "type": "banner",
@@ -826,96 +768,8 @@
     },
     "mixed_multicolumn_gy7jer": {
       "type": "mixed-multicolumn",
-      "blocks": {
-        "column_VXqc4e": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/7_4x_9a318ac9-9b17-4e33-a505-aa2ce2ac8fc2.png",
-            "image_link": "shopify://pages/community-ambassadors",
-            "title": "Community Ambassadors",
-            "text": "",
-            "link_label": "",
-            "link": "shopify://blogs/sports-sponsorship-1/hyrox-beijing-shanghai"
-          }
-        },
-        "column_jgpFWz": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/20250612-154943.jpg",
-            "image_link": "shopify://pages/community-ambassadors",
-            "title": "U.C.P - Urban Challenge Project",
-            "text": "",
-            "link_label": "",
-            "link": "shopify://blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming"
-          }
-        },
-        "column_GxQfcX": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/5cut.png",
-            "image_link": "shopify://pages/community-ambassadors",
-            "title": "Elite Athletes",
-            "text": "",
-            "link_label": "",
-            "link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open"
-          }
-        }
-      },
-      "block_order": [
-        "column_VXqc4e",
-        "column_jgpFWz",
-        "column_GxQfcX"
-      ],
       "disabled": true,
-      "settings": {
-        "title": "",
-        "title_color": "#000000",
-        "title_size": 24,
-        "title_margin_top": 0,
-        "title_margin_bottom": 0,
-        "heading_size": "h1",
-        "block_title_color": "#333333",
-        "block_title_size": 18,
-        "block_title_margin_top": 0,
-        "block_title_margin_bottom": 0,
-        "block_text_color": "#666666",
-        "block_text_size": 14,
-        "block_text_margin_top": 0,
-        "block_text_margin_bottom": 0,
-        "block_link_color": "#8d8d8d",
-        "block_link_size": 14,
-        "block_link_margin_top": 0,
-        "block_link_margin_bottom": 0,
-        "image_width": "full",
-        "image_ratio": "portrait",
-        "button_label": "",
-        "button_link": "shopify://pages/community-ambassadors",
-        "button_bg_color": "#000000",
-        "button_text_color": "#ffffff",
-        "button_border_radius": 4,
-        "button_padding_top": 14,
-        "button_padding_right": 24,
-        "button_padding_bottom": 12,
-        "button_padding_left": 24,
-        "button_margin_top": 0,
-        "button_margin_bottom": 0,
-        "button_text_size": 16,
-        "mobile_button_text_size": 14,
-        "mobile_button_padding_top": 8,
-        "mobile_button_padding_right": 20,
-        "mobile_button_padding_bottom": 8,
-        "mobile_button_padding_left": 20,
-        "columns_desktop": 6,
-        "column_alignment": "left",
-        "background_style": "none",
-        "color_scheme": "",
-        "columns_mobile": "1",
-        "mobile_column_width": 85,
-        "mobile_column_gap": 18,
-        "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
+      "settings": {}
     },
     "new_blog_pMAgYq": {
       "type": "new-blog",
@@ -1051,6 +905,7 @@
     "mobile_banner_J4BarX",
     "mobile_banner_c7zzMD",
     "desktop_rich_text_HjaGHX",
+    "new_blog_7JHwKx",
     "mixed_multicolumn_DFedAG",
     "banner_BM3DgA",
     "desktop_rich_text_6PnQKk",
