@@ -603,9 +603,9 @@
           "settings": {
             "image": "shopify://shop_images/10cut.png",
             "image_link": "shopify://blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming",
-            "title": "<a href=\"/blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming\" title=\"2025 Ironman Shanghai\">2025 Ironman Shanghai</a>",
-            "text": "",
-            "link_label": "Learn More",
+            "title": "2025 Ironman Shanghai",
+            "text": "<p><a href=\"/blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming\" title=\"2025 Ironman Shanghai\">LEARN MORE</a></p>",
+            "link_label": "",
             "link": "shopify://blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming"
           }
         },
@@ -614,9 +614,9 @@
           "settings": {
             "image": "shopify://shop_images/11cut.png",
             "image_link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open",
-            "title": "<a href=\"/blogs/sports-sponsorship-1/wta-500-niingbo-open\" title=\"NINGBO OPEN WTA 500\">NINGBO OPEN WTA 500</a>",
-            "text": "",
-            "link_label": "Learn More",
+            "title": "NINGBO OPEN WTA 500",
+            "text": "<p><a href=\"/blogs/sports-sponsorship-1/wta-500-niingbo-open\" title=\"NINGBO OPEN WTA 500\">LEARN MORE</a></p>",
+            "link_label": "",
             "link": "shopify://blogs/sports-sponsorship-1/wta-500-niingbo-open"
           }
         },
@@ -625,9 +625,9 @@
           "settings": {
             "image": "shopify://shop_images/17cut.png",
             "image_link": "shopify://blogs/sports-sponsorship-1/2024-beijing-half-marathron",
-            "title": "<a href=\"/blogs/sports-sponsorship-1/2024-beijing-half-marathron\" title=\"2024 Beijing Half Marathron\">2024 Beijing Half Marathon</a>",
-            "text": "",
-            "link_label": "Learn More",
+            "title": "2024 Beijing Half Marathon",
+            "text": "<p><a href=\"/blogs/sports-sponsorship-1/2024-beijing-half-marathron\" title=\"2024 Beijing Half Marathron\">LEARN MORE</a></p>",
+            "link_label": "",
             "link": "shopify://blogs/sports-sponsorship-1/2024-beijing-half-marathron"
           }
         },
@@ -636,9 +636,9 @@
           "settings": {
             "image": "shopify://shop_images/16cut.png",
             "image_link": "shopify://blogs/sports-sponsorship-1/2024-desafio-beijing",
-            "title": "<a href=\"/blogs/sports-sponsorship-1/2024-desafio-beijing\" title=\"2024 Desafio Beijing\">2024 Desafio Beijing</a>",
-            "text": "",
-            "link_label": "Learn More",
+            "title": "2024 Desafio Beijing",
+            "text": "<p><a href=\"/blogs/sports-sponsorship-1/2024-desafio-beijing\" title=\"2024 Desafío Beijing\">LEARN MORE</a></p>",
+            "link_label": "",
             "link": "shopify://blogs/sports-sponsorship-1/2024-desafio-beijing"
           }
         }
@@ -661,7 +661,7 @@
         "block_title_size": 19,
         "block_title_margin_top": 10,
         "block_title_margin_bottom": 26,
-        "block_text_color": "#666666",
+        "block_text_color": "#121212",
         "block_text_size": 14,
         "block_text_margin_top": 0,
         "block_text_margin_bottom": 0,
