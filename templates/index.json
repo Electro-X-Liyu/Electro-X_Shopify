@@ -587,9 +587,30 @@
     "new_blog_7JHwKx": {
       "type": "new-blog",
       "blocks": {
+        "column_Eg64X7": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9cut.png",
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_wExLCW": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/10cut.png",
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
         "column_weyBdy": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/11cut.png",
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
@@ -599,6 +620,7 @@
         "column_FqXfrL": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/17cut.png",
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
@@ -608,6 +630,7 @@
         "column_pqfRWF": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/16cut.png",
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
@@ -616,6 +639,8 @@
         }
       },
       "block_order": [
+        "column_Eg64X7",
+        "column_wExLCW",
         "column_weyBdy",
         "column_FqXfrL",
         "column_pqfRWF"
@@ -625,7 +650,7 @@
         "title": "",
         "heading_size": "h1",
         "image_width": "full",
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
@@ -637,10 +662,6 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "mixed_multicolumn_DFedAG": {
-      "type": "mixed-multicolumn",
-      "settings": {}
     },
     "banner_BM3DgA": {
       "type": "banner",
@@ -766,11 +787,6 @@
         "show_text_below": false
       }
     },
-    "mixed_multicolumn_gy7jer": {
-      "type": "mixed-multicolumn",
-      "disabled": true,
-      "settings": {}
-    },
     "new_blog_pMAgYq": {
       "type": "new-blog",
       "blocks": {
@@ -815,7 +831,7 @@
         "title": "",
         "heading_size": "h1",
         "image_width": "full",
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
@@ -906,11 +922,9 @@
     "mobile_banner_c7zzMD",
     "desktop_rich_text_HjaGHX",
     "new_blog_7JHwKx",
-    "mixed_multicolumn_DFedAG",
     "banner_BM3DgA",
     "desktop_rich_text_6PnQKk",
     "mobile_banner_PGtzXU",
-    "mixed_multicolumn_gy7jer",
     "new_blog_pMAgYq",
     "desktop_rich_text_hePfFd",
     "mobile_rich_text_hLkbnQ"
