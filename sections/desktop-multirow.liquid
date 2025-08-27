@@ -51,7 +51,7 @@
     letter-spacing: normal !important;
   }
 
-  /* 按钮样式 */
+  /* 按钮样式 - 确保border-radius为10px */
   .image-with-text__content .button {
     min-height: calc(2.5rem + var(--buttons-border-width) * 2) !important;
     padding-left: 20px !important;
@@ -108,7 +108,7 @@
       {%- endif -%}
     }
 
-    /* 按钮样式 */
+    /* 按钮样式 - 确保border-radius为10px */
     #block-{{ block.id }} .button {
       {%- if block.settings.button_font_weight != 'default' -%}
         font-weight: {{ block.settings.button_font_weight }} !important;
@@ -125,6 +125,7 @@
       {%- if block.settings.button_border_color != 'rgba(0,0,0,0)' -%}
         border-color: {{ block.settings.button_border_color }} !important;
       {%- endif -%}
+      border-radius: 10px !important;
     }
   {%- endfor -%}
 {%- endstyle -%}
@@ -165,7 +166,7 @@
         class="image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {{ block.shopify_attributes }}
       >
-        <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.image_layout contains 'alternate' %}{% cycle odd_class, even_class %}{% else %}{{ odd_class }}{% endif %}">
+        <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.image_layout contains 'alternate' %}{% cycle odd_class, even_class %}{% else %}{{ odd_class }}{% endif %}" style="margin-top: 1px !important; margin-bottom: 1px !important;">
           <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
             <div
               class="image-with-text__media image-with-text__media--{{ section.settings.image_height }} gradient color-{{ section.settings.row_color_scheme }} global-media-settings{% if block.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}"
@@ -420,53 +421,53 @@
           "label": "Center"
         },
         {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "left",
-      "label": "Mobile content alignment"
-    },
-    {
-      "type": "header",
-      "content": "Colors"
-    },
-    {
-      "type": "color_scheme",
-      "id": "section_color_scheme",
-      "label": "Section colors",
-      "default": "scheme-1"
-    },
-    {
-      "type": "color_scheme",
-      "id": "row_color_scheme",
-      "label": "Row colors",
-      "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "Spacing"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Top padding",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Bottom padding",
-      "default": 36
+      "value": "right",
+      "label": "Right"
     }
+  ],
+  "default": "left",
+  "label": "Mobile content alignment"
+},
+{
+  "type": "header",
+  "content": "Colors"
+},
+{
+  "type": "color_scheme",
+  "id": "section_color_scheme",
+  "label": "Section colors",
+  "default": "scheme-1"
+},
+{
+  "type": "color_scheme",
+  "id": "row_color_scheme",
+  "label": "Row colors",
+  "default": "scheme-1"
+},
+{
+  "type": "header",
+  "content": "Spacing"
+},
+{
+  "type": "range",
+  "id": "padding_top",
+  "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px",
+  "label": "Top padding",
+  "default": 36
+},
+{
+  "type": "range",
+  "id": "padding_bottom",
+  "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px",
+  "label": "Bottom padding",
+  "default": 36
+}
   ],
   "blocks": [
     {
