@@ -974,17 +974,17 @@
         "padding_bottom": 36
       }
     },
-    "rich_text_xBeWBr": {
-      "type": "rich-text",
+    "desktop_rich_text_hePfFd": {
+      "type": "Desktop-Rich-Text",
       "blocks": {
-        "heading_Uy4fmC": {
+        "heading_eFjUk7": {
           "type": "heading",
           "settings": {
-            "heading": "<strong>About Us</strong>",
+            "heading": "ABOUT US",
             "heading_size": "h1"
           }
         },
-        "text_D4nkAj": {
+        "text_kBD7dn": {
           "type": "text",
           "settings": {
             "text": "<p>Founded in 2021 in the heart of Shanghai’s urban sports culture, ELECTRO X is a premium hydration brand crafted for athletes and active lifestyles. We empower the thriving sports community with clean, science-backed hydration—including Natural Alkaline Water, Functional Sports Drinks, and Electrolyte Liquid Concentrates.</p>"
@@ -992,17 +992,60 @@
         }
       },
       "block_order": [
-        "heading_Uy4fmC",
-        "text_D4nkAj"
+        "heading_eFjUk7",
+        "text_kBD7dn"
       ],
-      "name": "t:sections.rich-text.presets.name",
+      "name": "Desktop Rich Text",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "scheme-2",
         "full_width": true,
-        "padding_top": 84,
-        "padding_bottom": 100
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "mobile_rich_text_hLkbnQ": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_jVJdAB": {
+          "type": "heading",
+          "settings": {
+            "heading": "ABOUT US",
+            "heading_size": "h1"
+          }
+        },
+        "text_xYbpFE": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Founded in 2021 in the heart of Shanghai’s urban sports culture, ELECTRO X is a premium hydration brand crafted for athletes and active lifestyles. We empower the thriving sports community with clean, science-backed hydration—including Natural Alkaline Water, Functional Sports Drinks, and Electrolyte Liquid Concentrates.</p>"
+          }
+        },
+        "button_bFTazM": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_jVJdAB",
+        "text_xYbpFE",
+        "button_bFTazM"
+      ],
+      "name": "Mobile rich text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     }
   },
@@ -1026,6 +1069,7 @@
     "mobile_banner_PGtzXU",
     "mixed_multicolumn_gy7jer",
     "new_blog_pMAgYq",
-    "rich_text_xBeWBr"
+    "desktop_rich_text_hePfFd",
+    "mobile_rich_text_hLkbnQ"
   ]
 }
