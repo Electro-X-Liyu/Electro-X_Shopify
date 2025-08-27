@@ -1020,23 +1020,11 @@
           "settings": {
             "text": "<p>Founded in 2021 in the heart of Shanghai’s urban sports culture, ELECTRO X is a premium hydration brand crafted for athletes and active lifestyles. We empower the thriving sports community with clean, science-backed hydration—including Natural Alkaline Water, Functional Sports Drinks, and Electrolyte Liquid Concentrates.</p>"
           }
-        },
-        "button_bFTazM": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
         }
       },
       "block_order": [
         "heading_jVJdAB",
-        "text_xYbpFE",
-        "button_bFTazM"
+        "text_xYbpFE"
       ],
       "name": "Mobile rich text",
       "settings": {
