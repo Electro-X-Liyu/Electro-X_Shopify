@@ -56,12 +56,13 @@
     min-height: calc(2.5rem + var(--buttons-border-width) * 2) !important;
     padding-left: 20px !important;
     padding-right: 20px !important;
-    border-radius: var(--buttons-radius) !important;
+    border-radius: 10px !important;
+    margin-top: 80px !important;
   }
 
   /* 内容区域padding */
   .image-with-text__content.image-with-text__content--middle.image-with-text__content--desktop-left.image-with-text__content--mobile-left.image-with-text__content--large.content-container.background-transparent {
-    padding: 70px !important;
+    padding: 120px !important;
   }
 
   /* 自定义文字样式 */
@@ -90,8 +91,8 @@
       {%- if block.settings.caption_color != 'rgba(0,0,0,0)' -%}
         color: {{ block.settings.caption_color }} !important;
       {%- endif -%}
-      font-family: inherit !important;
-      line-height: normal !important;
+      margin-top: 70px !important;
+      margin-bottom: 20px !important;
     }
 
     /* 正文样式 */
