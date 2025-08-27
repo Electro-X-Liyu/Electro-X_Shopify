@@ -560,27 +560,28 @@
         "show_text_below": true
       }
     },
-    "rich_text_VpEQaY": {
-      "type": "rich-text",
+    "desktop_rich_text_HjaGHX": {
+      "type": "Desktop-Rich-Text",
       "blocks": {
-        "heading_meqA8e": {
+        "heading_LrVXxE": {
           "type": "heading",
           "settings": {
             "heading": "SPORT SPONSORSHIP",
-            "heading_size": "h2"
+            "heading_size": "h1"
           }
         }
       },
       "block_order": [
-        "heading_meqA8e"
+        "heading_LrVXxE"
       ],
+      "name": "Desktop Rich Text",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 76,
-        "padding_bottom": 0
+        "padding_top": 52,
+        "padding_bottom": 52
       }
     },
     "mixed_multicolumn_DFedAG": {
@@ -655,7 +656,7 @@
         "title_size": 24,
         "title_margin_top": 0,
         "title_margin_bottom": 0,
-        "heading_size": "h1",
+        "heading_size": "h0",
         "block_title_color": "#333333",
         "block_title_size": 18,
         "block_title_margin_top": 0,
@@ -1049,7 +1050,7 @@
     "mobile_banner_TGWQrB",
     "mobile_banner_J4BarX",
     "mobile_banner_c7zzMD",
-    "rich_text_VpEQaY",
+    "desktop_rich_text_HjaGHX",
     "mixed_multicolumn_DFedAG",
     "banner_BM3DgA",
     "rich_text_7zrTRQ",
