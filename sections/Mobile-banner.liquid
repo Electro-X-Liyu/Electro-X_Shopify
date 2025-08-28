@@ -1,11 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile-Banner</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Mobile-Banner 样式 */
+        .mobile-banner {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .banner-media {
+            position: relative;
+            width: 100%;
+        }
+        
+        .banner-media.adapt::before {
+            content: '';
+            display: block;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+        }
+        
+        .banner-media img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .banner-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            padding: 20px;
+        }
+        
+        .banner-box {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .banner-heading {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            line-height: 1.2;
+        }
+        
+        .banner-text {
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+        
+        .banner-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .banner-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .banner-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .banner-button.secondary {
+            background-color: transparent;
+            color: #3498db;
+            border: 2px solid #3498db;
+        }
+        
+        .banner-button.secondary:hover {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        /* 自定义控件样式 */
+        .controls {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .control-group h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+        
+        .control-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+        
+        .control-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .control-item label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #34495e;
+        }
+        
+        .control-item input,
+        .control-item select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        .control-item input[type="color"] {
+            height: 40px;
+            padding: 2px;
+        }
+        
+        .control-item input[type="range"] {
+            padding: 0;
+        }
+        
+        .range-value {
+            font-size: 14px;
+            color: #7f8c8d;
+            text-align: center;
+        }
+        
+        /* 响应式设计 */
+        @media (min-width: 768px) {
+            .banner-box {
+                width: 70%;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .banner-content {
+                padding: 15px;
+            }
+            
+            .banner-box {
+                padding: 20px;
+                max-width: none;
+            }
+            
+            .banner-buttons {
+                flex-direction: column;
+            }
+            
+            .banner-button {
+                text-align: center;
+            }
+        }
+        
+        .preview-title {
+            text-align: center;
+            margin: 20px 0;
+            color: #2c3e50;
+        }
+        
+        .code-container {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 30px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="preview-title">Mobile-Banner 组件</h1>
+        
+        <div class="controls">
+            <div class="control-group">
+                <h3>标题样式设置</h3>
+                <div class="control-row">
+                    <div class="control-item">
+                        <label for="headingText">标题内容</label>
+                        <input type="text" id="headingText" value="夏季新品上市" placeholder="输入标题文本">
+                    </div>
+                    <div class="control-item">
+                        <label for="headingSize">字体大小 (px)</label>
+                        <input type="range" id="headingSize" min="20" max="50" value="32">
+                        <div class="range-value" id="headingSizeValue">32px</div>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <div class="control-item">
+                        <label for="headingColor">字体颜色</label>
+                        <input type="color" id="headingColor" value="#2c3e50">
+                    </div>
+                    <div class="control-item">
+                        <label for="headingWeight">字体粗细</label>
+                        <select id="headingWeight">
+                            <option value="300">细体 (300)</option>
+                            <option value="400">正常 (400)</option>
+                            <option value="600" selected>半粗体 (600)</option>
+                            <option value="700">粗体 (700)</option>
+                            <option value="800">超粗体 (800)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <h3>文本样式设置</h3>
+                <div class="control-row">
+                    <div class="control-item">
+                        <label for="textContent">文本内容</label>
+                        <input type="text" id="textContent" value="探索我们的最新系列，享受限时优惠折扣" placeholder="输入文本内容">
+                    </div>
+                    <div class="control-item">
+                        <label for="textSize">字体大小 (px)</label>
+                        <input type="range" id="textSize" min="14" max="24" value="18">
+                        <div class="range-value" id="textSizeValue">18px</div>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <div class="control-item">
+                        <label for="textColor">字体颜色</label>
+                        <input type="color" id="textColor" value="#34495e">
+                    </div>
+                    <div class="control-item">
+                        <label for="textWeight">字体粗细</label>
+                        <select id="textWeight">
+                            <option value="300">细体 (300)</option>
+                            <option value="400" selected>正常 (400)</option>
+                            <option value="600">半粗体 (600)</option>
+                            <option value="700">粗体 (700)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <h3>图片与链接设置</h3>
+                <div class="control-row">
+                    <div class="control-item">
+                        <label for="imageLink">图片链接地址</label>
+                        <input type="text" id="imageLink" value="https://images.unsplash.com/photo-1523381210434-271e8be1f52b" placeholder="输入图片链接">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mobile-banner">
+            <a href="#" id="bannerImageLink" class="banner-media adapt">
+                <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b" alt="夏季新品" id="bannerImage">
+            </a>
+            
+            <div class="banner-content">
+                <div class="banner-box">
+                    <h2 class="banner-heading" id="bannerHeading">夏季新品上市</h2>
+                    <div class="banner-text" id="bannerText">探索我们的最新系列，享受限时优惠折扣</div>
+                    <div class="banner-buttons">
+                        <a href="#" class="banner-button">立即购买</a>
+                        <a href="#" class="banner-button secondary">了解更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-container">
+            <h3>Liquid 代码实现</h3>
+            <pre>
+{% raw %}
 {{ 'section-mobile-banner.css' | asset_url | stylesheet_tag }}
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
     @media screen and (max-width: 749px) {
       #MobileBanner-{{ section.id }}::before,
-      #MobileBanner-{{ section.id }} .banner__media::before,
-      #MobileBanner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
+      #MobileBanner-{{ section.id }} .banner__media::before {
         padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
         content: '';
         display: block;
@@ -27,78 +356,36 @@
     {% endif %}
   }
   
+  /* Custom text styles */
+  #MobileBanner-{{ section.id }} .banner__heading {
+    font-size: {{ section.settings.heading_font_size }}px;
+    font-weight: {{ section.settings.heading_font_weight }};
+    color: {{ section.settings.heading_color }};
+  }
+  
+  #MobileBanner-{{ section.id }} .banner__text {
+    font-size: {{ section.settings.text_font_size }}px;
+    font-weight: {{ section.settings.text_font_weight }};
+    color: {{ section.settings.text_color }};
+  }
+  
   /* Hide on desktop */
   @media screen and (min-width: 750px) {
     #MobileBanner-{{ section.id }} {
       display: none !important;
     }
   }
-  
-  /* Custom text styles */
-  {%- for block in section.blocks -%}
-    {%- case block.type -%}
-      {%- when 'heading' -%}
-        #MobileBanner-{{ section.id }} .banner__heading {
-          {% if block.settings.font_weight != 'default' %}
-            font-weight: {{ block.settings.font_weight }};
-          {% endif %}
-          {% if block.settings.font_size != 'default' %}
-            font-size: {{ block.settings.font_size }}px;
-          {% endif %}
-          {% if block.settings.text_color != 'rgba(0,0,0,0)' %}
-            color: {{ block.settings.text_color }};
-          {% endif %}
-        }
-      {%- when 'text' -%}
-        #MobileBanner-{{ section.id }} .banner__text {
-          {% if block.settings.font_weight != 'default' %}
-            font-weight: {{ block.settings.font_weight }};
-          {% endif %}
-          {% if block.settings.font_size != 'default' %}
-            font-size: {{ block.settings.font_size }}px;
-          {% endif %}
-          {% if block.settings.text_color != 'rgba(0,0,0,0)' %}
-            color: {{ block.settings.text_color }};
-          {% endif %}
-        }
-    {%- endcase -%}
-  {%- endfor -%}
 {%- endstyle -%}
-
-{%- liquid
-  assign full_width = '100vw'
-  assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
-
-  if section.settings.image_behavior == 'ambient'
-    assign half_width = '60vw'
-    assign full_width = '120vw'
-    assign stacked_sizes = '(min-width: 750px) 60vw, 120vw'
-    assign widths = '450, 660, 900, 1320, 1800, 2136, 2400, 3600, 7680'
-  elsif section.settings.image_behavior == 'fixed' or section.settings.image_behavior == 'zoom-in'
-    assign half_width = '100vw'
-    assign stacked_sizes = '100vw'
-  else
-    assign half_width = '50vw'
-    assign stacked_sizes = '(min-width: 750px) 50vw, 100vw'
-  endif
-  assign fetch_priority = 'auto'
-  if section.index == 1
-    assign fetch_priority = 'high'
-  endif
--%}
 
 <div
   id="MobileBanner-{{ section.id }}"
   class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
   {%- if section.settings.image != blank -%}
-    {%- if section.settings.image_link != blank -%}
-      <a href="{{ section.settings.image_link }}" class="banner__media-link">
-    {%- endif -%}
-    <div class="banner__media media{% if section.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <a href="{{ section.settings.image_link }}" class="banner__media media{% if section.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {%- liquid
         assign image_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio
-        assign sizes = full_width
+        assign sizes = '100vw'
       -%}
       {{
         section.settings.image
@@ -106,33 +393,31 @@
         | image_tag:
           width: section.settings.image.width,
           height: image_height,
-          class: 'banner__media-image',
           sizes: sizes,
-          widths: widths,
-          fetchpriority: fetch_priority
+          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+          fetchpriority: 'high'
       }}
-    </div>
-    {%- if section.settings.image_link != blank -%}
-      </a>
-    {%- endif -%}
+    </a>
   {%- else -%}
-    <div class="banner__media media placeholder{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <div class="banner__media media{% if section.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
     </div>
   {%- endif -%}
+  
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient" style="{% if section.settings.text_container_width != 'default' %}width: {{ section.settings.text_container_width }}px; max-width: 100%;{% endif %}">
+    <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}
+              style="font-size: {{ block.settings.heading_font_size }}px; font-weight: {{ block.settings.heading_font_weight }}; color: {{ block.settings.heading_color }};"
             >
               {{ block.settings.heading }}
             </h2>
           {%- when 'text' -%}
-            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }} style="font-size: {{ block.settings.text_font_size }}px; font-weight: {{ block.settings.text_font_weight }}; color: {{ block.settings.text_color }};">
               <p>{{ block.settings.text }}</p>
             </div>
           {%- when 'buttons' -%}
@@ -173,7 +458,7 @@
 
 {% schema %}
 {
-  "name": "Mobile Banner",
+  "name": "Mobile-Banner",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -188,8 +473,7 @@
     {
       "type": "url",
       "id": "image_link",
-      "label": "Image link",
-      "info": "Optional link for the banner image"
+      "label": "图片链接"
     },
     {
       "type": "range",
@@ -226,41 +510,17 @@
       "label": "t:sections.image-banner.settings.image_height.label"
     },
     {
-      "type": "select",
-      "id": "image_behavior",
-      "options": [
-        {
-          "value": "none",
-          "label": "t:sections.all.animation.image_behavior.options__1.label"
-        },
-        {
-          "value": "ambient",
-          "label": "t:sections.all.animation.image_behavior.options__2.label"
-        },
-        {
-          "value": "fixed",
-          "label": "t:sections.all.animation.image_behavior.options__3.label"
-        },
-        {
-          "value": "zoom-in",
-          "label": "t:sections.all.animation.image_behavior.options__4.label"
-        }
-      ],
-      "default": "none",
-      "label": "t:sections.all.animation.image_behavior.label"
-    },
-    {
       "type": "header",
-      "content": "Text container settings"
+      "content": "文本容器设置"
     },
     {
       "type": "select",
       "id": "text_container_width",
-      "label": "Text container width",
+      "label": "文本容器宽度",
       "options": [
         {
           "value": "default",
-          "label": "Default width"
+          "label": "默认宽度"
         },
         {
           "value": "300",
@@ -288,11 +548,103 @@
         }
       ],
       "default": "default",
-      "info": "Select width for the text container. Choose 'Default width' to use theme's default styling."
+      "info": "选择文本容器的宽度。选择'默认宽度'以使用主题的默认样式。"
     },
     {
       "type": "header",
-      "content": "t:sections.image-banner.settings.content.content"
+      "content": "标题样式设置"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "标题字体大小",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "标题字体粗细",
+      "options": [
+        {
+          "value": "300",
+          "label": "细体"
+        },
+        {
+          "value": "400",
+          "label": "正常"
+        },
+        {
+          "value": "600",
+          "label": "半粗体"
+        },
+        {
+          "value": "700",
+          "label": "粗体"
+        },
+        {
+          "value": "800",
+          "label": "超粗体"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "标题颜色",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "header",
+      "content": "文本样式设置"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "文本字体大小",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "text_font_weight",
+      "label": "文本字体粗细",
+      "options": [
+        {
+          "value": "300",
+          "label": "细体"
+        },
+        {
+          "value": "400",
+          "label": "正常"
+        },
+        {
+          "value": "600",
+          "label": "半粗体"
+        },
+        {
+          "value": "700",
+          "label": "粗体"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "文本颜色",
+      "default": "#34495e"
+    },
+    {
+      "type": "header",
+      "content": "内容设置"
     },
     {
       "type": "select",
@@ -442,94 +794,48 @@
           "label": "t:sections.all.heading_size.label"
         },
         {
+          "type": "range",
+          "id": "heading_font_size",
+          "min": 20,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "标题字体大小",
+          "default": 32
+        },
+        {
           "type": "select",
-          "id": "font_weight",
-          "label": "Font weight",
+          "id": "heading_font_weight",
+          "label": "标题字体粗细",
           "options": [
             {
-              "value": "default",
-              "label": "Default"
-            },
-            {
               "value": "300",
-              "label": "Light"
+              "label": "细体"
             },
             {
               "value": "400",
-              "label": "Regular"
-            },
-            {
-              "value": "500",
-              "label": "Medium"
+              "label": "正常"
             },
             {
               "value": "600",
-              "label": "Semi-bold"
+              "label": "半粗体"
             },
             {
               "value": "700",
-              "label": "Bold"
+              "label": "粗体"
             },
             {
               "value": "800",
-              "label": "Extra-bold"
+              "label": "超粗体"
             }
           ],
-          "default": "default"
-        },
-        {
-          "type": "select",
-          "id": "font_size",
-          "label": "Font size (px)",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "16",
-              "label": "16px"
-            },
-            {
-              "value": "18",
-              "label": "18px"
-            },
-            {
-              "value": "20",
-              "label": "20px"
-            },
-            {
-              "value": "24",
-              "label": "24px"
-            },
-            {
-              "value": "28",
-              "label": "28px"
-            },
-            {
-              "value": "32",
-              "label": "32px"
-            },
-            {
-              "value": "36",
-              "label": "36px"
-            },
-            {
-              "value": "40",
-              "label": "40px"
-            },
-            {
-              "value": "48",
-              "label": "48px"
-            }
-          ],
-          "default": "default"
+          "default": "600"
         },
         {
           "type": "color",
-          "id": "text_color",
-          "label": "Text color",
-          "default": "rgba(0,0,0,0)"
+          "id": "heading_color",
+          "label": "标题颜色",
+          "default": "#2c3e50"
         }
       ]
     },
@@ -565,74 +871,44 @@
           "label": "t:sections.image-banner.blocks.text.settings.text_style.label"
         },
         {
-          "type": "select",
-          "id": "font_weight",
-          "label": "Font weight",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "300",
-              "label": "Light"
-            },
-            {
-              "value": "400",
-              "label": "Regular"
-            },
-            {
-              "value": "500",
-              "label": "Medium"
-            },
-            {
-              "value": "600",
-              "label": "Semi-bold"
-            },
-            {
-              "value": "700",
-              "label": "Bold"
-            }
-          ],
-          "default": "default"
+          "type": "range",
+          "id": "text_font_size",
+          "min": 14,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "文本字体大小",
+          "default": 18
         },
         {
           "type": "select",
-          "id": "font_size",
-          "label": "Font size (px)",
+          "id": "text_font_weight",
+          "label": "文本字体粗细",
           "options": [
             {
-              "value": "default",
-              "label": "Default"
+              "value": "300",
+              "label": "细体"
             },
             {
-              "value": "12",
-              "label": "12px"
+              "value": "400",
+              "label": "正常"
             },
             {
-              "value": "14",
-              "label": "14px"
+              "value": "600",
+              "label": "半粗体"
             },
             {
-              "value": "16",
-              "label": "16px"
-            },
-            {
-              "value": "18",
-              "label": "18px"
-            },
-            {
-              "value": "20",
-              "label": "20px"
+              "value": "700",
+              "label": "粗体"
             }
           ],
-          "default": "default"
+          "default": "400"
         },
         {
           "type": "color",
           "id": "text_color",
-          "label": "Text color",
-          "default": "rgba(0,0,0,0)"
+          "label": "文本颜色",
+          "default": "#34495e"
         }
       ]
     },
@@ -690,7 +966,7 @@
   ],
   "presets": [
     {
-      "name": "Mobile Banner",
+      "name": "Mobile-Banner",
       "blocks": [
         {
           "type": "heading"
@@ -706,3 +982,86 @@
   ]
 }
 {% endschema %}
+{% endraw %}</pre>
+        </div>
+    </div>
+
+    <script>
+        // 实时更新样式
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有输入元素
+            const headingText = document.getElementById('headingText');
+            const headingSize = document.getElementById('headingSize');
+            const headingSizeValue = document.getElementById('headingSizeValue');
+            const headingColor = document.getElementById('headingColor');
+            const headingWeight = document.getElementById('headingWeight');
+            
+            const textContent = document.getElementById('textContent');
+            const textSize = document.getElementById('textSize');
+            const textSizeValue = document.getElementById('textSizeValue');
+            const textColor = document.getElementById('textColor');
+            const textWeight = document.getElementById('textWeight');
+            
+            const imageLink = document.getElementById('imageLink');
+            
+            // 获取所有显示元素
+            const bannerHeading = document.getElementById('bannerHeading');
+            const bannerText = document.getElementById('bannerText');
+            const bannerImageLink = document.getElementById('bannerImageLink');
+            
+            // 初始化显示值
+            headingSizeValue.textContent = `${headingSize.value}px`;
+            textSizeValue.textContent = `${textSize.value}px`;
+            
+            // 标题文本更新
+            headingText.addEventListener('input', function() {
+                bannerHeading.textContent = this.value;
+            });
+            
+            // 标题字体大小更新
+            headingSize.addEventListener('input', function() {
+                const size = this.value;
+                bannerHeading.style.fontSize = `${size}px`;
+                headingSizeValue.textContent = `${size}px`;
+            });
+            
+            // 标题颜色更新
+            headingColor.addEventListener('input', function() {
+                bannerHeading.style.color = this.value;
+            });
+            
+            // 标题字重更新
+            headingWeight.addEventListener('change', function() {
+                bannerHeading.style.fontWeight = this.value;
+            });
+            
+            // 文本内容更新
+            textContent.addEventListener('input', function() {
+                bannerText.textContent = this.value;
+            });
+            
+            // 文本字体大小更新
+            textSize.addEventListener('input', function() {
+                const size = this.value;
+                bannerText.style.fontSize = `${size}px`;
+                textSizeValue.textContent = `${size}px`;
+            });
+            
+            // 文本颜色更新
+            textColor.addEventListener('input', function() {
+                bannerText.style.color = this.value;
+            });
+            
+            // 文本字重更新
+            textWeight.addEventListener('change', function() {
+                bannerText.style.fontWeight = this.value;
+            });
+            
+            // 图片链接更新
+            imageLink.addEventListener('input', function() {
+                bannerImageLink.href = this.value;
+            });
+        });
+    </script>
+</body>
+</html>
