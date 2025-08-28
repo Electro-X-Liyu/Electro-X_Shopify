@@ -572,7 +572,7 @@
           "settings": {
             "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
             "text_font_weight": "default",
-            "text_custom_size": 10,
+            "text_custom_size": 11,
             "text_color": "#121212"
           }
         },
@@ -583,7 +583,7 @@
             "button_link": "shopify://products/natural-alkaline-water",
             "button_style_secondary": false,
             "button_font_weight": "default",
-            "button_custom_size": 8,
+            "button_custom_size": 10,
             "button_color": "#121212",
             "button_bg_color": "#ffffff",
             "button_label_2": "",
