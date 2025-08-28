@@ -33,13 +33,6 @@
       display: none !important;
     }
   }
-  
-  /* Style for image links */
-  #MobileBanner-{{ section.id }} .banner__media-link {
-    display: block;
-    height: 100%;
-    text-decoration: none;
-  }
 {%- endstyle -%}
 
 {%- liquid
@@ -70,9 +63,6 @@
 >
   {%- if section.settings.image != blank -%}
     <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {%- if section.settings.image_link != blank -%}
-        <a href="{{ section.settings.image_link }}" class="banner__media-link">
-      {%- endif -%}
       {%- liquid
         assign image_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio
         if section.settings.image_2 != blank
@@ -86,6 +76,9 @@
           assign sizes = full_width
         endif
       -%}
+      {%- if section.settings.image_link != blank -%}
+        <a href="{{ section.settings.image_link }}" class="banner__image-link">
+      {%- endif -%}
       {{
         section.settings.image
         | image_url: width: 3840
@@ -103,14 +96,17 @@
     </div>
   {%- elsif section.settings.image_2 == blank -%}
     <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {%- if section.settings.image_link != blank -%}
+        <a href="{{ section.settings.image_link }}" class="banner__image-link">
+      {%- endif -%}
       {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- if section.settings.image_link != blank -%}
+        </a>
+      {%- endif -%}
     </div>
   {%- endif -%}
   {%- if section.settings.image_2 != blank -%}
     <div class="banner__media media{% if section.settings.image != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {%- if section.settings.image_2_link != blank -%}
-        <a href="{{ section.settings.image_2_link }}" class="banner__media-link">
-      {%- endif -%}
       {%- liquid
         assign image_height_2 = section.settings.image_2.width | divided_by: section.settings.image_2.aspect_ratio
         if section.settings.image != blank
@@ -124,6 +120,9 @@
           assign sizes = full_width
         endif
       -%}
+      {%- if section.settings.image_2_link != blank -%}
+        <a href="{{ section.settings.image_2_link }}" class="banner__image-link">
+      {%- endif -%}
       {{
         section.settings.image_2
         | image_url: width: 3840
@@ -193,7 +192,7 @@
 
 {% schema %}
 {
-  "name": "Mobile Banner",
+  "name": "Mobile-Banner",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -312,8 +311,8 @@
           "label": "700px"
         },
         {
-      "value": "800",
-      "label": "800px"
+          "value": "800",
+          "label": "800px"
         }
       ],
       "default": "default",
@@ -445,7 +444,7 @@
         {
           "type": "inline_richtext",
           "id": "heading",
-          "default": "Image banner",
+          "default": "t:sections.image-banner.blocks.heading.settings.heading.default",
           "label": "t:sections.image-banner.blocks.heading.settings.heading.label"
         },
         {
@@ -486,7 +485,7 @@
         {
           "type": "inline_richtext",
           "id": "text",
-          "default": "Give customers details about the banner image(s) or content on the template.",
+          "default": "t:sections.image-banner.blocks.text.settings.text.default",
           "label": "t:sections.image-banner.blocks.text.settings.text.label"
         },
         {
@@ -517,13 +516,13 @@
       "limit": 1,
       "settings": [
         {
-          "type": "header",
-          "content": "First button"
+        "type": "header",
+        "content": "t:sections.image-banner.blocks.buttons.settings.header_1.content"
         },
         {
           "type": "text",
           "id": "button_label_1",
-          "default": "Button label",
+          "default": "t:sections.image-banner.blocks.buttons.settings.button_label_1.default",
           "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label",
           "info": "t:sections.image-banner.blocks.buttons.settings.button_label_1.info"
         },
@@ -539,13 +538,13 @@
           "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
         },
         {
-          "type": "header",
-          "content": "Second button"
+        "type": "header",
+        "content": "t:sections.image-banner.blocks.buttons.settings.header_2.content"
         },
         {
           "type": "text",
           "id": "button_label_2",
-          "default": "Button label",
+          "default": "t:sections.image-banner.blocks.buttons.settings.button_label_2.default",
           "label": "t:sections.image-banner.blocks.buttons.settings.button_label_2.label",
           "info": "t:sections.image-banner.blocks.buttons.settings.button_label_2.info"
         },
@@ -565,7 +564,7 @@
   ],
   "presets": [
     {
-      "name": "Mobile Banner",
+      "name": "Mobile-Banner",
       "blocks": [
         {
           "type": "heading"
