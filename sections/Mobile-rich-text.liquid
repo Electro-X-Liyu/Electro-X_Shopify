@@ -29,7 +29,14 @@
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
-                  style="--animation-order: {{ forloop.index }};"
+                  style="--animation-order: {{ forloop.index }};
+                  {% if block.settings.heading_font_weight != 'default' %}font-weight: {{ block.settings.heading_font_weight }};{% endif %}
+                  {% if block.settings.heading_custom_size != blank %}font-size: {{ block.settings.heading_custom_size }}px;{% endif %}
+                  {% if block.settings.heading_color != blank %}color: {{ block.settings.heading_color }};{% endif %}"
+                {% else %}
+                  style="{% if block.settings.heading_font_weight != 'default' %}font-weight: {{ block.settings.heading_font_weight }};{% endif %}
+                  {% if block.settings.heading_custom_size != blank %}font-size: {{ block.settings.heading_custom_size }}px;{% endif %}
+                  {% if block.settings.heading_color != blank %}color: {{ block.settings.heading_color }};{% endif %}"
                 {% endif %}
               >
                 {{ block.settings.heading }}
@@ -40,7 +47,14 @@
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
-                  style="--animation-order: {{ forloop.index }};"
+                  style="--animation-order: {{ forloop.index }};
+                  {% if block.settings.caption_font_weight != 'default' %}font-weight: {{ block.settings.caption_font_weight }};{% endif %}
+                  {% if block.settings.caption_custom_size != blank %}font-size: {{ block.settings.caption_custom_size }}px;{% endif %}
+                  {% if block.settings.caption_color != blank %}color: {{ block.settings.caption_color }};{% endif %}"
+                {% else %}
+                  style="{% if block.settings.caption_font_weight != 'default' %}font-weight: {{ block.settings.caption_font_weight }};{% endif %}
+                  {% if block.settings.caption_custom_size != blank %}font-size: {{ block.settings.caption_custom_size }}px;{% endif %}
+                  {% if block.settings.caption_color != blank %}color: {{ block.settings.caption_color }};{% endif %}"
                 {% endif %}
               >
                 {{ block.settings.caption | escape }}
@@ -51,7 +65,14 @@
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
-                  style="--animation-order: {{ forloop.index }};"
+                  style="--animation-order: {{ forloop.index }};
+                  {% if block.settings.text_font_weight != 'default' %}font-weight: {{ block.settings.text_font_weight }};{% endif %}
+                  {% if block.settings.text_custom_size != blank %}font-size: {{ block.settings.text_custom_size }}px;{% endif %}
+                  {% if block.settings.text_color != blank %}color: {{ block.settings.text_color }};{% endif %}"
+                {% else %}
+                  style="{% if block.settings.text_font_weight != 'default' %}font-weight: {{ block.settings.text_font_weight }};{% endif %}
+                  {% if block.settings.text_custom_size != blank %}font-size: {{ block.settings.text_custom_size }}px;{% endif %}
+                  {% if block.settings.text_color != blank %}color: {{ block.settings.text_color }};{% endif %}"
                 {% endif %}
               >
                 {{ block.settings.text }}
@@ -73,6 +94,10 @@
                       href="{{ block.settings.button_link }}"
                     {% endif %}
                     class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                    style="{% if block.settings.button_font_weight != 'default' %}font-weight: {{ block.settings.button_font_weight }};{% endif %}
+                    {% if block.settings.button_custom_size != blank %}font-size: {{ block.settings.button_custom_size }}px;{% endif %}
+                    {% if block.settings.button_color != blank %}color: {{ block.settings.button_color }};{% endif %}
+                    {% if block.settings.button_bg_color != blank %}background-color: {{ block.settings.button_bg_color }};{% endif %}"
                   >
                     {{- block.settings.button_label | escape -}}
                   </a>
@@ -85,6 +110,10 @@
                       href="{{ block.settings.button_link_2 }}"
                     {% endif %}
                     class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                    style="{% if block.settings.button_font_weight_2 != 'default' %}font-weight: {{ block.settings.button_font_weight_2 }};{% endif %}
+                    {% if block.settings.button_custom_size_2 != blank %}font-size: {{ block.settings.button_custom_size_2 }}px;{% endif %}
+                    {% if block.settings.button_color_2 != blank %}color: {{ block.settings.button_color_2 }};{% endif %}
+                    {% if block.settings.button_bg_color_2 != blank %}background-color: {{ block.settings.button_bg_color_2 }};{% endif %}"
                   >
                     {{- block.settings.button_label_2 | escape -}}
                   </a>
@@ -99,7 +128,7 @@
 
 {% schema %}
 {
-  "name": "Mobile rich text",
+  "name": "Mobile-Rich-Text",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -222,6 +251,66 @@
           ],
           "default": "h1",
           "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_font_weight",
+          "label": "Heading font weight",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
+            },
+            {
+              "value": "300",
+              "label": "Light (300)"
+            },
+            {
+              "value": "400",
+              "label": "Normal (400)"
+            },
+            {
+              "value": "500",
+              "label": "Medium (500)"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold (600)"
+            },
+            {
+              "value": "700",
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
+            }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "number",
+          "id": "heading_custom_size",
+          "label": "Custom font size (px)",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Custom color",
+          "default": "rgba(0,0,0,0)"
         }
       ]
     },
@@ -271,6 +360,66 @@
           ],
           "default": "medium",
           "label": "t:sections.rich-text.blocks.caption.settings.caption_size.label"
+        },
+        {
+          "type": "select",
+          "id": "caption_font_weight",
+          "label": "Caption font weight",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
+            },
+            {
+              "value": "300",
+              "label": "Light (300)"
+            },
+            {
+              "value": "400",
+              "label": "Normal (400)"
+            },
+            {
+              "value": "500",
+              "label": "Medium (500)"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold (600)"
+            },
+            {
+              "value": "700",
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
+            }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "number",
+          "id": "caption_custom_size",
+          "label": "Custom font size (px)",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "caption_color",
+          "label": "Custom color",
+          "default": "rgba(0,0,0,0)"
         }
       ]
     },
@@ -284,6 +433,66 @@
           "id": "text",
           "default": "t:sections.rich-text.blocks.text.settings.text.default",
           "label": "t:sections.rich-text.blocks.text.settings.text.label"
+        },
+        {
+          "type": "select",
+          "id": "text_font_weight",
+          "label": "Text font weight",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
+            },
+            {
+              "value": "300",
+              "label": "Light (300)"
+            },
+            {
+              "value": "400",
+              "label": "Normal (400)"
+            },
+            {
+              "value": "500",
+              "label": "Medium (500)"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold (600)"
+            },
+            {
+              "value": "700",
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
+            }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "number",
+          "id": "text_custom_size",
+          "label": "Custom font size (px)",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Custom color",
+          "default": "rgba(0,0,0,0)"
         }
       ]
     },
@@ -315,6 +524,72 @@
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_1.label"
         },
         {
+          "type": "select",
+          "id": "button_font_weight",
+          "label": "Button font weight",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
+            },
+            {
+              "value": "300",
+              "label": "Light (300)"
+            },
+            {
+              "value": "400",
+              "label": "Normal (400)"
+            },
+            {
+              "value": "500",
+              "label": "Medium (500)"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold (600)"
+            },
+            {
+              "value": "700",
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
+            }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "number",
+          "id": "button_custom_size",
+          "label": "Custom font size (px)",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "Button text color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button background color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
          "type": "header",
          "content": "t:sections.rich-text.blocks.buttons.settings.header_button2.content"
         },          
@@ -334,13 +609,79 @@
           "id": "button_style_secondary_2",
           "default": false,
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_2.label"
+        },
+        {
+          "type": "select",
+          "id": "button_font_weight_2",
+          "label": "Button 2 font weight",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
+            },
+            {
+              "value": "300",
+              "label": "Light (300)"
+            },
+            {
+              "value": "400",
+              "label": "Normal (400)"
+            },
+            {
+              "value": "500",
+              "label": "Medium (500)"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold (600)"
+            },
+            {
+              "value": "700",
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
+            }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "number",
+          "id": "button_custom_size_2",
+          "label": "Custom font size (px)",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "button_color_2",
+          "label": "Button 2 text color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color_2",
+          "label": "Button 2 background color",
+          "default": "rgba(0,0,0,0)"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Mobile rich text",
+      "name": "Mobile-Rich-Text",
       "blocks": [
         {
           "type": "heading"
