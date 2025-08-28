@@ -465,7 +465,7 @@
       "name": "Natural Alkaline Water",
       "settings": {
         "image": "shopify://shop_images/131cut.png",
-        "image_link": "",
+        "image_link": "shopify://products/natural-alkaline-water",
         "image_2_link": "",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
