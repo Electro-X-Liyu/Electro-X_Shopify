@@ -50,6 +50,8 @@
       "name": "Mobile banner",
       "settings": {
         "image": "shopify://shop_images/121cut.png",
+        "image_link": "",
+        "image_2_link": "",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -304,6 +306,8 @@
       "name": "Mobile banner",
       "settings": {
         "image": "shopify://shop_images/2_dd0a0df5-7a49-48d5-980f-8c4d4bc9ee70.svg",
+        "image_link": "shopify://collections/all-products",
+        "image_2_link": "",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -541,7 +545,10 @@
       "name": "Natural Alkaline Water",
       "settings": {
         "image": "shopify://shop_images/131cut.png",
-        "image_overlay_opacity": 0,
+        "image_link": "shopify://products/natural-alkaline-water",
+        "image_2": "shopify://shop_images/131cut.png",
+        "image_2_link": "",
+        "image_overlay_opacity": 100,
         "image_height": "adapt",
         "image_behavior": "none",
         "text_container_width": "default",
@@ -616,6 +623,8 @@
       "name": "ELECTRO X Sports Drink",
       "settings": {
         "image": "shopify://shop_images/111cut.png",
+        "image_link": "",
+        "image_2_link": "",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -634,6 +643,8 @@
       "name": "Electrolyte Liquid Concentrate",
       "settings": {
         "image": "shopify://shop_images/36pic.jpg",
+        "image_link": "",
+        "image_2_link": "",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -916,6 +927,8 @@
       "type": "Mobile-banner",
       "name": "Mobile banner",
       "settings": {
+        "image_link": "",
+        "image_2_link": "",
         "image_overlay_opacity": 0,
         "image_height": "medium",
         "image_behavior": "none",
