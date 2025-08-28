@@ -15,9 +15,18 @@
       display: none;
     }
   }
+
+  /* 自定义文本框宽度 */
+  .section-{{ section.id }} .rich-text__blocks {
+    {% if section.settings.container_width != 'auto' %}
+      max-width: {{ section.settings.container_width }}px;
+      margin-left: auto;
+      margin-right: auto;
+    {% endif %}
+  }
 {%- endstyle -%}
 
-<div class="mobile-rich-text-section isolate{% unless section.settings.full_width %} page-width{% endunless %}">
+<div class="mobile-rich-text-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}">
   <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
     <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
       <div class="rich-text__blocks {{ section.settings.content_alignment }}">
@@ -29,14 +38,9 @@
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
-                  style="--animation-order: {{ forloop.index }};
-                  {% if block.settings.heading_font_weight != 'default' %}font-weight: {{ block.settings.heading_font_weight }};{% endif %}
-                  {% if block.settings.heading_custom_size != blank %}font-size: {{ block.settings.heading_custom_size }}px;{% endif %}
-                  {% if block.settings.heading_color != blank %}color: {{ block.settings.heading_color }};{% endif %}"
+                  style="--animation-order: {{ forloop.index }};{% if block.settings.custom_font_weight != 'default' %}font-weight: {{ block.settings.custom_font_weight }};{% endif %}{% if block.settings.custom_font_size != 'default' %}font-size: {{ block.settings.custom_font_size }}px;{% endif %}{% if block.settings.custom_color != blank %}color: {{ block.settings.custom_color }};{% endif %}"
                 {% else %}
-                  style="{% if block.settings.heading_font_weight != 'default' %}font-weight: {{ block.settings.heading_font_weight }};{% endif %}
-                  {% if block.settings.heading_custom_size != blank %}font-size: {{ block.settings.heading_custom_size }}px;{% endif %}
-                  {% if block.settings.heading_color != blank %}color: {{ block.settings.heading_color }};{% endif %}"
+                  style="{% if block.settings.custom_font_weight != 'default' %}font-weight: {{ block.settings.custom_font_weight }};{% endif %}{% if block.settings.custom_font_size != 'default' %}font-size: {{ block.settings.custom_font_size }}px;{% endif %}{% if block.settings.custom_color != blank %}color: {{ block.settings.custom_color }};{% endif %}"
                 {% endif %}
               >
                 {{ block.settings.heading }}
@@ -47,14 +51,9 @@
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
-                  style="--animation-order: {{ forloop.index }};
-                  {% if block.settings.caption_font_weight != 'default' %}font-weight: {{ block.settings.caption_font_weight }};{% endif %}
-                  {% if block.settings.caption_custom_size != blank %}font-size: {{ block.settings.caption_custom_size }}px;{% endif %}
-                  {% if block.settings.caption_color != blank %}color: {{ block.settings.caption_color }};{% endif %}"
+                  style="--animation-order: {{ forloop.index }};{% if block.settings.custom_font_weight != 'default' %}font-weight: {{ block.settings.custom_font_weight }};{% endif %}{% if block.settings.custom_font_size != 'default' %}font-size: {{ block.settings.custom_font_size }}px;{% endif %}{% if block.settings.custom_color != blank %}color: {{ block.settings.custom_color }};{% endif %}"
                 {% else %}
-                  style="{% if block.settings.caption_font_weight != 'default' %}font-weight: {{ block.settings.caption_font_weight }};{% endif %}
-                  {% if block.settings.caption_custom_size != blank %}font-size: {{ block.settings.caption_custom_size }}px;{% endif %}
-                  {% if block.settings.caption_color != blank %}color: {{ block.settings.caption_color }};{% endif %}"
+                  style="{% if block.settings.custom_font_weight != 'default' %}font-weight: {{ block.settings.custom_font_weight }};{% endif %}{% if block.settings.custom_font_size != 'default' %}font-size: {{ block.settings.custom_font_size }}px;{% endif %}{% if block.settings.custom_color != blank %}color: {{ block.settings.custom_color }};{% endif %}"
                 {% endif %}
               >
                 {{ block.settings.caption | escape }}
@@ -65,14 +64,9 @@
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
-                  style="--animation-order: {{ forloop.index }};
-                  {% if block.settings.text_font_weight != 'default' %}font-weight: {{ block.settings.text_font_weight }};{% endif %}
-                  {% if block.settings.text_custom_size != blank %}font-size: {{ block.settings.text_custom_size }}px;{% endif %}
-                  {% if block.settings.text_color != blank %}color: {{ block.settings.text_color }};{% endif %}"
+                  style="--animation-order: {{ forloop.index }};{% if block.settings.custom_font_weight != 'default' %}font-weight: {{ block.settings.custom_font_weight }};{% endif %}{% if block.settings.custom_font_size != 'default' %}font-size: {{ block.settings.custom_font_size }}px;{% endif %}{% if block.settings.custom_color != blank %}color: {{ block.settings.custom_color }};{% endif %}"
                 {% else %}
-                  style="{% if block.settings.text_font_weight != 'default' %}font-weight: {{ block.settings.text_font_weight }};{% endif %}
-                  {% if block.settings.text_custom_size != blank %}font-size: {{ block.settings.text_custom_size }}px;{% endif %}
-                  {% if block.settings.text_color != blank %}color: {{ block.settings.text_color }};{% endif %}"
+                  style="{% if block.settings.custom_font_weight != 'default' %}font-weight: {{ block.settings.custom_font_weight }};{% endif %}{% if block.settings.custom_font_size != 'default' %}font-size: {{ block.settings.custom_font_size }}px;{% endif %}{% if block.settings.custom_color != blank %}color: {{ block.settings.custom_color }};{% endif %}"
                 {% endif %}
               >
                 {{ block.settings.text }}
@@ -94,10 +88,7 @@
                       href="{{ block.settings.button_link }}"
                     {% endif %}
                     class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
-                    style="{% if block.settings.button_font_weight != 'default' %}font-weight: {{ block.settings.button_font_weight }};{% endif %}
-                    {% if block.settings.button_custom_size != blank %}font-size: {{ block.settings.button_custom_size }}px;{% endif %}
-                    {% if block.settings.button_color != blank %}color: {{ block.settings.button_color }};{% endif %}
-                    {% if block.settings.button_bg_color != blank %}background-color: {{ block.settings.button_bg_color }};{% endif %}"
+                    style="{% if block.settings.button_custom_color != blank %}background-color: {{ block.settings.button_custom_color }}; border-color: {{ block.settings.button_custom_color }};{% endif %}{% if block.settings.button_text_color != blank %}color: {{ block.settings.button_text_color }};{% endif %}"
                   >
                     {{- block.settings.button_label | escape -}}
                   </a>
@@ -110,10 +101,7 @@
                       href="{{ block.settings.button_link_2 }}"
                     {% endif %}
                     class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
-                    style="{% if block.settings.button_font_weight_2 != 'default' %}font-weight: {{ block.settings.button_font_weight_2 }};{% endif %}
-                    {% if block.settings.button_custom_size_2 != blank %}font-size: {{ block.settings.button_custom_size_2 }}px;{% endif %}
-                    {% if block.settings.button_color_2 != blank %}color: {{ block.settings.button_color_2 }};{% endif %}
-                    {% if block.settings.button_bg_color_2 != blank %}background-color: {{ block.settings.button_bg_color_2 }};{% endif %}"
+                    style="{% if block.settings.button_custom_color_2 != blank %}background-color: {{ block.settings.button_custom_color_2 }}; border-color: {{ block.settings.button_custom_color_2 }};{% endif %}{% if block.settings.button_text_color_2 != blank %}color: {{ block.settings.button_text_color_2 }};{% endif %}"
                   >
                     {{- block.settings.button_label_2 | escape -}}
                   </a>
@@ -188,6 +176,38 @@
       "label": "t:sections.rich-text.settings.full_width.label"
     },
     {
+      "type": "select",
+      "id": "container_width",
+      "label": "文本框宽度",
+      "options": [
+        {
+          "value": "auto",
+          "label": "自动宽度"
+        },
+        {
+          "value": "400",
+          "label": "400px"
+        },
+        {
+          "value": "500",
+          "label": "500px"
+        },
+        {
+          "value": "600",
+          "label": "600px"
+        },
+        {
+          "value": "700",
+          "label": "700px"
+        },
+        {
+          "value": "800",
+          "label": "800px"
+        }
+      ],
+      "default": "auto"
+    },
+    {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
     },
@@ -254,20 +274,12 @@
         },
         {
           "type": "select",
-          "id": "heading_font_weight",
-          "label": "Heading font weight",
+          "id": "custom_font_weight",
+          "label": "自定义字重",
           "options": [
             {
               "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "100",
-              "label": "Thin (100)"
-            },
-            {
-              "value": "200",
-              "label": "Extra Light (200)"
+              "label": "默认"
             },
             {
               "value": "300",
@@ -283,7 +295,7 @@
             },
             {
               "value": "600",
-              "label": "Semi Bold (600)"
+              "label": "SemiBold (600)"
             },
             {
               "value": "700",
@@ -291,26 +303,60 @@
             },
             {
               "value": "800",
-              "label": "Extra Bold (800)"
-            },
-            {
-              "value": "900",
-              "label": "Black (900)"
+              "label": "ExtraBold (800)"
             }
           ],
           "default": "default"
         },
         {
-          "type": "number",
-          "id": "heading_custom_size",
-          "label": "Custom font size (px)",
-          "default": 0
+          "type": "select",
+          "id": "custom_font_size",
+          "label": "自定义字号",
+          "options": [
+            {
+              "value": "default",
+              "label": "默认"
+            },
+            {
+              "value": "16",
+              "label": "16px"
+            },
+            {
+              "value": "18",
+              "label": "18px"
+            },
+            {
+              "value": "20",
+              "label": "20px"
+            },
+            {
+              "value": "24",
+              "label": "24px"
+            },
+            {
+              "value": "28",
+              "label": "28px"
+            },
+            {
+              "value": "32",
+              "label": "32px"
+            },
+            {
+              "value": "36",
+              "label": "36px"
+            },
+            {
+              "value": "40",
+              "label": "40px"
+            }
+          ],
+          "default": "default"
         },
         {
           "type": "color",
-          "id": "heading_color",
-          "label": "Custom color",
-          "default": "rgba(0,0,0,0)"
+          "id": "custom_color",
+          "label": "自定义颜色",
+          "default": "#000000"
         }
       ]
     },
@@ -363,20 +409,12 @@
         },
         {
           "type": "select",
-          "id": "caption_font_weight",
-          "label": "Caption font weight",
+          "id": "custom_font_weight",
+          "label": "自定义字重",
           "options": [
             {
               "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "100",
-              "label": "Thin (100)"
-            },
-            {
-              "value": "200",
-              "label": "Extra Light (200)"
+              "label": "默认"
             },
             {
               "value": "300",
@@ -392,34 +430,52 @@
             },
             {
               "value": "600",
-              "label": "Semi Bold (600)"
+              "label": "SemiBold (600)"
             },
             {
               "value": "700",
               "label": "Bold (700)"
-            },
-            {
-              "value": "800",
-              "label": "Extra Bold (800)"
-            },
-            {
-              "value": "900",
-              "label": "Black (900)"
             }
           ],
           "default": "default"
         },
         {
-          "type": "number",
-          "id": "caption_custom_size",
-          "label": "Custom font size (px)",
-          "default": 0
+          "type": "select",
+          "id": "custom_font_size",
+          "label": "自定义字号",
+          "options": [
+            {
+              "value": "default",
+              "label": "默认"
+            },
+            {
+              "value": "12",
+              "label": "12px"
+            },
+            {
+              "value": "14",
+              "label": "14px"
+            },
+            {
+              "value": "16",
+              "label": "16px"
+            },
+            {
+              "value": "18",
+              "label": "18px"
+            },
+            {
+              "value": "20",
+              "label": "20px"
+            }
+          ],
+          "default": "default"
         },
         {
           "type": "color",
-          "id": "caption_color",
-          "label": "Custom color",
-          "default": "rgba(0,0,0,0)"
+          "id": "custom_color",
+          "label": "自定义颜色",
+          "default": "#000000"
         }
       ]
     },
@@ -436,20 +492,12 @@
         },
         {
           "type": "select",
-          "id": "text_font_weight",
-          "label": "Text font weight",
+          "id": "custom_font_weight",
+          "label": "自定义字重",
           "options": [
             {
               "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "100",
-              "label": "Thin (100)"
-            },
-            {
-              "value": "200",
-              "label": "Extra Light (200)"
+              "label": "默认"
             },
             {
               "value": "300",
@@ -465,34 +513,44 @@
             },
             {
               "value": "600",
-              "label": "Semi Bold (600)"
-            },
-            {
-              "value": "700",
-              "label": "Bold (700)"
-            },
-            {
-              "value": "800",
-              "label": "Extra Bold (800)"
-            },
-            {
-              "value": "900",
-              "label": "Black (900)"
+              "label": "SemiBold (600)"
             }
           ],
           "default": "default"
         },
         {
-          "type": "number",
-          "id": "text_custom_size",
-          "label": "Custom font size (px)",
-          "default": 0
+          "type": "select",
+          "id": "custom_font_size",
+          "label": "自定义字号",
+          "options": [
+            {
+              "value": "default",
+              "label": "默认"
+            },
+            {
+              "value": "14",
+              "label": "14px"
+            },
+            {
+              "value": "16",
+              "label": "16px"
+            },
+            {
+              "value": "18",
+              "label": "18px"
+            },
+            {
+              "value": "20",
+              "label": "20px"
+            }
+          ],
+          "default": "default"
         },
         {
           "type": "color",
-          "id": "text_color",
-          "label": "Custom color",
-          "default": "rgba(0,0,0,0)"
+          "id": "custom_color",
+          "label": "自定义颜色",
+          "default": "#000000"
         }
       ]
     },
@@ -524,70 +582,16 @@
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_1.label"
         },
         {
-          "type": "select",
-          "id": "button_font_weight",
-          "label": "Button font weight",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "100",
-              "label": "Thin (100)"
-            },
-            {
-              "value": "200",
-              "label": "Extra Light (200)"
-            },
-            {
-              "value": "300",
-              "label": "Light (300)"
-            },
-            {
-              "value": "400",
-              "label": "Normal (400)"
-            },
-            {
-              "value": "500",
-              "label": "Medium (500)"
-            },
-            {
-              "value": "600",
-              "label": "Semi Bold (600)"
-            },
-            {
-              "value": "700",
-              "label": "Bold (700)"
-            },
-            {
-              "value": "800",
-              "label": "Extra Bold (800)"
-            },
-            {
-              "value": "900",
-              "label": "Black (900)"
-            }
-          ],
-          "default": "default"
-        },
-        {
-          "type": "number",
-          "id": "button_custom_size",
-          "label": "Custom font size (px)",
-          "default": 0
+          "type": "color",
+          "id": "button_custom_color",
+          "label": "按钮背景颜色",
+          "default": "#000000"
         },
         {
           "type": "color",
-          "id": "button_color",
-          "label": "Button text color",
-          "default": "rgba(0,0,0,0)"
-        },
-        {
-          "type": "color",
-          "id": "button_bg_color",
-          "label": "Button background color",
-          "default": "rgba(0,0,0,0)"
+          "id": "button_text_color",
+          "label": "按钮文字颜色",
+          "default": "#ffffff"
         },
         {
          "type": "header",
@@ -611,70 +615,16 @@
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_2.label"
         },
         {
-          "type": "select",
-          "id": "button_font_weight_2",
-          "label": "Button 2 font weight",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "100",
-              "label": "Thin (100)"
-            },
-            {
-              "value": "200",
-              "label": "Extra Light (200)"
-            },
-            {
-              "value": "300",
-              "label": "Light (300)"
-            },
-            {
-              "value": "400",
-              "label": "Normal (400)"
-            },
-            {
-              "value": "500",
-              "label": "Medium (500)"
-            },
-            {
-              "value": "600",
-              "label": "Semi Bold (600)"
-            },
-            {
-              "value": "700",
-              "label": "Bold (700)"
-            },
-            {
-              "value": "800",
-              "label": "Extra Bold (800)"
-            },
-            {
-              "value": "900",
-              "label": "Black (900)"
-            }
-          ],
-          "default": "default"
-        },
-        {
-          "type": "number",
-          "id": "button_custom_size_2",
-          "label": "Custom font size (px)",
-          "default": 0
+          "type": "color",
+          "id": "button_custom_color_2",
+          "label": "按钮背景颜色",
+          "default": "#000000"
         },
         {
           "type": "color",
-          "id": "button_color_2",
-          "label": "Button 2 text color",
-          "default": "rgba(0,0,0,0)"
-        },
-        {
-          "type": "color",
-          "id": "button_bg_color_2",
-          "label": "Button 2 background color",
-          "default": "rgba(0,0,0,0)"
+          "id": "button_text_color_2",
+          "label": "按钮文字颜色",
+          "default": "#ffffff"
         }
       ]
     }
