@@ -442,7 +442,7 @@
             "text_style": "body",
             "text_font_weight": "default",
             "text_color": "#121212",
-            "text_font_size": "14"
+            "text_font_size": "12"
           }
         },
         "buttons_AwpPzj": {
@@ -470,8 +470,8 @@
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
-        "text_container_width": "800",
-        "desktop_content_position": "bottom-center",
+        "text_container_width": "default",
+        "desktop_content_position": "top-left",
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "",
