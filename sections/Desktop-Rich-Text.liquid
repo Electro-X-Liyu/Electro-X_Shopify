@@ -1,4 +1,4 @@
-{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+{{ 'section-desktop-rich-text.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -26,16 +26,53 @@
 
   /* 自定义文本框宽度 */
   .section-{{ section.id }} .rich-text__blocks {
-    {% if section.settings.container_width != blank %}
+    {% if section.settings.container_width != 'full' %}
       max-width: {{ section.settings.container_width }}px;
-    {% endif %}
-    {% if section.settings.container_alignment != 'center' %}
-      margin-{{ section.settings.container_alignment }}: 0;
-    {% else %}
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto;
     {% endif %}
   }
+
+  /* 块级样式 */
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'heading' -%}
+        .section-{{ section.id }} .block-{{ block.id }} {
+          {% if block.settings.heading_color != blank %}
+            color: {{ block.settings.heading_color }};
+          {% endif %}
+          {% if block.settings.heading_font_weight != 'default' %}
+            font-weight: {{ block.settings.heading_font_weight }};
+          {% endif %}
+          {% if block.settings.custom_font_size > 0 %}
+            font-size: {{ block.settings.custom_font_size }}px;
+          {% endif %}
+        }
+      {%- when 'caption' -%}
+        .section-{{ section.id }} .block-{{ block.id }} {
+          {% if block.settings.caption_color != blank %}
+            color: {{ block.settings.caption_color }};
+          {% endif %}
+          {% if block.settings.caption_font_weight != 'default' %}
+            font-weight: {{ block.settings.caption_font_weight }};
+          {% endif %}
+          {% if block.settings.custom_font_size > 0 %}
+            font-size: {{ block.settings.custom_font_size }}px;
+          {% endif %}
+        }
+      {%- when 'text' -%}
+        .section-{{ section.id }} .block-{{ block.id }} {
+          {% if block.settings.text_color != blank %}
+            color: {{ block.settings.text_color }};
+          {% endif %}
+          {% if block.settings.text_font_weight != 'default' %}
+            font-weight: {{ block.settings.text_font_weight }};
+          {% endif %}
+          {% if block.settings.custom_font_size > 0 %}
+            font-size: {{ block.settings.custom_font_size }}px;
+          {% endif %}
+        }
+    {%- endcase -%}
+  {%- endfor -%}
 {%- endstyle -%}
 
 <div class="desktop-rich-text section-{{ section.id }}">
@@ -47,52 +84,33 @@
             {%- case block.type -%}
               {%- when 'heading' -%}
                 <h2
-                  class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }} block-{{ block.id }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                   {{ block.shopify_attributes }}
                   {% if settings.animations_reveal_on_scroll %}
                     data-cascade
-                    style="--animation-order: {{ forloop.index }};
-                    {% if block.settings.heading_font_weight != 'default' %}font-weight: {{ block.settings.heading_font_weight }};{% endif %}
-                    {% if block.settings.heading_color != blank %}color: {{ block.settings.heading_color }};{% endif %}"
-                  {% else %}
-                    style="{% if block.settings.heading_font_weight != 'default' %}font-weight: {{ block.settings.heading_font_weight }};{% endif %}
-                    {% if block.settings.heading_color != blank %}color: {{ block.settings.heading_color }};{% endif %}"
+                    style="--animation-order: {{ forloop.index }};"
                   {% endif %}
                 >
                   {{ block.settings.heading }}
                 </h2>
               {%- when 'caption' -%}
                 <p
-                  class="rich-text__caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  class="rich-text__caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }} block-{{ block.id }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                   {{ block.shopify_attributes }}
                   {% if settings.animations_reveal_on_scroll %}
                     data-cascade
-                    style="--animation-order: {{ forloop.index }};
-                    {% if block.settings.caption_font_weight != 'default' %}font-weight: {{ block.settings.caption_font_weight }};{% endif %}
-                    {% if block.settings.caption_font_size != blank %}font-size: {{ block.settings.caption_font_size }}px;{% endif %}
-                    {% if block.settings.caption_color != blank %}color: {{ block.settings.caption_color }};{% endif %}"
-                  {% else %}
-                    style="{% if block.settings.caption_font_weight != 'default' %}font-weight: {{ block.settings.caption_font_weight }};{% endif %}
-                    {% if block.settings.caption_font_size != blank %}font-size: {{ block.settings.caption_font_size }}px;{% endif %}
-                    {% if block.settings.caption_color != blank %}color: {{ block.settings.caption_color }};{% endif %}"
+                    style="--animation-order: {{ forloop.index }};"
                   {% endif %}
                 >
                   {{ block.settings.caption | escape }}
                 </p>
               {%- when 'text' -%}
                 <div
-                  class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  class="rich-text__text rte block-{{ block.id }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                   {{ block.shopify_attributes }}
                   {% if settings.animations_reveal_on_scroll %}
                     data-cascade
-                    style="--animation-order: {{ forloop.index }};
-                    {% if block.settings.text_font_weight != 'default' %}font-weight: {{ block.settings.text_font_weight }};{% endif %}
-                    {% if block.settings.text_font_size != blank %}font-size: {{ block.settings.text_font_size }}px;{% endif %}
-                    {% if block.settings.text_color != blank %}color: {{ block.settings.text_color }};{% endif %}"
-                  {% else %}
-                    style="{% if block.settings.text_font_weight != 'default' %}font-weight: {{ block.settings.text_font_weight }};{% endif %}
-                    {% if block.settings.text_font_size != blank %}font-size: {{ block.settings.text_font_size }}px;{% endif %}
-                    {% if block.settings.text_color != blank %}color: {{ block.settings.text_color }};{% endif %}"
+                    style="--animation-order: {{ forloop.index }};"
                   {% endif %}
                 >
                   {{ block.settings.text }}
@@ -114,8 +132,6 @@
                         href="{{ block.settings.button_link }}"
                       {% endif %}
                       class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
-                      style="{% if block.settings.button_1_font_weight != 'default' %}font-weight: {{ block.settings.button_1_font_weight }};{% endif %}
-                      {% if block.settings.button_1_font_size != blank %}font-size: {{ block.settings.button_1_font_size }}px;{% endif %}"
                     >
                       {{- block.settings.button_label | escape -}}
                     </a>
@@ -128,8 +144,6 @@
                         href="{{ block.settings.button_link_2 }}"
                       {% endif %}
                       class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
-                      style="{% if block.settings.button_2_font_weight != 'default' %}font-weight: {{ block.settings.button_2_font_weight }};{% endif %}
-                      {% if block.settings.button_2_font_size != blank %}font-size: {{ block.settings.button_2_font_size }}px;{% endif %}"
                     >
                       {{- block.settings.button_label_2 | escape -}}
                     </a>
@@ -194,34 +208,31 @@
     },
     {
       "type": "select",
-      "id": "container_alignment",
+      "id": "container_width",
+      "label": "文本框宽度",
       "options": [
         {
-          "value": "left",
-          "label": "左侧"
+          "value": "full",
+          "label": "全宽"
         },
         {
-          "value": "center",
-          "label": "居中"
+          "value": "800",
+          "label": "800px"
         },
         {
-          "value": "right",
-          "label": "右侧"
+          "value": "700",
+          "label": "700px"
+        },
+        {
+          "value": "600",
+          "label": "600px"
+        },
+        {
+          "value": "500",
+          "label": "500px"
         }
       ],
-      "default": "center",
-      "label": "文本框水平对齐"
-    },
-    {
-      "type": "range",
-      "id": "container_width",
-      "min": 400,
-      "max": 1200,
-      "step": 20,
-      "unit": "px",
-      "label": "文本框最大宽度",
-      "default": 800,
-      "info": "设置文本框的最大宽度，留空则使用默认宽度"
+      "default": "full"
     },
     {
       "type": "color_scheme",
@@ -263,14 +274,14 @@
   "blocks": [
     {
       "type": "heading",
-      "name": "t:sections.rich-text.blocks.heading.name",
+      "name": "标题",
       "limit": 3,
       "settings": [
         {
           "type": "inline_richtext",
           "id": "heading",
-          "default": "t:sections.rich-text.blocks.heading.settings.heading.default",
-          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+          "default": "请输入标题",
+          "label": "标题内容"
         },
         {
           "type": "select",
@@ -278,27 +289,38 @@
           "options": [
             {
               "value": "h2",
-              "label": "t:sections.all.heading_size.options__1.label"
+              "label": "小"
             },
             {
               "value": "h1",
-              "label": "t:sections.all.heading_size.options__2.label"
+              "label": "中"
             },
             {
               "value": "h0",
-              "label": "t:sections.all.heading_size.options__3.label"
+              "label": "大"
             },
             {
               "value": "hxl",
-              "label": "t:sections.all.heading_size.options__4.label"
+              "label": "加大"
             },
             {
               "value": "hxxl",
-              "label": "t:sections.all.heading_size.options__5.label"
+              "label": "特大"
             }
           ],
           "default": "h1",
-          "label": "t:sections.all.heading_size.label"
+          "label": "标题预设大小"
+        },
+        {
+          "type": "range",
+          "id": "custom_font_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "自定义字体大小",
+          "info": "设置为0时使用预设大小",
+          "default": 0
         },
         {
           "type": "select",
@@ -310,54 +332,54 @@
             },
             {
               "value": "300",
-              "label": "细体 (300)"
+              "label": "细体"
             },
             {
               "value": "400",
-              "label": "正常 (400)"
+              "label": "正常"
             },
             {
               "value": "500",
-              "label": "中等 (500)"
+              "label": "中等"
             },
             {
               "value": "600",
-              "label": "半粗 (600)"
+              "label": "半粗"
             },
             {
               "value": "700",
-              "label": "粗体 (700)"
+              "label": "粗体"
             },
             {
               "value": "800",
-              "label": "特粗 (800)"
+              "label": "超粗"
             },
             {
               "value": "900",
-              "label": "黑体 (900)"
+              "label": "最粗"
             }
           ],
           "default": "default",
-          "label": "标题字重"
+          "label": "字体粗细"
         },
         {
           "type": "color",
           "id": "heading_color",
-          "label": "标题颜色",
-          "default": "#000000"
+          "label": "文字颜色",
+          "default": "rgba(0,0,0,0)"
         }
       ]
     },
     {
       "type": "caption",
-      "name": "t:sections.rich-text.blocks.caption.name",
+      "name": "说明文字",
       "limit": 3,
       "settings": [
         {
           "type": "text",
           "id": "caption",
-          "default": "t:sections.rich-text.blocks.caption.settings.text.default",
-          "label": "t:sections.rich-text.blocks.caption.settings.text.label"
+          "default": "请输入说明文字",
+          "label": "说明文字"
         },
         {
           "type": "select",
@@ -396,6 +418,17 @@
           "label": "t:sections.rich-text.blocks.caption.settings.caption_size.label"
         },
         {
+          "type": "range",
+          "id": "custom_font_size",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "自定义字体大小",
+          "info": "设置为0时使用预设大小",
+          "default": 0
+        },
+        {
           "type": "select",
           "id": "caption_font_weight",
           "options": [
@@ -405,64 +438,57 @@
             },
             {
               "value": "300",
-              "label": "细体 (300)"
+              "label": "细体"
             },
             {
               "value": "400",
-              "label": "正常 (400)"
+              "label": "正常"
             },
             {
               "value": "500",
-              "label": "中等 (500)"
+              "label": "中等"
             },
             {
               "value": "600",
-              "label": "半粗 (600)"
+              "label": "半粗"
             },
             {
               "value": "700",
-              "label": "粗体 (700)"
-            },
-            {
-              "value": "800",
-              "label": "特粗 (800)"
-            },
-            {
-              "value": "900",
-              "label": "黑体 (900)"
+              "label": "粗体"
             }
           ],
           "default": "default",
-          "label": "说明文字字重"
-        },
-        {
-          "type": "range",
-          "id": "caption_font_size",
-          "min": 12,
-          "max": 36,
-          "step": 1,
-          "unit": "px",
-          "label": "说明文字字号",
-          "default": 16
+          "label": "字体粗细"
         },
         {
           "type": "color",
           "id": "caption_color",
-          "label": "说明文字颜色",
-          "default": "#666666"
+          "label": "文字颜色",
+          "default": "rgba(0,0,0,0)"
         }
       ]
     },
     {
       "type": "text",
-      "name": "t:sections.rich-text.blocks.text.name",
+      "name": "正文",
       "limit": 3,
       "settings": [
         {
           "type": "richtext",
           "id": "text",
-          "default": "t:sections.rich-text.blocks.text.settings.text.default",
-          "label": "t:sections.rich-text.blocks.text.settings.text.label"
+          "default": "<p>请输入正文内容</p>",
+          "label": "正文内容"
+        },
+        {
+          "type": "range",
+          "id": "custom_font_size",
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "label": "自定义字体大小",
+          "info": "设置为0时使用预设大小",
+          "default": 0
         },
         {
           "type": "select",
@@ -474,185 +500,79 @@
             },
             {
               "value": "300",
-              "label": "细体 (300)"
+              "label": "细体"
             },
             {
               "value": "400",
-              "label": "正常 (400)"
+              "label": "正常"
             },
             {
               "value": "500",
-              "label": "中等 (500)"
+              "label": "中等"
             },
             {
               "value": "600",
-              "label": "半粗 (600)"
-            },
-            {
-              "value": "700",
-              "label": "粗体 (700)"
-            },
-            {
-              "value": "800",
-              "label": "特粗 (800)"
-            },
-            {
-              "value": "900",
-              "label": "黑体 (900)"
+              "label": "半粗"
             }
           ],
           "default": "default",
-          "label": "正文字重"
-        },
-        {
-          "type": "range",
-          "id": "text_font_size",
-          "min": 12,
-          "max": 24,
-          "step": 1,
-          "unit": "px",
-          "label": "正文字号",
-          "default": 16
+          "label": "字体粗细"
         },
         {
           "type": "color",
           "id": "text_color",
-          "label": "正文颜色",
-          "default": "#333333"
+          "label": "文字颜色",
+          "default": "rgba(0,0,0,0)"
         }
       ]
     },
     {
       "type": "button",
-      "name": "t:sections.rich-text.blocks.buttons.name",
+      "name": "按钮",
       "limit": 2,
       "settings": [
         {
-          "type": "header",
-          "content": "t:sections.rich-text.blocks.buttons.settings.header_button1.content"
-        },
+         "type": "header",
+         "content": "第一个按钮"
+        },        
         {
           "type": "text",
           "id": "button_label",
-          "default": "t:sections.rich-text.blocks.buttons.settings.button_label_1.default",
-          "label": "t:sections.rich-text.blocks.buttons.settings.button_label_1.label",
+          "default": "按钮文字",
+          "label": "按钮文字",
           "info": "t:sections.rich-text.blocks.buttons.settings.button_label_1.info"
         },
         {
           "type": "url",
           "id": "button_link",
-          "label": "t:sections.rich-text.blocks.buttons.settings.button_link_1.label"
+          "label": "按钮链接"
         },
         {
           "type": "checkbox",
           "id": "button_style_secondary",
           "default": false,
-          "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_1.label"
+          "label": "使用次要样式"
         },
         {
-          "type": "select",
-          "id": "button_1_font_weight",
-          "options": [
-            {
-              "value": "default",
-              "label": "默认"
-            },
-            {
-              "value": "300",
-              "label": "细体 (300)"
-            },
-            {
-              "value": "400",
-              "label": "正常 (400)"
-            },
-            {
-              "value": "500",
-              "label": "中等 (500)"
-            },
-            {
-              "value": "600",
-              "label": "半粗 (600)"
-            },
-            {
-              "value": "700",
-              "label": "粗体 (700)"
-            }
-          ],
-          "default": "default",
-          "label": "按钮1字重"
-        },
-        {
-          "type": "range",
-          "id": "button_1_font_size",
-          "min": 12,
-          "max": 24,
-          "step": 1,
-          "unit": "px",
-          "label": "按钮1字号",
-          "default": 16
-        },
-        {
-          "type": "header",
-          "content": "t:sections.rich-text.blocks.buttons.settings.header_button2.content"
-        },
+         "type": "header",
+         "content": "第二个按钮"
+        },          
         {
           "type": "text",
           "id": "button_label_2",
-          "label": "t:sections.rich-text.blocks.buttons.settings.button_label_2.label",
+          "label": "按钮文字",
           "info": "t:sections.rich-text.blocks.buttons.settings.button_label_2.info"
         },
         {
           "type": "url",
           "id": "button_link_2",
-          "label": "t:sections.rich-text.blocks.buttons.settings.button_link_2.label"
+          "label": "按钮链接"
         },
         {
           "type": "checkbox",
           "id": "button_style_secondary_2",
           "default": false,
-          "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_2.label"
-        },
-        {
-          "type": "select",
-          "id": "button_2_font_weight",
-          "options": [
-            {
-              "value": "default",
-              "label": "默认"
-            },
-            {
-              "value": "300",
-              "label": "细体 (300)"
-            },
-            {
-              "value": "400",
-              "label": "正常 (400)"
-            },
-            {
-              "value": "500",
-              "label": "中等 (500)"
-            },
-            {
-              "value": "600",
-              "label": "半粗 (600)"
-            },
-            {
-              "value": "700",
-              "label": "粗体 (700)"
-            }
-          ],
-          "default": "default",
-          "label": "按钮2字重"
-        },
-        {
-          "type": "range",
-          "id": "button_2_font_size",
-          "min": 12,
-          "max": 24,
-          "step": 1,
-          "unit": "px",
-          "label": "按钮2字号",
-          "default": 16
+          "label": "使用次要样式"
         }
       ]
     }
