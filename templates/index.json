@@ -712,7 +712,7 @@
         "title_size": 24,
         "title_margin_top": 0,
         "title_margin_bottom": 0,
-        "title_custom_font": false,
+        "title_custom_font": true,
         "title_font_family": "heading",
         "title_font_weight": "bold",
         "text_alignment": "left",
@@ -795,6 +795,15 @@
             "text_color": "#333333"
           }
         },
+        "text_bQwDqa": {
+          "type": "text",
+          "settings": {
+            "text": "<p>请输入正文内容</p>",
+            "custom_font_size": 0,
+            "text_font_weight": "default",
+            "text_color": "rgba(0,0,0,0)"
+          }
+        },
         "text_bUrbLG": {
           "type": "text",
           "settings": {
@@ -807,6 +816,7 @@
       },
       "block_order": [
         "text_iR9Y9g",
+        "text_bQwDqa",
         "text_bUrbLG"
       ],
       "name": "Desktop Rich Text",
@@ -884,10 +894,10 @@
             "text": "",
             "link_label": "",
             "link": "",
-            "block_title_color": "rgba(0,0,0,0)",
+            "block_title_color": "#121212",
             "block_title_size": 0,
             "block_title_font_weight": "default",
-            "block_text_color": "rgba(0,0,0,0)",
+            "block_text_color": "#121212",
             "block_text_size": 0,
             "block_text_font_weight": "default",
             "block_link_color": "rgba(0,0,0,0)",
@@ -904,7 +914,7 @@
             "text": "",
             "link_label": "",
             "link": "",
-            "block_title_color": "rgba(0,0,0,0)",
+            "block_title_color": "#121212",
             "block_title_size": 0,
             "block_title_font_weight": "default",
             "block_text_color": "rgba(0,0,0,0)",
@@ -924,7 +934,7 @@
             "text": "",
             "link_label": "",
             "link": "",
-            "block_title_color": "rgba(0,0,0,0)",
+            "block_title_color": "#121212",
             "block_title_size": 0,
             "block_title_font_weight": "default",
             "block_text_color": "rgba(0,0,0,0)",
