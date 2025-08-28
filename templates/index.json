@@ -71,7 +71,7 @@
           "settings": {
             "heading": "PRODUCTS",
             "heading_size": "h1",
-            "custom_font_size": 0,
+            "heading_font_size": 24,
             "heading_font_weight": "default",
             "heading_color": "#000000"
           }
@@ -84,7 +84,7 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "container_width": "800",
+        "container_width": 800,
         "color_scheme": "",
         "full_width": true,
         "padding_top": 52,
@@ -181,7 +181,7 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "container_width": "800",
+        "container_width": 800,
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
@@ -576,7 +576,7 @@
           "settings": {
             "heading": "SPORT SPONSORSHIP",
             "heading_size": "h1",
-            "custom_font_size": 0,
+            "heading_font_size": 24,
             "heading_font_weight": "default",
             "heading_color": "#000000"
           }
@@ -589,7 +589,7 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "container_width": "800",
+        "container_width": 800,
         "color_scheme": "",
         "full_width": true,
         "padding_top": 92,
@@ -793,7 +793,7 @@
           "type": "text",
           "settings": {
             "text": "<p>Rooted in the heart of Shanghai urban sports culture, we empower local athletes and communities to grow and compete with our clean hydration products.</p>",
-            "custom_font_size": 24,
+            "text_font_size": 24,
             "text_font_weight": "400",
             "text_color": "#333333"
           }
@@ -802,7 +802,7 @@
           "type": "text",
           "settings": {
             "text": "<p>请输入正文内容</p>",
-            "custom_font_size": 0,
+            "text_font_size": 16,
             "text_font_weight": "default",
             "text_color": "rgba(0,0,0,0)"
           }
@@ -811,7 +811,7 @@
           "type": "text",
           "settings": {
             "text": "<p><a href=\"/pages/community-ambassadors\" title=\"AMBASSADORS （TBD\">LEARN MORE</a></p>",
-            "custom_font_size": 14,
+            "text_font_size": 14,
             "text_font_weight": "default",
             "text_color": "#333333"
           }
@@ -826,7 +826,7 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "container_width": "full",
+        "container_width": 1000,
         "color_scheme": "scheme-1",
         "full_width": true,
         "padding_top": 40,
@@ -1006,7 +1006,7 @@
           "settings": {
             "heading": "ABOUT US",
             "heading_size": "h1",
-            "custom_font_size": 0,
+            "heading_font_size": 24,
             "heading_font_weight": "default",
             "heading_color": "#000000"
           }
@@ -1015,7 +1015,7 @@
           "type": "text",
           "settings": {
             "text": "<p>Founded in 2021 in the heart of Shanghai’s urban sports culture, ELECTRO X is a premium hydration brand crafted for athletes and active lifestyles. We empower the thriving sports community with clean, science-backed hydration—including Natural Alkaline Water, Functional Sports Drinks, and Electrolyte Liquid Concentrates.</p>",
-            "custom_font_size": 0,
+            "text_font_size": 16,
             "text_font_weight": "default",
             "text_color": "#333333"
           }
@@ -1029,7 +1029,7 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "container_width": "1000",
+        "container_width": 1000,
         "color_scheme": "scheme-2",
         "full_width": true,
         "padding_top": 100,
