@@ -1,4 +1,4 @@
-{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+{{ 'section-mobile-banner.css' | asset_url | stylesheet_tag }}
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
@@ -27,31 +27,31 @@
     {% endif %}
   }
   
-  /* Custom text styles */
+  /* Custom text styling */
   {%- for block in section.blocks -%}
     {%- case block.type -%}
       {%- when 'heading' -%}
         #MobileBanner-{{ section.id }} .banner__heading {
-          {% if block.settings.heading_font_size != 'default' %}
-            font-size: {{ block.settings.heading_font_size }}px;
-          {% endif %}
           {% if block.settings.heading_font_weight != 'default' %}
             font-weight: {{ block.settings.heading_font_weight }};
           {% endif %}
           {% if block.settings.heading_color != 'rgba(0,0,0,0)' %}
             color: {{ block.settings.heading_color }};
           {% endif %}
+          {% if block.settings.heading_font_size != 'default' %}
+            font-size: {{ block.settings.heading_font_size }}px;
+          {% endif %}
         }
       {%- when 'text' -%}
         #MobileBanner-{{ section.id }} .banner__text {
-          {% if block.settings.text_font_size != 'default' %}
-            font-size: {{ block.settings.text_font_size }}px;
-          {% endif %}
           {% if block.settings.text_font_weight != 'default' %}
             font-weight: {{ block.settings.text_font_weight }};
           {% endif %}
           {% if block.settings.text_color != 'rgba(0,0,0,0)' %}
             color: {{ block.settings.text_color }};
+          {% endif %}
+          {% if block.settings.text_font_size != 'default' %}
+            font-size: {{ block.settings.text_font_size }}px;
           {% endif %}
         }
     {%- endcase -%}
@@ -177,12 +177,11 @@
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}
-              style="{% if block.settings.heading_font_size != 'default' %}font-size: {{ block.settings.heading_font_size }}px;{% endif %}{% if block.settings.heading_font_weight != 'default' %}font-weight: {{ block.settings.heading_font_weight }};{% endif %}{% if block.settings.heading_color != 'rgba(0,0,0,0)' %}color: {{ block.settings.heading_color }};{% endif %}"
             >
               {{ block.settings.heading }}
             </h2>
           {%- when 'text' -%}
-            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }} style="{% if block.settings.text_font_size != 'default' %}font-size: {{ block.settings.text_font_size }}px;{% endif %}{% if block.settings.text_font_weight != 'default' %}font-weight: {{ block.settings.text_font_weight }};{% endif %}{% if block.settings.text_color != 'rgba(0,0,0,0)' %}color: {{ block.settings.text_color }};{% endif %}">
+            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
               <p>{{ block.settings.text }}</p>
             </div>
           {%- when 'buttons' -%}
@@ -223,7 +222,7 @@
 
 {% schema %}
 {
-  "name": "Mobile banner",
+  "name": "Mobile Banner",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -238,8 +237,7 @@
     {
       "type": "url",
       "id": "image_link",
-      "label": "First image link",
-      "info": "Optional link for the first image"
+      "label": "First Image Link"
     },
     {
       "type": "image_picker",
@@ -249,8 +247,7 @@
     {
       "type": "url",
       "id": "image_2_link",
-      "label": "Second image link",
-      "info": "Optional link for the second image"
+      "label": "Second Image Link"
     },
     {
       "type": "range",
@@ -477,7 +474,7 @@
         {
           "type": "inline_richtext",
           "id": "heading",
-          "default": "Image banner",
+          "default": "t:sections.image-banner.blocks.heading.settings.heading.default",
           "label": "t:sections.image-banner.blocks.heading.settings.heading.label"
         },
         {
@@ -510,38 +507,6 @@
         },
         {
           "type": "select",
-          "id": "heading_font_size",
-          "label": "Heading font size",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "24",
-              "label": "Small"
-            },
-            {
-              "value": "32",
-              "label": "Medium"
-            },
-            {
-              "value": "40",
-              "label": "Large"
-            },
-            {
-              "value": "48",
-              "label": "Extra Large"
-            },
-            {
-              "value": "56",
-              "label": "XXL"
-            }
-          ],
-          "default": "default"
-        },
-        {
-          "type": "select",
           "id": "heading_font_weight",
           "label": "Heading font weight",
           "options": [
@@ -563,7 +528,7 @@
             },
             {
               "value": "600",
-              "label": "Semi Bold"
+              "label": "Semi-bold"
             },
             {
               "value": "700",
@@ -571,7 +536,7 @@
             },
             {
               "value": "800",
-              "label": "Extra Bold"
+              "label": "Extra-bold"
             }
           ],
           "default": "default"
@@ -581,6 +546,54 @@
           "id": "heading_color",
           "label": "Heading color",
           "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "select",
+          "id": "heading_font_size",
+          "label": "Heading font size (px)",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "16",
+              "label": "16px"
+            },
+            {
+              "value": "18",
+              "label": "18px"
+            },
+            {
+              "value": "20",
+              "label": "20px"
+            },
+            {
+              "value": "24",
+              "label": "24px"
+            },
+            {
+              "value": "28",
+              "label": "28px"
+            },
+            {
+              "value": "32",
+              "label": "32px"
+            },
+            {
+              "value": "36",
+              "label": "36px"
+            },
+            {
+              "value": "40",
+              "label": "40px"
+            },
+            {
+              "value": "48",
+              "label": "48px"
+            }
+          ],
+          "default": "default"
         }
       ]
     },
@@ -592,7 +605,7 @@
         {
           "type": "inline_richtext",
           "id": "text",
-          "default": "Give customers details about the banner image(s) or content on the template.",
+          "default": "t:sections.image-banner.blocks.text.settings.text.default",
           "label": "t:sections.image-banner.blocks.text.settings.text.label"
         },
         {
@@ -617,34 +630,6 @@
         },
         {
           "type": "select",
-          "id": "text_font_size",
-          "label": "Text font size",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "14",
-              "label": "Small"
-            },
-            {
-              "value": "16",
-              "label": "Medium"
-            },
-            {
-              "value": "18",
-              "label": "Large"
-            },
-            {
-              "value": "20",
-              "label": "Extra Large"
-            }
-          ],
-          "default": "default"
-        },
-        {
-          "type": "select",
           "id": "text_font_weight",
           "label": "Text font weight",
           "options": [
@@ -666,7 +651,7 @@
             },
             {
               "value": "600",
-              "label": "Semi Bold"
+              "label": "Semi-bold"
             }
           ],
           "default": "default"
@@ -676,6 +661,38 @@
           "id": "text_color",
           "label": "Text color",
           "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "select",
+          "id": "text_font_size",
+          "label": "Text font size (px)",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "12",
+              "label": "12px"
+            },
+            {
+              "value": "14",
+              "label": "14px"
+            },
+            {
+              "value": "16",
+              "label": "16px"
+            },
+            {
+              "value": "18",
+              "label": "18px"
+            },
+            {
+              "value": "20",
+              "label": "20px"
+            }
+          ],
+          "default": "default"
         }
       ]
     },
@@ -691,7 +708,7 @@
         {
           "type": "text",
           "id": "button_label_1",
-          "default": "Button label",
+          "default": "t:sections.image-banner.blocks.buttons.settings.button_label_1.default",
           "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label",
           "info": "t:sections.image-banner.blocks.buttons.settings.button_label_1.info"
         },
@@ -713,7 +730,7 @@
         {
           "type": "text",
           "id": "button_label_2",
-          "default": "Button label",
+          "default": "t:sections.image-banner.blocks.buttons.settings.button_label_2.default",
           "label": "t:sections.image-banner.blocks.buttons.settings.button_label_2.label",
           "info": "t:sections.image-banner.blocks.buttons.settings.button_label_2.info"
         },
@@ -733,7 +750,7 @@
   ],
   "presets": [
     {
-      "name": "Mobile banner",
+      "name": "Mobile Banner",
       "blocks": [
         {
           "type": "heading"
