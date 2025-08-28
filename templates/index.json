@@ -537,7 +537,7 @@
           "settings": {
             "text": "<p>Premium Hydration, Refined Taste</p><p>Key Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p>",
             "text_font_weight": "default",
-            "text_custom_size": 9,
+            "text_custom_size": 10,
             "text_color": "#121212"
           }
         },
@@ -614,7 +614,7 @@
           "settings": {
             "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
             "text_font_weight": "default",
-            "text_custom_size": 9,
+            "text_custom_size": 10,
             "text_color": "#121212"
           }
         },
@@ -812,7 +812,7 @@
         "block_title_font_family": "heading",
         "block_title_font_weight": "bold",
         "block_text_color": "#666666",
-        "block_text_size": 14,
+        "block_text_size": 24,
         "block_text_margin_top": 0,
         "block_text_margin_bottom": 10,
         "block_link_color": "#0066cc",
