@@ -1018,7 +1018,7 @@
         "desktop_content_position": "center",
         "content_alignment": "center",
         "container_alignment": "center",
-        "container_width": 1200,
+        "container_width": 1000,
         "color_scheme": "scheme-2",
         "full_width": true,
         "padding_top": 100,
