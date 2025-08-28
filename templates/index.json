@@ -633,8 +633,9 @@
       "type": "Mobile-banner",
       "name": "Electrolyte Liquid Concentrate",
       "settings": {
+        "image": "shopify://shop_images/36pic.jpg",
         "image_overlay_opacity": 0,
-        "image_height": "medium",
+        "image_height": "adapt",
         "image_behavior": "none",
         "text_container_width": "default",
         "desktop_content_position": "middle-center",
