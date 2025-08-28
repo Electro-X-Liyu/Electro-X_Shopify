@@ -70,7 +70,9 @@
           "type": "heading",
           "settings": {
             "heading": "PRODUCTS",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "heading_font_weight": "default",
+            "heading_color": "#000000"
           }
         }
       },
@@ -81,6 +83,8 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
+        "container_alignment": "center",
+        "container_width": 800,
         "color_scheme": "",
         "full_width": true,
         "padding_top": 52,
@@ -177,6 +181,8 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
+        "container_alignment": "center",
+        "container_width": 800,
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
@@ -567,7 +573,9 @@
           "type": "heading",
           "settings": {
             "heading": "SPORT SPONSORSHIP",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "heading_font_weight": "default",
+            "heading_color": "#000000"
           }
         }
       },
@@ -578,6 +586,8 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
+        "container_alignment": "center",
+        "container_width": 800,
         "color_scheme": "",
         "full_width": true,
         "padding_top": 92,
@@ -777,32 +787,35 @@
     "desktop_rich_text_6PnQKk": {
       "type": "Desktop-Rich-Text",
       "blocks": {
+        "text_iR9Y9g": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Rooted in the heart of Shanghai urban sports culture, we empower local athletes and communities to grow and compete with our clean hydration products.</p>",
+            "text_font_weight": "default",
+            "text_font_size": 16,
+            "text_color": "#333333"
+          }
+        },
         "text_bUrbLG": {
           "type": "text",
           "settings": {
-            "text": "<p>Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.</p>"
-          }
-        },
-        "button_QRPE3B": {
-          "type": "button",
-          "settings": {
-            "button_label": "LEARN MORE",
-            "button_link": "shopify://pages/community-ambassadors",
-            "button_style_secondary": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "text": "<p><a href=\"/pages/community-ambassadors\" title=\"AMBASSADORS （TBD\">LEARN MORE</a></p>",
+            "text_font_weight": "default",
+            "text_font_size": 14,
+            "text_color": "#333333"
           }
         }
       },
       "block_order": [
-        "text_bUrbLG",
-        "button_QRPE3B"
+        "text_iR9Y9g",
+        "text_bUrbLG"
       ],
       "name": "Desktop Rich Text",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
+        "container_alignment": "center",
+        "container_width": 1020,
         "color_scheme": "scheme-1",
         "full_width": true,
         "padding_top": 40,
@@ -981,13 +994,18 @@
           "type": "heading",
           "settings": {
             "heading": "ABOUT US",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "heading_font_weight": "default",
+            "heading_color": "#000000"
           }
         },
         "text_kBD7dn": {
           "type": "text",
           "settings": {
-            "text": "<p>Founded in 2021 in the heart of Shanghai’s urban sports culture, ELECTRO X is a premium hydration brand crafted for athletes and active lifestyles. We empower the thriving sports community with clean, science-backed hydration—including Natural Alkaline Water, Functional Sports Drinks, and Electrolyte Liquid Concentrates.</p>"
+            "text": "<p>Founded in 2021 in the heart of Shanghai’s urban sports culture, ELECTRO X is a premium hydration brand crafted for athletes and active lifestyles. We empower the thriving sports community with clean, science-backed hydration—including Natural Alkaline Water, Functional Sports Drinks, and Electrolyte Liquid Concentrates.</p>",
+            "text_font_weight": "default",
+            "text_font_size": 16,
+            "text_color": "#333333"
           }
         }
       },
@@ -999,6 +1017,8 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
+        "container_alignment": "center",
+        "container_width": 800,
         "color_scheme": "scheme-2",
         "full_width": true,
         "padding_top": 40,
