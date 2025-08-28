@@ -787,15 +787,6 @@
     "desktop_rich_text_6PnQKk": {
       "type": "Desktop-Rich-Text",
       "blocks": {
-        "heading_L4kQh8": {
-          "type": "heading",
-          "settings": {
-            "heading": "Rooted in the heart of Shanghai urban sports culture, we empower local athletes and communities to grow and compete with our clean hydration products.",
-            "heading_size": "h2",
-            "heading_font_weight": "default",
-            "heading_color": "#000000"
-          }
-        },
         "caption_DGN7NB": {
           "type": "caption",
           "settings": {
@@ -803,7 +794,7 @@
             "text_style": "subtitle",
             "text_size": "medium",
             "caption_font_weight": "default",
-            "caption_font_size": 19,
+            "caption_font_size": 35,
             "caption_color": "#121212"
           }
         },
@@ -827,7 +818,6 @@
         }
       },
       "block_order": [
-        "heading_L4kQh8",
         "caption_DGN7NB",
         "text_iR9Y9g",
         "text_bUrbLG"
