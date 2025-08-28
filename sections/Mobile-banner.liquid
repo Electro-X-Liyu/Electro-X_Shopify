@@ -35,11 +35,11 @@
           {% if block.settings.heading_font_weight != 'default' %}
             font-weight: {{ block.settings.heading_font_weight }};
           {% endif %}
-          {% if block.settings.heading_color != 'rgba(0,0,0,0)' %}
-            color: {{ block.settings.heading_color }};
-          {% endif %}
           {% if block.settings.heading_font_size != 'default' %}
             font-size: {{ block.settings.heading_font_size }}px;
+          {% endif %}
+          {% if block.settings.heading_color != 'rgba(0,0,0,0)' %}
+            color: {{ block.settings.heading_color }};
           {% endif %}
         }
       {%- when 'text' -%}
@@ -47,11 +47,11 @@
           {% if block.settings.text_font_weight != 'default' %}
             font-weight: {{ block.settings.text_font_weight }};
           {% endif %}
-          {% if block.settings.text_color != 'rgba(0,0,0,0)' %}
-            color: {{ block.settings.text_color }};
-          {% endif %}
           {% if block.settings.text_font_size != 'default' %}
             font-size: {{ block.settings.text_font_size }}px;
+          {% endif %}
+          {% if block.settings.text_color != 'rgba(0,0,0,0)' %}
+            color: {{ block.settings.text_color }};
           {% endif %}
         }
     {%- endcase -%}
@@ -222,7 +222,7 @@
 
 {% schema %}
 {
-  "name": "Mobile Banner",
+  "name": "Mobile banner",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -237,7 +237,7 @@
     {
       "type": "url",
       "id": "image_link",
-      "label": "First Image Link"
+      "label": "First image link"
     },
     {
       "type": "image_picker",
@@ -247,7 +247,7 @@
     {
       "type": "url",
       "id": "image_2_link",
-      "label": "Second Image Link"
+      "label": "Second image link"
     },
     {
       "type": "range",
@@ -537,8 +537,19 @@
             {
               "value": "800",
               "label": "Extra-bold"
+            },
+            {
+              "value": "900",
+              "label": "Black"
             }
           ],
+          "default": "default"
+        },
+        {
+          "type": "text",
+          "id": "heading_font_size",
+          "label": "Heading font size (px)",
+          "info": "Leave as 'default' to use the theme's default size",
           "default": "default"
         },
         {
@@ -546,54 +557,6 @@
           "id": "heading_color",
           "label": "Heading color",
           "default": "rgba(0,0,0,0)"
-        },
-        {
-          "type": "select",
-          "id": "heading_font_size",
-          "label": "Heading font size (px)",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "16",
-              "label": "16px"
-            },
-            {
-              "value": "18",
-              "label": "18px"
-            },
-            {
-              "value": "20",
-              "label": "20px"
-            },
-            {
-              "value": "24",
-              "label": "24px"
-            },
-            {
-              "value": "28",
-              "label": "28px"
-            },
-            {
-              "value": "32",
-              "label": "32px"
-            },
-            {
-              "value": "36",
-              "label": "36px"
-            },
-            {
-              "value": "40",
-              "label": "40px"
-            },
-            {
-              "value": "48",
-              "label": "48px"
-            }
-          ],
-          "default": "default"
         }
       ]
     },
@@ -652,8 +615,19 @@
             {
               "value": "600",
               "label": "Semi-bold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
             }
           ],
+          "default": "default"
+        },
+        {
+          "type": "text",
+          "id": "text_font_size",
+          "label": "Text font size (px)",
+          "info": "Leave as 'default' to use the theme's default size",
           "default": "default"
         },
         {
@@ -661,38 +635,6 @@
           "id": "text_color",
           "label": "Text color",
           "default": "rgba(0,0,0,0)"
-        },
-        {
-          "type": "select",
-          "id": "text_font_size",
-          "label": "Text font size (px)",
-          "options": [
-            {
-              "value": "default",
-              "label": "Default"
-            },
-            {
-              "value": "12",
-              "label": "12px"
-            },
-            {
-              "value": "14",
-              "label": "14px"
-            },
-            {
-              "value": "16",
-              "label": "16px"
-            },
-            {
-              "value": "18",
-              "label": "18px"
-            },
-            {
-              "value": "20",
-              "label": "20px"
-            }
-          ],
-          "default": "default"
         }
       ]
     },
@@ -750,7 +692,7 @@
   ],
   "presets": [
     {
-      "name": "Mobile Banner",
+      "name": "Mobile banner",
       "blocks": [
         {
           "type": "heading"
