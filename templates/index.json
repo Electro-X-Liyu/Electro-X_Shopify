@@ -48,7 +48,20 @@
     "mobile_banner_kByUUW": {
       "type": "Mobile-banner",
       "name": "Mobile banner",
-      "settings": {}
+      "settings": {
+        "image": "shopify://shop_images/121cut.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "text_container_width": "default",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
     },
     "desktop_rich_text_xDN4gp": {
       "type": "Desktop-Rich-Text",
@@ -289,7 +302,20 @@
     "mobile_banner_3KNFri": {
       "type": "Mobile-banner",
       "name": "Mobile banner",
-      "settings": {}
+      "settings": {
+        "image": "shopify://shop_images/2_dd0a0df5-7a49-48d5-980f-8c4d4bc9ee70.svg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "text_container_width": "default",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
     },
     "desktop_multirow_Q3mdjw": {
       "type": "desktop-multirow",
@@ -494,6 +520,7 @@
         "features_jKArC3",
         "button_xpCWk6"
       ],
+      "disabled": true,
       "name": "高级产品卡片",
       "settings": {
         "layout": "left",
@@ -512,17 +539,112 @@
     "mobile_banner_TGWQrB": {
       "type": "Mobile-banner",
       "name": "Natural Alkaline Water",
-      "settings": {}
+      "settings": {
+        "image": "shopify://shop_images/131cut.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "text_container_width": "default",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "mobile_rich_text_pPqMYc": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_FqHnQE": {
+          "type": "heading",
+          "settings": {
+            "heading": "Natural Alkaline Water",
+            "heading_size": "h1",
+            "heading_font_weight": "default",
+            "heading_custom_size": 19,
+            "heading_color": "#121212"
+          }
+        },
+        "text_4zhmFj": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
+            "text_font_weight": "default",
+            "text_custom_size": 10,
+            "text_color": "#121212"
+          }
+        },
+        "button_zwMXnX": {
+          "type": "button",
+          "settings": {
+            "button_label": "LEARN MORE",
+            "button_link": "shopify://products/natural-alkaline-water",
+            "button_style_secondary": false,
+            "button_font_weight": "default",
+            "button_custom_size": 8,
+            "button_color": "#121212",
+            "button_bg_color": "#ffffff",
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false,
+            "button_font_weight_2": "default",
+            "button_custom_size_2": 0,
+            "button_color_2": "rgba(0,0,0,0)",
+            "button_bg_color_2": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "heading_FqHnQE",
+        "text_4zhmFj",
+        "button_zwMXnX"
+      ],
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 28
+      }
     },
     "mobile_banner_J4BarX": {
       "type": "Mobile-banner",
       "name": "ELECTRO X Sports Drink",
-      "settings": {}
+      "settings": {
+        "image": "shopify://shop_images/111cut.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "text_container_width": "default",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
     },
     "mobile_banner_c7zzMD": {
       "type": "Mobile-banner",
       "name": "Electrolyte Liquid Concentrate",
-      "settings": {}
+      "settings": {
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "text_container_width": "default",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
     },
     "desktop_rich_text_HjaGHX": {
       "type": "Desktop-Rich-Text",
@@ -792,7 +914,19 @@
     "mobile_banner_PGtzXU": {
       "type": "Mobile-banner",
       "name": "Mobile banner",
-      "settings": {}
+      "settings": {
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "text_container_width": "default",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
     },
     "new_blog_pMAgYq": {
       "type": "new-blog",
@@ -1004,6 +1138,7 @@
     "desktop_multirow_Q3mdjw",
     "product_card_RTAmT4",
     "mobile_banner_TGWQrB",
+    "mobile_rich_text_pPqMYc",
     "mobile_banner_J4BarX",
     "mobile_banner_c7zzMD",
     "desktop_rich_text_HjaGHX",
