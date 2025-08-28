@@ -50,6 +50,8 @@
       "name": "Mobile banner",
       "settings": {
         "image": "shopify://shop_images/121cut.png",
+        "image_link": "",
+        "image_2_link": "",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -304,6 +306,8 @@
       "name": "Mobile banner",
       "settings": {
         "image": "shopify://shop_images/2_dd0a0df5-7a49-48d5-980f-8c4d4bc9ee70.svg",
+        "image_link": "shopify://collections/all-products",
+        "image_2_link": "",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -455,6 +459,8 @@
       "name": "Natural Alkaline Water",
       "settings": {
         "image": "shopify://shop_images/131cut.png",
+        "image_link": "",
+        "image_2_link": "",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -505,6 +511,8 @@
       "name": "ELECTRO X Sports Drink",
       "settings": {
         "image": "shopify://shop_images/111cut.png",
+        "image_link": "",
+        "image_2_link": "",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -555,6 +563,8 @@
       "name": "Electrolyte Liquid Concentrate",
       "settings": {
         "image": "shopify://shop_images/11cut_3bb7705f-422b-43af-80ed-c1d91036dfb2.png",
+        "image_link": "",
+        "image_2_link": "",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -873,6 +883,8 @@
       "name": "Mobile banner",
       "settings": {
         "image": "shopify://shop_images/71cut.png",
+        "image_link": "shopify://pages/community-ambassadors",
+        "image_2_link": "",
         "image_overlay_opacity": 40,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -884,60 +896,6 @@
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
         "show_text_below": false
-      }
-    },
-    "multicolumn_4x6RhN": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_WatRyK": {
-          "type": "column",
-          "settings": {
-            "title": "Column title",
-            "text": "<p>Column content. Describe your product or feature here.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_zpNnr9": {
-          "type": "column",
-          "settings": {
-            "title": "Column title",
-            "text": "<p>Column content. Describe your product or feature here.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_EzCTfy": {
-          "type": "column",
-          "settings": {
-            "title": "Column title",
-            "text": "<p>Column content. Describe your product or feature here.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_WatRyK",
-        "column_zpNnr9",
-        "column_EzCTfy"
-      ],
-      "name": "Multicolumn",
-      "settings": {
-        "title": "Multicolumn",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "Button label",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     },
     "new_blog_pMAgYq": {
@@ -1156,7 +1114,6 @@
     "banner_BM3DgA",
     "desktop_rich_text_6PnQKk",
     "mobile_banner_PGtzXU",
-    "multicolumn_4x6RhN",
     "new_blog_pMAgYq",
     "desktop_rich_text_hePfFd",
     "mobile_rich_text_hLkbnQ"
