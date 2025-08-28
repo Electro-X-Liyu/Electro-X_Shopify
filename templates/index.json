@@ -71,8 +71,8 @@
           "settings": {
             "heading": "PRODUCTS",
             "heading_size": "h1",
-            "heading_font_size": 24,
-            "heading_font_weight": "default",
+            "heading_font_size": 34,
+            "heading_font_weight": "normal",
             "heading_color": "#000000"
           }
         }
@@ -1006,9 +1006,18 @@
           "settings": {
             "heading": "ABOUT US",
             "heading_size": "h1",
-            "heading_font_size": 24,
+            "heading_font_size": 34,
             "heading_font_weight": "default",
             "heading_color": "#000000"
+          }
+        },
+        "text_qXD49m": {
+          "type": "text",
+          "settings": {
+            "text": "<p>——</p><p></p>",
+            "text_font_size": 16,
+            "text_font_weight": "normal",
+            "text_color": "#f3f3f3"
           }
         },
         "text_kBD7dn": {
@@ -1023,6 +1032,7 @@
       },
       "block_order": [
         "heading_eFjUk7",
+        "text_qXD49m",
         "text_kBD7dn"
       ],
       "name": "Desktop Rich Text",
