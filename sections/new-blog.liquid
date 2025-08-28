@@ -67,6 +67,42 @@
     overflow: hidden;
   }
 
+  /* 轮播图样式 */
+  #shopify-section-{{ section.id }} .slider {
+    scrollbar-width: none;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .multicolumn-list {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    margin: 0;
+    padding: 0;
+  }
+
+  #shopify-section-{{ section.id }} .multicolumn-list__item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: calc(100% - 20px);
+    margin-right: 20px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .multicolumn-list__item {
+      width: calc(33.33% - 20px);
+    }
+  }
+
   /* 区块特定样式 */
   {%- for block in section.blocks -%}
     #shopify-section-{{ section.id }} #Slide-{{ section.id }}-{{ forloop.index }} .multicolumn-card__info h3 {
@@ -143,7 +179,7 @@
 
     <slider-component class="slider-mobile-gutter">
       <ul
-        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
+        class="multicolumn-list contains-content-container slider"
         id="Slider-{{ section.id }}"
         role="list"
       >
@@ -168,7 +204,7 @@
 
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="multicolumn-list__item{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade style="--animation-order: {{ forloop.index }};"
@@ -249,8 +285,8 @@
         {%- endfor -%}
       </ul>
 
-      {%- if show_mobile_slider -%}
-        <div class="slider-buttons large-up-hide">
+      {%- if section.blocks.size > 1 -%}
+        <div class="slider-buttons no-js-hidden">
           <button
             type="button"
             class="slider-button slider-button--prev"
@@ -294,9 +330,108 @@
   </div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('#shopify-section-{{ section.id }} .slider');
+    const slides = document.querySelectorAll('#shopify-section-{{ section.id }} .multicolumn-list__item');
+    const prevButton = document.querySelector('#shopify-section-{{ section.id }} .slider-button--prev');
+    const nextButton = document.querySelector('#shopify-section-{{ section.id }} .slider-button--next');
+    const counterCurrent = document.querySelector('#shopify-section-{{ section.id }} .slider-counter--current');
+    const counterTotal = document.querySelector('#shopify-section-{{ section.id }} .slider-counter--total');
+    
+    if (slider && slides.length > 0) {
+      let currentIndex = 0;
+      let slidesPerView = 1;
+      
+      // 更新计数器
+      if (counterTotal) {
+        counterTotal.textContent = slides.length;
+      }
+      
+      // 检测屏幕宽度并设置每屏显示的幻灯片数量
+      function updateSlidesPerView() {
+        if (window.innerWidth >= 750) {
+          slidesPerView = 3; // 桌面端显示3个
+        } else {
+          slidesPerView = 1; // 移动端显示1个
+        }
+        updateSliderPosition();
+      }
+      
+      // 更新滑块位置
+      function updateSliderPosition() {
+        const slideWidth = slides[0].offsetWidth + 20; // 包括margin-right
+        slider.scrollTo({
+          left: currentIndex * slideWidth,
+          behavior: 'smooth'
+        });
+        
+        if (counterCurrent) {
+          counterCurrent.textContent = currentIndex + 1;
+        }
+      }
+      
+      // 初始化
+      updateSlidesPerView();
+      
+      // 监听窗口大小变化
+      window.addEventListener('resize', updateSlidesPerView);
+      
+      // 上一张按钮点击事件
+      if (prevButton) {
+        prevButton.addEventListener('click', function() {
+          if (currentIndex > 0) {
+            currentIndex--;
+            updateSliderPosition();
+          }
+        });
+      }
+      
+      // 下一张按钮点击事件
+      if (nextButton) {
+        nextButton.addEventListener('click', function() {
+          if (currentIndex < slides.length - slidesPerView) {
+            currentIndex++;
+            updateSliderPosition();
+          }
+        });
+      }
+      
+      // 添加触摸滑动支持
+      let startX;
+      let scrollLeft;
+      
+      slider.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+      
+      slider.addEventListener('touchmove', function(e) {
+        if (!startX) return;
+        const x = e.touches[0].pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        slider.scrollLeft = scrollLeft - walk;
+      });
+      
+      slider.addEventListener('touchend', function() {
+        startX = null;
+        
+        // 检测滑动结束后的位置，确定当前索引
+        const slideWidth = slides[0].offsetWidth + 20;
+        const newIndex = Math.round(slider.scrollLeft / slideWidth);
+        
+        if (newIndex >= 0 && newIndex <= slides.length - slidesPerView) {
+          currentIndex = newIndex;
+          updateSliderPosition();
+        }
+      });
+    }
+  });
+</script>
+
 {% schema %}
 {
-  "name": "Multicolumn",
+  "name": "Multicolumn Slider",
   "class": "section",
   "tag": "section",
   "disabled_on": {
@@ -310,7 +445,7 @@
     {
       "type": "inline_richtext",
       "id": "title",
-      "default": "Multicolumn",
+      "default": "Multicolumn Slider",
       "label": "Heading"
     },
     {
@@ -424,7 +559,7 @@
           "label": "Left"
         },
         {
-          "value": "center",
+      "value": "center",
           "label": "Center"
         },
         {
@@ -734,7 +869,7 @@
     {
       "type": "checkbox",
       "id": "swipe_on_mobile",
-      "default": false,
+      "default": true,
       "label": "Enable swipe on mobile"
     },
     {
@@ -932,8 +1067,14 @@
   ],
   "presets": [
     {
-      "name": "Multicolumn",
+      "name": "Multicolumn Slider",
       "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        },
         {
           "type": "column"
         },
