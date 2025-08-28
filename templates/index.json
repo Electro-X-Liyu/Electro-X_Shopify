@@ -886,6 +886,60 @@
         "show_text_below": false
       }
     },
+    "multicolumn_4x6RhN": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_WatRyK": {
+          "type": "column",
+          "settings": {
+            "title": "Column title",
+            "text": "<p>Column content. Describe your product or feature here.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_zpNnr9": {
+          "type": "column",
+          "settings": {
+            "title": "Column title",
+            "text": "<p>Column content. Describe your product or feature here.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_EzCTfy": {
+          "type": "column",
+          "settings": {
+            "title": "Column title",
+            "text": "<p>Column content. Describe your product or feature here.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_WatRyK",
+        "column_zpNnr9",
+        "column_EzCTfy"
+      ],
+      "name": "Multicolumn",
+      "settings": {
+        "title": "Multicolumn",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "Button label",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "new_blog_pMAgYq": {
       "type": "new-blog",
       "blocks": {
@@ -1102,6 +1156,7 @@
     "banner_BM3DgA",
     "desktop_rich_text_6PnQKk",
     "mobile_banner_PGtzXU",
+    "multicolumn_4x6RhN",
     "new_blog_pMAgYq",
     "desktop_rich_text_hePfFd",
     "mobile_rich_text_hLkbnQ"
