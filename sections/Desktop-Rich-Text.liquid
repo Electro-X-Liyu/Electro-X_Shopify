@@ -23,60 +23,58 @@
       display: block;
     }
   }
-
-  /* 自定义文本框宽度 */
-  .section-{{ section.id }} .rich-text__blocks {
-    {% if section.settings.container_width != 'full' %}
-      max-width: {{ section.settings.container_width }}px;
-      margin: 0 auto;
-    {% endif %}
+  
+  /* 自定义容器宽度 */
+  .section-{{ section.id }}-width {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
   }
-
-  /* 块级样式 */
+  
+  /* 自定义样式 */
   {%- for block in section.blocks -%}
     {%- case block.type -%}
       {%- when 'heading' -%}
-        .section-{{ section.id }} .block-{{ block.id }} {
-          {% if block.settings.heading_color != blank %}
-            color: {{ block.settings.heading_color }};
-          {% endif %}
-          {% if block.settings.heading_font_weight != 'default' %}
+        .section-{{ section.id }} .rich-text__heading {
+          {%- if block.settings.heading_font_weight != 'default' -%}
             font-weight: {{ block.settings.heading_font_weight }};
-          {% endif %}
-          {% if block.settings.custom_font_size > 0 %}
-            font-size: {{ block.settings.custom_font_size }}px;
-          {% endif %}
+          {%- endif -%}
+          {%- if block.settings.heading_font_size != 0 -%}
+            font-size: {{ block.settings.heading_font_size }}px;
+          {%- endif -%}
+          {%- if block.settings.heading_color != 'rgba(0,0,0,0)' -%}
+            color: {{ block.settings.heading_color }};
+          {%- endif -%}
         }
       {%- when 'caption' -%}
-        .section-{{ section.id }} .block-{{ block.id }} {
-          {% if block.settings.caption_color != blank %}
-            color: {{ block.settings.caption_color }};
-          {% endif %}
-          {% if block.settings.caption_font_weight != 'default' %}
+        .section-{{ section.id }} .rich-text__caption {
+          {%- if block.settings.caption_font_weight != 'default' -%}
             font-weight: {{ block.settings.caption_font_weight }};
-          {% endif %}
-          {% if block.settings.custom_font_size > 0 %}
-            font-size: {{ block.settings.custom_font_size }}px;
-          {% endif %}
+          {%- endif -%}
+          {%- if block.settings.caption_font_size != 0 -%}
+            font-size: {{ block.settings.caption_font_size }}px;
+          {%- endif -%}
+          {%- if block.settings.caption_color != 'rgba(0,0,0,0)' -%}
+            color: {{ block.settings.caption_color }};
+          {%- endif -%}
         }
       {%- when 'text' -%}
-        .section-{{ section.id }} .block-{{ block.id }} {
-          {% if block.settings.text_color != blank %}
-            color: {{ block.settings.text_color }};
-          {% endif %}
-          {% if block.settings.text_font_weight != 'default' %}
+        .section-{{ section.id }} .rich-text__text {
+          {%- if block.settings.text_font_weight != 'default' -%}
             font-weight: {{ block.settings.text_font_weight }};
-          {% endif %}
-          {% if block.settings.custom_font_size > 0 %}
-            font-size: {{ block.settings.custom_font_size }}px;
-          {% endif %}
+          {%- endif -%}
+          {%- if block.settings.text_font_size != 0 -%}
+            font-size: {{ block.settings.text_font_size }}px;
+          {%- endif -%}
+          {%- if block.settings.text_color != 'rgba(0,0,0,0)' -%}
+            color: {{ block.settings.text_color }};
+          {%- endif -%}
         }
     {%- endcase -%}
   {%- endfor -%}
 {%- endstyle -%}
 
-<div class="desktop-rich-text section-{{ section.id }}">
-  <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
+<div class="desktop-rich-text section-{{ section.id }}-padding">
+  <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-width">
     <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
       <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
         <div class="rich-text__blocks {{ section.settings.content_alignment }}">
@@ -84,7 +82,7 @@
             {%- case block.type -%}
               {%- when 'heading' -%}
                 <h2
-                  class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }} block-{{ block.id }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                   {{ block.shopify_attributes }}
                   {% if settings.animations_reveal_on_scroll %}
                     data-cascade
@@ -95,7 +93,7 @@
                 </h2>
               {%- when 'caption' -%}
                 <p
-                  class="rich-text__caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }} block-{{ block.id }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  class="rich-text__caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                   {{ block.shopify_attributes }}
                   {% if settings.animations_reveal_on_scroll %}
                     data-cascade
@@ -106,7 +104,7 @@
                 </p>
               {%- when 'text' -%}
                 <div
-                  class="rich-text__text rte block-{{ block.id }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                   {{ block.shopify_attributes }}
                   {% if settings.animations_reveal_on_scroll %}
                     data-cascade
@@ -167,6 +165,17 @@
   },
   "settings": [
     {
+      "type": "range",
+      "id": "container_width",
+      "min": 600,
+      "max": 1600,
+      "step": 10,
+      "unit": "px",
+      "label": "Container Width",
+      "default": 1200,
+      "info": "Set the maximum width of the text container"
+    },
+    {
       "type": "select",
       "id": "desktop_content_position",
       "options": [
@@ -205,34 +214,6 @@
       ],
       "default": "center",
       "label": "t:sections.rich-text.settings.content_alignment.label"
-    },
-    {
-      "type": "select",
-      "id": "container_width",
-      "label": "文本框宽度",
-      "options": [
-        {
-          "value": "full",
-          "label": "全宽"
-        },
-        {
-          "value": "800",
-          "label": "800px"
-        },
-        {
-          "value": "700",
-          "label": "700px"
-        },
-        {
-          "value": "600",
-          "label": "600px"
-        },
-        {
-          "value": "500",
-          "label": "500px"
-        }
-      ],
-      "default": "full"
     },
     {
       "type": "color_scheme",
@@ -274,14 +255,14 @@
   "blocks": [
     {
       "type": "heading",
-      "name": "标题",
+      "name": "Heading",
       "limit": 3,
       "settings": [
         {
           "type": "inline_richtext",
           "id": "heading",
-          "default": "请输入标题",
-          "label": "标题内容"
+          "default": "Talk about your brand",
+          "label": "Heading"
         },
         {
           "type": "select",
@@ -289,38 +270,27 @@
           "options": [
             {
               "value": "h2",
-              "label": "小"
+              "label": "Small"
             },
             {
               "value": "h1",
-              "label": "中"
+              "label": "Medium"
             },
             {
               "value": "h0",
-              "label": "大"
+              "label": "Large"
             },
             {
               "value": "hxl",
-              "label": "加大"
+              "label": "Extra Large"
             },
             {
               "value": "hxxl",
-              "label": "特大"
+              "label": "Extra Extra Large"
             }
           ],
           "default": "h1",
-          "label": "标题预设大小"
-        },
-        {
-          "type": "range",
-          "id": "custom_font_size",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "px",
-          "label": "自定义字体大小",
-          "info": "设置为0时使用预设大小",
-          "default": 0
+          "label": "Heading Size"
         },
         {
           "type": "select",
@@ -328,58 +298,69 @@
           "options": [
             {
               "value": "default",
-              "label": "默认"
+              "label": "Default"
             },
             {
               "value": "300",
-              "label": "细体"
+              "label": "Light"
             },
             {
               "value": "400",
-              "label": "正常"
+              "label": "Regular"
             },
             {
               "value": "500",
-              "label": "中等"
+              "label": "Medium"
             },
             {
               "value": "600",
-              "label": "半粗"
+              "label": "Semi Bold"
             },
             {
               "value": "700",
-              "label": "粗体"
+              "label": "Bold"
             },
             {
               "value": "800",
-              "label": "超粗"
+              "label": "Extra Bold"
             },
             {
               "value": "900",
-              "label": "最粗"
+              "label": "Black"
             }
           ],
           "default": "default",
-          "label": "字体粗细"
+          "label": "Font Weight"
+        },
+        {
+          "type": "range",
+          "id": "heading_font_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Custom Font Size",
+          "default": 0,
+          "info": "Set to 0 to use default size"
         },
         {
           "type": "color",
           "id": "heading_color",
-          "label": "文字颜色",
+          "label": "Custom Color",
           "default": "rgba(0,0,0,0)"
         }
       ]
     },
     {
       "type": "caption",
-      "name": "说明文字",
+      "name": "Caption",
       "limit": 3,
       "settings": [
         {
           "type": "text",
           "id": "caption",
-          "default": "请输入说明文字",
-          "label": "说明文字"
+          "default": "Add a tagline",
+          "label": "Caption"
         },
         {
           "type": "select",
@@ -387,15 +368,15 @@
           "options": [
             {
               "value": "subtitle",
-              "label": "t:sections.rich-text.blocks.caption.settings.text_style.options__1.label"
+              "label": "Subtitle"
             },
             {
               "value": "caption-with-letter-spacing",
-              "label": "t:sections.rich-text.blocks.caption.settings.text_style.options__2.label"
+              "label": "Caption with letter spacing"
             }
           ],
           "default": "caption-with-letter-spacing",
-          "label": "t:sections.rich-text.blocks.caption.settings.text_style.label"
+          "label": "Text Style"
         },
         {
           "type": "select",
@@ -403,30 +384,19 @@
           "options": [
             {
               "value": "small",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__1.label"
+              "label": "Small"
             },
             {
               "value": "medium",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__2.label"
+              "label": "Medium"
             },
             {
               "value": "large",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__3.label"
+              "label": "Large"
             }
           ],
           "default": "medium",
-          "label": "t:sections.rich-text.blocks.caption.settings.caption_size.label"
-        },
-        {
-          "type": "range",
-          "id": "custom_font_size",
-          "min": 0,
-          "max": 50,
-          "step": 1,
-          "unit": "px",
-          "label": "自定义字体大小",
-          "info": "设置为0时使用预设大小",
-          "default": 0
+          "label": "Caption Size"
         },
         {
           "type": "select",
@@ -434,61 +404,69 @@
           "options": [
             {
               "value": "default",
-              "label": "默认"
+              "label": "Default"
             },
             {
               "value": "300",
-              "label": "细体"
+              "label": "Light"
             },
             {
               "value": "400",
-              "label": "正常"
+              "label": "Regular"
             },
             {
               "value": "500",
-              "label": "中等"
+              "label": "Medium"
             },
             {
               "value": "600",
-              "label": "半粗"
+              "label": "Semi Bold"
             },
             {
               "value": "700",
-              "label": "粗体"
+              "label": "Bold"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold"
+            },
+            {
+              "value": "900",
+              "label": "Black"
             }
           ],
           "default": "default",
-          "label": "字体粗细"
+          "label": "Font Weight"
+        },
+        {
+          "type": "range",
+          "id": "caption_font_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Custom Font Size",
+          "default": 0,
+          "info": "Set to 0 to use default size"
         },
         {
           "type": "color",
           "id": "caption_color",
-          "label": "文字颜色",
+          "label": "Custom Color",
           "default": "rgba(0,0,0,0)"
         }
       ]
     },
     {
       "type": "text",
-      "name": "正文",
+      "name": "Text",
       "limit": 3,
       "settings": [
         {
           "type": "richtext",
           "id": "text",
-          "default": "<p>请输入正文内容</p>",
-          "label": "正文内容"
-        },
-        {
-          "type": "range",
-          "id": "custom_font_size",
-          "min": 0,
-          "max": 30,
-          "step": 1,
-          "unit": "px",
-          "label": "自定义字体大小",
-          "info": "设置为0时使用预设大小",
-          "default": 0
+          "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+          "label": "Text"
         },
         {
           "type": "select",
@@ -496,83 +474,106 @@
           "options": [
             {
               "value": "default",
-              "label": "默认"
+              "label": "Default"
             },
             {
               "value": "300",
-              "label": "细体"
+              "label": "Light"
             },
             {
               "value": "400",
-              "label": "正常"
+              "label": "Regular"
             },
             {
               "value": "500",
-              "label": "中等"
+              "label": "Medium"
             },
             {
               "value": "600",
-              "label": "半粗"
+              "label": "Semi Bold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold"
+            },
+            {
+              "value": "900",
+              "label": "Black"
             }
           ],
           "default": "default",
-          "label": "字体粗细"
+          "label": "Font Weight"
+        },
+        {
+          "type": "range",
+          "id": "text_font_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Custom Font Size",
+          "default": 0,
+          "info": "Set to 0 to use default size"
         },
         {
           "type": "color",
           "id": "text_color",
-          "label": "文字颜色",
+          "label": "Custom Color",
           "default": "rgba(0,0,0,0)"
         }
       ]
     },
     {
       "type": "button",
-      "name": "按钮",
+      "name": "Buttons",
       "limit": 2,
       "settings": [
         {
          "type": "header",
-         "content": "第一个按钮"
+         "content": "First Button"
         },        
         {
           "type": "text",
           "id": "button_label",
-          "default": "按钮文字",
-          "label": "按钮文字",
-          "info": "t:sections.rich-text.blocks.buttons.settings.button_label_1.info"
+          "default": "Button label",
+          "label": "Button Label",
+          "info": "Leave blank to hide button"
         },
         {
           "type": "url",
           "id": "button_link",
-          "label": "按钮链接"
+          "label": "Button Link"
         },
         {
           "type": "checkbox",
           "id": "button_style_secondary",
           "default": false,
-          "label": "使用次要样式"
+          "label": "Use Secondary Style"
         },
         {
          "type": "header",
-         "content": "第二个按钮"
+         "content": "Second Button"
         },          
         {
           "type": "text",
           "id": "button_label_2",
-          "label": "按钮文字",
-          "info": "t:sections.rich-text.blocks.buttons.settings.button_label_2.info"
+          "label": "Button Label",
+          "info": "Leave blank to hide button"
         },
         {
           "type": "url",
           "id": "button_link_2",
-          "label": "按钮链接"
+          "label": "Button Link"
         },
         {
           "type": "checkbox",
           "id": "button_style_secondary_2",
           "default": false,
-          "label": "使用次要样式"
+          "label": "Use Secondary Style"
         }
       ]
     }
