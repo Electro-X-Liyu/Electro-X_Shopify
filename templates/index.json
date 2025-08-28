@@ -429,14 +429,20 @@
           "type": "heading",
           "settings": {
             "heading": "Natural Alkaline Water",
-            "heading_size": "h2"
+            "heading_size": "h2",
+            "heading_font_weight": "default",
+            "heading_color": "#121212",
+            "heading_font_size": "default"
           }
         },
         "text_nhw3CV": {
           "type": "text",
           "settings": {
             "text": "The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border",
-            "text_style": "body"
+            "text_style": "body",
+            "text_font_weight": "default",
+            "text_color": "#121212",
+            "text_font_size": "14"
           }
         },
         "buttons_AwpPzj": {
@@ -481,14 +487,20 @@
           "type": "heading",
           "settings": {
             "heading": "ELECTRO X Sports Drink",
-            "heading_size": "h2"
+            "heading_size": "h2",
+            "heading_font_weight": "default",
+            "heading_color": "rgba(0,0,0,0)",
+            "heading_font_size": "default"
           }
         },
         "text_dHm7Px": {
           "type": "text",
           "settings": {
             "text": "<strong>Premium Hydration, Refined TasteKey Ingredients:</strong> Electrolytes | BCAA | L Carnitine | Glucose | Vitamins",
-            "text_style": "body"
+            "text_style": "body",
+            "text_font_weight": "default",
+            "text_color": "rgba(0,0,0,0)",
+            "text_font_size": "default"
           }
         },
         "buttons_ywi9ck": {
@@ -533,14 +545,20 @@
           "type": "heading",
           "settings": {
             "heading": "Electrolyte Liquid Concentrate",
-            "heading_size": "h2"
+            "heading_size": "h2",
+            "heading_font_weight": "default",
+            "heading_color": "rgba(0,0,0,0)",
+            "heading_font_size": "default"
           }
         },
         "text_XgJgcq": {
           "type": "text",
           "settings": {
             "text": "Premium Hydration, Refined TasteKey Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Vitamins",
-            "text_style": "body"
+            "text_style": "body",
+            "text_font_weight": "default",
+            "text_color": "rgba(0,0,0,0)",
+            "text_font_size": "default"
           }
         },
         "buttons_CFTwHX": {
@@ -851,7 +869,10 @@
           "disabled": true,
           "settings": {
             "heading": "<strong>COMMUNITY</strong>",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "heading_font_weight": "default",
+            "heading_color": "rgba(0,0,0,0)",
+            "heading_font_size": "default"
           }
         },
         "text_aDmUXx": {
@@ -859,7 +880,10 @@
           "disabled": true,
           "settings": {
             "text": "Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.",
-            "text_style": "body"
+            "text_style": "body",
+            "text_font_weight": "default",
+            "text_color": "rgba(0,0,0,0)",
+            "text_font_size": "default"
           }
         },
         "buttons_VP3jMh": {
