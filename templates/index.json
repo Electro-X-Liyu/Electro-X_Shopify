@@ -48,22 +48,7 @@
     "mobile_banner_kByUUW": {
       "type": "Mobile-banner",
       "name": "Mobile banner",
-      "settings": {
-        "image": "shopify://shop_images/121cut.png",
-        "image_link": "",
-        "image_2_link": "",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "text_container_width": "default",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
+      "settings": {}
     },
     "desktop_rich_text_xDN4gp": {
       "type": "Desktop-Rich-Text",
@@ -304,22 +289,7 @@
     "mobile_banner_3KNFri": {
       "type": "Mobile-banner",
       "name": "Mobile banner",
-      "settings": {
-        "image": "shopify://shop_images/2_dd0a0df5-7a49-48d5-980f-8c4d4bc9ee70.svg",
-        "image_link": "shopify://collections/all-products",
-        "image_2_link": "",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "text_container_width": "default",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
+      "settings": {}
     },
     "desktop_multirow_Q3mdjw": {
       "type": "desktop-multirow",
@@ -422,179 +392,137 @@
         "padding_bottom": 0
       }
     },
-    "mobile_banner_TGWQrB": {
-      "type": "Mobile-banner",
+    "product_card_RTAmT4": {
+      "type": "product-card",
       "blocks": {
-        "heading_JHrDdw": {
-          "type": "heading",
+        "title_QEh88k": {
+          "type": "title",
           "settings": {
-            "heading": "Natural Alkaline Water",
-            "heading_size": "h2",
-            "heading_font_weight": "default",
-            "heading_color": "#121212",
-            "heading_font_size": "default"
+            "text": "Natural Alkaline Water",
+            "color": "#000000",
+            "font_size": 24,
+            "font_weight": "300",
+            "uppercase": false,
+            "italic": false,
+            "line_height": 1.2,
+            "letter_spacing": 0,
+            "text_align": "left",
+            "margin_top": 0,
+            "margin_bottom": 10
           }
         },
-        "text_nhw3CV": {
-          "type": "text",
+        "subtitle_MVaWMb": {
+          "type": "subtitle",
           "settings": {
-            "text": "The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border",
-            "text_style": "body",
-            "text_font_weight": "default",
-            "text_color": "#121212",
-            "text_font_size": "12"
+            "text": "The First-Ever Naturally Alkaline Water",
+            "color": "#333333",
+            "font_size": 18,
+            "font_weight": "500",
+            "uppercase": false,
+            "italic": false,
+            "line_height": 1.5,
+            "letter_spacing": 0,
+            "text_align": "left",
+            "margin_top": 0,
+            "margin_bottom": 15
           }
         },
-        "buttons_AwpPzj": {
-          "type": "buttons",
+        "variants_HtGnCr": {
+          "type": "variants",
           "settings": {
-            "button_label_1": "Learn More",
-            "button_link_1": "shopify://products/natural-alkaline-water",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "text": "380mL | 580mL | 1L",
+            "color": "#666666",
+            "font_size": 16,
+            "font_weight": "400",
+            "uppercase": false,
+            "italic": false,
+            "line_height": 1.5,
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        "description_gKwcWY": {
+          "type": "description",
+          "settings": {
+            "text": "<p>Sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
+            "color": "#555555",
+            "font_size": 16,
+            "font_weight": "400",
+            "uppercase": false,
+            "italic": false,
+            "line_height": 1.6,
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        "features_jKArC3": {
+          "type": "features",
+          "settings": {
+            "text": "pH level of 8.8 and above|Naturally Alkaline Spring Water|100% Recyclable PET|Approximately 350-700 mg sodium bicarrobate per L",
+            "color": "#555555",
+            "bullet_color": "#000000",
+            "font_size": 16,
+            "font_weight": "400",
+            "uppercase": false,
+            "italic": false,
+            "line_height": 1.5,
+            "item_spacing": 8,
+            "margin_top": 25,
+            "margin_bottom": 25
+          }
+        },
+        "button_xpCWk6": {
+          "type": "button",
+          "settings": {
+            "text": "LEARN MORE",
+            "link": "",
+            "color": "#000000",
+            "font_size": 16,
+            "font_weight": "500",
+            "uppercase": false,
+            "italic": false,
+            "margin_top": 20,
+            "margin_bottom": 0
           }
         }
       },
       "block_order": [
-        "heading_JHrDdw",
-        "text_nhw3CV",
-        "buttons_AwpPzj"
+        "title_QEh88k",
+        "subtitle_MVaWMb",
+        "variants_HtGnCr",
+        "description_gKwcWY",
+        "features_jKArC3",
+        "button_xpCWk6"
       ],
-      "name": "Natural Alkaline Water",
+      "name": "高级产品卡片",
       "settings": {
+        "layout": "left",
         "image": "shopify://shop_images/131cut.png",
-        "image_link": "shopify://products/natural-alkaline-water",
-        "image_2_link": "",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "text_container_width": "default",
-        "desktop_content_position": "top-left",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
+        "background_color": "#ffffff",
+        "max_width": 1200,
+        "content_gap": 80,
+        "content_padding": 0,
+        "image_border_radius": 0,
+        "image_min_height": 500,
+        "section_padding_top": 80,
+        "section_padding_bottom": 80,
+        "mobile_content_gap": 40
       }
+    },
+    "mobile_banner_TGWQrB": {
+      "type": "Mobile-banner",
+      "name": "Natural Alkaline Water",
+      "settings": {}
     },
     "mobile_banner_J4BarX": {
       "type": "Mobile-banner",
-      "blocks": {
-        "heading_wtEV6G": {
-          "type": "heading",
-          "settings": {
-            "heading": "ELECTRO X Sports Drink",
-            "heading_size": "h2",
-            "heading_font_weight": "default",
-            "heading_color": "rgba(0,0,0,0)",
-            "heading_font_size": "default"
-          }
-        },
-        "text_dHm7Px": {
-          "type": "text",
-          "settings": {
-            "text": "<strong>Premium Hydration, Refined TasteKey Ingredients:</strong> Electrolytes | BCAA | L Carnitine | Glucose | Vitamins",
-            "text_style": "body",
-            "text_font_weight": "default",
-            "text_color": "rgba(0,0,0,0)",
-            "text_font_size": "default"
-          }
-        },
-        "buttons_ywi9ck": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Learn More",
-            "button_link_1": "shopify://collections/electrolyte-sports-drink",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_wtEV6G",
-        "text_dHm7Px",
-        "buttons_ywi9ck"
-      ],
       "name": "ELECTRO X Sports Drink",
-      "settings": {
-        "image": "shopify://shop_images/111cut.png",
-        "image_link": "",
-        "image_2_link": "",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "text_container_width": "800",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
+      "settings": {}
     },
     "mobile_banner_c7zzMD": {
       "type": "Mobile-banner",
-      "blocks": {
-        "heading_YG7KcE": {
-          "type": "heading",
-          "settings": {
-            "heading": "Electrolyte Liquid Concentrate",
-            "heading_size": "h2",
-            "heading_font_weight": "default",
-            "heading_color": "rgba(0,0,0,0)",
-            "heading_font_size": "default"
-          }
-        },
-        "text_XgJgcq": {
-          "type": "text",
-          "settings": {
-            "text": "Premium Hydration, Refined TasteKey Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Vitamins",
-            "text_style": "body",
-            "text_font_weight": "default",
-            "text_color": "rgba(0,0,0,0)",
-            "text_font_size": "default"
-          }
-        },
-        "buttons_CFTwHX": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Learn More",
-            "button_link_1": "shopify://collections/electrolyte-liquid-concentrate",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_YG7KcE",
-        "text_XgJgcq",
-        "buttons_CFTwHX"
-      ],
       "name": "Electrolyte Liquid Concentrate",
-      "settings": {
-        "image": "shopify://shop_images/11cut_3bb7705f-422b-43af-80ed-c1d91036dfb2.png",
-        "image_link": "",
-        "image_2_link": "",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "text_container_width": "default",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
+      "settings": {}
     },
     "desktop_rich_text_HjaGHX": {
       "type": "Desktop-Rich-Text",
@@ -863,64 +791,8 @@
     },
     "mobile_banner_PGtzXU": {
       "type": "Mobile-banner",
-      "blocks": {
-        "heading_aCxhfq": {
-          "type": "heading",
-          "disabled": true,
-          "settings": {
-            "heading": "<strong>COMMUNITY</strong>",
-            "heading_size": "h1",
-            "heading_font_weight": "default",
-            "heading_color": "rgba(0,0,0,0)",
-            "heading_font_size": "default"
-          }
-        },
-        "text_aDmUXx": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "Rooted in the heart of Shanghai urban sports culture, we empower local athlets and communities to grow and compete with our clean hydration products.",
-            "text_style": "body",
-            "text_font_weight": "default",
-            "text_color": "rgba(0,0,0,0)",
-            "text_font_size": "default"
-          }
-        },
-        "buttons_VP3jMh": {
-          "type": "buttons",
-          "disabled": true,
-          "settings": {
-            "button_label_1": "Learn More",
-            "button_link_1": "shopify://pages/community-ambassadors",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_aCxhfq",
-        "text_aDmUXx",
-        "buttons_VP3jMh"
-      ],
       "name": "Mobile banner",
-      "settings": {
-        "image": "shopify://shop_images/71cut.png",
-        "image_link": "shopify://pages/community-ambassadors",
-        "image_2_link": "",
-        "image_overlay_opacity": 40,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "text_container_width": "default",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
+      "settings": {}
     },
     "new_blog_pMAgYq": {
       "type": "new-blog",
@@ -1130,6 +1002,7 @@
     "all_products_mobile_LfijDi",
     "mobile_banner_3KNFri",
     "desktop_multirow_Q3mdjw",
+    "product_card_RTAmT4",
     "mobile_banner_TGWQrB",
     "mobile_banner_J4BarX",
     "mobile_banner_c7zzMD",
