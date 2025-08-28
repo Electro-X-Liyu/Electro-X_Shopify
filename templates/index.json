@@ -1021,8 +1021,8 @@
         "container_width": 1200,
         "color_scheme": "scheme-2",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     },
     "mobile_rich_text_hLkbnQ": {
