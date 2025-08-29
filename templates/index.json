@@ -445,7 +445,6 @@
         },
         "text_xmtzpm": {
           "type": "text",
-          "disabled": true,
           "settings": {
             "text": "<p><a href=\"/products/natural-alkaline-water\" title=\"Natural Alkaline Water\">LEARN MORE</a></p>",
             "text_font_weight": "normal",
@@ -472,6 +471,7 @@
     },
     "mobile_image_banner_3anB7B": {
       "type": "Mobile-image-banner",
+      "disabled": true,
       "name": "Learn More",
       "settings": {
         "image_mobile": "shopify://shop_images/1_79d47020-2f46-4cd7-9fa5-b52961fbd740.svg",
@@ -533,7 +533,7 @@
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
-        "padding_bottom": 28
+        "padding_bottom": 16
       }
     },
     "mobile_image_banner_a7NitN": {
@@ -569,7 +569,6 @@
         },
         "text_F6eGqa": {
           "type": "text",
-          "disabled": true,
           "settings": {
             "text": "<p><a href=\"/collections/electrolyte-liquid-concentrate\" title=\"【Electrolyte Liquid Concentrate】\">LEARN MORE</a></p>",
             "text_font_weight": "normal",
@@ -596,6 +595,7 @@
     },
     "mobile_image_banner_tJwpL4": {
       "type": "Mobile-image-banner",
+      "disabled": true,
       "name": "Learn More",
       "settings": {
         "image_mobile": "shopify://shop_images/1_79d47020-2f46-4cd7-9fa5-b52961fbd740.svg",
