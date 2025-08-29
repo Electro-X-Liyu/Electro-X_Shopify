@@ -1,56 +1,128 @@
-/* 移动端图片横幅样式 */
-.mobile-image-banner {
-  display: block;
-  width: 100%;
-  position: relative;
-}
+{% comment %}
+  移动端全宽自适应图片横幅Section
+  文件名: mobile-image-banner.liquid
+{% endcomment %}
 
-.mobile-image-banner__media {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9宽高比 */
-  overflow: hidden;
-}
+{{ 'section.css' | asset_url | stylesheet_tag }}
 
-.mobile-image-banner__image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.mobile-image-banner__link:hover .mobile-image-banner__image {
-  transform: scale(1.05);
-}
-
-/* 在桌面设备上隐藏 */
-@media screen and (min-width: 750px) {
-  .mobile-image-banner {
-    display: none !important;
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
-}
-
-/* 在移动设备上显示 */
-@media screen and (max-width: 749px) {
-  .mobile-image-banner {
-    display: block;
+  
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
   }
-}
+{% endstyle %}
 
-/* 占位符样式 */
-.placeholder {
-  background-color: rgba(var(--color-foreground), 0.04);
-}
+<div class="mobile-image-banner color-{{ section.settings.color_scheme }} gradient">
+  {%- if section.settings.image != blank -%}
+    <a href="{{ section.settings.link }}" class="mobile-image-banner__link">
+      <div class="mobile-image-banner__media media{% if section.settings.image == blank %} placeholder{% endif %}">
+        <img
+          srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
+            {%- if section.settings.image.width >= 550 -%}{{ section.settings.image | image_url: width: 550 }} 550w,{%- endif -%}
+            {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+            {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {%- if section.settings.image.width >= 1780 -%}{{ section.settings.image | image_url: width: 1780 }} 1780w,{%- endif -%}
+            {%- if section.settings.image.width >= 2000 -%}{{ section.settings.image | image_url: width: 2000 }} 2000w,{%- endif -%}
+            {%- if section.settings.image.width >= 3000 -%}{{ section.settings.image | image_url: width: 3000 }} 3000w,{%- endif -%}
+            {{ section.settings.image | image_url }} {{ section.settings.image.width }}w"
+          sizes="100vw"
+          src="{{ section.settings.image | image_url: width: 750 }}"
+          alt="{{ section.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio | round }}"
+          class="mobile-image-banner__image"
+        >
+      </div>
+    </a>
+  {%- else -%}
+    <div class="mobile-image-banner__media media{% if section.settings.image == blank %} placeholder{% endif %}">
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {%- endif -%}
+</div>
 
-.placeholder-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(var(--color-foreground), 0.04);
-  color: rgba(var(--color-foreground), 0.55);
-  fill: currentColor;
+{% schema %}
+{
+  "name": "移动端图片横幅",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "图片"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "链接地址"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "强调色 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "强调色 2"
+        },
+        {
+          "value": "background-1",
+          "label": "背景色 1"
+        },
+        {
+          "value": "background-2",
+          "label": "背景色 2"
+        },
+        {
+          "value": "inverse",
+          "label": "反转色"
+        }
+      ],
+      "default": "background-1",
+      "label": "配色方案"
+    },
+    {
+      "type": "header",
+      "content": "版块间距"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "上内边距",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "下内边距",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "移动端图片横幅",
+      "category": "图片"
+    }
+  ]
 }
+{% endschema %}
