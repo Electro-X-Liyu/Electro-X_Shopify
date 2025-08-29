@@ -477,15 +477,6 @@
             "heading_color": "#000000"
           }
         },
-        "text_mCBJn8": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Natural Alkaline Water</p>",
-            "text_font_weight": "300",
-            "text_font_size": 18,
-            "text_color": "#000000"
-          }
-        },
         "text_4zhmFj": {
           "type": "text",
           "settings": {
@@ -498,7 +489,6 @@
       },
       "block_order": [
         "heading_FqHnQE",
-        "text_mCBJn8",
         "text_4zhmFj"
       ],
       "name": "Mobile-Rich-Text",
@@ -540,8 +530,8 @@
           "settings": {
             "heading": "ELECTRO  X Sports Drink",
             "heading_size": "h1",
-            "heading_font_weight": "bold",
-            "heading_font_size": 0,
+            "heading_font_weight": "300",
+            "heading_font_size": 18,
             "heading_color": "#000000"
           }
         },
@@ -550,7 +540,7 @@
           "settings": {
             "text": "<p>Premium Hydration, Refined Taste</p><p>Key Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p>",
             "text_font_weight": "normal",
-            "text_font_size": 0,
+            "text_font_size": 8,
             "text_color": "#000000"
           }
         },
