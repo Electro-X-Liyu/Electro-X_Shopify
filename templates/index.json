@@ -197,10 +197,7 @@
           "type": "heading",
           "settings": {
             "heading": "PRODUCTS",
-            "heading_size": "h1",
-            "custom_font_weight": "default",
-            "custom_font_size": "default",
-            "custom_color": "#000000"
+            "heading_size": "h1"
           }
         }
       },
@@ -213,7 +210,6 @@
         "content_alignment": "center",
         "color_scheme": "scheme-1",
         "full_width": true,
-        "container_width": "auto",
         "padding_top": 40,
         "padding_bottom": 52
       }
@@ -320,6 +316,17 @@
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
         "show_text_below": true
+      }
+    },
+    "mobile_image_banner_PwcV7p": {
+      "type": "Mobile-image-banner",
+      "name": "移动端图片横幅",
+      "settings": {
+        "image": "shopify://shop_images/2_dd0a0df5-7a49-48d5-980f-8c4d4bc9ee70.svg",
+        "link": "shopify://collections/all-products",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "desktop_multirow_Q3mdjw": {
@@ -450,19 +457,13 @@
           "type": "heading",
           "settings": {
             "heading": "Natural Alkaline Water",
-            "heading_size": "h1",
-            "custom_font_weight": "default",
-            "custom_font_size": "20",
-            "custom_color": "#000000"
+            "heading_size": "h1"
           }
         },
         "text_4zhmFj": {
           "type": "text",
           "settings": {
-            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
-            "custom_font_weight": "default",
-            "custom_font_size": "14",
-            "custom_color": "#000000"
+            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>"
           }
         },
         "button_zwMXnX": {
@@ -471,13 +472,9 @@
             "button_label": "LEARN MORE",
             "button_link": "shopify://products/natural-alkaline-water",
             "button_style_secondary": true,
-            "button_custom_color": "#ffffff",
-            "button_text_color": "#121212",
             "button_label_2": "",
             "button_link_2": "",
-            "button_style_secondary_2": false,
-            "button_custom_color_2": "#000000",
-            "button_text_color_2": "#ffffff"
+            "button_style_secondary_2": false
           }
         }
       },
@@ -492,7 +489,6 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "container_width": "auto",
         "padding_top": 40,
         "padding_bottom": 28
       }
@@ -524,19 +520,13 @@
           "type": "heading",
           "settings": {
             "heading": "ELECTRO  X Sports Drink",
-            "heading_size": "h1",
-            "custom_font_weight": "default",
-            "custom_font_size": "default",
-            "custom_color": "#000000"
+            "heading_size": "h1"
           }
         },
         "text_EzWdXL": {
           "type": "text",
           "settings": {
-            "text": "<p>Premium Hydration, Refined Taste</p><p>Key Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p>",
-            "custom_font_weight": "default",
-            "custom_font_size": "default",
-            "custom_color": "#000000"
+            "text": "<p>Premium Hydration, Refined Taste</p><p>Key Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p>"
           }
         },
         "button_xeNKAp": {
@@ -545,13 +535,9 @@
             "button_label": "LEARN MORE",
             "button_link": "shopify://products/natural-alkaline-water",
             "button_style_secondary": false,
-            "button_custom_color": "#000000",
-            "button_text_color": "#ffffff",
             "button_label_2": "",
             "button_link_2": "",
-            "button_style_secondary_2": false,
-            "button_custom_color_2": "#000000",
-            "button_text_color_2": "#ffffff"
+            "button_style_secondary_2": false
           }
         }
       },
@@ -566,7 +552,6 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "container_width": "auto",
         "padding_top": 40,
         "padding_bottom": 28
       }
@@ -598,19 +583,13 @@
           "type": "heading",
           "settings": {
             "heading": "Electrolyte Liquid Concentrate",
-            "heading_size": "h1",
-            "custom_font_weight": "default",
-            "custom_font_size": "default",
-            "custom_color": "#000000"
+            "heading_size": "h1"
           }
         },
         "text_F6tckt": {
           "type": "text",
           "settings": {
-            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
-            "custom_font_weight": "default",
-            "custom_font_size": "default",
-            "custom_color": "#000000"
+            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>"
           }
         },
         "button_tea3xq": {
@@ -619,13 +598,9 @@
             "button_label": "LEARN MORE",
             "button_link": "shopify://products/natural-alkaline-water",
             "button_style_secondary": false,
-            "button_custom_color": "#000000",
-            "button_text_color": "#ffffff",
             "button_label_2": "",
             "button_link_2": "",
-            "button_style_secondary_2": false,
-            "button_custom_color_2": "#000000",
-            "button_text_color_2": "#ffffff"
+            "button_style_secondary_2": false
           }
         }
       },
@@ -640,7 +615,6 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "container_width": "auto",
         "padding_top": 40,
         "padding_bottom": 28
       }
@@ -1097,19 +1071,13 @@
           "type": "heading",
           "settings": {
             "heading": "ABOUT US",
-            "heading_size": "h2",
-            "custom_font_weight": "default",
-            "custom_font_size": "default",
-            "custom_color": "#000000"
+            "heading_size": "h2"
           }
         },
         "text_xYbpFE": {
           "type": "text",
           "settings": {
-            "text": "<p>Founded in 2021 in the heart of Shanghai’s urban sports culture, ELECTRO X is a premium hydration brand crafted for athletes and active lifestyles. We empower the thriving sports community with clean, science-backed hydration—including Natural Alkaline Water, Functional Sports Drinks, and Electrolyte Liquid Concentrates.</p>",
-            "custom_font_weight": "default",
-            "custom_font_size": "default",
-            "custom_color": "#000000"
+            "text": "<p>Founded in 2021 in the heart of Shanghai’s urban sports culture, ELECTRO X is a premium hydration brand crafted for athletes and active lifestyles. We empower the thriving sports community with clean, science-backed hydration—including Natural Alkaline Water, Functional Sports Drinks, and Electrolyte Liquid Concentrates.</p>"
           }
         }
       },
@@ -1123,7 +1091,6 @@
         "content_alignment": "center",
         "color_scheme": "scheme-2",
         "full_width": true,
-        "container_width": "auto",
         "padding_top": 100,
         "padding_bottom": 100
       }
@@ -1138,6 +1105,7 @@
     "mobile_rich_text_zz4CY4",
     "all_products_mobile_LfijDi",
     "mobile_banner_3KNFri",
+    "mobile_image_banner_PwcV7p",
     "desktop_multirow_Q3mdjw",
     "mobile_banner_TGWQrB",
     "mobile_rich_text_pPqMYc",
