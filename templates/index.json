@@ -477,6 +477,15 @@
             "heading_color": "#000000"
           }
         },
+        "text_mCBJn8": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Natural Alkaline Water</p>",
+            "text_font_weight": "300",
+            "text_font_size": 18,
+            "text_color": "#000000"
+          }
+        },
         "text_4zhmFj": {
           "type": "text",
           "settings": {
@@ -489,6 +498,7 @@
       },
       "block_order": [
         "heading_FqHnQE",
+        "text_mCBJn8",
         "text_4zhmFj"
       ],
       "name": "Mobile-Rich-Text",
