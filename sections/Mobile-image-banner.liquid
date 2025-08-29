@@ -1,46 +1,25 @@
-{% comment %}
-  移动端全宽图片Section
-  文件名: mobile-image-banner.liquid
-{% endcomment %}
+{{ 'component-image-with-link.css' | asset_url | stylesheet_tag }}
 
-{{ 'section-mobile-image-banner.css' | asset_url | stylesheet_tag }}
-
-{%- style -%}
-  #MobileImageBanner-{{ section.id }} {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    #MobileImageBanner-{{ section.id }} {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
-
-<div id="MobileImageBanner-{{ section.id }}" class="mobile-image-banner color-{{ section.settings.color_scheme }} gradient">
-  {%- if section.settings.image != blank -%}
+<div class="mobile-image-link mobile-image-link--{{ section.settings.image_height }}{% if section.settings.image_mobile != blank %} mobile-image-link--has-image{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  {%- if section.settings.image_mobile != blank -%}
     {%- if section.settings.link != blank -%}
-      <a href="{{ section.settings.link }}" class="mobile-image-banner__link">
+      <a href="{{ section.settings.link }}" class="mobile-image-link__link">
     {%- endif -%}
     
-    <div class="mobile-image-banner__content">
-      {%- assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840' -%}
-      {%- capture sizes -%}
-        (min-width: 990px) 0px, 100vw
-      {%- endcapture -%}
-      
+    <div class="mobile-image-link__media media">
+      {%- liquid
+        assign image_height = section.settings.image_mobile.width | divided_by: section.settings.image_mobile.aspect_ratio
+      -%}
       {{
-        section.settings.image
+        section.settings.image_mobile
         | image_url: width: 1500
         | image_tag:
           loading: 'lazy',
-          width: section.settings.image.width,
-          height: section.settings.image.height,
-          class: 'mobile-image-banner__image',
-          sizes: sizes,
-          widths: widths
+          width: section.settings.image_mobile.width,
+          height: image_height,
+          sizes: '100vw',
+          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+          class: 'mobile-image-link__image'
       }}
     </div>
     
@@ -48,7 +27,7 @@
       </a>
     {%- endif -%}
   {%- else -%}
-    <div class="mobile-image-banner__content">
+    <div class="mobile-image-link__media media">
       {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
     </div>
   {%- endif -%}
@@ -56,14 +35,14 @@
 
 {% schema %}
 {
-  "name": "移动端全宽图片",
+  "name": "移动端图片链接",
   "tag": "section",
   "class": "section",
   "settings": [
     {
       "type": "image_picker",
-      "id": "image",
-      "label": "图片"
+      "id": "image_mobile",
+      "label": "移动端图片"
     },
     {
       "type": "url",
@@ -72,57 +51,104 @@
     },
     {
       "type": "select",
-      "id": "color_scheme",
+      "id": "image_height",
       "options": [
         {
-          "value": "accent-1",
-          "label": "t:sections.all.colors.accent_1.label"
+          "value": "adapt",
+          "label": "自适应图片高度"
         },
         {
-          "value": "accent-2",
-          "label": "t:sections.all.colors.accent_2.label"
+          "value": "small",
+          "label": "小"
         },
         {
-          "value": "background-1",
-          "label": "t:sections.all.colors.background_1.label"
+          "value": "medium",
+          "label": "中"
         },
         {
-          "value": "background-2",
-          "label": "t:sections.all.colors.background_2.label"
-        },
-        {
-          "value": "inverse",
-          "label": "t:sections.all.colors.inverse.label"
+          "value": "large",
+          "label": "大"
         }
       ],
-      "default": "background-1",
-      "label": "t:sections.all.colors.label"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "上内边距",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "下内边距",
-      "default": 36
+      "default": "medium",
+      "label": "图片高度"
     }
   ],
   "presets": [
     {
-      "name": "移动端全宽图片"
+      "name": "移动端图片链接"
     }
   ]
 }
 {% endschema %}
+
+<style>
+  /* 基础样式 */
+  .mobile-image-link {
+    display: none;
+    position: relative;
+    width: 100%;
+  }
+  
+  .mobile-image-link__media {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .mobile-image-link__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  .mobile-image-link__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .mobile-image-link__link:hover,
+  .mobile-image-link__link:focus {
+    opacity: 1;
+  }
+  
+  /* 高度设置 */
+  .mobile-image-link--adapt .mobile-image-link__media {
+    height: auto;
+  }
+  
+  .mobile-image-link--small .mobile-image-link__media {
+    height: 25rem;
+  }
+  
+  .mobile-image-link--medium .mobile-image-link__media {
+    height: 35rem;
+  }
+  
+  .mobile-image-link--large .mobile-image-link__media {
+    height: 45rem;
+  }
+  
+  .mobile-image-link--adapt .mobile-image-link__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  /* 仅在移动端显示 */
+  @media screen and (max-width: 749px) {
+    .mobile-image-link {
+      display: block;
+    }
+  }
+  
+  /* 桌面端隐藏 */
+  @media screen and (min-width: 750px) {
+    .mobile-image-link {
+      display: none;
+    }
+  }
+</style>
