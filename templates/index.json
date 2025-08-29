@@ -326,14 +326,7 @@
       "type": "Mobile-image-banner",
       "name": "移动端图片横幅",
       "settings": {
-        "image": "shopify://shop_images/2_dd0a0df5-7a49-48d5-980f-8c4d4bc9ee70.svg",
-        "link": "shopify://collections/all-products",
-        "heading": "",
-        "heading_size": "h1",
-        "subheading": "",
-        "color_scheme": "background-1",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "link": "shopify://collections/all-products"
       }
     },
     "desktop_multirow_Q3mdjw": {
