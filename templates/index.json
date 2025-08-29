@@ -322,13 +322,6 @@
         "show_text_below": true
       }
     },
-    "mobile_image_banner_PwcV7p": {
-      "type": "Mobile-image-banner",
-      "name": "移动端图片横幅",
-      "settings": {
-        "link": "shopify://collections/all-products"
-      }
-    },
     "desktop_multirow_Q3mdjw": {
       "type": "desktop-multirow",
       "blocks": {
@@ -430,24 +423,13 @@
         "padding_bottom": 0
       }
     },
-    "mobile_banner_TGWQrB": {
-      "type": "Mobile-banner",
-      "name": "Natural Alkaline Water",
+    "mobile_image_banner_PwcV7p": {
+      "type": "Mobile-image-banner",
+      "name": "移动端图片横幅",
       "settings": {
-        "image": "shopify://shop_images/131cut.png",
-        "image_link": "",
-        "image_2_link": "",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "text_container_width": "default",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
+        "image_mobile": "shopify://shop_images/131cut.png",
+        "link": "shopify://products/natural-alkaline-water",
+        "image_height": "large"
       }
     },
     "mobile_rich_text_pPqMYc": {
@@ -1127,9 +1109,8 @@
     "mobile_rich_text_zz4CY4",
     "all_products_mobile_LfijDi",
     "mobile_banner_3KNFri",
-    "mobile_image_banner_PwcV7p",
     "desktop_multirow_Q3mdjw",
-    "mobile_banner_TGWQrB",
+    "mobile_image_banner_PwcV7p",
     "mobile_rich_text_pPqMYc",
     "mobile_banner_J4BarX",
     "mobile_rich_text_rRmYaX",
