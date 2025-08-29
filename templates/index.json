@@ -592,44 +592,32 @@
         "show_text_below": true
       }
     },
-    "mobile_rich_text_jTijh8": {
+    "mobile_rich_text_hxRXnR": {
       "type": "Mobile-rich-text",
       "blocks": {
-        "heading_7EUg8f": {
+        "heading_YxdXmD": {
           "type": "heading",
           "settings": {
             "heading": "Electrolyte Liquid Concentrate",
             "heading_size": "h1",
-            "heading_font_weight": "bold",
-            "heading_font_size": 0,
+            "heading_font_weight": "300",
+            "heading_font_size": 18,
             "heading_color": "#000000"
           }
         },
-        "text_F6tckt": {
+        "text_eYtcxG": {
           "type": "text",
           "settings": {
             "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
             "text_font_weight": "normal",
-            "text_font_size": 0,
+            "text_font_size": 9,
             "text_color": "#000000"
-          }
-        },
-        "button_tea3xq": {
-          "type": "button",
-          "settings": {
-            "button_label": "LEARN MORE",
-            "button_link": "shopify://products/natural-alkaline-water",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
-        "heading_7EUg8f",
-        "text_F6tckt",
-        "button_tea3xq"
+        "heading_YxdXmD",
+        "text_eYtcxG"
       ],
       "name": "Mobile-Rich-Text",
       "settings": {
@@ -1142,7 +1130,7 @@
     "mobile_banner_J4BarX",
     "mobile_rich_text_rRmYaX",
     "mobile_banner_c7zzMD",
-    "mobile_rich_text_jTijh8",
+    "mobile_rich_text_hxRXnR",
     "desktop_rich_text_HjaGHX",
     "new_blog_7JHwKx",
     "banner_BM3DgA",
