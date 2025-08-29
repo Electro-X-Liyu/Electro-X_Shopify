@@ -1,65 +1,62 @@
 {% comment %}
-  Mobile-only banner section for Shopify Dawn theme
-  Description: Displays a full-width banner with link only on mobile devices
+  移动端全宽图片Section
+  文件名: mobile-image-banner.liquid
 {% endcomment %}
 
-{{ 'section-mobile-banner.css' | asset_url | stylesheet_tag }}
+{{ 'section-mobile-image-banner.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  #Banner-{{ section.id }} {
+  #MobileImageBanner-{{ section.id }} {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
-    #Banner-{{ section.id }} {
+    #MobileImageBanner-{{ section.id }} {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
 {%- endstyle -%}
 
-<div id="Banner-{{ section.id }}" class="mobile-banner color-{{ section.settings.color_scheme }}">
-  <div class="mobile-banner__content page-width">
-    {%- if section.settings.image != blank -%}
-      <a href="{{ section.settings.link }}" class="mobile-banner__link">
-        {%- assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840' -%}
-        {%- capture sizes -%}
-          (min-width: 990px) 0px, 100vw
-        {%- endcapture -%}
-        
-        {{ section.settings.image | image_url: width: 1500 | image_tag:
+<div id="MobileImageBanner-{{ section.id }}" class="mobile-image-banner color-{{ section.settings.color_scheme }} gradient">
+  {%- if section.settings.image != blank -%}
+    {%- if section.settings.link != blank -%}
+      <a href="{{ section.settings.link }}" class="mobile-image-banner__link">
+    {%- endif -%}
+    
+    <div class="mobile-image-banner__content">
+      {%- assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840' -%}
+      {%- capture sizes -%}
+        (min-width: 990px) 0px, 100vw
+      {%- endcapture -%}
+      
+      {{
+        section.settings.image
+        | image_url: width: 1500
+        | image_tag:
           loading: 'lazy',
           width: section.settings.image.width,
           height: section.settings.image.height,
-          class: 'mobile-banner__image',
+          class: 'mobile-image-banner__image',
           sizes: sizes,
-          widths: widths,
-          alt: section.settings.image.alt | escape
-        }}
-        
-        {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
-          <div class="mobile-banner__text">
-            {%- if section.settings.heading != blank -%}
-              <h2 class="mobile-banner__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
-            {%- endif -%}
-            {%- if section.settings.subheading != blank -%}
-              <div class="mobile-banner__subheading">{{ section.settings.subheading }}</div>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
+          widths: widths
+      }}
+    </div>
+    
+    {%- if section.settings.link != blank -%}
       </a>
-    {%- else -%}
-      <div class="mobile-banner__placeholder">
-        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
-      </div>
     {%- endif -%}
-  </div>
+  {%- else -%}
+    <div class="mobile-image-banner__content">
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {%- endif -%}
 </div>
 
 {% schema %}
 {
-  "name": "移动端横幅",
+  "name": "移动端全宽图片",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -71,39 +68,7 @@
     {
       "type": "url",
       "id": "link",
-      "label": "链接"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "default": "移动端横幅标题",
-      "label": "标题"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "小"
-        },
-        {
-          "value": "h1",
-          "label": "中"
-        },
-        {
-          "value": "h0",
-          "label": "大"
-        }
-      ],
-      "default": "h1",
-      "label": "标题大小"
-    },
-    {
-      "type": "text",
-      "id": "subheading",
-      "default": "这是仅在移动端显示的横幅",
-      "label": "副标题"
+      "label": "图片链接"
     },
     {
       "type": "select",
@@ -111,27 +76,27 @@
       "options": [
         {
           "value": "accent-1",
-          "label": "Accent 1"
+          "label": "t:sections.all.colors.accent_1.label"
         },
         {
           "value": "accent-2",
-          "label": "Accent 2"
+          "label": "t:sections.all.colors.accent_2.label"
         },
         {
           "value": "background-1",
-          "label": "Background 1"
+          "label": "t:sections.all.colors.background_1.label"
         },
         {
           "value": "background-2",
-          "label": "Background 2"
+          "label": "t:sections.all.colors.background_2.label"
         },
         {
           "value": "inverse",
-          "label": "Inverse"
+          "label": "t:sections.all.colors.inverse.label"
         }
       ],
       "default": "background-1",
-      "label": "颜色方案"
+      "label": "t:sections.all.colors.label"
     },
     {
       "type": "range",
@@ -141,7 +106,7 @@
       "step": 4,
       "unit": "px",
       "label": "上内边距",
-      "default": 0
+      "default": 36
     },
     {
       "type": "range",
@@ -151,13 +116,12 @@
       "step": 4,
       "unit": "px",
       "label": "下内边距",
-      "default": 0
+      "default": 36
     }
   ],
   "presets": [
     {
-      "name": "移动端横幅",
-      "category": "自定义"
+      "name": "移动端全宽图片"
     }
   ]
 }
