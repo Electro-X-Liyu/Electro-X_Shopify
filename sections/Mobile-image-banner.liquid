@@ -1,69 +1,164 @@
-/* Mobile banner styles */
-.mobile-banner {
-  position: relative;
-}
+{% comment %}
+  Mobile-only banner section for Shopify Dawn theme
+  Description: Displays a full-width banner with link only on mobile devices
+{% endcomment %}
 
-.mobile-banner__content {
-  position: relative;
-}
+{{ 'section-mobile-banner.css' | asset_url | stylesheet_tag }}
 
-.mobile-banner__link {
-  display: block;
-  text-decoration: none;
-  position: relative;
-}
-
-.mobile-banner__image {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 0;
-}
-
-.mobile-banner__placeholder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.05);
-  min-height: 200px;
-}
-
-.mobile-banner__text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: 100%;
-  padding: 0 2rem;
-  color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.mobile-banner__heading {
-  margin: 0 0 0.5rem;
-  color: inherit;
-}
-
-.mobile-banner__subheading {
-  margin: 0;
-  font-size: 1.4rem;
-}
-
-/* Hide on desktop */
-@media screen and (min-width: 750px) {
-  .mobile-banner {
-    display: none !important;
+{%- style -%}
+  #Banner-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
-}
 
-/* Mobile responsiveness */
-@media screen and (max-width: 749px) {
-  .mobile-banner__heading {
-    font-size: calc(var(--font-heading-scale) * 2.4rem);
+  @media screen and (min-width: 750px) {
+    #Banner-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
   }
-  
-  .mobile-banner__subheading {
-    font-size: 1.2rem;
-  }
+{%- endstyle -%}
+
+<div id="Banner-{{ section.id }}" class="mobile-banner color-{{ section.settings.color_scheme }}">
+  <div class="mobile-banner__content page-width">
+    {%- if section.settings.image != blank -%}
+      <a href="{{ section.settings.link }}" class="mobile-banner__link">
+        {%- assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840' -%}
+        {%- capture sizes -%}
+          (min-width: 990px) 0px, 100vw
+        {%- endcapture -%}
+        
+        {{ section.settings.image | image_url: width: 1500 | image_tag:
+          loading: 'lazy',
+          width: section.settings.image.width,
+          height: section.settings.image.height,
+          class: 'mobile-banner__image',
+          sizes: sizes,
+          widths: widths,
+          alt: section.settings.image.alt | escape
+        }}
+        
+        {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+          <div class="mobile-banner__text">
+            {%- if section.settings.heading != blank -%}
+              <h2 class="mobile-banner__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+            {%- endif -%}
+            {%- if section.settings.subheading != blank -%}
+              <div class="mobile-banner__subheading">{{ section.settings.subheading }}</div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </a>
+    {%- else -%}
+      <div class="mobile-banner__placeholder">
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "移动端横幅",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "图片"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "链接"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "移动端横幅标题",
+      "label": "标题"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "小"
+        },
+        {
+          "value": "h1",
+          "label": "中"
+        },
+        {
+          "value": "h0",
+          "label": "大"
+        }
+      ],
+      "default": "h1",
+      "label": "标题大小"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "这是仅在移动端显示的横幅",
+      "label": "副标题"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        }
+      ],
+      "default": "background-1",
+      "label": "颜色方案"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "上内边距",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "下内边距",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "移动端横幅",
+      "category": "自定义"
+    }
+  ]
 }
+{% endschema %}
