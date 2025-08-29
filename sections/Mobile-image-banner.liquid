@@ -1,0 +1,56 @@
+/* 移动端图片横幅样式 */
+.mobile-image-banner {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+.mobile-image-banner__media {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9宽高比 */
+  overflow: hidden;
+}
+
+.mobile-image-banner__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.mobile-image-banner__link:hover .mobile-image-banner__image {
+  transform: scale(1.05);
+}
+
+/* 在桌面设备上隐藏 */
+@media screen and (min-width: 750px) {
+  .mobile-image-banner {
+    display: none !important;
+  }
+}
+
+/* 在移动设备上显示 */
+@media screen and (max-width: 749px) {
+  .mobile-image-banner {
+    display: block;
+  }
+}
+
+/* 占位符样式 */
+.placeholder {
+  background-color: rgba(var(--color-foreground), 0.04);
+}
+
+.placeholder-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(var(--color-foreground), 0.04);
+  color: rgba(var(--color-foreground), 0.55);
+  fill: currentColor;
+}
