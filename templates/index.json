@@ -469,16 +469,6 @@
         "padding_bottom": 28
       }
     },
-    "mobile_image_banner_3anB7B": {
-      "type": "Mobile-image-banner",
-      "disabled": true,
-      "name": "Learn More",
-      "settings": {
-        "image_mobile": "shopify://shop_images/1_79d47020-2f46-4cd7-9fa5-b52961fbd740.svg",
-        "link": "shopify://products/natural-alkaline-water",
-        "image_height": "adapt"
-      }
-    },
     "mobile_image_banner_3RrncA": {
       "type": "Mobile-image-banner",
       "name": "ELECTRO X Sports Drink",
@@ -604,16 +594,6 @@
         "padding_bottom": 0
       }
     },
-    "mobile_image_banner_tJwpL4": {
-      "type": "Mobile-image-banner",
-      "disabled": true,
-      "name": "Learn More",
-      "settings": {
-        "image_mobile": "shopify://shop_images/1_79d47020-2f46-4cd7-9fa5-b52961fbd740.svg",
-        "link": "shopify://products/natural-alkaline-water",
-        "image_height": "adapt"
-      }
-    },
     "desktop_rich_text_HjaGHX": {
       "type": "Desktop-Rich-Text",
       "blocks": {
@@ -654,10 +634,10 @@
             "link_label": "",
             "link": "",
             "block_title_color": "#121212",
-            "block_title_size": 19,
+            "block_title_size": 17,
             "block_title_font_weight": "default",
             "block_text_color": "#121212",
-            "block_text_size": 14,
+            "block_text_size": 9,
             "block_text_font_weight": "default",
             "block_link_color": "rgba(0,0,0,0)",
             "block_link_hover_color": "rgba(0,0,0,0)",
@@ -1099,12 +1079,10 @@
     "desktop_multirow_Q3mdjw",
     "mobile_image_banner_PwcV7p",
     "mobile_rich_text_pPqMYc",
-    "mobile_image_banner_3anB7B",
     "mobile_image_banner_3RrncA",
     "mobile_rich_text_rRmYaX",
     "mobile_image_banner_a7NitN",
     "mobile_rich_text_hxRXnR",
-    "mobile_image_banner_tJwpL4",
     "desktop_rich_text_HjaGHX",
     "new_blog_7JHwKx",
     "banner_BM3DgA",
