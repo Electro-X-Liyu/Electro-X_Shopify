@@ -1,25 +1,10 @@
 {{ 'section-mobile-banner.css' | asset_url | stylesheet_tag }}
 
-{%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
-  {%- style -%}
-    @media screen and (max-width: 749px) {
-      #MobileBanner-{{ section.id }}::before,
-      #MobileBanner-{{ section.id }} .banner__media::before,
-      #MobileBanner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
-        display: block;
-      }
-    }
-  {%- endstyle -%}
-{%- endif -%}
-
 {%- style -%}
   #MobileBanner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
   
-  /* 文本容器宽度 */
   #MobileBanner-{{ section.id }} .banner__box {
     {% if section.settings.text_container_width != 'default' %}
       width: {{ section.settings.text_container_width }}px;
@@ -27,7 +12,6 @@
     {% endif %}
   }
   
-  /* 关键样式：确保图片链接不影响外观 */
   #MobileBanner-{{ section.id }} .banner__image-link {
     display: block;
     border: none;
@@ -44,7 +28,6 @@
     box-shadow: none;
   }
   
-  /* 隐藏桌面端 */
   @media screen and (min-width: 750px) {
     #MobileBanner-{{ section.id }} {
       display: none !important;
@@ -52,152 +35,52 @@
   }
 {%- endstyle -%}
 
-{%- liquid
-  assign full_width = '100vw'
-  assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
-
-  if section.settings.image_behavior == 'ambient'
-    assign half_width = '60vw'
-    assign full_width = '120vw'
-    assign stacked_sizes = '(min-width: 750px) 60vw, 120vw'
-    assign widths = '450, 660, 900, 1320, 1800, 2136, 2400, 3600, 7680'
-  elsif section.settings.image_behavior == 'fixed' or section.settings.image_behavior == 'zoom-in'
-    assign half_width = '100vw'
-    assign stacked_sizes = '100vw'
-  else
-    assign half_width = '50vw'
-    assign stacked_sizes = '(min-width: 750px) 50vw, 100vw'
-  endif
-  assign fetch_priority = 'auto'
-  if section.index == 1
-    assign fetch_priority = 'high'
-  endif
--%}
-
 <div
   id="MobileBanner-{{ section.id }}"
-  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}"
 >
   {%- if section.settings.image != blank -%}
-    <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {%- liquid
-        assign image_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio
-        if section.settings.image_2 != blank
-          assign image_class = 'banner__media-image-half'
-        endif
-        if section.settings.image_2 != blank and section.settings.stack_images_on_mobile
-          assign sizes = stacked_sizes
-        elsif section.settings.image_2 != blank
-          assign sizes = half_width
-        else
-          assign sizes = full_width
-        endif
-      -%}
+    <div class="banner__media media">
       {%- if section.settings.image_link != blank -%}
         <a href="{{ section.settings.image_link }}" class="banner__image-link">
       {%- endif -%}
       {{
         section.settings.image
-        | image_url: width: 3840
-        | image_tag:
-          width: section.settings.image.width,
-          height: image_height,
-          class: image_class,
-          sizes: sizes,
-          widths: widths,
-          fetchpriority: fetch_priority
+        | image_url: width: 1500
+        | image_tag: loading: 'lazy'
       }}
       {%- if section.settings.image_link != blank -%}
         </a>
       {%- endif -%}
     </div>
-  {%- elsif section.settings.image_2 == blank -%}
-    <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {%- if section.settings.image_link != blank -%}
-        <a href="{{ section.settings.image_link }}" class="banner__image-link">
-      {%- endif -%}
-      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-      {%- if section.settings.image_link != blank -%}
-        </a>
-  {%- endif -%}
+  {%- else -%}
+    <div class="banner__media media">
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
     </div>
   {%- endif -%}
-  {%- if section.settings.image_2 != blank -%}
-    <div class="banner__media media{% if section.settings.image != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {%- liquid
-        assign image_height_2 = section.settings.image_2.width | divided_by: section.settings.image_2.aspect_ratio
-        if section.settings.image != blank
-          assign image_class_2 = 'banner__media-image-half'
-        endif
-        if section.settings.image != blank and section.settings.stack_images_on_mobile
-          assign sizes = stacked_sizes
-        elsif section.settings.image_2 != blank
-          assign sizes = half_width
-        else
-          assign sizes = full_width
-        endif
-      -%}
-      {%- if section.settings.image_2_link != blank -%}
-        <a href="{{ section.settings.image_2_link }}" class="banner__image-link">
-      {%- endif -%}
-      {{
-        section.settings.image_2
-        | image_url: width: 3840
-        | image_tag:
-          width: section.settings.image_2.width,
-          height: image_height_2,
-          class: image_class_2,
-          sizes: sizes,
-          widths: widths,
-          fetchpriority: fetch_priority
-      }}
-      {%- if section.settings.image_2_link != blank -%}
-        </a>
-      {%- endif -%}
-    </div>
-  {%- endif -%}
-  <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient" style="{% if section.settings.text_container_width != 'default' %}width: {{ section.settings.text_container_width }}px; max-width: 100%;{% endif %}">
+  
+  <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width">
+    <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }}">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
-            <h2
-              class="banner__heading inline-richtext {{ block.settings.heading_size }}"
-              {{ block.shopify_attributes }}
-            >
+            <h2 class="banner__heading {{ block.settings.heading_size }}">
               {{ block.settings.heading }}
             </h2>
           {%- when 'text' -%}
-            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+            <div class="banner__text {{ block.settings.text_style }}">
               <p>{{ block.settings.text }}</p>
             </div>
           {%- when 'buttons' -%}
-            <div
-              class="banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}"
-              {{ block.shopify_attributes }}
-            >
+            <div class="banner__buttons">
               {%- if block.settings.button_label_1 != blank -%}
-                <a
-                  {% if block.settings.button_link_1 == blank %}
-                    role="link" aria-disabled="true"
-                  {% else %}
-                    href="{{ block.settings.button_link_1 }}"
-                  {% endif %}
-                  class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
-                >
-                  {{- block.settings.button_label_1 | escape -}}
+                <a href="{{ block.settings.button_link_1 }}" class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}">
+                  {{ block.settings.button_label_1 }}
                 </a>
               {%- endif -%}
               {%- if block.settings.button_label_2 != blank -%}
-                <a
-                  {% if block.settings.button_link_2 == blank %}
-                    role="link" aria-disabled="true"
-                  {% else %}
-                    href="{{ block.settings.button_link_2 }}"
-                  {% endif %}
-                  class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
-                >
-                  {{- block.settings.button_label_2 | escape -}}
+                <a href="{{ block.settings.button_link_2 }}" class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}">
+                  {{ block.settings.button_label_2 }}
                 </a>
               {%- endif -%}
             </div>
@@ -209,12 +92,9 @@
 
 {% schema %}
 {
-  "name": "Mobile-Banner",
+  "name": "移动端横幅",
   "tag": "section",
   "class": "section",
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  },
   "settings": [
     {
       "type": "image_picker",
@@ -224,17 +104,7 @@
     {
       "type": "url",
       "id": "image_link",
-      "label": "第一张图片链接"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_2",
-      "label": "第二张图片"
-    },
-    {
-      "type": "url",
-      "id": "image_2_link",
-      "label": "第二张图片链接"
+      "label": "图片链接"
     },
     {
       "type": "range",
@@ -243,7 +113,7 @@
       "max": 100,
       "step": 10,
       "unit": "%",
-      "label": "图片覆盖层透明度",
+      "label": "覆盖层透明度",
       "default": 0
     },
     {
@@ -252,7 +122,7 @@
       "options": [
         {
           "value": "adapt",
-          "label": "自适应图片高度"
+          "label": "自适应"
         },
         {
           "value": "small",
@@ -272,40 +142,12 @@
     },
     {
       "type": "select",
-      "id": "image_behavior",
-      "options": [
-        {
-          "value": "none",
-          "label": "无动画"
-        },
-        {
-          "value": "ambient",
-          "label": "环境效果"
-        },
-        {
-          "value": "fixed",
-          "label": "固定"
-        },
-        {
-          "value": "zoom-in",
-          "label": "缩放"
-        }
-      ],
-      "default": "none",
-      "label": "图片动画效果"
-    },
-    {
-      "type": "header",
-      "content": "文本容器设置"
-    },
-    {
-      "type": "select",
       "id": "text_container_width",
-      "label": "文本容器宽度",
+      "label": "文本宽度",
       "options": [
         {
           "value": "default",
-          "label": "默认宽度"
+          "label": "默认"
         },
         {
           "value": "300",
@@ -318,70 +160,33 @@
         {
           "value": "500",
           "label": "500px"
-        },
-        {
-          "value": "600",
-          "label": "600px"
-        },
-        {
-          "value": "700",
-          "label": "700px"
-        },
-        {
-          "value": "800",
-          "label": "800px"
         }
       ],
-      "default": "default",
-      "info": "选择文本容器的宽度。选择'默认宽度'使用主题的默认样式。"
-    },
-    {
-      "type": "header",
-      "content": "内容设置"
+      "default": "default"
     },
     {
       "type": "select",
       "id": "desktop_content_position",
       "options": [
         {
-          "value": "top-left",
-          "label": "顶部左侧"
-        },
-        {
-          "value": "top-center",
-          "label": "顶部居中"
-        },
-        {
-          "value": "top-right",
-          "label": "顶部右侧"
+          "value": "middle-center",
+          "label": "中间居中"
         },
         {
           "value": "middle-left",
-          "label": "中部左侧"
-        },
-        {
-          "value": "middle-center",
-          "label": "中部居中"
+          "label": "中间左侧"
         },
         {
           "value": "middle-right",
-          "label": "中部右侧"
-        },
-        {
-          "value": "bottom-left",
-          "label": "底部左侧"
+          "label": "中间右侧"
         },
         {
           "value": "bottom-center",
           "label": "底部居中"
-        },
-        {
-          "value": "bottom-right",
-          "label": "底部右侧"
         }
       ],
       "default": "middle-center",
-      "label": "桌面内容位置"
+      "label": "内容位置"
     },
     {
       "type": "select",
@@ -401,13 +206,7 @@
         }
       ],
       "default": "center",
-      "label": "桌面内容对齐"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_text_box",
-      "default": true,
-      "label": "显示文本框"
+      "label": "内容对齐"
     },
     {
       "type": "color_scheme",
@@ -416,40 +215,10 @@
       "default": "scheme-1"
     },
     {
-      "type": "header",
-      "content": "移动端设置"
-    },
-    {
-      "type": "checkbox",
-      "id": "stack_images_on_mobile",
-      "default": true,
-      "label": "移动端堆叠图片"
-    },    
-    {
-      "type": "select",
-      "id": "mobile_content_alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "左对齐"
-        },
-        {
-          "value": "center",
-          "label": "居中"
-        },
-        {
-          "value": "right",
-          "label": "右对齐"
-        }
-      ],
-      "default": "center",
-      "label": "移动端内容对齐"
-    },
-    {
       "type": "checkbox",
       "id": "show_text_below",
       "default": true,
-      "label": "在图片下方显示文本"
+      "label": "下方显示文本"
     }
   ],
   "blocks": [
@@ -459,9 +228,9 @@
       "limit": 1,
       "settings": [
         {
-          "type": "inline_richtext",
+          "type": "text",
           "id": "heading",
-          "default": "图片横幅标题",
+          "default": "图片标题",
           "label": "标题"
         },
         {
@@ -479,14 +248,6 @@
             {
               "value": "h0",
               "label": "大"
-            },
-            {
-              "value": "hxl",
-              "label": "超大"
-            },
-            {
-              "value": "hxxl",
-              "label": "特大"
             }
           ],
           "default": "h1",
@@ -500,9 +261,9 @@
       "limit": 1,
       "settings": [
         {
-          "type": "inline_richtext",
+          "type": "text",
           "id": "text",
-          "default": "分享您的品牌故事 through images",
+          "default": "分享您的品牌故事",
           "label": "文本内容"
         },
         {
@@ -516,10 +277,6 @@
             {
               "value": "subtitle",
               "label": "副标题"
-            },
-            {
-              "value": "caption-with-letter-spacing",
-              "label": "题注"
             }
           ],
           "default": "body",
@@ -533,46 +290,38 @@
       "limit": 1,
       "settings": [
         {
-          "type": "header",
-          "content": "第一个按钮"
-        },
-        {
           "type": "text",
           "id": "button_label_1",
-          "default": "按钮标签",
-          "label": "第一个按钮标签"
+          "default": "按钮1",
+          "label": "第一个按钮"
         },
         {
           "type": "url",
           "id": "button_link_1",
-          "label": "第一个按钮链接"
+          "label": "第一个链接"
         },
         {
           "type": "checkbox",
           "id": "button_style_secondary_1",
           "default": false,
-          "label": "使用次要按钮样式"
-        },
-        {
-          "type": "header",
-          "content": "第二个按钮"
+          "label": "次要样式"
         },
         {
           "type": "text",
           "id": "button_label_2",
-          "default": "按钮标签",
-          "label": "第二个按钮标签"
+          "default": "按钮2",
+          "label": "第二个按钮"
         },
         {
           "type": "url",
           "id": "button_link_2",
-          "label": "第二个按钮链接"
+          "label": "第二个链接"
         },
         {
           "type": "checkbox",
           "id": "button_style_secondary_2",
           "default": false,
-          "label": "使用次要按钮样式"
+          "label": "次要样式"
         }
       ]
     }
