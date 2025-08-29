@@ -197,7 +197,10 @@
           "type": "heading",
           "settings": {
             "heading": "PRODUCTS",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "heading_font_weight": "bold",
+            "heading_font_size": 0,
+            "heading_color": "#000000"
           }
         }
       },
@@ -206,6 +209,7 @@
       ],
       "name": "Mobile rich text",
       "settings": {
+        "text_container_width": 0,
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "scheme-1",
@@ -320,13 +324,23 @@
     },
     "mobile_image_banner_PwcV7p": {
       "type": "Mobile-image-banner",
+      "disabled": true,
       "name": "移动端图片横幅",
       "settings": {
         "image": "shopify://shop_images/2_dd0a0df5-7a49-48d5-980f-8c4d4bc9ee70.svg",
         "link": "shopify://collections/all-products",
+        "heading": "移动端专属横幅",
+        "heading_size": "h1",
+        "subheading": "仅在移动设备上显示",
+        "button_label": "立即查看",
+        "show_divider": false,
         "color_scheme": "background-1",
+        "height_mobile": 300,
+        "height_desktop": 0,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "margin_top": 0,
+        "margin_bottom": 0
       }
     },
     "desktop_multirow_Q3mdjw": {
@@ -457,13 +471,19 @@
           "type": "heading",
           "settings": {
             "heading": "Natural Alkaline Water",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "heading_font_weight": "300",
+            "heading_font_size": 22,
+            "heading_color": "#000000"
           }
         },
         "text_4zhmFj": {
           "type": "text",
           "settings": {
-            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>"
+            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 12,
+            "text_color": "#000000"
           }
         },
         "button_zwMXnX": {
@@ -485,6 +505,7 @@
       ],
       "name": "Mobile-Rich-Text",
       "settings": {
+        "text_container_width": 0,
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "",
@@ -520,13 +541,19 @@
           "type": "heading",
           "settings": {
             "heading": "ELECTRO  X Sports Drink",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "heading_font_weight": "bold",
+            "heading_font_size": 0,
+            "heading_color": "#000000"
           }
         },
         "text_EzWdXL": {
           "type": "text",
           "settings": {
-            "text": "<p>Premium Hydration, Refined Taste</p><p>Key Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p>"
+            "text": "<p>Premium Hydration, Refined Taste</p><p>Key Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 0,
+            "text_color": "#000000"
           }
         },
         "button_xeNKAp": {
@@ -548,6 +575,7 @@
       ],
       "name": "Mobile-Rich-Text",
       "settings": {
+        "text_container_width": 0,
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "",
@@ -583,13 +611,19 @@
           "type": "heading",
           "settings": {
             "heading": "Electrolyte Liquid Concentrate",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "heading_font_weight": "bold",
+            "heading_font_size": 0,
+            "heading_color": "#000000"
           }
         },
         "text_F6tckt": {
           "type": "text",
           "settings": {
-            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>"
+            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 0,
+            "text_color": "#000000"
           }
         },
         "button_tea3xq": {
@@ -611,6 +645,7 @@
       ],
       "name": "Mobile-Rich-Text",
       "settings": {
+        "text_container_width": 0,
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "",
@@ -1071,13 +1106,19 @@
           "type": "heading",
           "settings": {
             "heading": "ABOUT US",
-            "heading_size": "h2"
+            "heading_size": "h2",
+            "heading_font_weight": "bold",
+            "heading_font_size": 0,
+            "heading_color": "#000000"
           }
         },
         "text_xYbpFE": {
           "type": "text",
           "settings": {
-            "text": "<p>Founded in 2021 in the heart of Shanghai’s urban sports culture, ELECTRO X is a premium hydration brand crafted for athletes and active lifestyles. We empower the thriving sports community with clean, science-backed hydration—including Natural Alkaline Water, Functional Sports Drinks, and Electrolyte Liquid Concentrates.</p>"
+            "text": "<p>Founded in 2021 in the heart of Shanghai’s urban sports culture, ELECTRO X is a premium hydration brand crafted for athletes and active lifestyles. We empower the thriving sports community with clean, science-backed hydration—including Natural Alkaline Water, Functional Sports Drinks, and Electrolyte Liquid Concentrates.</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 0,
+            "text_color": "#000000"
           }
         }
       },
@@ -1087,6 +1128,7 @@
       ],
       "name": "Mobile rich text",
       "settings": {
+        "text_container_width": 0,
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "scheme-2",
