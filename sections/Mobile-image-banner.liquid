@@ -1,220 +1,69 @@
-{% comment %}
-  移动端全宽自适应图片横幅Section
-  文件名: mobile-banner.liquid
-  说明: 仅在移动设备上显示的全宽横幅，带有可点击链接
-{% endcomment %}
+/* Mobile banner styles */
+.mobile-banner {
+  position: relative;
+}
 
-{{ 'section-mobile-banner.css' | asset_url | stylesheet_tag }}
+.mobile-banner__content {
+  position: relative;
+}
 
-{%- style -%}
-  #shopify-section-{{ section.id }} {
-    --mobile-banner-height: {{ section.settings.height_mobile }}px;
-    --mobile-banner-height-desktop: {{ section.settings.height_desktop }}px;
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
-    margin-top: {{ section.settings.margin_top }}px;
-    margin-bottom: {{ section.settings.margin_bottom }}px;
+.mobile-banner__link {
+  display: block;
+  text-decoration: none;
+  position: relative;
+}
+
+.mobile-banner__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+
+.mobile-banner__placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  min-height: 200px;
+}
+
+.mobile-banner__text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  padding: 0 2rem;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-banner__heading {
+  margin: 0 0 0.5rem;
+  color: inherit;
+}
+
+.mobile-banner__subheading {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+/* Hide on desktop */
+@media screen and (min-width: 750px) {
+  .mobile-banner {
+    display: none !important;
+  }
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 749px) {
+  .mobile-banner__heading {
+    font-size: calc(var(--font-heading-scale) * 2.4rem);
   }
   
-  @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} {
-      padding-top: {{ section.settings.padding_top | times: 0.75 | round }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round }}px;
-    }
+  .mobile-banner__subheading {
+    font-size: 1.2rem;
   }
-{%- endstyle -%}
-
-<div class="mobile-banner page-width{% if section.settings.show_divider %} mobile-banner--divider{% endif %} color-{{ section.settings.color_scheme }} gradient">
-  <div class="mobile-banner__content">
-    {%- if section.settings.image != blank -%}
-      <{% if section.settings.link != blank %}a href="{{ section.settings.link }}"{% else %}div{% endif %} class="mobile-banner__media media{% if section.settings.image == blank %} placeholder{% endif %}"{% if section.settings.image != blank %} style="padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;"{% endif %}>
-        <img
-          srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
-            {%- if section.settings.image.width >= 550 -%}{{ section.settings.image | image_url: width: 550 }} 550w,{%- endif -%}
-            {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
-            {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
-            {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
-            {%- if section.settings.image.width >= 1780 -%}{{ section.settings.image | image_url: width: 1780 }} 1780w,{%- endif -%}
-            {%- if section.settings.image.width >= 2000 -%}{{ section.settings.image | image_url: width: 2000 }} 2000w,{%- endif -%}
-            {%- if section.settings.image.width >= 3000 -%}{{ section.settings.image | image_url: width: 3000 }} 3000w,{%- endif -%}
-            {%- if section.settings.image.width >= 3840 -%}{{ section.settings.image | image_url: width: 3840 }} 3840w,{%- endif -%}
-            {{ section.settings.image | image_url }} {{ section.settings.image.width }}w"
-          sizes="100vw"
-          src="{{ section.settings.image | image_url: width: 1500 }}"
-          loading="lazy"
-          alt="{{ section.settings.image.alt | escape }}"
-          width="{{ section.settings.image.width }}"
-          height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio | round }}"
-          class="mobile-banner__image"
-        >
-      </{% if section.settings.link != blank %}a{% else %}div{% endif %}>
-    {%- else -%}
-      <div class="mobile-banner__media media placeholder" style="padding-bottom: 56.25%;">
-        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
-      </div>
-    {%- endif -%}
-    
-    {%- if section.settings.heading != blank or section.settings.subheading != blank or section.settings.button_label != blank -%}
-      <div class="mobile-banner__text-wrapper">
-        <div class="mobile-banner__text-content">
-          {%- if section.settings.subheading != blank -%}
-            <p class="mobile-banner__subheading">{{ section.settings.subheading | escape }}</p>
-          {%- endif -%}
-          {%- if section.settings.heading != blank -%}
-            <h2 class="mobile-banner__heading {{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</h2>
-          {%- endif -%}
-          {%- if section.settings.button_label != blank -%}
-            <a{% if section.settings.link %} href="{{ section.settings.link }}"{% endif %} class="mobile-banner__button button button--primary"{% if section.settings.link == blank %} aria-disabled="true"{% endif %}>
-              {{ section.settings.button_label | escape }}
-            </a>
-          {%- endif -%}
-        </div>
-      </div>
-    {%- endif -%}
-  </div>
-</div>
-
-{% schema %}
-{
-  "name": "移动端横幅",
-  "tag": "section",
-  "class": "section",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "横幅图片"
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "横幅链接"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "default": "移动端专属横幅",
-      "label": "标题"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "小"
-        },
-        {
-          "value": "h1",
-          "label": "中"
-        },
-        {
-          "value": "h0",
-          "label": "大"
-        }
-      ],
-      "default": "h1",
-      "label": "标题大小"
-    },
-    {
-      "type": "text",
-      "id": "subheading",
-      "default": "仅在移动设备上显示",
-      "label": "副标题"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "default": "立即查看",
-      "label": "按钮文字"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_divider",
-      "default": false,
-      "label": "显示分隔线"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "颜色方案",
-      "default": "background-1"
-    },
-    {
-      "type": "header",
-      "content": "尺寸设置"
-    },
-    {
-      "type": "range",
-      "id": "height_mobile",
-      "min": 100,
-      "max": 1000,
-      "step": 10,
-      "unit": "px",
-      "label": "移动端高度",
-      "default": 300
-    },
-    {
-      "type": "range",
-      "id": "height_desktop",
-      "min": 0,
-      "max": 500,
-      "step": 10,
-      "unit": "px",
-      "label": "桌面端高度",
-      "default": 0,
-      "info": "设置为0时在桌面端完全隐藏"
-    },
-    {
-      "type": "header",
-      "content": "间距设置"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "上内边距",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "下内边距",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "margin_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "上外边距",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "margin_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "下外边距",
-      "default": 0
-    }
-  ],
-  "presets": [
-    {
-      "name": "移动端横幅",
-      "category": "图片"
-    }
-  ]
 }
-{% endschema %}
