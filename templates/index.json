@@ -485,11 +485,21 @@
             "text_font_size": 9,
             "text_color": "#000000"
           }
+        },
+        "text_xmtzpm": {
+          "type": "text",
+          "settings": {
+            "text": "<p><a href=\"/products/natural-alkaline-water\" title=\"Natural Alkaline Water\">LEARN MORE</a></p>",
+            "text_font_weight": "normal",
+            "text_font_size": 9,
+            "text_color": "#000000"
+          }
         }
       },
       "block_order": [
         "heading_FqHnQE",
-        "text_4zhmFj"
+        "text_4zhmFj",
+        "text_xmtzpm"
       ],
       "name": "Mobile-Rich-Text",
       "settings": {
@@ -544,22 +554,20 @@
             "text_color": "#000000"
           }
         },
-        "button_xeNKAp": {
-          "type": "button",
+        "text_AgKLa4": {
+          "type": "text",
           "settings": {
-            "button_label": "LEARN MORE",
-            "button_link": "shopify://products/natural-alkaline-water",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "text": "<p><a href=\"/collections/electrolyte-sports-drink\" title=\"【Electrolyte Sports Drink】\">LEARN MORE</a></p>",
+            "text_font_weight": "normal",
+            "text_font_size": 9,
+            "text_color": "#000000"
           }
         }
       },
       "block_order": [
         "heading_8bpe8a",
         "text_EzWdXL",
-        "button_xeNKAp"
+        "text_AgKLa4"
       ],
       "name": "Mobile-Rich-Text",
       "settings": {
@@ -613,11 +621,21 @@
             "text_font_size": 9,
             "text_color": "#000000"
           }
+        },
+        "text_F6eGqa": {
+          "type": "text",
+          "settings": {
+            "text": "<p><a href=\"/collections/electrolyte-liquid-concentrate\" title=\"【Electrolyte Liquid Concentrate】\">LEARN MORE</a></p>",
+            "text_font_weight": "normal",
+            "text_font_size": 9,
+            "text_color": "#000000"
+          }
         }
       },
       "block_order": [
         "heading_YxdXmD",
-        "text_eYtcxG"
+        "text_eYtcxG",
+        "text_F6eGqa"
       ],
       "name": "Mobile-Rich-Text",
       "settings": {
