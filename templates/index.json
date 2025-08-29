@@ -861,6 +861,7 @@
     },
     "mobile_banner_PGtzXU": {
       "type": "Mobile-banner",
+      "disabled": true,
       "name": "Mobile banner",
       "settings": {
         "image": "shopify://shop_images/71cut.png",
@@ -877,6 +878,15 @@
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
         "show_text_below": true
+      }
+    },
+    "mobile_image_banner_y98n6Q": {
+      "type": "Mobile-image-banner",
+      "name": "移动端图片链接",
+      "settings": {
+        "image_mobile": "shopify://shop_images/71cut.png",
+        "link": "shopify://pages/community-ambassadors",
+        "image_height": "adapt"
       }
     },
     "new_blog_pMAgYq": {
@@ -1099,6 +1109,7 @@
     "banner_BM3DgA",
     "desktop_rich_text_6PnQKk",
     "mobile_banner_PGtzXU",
+    "mobile_image_banner_y98n6Q",
     "new_blog_pMAgYq",
     "desktop_rich_text_hePfFd",
     "mobile_rich_text_hLkbnQ"
