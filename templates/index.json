@@ -324,23 +324,16 @@
     },
     "mobile_image_banner_PwcV7p": {
       "type": "Mobile-image-banner",
-      "disabled": true,
       "name": "移动端图片横幅",
       "settings": {
         "image": "shopify://shop_images/2_dd0a0df5-7a49-48d5-980f-8c4d4bc9ee70.svg",
         "link": "shopify://collections/all-products",
-        "heading": "移动端专属横幅",
+        "heading": "",
         "heading_size": "h1",
-        "subheading": "仅在移动设备上显示",
-        "button_label": "立即查看",
-        "show_divider": false,
+        "subheading": "",
         "color_scheme": "background-1",
-        "height_mobile": 300,
-        "height_desktop": 0,
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "margin_top": 0,
-        "margin_bottom": 0
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "desktop_multirow_Q3mdjw": {
@@ -1101,8 +1094,8 @@
           "settings": {
             "heading": "ABOUT US",
             "heading_size": "h2",
-            "heading_font_weight": "bold",
-            "heading_font_size": 0,
+            "heading_font_weight": "300",
+            "heading_font_size": 18,
             "heading_color": "#000000"
           }
         },
@@ -1111,7 +1104,7 @@
           "settings": {
             "text": "<p>Founded in 2021 in the heart of Shanghai’s urban sports culture, ELECTRO X is a premium hydration brand crafted for athletes and active lifestyles. We empower the thriving sports community with clean, science-backed hydration—including Natural Alkaline Water, Functional Sports Drinks, and Electrolyte Liquid Concentrates.</p>",
             "text_font_weight": "normal",
-            "text_font_size": 0,
+            "text_font_size": 9,
             "text_color": "#000000"
           }
         }
