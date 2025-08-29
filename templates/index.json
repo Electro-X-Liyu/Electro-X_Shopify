@@ -473,7 +473,7 @@
             "heading": "Natural Alkaline Water",
             "heading_size": "h1",
             "heading_font_weight": "300",
-            "heading_font_size": 22,
+            "heading_font_size": 18,
             "heading_color": "#000000"
           }
         },
@@ -485,23 +485,11 @@
             "text_font_size": 10,
             "text_color": "#000000"
           }
-        },
-        "button_zwMXnX": {
-          "type": "button",
-          "settings": {
-            "button_label": "LEARN MORE",
-            "button_link": "shopify://products/natural-alkaline-water",
-            "button_style_secondary": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
         }
       },
       "block_order": [
         "heading_FqHnQE",
-        "text_4zhmFj",
-        "button_zwMXnX"
+        "text_4zhmFj"
       ],
       "name": "Mobile-Rich-Text",
       "settings": {
