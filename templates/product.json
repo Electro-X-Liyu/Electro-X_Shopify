@@ -105,6 +105,8 @@
         "heading_color": "#000000",
         "heading_font_size": 33,
         "heading_font_weight": "bold",
+        "vendor_font_size": 13,
+        "vendor_color": "#666666",
         "badge_background": "#ff0000",
         "badge_text_color": "#ffffff",
         "badge_font_size": 13,
