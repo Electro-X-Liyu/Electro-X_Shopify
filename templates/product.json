@@ -14,7 +14,6 @@
       "blocks": {
         "description": {
           "type": "description",
-          "disabled": true,
           "settings": {}
         },
         "rating_LbefGx": {
