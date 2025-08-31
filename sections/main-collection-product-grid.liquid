@@ -56,6 +56,14 @@
     font-weight: {{ section.settings.badge_font_weight }};
   }
 
+  /* 厂商文字样式 - 取消全大写并添加自定义字号 */
+  .section-{{ section.id }}-padding .card__vendor {
+    font-size: {{ section.settings.vendor_font_size }}px !important;
+    font-weight: {{ section.settings.vendor_font_weight }};
+    color: {{ section.settings.vendor_color }};
+    text-transform: none !important; /* 取消全大写 */
+  }
+
   .section-{{ section.id }}-padding .facets__label,
   .section-{{ section.id }}-padding .facet-filters__label,
   .section-{{ section.id }}-padding .product-count__text {
@@ -417,6 +425,57 @@
       ],
       "default": "600",
       "label": "标签字重"
+    },
+    {
+      "type": "header",
+      "content": "厂商文字设置"
+    },
+    {
+      "type": "range",
+      "id": "vendor_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 12,
+      "label": "厂商字号",
+      "unit": "px",
+      "info": "设置厂商名称的文字大小"
+    },
+    {
+      "type": "select",
+      "id": "vendor_font_weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "细体"
+        },
+        {
+          "value": "400",
+          "label": "正常"
+        },
+        {
+          "value": "500",
+          "label": "中等"
+        },
+        {
+          "value": "600",
+          "label": "半粗体"
+        },
+        {
+          "value": "700",
+          "label": "粗体"
+        }
+      ],
+      "default": "400",
+      "label": "厂商字重",
+      "info": "设置厂商名称的字重"
+    },
+    {
+      "type": "color",
+      "id": "vendor_color",
+      "label": "厂商颜色",
+      "default": "#666666",
+      "info": "设置厂商名称的颜色"
     },
     {
       "type": "range",
