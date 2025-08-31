@@ -30,6 +30,12 @@
     border-radius: 3px;
   }
 
+  /* 厂商文字样式 */
+  .card__vendor {
+    font-size: {{ section.settings.vendor_font_size }}px !important;
+    text-transform: none !important;
+  }
+
   /* 隐藏价格 */
   .price {
     display: none !important;
@@ -174,6 +180,20 @@
         }
       ],
       "default": "bold"
+    },
+    {
+      "type": "header",
+      "content": "厂商文字设置"
+    },
+    {
+      "type": "range",
+      "id": "vendor_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "厂商文字大小",
+      "default": 14
     },
     {
       "type": "header",
