@@ -1,764 +1,641 @@
-{% comment %}theme-check-disable UndefinedObject{% endcomment %}
-{{ 'section-footer.css' | asset_url | stylesheet_tag }}
-{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
-{{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+<link
+  rel="stylesheet"
+  href="{{ 'component-cart-notification.css' | asset_url }}"
+  media="print"
+  onload="this.media='all'"
+>
 
-{%- style -%}
-  .footer {
-    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+{%- if settings.predictive_search_enabled -%}
+  <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- endif -%}
+
+{%- if section.settings.menu_type_desktop == 'mega' -%}
+  <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- endif -%}
+
+<style>
+  header-drawer {
+    justify-self: start;
+    margin-left: -1.2rem;
   }
 
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .footer {
-      margin-top: {{ section.settings.margin_top }}px;
+  {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
+    .scrolled-past-header .header__heading-logo-wrapper {
+      width: 75%;
     }
+  {%- endif -%}
 
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+  {%- if section.settings.menu_type_desktop != "drawer" -%}
+    @media screen and (min-width: 990px) {
+      header-drawer {
+        display: none;
+      }
     }
-  }
+  {%- endif -%}
 
-  /* 自定义页脚样式 */
-  .footer__content-top {
+  .menu-drawer-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
-    margin-bottom: 30px;
   }
 
-  .footer__newsletter-section {
-    flex: 1;
-    min-width: 300px;
-    padding: 30px;
-    border-radius: 10px;
-  }
-
-  .footer__newsletter-title {
-    font-size: {{ section.settings.newsletter_title_size }}px;
-    line-height: {{ section.settings.newsletter_title_line_height }};
-    color: {{ section.settings.newsletter_title_color }};
-    margin-bottom: 20px;
-    font-weight: {{ section.settings.newsletter_title_weight }};
-  }
-
-  .footer__newsletter-description {
-    color: {{ section.settings.newsletter_text_color }};
-    margin-top: 15px;
-    font-size: {{ section.settings.newsletter_text_size }}px;
-    line-height: {{ section.settings.newsletter_text_line_height }};
-  }
-
-  .footer__menu-section {
-    flex: 2;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-  }
-
-  .footer__menu-column {
-    padding: 15px;
-  }
-
-  .footer__menu-title {
-    font-size: {{ section.settings.menu_title_size }}px;
-    line-height: {{ section.settings.menu_title_line_height }};
-    color: {{ section.settings.menu_title_color }};
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid rgba(var(--color-foreground), 0.1);
-    font-weight: {{ section.settings.menu_title_weight }};
-    text-transform: {{ section.settings.menu_title_transform }};
-    letter-spacing: {{ section.settings.menu_title_letter_spacing }}px;
-  }
-
-  .footer__menu-links {
+  .list-menu {
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
-  .footer__menu-links li {
-    margin-bottom: 12px;
+  .list-menu--inline {
+    display: inline-flex;
+    flex-wrap: wrap;
   }
 
-  .footer__menu-links a {
+  summary.list-menu__item {
+    padding-right: 2.7rem;
+  }
+
+  .list-menu__item {
+    display: flex;
+    align-items: center;
+    line-height: calc(1 + 0.3 / var(--font-body-scale));
+  }
+
+  .list-menu__item--link {
     text-decoration: none;
-    color: {{ section.settings.menu_item_color }};
-    transition: all 0.3s ease;
-    display: block;
-    padding: 5px 0;
-    font-size: {{ section.settings.menu_item_size }}px;
-    line-height: {{ section.settings.menu_item_line_height }};
-    font-weight: {{ section.settings.menu_item_weight }};
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    line-height: calc(1 + 0.8 / var(--font-body-scale));
   }
 
-  .footer__menu-links a:hover {
-    color: {{ section.settings.menu_item_hover_color }};
-    padding-left: 5px;
-  }
-
-  .footer-bottom__text {
-    font-size: {{ section.settings.bottom_text_size }}px;
-    line-height: {{ section.settings.bottom_text_line_height }};
-    color: {{ section.settings.bottom_text_color }};
-  }
-
-  /* 响应式调整 */
-  @media (max-width: 750px) {
-    .footer__content-top {
-      flex-direction: column;
+  @media screen and (min-width: 750px) {
+    .list-menu__item--link {
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
     }
+  }
+</style>
 
-    .footer__newsletter-section {
-      padding: 20px 15px;
+{%- style -%}
+  .header {
+    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
+  }
+
+  .section-header {
+    position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
+    margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-header {
+      margin-bottom: {{ section.settings.margin_bottom }}px;
     }
   }
 
-  /* 覆盖原有样式 */
-  .footer__content-bottom {
-    padding-top: 0;
-  }
-
-  .footer__content-bottom-wrapper {
-    justify-content: center;
-  }
-
-  /* 修复邮件表单显示问题 */
-  .footer__newsletter-section .newsletter__wrapper {
-    padding: 0;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  .footer__newsletter-section .field {
-    max-width: 100%;
-    position: relative;
-  }
-
-  .footer__newsletter-section .field__input {
-    padding-right: 5rem;
-    border: var(--text-boxes-border-width) solid rgba(var(--color-foreground), var(--text-boxes-border-opacity));
-    border-radius: var(--text-boxes-radius);
-    border-bottom: var(--text-boxes-border-width) solid rgba(var(--color-foreground), var(--text-boxes-border-opacity));
-  }
-
-  .footer__newsletter-section .newsletter-form__button {
-    position: absolute;
-    right: var(--inputs-border-width);
-    top: 0;
-    height: 100%;
-    padding: 0 1.5rem;
-    background: transparent;
-    color: rgb(var(--color-foreground));
-  }
-
-  .footer__newsletter-section .newsletter-form__button .icon {
-    width: 1.5rem;
-  }
-
-  .footer__newsletter-section .newsletter-form__message {
-    margin-top: 1.5rem;
+  @media screen and (min-width: 990px) {
+    .header {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
   }
 {%- endstyle -%}
 
+<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+
 {%- liquid
-  assign has_social_icons = true
-  if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
-    assign has_social_icons = false
-  endif
-
-  if settings.brand_image == blank and settings.brand_headline == blank and settings.brand_description == blank
-    assign brand_empty = true
-  endif
-
-  if section.blocks.size == 1 and section.blocks[0].type == 'brand_information' and brand_empty and has_social_icons == false and section.settings.newsletter_enable == false and section.settings.enable_follow_on_shop == false
-    assign only_empty_brand = true
-  endif
+  for block in section.blocks
+    if block.type == '@app'
+      assign has_app_block = true
+    endif
+  endfor
 -%}
 
-<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
-  <div class="footer__content-top page-width">
-    <!-- 左侧：电子邮件注册区 -->
-    <div class="footer__newsletter-section">
-      <h2 class="footer__newsletter-title">{{ section.settings.newsletter_title }}</h2>
+{% liquid
+  assign header_tag = 'div'
 
-      {%- if section.settings.newsletter_enable -%}
-        <div class="newsletter center newsletter--narrow">
-          <div class="newsletter__wrapper color-{{ section.settings.newsletter_color_scheme }} gradient content-container isolate">
-            <!-- 严格遵循Dawn模板的表单结构 -->
-            <div class="newsletter-form__field-wrapper">
-              {% form 'customer', class: 'newsletter-form' %}
-                <input type="hidden" name="contact[tags]" value="newsletter">
-                <div class="field">
-                  <input
-                    id="NewsletterForm--{{ section.id }}"
-                    type="email"
-                    name="contact[email]"
-                    class="field__input"
-                    value="{{ form.email }}"
-                    aria-required="true"
-                    autocorrect="off"
-                    autocapitalize="off"
-                    autocomplete="email"
-                    {% if form.errors %}
-                      autofocus
-                      aria-invalid="true"
-                      aria-describedby="Newsletter-error--{{ section.id }}"
-                    {% elsif form.posted_successfully? %}
-                      aria-describedby="Newsletter-success--{{ section.id }}"
-                    {% endif %}
-                    placeholder="{{ 'newsletter.label' | t }}"
-                    required
-                  >
-                  <label class="field__label" for="NewsletterForm--{{ section.id }}">
-                    {{ 'newsletter.label' | t }}
-                  </label>
-                  <button
-                    type="submit"
-                    class="newsletter-form__button field__button"
-                    name="commit"
-                    id="Subscribe"
-                    aria-label="{{ 'newsletter.button_label' | t }}"
-                  >
-                    <!-- 使用内联SVG代替缺失的icon-arrow.liquid -->
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="icon icon-arrow"
-                    >
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                  </button>
-                </div>
-                {%- if form.errors -%}
-                  <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
-                    <!-- 使用内联SVG代替缺失的icon-error.liquid -->
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="icon icon-error"
-                    >
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <line x1="12" y1="8" x2="12" y2="12"></line>
-                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                    </svg>
-                    {{- form.errors.translated_fields.email | capitalize }}
-                    {{ form.errors.messages.email -}}
-                  </small>
-                {%- endif -%}
-                {%- if form.posted_successfully? -%}
-                  <h3
-                    class="newsletter-form__message newsletter-form__message--success form__message"
-                    id="Newsletter-success--{{ section.id }}"
-                    tabindex="-1"
-                    autofocus
-                  >
-                    <!-- 使用内联SVG代替缺失的icon-success.liquid -->
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="icon icon-success"
-                    >
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    {{- 'newsletter.success' | t }}
-                  </h3>
-                {%- endif -%}
-              {% endform %}
-            </div>
+  if section.settings.sticky_header_type != 'none'
+    assign header_tag = 'sticky-header'
+  endif
+%}
+
+<{{ header_tag }}
+  {% if header_tag == 'sticky-header' %}
+    data-sticky-type="{{ section.settings.sticky_header_type }}"
+  {% endif %}
+  class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
+>
+  {%- liquid
+    assign social_links = false
+    assign localization_forms = false
+
+    if settings.social_twitter_link != blank or settings.social_facebook_link != blank or settings.social_pinterest_link != blank or settings.social_instagram_link != blank or settings.social_youtube_link != blank or settings.social_vimeo_link != blank or settings.social_tiktok_link != blank or settings.social_tumblr_link != blank or settings.social_snapchat_link != blank
+      assign social_links = true
+    endif
+
+    if localization.available_countries.size > 1 and section.settings.enable_country_selector or section.settings.enable_language_selector and localization.available_languages.size > 1
+      assign localization_forms = true
+    endif
+  -%}
+  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+    {%- liquid
+      if section.settings.menu != blank
+        render 'header-drawer'
+      endif
+
+      if section.settings.logo_position == 'top-center' or section.settings.menu == blank
+        render 'header-search', input_id: 'Search-In-Modal-1'
+      endif
+    -%}
+
+    {%- if section.settings.logo_position != 'middle-center' -%}
+      {%- if request.page_type == 'index' -%}
+        <h1 class="header__heading">
+      {%- endif -%}
+      <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
+        {%- if settings.logo != blank -%}
+          <div class="header__heading-logo-wrapper">
+            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+            {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
+            {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+            {{
+              settings.logo
+              | image_url: width: 600
+              | image_tag:
+                class: 'header__heading-logo motion-reduce',
+                widths: widths,
+                height: logo_height,
+                width: settings.logo_width,
+                alt: logo_alt,
+                sizes: sizes,
+                preload: true
+            }}
           </div>
-        </div>
+        {%- else -%}
+          <span class="h2">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+      {%- if request.page_type == 'index' -%}
+        </h1>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- liquid
+      if section.settings.menu != blank
+        if section.settings.menu_type_desktop == 'dropdown'
+          render 'header-dropdown-menu'
+        elsif section.settings.menu_type_desktop != 'drawer'
+          render 'header-mega-menu'
+        endif
+      endif
+    %}
+
+    {%- if section.settings.logo_position == 'middle-center' -%}
+      {%- if request.page_type == 'index' -%}
+        <h1 class="header__heading">
+      {%- endif -%}
+      <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
+        {%- if settings.logo != blank -%}
+          <div class="header__heading-logo-wrapper">
+            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+            {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
+            {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+            {{
+              settings.logo
+              | image_url: width: 600
+              | image_tag:
+                class: 'header__heading-logo',
+                widths: widths,
+                height: logo_height,
+                width: settings.logo_width,
+                alt: logo_alt,
+                sizes: sizes,
+                preload: true
+            }}
+          </div>
+        {%- else -%}
+          <span class="h2">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+      {%- if request.page_type == 'index' -%}
+        </h1>
+      {%- endif -%}
+    {%- endif -%}
+
+    <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
+      <div class="desktop-localization-wrapper">
+        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+          <localization-form class="small-hide medium-hide" data-prevent-hide>
+            {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                {%- render 'country-localization', localPosition: 'HeaderCountry' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {% endif %}
+
+        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+          <localization-form class="small-hide medium-hide" data-prevent-hide>
+            {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
+                {%- render 'language-localization', localPosition: 'HeaderLanguage' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- endif -%}
+      </div>
+      {% render 'header-search', input_id: 'Search-In-Modal' %}
+
+      {%- if shop.customer_accounts_enabled -%}
+        <a
+          href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+          class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
+          rel="nofollow"
+        >
+          {%- if section.settings.enable_customer_avatar -%}
+            <account-icon>
+              {%- if customer and customer.has_avatar? -%}
+                {{ customer | avatar }}
+              {%- else -%}
+                <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+              {%- endif -%}
+            </account-icon>
+          {%- else -%}
+            <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+          {%- endif -%}
+          <span class="visually-hidden">
+            {%- liquid
+              if customer
+                echo 'customer.account_fallback' | t
+              else
+                echo 'customer.log_in' | t
+              endif
+            -%}
+          </span>
+        </a>
       {%- endif -%}
 
-      <p class="footer__newsletter-description">
-        {{ section.settings.newsletter_description }}
-      </p>
-    </div>
-
-    <!-- 右侧：菜单区 -->
-    <div class="footer__menu-section">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
-          {%- when 'custom_menu' -%}
-            <div class="footer__menu-column" {{ block.shopify_attributes }}>
-              {%- if block.settings.heading != blank -%}
-                <h3 class="footer__menu-title">{{ block.settings.heading }}</h3>
-              {%- endif -%}
-
-              {%- if block.settings.menu != blank -%}
-                <ul class="footer__menu-links">
-                  {%- for link in block.settings.menu.links -%}
-                    <li>
-                      <a href="{{ link.url }}" class="link link--text">
-                        {{ link.title | escape }}
-                      </a>
-                    </li>
-                  {%- endfor -%}
-                </ul>
-              {%- endif -%}
-            </div>
+          {%- when '@app' -%}
+            {% render block %}
         {%- endcase -%}
       {%- endfor -%}
     </div>
-  </div>
+  </header>
+</{{ header_tag }}>
 
-  <div
-    class="footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    {% if settings.animations_reveal_on_scroll %}
-      data-cascade
+{%- if settings.cart_type == 'notification' -%}
+  {%- render 'cart-notification',
+    color_scheme: section.settings.color_scheme,
+    desktop_menu_type: section.settings.menu_type_desktop
+  -%}
+{%- endif -%}
+
+{% javascript %}
+  class StickyHeader extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.header = document.querySelector('.section-header');
+      this.headerIsAlwaysSticky =
+        this.getAttribute('data-sticky-type') === 'always' ||
+        this.getAttribute('data-sticky-type') === 'reduce-logo-size';
+      this.headerBounds = {};
+
+      this.setHeaderHeight();
+
+      window.matchMedia('(max-width: 990px)').addEventListener('change', this.setHeaderHeight.bind(this));
+
+      if (this.headerIsAlwaysSticky) {
+        this.header.classList.add('shopify-section-header-sticky');
+      }
+
+      this.currentScrollTop = 0;
+      this.preventReveal = false;
+      this.predictiveSearch = this.querySelector('predictive-search');
+
+      this.onScrollHandler = this.onScroll.bind(this);
+      this.hideHeaderOnScrollUp = () => (this.preventReveal = true);
+
+      this.addEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
+      window.addEventListener('scroll', this.onScrollHandler, false);
+
+      this.createObserver();
+    }
+
+    setHeaderHeight() {
+      document.documentElement.style.setProperty('--header-height', `${this.header.offsetHeight}px`);
+    }
+
+    disconnectedCallback() {
+      this.removeEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
+      window.removeEventListener('scroll', this.onScrollHandler);
+    }
+
+    createObserver() {
+      let observer = new IntersectionObserver((entries, observer) => {
+        this.headerBounds = entries[0].intersectionRect;
+        observer.disconnect();
+      });
+
+      observer.observe(this.header);
+    }
+
+    onScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (this.predictiveSearch && this.predictiveSearch.isOpen) return;
+
+      if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+        this.header.classList.add('scrolled-past-header');
+        if (this.preventHide) return;
+        requestAnimationFrame(this.hide.bind(this));
+      } else if (scrollTop < this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+        this.header.classList.add('scrolled-past-header');
+        if (!this.preventReveal) {
+          requestAnimationFrame(this.reveal.bind(this));
+        } else {
+          window.clearTimeout(this.isScrolling);
+
+          this.isScrolling = setTimeout(() => {
+            this.preventReveal = false;
+          }, 66);
+
+          requestAnimationFrame(this.hide.bind(this));
+        }
+      } else if (scrollTop <= this.headerBounds.top) {
+        this.header.classList.remove('scrolled-past-header');
+        requestAnimationFrame(this.reset.bind(this));
+      }
+
+      this.currentScrollTop = scrollTop;
+    }
+
+    hide() {
+      if (this.headerIsAlwaysSticky) return;
+      this.header.classList.add('shopify-section-header-hidden', 'shopify-section-header-sticky');
+      this.closeMenuDisclosure();
+      this.closeSearchModal();
+    }
+
+    reveal() {
+      if (this.headerIsAlwaysSticky) return;
+      this.header.classList.add('shopify-section-header-sticky', 'animate');
+      this.header.classList.remove('shopify-section-header-hidden');
+    }
+
+    reset() {
+      if (this.headerIsAlwaysSticky) return;
+      this.header.classList.remove('shopify-section-header-hidden', 'shopify-section-header-sticky', 'animate');
+    }
+
+    closeMenuDisclosure() {
+      this.disclosures = this.disclosures || this.header.querySelectorAll('header-menu');
+      this.disclosures.forEach((disclosure) => disclosure.close());
+    }
+
+    closeSearchModal() {
+      this.searchModal = this.searchModal || this.header.querySelector('details-modal');
+      this.searchModal.close(false);
+    }
+  }
+
+  customElements.define('sticky-header', StickyHeader);
+{% endjavascript %}
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if settings.logo %}
+      "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
     {% endif %}
-  >
-    <div class="footer__content-bottom-wrapper page-width">
-      <div class="footer__column footer__localization isolate">
-        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-          <localization-form>
-            {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
-              <div>
-                <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                {%- render 'country-localization', localPosition: 'FooterCountry' -%}
-              </div>
-            {%- endform -%}
-          </localization-form>
-        {%- endif -%}
+    "sameAs": [
+      {{ settings.social_twitter_link | json }},
+      {{ settings.social_facebook_link | json }},
+      {{ settings.social_pinterest_link | json }},
+      {{ settings.social_instagram_link | json }},
+      {{ settings.social_tiktok_link | json }},
+      {{ settings.social_tumblr_link | json }},
+      {{ settings.social_snapchat_link | json }},
+      {{ settings.social_youtube_link | json }},
+      {{ settings.social_vimeo_link | json }}
+    ],
+    "url": {{ request.origin | append: page.url | json }}
+  }
+</script>
 
-        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-          <localization-form>
-            {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
-              <div>
-                <h2 class="caption-large text-body" id="FooterLanguageLabel">
-                  {{ 'localization.language_label' | t }}
-                </h2>
-                {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
-              </div>
-            {%- endform -%}
-          </localization-form>
-        {%- endif -%}
-      </div>
-      <div class="footer__column footer__column--info">
-        {%- if section.settings.payment_enable -%}
-          <div class="footer__payment">
-            <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
-            <ul class="list list-payment" role="list">
-              {%- for type in shop.enabled_payment_types -%}
-                <li class="list-payment__item">
-                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-                </li>
-              {%- endfor -%}
-            </ul>
-          </div>
-        {%- endif -%}
-      </div>
-    </div>
-    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
-      <div class="footer__copyright caption">
-        <small class="copyright__content footer-bottom__text"
-          >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
-        </small>
-        <small class="copyright__content footer-bottom__text">{{ powered_by_link }}</small>
-        {%- if section.settings.show_policy -%}
-          <ul class="policies list-unstyled">
-            {%- for policy in shop.policies -%}
-              {%- if policy != blank -%}
-                <li>
-                  <small class="copyright__content footer-bottom__text"
-                    ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small
-                  >
-                </li>
-              {%- endif -%}
-            {%- endfor -%}
-          </ul>
-        {%- endif -%}
-      </div>
-    </div>
-  </div>
-</footer>
+{%- if request.page_type == 'index' -%}
+  {% assign potential_action_target = request.origin | append: routes.search_url | append: '?q={search_term_string}' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ request.origin | append: page.url | json }}
+    }
+  </script>
+{%- endif -%}
 
 {% schema %}
 {
-  "name": "自定义页脚",
-  "blocks": [
-    {
-      "type": "custom_menu",
-      "name": "自定义菜单",
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "菜单标题",
-          "default": "菜单标题"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "label": "选择菜单"
-        }
-      ]
-    }
-  ],
+  "name": "t:sections.header.name",
+  "class": "section-header",
+  "max_blocks": 3,
   "settings": [
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "整体配色方案",
-      "default": "scheme-1"
+      "type": "select",
+      "id": "logo_position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "t:sections.header.settings.logo_position.options__2.label"
+        },
+        {
+          "value": "top-center",
+          "label": "t:sections.header.settings.logo_position.options__3.label"
+        },
+        {
+          "value": "middle-left",
+          "label": "t:sections.header.settings.logo_position.options__1.label"
+        },
+        {
+          "value": "middle-center",
+          "label": "t:sections.header.settings.logo_position.options__4.label"
+        }
+      ],
+      "default": "middle-left",
+      "label": "t:sections.header.settings.logo_position.label",
+      "info": "t:sections.header.settings.logo_help.content"
     },
     {
-      "type": "header",
-      "content": "电子邮件订阅设置"
+      "type": "select",
+      "id": "mobile_logo_position",
+      "options": [
+        {
+          "value": "center",
+          "label": "t:sections.header.settings.mobile_logo_position.options__1.label"
+        },
+        {
+          "value": "left",
+          "label": "t:sections.header.settings.mobile_logo_position.options__2.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.header.settings.mobile_logo_position.label"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "t:sections.header.settings.menu.label"
+    },
+    {
+      "type": "select",
+      "id": "menu_type_desktop",
+      "options": [
+        {
+          "value": "dropdown",
+          "label": "t:sections.header.settings.menu_type_desktop.options__1.label"
+        },
+        {
+          "value": "mega",
+          "label": "t:sections.header.settings.menu_type_desktop.options__2.label"
+        },
+        {
+          "value": "drawer",
+          "label": "t:sections.header.settings.menu_type_desktop.options__3.label"
+        }
+      ],
+      "default": "dropdown",
+      "label": "t:sections.header.settings.menu_type_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "sticky_header_type",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.header.settings.sticky_header_type.options__1.label"
+        },
+        {
+          "value": "on-scroll-up",
+          "label": "t:sections.header.settings.sticky_header_type.options__2.label"
+        },
+        {
+          "value": "always",
+          "label": "t:sections.header.settings.sticky_header_type.options__3.label"
+        },
+        {
+          "value": "reduce-logo-size",
+          "label": "t:sections.header.settings.sticky_header_type.options__4.label"
+        }
+      ],
+      "default": "on-scroll-up",
+      "label": "t:sections.header.settings.sticky_header_type.label"
     },
     {
       "type": "checkbox",
-      "id": "newsletter_enable",
+      "id": "show_line_separator",
       "default": true,
-      "label": "启用电子邮件订阅"
+      "label": "t:sections.header.settings.show_line_separator.label"
     },
     {
-      "type": "text",
-      "id": "newsletter_title",
-      "label": "邮件区主标题",
-      "default": "Fine the ELECTRO X"
-    },
-    {
-      "type": "richtext",
-      "id": "newsletter_description",
-      "label": "邮件区描述",
-      "default": "<p>订阅以获取产品更新、行业洞察和特别优惠</p>"
+      "type": "header",
+      "content": "t:sections.header.settings.header__1.content"
     },
     {
       "type": "color_scheme",
-      "id": "newsletter_color_scheme",
-      "label": "邮件表单配色方案",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "menu_color_scheme",
+      "label": "t:sections.header.settings.menu_color_scheme.label",
       "default": "scheme-1"
     },
     {
       "type": "header",
-      "content": "文字样式 - 邮件区"
-    },
-    {
-      "type": "range",
-      "id": "newsletter_title_size",
-      "min": 16,
-      "max": 72,
-      "step": 1,
-      "unit": "px",
-      "label": "邮件标题字号",
-      "default": 28
-    },
-    {
-      "type": "range",
-      "id": "newsletter_title_line_height",
-      "min": 1.0,
-      "max": 2.0,
-      "step": 0.1,
-      "label": "邮件标题行高",
-      "default": 1.2
-    },
-    {
-      "type": "color",
-      "id": "newsletter_title_color",
-      "label": "邮件标题颜色",
-      "default": "#2563eb"
-    },
-    {
-      "type": "select",
-      "id": "newsletter_title_weight",
-      "options": [
-        {"value": "400", "label": "正常"},
-        {"value": "500", "label": "中等"},
-        {"value": "600", "label": "粗体"},
-        {"value": "700", "label": "加粗"}
-      ],
-      "default": "700",
-      "label": "邮件标题字重"
-    },
-    {
-      "type": "range",
-      "id": "newsletter_text_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "描述文字字号",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "newsletter_text_line_height",
-      "min": 1.0,
-      "max": 2.0,
-      "step": 0.1,
-      "label": "描述文字行高",
-      "default": 1.6
-    },
-    {
-      "type": "color",
-      "id": "newsletter_text_color",
-      "label": "描述文字颜色",
-      "default": "#6b7280"
-    },
-    {
-      "type": "header",
-      "content": "文字样式 - 菜单区"
-    },
-    {
-      "type": "range",
-      "id": "menu_title_size",
-      "min": 14,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "label": "菜单标题字号",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "menu_title_line_height",
-      "min": 1.0,
-      "max": 2.0,
-      "step": 0.1,
-      "label": "菜单标题行高",
-      "default": 1.3
-    },
-    {
-      "type": "color",
-      "id": "menu_title_color",
-      "label": "菜单标题颜色",
-      "default": "#2563eb"
-    },
-    {
-      "type": "select",
-      "id": "menu_title_weight",
-      "options": [
-        {"value": "400", "label": "正常"},
-        {"value": "500", "label": "中等"},
-        {"value": "600", "label": "粗体"},
-        {"value": "700", "label": "加粗"}
-      ],
-      "default": "700",
-      "label": "菜单标题字重"
-    },
-    {
-      "type": "select",
-      "id": "menu_title_transform",
-      "options": [
-        {"value": "none", "label": "无转换"},
-        {"value": "uppercase", "label": "大写"},
-        {"value": "capitalize", "label": "首字母大写"}
-      ],
-      "default": "uppercase",
-      "label": "菜单标题转换"
-    },
-    {
-      "type": "range",
-      "id": "menu_title_letter_spacing",
-      "min": 0,
-      "max": 5,
-      "step": 0.1,
-      "unit": "px",
-      "label": "菜单标题字间距",
-      "default": 0.5
-    },
-    {
-      "type": "range",
-      "id": "menu_item_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "菜单项字号",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "menu_item_line_height",
-      "min": 1.0,
-      "max": 2.0,
-      "step": 0.1,
-      "label": "菜单项行高",
-      "default": 1.5
-    },
-    {
-      "type": "color",
-      "id": "menu_item_color",
-      "label": "菜单项颜色",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "menu_item_hover_color",
-      "label": "菜单项悬停颜色",
-      "default": "#2563eb"
-    },
-    {
-      "type": "select",
-      "id": "menu_item_weight",
-      "options": [
-        {"value": "400", "label": "正常"},
-        {"value": "500", "label": "中等"},
-        {"value": "600", "label": "粗体"}
-      ],
-      "default": "500",
-      "label": "菜单项字重"
-    },
-    {
-      "type": "header",
-      "content": "文字样式 - 底部文本"
-    },
-    {
-      "type": "range",
-      "id": "bottom_text_size",
-      "min": 10,
-      "max": 18,
-      "step": 1,
-      "unit": "px",
-      "label": "底部文字字号",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "bottom_text_line_height",
-      "min": 1.0,
-      "max": 2.0,
-      "step": 0.1,
-      "label": "底部文字行高",
-      "default": 1.4
-    },
-    {
-      "type": "color",
-      "id": "bottom_text_color",
-      "label": "底部文字颜色",
-      "default": "#6b7280"
-    },
-    {
-      "type": "header",
-      "content": "语言和国家选择器"
+      "content": "t:sections.header.settings.header__utilities.content"
     },
     {
       "type": "checkbox",
       "id": "enable_country_selector",
       "default": true,
-      "label": "启用国家选择器"
+      "label": "t:sections.header.settings.enable_country_selector.label",
+      "info": "t:sections.header.settings.enable_country_selector.info"
     },
     {
       "type": "checkbox",
       "id": "enable_language_selector",
       "default": true,
-      "label": "启用语言选择器"
-    },
-    {
-      "type": "header",
-      "content": "支付方式"
+      "label": "t:sections.header.settings.enable_language_selector.label",
+      "info": "t:sections.header.settings.enable_language_selector.info"
     },
     {
       "type": "checkbox",
-      "id": "payment_enable",
+      "id": "enable_customer_avatar",
       "default": true,
-      "label": "显示支付方式图标"
+      "label": "t:sections.header.settings.enable_customer_avatar.label",
+      "info": "t:sections.header.settings.enable_customer_avatar.info"
     },
     {
       "type": "header",
-      "content": "策略链接"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_policy",
-      "default": true,
-      "label": "显示策略链接"
-    },
-    {
-      "type": "header",
-      "content": "间距设置"
+      "content": "t:sections.all.spacing"
     },
     {
       "type": "range",
-      "id": "margin_top",
+      "id": "margin_bottom",
       "min": 0,
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "上边距",
+      "label": "t:sections.header.settings.margin_bottom.label",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 100,
+      "max": 36,
       "step": 4,
       "unit": "px",
-      "label": "上内边距",
-      "default": 36
+      "label": "t:sections.all.padding.padding_top",
+      "default": 20
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 100,
+      "max": 36,
       "step": 4,
       "unit": "px",
-      "label": "下内边距",
-      "default": 36
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 20
     }
   ],
-  "default": {
-    "blocks": [
-      {
-        "type": "custom_menu",
-        "settings": {
-          "heading": "产品",
-          "menu": "footer"
-        }
-      },
-      {
-        "type": "custom_menu",
-        "settings": {
-          "heading": "社区",
-          "menu": "footer"
-        }
-      },
-      {
-        "type": "custom_menu",
-        "settings": {
-          "heading": "关于我们",
-          "menu": "footer"
-        }
-      },
-      {
-        "type": "custom_menu",
-        "settings": {
-          "heading": "支持",
-          "menu": "footer"
-        }
-      }
-    ]
-  }
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
 }
 {% endschema %}
