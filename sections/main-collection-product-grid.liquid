@@ -37,6 +37,43 @@
     }
   {% endunless %}
 
+  /* 自定义文字样式 */
+  .section-{{ section.id }}-padding .card-information {
+    font-size: {{ section.settings.font_size }}px;
+    font-weight: {{ section.settings.font_weight }};
+    color: {{ section.settings.text_color }};
+  }
+
+  .section-{{ section.id }}-padding .card__heading {
+    font-size: {{ section.settings.title_font_size }}px;
+    font-weight: {{ section.settings.title_font_weight }};
+    color: {{ section.settings.title_color }};
+    line-height: 1.2;
+  }
+
+  .section-{{ section.id }}-padding .card__badge {
+    font-size: {{ section.settings.badge_font_size }}px;
+    font-weight: {{ section.settings.badge_font_weight }};
+  }
+
+  .section-{{ section.id }}-padding .facets__label,
+  .section-{{ section.id }}-padding .facet-filters__label,
+  .section-{{ section.id }}-padding .product-count__text {
+    font-size: {{ section.settings.filter_font_size }}px;
+    font-weight: {{ section.settings.filter_font_weight }};
+    color: {{ section.settings.filter_text_color }};
+  }
+
+  .section-{{ section.id }}-padding .pagination__item {
+    font-size: {{ section.settings.pagination_font_size }}px;
+    font-weight: {{ section.settings.pagination_font_weight }};
+    color: {{ section.settings.pagination_text_color }};
+  }
+
+  .section-{{ section.id }}-padding .pagination__item--current {
+    color: {{ section.settings.pagination_active_color }};
+  }
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -254,6 +291,214 @@
       "default": true,
       "label": "显示产品标签",
       "info": "控制是否显示产品上的标签（如'新品'、'促销'等）"
+    },
+    {
+      "type": "header",
+      "content": "文字样式设置"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 14,
+      "label": "正文字号",
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "细体"
+        },
+        {
+          "value": "400",
+          "label": "正常"
+        },
+        {
+          "value": "500",
+          "label": "中等"
+        },
+        {
+          "value": "600",
+          "label": "半粗体"
+        },
+        {
+          "value": "700",
+          "label": "粗体"
+        }
+      ],
+      "default": "400",
+      "label": "正文字重"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "正文颜色",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "default": 16,
+      "label": "标题字号",
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "正常"
+        },
+        {
+          "value": "500",
+          "label": "中等"
+        },
+        {
+          "value": "600",
+          "label": "半粗体"
+        },
+        {
+          "value": "700",
+          "label": "粗体"
+        },
+        {
+          "value": "800",
+          "label": "超粗体"
+        }
+      ],
+      "default": "600",
+      "label": "标题字重"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "标题颜色",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "default": 12,
+      "label": "标签字号",
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "badge_font_weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "正常"
+        },
+        {
+          "value": "500",
+          "label": "中等"
+        },
+        {
+          "value": "600",
+          "label": "半粗体"
+        },
+        {
+          "value": "700",
+          "label": "粗体"
+        }
+      ],
+      "default": "600",
+      "label": "标签字重"
+    },
+    {
+      "type": "range",
+      "id": "filter_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 14,
+      "label": "筛选文字字号",
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "filter_font_weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "正常"
+        },
+        {
+          "value": "500",
+          "label": "中等"
+        },
+        {
+          "value": "600",
+          "label": "半粗体"
+        }
+      ],
+      "default": "500",
+      "label": "筛选文字字重"
+    },
+    {
+      "type": "color",
+      "id": "filter_text_color",
+      "label": "筛选文字颜色",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "pagination_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 16,
+      "label": "分页文字字号",
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "pagination_font_weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "正常"
+        },
+        {
+          "value": "500",
+          "label": "中等"
+        },
+        {
+          "value": "600",
+          "label": "半粗体"
+        }
+      ],
+      "default": "500",
+      "label": "分页文字字重"
+    },
+    {
+      "type": "color",
+      "id": "pagination_text_color",
+      "label": "分页文字颜色",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "pagination_active_color",
+      "label": "分页当前页颜色",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "其他设置"
     },
     {
       "type": "color_scheme",
