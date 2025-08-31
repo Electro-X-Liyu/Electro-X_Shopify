@@ -114,7 +114,7 @@
         "color_scheme": "scheme-1",
         "image_ratio": "portrait",
         "image_shape": "default",
-        "show_vendor": false,
+        "show_vendor": true,
         "show_rating": true,
         "padding_top": 0,
         "padding_bottom": 28
