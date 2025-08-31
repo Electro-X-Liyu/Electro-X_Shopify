@@ -14,6 +14,7 @@
       "blocks": {
         "description": {
           "type": "description",
+          "disabled": true,
           "settings": {}
         },
         "rating_LbefGx": {
@@ -39,6 +40,108 @@
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 12
+      }
+    },
+    "mobile_rich_text_NUeg4K": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_dWkKzC": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1",
+            "heading_font_weight": "bold",
+            "heading_font_size": 0,
+            "heading_color": "#000000"
+          }
+        },
+        "text_4fpFtd": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers.</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 0,
+            "text_color": "#000000"
+          }
+        },
+        "button_rwtLHz": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_dWkKzC",
+        "text_4fpFtd",
+        "button_rwtLHz"
+      ],
+      "disabled": true,
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "text_container_width": 0,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "desktop_rich_text_PnxnAW": {
+      "type": "Desktop-Rich-Text",
+      "blocks": {
+        "heading_Hz9RYG": {
+          "type": "heading",
+          "settings": {
+            "heading": "请输入标题",
+            "heading_size": "h1",
+            "heading_font_size": 24,
+            "heading_font_weight": "bold",
+            "heading_color": "#000000"
+          }
+        },
+        "text_3gm3dy": {
+          "type": "text",
+          "settings": {
+            "text": "<p>分享您的品牌故事和产品信息</p>",
+            "text_font_size": 16,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        },
+        "button_EY7rxq": {
+          "type": "button",
+          "settings": {
+            "button_label": "按钮文字",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_Hz9RYG",
+        "text_3gm3dy",
+        "button_EY7rxq"
+      ],
+      "disabled": true,
+      "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "container_width": 800,
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     },
     "rich_text_UMkNcV": {
@@ -90,6 +193,8 @@
   },
   "order": [
     "main",
+    "mobile_rich_text_NUeg4K",
+    "desktop_rich_text_PnxnAW",
     "rich_text_UMkNcV",
     "related-products"
   ]
