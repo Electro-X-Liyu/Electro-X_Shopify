@@ -30,6 +30,13 @@
     border-radius: 3px;
   }
 
+  /* 厂商文字样式 */
+  .card__vendor {
+    text-transform: none !important; /* 取消全大写 */
+    font-size: {{ section.settings.vendor_font_size }}px !important; /* 自定义字号 */
+    color: {{ section.settings.vendor_color }} !important;
+  }
+
   /* 隐藏价格 */
   .price {
     display: none !important;
@@ -174,6 +181,26 @@
         }
       ],
       "default": "bold"
+    },
+    {
+      "type": "header",
+      "content": "厂商文字设置"
+    },
+    {
+      "type": "range",
+      "id": "vendor_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "厂商文字大小",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "vendor_color",
+      "label": "厂商文字颜色",
+      "default": "#666666"
     },
     {
       "type": "header",
