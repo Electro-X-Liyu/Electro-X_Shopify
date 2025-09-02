@@ -18,58 +18,74 @@
         "text_alignment": "center"
       }
     },
-    "image_banner_NcMree": {
-      "type": "image-banner",
+    "banner_titVL6": {
+      "type": "banner",
       "blocks": {
-        "heading_AbdXe7": {
+        "heading_NNWKyB": {
           "type": "heading",
           "settings": {
             "heading": "ABOUT US",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
-        "text_ctGRmw": {
+        "text_pFa4zd": {
           "type": "text",
           "settings": {
             "text": "Founded in 2021 in the heart of Shanghai’s urban sports culture, ELECTRO X is a premium hydration brand crafted for athletes and active lifestyles. We empower the thriving sports community with clean, science-backed hydration—including Natural Alkaline Water, Functional Sports Drinks, and Electrolyte Liquid Concentrates.",
             "text_style": "body"
           }
-        },
-        "buttons_wKgkWJ": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
         }
       },
       "block_order": [
-        "heading_AbdXe7",
-        "text_ctGRmw",
-        "buttons_wKgkWJ"
+        "heading_NNWKyB",
+        "text_pFa4zd"
       ],
-      "name": "t:sections.image-banner.presets.name",
+      "name": "Desktop PIP banner",
       "settings": {
-        "image": "shopify://shop_images/4.png",
-        "image_overlay_opacity": 30,
-        "image_height": "adapt",
+        "image": "shopify://shop_images/3.jpg",
+        "image_overlay_opacity": 40,
+        "image_height": "medium",
         "image_behavior": "none",
+        "pip_enable": false,
+        "pip_width": 20,
+        "pip_position": "bottom-right",
+        "pip_position_horizontal": 20,
+        "pip_position_vertical": 20,
+        "pip_border_width": 2,
+        "pip_border_color": "#ffffff",
+        "pip_border_radius": 8,
+        "pip_background": "transparent",
+        "pip_box_shadow": "0 4px 8px rgba(0,0,0,0.2)",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-3"
+      }
+    },
+    "mobile_banner_tdPMBJ": {
+      "type": "Mobile-banner",
+      "name": "Mobile-Banner",
+      "settings": {
+        "image": "shopify://shop_images/21cut.png",
+        "image_link": "",
+        "image_2_link": "",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "text_container_width": "default",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
-        "show_text_below": false
+        "show_text_below": true
       }
     }
   },
   "order": [
     "main",
-    "image_banner_NcMree"
+    "banner_titVL6",
+    "mobile_banner_tdPMBJ"
   ]
 }
