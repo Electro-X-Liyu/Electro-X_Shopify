@@ -560,9 +560,18 @@
         "text_F6eGqa": {
           "type": "text",
           "settings": {
-            "text": "<p><a href=\"/collections/electrolyte-liquid-concentrate\" title=\"【Electrolyte Liquid Concentrate】\">LEARN MORE</a></p><p>-</p>",
+            "text": "<p><a href=\"/collections/electrolyte-liquid-concentrate\" title=\"【Electrolyte Liquid Concentrate】\">LEARN MORE</a></p><p></p>",
             "text_font_weight": "normal",
             "text_font_size": 9,
+            "text_color": "#ffffff"
+          }
+        },
+        "text_9yX4ga": {
+          "type": "text",
+          "settings": {
+            "text": "<p>-</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 0,
             "text_color": "#ffffff"
           }
         },
@@ -581,6 +590,7 @@
         "heading_YxdXmD",
         "text_eYtcxG",
         "text_F6eGqa",
+        "text_9yX4ga",
         "heading_JAFCBb"
       ],
       "name": "Mobile-Rich-Text",
