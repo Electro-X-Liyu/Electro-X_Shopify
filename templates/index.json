@@ -551,9 +551,9 @@
         "text_eYtcxG": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Liquid Concentrate </strong>Our liquid concentration provides on-the-go hydration option everywhere you go - fuel workouts, recharge on commutes or power through work. Toss a pack in your bag as your daily hydration essential.</p><p>Flavors:Pineapple Matetea | Pomegranate Pink Lemonade</p><p>Key Ingredients: Electrolytes | Taurine | L Carnitine | Glucose | Vitamins</p>",
+            "text": "<p>Our liquid concentration provides on-the-go hydration option everywhere you go-fuel workouts, recharge on commutes or power through work. </p><p>Flavors:Pineapple Matetea | Pomegranate Pink Lemonade</p><p>Key Ingredients: Electrolytes | Taurine | L Carnitine | Glucose | Vitamins</p>",
             "text_font_weight": "normal",
-            "text_font_size": 9,
+            "text_font_size": 7,
             "text_color": "#000000"
           }
         },
