@@ -148,9 +148,9 @@
           "type": "text",
           "settings": {
             "text": "<p>We have built a dynamic network of ambassadors ——</p><p>Cross Fit trainers, marathon runners, cyclists, yoga instructors, and beyond.</p><p>Through their stories, sweat, and passion, fueled by ELECTRO X,</p><p>together we inspire communities to push further.</p>",
-            "text_font_weight": "normal",
+            "text_font_weight": "300",
             "text_font_size": 14,
-            "text_color": "#000000"
+            "text_color": "#666666"
           }
         }
       },
@@ -198,7 +198,7 @@
             "heading": "Elite Athletes - TEAM ELECTRO X",
             "heading_size": "h1",
             "heading_font_weight": "normal",
-            "heading_font_size": 19,
+            "heading_font_size": 18,
             "heading_color": "#000000"
           }
         },
@@ -208,7 +208,7 @@
             "text": "<p>Our elite athletes compete in diverse sports disciplines year-round,</p><p>from HYROX and CrossFit to Triathlon and Cycling.</p><p>We back our athletes with the cleanest hydration fuel on the market: science-backed, additive-free formulas to elevate in game performance, accelerate post training recovery, and optimize daily hydration.</p>",
             "text_font_weight": "normal",
             "text_font_size": 14,
-            "text_color": "#000000"
+            "text_color": "#666666"
           }
         }
       },
@@ -266,7 +266,7 @@
             "text": "<p>Powered by ELECTRO X, U.C.P is a hybrid training community inspiring urban athletes to push their limits and realize their physical potential through dedicated training and running programs.</p>",
             "text_font_weight": "normal",
             "text_font_size": 14,
-            "text_color": "#000000"
+            "text_color": "#666666"
           }
         }
       },
