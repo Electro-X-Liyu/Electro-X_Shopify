@@ -9,51 +9,93 @@
  */
 {
   "sections": {
-    "multirow_NBxXcW": {
-      "type": "multirow",
+    "desktop_multirow_jKPWqM": {
+      "type": "desktop-multirow",
       "blocks": {
-        "row_zF7Mzj": {
+        "row_tbcPGH": {
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/2cut.png",
-            "caption": "",
             "heading": "Community Ambassadors",
+            "heading_font_weight": "default",
+            "heading_font_size": 24,
+            "heading_color": "#121212",
+            "caption": "",
+            "caption_font_weight": "default",
+            "caption_font_size": 16,
+            "caption_color": "rgba(0,0,0,0)",
             "text": "<p>We have built a dynamic network of ambassadors ——</p><p>Cross Fit trainers, marathon runners, cyclists, yoga instructors, and beyond.</p><p>Through their stories, sweat, and passion, fueled by ELECTRO X,</p><p>together we inspire communities to push further.</p>",
+            "text_font_weight": "default",
+            "text_font_size": 16,
+            "text_color": "#121212",
             "button_label": "",
-            "button_link": ""
+            "button_link": "",
+            "button_font_weight": "default",
+            "button_font_size": 16,
+            "button_text_color": "rgba(0,0,0,0)",
+            "button_bg_color": "rgba(0,0,0,0)",
+            "button_border_color": "rgba(0,0,0,0)"
           }
         },
-        "row_nQmkcm": {
+        "row_z9aLjp": {
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/5cut.png",
-            "caption": "",
             "heading": "Elite Athletes - TEAM ELECTRO X",
+            "heading_font_weight": "default",
+            "heading_font_size": 24,
+            "heading_color": "#121212",
+            "caption": "",
+            "caption_font_weight": "default",
+            "caption_font_size": 16,
+            "caption_color": "rgba(0,0,0,0)",
             "text": "<p>Our elite athletes compete in diverse sports disciplines year-round,</p><p>from HYROX and CrossFit to Triathlon and Cycling.</p><p>We back our athletes with the cleanest hydration fuel on the market: science-backed, additive-free formulas to elevate in game performance, accelerate post training recovery, and optimize daily hydration.</p>",
+            "text_font_weight": "default",
+            "text_font_size": 16,
+            "text_color": "#121212",
             "button_label": "",
-            "button_link": ""
+            "button_link": "",
+            "button_font_weight": "default",
+            "button_font_size": 16,
+            "button_text_color": "rgba(0,0,0,0)",
+            "button_bg_color": "rgba(0,0,0,0)",
+            "button_border_color": "rgba(0,0,0,0)"
           }
         },
-        "row_Q6AhQa": {
+        "row_K39MT4": {
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/3cut.png",
-            "caption": "",
             "heading": "Urban Challenger Project",
+            "heading_font_weight": "default",
+            "heading_font_size": 24,
+            "heading_color": "#121212",
+            "caption": "",
+            "caption_font_weight": "default",
+            "caption_font_size": 16,
+            "caption_color": "rgba(0,0,0,0)",
             "text": "<p>Powered by ELECTRO X, U.C.P is a hybrid training community inspiring urban athletes to push their limits and realize their physical potential through dedicated training and running programs.</p>",
+            "text_font_weight": "default",
+            "text_font_size": 16,
+            "text_color": "#121212",
             "button_label": "",
-            "button_link": ""
+            "button_link": "",
+            "button_font_weight": "default",
+            "button_font_size": 16,
+            "button_text_color": "rgba(0,0,0,0)",
+            "button_bg_color": "rgba(0,0,0,0)",
+            "button_border_color": "rgba(0,0,0,0)"
           }
         }
       },
       "block_order": [
-        "row_zF7Mzj",
-        "row_nQmkcm",
-        "row_Q6AhQa"
+        "row_tbcPGH",
+        "row_z9aLjp",
+        "row_K39MT4"
       ],
-      "name": "t:sections.multirow.presets.name",
+      "name": "Desktop Multirow",
       "settings": {
-        "image_height": "adapt",
+        "image_height": "large",
         "desktop_image_width": "medium",
         "image_layout": "alternate-left",
         "heading_size": "h1",
@@ -93,241 +135,11 @@
         "padding_bottom": 28,
         "text_alignment": "center"
       }
-    },
-    "pic_border_z3NWEJ": {
-      "type": "PicBorder",
-      "blocks": {
-        "image_block_NdGDJa": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV__1.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_FrkG4y": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-03.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_Pa8NtF": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-05.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_mhCE6M": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-07.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_aDd3UF": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-09.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_Y6Ltex": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-11.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_mEDjbJ": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-13.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_tmhbJB": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-15.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_YhEqB6": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-17.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_ee8pKz": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-19.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_nAzc87": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-21.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_DRCBLg": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-23.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_P6fQX7": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-25.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_WgKwjW": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-27.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_DVbhjX": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-29.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_ca3KtU": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-31.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_CjtNAU": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-33.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_qkaYAg": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-35.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_df3ajD": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-37.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_maAFjC": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-39.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_TBar6f": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-41.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_DH3GxP": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-43.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_DhdBMq": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-45.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        },
-        "image_block_86KccQ": {
-          "type": "image_block",
-          "settings": {
-            "image": "shopify://shop_images/KV-47.jpg",
-            "link": "",
-            "alt_text": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_block_NdGDJa",
-        "image_block_FrkG4y",
-        "image_block_Pa8NtF",
-        "image_block_mhCE6M",
-        "image_block_aDd3UF",
-        "image_block_Y6Ltex",
-        "image_block_mEDjbJ",
-        "image_block_tmhbJB",
-        "image_block_YhEqB6",
-        "image_block_ee8pKz",
-        "image_block_nAzc87",
-        "image_block_DRCBLg",
-        "image_block_P6fQX7",
-        "image_block_WgKwjW",
-        "image_block_DVbhjX",
-        "image_block_ca3KtU",
-        "image_block_CjtNAU",
-        "image_block_qkaYAg",
-        "image_block_df3ajD",
-        "image_block_maAFjC",
-        "image_block_TBar6f",
-        "image_block_DH3GxP",
-        "image_block_DhdBMq",
-        "image_block_86KccQ"
-      ],
-      "disabled": true,
-      "settings": {
-        "title": "",
-        "desktop_height": 310,
-        "mobile_height": 220
-      }
     }
   },
   "order": [
-    "multirow_NBxXcW",
+    "desktop_multirow_jKPWqM",
     "image_banner_jmJd7h",
-    "main",
-    "pic_border_z3NWEJ"
+    "main"
   ]
 }
