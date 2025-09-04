@@ -9,6 +9,49 @@
  */
 {
   "sections": {
+    "rich_text_ry8HLJ": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_3CX6Kx": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
+          }
+        },
+        "text_DUhC73": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_XNhnR7": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_3CX6Kx",
+        "text_DUhC73",
+        "button_XNhnR7"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "desktop_multirow_jKPWqM": {
       "type": "desktop-multirow",
       "blocks": {
@@ -64,6 +107,7 @@
         },
         "row_K39MT4": {
           "type": "row",
+          "name": "Urban Challenger Project",
           "settings": {
             "image": "shopify://shop_images/3cut.png",
             "heading": "Urban Challenger Project",
@@ -110,14 +154,17 @@
         "padding_bottom": 36
       }
     },
-    "image_banner_jmJd7h": {
-      "type": "image-banner",
-      "disabled": true,
+    "mobile_banner_RhijtM": {
+      "type": "Mobile-banner",
+      "name": "Mobile-Banner",
       "settings": {
-        "image": "shopify://shop_images/KV_demo__1.jpg",
+        "image": "shopify://shop_images/2cut.png",
+        "image_link": "",
+        "image_2_link": "",
         "image_overlay_opacity": 0,
-        "image_height": "medium",
+        "image_height": "adapt",
         "image_behavior": "none",
+        "text_container_width": "default",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": true,
@@ -125,6 +172,44 @@
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
         "show_text_below": true
+      }
+    },
+    "mobile_rich_text_xfPiD8": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_6CayF7": {
+          "type": "heading",
+          "settings": {
+            "heading": "Urban Challenger Project",
+            "heading_size": "h1",
+            "heading_font_weight": "normal",
+            "heading_font_size": 19,
+            "heading_color": "#000000"
+          }
+        },
+        "text_ejAhUe": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Powered by ELECTRO X, U.C.P is a hybrid training community inspiring urban athletes to push their limits and realize their physical potential through dedicated training and running programs.</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 14,
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_6CayF7",
+        "text_ejAhUe"
+      ],
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "text_container_width": 0,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     },
     "main": {
@@ -138,8 +223,10 @@
     }
   },
   "order": [
+    "rich_text_ry8HLJ",
     "desktop_multirow_jKPWqM",
-    "image_banner_jmJd7h",
+    "mobile_banner_RhijtM",
+    "mobile_rich_text_xfPiD8",
     "main"
   ]
 }
