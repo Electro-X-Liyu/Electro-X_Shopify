@@ -858,6 +858,7 @@
         },
         "column_chmQNT": {
           "type": "column",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/5cut.png",
             "image_link": "",
@@ -880,7 +881,7 @@
         "title_size": 19,
         "title_margin_top": 0,
         "title_margin_bottom": 20,
-        "heading_size": "h1",
+        "heading_size": "h2",
         "block_title_color": "#333333",
         "block_title_size": 19,
         "block_title_margin_top": 0,
