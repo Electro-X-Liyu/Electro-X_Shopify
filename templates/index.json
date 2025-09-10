@@ -329,11 +329,11 @@
             "text": "<ul><li>pH Level of 8.8 and above</li><li>Natural Alkaline Spring Water</li><li>100% Recyclable PET</li></ul>",
             "text_font_weight": "default",
             "text_font_size": 14,
-            "text_color": "#c4c4c4",
+            "text_color": "#ffffff",
             "button_label": "LEARN MORE",
             "button_link": "shopify://products/natural-alkaline-water",
             "button_font_weight": "default",
-            "button_font_size": 16,
+            "button_font_size": 14,
             "button_text_color": "#ffffff",
             "button_bg_color": "rgba(0,0,0,0)",
             "button_border_color": "rgba(0,0,0,0)"
@@ -343,7 +343,7 @@
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/211cut.jpg",
-            "heading": "ELECTRO  X Sports Drink",
+            "heading": "ELECTRO  X Functional Sports Drink",
             "heading_font_weight": "default",
             "heading_font_size": 34,
             "heading_color": "#ffffff",
@@ -351,14 +351,14 @@
             "caption_font_weight": "700",
             "caption_font_size": 19,
             "caption_color": "#ffffff",
-            "text": "<p>Crafted for athletes and fitness enthusiasts, ELECTRO X offers a premium hydration choice with our additive-free sports drink, blended with premium tea leaves and globally sourced juices for a clean， balanced taste.</p><p>500mL</p><p>Flavors:Jasmine Green Grapes | Pineapple Matetea | Mixed Berry Flavors</p><p>Key Ingredients:Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p>",
+            "text": "<p>Crafted for urbanactive lifestyle, ELECTRO X offers a premium hydration choice with our additive-free sports drink, blended with premium tea leaves and globally sourced juices for a clean, balanced taste.<br/><br/>Flavors: Jasmine Green Grapes |Pineapple Yerba Mate | Mixed Berry</p><p>Key Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Multivitamins</p>",
             "text_font_weight": "default",
             "text_font_size": 14,
-            "text_color": "#c4c4c4",
+            "text_color": "#ffffff",
             "button_label": "LEARN MORE",
             "button_link": "shopify://collections/electrolyte-sports-drink",
             "button_font_weight": "default",
-            "button_font_size": 16,
+            "button_font_size": 14,
             "button_text_color": "#ffffff",
             "button_bg_color": "rgba(0,0,0,0)",
             "button_border_color": "rgba(0,0,0,0)"
@@ -376,14 +376,14 @@
             "caption_font_weight": "default",
             "caption_font_size": 19,
             "caption_color": "#ffffff",
-            "text": "<p>Flavors:Pineapple Matetea | Pomegranate Pink Lemonade</p><p>Key Ingredients: Electrolytes | Taurine | L Carnitine | Glucose | Vitamins</p>",
+            "text": "<p>Flavors: Pineapple Yerba Mate | Pomegranate Pink Lemonade</p><p>Key Ingredients: Electrolytes | Taurine | L Carnitine | Glucose | Multivitamins</p>",
             "text_font_weight": "default",
             "text_font_size": 14,
-            "text_color": "#c4c4c4",
+            "text_color": "#ffffff",
             "button_label": "LEARN MORE",
             "button_link": "shopify://collections/electrolyte-liquid-concentrate",
             "button_font_weight": "default",
-            "button_font_size": 16,
+            "button_font_size": 14,
             "button_text_color": "#ffffff",
             "button_bg_color": "rgba(0,0,0,0)",
             "button_border_color": "rgba(0,0,0,0)"
@@ -484,7 +484,7 @@
         "heading_8bpe8a": {
           "type": "heading",
           "settings": {
-            "heading": "ELECTRO  X Sports Drink",
+            "heading": "ELECTRO  X Functional Sports Drink",
             "heading_size": "h1",
             "heading_font_weight": "300",
             "heading_font_size": 17,
@@ -494,7 +494,7 @@
         "text_EzWdXL": {
           "type": "text",
           "settings": {
-            "text": "<p>Premium Hydration, Refined Taste</p><p>Key Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Vitamins</p>",
+            "text": "<p>Premium Hydration, Refined Taste</p><p>Key Ingredients: Electrolytes | BCAA | L Carnitine | Glucose | Multivitamins</p>",
             "text_font_weight": "normal",
             "text_font_size": 9,
             "text_color": "#000000"
@@ -551,7 +551,7 @@
         "text_eYtcxG": {
           "type": "text",
           "settings": {
-            "text": "<p>Our liquid concentration provides on-the-go hydration option everywhere you go-fuel workouts, recharge on commutes or power through work. </p><p>Flavors: Pineapple Matetea | Pomegranate Pink Lemonade</p><p>Key Ingredients: Electrolytes | Taurine | L Carnitine | Glucose | Vitamins</p>",
+            "text": "<p>Our liquid concentration provides on-the-go hydration option everywhere you go-fuel workouts, recharge on commutes or power through work. </p><p>Flavors: Pineapple Yerba Mate | Pomegranate Pink Lemonade</p><p>Key Ingredients: Electrolytes | Taurine | L Carnitine | Glucose |Multivitamins</p>",
             "text_font_weight": "normal",
             "text_font_size": 10,
             "text_color": "#000000"
@@ -792,18 +792,9 @@
           "type": "text",
           "settings": {
             "text": "<p>Rooted in the heart of Shanghai urban sports culture, we empower local athletes and communities to grow and compete with our clean hydration products.</p>",
-            "text_font_size": 24,
+            "text_font_size": 16,
             "text_font_weight": "400",
             "text_color": "#333333"
-          }
-        },
-        "text_bQwDqa": {
-          "type": "text",
-          "settings": {
-            "text": "<p>请输入正文内容</p>",
-            "text_font_size": 16,
-            "text_font_weight": "default",
-            "text_color": "rgba(0,0,0,0)"
           }
         },
         "text_bUrbLG": {
@@ -818,7 +809,6 @@
       },
       "block_order": [
         "text_iR9Y9g",
-        "text_bQwDqa",
         "text_bUrbLG"
       ],
       "name": "Desktop Rich Text",
