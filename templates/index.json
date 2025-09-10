@@ -322,7 +322,7 @@
             "heading_font_weight": "default",
             "heading_font_size": 34,
             "heading_color": "#ffffff",
-            "caption": "The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border",
+            "caption": "The first-ever natural alkaline water sourced from the mineral-rich volcanic springs",
             "caption_font_weight": "700",
             "caption_font_size": 19,
             "caption_color": "#ffffff",
@@ -437,7 +437,7 @@
         "text_4zhmFj": {
           "type": "text",
           "settings": {
-            "text": "<p>The First-Ever Naturally Alkaline Water sourced from the mineral-rich volcanic springs of China's Northern Border</p>",
+            "text": "<p>The first-ever natural alkaline water sourced from the mineral-rich volcanic springs</p>",
             "text_font_weight": "normal",
             "text_font_size": 9,
             "text_color": "#000000"
