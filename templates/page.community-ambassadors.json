@@ -157,10 +157,10 @@
         "text_ejAhUe": {
           "type": "text",
           "settings": {
-            "text": "<p>We have built a dynamic network of ambassadors ——</p><p>Cross Fit trainers, marathon runners, cyclists, yoga instructors, and beyond.</p><p>Through their stories, sweat, and passion, fueled by ELECTRO X,</p><p>together we inspire communities to push further.</p>",
+            "text": "<p>We have built a dynamic network of ambassadors —— Cross Fit trainers, marathon runners, cyclists, and beyond. Through their stories, sweat, and passion, fueled by ELECTRO X, together we inspire communities to push further.</p>",
             "text_font_weight": "300",
-            "text_font_size": 14,
-            "text_color": "#666666"
+            "text_font_size": 9,
+            "text_color": "#121212"
           }
         }
       },
@@ -172,7 +172,7 @@
       "settings": {
         "text_container_width": 0,
         "desktop_content_position": "center",
-        "content_alignment": "center",
+        "content_alignment": "left",
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
@@ -181,6 +181,7 @@
     },
     "mobile_banner_nATK9G": {
       "type": "Mobile-banner",
+      "disabled": true,
       "name": "Mobile-Banner",
       "settings": {
         "image": "shopify://shop_images/5cut.png",
@@ -226,6 +227,7 @@
         "heading_nggnwL",
         "text_CcQYqq"
       ],
+      "disabled": true,
       "name": "Mobile-Rich-Text",
       "settings": {
         "text_container_width": 0,
@@ -275,8 +277,8 @@
           "settings": {
             "text": "<p>Powered by ELECTRO X, U.C.P is a hybrid training community inspiring urban athletes to push their limits and realize their physical potential through dedicated training and running programs.</p>",
             "text_font_weight": "normal",
-            "text_font_size": 14,
-            "text_color": "#666666"
+            "text_font_size": 9,
+            "text_color": "#121212"
           }
         }
       },
@@ -288,7 +290,7 @@
       "settings": {
         "text_container_width": 0,
         "desktop_content_position": "center",
-        "content_alignment": "center",
+        "content_alignment": "left",
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
