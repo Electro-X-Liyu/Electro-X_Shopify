@@ -689,6 +689,16 @@
             "link_label": "",
             "link": ""
           }
+        },
+        "column_kWeCdw": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "Column title",
+            "text": "<p>2025 Ultra-Trail® Ninghai by UTMB®</p>",
+            "link_label": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
@@ -696,7 +706,8 @@
         "column_wExLCW",
         "column_weyBdy",
         "column_FqXfrL",
-        "column_pqfRWF"
+        "column_pqfRWF",
+        "column_kWeCdw"
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
