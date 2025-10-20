@@ -693,9 +693,10 @@
         "column_kWeCdw": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/13cut.png",
             "image_link": "",
-            "title": "Column title",
-            "text": "<p>2025 Ultra-Trail® Ninghai by UTMB®</p>",
+            "title": "2025 Ultra-Trail® Ninghai by UTMB®",
+            "text": "<p>LEARN MORE</p>",
             "link_label": "",
             "link": ""
           }
