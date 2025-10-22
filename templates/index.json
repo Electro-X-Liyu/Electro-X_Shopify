@@ -331,7 +331,7 @@
             "text_font_size": 14,
             "text_color": "#ffffff",
             "button_label": "LEARN MORE",
-            "button_link": "shopify://products/natural-alkaline-water",
+            "button_link": "shopify://pages/natural-alkaline-water",
             "button_font_weight": "default",
             "button_font_size": 14,
             "button_text_color": "#ffffff",
