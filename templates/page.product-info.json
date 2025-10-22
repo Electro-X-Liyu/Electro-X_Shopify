@@ -60,13 +60,13 @@
         "padding_bottom": 36
       }
     },
-    "slideshow_zmdXaU": {
-      "type": "slideshow",
+    "mobile_product_banner_KaNwmR": {
+      "type": "mobile-product-banner",
       "blocks": {
-        "slide_gWrFt9": {
+        "slide_YwhYWX": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/131cut.png",
+            "image": "shopify://shop_images/15related.png",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -81,7 +81,7 @@
             "color_scheme": ""
           }
         },
-        "slide_mfUhTg": {
+        "slide_heN6Tb": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/3a2e0a835929a74e3f7881023c653e1b_1e557252-c829-4988-a48f-11d99b03a9b4.jpg",
@@ -98,22 +98,41 @@
             "text_alignment_mobile": "center",
             "color_scheme": ""
           }
+        },
+        "slide_hhbHcx": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/2_e88199fb-e70c-42cd-81a7-897065c7e644.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
         }
       },
       "block_order": [
-        "slide_gWrFt9",
-        "slide_mfUhTg"
+        "slide_YwhYWX",
+        "slide_heN6Tb",
+        "slide_hhbHcx"
       ],
-      "name": "t:sections.slideshow.presets.name",
+      "name": "Mobile Product Banner",
       "settings": {
-        "layout": "grid",
+        "layout": "full_bleed",
         "slide_height": "adapt_image",
-        "slider_visual": "counter",
+        "slider_visual": "dots",
         "auto_rotate": false,
         "change_slides_speed": 5,
         "image_behavior": "none",
         "show_text_below": false,
-        "accessibility_info": ""
+        "accessibility_info": "Slideshow about our brand"
       }
     },
     "mobile_rich_text_QXBx3h": {
@@ -192,6 +211,127 @@
         "padding_bottom": 52
       }
     },
+    "desktop_rich_text_FGDmFk": {
+      "type": "Desktop-Rich-Text",
+      "blocks": {
+        "heading_U6Y9jg": {
+          "type": "heading",
+          "settings": {
+            "heading": "RELATED PRODUCTS",
+            "heading_size": "h2",
+            "heading_font_size": 24,
+            "heading_font_weight": "normal",
+            "heading_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_U6Y9jg"
+      ],
+      "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "container_width": 800,
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "new_blog_8iTP9w": {
+      "type": "new-blog",
+      "blocks": {
+        "column_GKWpGk": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/12.png",
+            "image_link": "",
+            "title": "PLUS- Functional Sports Drink",
+            "text": "<p>Jasmine Green Grape Flavor</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_xecGYR": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/14.png",
+            "image_link": "",
+            "title": "SLIM - Functional Sports Drink",
+            "text": "<p>Razzamatazz Berry Flavor</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_3HDhfP": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/10.png",
+            "image_link": "",
+            "title": "PLUS- BCAA Sports Drink",
+            "text": "<p>Pineapple Mate Tea Flavor</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_GKWpGk",
+        "column_xecGYR",
+        "column_3HDhfP"
+      ],
+      "name": "Mixed multicolumn",
+      "settings": {
+        "title": "",
+        "title_color": "#000000",
+        "title_size": 14,
+        "title_margin_top": 0,
+        "title_margin_bottom": 3,
+        "heading_size": "h1",
+        "block_title_color": "#333333",
+        "block_title_size": 14,
+        "block_title_margin_top": 0,
+        "block_title_margin_bottom": 0,
+        "block_text_color": "#666666",
+        "block_text_size": 12,
+        "block_text_margin_top": 0,
+        "block_text_margin_bottom": 10,
+        "block_link_color": "#0066CC",
+        "block_link_size": 14,
+        "block_link_margin_top": 0,
+        "block_link_margin_bottom": 0,
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "Button label",
+        "button_link": "",
+        "button_bg_color": "#000000",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 4,
+        "button_padding_top": 12,
+        "button_padding_right": 24,
+        "button_padding_bottom": 12,
+        "button_padding_left": 24,
+        "button_margin_top": 20,
+        "button_margin_bottom": 0,
+        "button_text_size": 16,
+        "mobile_button_text_size": 14,
+        "mobile_button_padding_top": 10,
+        "mobile_button_padding_right": 20,
+        "mobile_button_padding_bottom": 10,
+        "mobile_button_padding_left": 20,
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "mobile_column_width": 80,
+        "mobile_column_gap": 10,
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "all_products_mobile_hg4y3M": {
       "type": "All-Products-Mobile",
       "blocks": {
@@ -206,7 +346,7 @@
         "image_block_emHMkC": {
           "type": "image_block",
           "settings": {
-            "image": "shopify://shop_images/Jasmine.png",
+            "image": "shopify://shop_images/14.png",
             "link": "",
             "alt_text": ""
           }
@@ -214,7 +354,7 @@
         "image_block_KhTqx7": {
           "type": "image_block",
           "settings": {
-            "image": "shopify://shop_images/berry.png",
+            "image": "shopify://shop_images/2_d45ec6e3-2227-4beb-8ade-b824a013f74d.jpg",
             "link": "",
             "alt_text": ""
           }
@@ -225,6 +365,7 @@
         "image_block_emHMkC",
         "image_block_KhTqx7"
       ],
+      "disabled": true,
       "name": "Mobile Products Gallery",
       "settings": {
         "title": "",
@@ -243,9 +384,11 @@
   },
   "order": [
     "desktop_product_details_UhQDhc",
-    "slideshow_zmdXaU",
+    "mobile_product_banner_KaNwmR",
     "mobile_rich_text_QXBx3h",
     "mobile_rich_text_AUd9rA",
+    "desktop_rich_text_FGDmFk",
+    "new_blog_8iTP9w",
     "all_products_mobile_hg4y3M",
     "main"
   ]
