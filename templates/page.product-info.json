@@ -303,7 +303,7 @@
         "block_link_margin_bottom": 0,
         "image_width": "full",
         "image_ratio": "adapt",
-        "button_label": "Button label",
+        "button_label": "",
         "button_link": "",
         "button_bg_color": "#000000",
         "button_text_color": "#ffffff",
