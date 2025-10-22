@@ -44,7 +44,7 @@
       "block_order": [
         "product_detail_UQTzcm"
       ],
-      "name": "Product Details",
+      "name": "Desktop Product Details",
       "settings": {
         "image_height": "medium",
         "desktop_image_width": "medium",
@@ -58,6 +58,62 @@
         "row_color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "slideshow_zmdXaU": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_gWrFt9": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/131cut.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_mfUhTg": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/3a2e0a835929a74e3f7881023c653e1b_1e557252-c829-4988-a48f-11d99b03a9b4.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_gWrFt9",
+        "slide_mfUhTg"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "grid",
+        "slide_height": "adapt_image",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": ""
       }
     },
     "mobile_rich_text_QXBx3h": {
@@ -187,6 +243,7 @@
   },
   "order": [
     "desktop_product_details_UhQDhc",
+    "slideshow_zmdXaU",
     "mobile_rich_text_QXBx3h",
     "mobile_rich_text_AUd9rA",
     "all_products_mobile_hg4y3M",
