@@ -1,0 +1,865 @@
+{{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* Mobile hiding */
+  @media screen and (max-width: 749px) {
+    .product-details {
+      display: none !important;
+    }
+  }
+
+  /* Full width modifications */
+  .product-details .multirow__inner {
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;    
+    row-gap: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .image-with-text__grid {
+    max-width: 100% !important;
+  }
+
+  .product-details .image-with-text__media {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 图片拉伸 */
+  .image-with-text__media img {
+    width: 100% !important;
+    height: auto;
+  }
+
+  /* 自定义内容区域样式 */
+  .product-details-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 40px;
+  }
+
+  .product-details-text {
+    flex: 1;
+  }
+
+  .product-details-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: auto;
+  }
+
+  .product-details-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  /* 取消副标题全大写和letter-spacing */
+  .image-with-text__text--caption {
+    text-transform: none !important;
+    letter-spacing: normal !important;
+  }
+
+  /* 按钮样式 - 增加特异性 */
+  .product-details .image-with-text__content .button,
+  .product-details .image-with-text__content a.button {
+    min-height: calc(2.5rem + var(--buttons-border-width) * 2) !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    border-radius: 10px !important;
+    margin-top: 30px !important;
+  }
+
+  /* 内容区域padding */
+  .image-with-text__content.image-with-text__content--middle.image-with-text__content--desktop-left.image-with-text__content--mobile-left.image-with-text__content--large.content-container.background-transparent {
+    padding: 60px !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 自定义文字样式 */
+  {%- for block in section.blocks -%}
+    /* 标题样式 */
+    #block-{{ block.id }} .image-with-text__heading {
+      {%- if block.settings.heading_font_weight != 'default' -%}
+        font-weight: {{ block.settings.heading_font_weight }} !important;
+      {%- endif -%}
+      {%- if block.settings.heading_font_size != 'default' -%}
+        font-size: {{ block.settings.heading_font_size }}px !important;
+      {%- endif -%}
+      {%- if block.settings.heading_color != 'rgba(0,0,0,0)' -%}
+        color: {{ block.settings.heading_color }} !important;
+      {%- endif -%}
+    }
+
+    /* 副标题样式 */
+    #block-{{ block.id }} .image-with-text__text--caption {
+      {%- if block.settings.caption_font_weight != 'default' -%}
+        font-weight: {{ block.settings.caption_font_weight }} !important;
+      {%- endif -%}
+      {%- if block.settings.caption_font_size != 'default' -%}
+        font-size: {{ block.settings.caption_font_size }}px !important;
+      {%- endif -%}
+      {%- if block.settings.caption_color != 'rgba(0,0,0,0)' -%}
+        color: {{ block.settings.caption_color }} !important;
+      {%- endif -%}
+      margin-top: 20px !important;
+      margin-bottom: 15px !important;
+    }
+
+    /* 正文样式 */
+    #block-{{ block.id }} .image-with-text__text.rte {
+      {%- if block.settings.text_font_weight != 'default' -%}
+        font-weight: {{ block.settings.text_font_weight }} !important;
+      {%- endif -%}
+      {%- if block.settings.text_font_size != 'default' -%}
+        font-size: {{ block.settings.text_font_size }}px !important;
+      {%- endif -%}
+      {%- if block.settings.text_color != 'rgba(0,0,0,0)' -%}
+        color: {{ block.settings.text_color }} !important;
+      {%- endif -%}
+    }
+
+    /* 按钮样式 */
+    #block-{{ block.id }} .image-with-text__content .button,
+    #block-{{ block.id }} .image-with-text__content a.button {
+      {%- if block.settings.button_font_weight != 'default' -%}
+        font-weight: {{ block.settings.button_font_weight }} !important;
+      {%- endif -%}
+      {%- if block.settings.button_font_size != 'default' -%}
+        font-size: {{ block.settings.button_font_size }}px !important;
+      {%- endif -%}
+      {%- if block.settings.button_text_color != 'rgba(0,0,0,0)' -%}
+        color: {{ block.settings.button_text_color }} !important;
+      {%- endif -%}
+      {%- if block.settings.button_bg_color != 'rgba(0,0,0,0)' -%}
+        background-color: {{ block.settings.button_bg_color }} !important;
+      {%- endif -%}
+      {%- if block.settings.button_border_color != 'rgba(0,0,0,0)' -%}
+        border-color: {{ block.settings.button_border_color }} !important;
+      {%- endif -%}
+      border-radius: 10px !important;
+    }
+
+    /* 自定义图片样式 */
+    #block-{{ block.id }} .product-details-image {
+      border-radius: {{ block.settings.image_border_radius }}px;
+    }
+  {%- endfor -%}
+{%- endstyle -%}
+
+{%- liquid
+  if section.settings.row_color_scheme == section.settings.section_color_scheme
+    assign no_content_background = true
+  endif
+
+  if settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0
+    assign no_content_styles = true
+  endif
+
+  if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0
+    assign borders_class = ' collapse-borders'
+  endif
+
+  if no_content_background and no_content_styles
+    assign padding_class = ' collapse-padding'
+  endif
+
+  unless no_content_background and no_content_styles
+    assign corners_class = ' collapse-corners'
+  endunless
+-%}
+
+<div class="product-details multirow section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
+  <div class="multirow__inner">
+    {%- for block in section.blocks -%}
+      <div
+        id="block-{{ block.id }}"
+        class="image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        {{ block.shopify_attributes }}
+      >
+        <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}" style="margin-top: 1px !important; margin-bottom: 1px !important;">
+          <!-- 左侧自适应图片 -->
+          <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
+            <div
+              class="image-with-text__media image-with-text__media--{{ section.settings.image_height }} gradient color-{{ section.settings.row_color_scheme }} global-media-settings{% if block.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}"
+              {% if section.settings.image_height == 'adapt' and block.settings.image != blank %}
+                style="padding-bottom: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;"
+              {% endif %}
+            >
+              {%- if block.settings.image != blank -%}
+                {%- capture sizes -%}
+                  (min-width: {{ settings.page_width }}px) 50vw,
+                  (min-width: 750px) 50vw, calc(100vw - 30px)
+                {%- endcapture -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 1500
+                  | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500'
+                }}
+              {%- else -%}
+                {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+          </div>
+          
+          <!-- 右侧自定义内容区域 -->
+          <div class="image-with-text__text-item grid__item">
+            <div class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.image_height }} content-container{% unless no_content_background and no_content_styles %} gradient color-{{ section.settings.row_color_scheme }}{% else %} background-transparent{% endunless %}">
+              <div class="product-details-content">
+                <!-- 顶部自定义文字区域 -->
+                <div class="product-details-text">
+                  {%- if block.settings.heading -%}
+                    <h2 class="image-with-text__heading {{ section.settings.heading_size }} rte">
+                      {{ block.settings.heading }}
+                    </h2>
+                  {%- endif -%}
+                  {%- if block.settings.caption -%}
+                    <p class="image-with-text__text image-with-text__text--caption">
+                      {{ block.settings.caption | escape }}
+                    </p>
+                  {%- endif -%}
+                  {%- if block.settings.text -%}
+                    <div class="image-with-text__text rte {{ section.settings.text_style }}">{{ block.settings.text }}</div>
+                  {%- endif -%}
+                  {%- if block.settings.button_label != blank -%}
+                    <a
+                      {% if block.settings.button_link == blank %}
+                        role="link" aria-disabled="true"
+                      {% else %}
+                        href="{{ block.settings.button_link }}"
+                      {% endif %}
+                      class="button button--{{ section.settings.button_style }}"
+                    >
+                      {{ block.settings.button_label | escape }}
+                    </a>
+                  {%- endif -%}
+                </div>
+                
+                <!-- 底部两张自定义图片 -->
+                <div class="product-details-images">
+                  {%- if block.settings.bottom_image_1 != blank -%}
+                    <div class="product-details-image-container">
+                      {{
+                        block.settings.bottom_image_1
+                        | image_url: width: 600
+                        | image_tag: class: 'product-details-image', loading: 'lazy'
+                      }}
+                    </div>
+                  {%- else -%}
+                    <div class="product-details-image-container">
+                      {{ 'image' | placeholder_svg_tag: 'product-details-image placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                  
+                  {%- if block.settings.bottom_image_2 != blank -%}
+                    <div class="product-details-image-container">
+                      {{
+                        block.settings.bottom_image_2
+                        | image_url: width: 600
+                        | image_tag: class: 'product-details-image', loading: 'lazy'
+                      }}
+                    </div>
+                  {%- else -%}
+                    <div class="product-details-image-container">
+                      {{ 'image' | placeholder_svg_tag: 'product-details-image placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Details",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium",
+      "label": "Image height"
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_width",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium",
+      "label": "Desktop image width"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        },
+        {
+          "value": "hxl",
+          "label": "Extra large"
+        },
+        {
+          "value": "hxxl",
+          "label": "Huge"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "text_style",
+      "options": [
+        {
+          "value": "body",
+          "label": "Body"
+        },
+        {
+          "value": "subtitle",
+          "label": "Subtitle"
+        }
+      ],
+      "default": "body",
+      "label": "Text style"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primary"
+        },
+        {
+          "value": "secondary",
+          "label": "Secondary"
+        }
+      ],
+      "default": "secondary",
+      "label": "Button style"
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_position",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "middle",
+      "label": "Desktop content position"
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Desktop content alignment"
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Mobile content alignment"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "Section colors",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "row_color_scheme",
+      "label": "Row colors",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_detail",
+      "name": "Product Detail",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Main Image"
+        },
+        {
+          "type": "header",
+          "content": "Text Content"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Product Heading",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_font_weight",
+          "label": "Heading font weight",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
+            },
+            {
+              "value": "300",
+              "label": "Light (300)"
+            },
+            {
+              "value": "400",
+              "label": "Normal (400)"
+            },
+            {
+              "value": "500",
+              "label": "Medium (500)"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold (600)"
+            },
+            {
+              "value": "700",
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
+            }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "range",
+          "id": "heading_font_size",
+          "min": 10,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Heading font size",
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "default": "Product caption",
+          "label": "Caption"
+        },
+        {
+          "type": "select",
+          "id": "caption_font_weight",
+          "label": "Caption font weight",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
+            },
+            {
+              "value": "300",
+              "label": "Light (300)"
+            },
+            {
+              "value": "400",
+              "label": "Normal (400)"
+            },
+            {
+              "value": "500",
+              "label": "Medium (500)"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold (600)"
+            },
+            {
+              "value": "700",
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
+            }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "range",
+          "id": "caption_font_size",
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Caption font size",
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "caption_color",
+          "label": "Caption color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Share detailed product information, features, and benefits with your customers.</p>",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "text_font_weight",
+          "label": "Text font weight",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
+            },
+            {
+              "value": "300",
+              "label": "Light (300)"
+            },
+            {
+              "value": "400",
+              "label": "Normal (400)"
+            },
+            {
+              "value": "500",
+              "label": "Medium (500)"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold (600)"
+            },
+            {
+              "value": "700",
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
+            }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "range",
+          "id": "text_font_size",
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Text font size",
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Learn More",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "select",
+          "id": "button_font_weight",
+          "label": "Button font weight",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "100",
+              "label": "Thin (100)"
+            },
+            {
+              "value": "200",
+              "label": "Extra Light (200)"
+            },
+            {
+              "value": "300",
+              "label": "Light (300)"
+            },
+            {
+              "value": "400",
+              "label": "Normal (400)"
+            },
+            {
+              "value": "500",
+              "label": "Medium (500)"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold (600)"
+            },
+            {
+              "value": "700",
+              "label": "Bold (700)"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold (800)"
+            },
+            {
+              "value": "900",
+              "label": "Black (900)"
+            }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "range",
+          "id": "button_font_size",
+          "min": 10,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "label": "Button font size",
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button text color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button background color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "button_border_color",
+          "label": "Button border color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "header",
+          "content": "Bottom Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "bottom_image_1",
+          "label": "Bottom Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "bottom_image_2",
+          "label": "Bottom Image 2"
+        },
+        {
+          "type": "range",
+          "id": "image_border_radius",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Image Border Radius",
+          "default": 8
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Details",
+      "blocks": [
+        {
+          "type": "product_detail"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
