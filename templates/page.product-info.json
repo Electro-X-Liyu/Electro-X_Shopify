@@ -58,6 +58,57 @@
         "padding_bottom": 36
       }
     },
+    "desktop_product_details_UhQDhc": {
+      "type": "Desktop-Product-Details",
+      "blocks": {
+        "product_detail_UQTzcm": {
+          "type": "product_detail",
+          "settings": {
+            "image": "shopify://shop_images/131cut.png",
+            "heading": "Natural Alkaline Water",
+            "heading_font_weight": "default",
+            "heading_font_size": 24,
+            "heading_color": "#121212",
+            "caption": "",
+            "caption_font_weight": "default",
+            "caption_font_size": 16,
+            "caption_color": "#121212",
+            "text": "<p><strong>380mL | 580mL | 1L<br/>Daily Hydration  |  Sports Hydration</strong></p><p>Sourced from the mineral-rich volcanic springs of China's Northern Border in Heilongjiang Province</p><ul><li>Exceptionally soft mouth taste with balanced mineralization (TDS: 400-800 mg/L)</li><li>Natural Alkaline Spring Water with <strong>pH level of 8.8 and above</strong></li><li><strong>100% </strong>recyclable PET</li><li><strong>350-700mg/L </strong>sodium bicarbonate</li></ul>",
+            "text_font_weight": "default",
+            "text_font_size": 14,
+            "text_color": "#121212",
+            "button_label": "",
+            "button_link": "",
+            "button_font_weight": "default",
+            "button_font_size": 16,
+            "button_text_color": "#121212",
+            "button_bg_color": "rgba(0,0,0,0)",
+            "button_border_color": "rgba(0,0,0,0)",
+            "bottom_image_1": "shopify://shop_images/3a2e0a835929a74e3f7881023c653e1b_1e557252-c829-4988-a48f-11d99b03a9b4.jpg",
+            "bottom_image_2": "shopify://shop_images/2_e88199fb-e70c-42cd-81a7-897065c7e644.jpg",
+            "image_border_radius": 0
+          }
+        }
+      },
+      "block_order": [
+        "product_detail_UQTzcm"
+      ],
+      "name": "Product Details",
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "mobile_banner_x7aHgE": {
       "type": "Mobile-banner",
       "name": "Mobile-Banner",
@@ -251,6 +302,7 @@
   },
   "order": [
     "desktop_multirow_Ca6ckV",
+    "desktop_product_details_UhQDhc",
     "mobile_banner_x7aHgE",
     "mobile_rich_text_QXBx3h",
     "multicolumn_EcjCpk",
