@@ -217,7 +217,7 @@
         "heading_U6Y9jg": {
           "type": "heading",
           "settings": {
-            "heading": "RELATED PRODUCTS",
+            "heading": "<span style=\"text-decoration:underline\"> RELATED PRODUCTS </span>",
             "heading_size": "h2",
             "heading_font_size": 24,
             "heading_font_weight": "normal",
@@ -235,8 +235,8 @@
         "container_width": 800,
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding_top": 80,
+        "padding_bottom": 0
       }
     },
     "new_blog_8iTP9w": {
