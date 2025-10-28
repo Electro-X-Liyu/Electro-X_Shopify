@@ -57,103 +57,68 @@
         "padding_bottom": 100
       }
     },
-    "mixed_multicolumn_8EbtMx": {
-      "type": "mixed-multicolumn",
+    "product_grid_9Ncgxf": {
+      "type": "Product-grid",
       "blocks": {
-        "column_pbcfr7": {
+        "column_TCqacX": {
           "type": "column",
           "settings": {
-            "image_link": "",
-            "title": "Column title",
-            "text": "<p>Column content. Describe your product or feature here.</p>",
+            "image": "shopify://shop_images/15related.png",
+            "title": "<a href=\"/pages/natural-alkaline-water\" title=\"Natural Alkaline Water\">Natural Alkaline Water</a>",
+            "text": "<p>350mL | 580mL | 1L</p>",
             "link_label": "",
             "link": ""
           }
         },
-        "column_9FFNMH": {
+        "column_7JTC8P": {
           "type": "column",
           "settings": {
-            "image_link": "",
-            "title": "Column title",
-            "text": "<p>Column content. Describe your product or feature here.</p>",
+            "title": "Product name",
+            "text": "<p>Product description</p>",
             "link_label": "",
             "link": ""
           }
         },
-        "column_n6UPwC": {
+        "column_YzigJ8": {
           "type": "column",
           "settings": {
-            "image_link": "",
-            "title": "Column title",
-            "text": "<p>Column content. Describe your product or feature here.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_JhRMP7": {
-          "type": "column",
-          "settings": {
-            "image_link": "",
-            "title": "Column title",
-            "text": "<p>Column content. Describe your product or feature here.</p>",
+            "title": "Product name",
+            "text": "<p>Product description</p>",
             "link_label": "",
             "link": ""
           }
         }
       },
       "block_order": [
-        "column_pbcfr7",
-        "column_9FFNMH",
-        "column_n6UPwC",
-        "column_JhRMP7"
+        "column_TCqacX",
+        "column_7JTC8P",
+        "column_YzigJ8"
       ],
-      "name": "Mixed multicolumn",
+      "name": "Product Grid",
       "settings": {
-        "title": "Multicolumn",
+        "title": "",
+        "heading_size": "h2",
         "title_color": "#000000",
-        "title_size": 24,
-        "title_margin_top": 0,
-        "title_margin_bottom": 20,
-        "heading_size": "h1",
-        "block_title_color": "#333333",
-        "block_title_size": 18,
-        "block_title_margin_top": 0,
-        "block_title_margin_bottom": 10,
-        "block_text_color": "#666666",
-        "block_text_size": 14,
-        "block_text_margin_top": 0,
-        "block_text_margin_bottom": 10,
-        "block_link_color": "#0066CC",
-        "block_link_size": 14,
-        "block_link_margin_top": 0,
-        "block_link_margin_bottom": 0,
+        "title_size": 16,
+        "title_size_desktop": 19,
+        "title_margin_bottom": 0,
+        "text_color": "#8d8d8d",
+        "text_size": 15,
+        "text_margin_bottom": 0,
+        "link_color": "#3366CC",
+        "link_hover_color": "#003366",
+        "link_size": 14,
+        "link_margin_top": 0,
         "image_width": "full",
         "image_ratio": "adapt",
-        "button_label": "Button label",
+        "button_label": "",
         "button_link": "",
-        "button_bg_color": "#000000",
-        "button_text_color": "#ffffff",
-        "button_border_radius": 4,
-        "button_padding_top": 12,
-        "button_padding_right": 24,
-        "button_padding_bottom": 12,
-        "button_padding_left": 24,
-        "button_margin_top": 20,
-        "button_margin_bottom": 0,
-        "button_text_size": 16,
-        "mobile_button_text_size": 14,
-        "mobile_button_padding_top": 10,
-        "mobile_button_padding_right": 20,
-        "mobile_button_padding_bottom": 10,
-        "mobile_button_padding_left": 20,
         "columns_desktop": 3,
         "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "",
-        "columns_mobile": "1",
-        "mobile_column_width": 80,
-        "mobile_column_gap": 10,
-        "swipe_on_mobile": true,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -162,6 +127,6 @@
   "order": [
     "banner",
     "product-grid",
-    "mixed_multicolumn_8EbtMx"
+    "product_grid_9Ncgxf"
   ]
 }
