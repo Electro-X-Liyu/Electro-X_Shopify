@@ -51,9 +51,6 @@
       font-size: {{ section.settings.title_size_mobile }}px;
       margin-top: {{ section.settings.title_margin_top_mobile }}px;
       margin-bottom: {{ section.settings.title_margin_bottom_mobile }}px;
-      {% if section.settings.title_color_mobile != blank %}
-      color: {{ section.settings.title_color_mobile }};
-      {% endif %}
     }
 
     /* 移动端区块标题样式 */
@@ -61,9 +58,6 @@
       font-size: {{ section.settings.block_title_size_mobile }}px;
       margin-top: {{ section.settings.block_title_margin_top_mobile }}px;
       margin-bottom: {{ section.settings.block_title_margin_bottom_mobile }}px;
-      {% if section.settings.block_title_color_mobile != blank %}
-      color: {{ section.settings.block_title_color_mobile }};
-      {% endif %}
     }
 
     /* 移动端文本样式 */
@@ -71,9 +65,6 @@
       font-size: {{ section.settings.block_text_size_mobile }}px;
       margin-top: {{ section.settings.block_text_margin_top_mobile }}px;
       margin-bottom: {{ section.settings.block_text_margin_bottom_mobile }}px;
-      {% if section.settings.block_text_color_mobile != blank %}
-      color: {{ section.settings.block_text_color_mobile }};
-      {% endif %}
     }
 
     /* 移动端链接样式 */
@@ -81,9 +72,6 @@
       font-size: {{ section.settings.block_link_size_mobile }}px;
       margin-top: {{ section.settings.block_link_margin_top_mobile }}px;
       margin-bottom: {{ section.settings.block_link_margin_bottom_mobile }}px;
-      {% if section.settings.block_link_color_mobile != blank %}
-      color: {{ section.settings.block_link_color_mobile }};
-      {% endif %}
     }
 
     .multicolumn-list {
@@ -220,9 +208,6 @@
   if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
     assign show_mobile_slider = true
   endif
-  
-  # 懒加载设置
-  assign lazy_loading_enabled = section.settings.enable_lazy_loading
 -%}
 
 <div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
@@ -333,10 +318,10 @@
                     {% endcapture %}
 
                     {% comment %} 图片懒加载实现 {% endcomment %}
-                    {%- if lazy_loading_enabled -%}
+                    {%- if settings.lazy_loading_enabled -%}
                       {{ 
                         block.settings.image 
-                        | image_url: width: 100 
+                        | image_url: width: 3200 
                         | image_tag:
                           widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200',
                           sizes: sizes,
@@ -344,7 +329,9 @@
                           loading: 'lazy',
                           decoding: 'async',
                           data-src: block.settings.image | image_url: width: 3200,
-                          data-sizes: 'auto'
+                          data-sizes: 'auto',
+                          data-aspectratio: block.settings.image.aspect_ratio,
+                          data-parent-fit: 'cover'
                       }}
                     {%- else -%}
                       {{ 
@@ -419,8 +406,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     // 图片懒加载观察器
-    const lazyImages = document.querySelectorAll('.multicolumn-card__image.lazyload');
-    if (lazyImages.length > 0 && 'IntersectionObserver' in window) {
+    if ('IntersectionObserver' in window) {
       const lazyImageObserver = new IntersectionObserver(function(entries, observer) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting) {
@@ -435,7 +421,7 @@
         });
       });
 
-      lazyImages.forEach(function(lazyImage) {
+      document.querySelectorAll('.multicolumn-card__image.lazyload').forEach(function(lazyImage) {
         lazyImageObserver.observe(lazyImage);
       });
     }
@@ -534,3 +520,729 @@
     }
   });
 </script>
+
+{% schema %}
+{
+  "name": "Mixed multicolumn",
+  "class": "section",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Multicolumn",
+      "label": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (desktop)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 9,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (mobile)",
+      "default": 20,
+      "info": "Minimum 9px for readability"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_top_desktop",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading top margin (desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "title_margin_top_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading top margin (mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom_desktop",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading bottom margin (desktop)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading bottom margin (mobile)",
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Medium"
+        },
+        {
+          "value": "h1",
+          "label": "Large"
+        },
+        {
+          "value": "h0",
+          "label": "Extra Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size preset"
+    },
+    {
+      "type": "header",
+      "content": "Block content styling - Desktop"
+    },
+    {
+      "type": "color",
+      "id": "block_title_color_desktop",
+      "label": "Column title color (desktop)",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "block_title_size_desktop",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Column title size (desktop)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "block_title_margin_top_desktop",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Column title top margin (desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "block_title_margin_bottom_desktop",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Column title bottom margin (desktop)",
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "block_text_color_desktop",
+      "label": "Column text color (desktop)",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "block_text_size_desktop",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Column text size (desktop)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "block_text_margin_top_desktop",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Column text top margin (desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "block_text_margin_bottom_desktop",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Column text bottom margin (desktop)",
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "block_link_color_desktop",
+      "label": "Column link color (desktop)",
+      "default": "#0066CC"
+    },
+    {
+      "type": "range",
+      "id": "block_link_size_desktop",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Column link size (desktop)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "block_link_margin_top_desktop",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Column link top margin (desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "block_link_margin_bottom_desktop",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Column link bottom margin (desktop)",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Block content styling - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "block_title_size_mobile",
+      "min": 9,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Column title size (mobile)",
+      "default": 16,
+      "info": "Minimum 9px for readability"
+    },
+    {
+      "type": "range",
+      "id": "block_title_margin_top_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Column title top margin (mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "block_title_margin_bottom_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Column title bottom margin (mobile)",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "block_text_size_mobile",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Column text size (mobile)",
+      "default": 12,
+      "info": "Minimum 9px for readability"
+    },
+    {
+      "type": "range",
+      "id": "block_text_margin_top_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Column text top margin (mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "block_text_margin_bottom_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Column text bottom margin (mobile)",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "block_link_size_mobile",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Column link size (mobile)",
+      "default": 12,
+      "info": "Minimum 9px for readability"
+    },
+    {
+      "type": "range",
+      "id": "block_link_margin_top_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Column link top margin (mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "block_link_margin_bottom_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Column link bottom margin (mobile)",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Image settings"
+    },
+    {
+      "type": "select",
+      "id": "image_width",
+      "options": [
+        {
+          "value": "third",
+          "label": "Third width"
+        },
+        {
+          "value": "half",
+          "label": "Half width"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        }
+      ],
+      "default": "full",
+      "label": "Image width"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "circle",
+          "label": "Circle"
+        }
+      ],
+      "default": "adapt",
+      "label": "Image ratio"
+    },
+    {
+      "type": "header",
+      "content": "Button settings"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Button label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "button_padding_top",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button top padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_right",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button right padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "button_padding_bottom",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button bottom padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_left",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button left padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "button_margin_top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Button top margin",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_margin_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Button bottom margin",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size (desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_text_size",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size (mobile)",
+      "default": 14,
+      "info": "Minimum 9px for readability"
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_padding_top",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile button top padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_padding_right",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile button right padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_padding_bottom",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile button bottom padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_padding_left",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile button left padding",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Layout settings"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3,
+      "label": "Maximum visible columns (desktop)",
+      "info": "Only 3 will be visible at once on desktop"
+    },
+    {
+      "type": "select",
+      "id": "column_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "left",
+      "label": "Content alignment"
+    },
+    {
+      "type": "select",
+      "id": "background_style",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "primary",
+          "label": "Primary"
+        }
+      ],
+      "default": "primary",
+      "label": "Background style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Mobile settings"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        }
+      ],
+      "default": "1",
+      "label": "Columns on mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_column_width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Mobile column width",
+      "default": 80,
+      "info": "Width of each column on mobile devices"
+    },
+    {
+      "type": "range",
+      "id": "mobile_column_gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile column gap",
+      "default": 10,
+      "info": "Space between columns on mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "swipe_on_mobile",
+      "default": true,
+      "label": "Enable swipe on mobile",
+      "info": "Always enabled with this design"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding (desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding (desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding (mobile)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding (mobile)",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image link to blog post",
+          "info": "Link to a specific blog post"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "default": "Column title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Column content. Describe your product or feature here.</p>",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mixed multicolumn",
+      "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
