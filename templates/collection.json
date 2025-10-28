@@ -74,7 +74,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/10.png",
-            "title": "<strong>PLUS - Functional Sports Drink</strong>",
+            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - Functional Sports Drink\">PLUS - Functional Sports Drink</a>",
             "text": "<p>Product description</p>",
             "link_label": "",
             "link": ""
