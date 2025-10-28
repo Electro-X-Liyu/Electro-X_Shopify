@@ -73,7 +73,8 @@
         "column_7JTC8P": {
           "type": "column",
           "settings": {
-            "title": "Product name",
+            "image": "shopify://shop_images/10.png",
+            "title": "<strong>PLUS - Functional Sports Drink</strong>",
             "text": "<p>Product description</p>",
             "link_label": "",
             "link": ""
