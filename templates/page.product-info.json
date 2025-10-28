@@ -217,7 +217,7 @@
         "heading_U6Y9jg": {
           "type": "heading",
           "settings": {
-            "heading": "<span style=\"text-decoration:underline\"> RELATED PRODUCTS </span>",
+            "heading": "RELATED PRODUCTS",
             "heading_size": "h2",
             "heading_font_size": 24,
             "heading_font_weight": "normal",
@@ -258,7 +258,7 @@
           "settings": {
             "image": "shopify://shop_images/14.png",
             "image_link": "shopify://pages/slim-electrolyte-sports-drink",
-            "title": "SLIM - Functional Sports Drink",
+            "title": "<a href=\"/pages/slim-electrolyte-sports-drink\" title=\"SLIM - Electrolyte Sports Drink\">SLIM - Functional Sports Drink</a>",
             "text": "<p>Razzamatazz Berry Flavor</p>",
             "link_label": "",
             "link": ""
