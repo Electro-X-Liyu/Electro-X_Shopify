@@ -7,8 +7,77 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  /* 桌面端标题样式 */
+  #shopify-section-{{ section.id }} .multicolumn__title .title {
+    color: {{ section.settings.title_color_desktop }};
+    font-size: {{ section.settings.title_size_desktop }}px;
+    margin-top: {{ section.settings.title_margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.title_margin_bottom_desktop }}px;
+  }
+
+  /* 桌面端区块标题样式 */
+  #shopify-section-{{ section.id }} .multicolumn-card__info h3 {
+    color: {{ section.settings.block_title_color_desktop }};
+    font-size: {{ section.settings.block_title_size_desktop }}px;
+    margin-top: {{ section.settings.block_title_margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.block_title_margin_bottom_desktop }}px;
+  }
+
+  /* 桌面端文本样式 */
+  #shopify-section-{{ section.id }} .multicolumn-card__info .rte {
+    color: {{ section.settings.block_text_color_desktop }};
+    font-size: {{ section.settings.block_text_size_desktop }}px;
+    margin-top: {{ section.settings.block_text_margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.block_text_margin_bottom_desktop }}px;
+  }
+
+  /* 桌面端链接样式 */
+  #shopify-section-{{ section.id }} .multicolumn-card__info .link {
+    color: {{ section.settings.block_link_color_desktop }};
+    font-size: {{ section.settings.block_link_size_desktop }}px;
+    margin-top: {{ section.settings.block_link_margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.block_link_margin_bottom_desktop }}px;
+  }
+
   /* 优化移动端滑动体验 */
   @media screen and (max-width: 749px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+    /* 移动端标题样式 */
+    #shopify-section-{{ section.id }} .multicolumn__title .title {
+      color: {{ section.settings.title_color_mobile }};
+      font-size: {{ section.settings.title_size_mobile }}px;
+      margin-top: {{ section.settings.title_margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.title_margin_bottom_mobile }}px;
+    }
+
+    /* 移动端区块标题样式 */
+    #shopify-section-{{ section.id }} .multicolumn-card__info h3 {
+      color: {{ section.settings.block_title_color_mobile }};
+      font-size: {{ section.settings.block_title_size_mobile }}px;
+      margin-top: {{ section.settings.block_title_margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.block_title_margin_bottom_mobile }}px;
+    }
+
+    /* 移动端文本样式 */
+    #shopify-section-{{ section.id }} .multicolumn-card__info .rte {
+      color: {{ section.settings.block_text_color_mobile }};
+      font-size: {{ section.settings.block_text_size_mobile }}px;
+      margin-top: {{ section.settings.block_text_margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.block_text_margin_bottom_mobile }}px;
+    }
+
+    /* 移动端链接样式 */
+    #shopify-section-{{ section.id }} .multicolumn-card__info .link {
+      color: {{ section.settings.block_link_color_mobile }};
+      font-size: {{ section.settings.block_link_size_mobile }}px;
+      margin-top: {{ section.settings.block_link_margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.block_link_margin_bottom_mobile }}px;
+    }
+
     .multicolumn-list {
       display: flex;
       flex-wrap: nowrap;
@@ -17,7 +86,6 @@
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       padding-bottom: 10px;
-      /* 添加以下优化属性 */
       overscroll-behavior-x: contain;
       scroll-behavior: smooth;
       scroll-padding: 0 10px;
@@ -32,30 +100,28 @@
       scroll-snap-align: start;
       flex: 0 0 {{ section.settings.mobile_column_width }}%;
       padding: 0 {{ section.settings.mobile_column_gap | divided_by: 2 }}px;
-      /* 优化移动端渲染 */
       transform: translateZ(0);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
     }
-    /* 隐藏所有移动端滑块按钮 */
+    
     .slider-mobile-gutter .slider-buttons {
       display: none !important;
     }
 
-    /* 移动按钮调整 */
     #shopify-section-{{ section.id }} .button--primary {
       font-size: {{ section.settings.mobile_button_text_size }}px;
       padding: {{ section.settings.mobile_button_padding_top }}px {{ section.settings.mobile_button_padding_right }}px {{ section.settings.mobile_button_padding_bottom }}px {{ section.settings.mobile_button_padding_left }}px;
     }
   }
 
-  /* 桌面端样式保持不变 */
+  /* 桌面端样式 */
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
-    /* 桌面端滑块容器 */
+    
     .multicolumn-list[data-desktop-slider] {
       display: flex;
       flex-wrap: nowrap;
@@ -72,13 +138,13 @@
     .multicolumn-list[data-desktop-slider]:active {
       cursor: grabbing;
     }
-    /* 列尺寸 */
+    
     .multicolumn-list__item {
       min-width: calc(33.33% - 20px);
       flex-shrink: 0;
       scroll-snap-align: start;
     }
-    /* 桌面导航箭头 */
+    
     .slider-buttons.desktop-only {
       display: flex;
       justify-content: space-between;
@@ -102,33 +168,7 @@
     }
   }
 
-  /* 文本样式保持不变 */
-  #shopify-section-{{ section.id }} .multicolumn__title .title {
-    color: {{ section.settings.title_color }};
-    font-size: {{ section.settings.title_size }}px;
-    margin-top: {{ section.settings.title_margin_top }}px;
-    margin-bottom: {{ section.settings.title_margin_bottom }}px;
-  }
-  #shopify-section-{{ section.id }} .multicolumn-card__info h3 {
-    color: {{ section.settings.block_title_color }};
-    font-size: {{ section.settings.block_title_size }}px;
-    margin-top: {{ section.settings.block_title_margin_top }}px;
-    margin-bottom: {{ section.settings.block_title_margin_bottom }}px;
-  }
-  #shopify-section-{{ section.id }} .multicolumn-card__info .rte {
-    color: {{ section.settings.block_text_color }};
-    font-size: {{ section.settings.block_text_size }}px;
-    margin-top: {{ section.settings.block_text_margin_top }}px;
-    margin-bottom: {{ section.settings.block_text_margin_bottom }}px;
-  }
-  #shopify-section-{{ section.id }} .multicolumn-card__info .link {
-    color: {{ section.settings.block_link_color }};
-    font-size: {{ section.settings.block_link_size }}px;
-    margin-top: {{ section.settings.block_link_margin_top }}px;
-    margin-bottom: {{ section.settings.block_link_margin_bottom }}px;
-  }
-
-  /* 按钮样式保持不变 */
+  /* 按钮样式 */
   #shopify-section-{{ section.id }} .button--primary {
     background-color: {{ section.settings.button_bg_color }};
     color: {{ section.settings.button_text_color }};
@@ -141,7 +181,7 @@
     text-align: center;
   }
 
-  /* 图片链接样式保持不变 */
+  /* 图片链接样式 */
   .multicolumn-card__image-wrapper {
     position: relative;
   }
@@ -153,6 +193,18 @@
     width: 100%;
     height: 100%;
     z-index: 2;
+  }
+
+  /* 懒加载图片样式 */
+  .multicolumn-card__image.lazyload,
+  .multicolumn-card__image.lazyloading {
+    opacity: 0.1;
+    transition: opacity 0.3s ease;
+    background: #f8f8f8;
+  }
+  .multicolumn-card__image.lazyloaded {
+    opacity: 1;
+    background: transparent;
   }
 {%- endstyle -%}
 
@@ -271,6 +323,12 @@
                       calc((100vw - {{ grid_space_mobile }}) * {{ image_width }} / {{ number_of_columns_mobile }})
                     {% endcapture %}
 
+                    {% comment %} 优化的图片懒加载实现 {% endcomment %}
+                    {%- assign lazy_load = false -%}
+                    {%- if forloop.index > 2 -%}
+                      {%- assign lazy_load = true -%}
+                    {%- endif -%}
+                    
                     {{
                       block.settings.image
                       | image_url: width: 3200
@@ -341,14 +399,13 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // 桌面滑块功能保持不变
+    // 桌面滑块功能
     const desktopSlider = document.querySelector('[data-desktop-slider]');
     if (desktopSlider) {
       const prevBtn = document.querySelector('.desktop-prev');
       const nextBtn = document.querySelector('.desktop-next');
       const itemWidth = document.querySelector('.multicolumn-list__item').offsetWidth + 20;
 
-      // 箭头导航
       prevBtn?.addEventListener('click', () => {
         desktopSlider.scrollBy({ left: -itemWidth * 3, behavior: 'smooth' });
       });
@@ -406,7 +463,7 @@
       }, { passive: true });
     }
     
-    // 移动端滚动优化 - 添加惯性滚动支持
+    // 移动端滚动优化
     const mobileSlider = document.querySelector('.multicolumn-list');
     if (mobileSlider && window.innerWidth <= 749) {
       let startX = 0;
@@ -426,7 +483,6 @@
           const dx = Math.abs(x - startX);
           const dy = Math.abs(y - startY);
           
-          // 确定用户是否主要是水平滑动
           isScrolling = dx > dy;
         }
       }, { passive: true });
@@ -454,42 +510,6 @@
       "label": "Heading"
     },
     {
-      "type": "color",
-      "id": "title_color",
-      "label": "Heading color",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "title_size",
-      "min": 12,
-      "max": 72,
-      "step": 1,
-      "unit": "px",
-      "label": "Heading size",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "title_margin_top",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Heading top margin",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "title_margin_bottom",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Heading bottom margin",
-      "default": 20
-    },
-    {
       "type": "select",
       "id": "heading_size",
       "options": [
@@ -511,114 +531,298 @@
     },
     {
       "type": "header",
-      "content": "Block content styling"
+      "content": "Desktop text styling"
     },
     {
       "type": "color",
-      "id": "block_title_color",
-      "label": "Column title color",
+      "id": "title_color_desktop",
+      "label": "Heading color (desktop)",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (desktop)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "title_margin_top_desktop",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading top margin (desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom_desktop",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading bottom margin (desktop)",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "block_title_color_desktop",
+      "label": "Column title color (desktop)",
       "default": "#333333"
     },
     {
       "type": "range",
-      "id": "block_title_size",
+      "id": "block_title_size_desktop",
       "min": 12,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Column title size",
+      "label": "Column title size (desktop)",
       "default": 18
     },
     {
       "type": "range",
-      "id": "block_title_margin_top",
+      "id": "block_title_margin_top_desktop",
       "min": 0,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Column title top margin",
+      "label": "Column title top margin (desktop)",
       "default": 0
     },
     {
       "type": "range",
-      "id": "block_title_margin_bottom",
+      "id": "block_title_margin_bottom_desktop",
       "min": 0,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Column title bottom margin",
+      "label": "Column title bottom margin (desktop)",
       "default": 10
     },
     {
       "type": "color",
-      "id": "block_text_color",
-      "label": "Column text color",
+      "id": "block_text_color_desktop",
+      "label": "Column text color (desktop)",
       "default": "#666666"
     },
     {
       "type": "range",
-      "id": "block_text_size",
+      "id": "block_text_size_desktop",
       "min": 12,
       "max": 24,
       "step": 1,
       "unit": "px",
-      "label": "Column text size",
+      "label": "Column text size (desktop)",
       "default": 14
     },
     {
       "type": "range",
-      "id": "block_text_margin_top",
+      "id": "block_text_margin_top_desktop",
       "min": 0,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Column text top margin",
+      "label": "Column text top margin (desktop)",
       "default": 0
     },
     {
       "type": "range",
-      "id": "block_text_margin_bottom",
+      "id": "block_text_margin_bottom_desktop",
       "min": 0,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Column text bottom margin",
+      "label": "Column text bottom margin (desktop)",
       "default": 10
     },
     {
       "type": "color",
-      "id": "block_link_color",
-      "label": "Column link color",
+      "id": "block_link_color_desktop",
+      "label": "Column link color (desktop)",
       "default": "#0066CC"
     },
     {
       "type": "range",
-      "id": "block_link_size",
+      "id": "block_link_size_desktop",
       "min": 12,
       "max": 24,
       "step": 1,
       "unit": "px",
-      "label": "Column link size",
+      "label": "Column link size (desktop)",
       "default": 14
     },
     {
       "type": "range",
-      "id": "block_link_margin_top",
+      "id": "block_link_margin_top_desktop",
       "min": 0,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Column link top margin",
+      "label": "Column link top margin (desktop)",
       "default": 0
     },
     {
       "type": "range",
-      "id": "block_link_margin_bottom",
+      "id": "block_link_margin_bottom_desktop",
       "min": 0,
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Column link bottom margin",
+      "label": "Column link bottom margin (desktop)",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile text styling"
+    },
+    {
+      "type": "color",
+      "id": "title_color_mobile",
+      "label": "Heading color (mobile)",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "title_margin_top_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading top margin (mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading bottom margin (mobile)",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "block_title_color_mobile",
+      "label": "Column title color (mobile)",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "block_title_size_mobile",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Column title size (mobile)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "block_title_margin_top_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Column title top margin (mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "block_title_margin_bottom_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Column title bottom margin (mobile)",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "block_text_color_mobile",
+      "label": "Column text color (mobile)",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "block_text_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Column text size (mobile)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "block_text_margin_top_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Column text top margin (mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "block_text_margin_bottom_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Column text bottom margin (mobile)",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "block_link_color_mobile",
+      "label": "Column link color (mobile)",
+      "default": "#0066CC"
+    },
+    {
+      "type": "range",
+      "id": "block_link_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Column link size (mobile)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "block_link_margin_top_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Column link top margin (mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "block_link_margin_bottom_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Column link bottom margin (mobile)",
       "default": 0
     },
     {
@@ -938,7 +1142,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
+      "label": "Top padding (desktop)",
       "default": 36
     },
     {
@@ -948,8 +1152,28 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "Bottom padding (desktop)",
       "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding (mobile)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding (mobile)",
+      "default": 24
     }
   ],
   "blocks": [
