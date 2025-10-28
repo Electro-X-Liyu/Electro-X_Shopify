@@ -269,7 +269,7 @@
           "settings": {
             "image": "shopify://shop_images/10.png",
             "image_link": "shopify://pages/plus-electrolyte-sports-drink",
-            "title": "PLUS- BCAA Sports Drink",
+            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - Functional Sports Drink\">PLUS- BCAA Sports Drink</a>",
             "text": "<p>Pineapple Mate Tea Flavor</p>",
             "link_label": "",
             "link": ""
