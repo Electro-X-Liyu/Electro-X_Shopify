@@ -713,6 +713,7 @@
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "",
+        "title_color": "#000000",
         "title_size_desktop": 12,
         "title_size_mobile": 17,
         "title_margin_top_desktop": 0,
@@ -735,7 +736,7 @@
         "block_title_size_mobile": 17,
         "block_title_margin_top_mobile": 0,
         "block_title_margin_bottom_mobile": 0,
-        "block_text_size_mobile": 12,
+        "block_text_size_mobile": 9,
         "block_text_margin_top_mobile": 0,
         "block_text_margin_bottom_mobile": 8,
         "block_link_size_mobile": 12,
@@ -902,6 +903,7 @@
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "",
+        "title_color": "#000000",
         "title_size_desktop": 24,
         "title_size_mobile": 20,
         "title_margin_top_desktop": 0,
