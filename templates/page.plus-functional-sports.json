@@ -33,7 +33,7 @@
             "caption_font_weight": "default",
             "caption_font_size": 16,
             "caption_color": "rgba(0,0,0,0)",
-            "text": "<h2>Electrolyte + BCAA <br/>Sports Performance  |  Post-Workout Recovery.</h2><p> </p><h3><strong>Pineapple Mate Flavor</strong></h3><p>Featuring Brazilian maté tea leaves, known for their earthy depth and invigorating aftertaste. Paired with pineapple juice from Yunnan Province, China. Grown at high altitudes under crisp mountain air, Yunnan's pineapples develop a uniquely vibrant sweetness, balancing the maté's intensity.</p><p> </p><h3><strong>Each bottle contains:</strong></h3><ul><li><strong>500mg Branched-Chain Amino Acids </strong>(BCAAs | 2:1:1 Ratio)<br/>    Leucine, Isoleucine, Valine – Reduces muscle fatigue, accelerates recovery.</li><li><strong>450mg+ Natural Tea Polyphenols </strong>- Antioxidant-rich extract to sharpen focus, boost energy, and combat oxidative stress post-workout.</li><li><strong>50mg Natural Caffeine </strong>(from Mate tea extract):<br/>Enhances mental alertness and energy without jitters</li><li><strong>Electrolytes<br/>205mg Sodium: </strong>Optimizes fluid retention and hydration via osmosis.<br/><strong>100mg Potassium: </strong>Supports nerve function, muscle contractions, and cellular fluid balance.<br/><strong>75mg Calcium: </strong>Aids muscle function and electrolyte stability.<br/><strong>15mg Magnesium:</strong> Critical for cellular water distribution and energy metabolism.</li><li><strong>Vitamin Blend</strong><br/>Vitamin C, B₆, E, Niacin (B₃) – Boosts immunity, supports energy metabolism, and reduces oxidative stress.</li><li><strong>28g Carbohydrate per bottle</strong></li><li><strong>92 Calories per bottle</strong></li></ul>",
+            "text": "<h2>Electrolyte + BCAA <br/>Sports Performance  |  Post-Workout Recovery</h2><p> </p><h3><strong>Pineapple Mate Flavor</strong></h3><p>Featuring Brazilian maté tea leaves, known for their earthy depth and invigorating aftertaste. Paired with pineapple juice from Yunnan Province, China. Grown at high altitudes under crisp mountain air, Yunnan's pineapples develop a uniquely vibrant sweetness, balancing the maté's intensity.</p><p> </p><h3><strong>Each bottle contains:</strong></h3><ul><li><strong>500mg Branched-Chain Amino Acids </strong>(BCAAs | 2:1:1 Ratio)<br/>    Leucine, Isoleucine, Valine – Reduces muscle fatigue, accelerates recovery.</li><li><strong>450mg+ Natural Tea Polyphenols </strong>- Antioxidant-rich extract to sharpen focus, boost energy, and combat oxidative stress post-workout.</li><li><strong>50mg Natural Caffeine </strong>(from Mate tea extract):<br/>Enhances mental alertness and energy without jitters</li><li><strong>Electrolytes<br/>205mg Sodium: </strong>Optimizes fluid retention and hydration via osmosis.<br/><strong>100mg Potassium: </strong>Supports nerve function, muscle contractions, and cellular fluid balance.<br/><strong>75mg Calcium: </strong>Aids muscle function and electrolyte stability.<br/><strong>15mg Magnesium:</strong> Critical for cellular water distribution and energy metabolism.</li><li><strong>Vitamin Blend</strong><br/>Vitamin C, B₆, E, Niacin (B₃) – Boosts immunity, supports energy metabolism, and reduces oxidative stress.</li><li><strong>28g Carbohydrate per bottle</strong></li><li><strong>92 Calories per bottle</strong></li></ul>",
             "text_font_weight": "default",
             "text_font_size": 16,
             "text_color": "#000000",
@@ -87,28 +87,10 @@
             "text_alignment_mobile": "center",
             "color_scheme": ""
           }
-        },
-        "slide_7b9DQt": {
-          "type": "slide",
-          "settings": {
-            "image_overlay_opacity": 0,
-            "heading": "Image slide",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
-            "link": "",
-            "button_style_secondary": false,
-            "show_text_box": true,
-            "box_align": "middle-center",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
-            "color_scheme": ""
-          }
         }
       },
       "block_order": [
-        "slide_j4em33",
-        "slide_7b9DQt"
+        "slide_j4em33"
       ],
       "name": "Mobile Product Banner",
       "settings": {
@@ -128,7 +110,7 @@
         "heading_nmTygw": {
           "type": "heading",
           "settings": {
-            "heading": "<strong>PLUS - BCCA Functional Drink</strong>",
+            "heading": "PLUS - BCCA Functional Drink",
             "heading_size": "h2",
             "heading_font_weight": "normal",
             "heading_font_size": 19,
@@ -138,7 +120,7 @@
         "text_deKy9A": {
           "type": "text",
           "settings": {
-            "text": "<p>380mL |  580mL |  1L<br/>Daily Hydration  |  Sports Hydration</p>",
+            "text": "<p>Electrolyte + BCAA Sports <br/>Performance  |  Post-Workout Recovery</p>",
             "text_font_weight": "normal",
             "text_font_size": 12,
             "text_color": "#000000"
@@ -147,7 +129,7 @@
         "text_rr9WyG": {
           "type": "text",
           "settings": {
-            "text": "<ul><li>Sourced from the mineral-rich volcanic springs of China's Northern Border in Heilongjiang Province</li><li>Exceptionally soft mouth taste with balanced mineralization (TDS: 400-800 mg/L)</li><li>Natural Alkaline Spring Water with <strong>pH level of 8.8 and above</strong></li><li><strong>100% </strong>recyclable PET</li><li><strong>350-700mg/L </strong>sodium bicarbonate</li></ul>",
+            "text": "<p><strong><br/>Pineapple Mate Flavor</strong></p><p>Featuring Brazilian maté tea leaves, known for their earthy depth and invigorating aftertaste. Paired with pineapple juice from Yunnan Province, China. Grown at high altitudes under crisp mountain air, Yunnan's pineapples develop a uniquely vibrant sweetness, balancing the maté's intensity.<br/><br/></p><p><strong>Each bottle contains:</strong></p><ul><li><strong>500mg Branched-Chain Amino Acids </strong>(BCAAs | 2:1:1 Ratio)<br/>Leucine, Isoleucine, Valine – Reduces muscle fatigue, accelerates recovery.</li><li><strong>450mg+ Natural Tea Polyphenols </strong>- Antioxidant-rich extract to sharpen focus, boost energy, and combat oxidative stress post-workout.</li><li><strong>50mg Natural Caffeine </strong>(from Mate tea extract):<br/>Enhances mental alertness and energy without jitters</li><li><strong>Electrolytes<br/>205mg Sodium: </strong>Optimizes fluid retention and hydration via osmosis.<br/><strong>100mg Potassium: </strong>Supports nerve function, muscle contractions, and cellular fluid balance.<br/><strong>75mg Calcium: </strong>Aids muscle function and electrolyte stability.<br/><strong>15mg Magnesium:</strong> Critical for cellular water distribution and energy metabolism.</li><li><strong>Vitamin Blend</strong><br/>Vitamin C, B₆, E, Niacin (B₃) – Boosts immunity, supports energy metabolism, and reduces oxidative stress.</li><li><strong>28g Carbohydrate per bottle</strong></li><li><strong>92 Calories per bottle</strong></li></ul>",
             "text_font_weight": "normal",
             "text_font_size": 9,
             "text_color": "#000000"
