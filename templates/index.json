@@ -108,7 +108,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-2.png",
-            "link": "shopify://products/natural-alkaline-water",
+            "link": "shopify://pages/natural-alkaline-water",
             "alt_text": ""
           }
         },
@@ -116,7 +116,7 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/banner-3.png",
-            "link": "shopify://products/natural-alkaline-water",
+            "link": "shopify://pages/natural-alkaline-water",
             "alt_text": ""
           }
         },
