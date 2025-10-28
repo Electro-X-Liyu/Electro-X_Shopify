@@ -216,10 +216,10 @@
           "settings": {
             "image": "shopify://shop_images/12.png",
             "image_link": "shopify://pages/plus-electrolyte-sports-drink",
-            "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Sports Drink\">PLUS- Functional Sports Drink</a>",
+            "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Sports Drink\">PLUS- Electrolyte Functional Drink</a>",
             "text": "<p>Jasmine Green Grape Flavor</p>",
             "link_label": "",
-            "link": ""
+            "link": "shopify://pages/plus-electrolyte-sports-drink"
           }
         },
         "column_LgK9WR": {
@@ -227,10 +227,10 @@
           "settings": {
             "image": "shopify://shop_images/14.png",
             "image_link": "shopify://pages/slim-electrolyte-sports-drink",
-            "title": "<a href=\"/pages/slim-electrolyte-sports-drink\" title=\"SLIM - Electrolyte Sports Drink\">SLIM - Functional Sports Drink</a>",
+            "title": "<a href=\"/pages/slim-electrolyte-sports-drink\" title=\"SLIM - Electrolyte Sports Drink\">SLIM - Functional Drink</a>",
             "text": "<p>Razzamatazz Berry Flavor</p>",
             "link_label": "",
-            "link": ""
+            "link": "shopify://pages/slim-electrolyte-sports-drink"
           }
         },
         "column_W8pXqy": {
@@ -241,7 +241,7 @@
             "title": "<a href=\"/pages/natural-alkaline-water\" title=\"Natural Alkaline Water\">Natural Alkaline Water</a>",
             "text": "<p>380mL | 580mL | 1L</p>",
             "link_label": "",
-            "link": ""
+            "link": "shopify://pages/natural-alkaline-water"
           }
         }
       },
