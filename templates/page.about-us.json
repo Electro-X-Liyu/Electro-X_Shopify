@@ -82,10 +82,10 @@
         "show_text_below": true
       }
     },
-    "desktop_rich_text_UdXn6G": {
+    "desktop_rich_text_DkhAwt": {
       "type": "Desktop-Rich-Text",
       "blocks": {
-        "heading_pYQhBe": {
+        "heading_TC8MGR": {
           "type": "heading",
           "settings": {
             "heading": "Contact Us",
@@ -95,10 +95,10 @@
             "heading_color": "#000000"
           }
         },
-        "text_KKpLiC": {
+        "text_Mi7YDt": {
           "type": "text",
           "settings": {
-            "text": "<p>Contact us and we will get back to you shortly</p>",
+            "text": "<p>Contact us and we'll get back to you shortly.</p>",
             "text_font_size": 14,
             "text_font_weight": "normal",
             "text_color": "#8d8d8d"
@@ -106,8 +106,8 @@
         }
       },
       "block_order": [
-        "heading_pYQhBe",
-        "text_KKpLiC"
+        "heading_TC8MGR",
+        "text_Mi7YDt"
       ],
       "name": "Desktop Rich Text",
       "settings": {
@@ -117,35 +117,35 @@
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
-        "padding_bottom": 52
+        "padding_bottom": 24
       }
     },
-    "mobile_rich_text_G9kRe8": {
+    "mobile_rich_text_jLmAGE": {
       "type": "Mobile-rich-text",
       "blocks": {
-        "heading_bgjb46": {
+        "heading_46gmaQ": {
           "type": "heading",
           "settings": {
             "heading": "Contact Us",
             "heading_size": "h2",
             "heading_font_weight": "normal",
-            "heading_font_size": 0,
+            "heading_font_size": 17,
             "heading_color": "#000000"
           }
         },
-        "text_UafB3J": {
+        "text_eFan89": {
           "type": "text",
           "settings": {
-            "text": "<h6>Leave your message and we will get back to you shortly</h6>",
+            "text": "<p>Leave your message and we‘ll get back to you shortly.</p>",
             "text_font_weight": "normal",
-            "text_font_size": 0,
+            "text_font_size": 11,
             "text_color": "#8d8d8d"
           }
         }
       },
       "block_order": [
-        "heading_bgjb46",
-        "text_UafB3J"
+        "heading_46gmaQ",
+        "text_eFan89"
       ],
       "name": "Mobile-Rich-Text",
       "settings": {
@@ -173,8 +173,8 @@
     "main",
     "banner_titVL6",
     "mobile_banner_tdPMBJ",
-    "desktop_rich_text_UdXn6G",
-    "mobile_rich_text_G9kRe8",
+    "desktop_rich_text_DkhAwt",
+    "mobile_rich_text_jLmAGE",
     "contact_form_WetRcP"
   ]
 }
