@@ -94,7 +94,7 @@
           "type": "ambassador",
           "settings": {
             "image": "shopify://shop_images/9.jpg",
-            "title": "Ambassador Name"
+            "title": "Peggy"
           }
         },
         "ambassador_YabKmL": {
