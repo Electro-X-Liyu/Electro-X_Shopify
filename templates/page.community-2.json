@@ -41,38 +41,26 @@
         "heading_KghUYT": {
           "type": "heading",
           "settings": {
-            "heading": "请输入标题",
+            "heading": "Community Ambassadors",
             "heading_size": "h1",
             "heading_font_size": 24,
-            "heading_font_weight": "bold",
+            "heading_font_weight": "normal",
             "heading_color": "#000000"
           }
         },
         "text_EgjMJw": {
           "type": "text",
           "settings": {
-            "text": "<p>分享您的品牌故事和产品信息</p>",
-            "text_font_size": 16,
+            "text": "<h2></h2><p>We have built a dynamic network of ambassadors - CrossFit trainers, marathon runners, cyclists, and beyond. Through their stories, sweat, and passion, fueled by ELECTRO X, together we inspire communities to push further.</p>",
+            "text_font_size": 14,
             "text_font_weight": "normal",
             "text_color": "#333333"
-          }
-        },
-        "button_7eaARg": {
-          "type": "button",
-          "settings": {
-            "button_label": "按钮文字",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
         "heading_KghUYT",
-        "text_EgjMJw",
-        "button_7eaARg"
+        "text_EgjMJw"
       ],
       "name": "Desktop Rich Text",
       "settings": {
@@ -98,6 +86,7 @@
         "ambassador_Dp6Yeg": {
           "type": "ambassador",
           "settings": {
+            "image": "shopify://shop_images/KV-03.jpg",
             "title": "Ambassador Name"
           }
         },
