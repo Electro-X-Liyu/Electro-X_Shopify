@@ -129,7 +129,7 @@
         "heading_RDhwGR": {
           "type": "heading",
           "settings": {
-            "heading": "PLUS - BCAA Functional Sports Drink",
+            "heading": "PLUS - Functional Sports Drink",
             "heading_size": "h2",
             "heading_font_weight": "normal",
             "heading_font_size": 19,
@@ -235,7 +235,7 @@
           "settings": {
             "image": "shopify://shop_images/12.png",
             "image_link": "shopify://pages/plus-electrolyte-sports-drink",
-            "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Sports Drink\">PLUS - Electrolyte Functional Sports Drink</a>",
+            "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Sports Drink\">PLUS - Functional Sports Drink</a>",
             "text": "<p>Jasmine Green Grape Flavor</p>",
             "link_label": "",
             "link": "shopify://pages/plus-electrolyte-sports-drink"
@@ -246,7 +246,7 @@
           "settings": {
             "image": "shopify://shop_images/14.png",
             "image_link": "shopify://pages/slim-electrolyte-sports-drink",
-            "title": "<a href=\"/pages/slim-electrolyte-sports-drink\" title=\"SLIM - Electrolyte Sports Drink\">SLIM - Electrolyte Functional Sports Drink</a>",
+            "title": "<a href=\"/pages/slim-electrolyte-sports-drink\" title=\"SLIM - Electrolyte Sports Drink\">SLIM - Functional Sports Drink</a>",
             "text": "<p>Razzamatazz Berry Flavor</p>",
             "link_label": "",
             "link": "shopify://pages/slim-electrolyte-sports-drink"
