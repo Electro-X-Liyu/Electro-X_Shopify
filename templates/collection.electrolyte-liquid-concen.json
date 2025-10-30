@@ -63,6 +63,7 @@
       "blocks": {
         "column_TCqacX": {
           "type": "column",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/15related.png",
             "title": "<a href=\"/pages/natural-alkaline-water\" title=\"Natural Alkaline Water\">Natural Alkaline Water</a>",
@@ -73,6 +74,7 @@
         },
         "column_7JTC8P": {
           "type": "column",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/10.png",
             "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - Functional Sports Drink\">PLUS - BCAA Functional Sports Drink</a>",
@@ -83,6 +85,7 @@
         },
         "column_YzigJ8": {
           "type": "column",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/12.png",
             "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Functional Sports Drink\">PLUS - Functional Sports Drink</a>",
@@ -93,6 +96,7 @@
         },
         "column_NbkCAJ": {
           "type": "column",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/14.png",
             "title": "<a href=\"/pages/slim-electrolyte-sports-drink\" title=\"SLIM - Electrolyte Functional Sports Drink\">SLIM - Functional Sports Drink</a>",
