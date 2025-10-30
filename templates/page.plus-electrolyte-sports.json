@@ -67,55 +67,6 @@
         "padding_bottom": 0
       }
     },
-    "desktop_multirow_Eqy6ge": {
-      "type": "desktop-multirow",
-      "blocks": {
-        "row_eUKxTe": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/12.png",
-            "heading": "<strong>PLUS - Electrolyte Functional Sports Drink</strong>",
-            "heading_font_weight": "default",
-            "heading_font_size": 24,
-            "heading_color": "#000000",
-            "caption": "",
-            "caption_font_weight": "default",
-            "caption_font_size": 16,
-            "caption_color": "rgba(0,0,0,0)",
-            "text": "<h2>Electrolyte + Glucose<br/>Sports Performance  |  Functional Hydration</h2><p> </p><h3><strong>Jasmine Green Grapes Flavor</strong></h3><p>Crafted with Guangxi jasmine green tea-renowned for its delicate floral aroma and lingering aftertaste-and Valencian green grapes, sun-kissed in Spain's Mediterranean vineyards.</p><p> </p><h3><strong>Each bottle contains:</strong></h3><ul><li><strong>Electrolytes<br/>225mg Sodium: </strong>Optimizes fluid retention and hydration via osmosis.<br/><strong>100mg Potassium: </strong>Supports nerve function, muscle contractions, and cellular fluid balance.<br/><strong>85mg Calcium: </strong>Aids muscle function and electrolyte stability.<br/><strong>20mg Magnesium:</strong> Critical for cellular water distribution and energy metabolism.<br/></li><li><strong>18g Glucose</strong> - Rapid-acting carbohydrate for immediate energy and sustained performance.</li><li><strong>150mg+ Natural Tea Polyphenols</strong> - Antioxidant-rich extract to sharpen focus, boost energy, and combat post-workout oxidative stress.</li><li><strong>Vitamin Blend </strong>-<br/>   Vitamin C, B₆, E, Niacin (B₃) – Boosts immunity, supports energy metabolism, and reduces oxidative stress.</li><li><strong>37g Carbohydrate per bottle</strong></li><li><strong>160 Calories per bottle</strong></li></ul><p></p>",
-            "text_font_weight": "default",
-            "text_font_size": 16,
-            "text_color": "#000000",
-            "button_label": "",
-            "button_link": "",
-            "button_font_weight": "default",
-            "button_font_size": 16,
-            "button_text_color": "rgba(0,0,0,0)",
-            "button_bg_color": "rgba(0,0,0,0)",
-            "button_border_color": "rgba(0,0,0,0)"
-          }
-        }
-      },
-      "block_order": [
-        "row_eUKxTe"
-      ],
-      "name": "Desktop Multirow",
-      "settings": {
-        "image_height": "adapt",
-        "desktop_image_width": "medium",
-        "image_layout": "alternate-left",
-        "heading_size": "h1",
-        "text_style": "body",
-        "button_style": "secondary",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "left",
-        "section_color_scheme": "",
-        "row_color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "mobile_product_banner_YbXPRU": {
       "type": "mobile-product-banner",
       "blocks": {
@@ -368,7 +319,6 @@
   "order": [
     "main",
     "desktop_multirow_ffNLhr",
-    "desktop_multirow_Eqy6ge",
     "mobile_product_banner_YbXPRU",
     "mobile_rich_text_wgEgEL",
     "desktop_rich_text_edfBr3",
