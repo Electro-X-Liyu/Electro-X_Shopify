@@ -75,7 +75,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/10.png",
-            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - Functional Sports Drink\">PLUS - BCAA Functional Sports Drink</a>",
+            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - Functional Sports Drink\">PLUS - Functional Sports Drink</a>",
             "text": "<p>Pineapple Yerba Mate Flavor</p>",
             "link_label": "",
             "link": "shopify://pages/plus-functional-sports-drink"
