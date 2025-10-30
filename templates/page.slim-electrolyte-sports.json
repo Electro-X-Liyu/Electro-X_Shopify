@@ -25,7 +25,7 @@
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/14.png",
-            "heading": "<strong>SLIM - Electrolyte Functional Sports Drink</strong>",
+            "heading": "<strong>SLIM - Functional Sports Drink</strong>",
             "heading_font_weight": "default",
             "heading_font_size": 24,
             "heading_color": "#000000",
@@ -110,7 +110,7 @@
         "heading_B8kyqK": {
           "type": "heading",
           "settings": {
-            "heading": "PLUS - Electrolyte Functional Sports Drink",
+            "heading": "PLUS - Functional Sports Drink",
             "heading_size": "h2",
             "heading_font_weight": "normal",
             "heading_font_size": 19,
@@ -216,7 +216,7 @@
           "settings": {
             "image": "shopify://shop_images/12.png",
             "image_link": "shopify://pages/plus-electrolyte-sports-drink",
-            "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Sports Drink\">PLUS - Electrolyte Functional Sports Drink</a>",
+            "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Sports Drink\">PLUS - Functional Sports Drink</a>",
             "text": "<p>Jasmine Green Grape Flavor</p>",
             "link_label": "",
             "link": "shopify://pages/plus-electrolyte-sports-drink"
@@ -227,7 +227,7 @@
           "settings": {
             "image": "shopify://shop_images/10.png",
             "image_link": "shopify://pages/plus-functional-sports-drink",
-            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - BCCA Functional Sport Drink\">PLUS - BCCA Functional Sports Drink</a>",
+            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - BCCA Functional Sport Drink\">PLUS - Functional Sports Drink</a>",
             "text": "<p>Pineapple Yerba Mate Flavor</p>",
             "link_label": "",
             "link": "shopify://pages/plus-functional-sports-drink"
