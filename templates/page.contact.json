@@ -11,17 +11,106 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 36,
         "padding_bottom": 36,
         "text_alignment": "left"
       }
     },
+    "desktop_rich_text_n87Wfw": {
+      "type": "Desktop-Rich-Text",
+      "blocks": {
+        "heading_RrwtXr": {
+          "type": "heading",
+          "settings": {
+            "heading": "Contact Us",
+            "heading_size": "h1",
+            "heading_font_size": 24,
+            "heading_font_weight": "normal",
+            "heading_color": "#000000"
+          }
+        },
+        "text_4nEePB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Contact us and we will get back to you shortly</p>",
+            "text_font_size": 14,
+            "text_font_weight": "normal",
+            "text_color": "#8d8d8d"
+          }
+        },
+        "button_Mbz4bG": {
+          "type": "button",
+          "settings": {
+            "button_label": "按钮文字",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_RrwtXr",
+        "text_4nEePB",
+        "button_Mbz4bG"
+      ],
+      "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "container_width": 800,
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "mobile_rich_text_4r8LNT": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_nBjAYz": {
+          "type": "heading",
+          "settings": {
+            "heading": "Contact Us",
+            "heading_size": "h2",
+            "heading_font_weight": "normal",
+            "heading_font_size": 0,
+            "heading_color": "#000000"
+          }
+        },
+        "text_UwMrzN": {
+          "type": "text",
+          "settings": {
+            "text": "<h6>Leave your message and we will get back to you shortly</h6>",
+            "text_font_weight": "normal",
+            "text_font_size": 0,
+            "text_color": "#8d8d8d"
+          }
+        }
+      },
+      "block_order": [
+        "heading_nBjAYz",
+        "text_UwMrzN"
+      ],
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "text_container_width": 0,
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "form": {
       "type": "contact-form",
       "settings": {
         "heading": "",
-        "heading_size": "h1",
+        "heading_size": "h2",
         "color_scheme": "scheme-4",
         "padding_top": 36,
         "padding_bottom": 36
@@ -30,6 +119,8 @@
   },
   "order": [
     "main",
+    "desktop_rich_text_n87Wfw",
+    "mobile_rich_text_4r8LNT",
     "form"
   ]
 }
