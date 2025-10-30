@@ -216,7 +216,7 @@
           "settings": {
             "image": "shopify://shop_images/10.png",
             "image_link": "shopify://pages/plus-functional-sports-drink",
-            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - BCCA Functional Sport Drink\">PLUS - BCCA Functional Sports Drink</a>",
+            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - BCCA Functional Sport Drink\">PLUS - Functional Sports Drink</a>",
             "text": "<p>Pineapple Yerba Mate Flavor</p>",
             "link_label": "",
             "link": "shopify://pages/plus-functional-sports-drink"
@@ -227,7 +227,7 @@
           "settings": {
             "image": "shopify://shop_images/14.png",
             "image_link": "shopify://pages/slim-electrolyte-sports-drink",
-            "title": "<a href=\"/pages/slim-electrolyte-sports-drink\" title=\"SLIM - Electrolyte Sports Drink\">SLIM - Electrolyte Functional Sports Drink</a>",
+            "title": "<a href=\"/pages/slim-electrolyte-sports-drink\" title=\"SLIM - Electrolyte Sports Drink\">SLIM - Functional Sports Drink</a>",
             "text": "<p>Razzamatazz Berry Flavor</p>",
             "link_label": "",
             "link": "shopify://pages/slim-electrolyte-sports-drink"
