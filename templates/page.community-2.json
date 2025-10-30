@@ -108,43 +108,49 @@
           "type": "ambassador",
           "settings": {
             "image": "shopify://shop_images/7.jpg",
-            "title": "Ambassador Name"
+            "title": "Crystal"
           }
         },
         "ambassador_hktwDA": {
           "type": "ambassador",
           "settings": {
+            "image": "shopify://shop_images/6.jpg",
             "title": "Ambassador Name"
           }
         },
         "ambassador_fp4Kkm": {
           "type": "ambassador",
           "settings": {
+            "image": "shopify://shop_images/5_16e8bd64-6fdb-4e7c-9189-ded380c77a1b.jpg",
             "title": "Ambassador Name"
           }
         },
         "ambassador_gztW9Q": {
           "type": "ambassador",
           "settings": {
+            "image": "shopify://shop_images/4_e8e31333-c046-495f-be31-7c01276117fb.jpg",
             "title": "Ambassador Name"
           }
         },
         "ambassador_KGJFk4": {
           "type": "ambassador",
           "settings": {
+            "image": "shopify://shop_images/3_7ba65da9-7c07-4a4b-9cc7-1e77ce880aa0.jpg",
             "title": "Ambassador Name"
           }
         },
         "ambassador_RNnNV7": {
           "type": "ambassador",
           "settings": {
+            "image": "shopify://shop_images/2_f9583dd5-a19c-40c2-9e68-658c3cbc1b21.jpg",
             "title": "Ambassador Name"
           }
         },
         "ambassador_reNArQ": {
           "type": "ambassador",
           "settings": {
-            "title": "Ambassador Name"
+            "image": "shopify://shop_images/1_c1f7db68-b42a-4160-8c52-77b22812fa80.jpg",
+            "title": "Momo.V"
           }
         },
         "ambassador_eEJMAi": {
