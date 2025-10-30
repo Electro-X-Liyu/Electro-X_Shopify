@@ -83,8 +83,37 @@
         "column_YzigJ8": {
           "type": "column",
           "settings": {
-            "title": "Product name",
-            "text": "<p>Product description</p>",
+            "image": "shopify://shop_images/12.png",
+            "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Functional Sports Drink\">PLUS - Functional Sports Drink</a>",
+            "text": "<p>Jasmine Green Grape Flavor</p>",
+            "link_label": "",
+            "link": "shopify://pages/plus-electrolyte-sports-drink"
+          }
+        },
+        "column_NbkCAJ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/14.png",
+            "title": "<a href=\"/pages/slim-electrolyte-sports-drink\" title=\"SLIM - Electrolyte Functional Sports Drink\">SLIM - Functional Sports Drink</a>",
+            "text": "<p>Razzmatazz Berry Flavor</p>",
+            "link_label": "",
+            "link": "shopify://pages/slim-electrolyte-sports-drink"
+          }
+        },
+        "column_yfxhtm": {
+          "type": "column",
+          "settings": {
+            "title": "Product Name",
+            "text": "<p>Product description and features.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_fERzt6": {
+          "type": "column",
+          "settings": {
+            "title": "Product Name",
+            "text": "<p>Product description and features.</p>",
             "link_label": "",
             "link": ""
           }
@@ -93,7 +122,10 @@
       "block_order": [
         "column_TCqacX",
         "column_7JTC8P",
-        "column_YzigJ8"
+        "column_YzigJ8",
+        "column_NbkCAJ",
+        "column_yfxhtm",
+        "column_fERzt6"
       ],
       "name": "Product Grid",
       "settings": {
