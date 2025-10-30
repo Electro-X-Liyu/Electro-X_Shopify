@@ -9,34 +9,67 @@
  */
 {
   "sections": {
-    "image_banner_8m8LK4": {
-      "type": "image-banner",
-      "name": "t:sections.image-banner.presets.name",
-      "settings": {
-        "image": "shopify://shop_images/2-1.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
-    },
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28,
         "text_alignment": "center"
       }
+    },
+    "desktop_multirow_FHNw6K": {
+      "type": "desktop-multirow",
+      "blocks": {
+        "row_yNJTNU": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/14.png",
+            "heading": "<strong>PLUS - BCAA Functional Sports Drink</strong>",
+            "heading_font_weight": "default",
+            "heading_font_size": 24,
+            "heading_color": "#000000",
+            "caption": "",
+            "caption_font_weight": "default",
+            "caption_font_size": 19,
+            "caption_color": "#ffffff",
+            "text": "<h2>Electrolyte + BCAA <br/>Sports Performance  |  Post-Workout Recovery</h2><p> </p><h3><strong>Pineapple Mate Flavor</strong></h3><p>Featuring Brazilian maté tea leaves, known for their earthy depth and invigorating aftertaste. Paired with pineapple juice from Yunnan Province, China. Grown at high altitudes under crisp mountain air, Yunnan's pineapples develop a uniquely vibrant sweetness, balancing the maté's intensity.</p><p> </p><h3><strong>Each bottle contains:</strong></h3><ul><li><strong>500mg Branched-Chain Amino Acids </strong>(BCAAs | 2:1:1 Ratio)<br/>   Leucine, Isoleucine, Valine – Reduces muscle fatigue, accelerates recovery.</li><li><strong>450mg+ Natural Tea Polyphenols </strong>- Antioxidant-rich extract to sharpen focus, boost energy, and combat oxidative stress post-workout.</li><li><strong>50mg Natural Caffeine </strong>(from Mate tea extract):<br/>Enhances mental alertness and energy without jitters</li><li><strong>Electrolytes</strong><br/>   <strong>205mg Sodium: </strong>Optimizes fluid retention and hydration via osmosis.<br/>   <strong>100mg Potassium: </strong>Supports nerve function, muscle contractions, and cellular fluid balance.<br/>   <strong>75mg Calcium: </strong>Aids muscle function and electrolyte stability.<br/>   <strong>15mg Magnesium:</strong> Critical for cellular water distribution and energy metabolism.</li><li><strong>Vitamin Blend</strong><br/>Vitamin C, B₆, E, Niacin (B₃) – Boosts immunity, supports energy metabolism, and reduces oxidative stress.</li><li><strong>28g Carbohydrate per bottle</strong></li><li><strong>92 Calories per bottle</strong></li></ul>",
+            "text_font_weight": "default",
+            "text_font_size": 14,
+            "text_color": "#000000",
+            "button_label": "",
+            "button_link": "",
+            "button_font_weight": "default",
+            "button_font_size": 14,
+            "button_text_color": "#ffffff",
+            "button_bg_color": "rgba(0,0,0,0)",
+            "button_border_color": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "row_yNJTNU"
+      ],
+      "name": "Desktop Multirow",
+      "settings": {
+        "image_height": "large",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "row_color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
-    "image_banner_8m8LK4",
-    "main"
+    "main",
+    "desktop_multirow_FHNw6K"
   ]
 }
