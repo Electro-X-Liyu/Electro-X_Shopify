@@ -35,6 +35,56 @@
         "show_text_below": true
       }
     },
+    "desktop_rich_text_xNn3J6": {
+      "type": "Desktop-Rich-Text",
+      "blocks": {
+        "heading_KghUYT": {
+          "type": "heading",
+          "settings": {
+            "heading": "请输入标题",
+            "heading_size": "h1",
+            "heading_font_size": 24,
+            "heading_font_weight": "bold",
+            "heading_color": "#000000"
+          }
+        },
+        "text_EgjMJw": {
+          "type": "text",
+          "settings": {
+            "text": "<p>分享您的品牌故事和产品信息</p>",
+            "text_font_size": 16,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        },
+        "button_7eaARg": {
+          "type": "button",
+          "settings": {
+            "button_label": "按钮文字",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_KghUYT",
+        "text_EgjMJw",
+        "button_7eaARg"
+      ],
+      "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "container_width": 800,
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "community_ambassador_yLyaPU": {
       "type": "Community-Ambassador",
       "blocks": {
@@ -84,6 +134,7 @@
   "order": [
     "main",
     "image_banner_HLriif",
+    "desktop_rich_text_xNn3J6",
     "community_ambassador_yLyaPU"
   ]
 }
