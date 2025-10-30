@@ -9,34 +9,42 @@
  */
 {
   "sections": {
-    "image_banner_8m8LK4": {
-      "type": "image-banner",
-      "name": "t:sections.image-banner.presets.name",
-      "settings": {
-        "image": "shopify://shop_images/2-1.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
-    },
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28,
         "text_alignment": "center"
       }
+    },
+    "banner_N9jjzc": {
+      "type": "banner",
+      "name": "Desktop PIP banner",
+      "settings": {
+        "image": "shopify://shop_images/KV_demo__1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "image_behavior": "none",
+        "pip_enable": false,
+        "pip_width": 20,
+        "pip_position": "bottom-right",
+        "pip_position_horizontal": 20,
+        "pip_position_vertical": 20,
+        "pip_border_width": 2,
+        "pip_border_color": "#ffffff",
+        "pip_border_radius": 8,
+        "pip_background": "transparent",
+        "pip_box_shadow": "0 4px 8px rgba(0,0,0,0.2)",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": ""
+      }
     }
   },
   "order": [
-    "image_banner_8m8LK4",
-    "main"
+    "main",
+    "banner_N9jjzc"
   ]
 }
