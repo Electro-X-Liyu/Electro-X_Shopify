@@ -215,11 +215,11 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/10.png",
-            "image_link": "shopify://pages/plus-electrolyte-sports-drink",
-            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - BCCA Functional Sport Drink\">PLUS- BCCA Functional Drink</a>",
-            "text": "<p>Jasmine Green Grape Flavor</p>",
+            "image_link": "shopify://pages/plus-functional-sports-drink",
+            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - BCCA Functional Sport Drink\">PLUS- BCCA Functional Sports Drink</a>",
+            "text": "<p>Pineapple Mate Tea Flavor</p>",
             "link_label": "",
-            "link": ""
+            "link": "shopify://pages/plus-functional-sports-drink"
           }
         },
         "column_3VrtD3": {
