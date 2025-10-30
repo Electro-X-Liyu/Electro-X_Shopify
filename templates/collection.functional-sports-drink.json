@@ -1,0 +1,167 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 20,
+        "columns_desktop": 3,
+        "columns_mobile": "2",
+        "show_product_tags": false,
+        "font_size": 12,
+        "font_weight": "300",
+        "text_color": "#333333",
+        "title_font_size": 19,
+        "title_font_weight": "400",
+        "title_color": "#000000",
+        "badge_font_size": 13,
+        "badge_font_weight": "600",
+        "vendor_font_size": 12,
+        "vendor_font_weight": "400",
+        "vendor_color": "#666666",
+        "filter_font_size": 15,
+        "filter_font_weight": "400",
+        "filter_text_color": "#333333",
+        "pagination_font_size": 17,
+        "pagination_font_weight": "500",
+        "pagination_text_color": "#333333",
+        "pagination_active_color": "#000000",
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": true,
+        "show_rating": true,
+        "quick_add": "none",
+        "enable_filtering": false,
+        "filter_type": "vertical",
+        "enable_sorting": false,
+        "padding_top": 36,
+        "padding_bottom": 100
+      }
+    },
+    "product_grid_9Ncgxf": {
+      "type": "Product-grid",
+      "blocks": {
+        "column_TCqacX": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/15related.png",
+            "title": "<a href=\"/pages/natural-alkaline-water\" title=\"Natural Alkaline Water\">Natural Alkaline Water</a>",
+            "text": "<p>350mL | 580mL | 1L</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_7JTC8P": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/10.png",
+            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - Functional Sports Drink\">PLUS - BCAA Functional Sports Drink</a>",
+            "text": "<p>Pineapple Mate Tea Flavor</p>",
+            "link_label": "",
+            "link": "shopify://pages/plus-functional-sports-drink"
+          }
+        },
+        "column_YzigJ8": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/12.png",
+            "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Functional Sports Drink\">PLUS - Functional Sports Drink</a>",
+            "text": "<p>Jasmine Green Grape Flavor</p>",
+            "link_label": "",
+            "link": "shopify://pages/plus-electrolyte-sports-drink"
+          }
+        },
+        "column_NbkCAJ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/14.png",
+            "title": "<a href=\"/pages/slim-electrolyte-sports-drink\" title=\"SLIM - Electrolyte Functional Sports Drink\">SLIM - Functional Sports Drink</a>",
+            "text": "<p>Razzmatazz Berry Flavor</p>",
+            "link_label": "",
+            "link": "shopify://pages/slim-electrolyte-sports-drink"
+          }
+        },
+        "column_yfxhtm": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2_49fb4af0-50fa-4fb4-8286-8f9da9edc372.jpg",
+            "title": "<a href=\"/pages/plus-electrolyte-liquid-concentrate\" title=\"PLUS - Electrolyte Liquid Concentrate\">PLUS - Electrolyte Liquid Concentrate</a>",
+            "text": "<p>Pineapple Mate Tea Flavor</p>",
+            "link_label": "",
+            "link": "shopify://pages/plus-electrolyte-liquid-concentrate"
+          }
+        },
+        "column_fERzt6": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/4e3cf047ecc73b0dc1053e1eae1238cf.jpg",
+            "title": "<a href=\"/pages/slim-electrolyte-liquid-concentrate\" title=\"SLIM - Electrolyte Liquid Concentrate\">SLIM - Electrolyte Liquid Concentrate</a>",
+            "text": "<p>Pomegranate Pink Lemonade Flavor</p>",
+            "link_label": "",
+            "link": "shopify://pages/slim-electrolyte-liquid-concentrate"
+          }
+        }
+      },
+      "block_order": [
+        "column_TCqacX",
+        "column_7JTC8P",
+        "column_YzigJ8",
+        "column_NbkCAJ",
+        "column_yfxhtm",
+        "column_fERzt6"
+      ],
+      "name": "Product Grid",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "product_title_color": "#000000",
+        "product_title_size_desktop": 19,
+        "product_title_size_mobile": 12,
+        "product_title_margin_top": 0,
+        "product_title_margin_bottom": 0,
+        "product_description_color": "#666666",
+        "product_description_size_desktop": 14,
+        "product_description_size_mobile": 9,
+        "product_description_margin_top": 0,
+        "product_description_margin_bottom": 0,
+        "image_width": "full",
+        "image_ratio": "portrait",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "product_grid_9Ncgxf"
+  ]
+}
