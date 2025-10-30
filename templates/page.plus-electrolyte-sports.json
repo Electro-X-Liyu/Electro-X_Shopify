@@ -230,18 +230,18 @@
             "title": "<a href=\"/pages/slim-electrolyte-sports-drink\" title=\"SLIM - Electrolyte Sports Drink\">SLIM - Functional Sports Drink</a>",
             "text": "<p>Razzamatazz Berry Flavor</p>",
             "link_label": "",
-            "link": ""
+            "link": "shopify://pages/slim-electrolyte-sports-drink"
           }
         },
         "column_B8hLhH": {
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/131cut.png",
-            "image_link": "shopify://pages/plus-electrolyte-sports-drink",
+            "image_link": "shopify://pages/natural-alkaline-water",
             "title": "<a href=\"/pages/natural-alkaline-water\" title=\"Natural Alkaline Water\">Natural Alkaline Water</a>",
             "text": "<p>380mL | 580mL | 1L</p>",
             "link_label": "",
-            "link": ""
+            "link": "shopify://pages/natural-alkaline-water"
           }
         }
       },
