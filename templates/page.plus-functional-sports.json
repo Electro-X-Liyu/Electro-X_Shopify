@@ -25,7 +25,7 @@
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/10.png",
-            "heading": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - BCCA Functional Sport Drink\"><strong>PLUS- BCAA Functional Sports Drink</strong></a>",
+            "heading": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - BCCA Functional Sport Drink\"><strong>PLUS - BCAA Functional Sports Drink</strong></a>",
             "heading_font_weight": "default",
             "heading_font_size": 24,
             "heading_color": "#000000",
