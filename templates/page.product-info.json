@@ -247,7 +247,7 @@
           "settings": {
             "image": "shopify://shop_images/12.png",
             "image_link": "shopify://pages/plus-electrolyte-sports-drink",
-            "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Sports Drink\">PLUS- Functional Sports Drink</a>",
+            "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Sports Drink\">PLUS- Electrolyte Functional Sports Drink</a>",
             "text": "<p>Jasmine Green Grape Flavor</p>",
             "link_label": "",
             "link": "shopify://pages/plus-electrolyte-sports-drink"
@@ -269,7 +269,7 @@
           "settings": {
             "image": "shopify://shop_images/10.png",
             "image_link": "shopify://pages/plus-functional-sports-drink",
-            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - Functional Sports Drink\">PLUS- BCAA Funcktional Sports Drink</a>",
+            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - Functional Sports Drink\">PLUS- BCAA Functional Sports Drink</a>",
             "text": "<p>Pineapple Mate Tea Flavor</p>",
             "link_label": "",
             "link": "shopify://pages/plus-functional-sports-drink"
