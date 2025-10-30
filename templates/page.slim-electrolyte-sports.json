@@ -179,6 +179,141 @@
         "padding_top": 80,
         "padding_bottom": 0
       }
+    },
+    "mobile_rich_text_xXdFii": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_83P746": {
+          "type": "heading",
+          "settings": {
+            "heading": "<span style=\"text-decoration:underline\">RELATED PRODUCTS</span>",
+            "heading_size": "h2",
+            "heading_font_weight": "normal",
+            "heading_font_size": 16,
+            "heading_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_83P746"
+      ],
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "text_container_width": 0,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 56,
+        "padding_bottom": 0
+      }
+    },
+    "new_blog_JaNfeY": {
+      "type": "new-blog",
+      "blocks": {
+        "column_VkndGx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/14.png",
+            "image_link": "shopify://pages/slim-electrolyte-sports-drink",
+            "title": "<a href=\"/pages/slim-electrolyte-sports-drink\" title=\"SLIM - Electrolyte Sports Drink\">SLIM - Electrolyte Functional Sports Drink</a>",
+            "text": "<p>Razzamatazz Berry Flavor</p>",
+            "link_label": "",
+            "link": "shopify://pages/slim-electrolyte-sports-drink"
+          }
+        },
+        "column_gXGNdA": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/10.png",
+            "image_link": "shopify://pages/plus-functional-sports-drink",
+            "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - BCCA Functional Sport Drink\">PLUS - BCCA Functional Sports Drink</a>",
+            "text": "<p>Pineapple Mate Tea Flavor</p>",
+            "link_label": "",
+            "link": "shopify://pages/plus-functional-sports-drink"
+          }
+        },
+        "column_Ly6riN": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/131cut.png",
+            "image_link": "shopify://pages/natural-alkaline-water",
+            "title": "<a href=\"/pages/natural-alkaline-water\" title=\"Natural Alkaline Water\">Natural Alkaline Water</a>",
+            "text": "<p>380mL | 580mL | 1L</p>",
+            "link_label": "",
+            "link": "shopify://pages/natural-alkaline-water"
+          }
+        }
+      },
+      "block_order": [
+        "column_VkndGx",
+        "column_gXGNdA",
+        "column_Ly6riN"
+      ],
+      "name": "Mixed multicolumn",
+      "settings": {
+        "title": "",
+        "title_color": "#000000",
+        "title_size_desktop": 24,
+        "title_size_mobile": 20,
+        "title_margin_top_desktop": 0,
+        "title_margin_top_mobile": 0,
+        "title_margin_bottom_desktop": 0,
+        "title_margin_bottom_mobile": 15,
+        "heading_size": "h1",
+        "block_title_color_desktop": "#333333",
+        "block_title_size_desktop": 19,
+        "block_title_margin_top_desktop": 0,
+        "block_title_margin_bottom_desktop": 0,
+        "block_text_color_desktop": "#666666",
+        "block_text_size_desktop": 14,
+        "block_text_margin_top_desktop": 0,
+        "block_text_margin_bottom_desktop": 10,
+        "block_link_color_desktop": "#0066cc",
+        "block_link_size_desktop": 14,
+        "block_link_margin_top_desktop": 0,
+        "block_link_margin_bottom_desktop": 0,
+        "block_title_size_mobile": 12,
+        "block_title_margin_top_mobile": 0,
+        "block_title_margin_bottom_mobile": 0,
+        "block_text_size_mobile": 9,
+        "block_text_margin_top_mobile": 0,
+        "block_text_margin_bottom_mobile": 8,
+        "block_link_size_mobile": 12,
+        "block_link_margin_top_mobile": 0,
+        "block_link_margin_bottom_mobile": 0,
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "button_bg_color": "#000000",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 4,
+        "button_padding_top": 12,
+        "button_padding_right": 24,
+        "button_padding_bottom": 12,
+        "button_padding_left": 24,
+        "button_margin_top": 20,
+        "button_margin_bottom": 0,
+        "button_text_size": 16,
+        "mobile_button_text_size": 14,
+        "mobile_button_padding_top": 10,
+        "mobile_button_padding_right": 20,
+        "mobile_button_padding_bottom": 10,
+        "mobile_button_padding_left": 20,
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "mobile_column_width": 80,
+        "mobile_column_gap": 10,
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_top_mobile": 24,
+        "padding_bottom_mobile": 24
+      }
     }
   },
   "order": [
@@ -186,6 +321,8 @@
     "desktop_multirow_FHNw6K",
     "mobile_product_banner_TDYtHB",
     "mobile_rich_text_MPUPce",
-    "desktop_rich_text_wDrV7a"
+    "desktop_rich_text_wDrV7a",
+    "mobile_rich_text_xXdFii",
+    "new_blog_JaNfeY"
   ]
 }
