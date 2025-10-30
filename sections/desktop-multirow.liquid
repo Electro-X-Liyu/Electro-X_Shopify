@@ -39,21 +39,10 @@
     padding: 0 !important;
   }
 
-  /* 图片高度设置 - 采用A段的标准方式 */
-  .image-with-text__media--adapt {
-    height: auto !important;
-  }
-
-  .image-with-text__media--small {
-    height: 200px !important;
-  }
-
-  .image-with-text__media--medium {
-    height: 300px !important;
-  }
-
-  .image-with-text__media--large {
-    height: 400px !important;
+  /* 可选：图片拉伸 */
+  .image-with-text__media img {
+    width: 100% !important;
+    height: auto;
   }
 
   /* 取消副标题全大写和letter-spacing */
@@ -240,7 +229,7 @@
 
 {% schema %}
 {
-  "name": "Desktop-Multirow-Image",
+  "name": "Desktop Multirow",
   "class": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
@@ -267,221 +256,221 @@
           "label": "Medium"
         },
         {
-          "value": "large",
-          "label": "Large"
-        }
-      ],
-      "default": "medium",
-      "label": "Image height"
-    },
-    {
-      "type": "select",
-      "id": "desktop_image_width",
-      "options": [
-        {
-          "value": "small",
-          "label": "Small"
-        },
-        {
-          "value": "medium",
-          "label": "Medium"
-        },
-        {
-          "value": "large",
-          "label": "Large"
-        }
-      ],
-      "default": "medium",
-      "label": "Desktop image width"
-    },
-    {
-      "type": "select",
-      "id": "image_layout",
-      "options": [
-        {
-          "value": "alternate-left",
-          "label": "Alternating left"
-        },
-        {
-          "value": "alternate-right",
-          "label": "Alternating right"
-        },
-        {
-          "value": "align-left",
-          "label": "All left"
-        },
-        {
-          "value": "align-right",
-          "label": "All right"
-        }
-      ],
-      "default": "alternate-left",
-      "label": "Image alignment"
-    },
-    {
-      "type": "header",
-      "content": "Content"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "Small"
-        },
-        {
-          "value": "h1",
-          "label": "Medium"
-        },
-        {
-          "value": "h0",
-          "label": "Large"
-        },
-        {
-          "value": "hxl",
-          "label": "Extra large"
-        },
-        {
-          "value": "hxxl",
-          "label": "Huge"
-        }
-      ],
-      "default": "h1",
-      "label": "Heading size"
-    },
-    {
-      "type": "select",
-      "id": "text_style",
-      "options": [
-        {
-          "value": "body",
-          "label": "Body"
-        },
-        {
-          "value": "subtitle",
-          "label": "Subtitle"
-        }
-      ],
-      "default": "body",
-      "label": "Text style"
-    },
-    {
-      "type": "select",
-      "id": "button_style",
-      "options": [
-        {
-          "value": "primary",
-          "label": "Primary"
-        },
-        {
-          "value": "secondary",
-          "label": "Secondary"
-        }
-      ],
-      "default": "secondary",
-      "label": "Button style"
-    },
-    {
-      "type": "select",
-      "id": "desktop_content_position",
-      "options": [
-        {
-          "value": "top",
-          "label": "Top"
-        },
-        {
-          "value": "middle",
-          "label": "Middle"
-        },
-        {
-          "value": "bottom",
-          "label": "Bottom"
-        }
-      ],
-      "default": "middle",
-      "label": "Desktop content position"
-    },
-    {
-      "type": "select",
-      "id": "desktop_content_alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "left",
-      "label": "Desktop content alignment"
-    },
-    {
-      "type": "select",
-      "id": "mobile_content_alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "left",
-      "label": "Mobile content alignment"
-    },
-    {
-      "type": "header",
-      "content": "Colors"
-    },
-    {
-      "type": "color_scheme",
-      "id": "section_color_scheme",
-      "label": "Section colors",
-      "default": "scheme-1"
-    },
-    {
-      "type": "color_scheme",
-      "id": "row_color_scheme",
-      "label": "Row colors",
-      "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "Spacing"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Top padding",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Bottom padding",
-      "default": 36
+      "value": "large",
+      "label": "Large"
     }
+  ],
+  "default": "medium",
+  "label": "Image height"
+},
+{
+  "type": "select",
+  "id": "desktop_image_width",
+  "options": [
+    {
+      "value": "small",
+      "label": "Small"
+    },
+    {
+      "value": "medium",
+      "label": "Medium"
+    },
+    {
+      "value": "large",
+      "label": "Large"
+    }
+  ],
+  "default": "medium",
+  "label": "Desktop image width"
+},
+{
+  "type": "select",
+  "id": "image_layout",
+  "options": [
+    {
+      "value": "alternate-left",
+      "label": "Alternating left"
+    },
+    {
+      "value": "alternate-right",
+      "label": "Alternating right"
+    },
+    {
+      "value": "align-left",
+      "label": "All left"
+    },
+    {
+      "value": "align-right",
+      "label": "All right"
+    }
+  ],
+  "default": "alternate-left",
+  "label": "Image alignment"
+},
+{
+  "type": "header",
+  "content": "Content"
+},
+{
+  "type": "select",
+  "id": "heading_size",
+  "options": [
+    {
+      "value": "h2",
+      "label": "Small"
+    },
+    {
+      "value": "h1",
+      "label": "Medium"
+    },
+    {
+      "value": "h0",
+      "label": "Large"
+    },
+    {
+      "value": "hxl",
+      "label": "Extra large"
+    },
+    {
+      "value": "hxxl",
+      "label": "Huge"
+    }
+  ],
+  "default": "h1",
+  "label": "Heading size"
+},
+{
+  "type": "select",
+  "id": "text_style",
+  "options": [
+    {
+      "value": "body",
+      "label": "Body"
+    },
+    {
+      "value": "subtitle",
+      "label": "Subtitle"
+    }
+  ],
+  "default": "body",
+  "label": "Text style"
+},
+{
+  "type": "select",
+  "id": "button_style",
+  "options": [
+    {
+      "value": "primary",
+      "label": "Primary"
+    },
+    {
+      "value": "secondary",
+      "label": "Secondary"
+    }
+  ],
+  "default": "secondary",
+  "label": "Button style"
+},
+{
+  "type": "select",
+  "id": "desktop_content_position",
+  "options": [
+    {
+      "value": "top",
+      "label": "Top"
+    },
+    {
+      "value": "middle",
+      "label": "Middle"
+    },
+    {
+      "value": "bottom",
+      "label": "Bottom"
+    }
+  ],
+  "default": "middle",
+  "label": "Desktop content position"
+},
+{
+  "type": "select",
+  "id": "desktop_content_alignment",
+  "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+  ],
+  "default": "left",
+  "label": "Desktop content alignment"
+},
+{
+  "type": "select",
+  "id": "mobile_content_alignment",
+  "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+  ],
+  "default": "left",
+  "label": "Mobile content alignment"
+},
+{
+  "type": "header",
+  "content": "Colors"
+},
+{
+  "type": "color_scheme",
+  "id": "section_color_scheme",
+  "label": "Section colors",
+  "default": "scheme-1"
+},
+{
+  "type": "color_scheme",
+  "id": "row_color_scheme",
+  "label": "Row colors",
+  "default": "scheme-1"
+},
+{
+  "type": "header",
+  "content": "Spacing"
+},
+{
+  "type": "range",
+  "id": "padding_top",
+  "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px",
+  "label": "Top padding",
+  "default": 36
+},
+{
+  "type": "range",
+  "id": "padding_bottom",
+  "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px",
+  "label": "Bottom padding",
+  "default": 36
+}
   ],
   "blocks": [
     {
@@ -811,7 +800,7 @@
   ],
   "presets": [
     {
-      "name": "Multirow-Image-Height",
+      "name": "Desktop Multirow",
       "blocks": [
         {
           "type": "row"
