@@ -25,7 +25,7 @@
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/10.png",
-            "heading": "<strong>PLUS</strong>",
+            "heading": "<strong>PLUS -</strong>",
             "heading_font_weight": "default",
             "heading_font_size": 24,
             "heading_color": "#000000",
