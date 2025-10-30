@@ -35,7 +35,7 @@
           "type": "text",
           "settings": {
             "text": "<p>Contact us and we'll get back to you shortly.</p>",
-            "text_font_size": 19,
+            "text_font_size": 14,
             "text_font_weight": "normal",
             "text_color": "#8d8d8d"
           }
@@ -53,7 +53,7 @@
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
-        "padding_bottom": 8
+        "padding_bottom": 24
       }
     },
     "mobile_rich_text_4r8LNT": {
