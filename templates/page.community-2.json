@@ -93,10 +93,73 @@
         "ambassador_YmeV7C": {
           "type": "ambassador",
           "settings": {
+            "image": "shopify://shop_images/9.jpg",
             "title": "Ambassador Name"
           }
         },
         "ambassador_YabKmL": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/8.jpg",
+            "title": "Roy"
+          }
+        },
+        "ambassador_DpPbqP": {
+          "type": "ambassador",
+          "settings": {
+            "image": "shopify://shop_images/7.jpg",
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_hktwDA": {
+          "type": "ambassador",
+          "settings": {
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_fp4Kkm": {
+          "type": "ambassador",
+          "settings": {
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_gztW9Q": {
+          "type": "ambassador",
+          "settings": {
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_KGJFk4": {
+          "type": "ambassador",
+          "settings": {
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_RNnNV7": {
+          "type": "ambassador",
+          "settings": {
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_reNArQ": {
+          "type": "ambassador",
+          "settings": {
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_eEJMAi": {
+          "type": "ambassador",
+          "settings": {
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_zyyk8r": {
+          "type": "ambassador",
+          "settings": {
+            "title": "Ambassador Name"
+          }
+        },
+        "ambassador_ibpENr": {
           "type": "ambassador",
           "settings": {
             "title": "Ambassador Name"
@@ -107,7 +170,17 @@
         "ambassador_NaCPHz",
         "ambassador_Dp6Yeg",
         "ambassador_YmeV7C",
-        "ambassador_YabKmL"
+        "ambassador_YabKmL",
+        "ambassador_DpPbqP",
+        "ambassador_hktwDA",
+        "ambassador_fp4Kkm",
+        "ambassador_gztW9Q",
+        "ambassador_KGJFk4",
+        "ambassador_RNnNV7",
+        "ambassador_reNArQ",
+        "ambassador_eEJMAi",
+        "ambassador_zyyk8r",
+        "ambassador_ibpENr"
       ],
       "name": "Community Ambassador",
       "settings": {
