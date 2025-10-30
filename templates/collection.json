@@ -103,10 +103,11 @@
         "column_yfxhtm": {
           "type": "column",
           "settings": {
-            "title": "Product Name",
-            "text": "<p>Product description and features.</p>",
+            "image": "shopify://shop_images/2_49fb4af0-50fa-4fb4-8286-8f9da9edc372.jpg",
+            "title": "PLUS - Electrolyte Liquid Concentrate",
+            "text": "<p>Pineapple Mate Tea Flavor</p>",
             "link_label": "",
-            "link": ""
+            "link": "shopify://pages/plus-electrolyte-liquid-concentrate"
           }
         },
         "column_fERzt6": {
