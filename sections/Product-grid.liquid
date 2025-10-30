@@ -7,41 +7,36 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  /* 桌面端标题样式 */
-  .section-{{ section.id }} .title {
-    color: {{ section.settings.heading_color }};
-    font-size: {{ section.settings.heading_size_desktop }}px;
-    margin-top: {{ section.settings.heading_margin_top_desktop }}px;
-    margin-bottom: {{ section.settings.heading_margin_bottom_desktop }}px;
+  /* 产品标题样式 */
+  .section-{{ section.id }} .multicolumn-card__info h3 {
+    color: {{ section.settings.product_title_color }};
+    font-size: {{ section.settings.product_title_size_mobile }}px;
+    margin-top: {{ section.settings.product_title_margin_top }}px;
+    margin-bottom: {{ section.settings.product_title_margin_bottom }}px;
   }
 
-  /* 桌面端正文样式 */
+  /* 产品描述样式 */
   .section-{{ section.id }} .multicolumn-card__info .rte {
-    color: {{ section.settings.text_color }};
-    font-size: {{ section.settings.text_size_desktop }}px;
-    margin-top: {{ section.settings.text_margin_top_desktop }}px;
-    margin-bottom: {{ section.settings.text_margin_bottom_desktop }}px;
-  }
-
-  /* 移动端标题样式 */
-  @media screen and (max-width: 749px) {
-    .section-{{ section.id }} .title {
-      font-size: {{ section.settings.heading_size_mobile }}px;
-      margin-top: {{ section.settings.heading_margin_top_mobile }}px;
-      margin-bottom: {{ section.settings.heading_margin_bottom_mobile }}px;
-    }
-
-    .section-{{ section.id }} .multicolumn-card__info .rte {
-      font-size: {{ section.settings.text_size_mobile }}px;
-      margin-top: {{ section.settings.text_margin_top_mobile }}px;
-      margin-bottom: {{ section.settings.text_margin_bottom_mobile }}px;
-    }
+    color: {{ section.settings.product_description_color }};
+    font-size: {{ section.settings.product_description_size_mobile }}px;
+    margin-top: {{ section.settings.product_description_margin_top }}px;
+    margin-bottom: {{ section.settings.product_description_margin_bottom }}px;
   }
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    /* 桌面端产品标题样式 */
+    .section-{{ section.id }} .multicolumn-card__info h3 {
+      font-size: {{ section.settings.product_title_size_desktop }}px;
+    }
+
+    /* 桌面端产品描述样式 */
+    .section-{{ section.id }} .multicolumn-card__info .rte {
+      font-size: {{ section.settings.product_description_size_desktop }}px;
     }
   }
 {%- endstyle -%}
@@ -223,7 +218,7 @@
 
 {% schema %}
 {
-  "name": "Product Grid",
+  "name": "Product grid",
   "class": "section",
   "tag": "section",
   "disabled_on": {
@@ -233,7 +228,7 @@
     {
       "type": "inline_richtext",
       "id": "title",
-      "default": "Featured Products",
+      "default": "Featured products",
       "label": "Heading"
     },
     {
@@ -254,163 +249,119 @@
         },
         {
           "value": "hxl",
-          "label": "Extra Large"
+          "label": "Extra large"
         },
         {
           "value": "hxxl",
-          "label": "Extra Extra Large"
+          "label": "Extra extra large"
         }
       ],
       "default": "h1",
-      "label": "Heading Size"
+      "label": "Heading size"
     },
     {
       "type": "header",
-      "content": "Text Styling"
+      "content": "Product title styling"
     },
     {
       "type": "color",
-      "id": "heading_color",
-      "label": "Heading Color",
+      "id": "product_title_color",
+      "label": "Product title color",
       "default": "#000000"
     },
     {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#333333"
-    },
-    {
-      "type": "header",
-      "content": "Desktop Settings"
-    },
-    {
       "type": "range",
-      "id": "heading_size_desktop",
-      "min": 12,
-      "max": 72,
-      "step": 1,
-      "unit": "px",
-      "label": "Desktop Heading Size",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "text_size_desktop",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Desktop Text Size",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "heading_margin_top_desktop",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Desktop Heading Top Margin",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "heading_margin_bottom_desktop",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Desktop Heading Bottom Margin",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "text_margin_top_desktop",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Desktop Text Top Margin",
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "text_margin_bottom_desktop",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Desktop Text Bottom Margin",
-      "default": 16
-    },
-    {
-      "type": "header",
-      "content": "Mobile Settings"
-    },
-    {
-      "type": "range",
-      "id": "heading_size_mobile",
+      "id": "product_title_size_desktop",
       "min": 12,
       "max": 48,
       "step": 1,
       "unit": "px",
-      "label": "Mobile Heading Size",
-      "default": 24
+      "label": "Product title size - desktop",
+      "default": 18
     },
     {
       "type": "range",
-      "id": "text_size_mobile",
+      "id": "product_title_size_mobile",
       "min": 12,
-      "max": 20,
+      "max": 36,
       "step": 1,
       "unit": "px",
-      "label": "Mobile Text Size",
+      "label": "Product title size - mobile",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "product_title_margin_top",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Product title top margin",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "product_title_margin_bottom",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Product title bottom margin",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Product description styling"
+    },
+    {
+      "type": "color",
+      "id": "product_description_color",
+      "label": "Product description color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "product_description_size_desktop",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Product description size - desktop",
       "default": 14
     },
     {
       "type": "range",
-      "id": "heading_margin_top_mobile",
+      "id": "product_description_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Product description size - mobile",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "product_description_margin_top",
       "min": 0,
       "max": 30,
       "step": 1,
       "unit": "px",
-      "label": "Mobile Heading Top Margin",
+      "label": "Product description top margin",
       "default": 0
     },
     {
       "type": "range",
-      "id": "heading_margin_bottom_mobile",
+      "id": "product_description_margin_bottom",
       "min": 0,
       "max": 30,
       "step": 1,
       "unit": "px",
-      "label": "Mobile Heading Bottom Margin",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "text_margin_top_mobile",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Mobile Text Top Margin",
-      "default": 6
-    },
-    {
-      "type": "range",
-      "id": "text_margin_bottom_mobile",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Mobile Text Bottom Margin",
-      "default": 12
+      "label": "Product description bottom margin",
+      "default": 10
     },
     {
       "type": "header",
-      "content": "Image Settings"
+      "content": "Image settings"
     },    
     {
       "type": "select",
@@ -418,19 +369,19 @@
       "options": [
         {
           "value": "third",
-          "label": "One Third"
+          "label": "Small"
         },
         {
           "value": "half",
-          "label": "One Half"
+          "label": "Medium"
         },
         {
           "value": "full",
-          "label": "Full Width"
+          "label": "Full"
         }
       ],
       "default": "full",
-      "label": "Image Width"
+      "label": "Image width"
     },
     {
       "type": "select",
@@ -438,7 +389,7 @@
       "options": [
         {
           "value": "adapt",
-          "label": "Adapt to Image"
+          "label": "Adapt to image"
         },
         {
           "value": "portrait",
@@ -454,26 +405,27 @@
         }
       ],
       "default": "adapt",
-      "label": "Image Ratio"
+      "label": "Image ratio"
     },
     {
       "type": "header",
-      "content": "Button Settings"
+      "content": "Button settings"
     },    
     {
       "type": "text",
       "id": "button_label",
-      "default": "View All Products",
-      "label": "Button Label"
+      "default": "View all",
+      "label": "Button label",
+      "info": "Leave blank to hide the button"
     },
     {
       "type": "url",
       "id": "button_link",
-      "label": "Button Link"
+      "label": "Button link"
     },    
     {
       "type": "header",
-      "content": "Layout Settings"
+      "content": "Layout settings"
     },     
     {
       "type": "range",
@@ -482,7 +434,7 @@
       "max": 6,
       "step": 1,
       "default": 3,
-      "label": "Desktop Columns"
+      "label": "Columns on desktop"
     },
     {
       "type": "select",
@@ -498,7 +450,7 @@
         }
       ],
       "default": "left",
-      "label": "Column Alignment"
+      "label": "Column alignment"
     },
     {
       "type": "select",
@@ -514,17 +466,17 @@
         }
       ],
       "default": "primary",
-      "label": "Background Style"
+      "label": "Background style"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color Scheme",
+      "label": "Color scheme",
       "default": "scheme-1"
     },    
     {
       "type": "header",
-      "content": "Mobile Layout"
+      "content": "Mobile settings"
     },
     {
       "type": "select",
@@ -532,25 +484,25 @@
       "options": [
         {
           "value": "1",
-          "label": "1 Column"
+          "label": "1 column"
         },
         {
           "value": "2",
-          "label": "2 Columns"
+          "label": "2 columns"
         }
       ],
       "default": "1",
-      "label": "Mobile Columns"
+      "label": "Columns on mobile"
     },
     {
       "type": "checkbox",
       "id": "swipe_on_mobile",
       "default": false,
-      "label": "Enable Mobile Slider"
+      "label": "Enable swipe on mobile"
     },
     {
       "type": "header",
-      "content": "Section Padding"
+      "content": "Section padding"
     },
     {
       "type": "range",
@@ -559,7 +511,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Top Padding",
+      "label": "Padding top",
       "default": 36
     },
     {
@@ -569,49 +521,49 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Bottom Padding",
+      "label": "Padding bottom",
       "default": 36
     }
   ],
   "blocks": [
     {
       "type": "column",
-      "name": "Product Column",
+      "name": "Product",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Product Image"
+          "label": "Product image"
         },
         {
           "type": "inline_richtext",
           "id": "title",
-          "default": "Product Name",
-          "label": "Product Title"
+          "default": "Product title",
+          "label": "Product title"
         },
         {
           "type": "richtext",
           "id": "text",
-          "default": "<p>Product description and details.</p>",
-          "label": "Product Description"
+          "default": "<p>Product description</p>",
+          "label": "Product description"
         },
         {
           "type": "text",
           "id": "link_label",
-          "label": "Button Label",
-          "info": "Leave blank to hide button"
+          "label": "Link label",
+          "info": "Leave blank to hide the link"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Product Link"
+          "label": "Product link"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Product Grid",
+      "name": "Product grid",
       "blocks": [
         {
           "type": "column"
