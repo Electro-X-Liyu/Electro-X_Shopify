@@ -34,8 +34,8 @@
         "text_4nEePB": {
           "type": "text",
           "settings": {
-            "text": "<p>Contact us and we will get back to you shortly</p>",
-            "text_font_size": 14,
+            "text": "<p>Contact us and we'll get back to you shortly.</p>",
+            "text_font_size": 19,
             "text_font_weight": "normal",
             "text_color": "#8d8d8d"
           }
@@ -65,16 +65,16 @@
             "heading": "Contact Us",
             "heading_size": "h2",
             "heading_font_weight": "normal",
-            "heading_font_size": 0,
+            "heading_font_size": 17,
             "heading_color": "#000000"
           }
         },
         "text_UwMrzN": {
           "type": "text",
           "settings": {
-            "text": "<h6>Leave your message and we will get back to you shortly</h6>",
+            "text": "<p>Leave your message and we‘ll get back to you shortly.</p>",
             "text_font_weight": "normal",
-            "text_font_size": 0,
+            "text_font_size": 11,
             "text_color": "#8d8d8d"
           }
         }
