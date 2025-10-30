@@ -446,7 +446,7 @@
         "text_xmtzpm": {
           "type": "text",
           "settings": {
-            "text": "<p><a href=\"/products/natural-alkaline-water\" title=\"Natural Alkaline Water\">LEARN MORE</a></p>",
+            "text": "<p><a href=\"/pages/natural-alkaline-water\" title=\"Natural Alkaline Water\">LEARN MORE</a></p>",
             "text_font_weight": "normal",
             "text_font_size": 9,
             "text_color": "#000000"
@@ -743,7 +743,7 @@
         "block_link_margin_top_mobile": 0,
         "block_link_margin_bottom_mobile": 0,
         "image_width": "full",
-        "image_ratio": "square",
+        "image_ratio": "portrait",
         "button_label": "",
         "button_link": "",
         "button_bg_color": "#000000",
@@ -768,7 +768,7 @@
         "columns_mobile": "1",
         "mobile_column_width": 80,
         "mobile_column_gap": 10,
-        "swipe_on_mobile": false,
+        "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 36,
         "padding_top_mobile": 24,

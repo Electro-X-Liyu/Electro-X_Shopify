@@ -48,6 +48,7 @@
         "row_eJywB7",
         "row_rnUqkL"
       ],
+      "disabled": true,
       "name": "t:sections.multirow.presets.name",
       "settings": {
         "image_height": "adapt",
