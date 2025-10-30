@@ -186,7 +186,7 @@
         "heading_iwJRab": {
           "type": "heading",
           "settings": {
-            "heading": "<span style=\"text-decoration:underline\">RELATED PRODUCTS</span>",
+            "heading": "RELATED PRODUCTS",
             "heading_size": "h2",
             "heading_font_weight": "normal",
             "heading_font_size": 16,
