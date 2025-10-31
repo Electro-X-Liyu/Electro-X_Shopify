@@ -40,6 +40,13 @@
       flex: 0 0 75%;
       scroll-snap-align: start;
     }
+
+    /* 移动端姓名字号 */
+    .ambassador-name {
+      margin-top: 12px;
+      font-size: {{ section.settings.font_size_mobile | at_least: 9 }}px;
+      text-align: center;
+    }
   }
 
   /* 桌面端网格布局 */
@@ -49,13 +56,13 @@
       grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
       gap: {{ section.settings.grid_gap }}px;
     }
-  }
 
-  /* 姓名样式 */
-  .ambassador-name {
-    margin-top: 12px;
-    font-size: 1.1rem;
-    text-align: center;
+    /* 桌面端姓名字号 */
+    .ambassador-name {
+      margin-top: 12px;
+      font-size: {{ section.settings.font_size_desktop | at_least: 9 }}px;
+      text-align: center;
+    }
   }
 {%- endstyle -%}
 
@@ -131,6 +138,30 @@
       "unit": "px",
       "label": "Column spacing",
       "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Font Settings"
+    },
+    {
+      "type": "range",
+      "id": "font_size_desktop",
+      "min": 9,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop font size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "min": 9,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile font size",
+      "default": 16
     },
     {
       "type": "header",
