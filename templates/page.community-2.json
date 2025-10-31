@@ -18,21 +18,28 @@
         "text_alignment": "center"
       }
     },
-    "image_banner_HLriif": {
-      "type": "image-banner",
-      "name": "t:sections.image-banner.presets.name",
+    "banner_idJcQ6": {
+      "type": "banner",
+      "name": "Desktop PIP banner",
       "settings": {
         "image": "shopify://shop_images/KV_demo__1.jpg",
         "image_overlay_opacity": 0,
         "image_height": "medium",
         "image_behavior": "none",
+        "pip_enable": false,
+        "pip_width": 20,
+        "pip_position": "bottom-right",
+        "pip_position_horizontal": 20,
+        "pip_position_vertical": 20,
+        "pip_border_width": 2,
+        "pip_border_color": "#ffffff",
+        "pip_border_radius": 8,
+        "pip_background": "transparent",
+        "pip_box_shadow": "0 4px 8px rgba(0,0,0,0.2)",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
+        "color_scheme": ""
       }
     },
     "desktop_rich_text_xNn3J6": {
@@ -71,6 +78,26 @@
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
+      }
+    },
+    "mobile_banner_M3jPAa": {
+      "type": "Mobile-banner",
+      "name": "Mobile-Banner",
+      "settings": {
+        "image": "shopify://shop_images/KV_a73f02b8-9315-4956-8b04-71471abf6bb4.jpg",
+        "image_link": "",
+        "image_2_link": "",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "text_container_width": "default",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
       }
     },
     "mobile_rich_text_aFGrW8": {
@@ -322,8 +349,9 @@
   },
   "order": [
     "main",
-    "image_banner_HLriif",
+    "banner_idJcQ6",
     "desktop_rich_text_xNn3J6",
+    "mobile_banner_M3jPAa",
     "mobile_rich_text_aFGrW8",
     "community_ambassador_yLyaPU"
   ]
