@@ -73,6 +73,44 @@
         "padding_bottom": 52
       }
     },
+    "mobile_rich_text_aFGrW8": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_P6mJpU": {
+          "type": "heading",
+          "settings": {
+            "heading": "Community Ambassadors",
+            "heading_size": "h1",
+            "heading_font_weight": "normal",
+            "heading_font_size": 17,
+            "heading_color": "#000000"
+          }
+        },
+        "text_riWQYR": {
+          "type": "text",
+          "settings": {
+            "text": "<h2></h2><p>We have built a dynamic network of ambassadors - CrossFit trainers, marathon runners, cyclists, and beyond. Through their stories, sweat, and passion, fueled by ELECTRO X, together we inspire communities to push further.</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 9,
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_P6mJpU",
+        "text_riWQYR"
+      ],
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "text_container_width": 0,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "community_ambassador_yLyaPU": {
       "type": "Community-Ambassador",
       "blocks": {
@@ -277,7 +315,7 @@
         "heading_size": "h1",
         "columns_desktop": 4,
         "grid_gap": 20,
-        "padding_top": 36,
+        "padding_top": 0,
         "padding_bottom": 36
       }
     }
@@ -286,6 +324,7 @@
     "main",
     "image_banner_HLriif",
     "desktop_rich_text_xNn3J6",
+    "mobile_rich_text_aFGrW8",
     "community_ambassador_yLyaPU"
   ]
 }
