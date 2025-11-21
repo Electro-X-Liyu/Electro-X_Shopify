@@ -66,7 +66,7 @@
         "slide_YwhYWX": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/15related.png",
+            "image": "shopify://shop_images/20251121-145637.png",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -79,6 +79,42 @@
             "text_alignment": "center",
             "text_alignment_mobile": "center",
             "color_scheme": ""
+          }
+        },
+        "slide_ERypRV": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/20251121-145630.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_Ub6wHL": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/20251121-145623.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
           }
         },
         "slide_heN6Tb": {
@@ -120,6 +156,8 @@
       },
       "block_order": [
         "slide_YwhYWX",
+        "slide_ERypRV",
+        "slide_Ub6wHL",
         "slide_heN6Tb",
         "slide_hhbHcx"
       ],
@@ -253,6 +291,17 @@
             "link": "shopify://pages/plus-electrolyte-sports-drink"
           }
         },
+        "column_VycjP8": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/12.png",
+            "image_link": "shopify://pages/plus-electrolyte-sports-drink",
+            "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Sports Drink\">PLUS - Functional Sports Drink</a>",
+            "text": "<p>Jasmine Green Grape Flavor</p>",
+            "link_label": "",
+            "link": "shopify://pages/plus-electrolyte-sports-drink"
+          }
+        },
         "column_xecGYR": {
           "type": "column",
           "settings": {
@@ -278,6 +327,7 @@
       },
       "block_order": [
         "column_GKWpGk",
+        "column_VycjP8",
         "column_xecGYR",
         "column_3HDhfP"
       ],
