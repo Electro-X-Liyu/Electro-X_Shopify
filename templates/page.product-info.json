@@ -291,17 +291,6 @@
             "link": "shopify://pages/plus-electrolyte-sports-drink"
           }
         },
-        "column_VycjP8": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/12.png",
-            "image_link": "shopify://pages/plus-electrolyte-sports-drink",
-            "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Sports Drink\">PLUS - Functional Sports Drink</a>",
-            "text": "<p>Jasmine Green Grape Flavor</p>",
-            "link_label": "",
-            "link": "shopify://pages/plus-electrolyte-sports-drink"
-          }
-        },
         "column_xecGYR": {
           "type": "column",
           "settings": {
@@ -327,7 +316,6 @@
       },
       "block_order": [
         "column_GKWpGk",
-        "column_VycjP8",
         "column_xecGYR",
         "column_3HDhfP"
       ],
