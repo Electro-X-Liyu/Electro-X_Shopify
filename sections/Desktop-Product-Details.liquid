@@ -1,4 +1,5 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -37,12 +38,129 @@
   .product-details .image-with-text__media {
     margin: 0 !important;
     padding: 0 !important;
+    position: relative;
   }
 
-  /* 图片拉伸 */
-  .image-with-text__media img {
-    width: 100% !important;
-    height: auto;
+  /* 轮播容器样式 */
+  .image-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .slider__slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+  }
+
+  .slider__slide {
+    flex: 0 0 100%;
+    height: 100%;
+    min-height: 1px; /* 防止空内容折叠 */
+  }
+
+  .slider__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* 轮播导航按钮 */
+  .slider__controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+  }
+
+  .slider__button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 0;
+  }
+
+  .slider__button.active {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  /* 轮播箭头导航 */
+  .slider__arrows {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    transform: translateY(-50%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .slider__arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    pointer-events: auto;
+  }
+
+  .slider__arrow:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  .slider__arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* 自动轮播指示器 */
+  .slider__autoplay-indicator {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+  }
+
+  .autoplay-toggle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    padding: 0;
+  }
+
+  .autoplay-toggle:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  /* 单张图片时隐藏导航 */
+  .slider-single .slider__controls,
+  .slider-single .slider__arrows,
+  .slider-single .slider__autoplay-indicator {
+    display: none !important;
   }
 
   /* 自定义内容区域样式 */
@@ -162,6 +280,13 @@
     #block-{{ block.id }} .product-details-image {
       border-radius: {{ block.settings.image_border_radius }}px;
     }
+
+    /* 轮播图片自适应高度 */
+    #block-{{ block.id }} .image-with-text__media {
+      {%- if section.settings.image_height == 'adapt' and block.settings.slider_image_1 != blank -%}
+        padding-bottom: {{ 1 | divided_by: block.settings.slider_image_1.aspect_ratio | times: 100 }}%;
+      {%- endif -%}
+    }
   {%- endfor -%}
 {%- endstyle -%}
 
@@ -190,33 +315,107 @@
 <div class="product-details multirow section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
   <div class="multirow__inner">
     {%- for block in section.blocks -%}
+      {%- liquid
+        # 计算轮播图片数量
+        assign slider_images_count = 0
+        for i in (1..5)
+          assign image_setting = 'slider_image_' | append: i
+          if block.settings[image_setting] != blank
+            assign slider_images_count = slider_images_count | plus: 1
+          endif
+        endfor
+        
+        # 确定是否为单张图片
+        assign is_single_image = false
+        if slider_images_count <= 1
+          assign is_single_image = true
+        endif
+      -%}
+      
       <div
         id="block-{{ block.id }}"
         class="image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {{ block.shopify_attributes }}
       >
         <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}" style="margin-top: 1px !important; margin-bottom: 1px !important;">
-          <!-- 左侧自适应图片 -->
+          <!-- 左侧图片轮播 -->
           <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
             <div
-              class="image-with-text__media image-with-text__media--{{ section.settings.image_height }} gradient color-{{ section.settings.row_color_scheme }} global-media-settings{% if block.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}"
-              {% if section.settings.image_height == 'adapt' and block.settings.image != blank %}
-                style="padding-bottom: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;"
-              {% endif %}
+              class="image-with-text__media image-with-text__media--{{ section.settings.image_height }} gradient color-{{ section.settings.row_color_scheme }} global-media-settings{% if block.settings.slider_image_1 != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}"
             >
-              {%- if block.settings.image != blank -%}
-                {%- capture sizes -%}
-                  (min-width: {{ settings.page_width }}px) 50vw,
-                  (min-width: 750px) 50vw, calc(100vw - 30px)
-                {%- endcapture -%}
-                {{
-                  block.settings.image
-                  | image_url: width: 1500
-                  | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500'
-                }}
-              {%- else -%}
-                {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-              {%- endif -%}
+              <div class="image-slider {% if is_single_image %}slider-single{% endif %}" 
+                   data-slider 
+                   data-autoplay="{{ section.settings.auto_rotate }}" 
+                   data-speed="{{ section.settings.auto_rotate_speed }}"
+                   data-slides-count="{{ slider_images_count }}">
+                <div class="slider__slides" data-slides>
+                  {%- for i in (1..5) -%}
+                    {%- assign image_setting = 'slider_image_' | append: i -%}
+                    {%- assign slide_image = block.settings[image_setting] -%}
+                    {%- if slide_image != blank -%}
+                      <div class="slider__slide" data-slide>
+                        {%- capture sizes -%}
+                          (min-width: {{ settings.page_width }}px) 50vw,
+                          (min-width: 750px) 50vw, calc(100vw - 30px)
+                        {%- endcapture -%}
+                        {{
+                          slide_image
+                          | image_url: width: 1500
+                          | image_tag: 
+                            sizes: sizes, 
+                            widths: '165, 360, 535, 750, 1070, 1500', 
+                            loading: 'lazy',
+                            alt: slide_image.alt | escape
+                        }}
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                  
+                  {%- if slider_images_count == 0 -%}
+                    <div class="slider__slide" data-slide>
+                      {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                </div>
+
+                {%- unless is_single_image -%}
+                  <!-- 轮播导航 -->
+                  <div class="slider__controls" data-controls>
+                    {%- for i in (1..5) -%}
+                      {%- assign image_setting = 'slider_image_' | append: i -%}
+                      {%- if block.settings[image_setting] != blank -%}
+                        <button class="slider__button{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+
+                  <!-- 箭头导航 -->
+                  <div class="slider__arrows">
+                    <button class="slider__arrow slider__arrow--prev" data-prev aria-label="Previous slide">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                    <button class="slider__arrow slider__arrow--next" data-next aria-label="Next slide">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <!-- 自动轮播指示器 -->
+                  {%- if section.settings.auto_rotate -%}
+                    <div class="slider__autoplay-indicator">
+                      <button class="autoplay-toggle" data-autoplay-toggle aria-label="Pause slideshow">
+                        <svg viewBox="0 0 24 24" fill="none">
+                          <rect x="6" y="4" width="4" height="16" fill="currentColor"/>
+                          <rect x="14" y="4" width="4" height="16" fill="currentColor"/>
+                        </svg>
+                      </button>
+                    </div>
+                  {%- endif -%}
+                {%- endunless -%}
+              </div>
             </div>
           </div>
           
@@ -260,7 +459,7 @@
                       {{
                         block.settings.bottom_image_1
                         | image_url: width: 600
-                        | image_tag: class: 'product-details-image', loading: 'lazy'
+                        | image_tag: class: 'product-details-image', loading: 'lazy', alt: block.settings.bottom_image_1.alt | escape
                       }}
                     </div>
                   {%- else -%}
@@ -274,7 +473,7 @@
                       {{
                         block.settings.bottom_image_2
                         | image_url: width: 600
-                        | image_tag: class: 'product-details-image', loading: 'lazy'
+                        | image_tag: class: 'product-details-image', loading: 'lazy', alt: block.settings.bottom_image_2.alt | escape
                       }}
                     </div>
                   {%- else -%}
@@ -291,6 +490,157 @@
     {%- endfor -%}
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sliders = document.querySelectorAll('[data-slider]');
+  
+  sliders.forEach(slider => {
+    const slides = slider.querySelector('[data-slides]');
+    const slidesCount = parseInt(slider.dataset.slidesCount) || slides.children.length;
+    const buttons = slider.querySelectorAll('[data-index]');
+    const prevButton = slider.querySelector('[data-prev]');
+    const nextButton = slider.querySelector('[data-next]');
+    const autoplayToggle = slider.querySelector('[data-autoplay-toggle]');
+    
+    // 如果只有一张图片，不初始化轮播功能
+    if (slidesCount <= 1) return;
+    
+    let currentSlide = 0;
+    let autoplayInterval;
+    const autoplay = slider.dataset.autoplay === 'true';
+    const speed = parseInt(slider.dataset.speed) || 5000;
+    let isPlaying = autoplay;
+    
+    function goToSlide(index) {
+      currentSlide = index;
+      if (slides) {
+        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+      
+      // 更新按钮状态
+      buttons.forEach((button, i) => {
+        if (button) {
+          button.classList.toggle('active', i === currentSlide);
+        }
+      });
+    }
+    
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slidesCount;
+      goToSlide(currentSlide);
+    }
+    
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slidesCount) % slidesCount;
+      goToSlide(currentSlide);
+    }
+    
+    // 按钮点击事件
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const index = parseInt(button.dataset.index);
+        goToSlide(index);
+        resetAutoplay();
+      });
+    });
+    
+    if (prevButton) {
+      prevButton.addEventListener('click', () => {
+        prevSlide();
+        resetAutoplay();
+      });
+    }
+    
+    if (nextButton) {
+      nextButton.addEventListener('click', () => {
+        nextSlide();
+        resetAutoplay();
+      });
+    }
+    
+    // 自动轮播
+    function startAutoplay() {
+      if (isPlaying && slidesCount > 1) {
+        stopAutoplay(); // 先清除可能存在的旧定时器
+        autoplayInterval = setInterval(nextSlide, speed);
+        updateAutoplayButton(true);
+      }
+    }
+    
+    function stopAutoplay() {
+      clearInterval(autoplayInterval);
+      updateAutoplayButton(false);
+    }
+    
+    function resetAutoplay() {
+      if (isPlaying) {
+        stopAutoplay();
+        startAutoplay();
+      }
+    }
+    
+    function updateAutoplayButton(playing) {
+      if (!autoplayToggle) return;
+      
+      if (playing) {
+        autoplayToggle.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="6" y="4" width="4" height="16" fill="currentColor"/>
+            <rect x="14" y="4" width="4" height="16" fill="currentColor"/>
+          </svg>
+        `;
+        autoplayToggle.setAttribute('aria-label', 'Pause slideshow');
+      } else {
+        autoplayToggle.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+          </svg>
+        `;
+        autoplayToggle.setAttribute('aria-label', 'Play slideshow');
+      }
+    }
+    
+    // 自动轮播切换
+    if (autoplayToggle) {
+      autoplayToggle.addEventListener('click', () => {
+        isPlaying = !isPlaying;
+        if (isPlaying) {
+          startAutoplay();
+        } else {
+          stopAutoplay();
+        }
+      });
+    }
+    
+    // 鼠标悬停暂停
+    slider.addEventListener('mouseenter', stopAutoplay);
+    slider.addEventListener('mouseleave', () => {
+      if (isPlaying) startAutoplay();
+    });
+    
+    // 初始化
+    if (slidesCount > 1) {
+      startAutoplay();
+    }
+    
+    // 清理函数
+    slider.cleanup = function() {
+      stopAutoplay();
+      if (prevButton) prevButton.removeEventListener('click', prevSlide);
+      if (nextButton) nextButton.removeEventListener('click', nextSlide);
+      if (autoplayToggle) autoplayToggle.removeEventListener('click', arguments.callee);
+    };
+  });
+  
+  // 页面卸载时清理
+  window.addEventListener('beforeunload', function() {
+    sliders.forEach(slider => {
+      if (slider.cleanup) slider.cleanup();
+    });
+  });
+});
+</script>
 
 {% schema %}
 {
@@ -347,6 +697,26 @@
       ],
       "default": "medium",
       "label": "Desktop image width"
+    },
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "Auto-rotate slides",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "auto_rotate_speed",
+      "min": 3000,
+      "max": 9000,
+      "step": 1000,
+      "unit": "ms",
+      "label": "Auto-rotate speed",
+      "default": 5000
     },
     {
       "type": "header",
@@ -519,9 +889,33 @@
       "name": "Product Detail",
       "settings": [
         {
+          "type": "header",
+          "content": "Slider Images"
+        },
+        {
           "type": "image_picker",
-          "id": "image",
-          "label": "Main Image"
+          "id": "slider_image_1",
+          "label": "Slider Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "slider_image_2",
+          "label": "Slider Image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "slider_image_3",
+          "label": "Slider Image 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "slider_image_4",
+          "label": "Slider Image 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "slider_image_5",
+          "label": "Slider Image 5"
         },
         {
           "type": "header",
