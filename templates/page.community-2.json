@@ -65,7 +65,7 @@
             "image": "shopify://shop_images/11.jpg",
             "heading": "HAN LIN 林昂",
             "heading_font_weight": "300",
-            "heading_font_size": 34,
+            "heading_font_size": 24,
             "heading_color": "#121212",
             "heading_margin_top": "default",
             "heading_margin_bottom": "0",
@@ -91,10 +91,78 @@
             "button_margin_top": "default",
             "button_margin_bottom": "default"
           }
+        },
+        "row_UKYfmD": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/11.jpg",
+            "heading": "ADA 朱芳",
+            "heading_font_weight": "300",
+            "heading_font_size": 24,
+            "heading_color": "#121212",
+            "heading_margin_top": "default",
+            "heading_margin_bottom": "0",
+            "caption": "ELECTRO X Elite HYROX Athlete",
+            "caption_font_weight": "default",
+            "caption_font_size": 19,
+            "caption_color": "#121212",
+            "caption_margin_top": "0",
+            "caption_margin_bottom": "default",
+            "text": "<ul><li>2024 HYROX PFT national record holder</li><li>2024 HYROX Beijing Women's Pro No.1</li><li>2025 HYROX Shanghai Women's Pro No.1｜Women's Relay No.1</li><li>2025 HYROX Singapore Asian Championships Women's Pro Age Group No.1｜Mixed Doubles No.1</li><li>2025 WBC professional boxer</li></ul>",
+            "text_font_weight": "default",
+            "text_font_size": 14,
+            "text_color": "#121212",
+            "text_margin_top": "default",
+            "text_margin_bottom": "default",
+            "button_label": "",
+            "button_link": "",
+            "button_font_weight": "default",
+            "button_font_size": 16,
+            "button_text_color": "#121212",
+            "button_bg_color": "rgba(0,0,0,0)",
+            "button_border_color": "rgba(0,0,0,0)",
+            "button_margin_top": "default",
+            "button_margin_bottom": "default"
+          }
+        },
+        "row_Vrx6eB": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/11.jpg",
+            "heading": "JIM 盘业进",
+            "heading_font_weight": "300",
+            "heading_font_size": 24,
+            "heading_color": "#121212",
+            "heading_margin_top": "default",
+            "heading_margin_bottom": "0",
+            "caption": "ELECTRO X Elite HYROX Athlete",
+            "caption_font_weight": "default",
+            "caption_font_size": 19,
+            "caption_color": "#121212",
+            "caption_margin_top": "0",
+            "caption_margin_bottom": "default",
+            "text": "<ul><li>2024-2025 HYROX Hong Kong Asian Championships representing the Chinese Team No.3</li><li>2024-2025 HYROX Beijing Men's Pro Age Group No.3</li></ul>",
+            "text_font_weight": "default",
+            "text_font_size": 14,
+            "text_color": "#121212",
+            "text_margin_top": "default",
+            "text_margin_bottom": "default",
+            "button_label": "",
+            "button_link": "",
+            "button_font_weight": "default",
+            "button_font_size": 16,
+            "button_text_color": "#121212",
+            "button_bg_color": "rgba(0,0,0,0)",
+            "button_border_color": "rgba(0,0,0,0)",
+            "button_margin_top": "default",
+            "button_margin_bottom": "default"
+          }
         }
       },
       "block_order": [
-        "row_TWNA4V"
+        "row_TWNA4V",
+        "row_UKYfmD",
+        "row_Vrx6eB"
       ],
       "name": "Desktop Multirow",
       "settings": {
