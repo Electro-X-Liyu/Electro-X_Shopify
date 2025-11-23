@@ -18,30 +18,6 @@
         "text_alignment": "center"
       }
     },
-    "banner_idJcQ6": {
-      "type": "banner",
-      "name": "Desktop PIP banner",
-      "settings": {
-        "image": "shopify://shop_images/KV_demo__1.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "image_behavior": "none",
-        "pip_enable": false,
-        "pip_width": 20,
-        "pip_position": "bottom-right",
-        "pip_position_horizontal": 20,
-        "pip_position_vertical": 20,
-        "pip_border_width": 2,
-        "pip_border_color": "#ffffff",
-        "pip_border_radius": 8,
-        "pip_background": "rgba(0,0,0,0)",
-        "pip_box_shadow": "0 4px 8px rgba(0,0,0,0.2)",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": ""
-      }
-    },
     "desktop_rich_text_xNn3J6": {
       "type": "Desktop-Rich-Text",
       "blocks": {
@@ -80,281 +56,67 @@
         "padding_bottom": 52
       }
     },
-    "mobile_banner_M3jPAa": {
-      "type": "Mobile-banner",
-      "name": "Mobile-Banner",
-      "settings": {
-        "image": "shopify://shop_images/KV_a73f02b8-9315-4956-8b04-71471abf6bb4.jpg",
-        "image_link": "",
-        "image_2_link": "",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "text_container_width": "default",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
-    },
-    "mobile_rich_text_aFGrW8": {
-      "type": "Mobile-rich-text",
+    "desktop_multirow_XqTGAF": {
+      "type": "desktop-multirow",
       "blocks": {
-        "heading_P6mJpU": {
-          "type": "heading",
-          "settings": {
-            "heading": "Community Ambassadors",
-            "heading_size": "h1",
-            "heading_font_weight": "normal",
-            "heading_font_size": 17,
-            "heading_color": "#000000"
-          }
-        },
-        "text_riWQYR": {
-          "type": "text",
-          "settings": {
-            "text": "<h2></h2><p>We have built a dynamic network of ambassadors - CrossFit trainers, marathon runners, cyclists, and beyond. Through their stories, sweat, and passion, fueled by ELECTRO X, together we inspire communities to push further.</p>",
-            "text_font_weight": "normal",
-            "text_font_size": 9,
-            "text_color": "#000000"
-          }
-        }
-      },
-      "block_order": [
-        "heading_P6mJpU",
-        "text_riWQYR"
-      ],
-      "name": "Mobile-Rich-Text",
-      "settings": {
-        "text_container_width": 0,
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
-    "community_ambassador_yLyaPU": {
-      "type": "Community-Ambassador",
-      "blocks": {
-        "ambassador_NaCPHz": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/24.jpg",
-            "title": "Xing Guo"
-          }
-        },
-        "ambassador_Dp6Yeg": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/23.jpg",
-            "title": "Siming JI"
-          }
-        },
-        "ambassador_zyyk8r": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/22.jpg",
-            "title": "Cathy"
-          }
-        },
-        "ambassador_ibpENr": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/21.jpg",
-            "title": "Mark"
-          }
-        },
-        "ambassador_MYdgAA": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/20.jpg",
-            "title": "Noah"
-          }
-        },
-        "ambassador_BdnnpD": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/19.jpg",
-            "title": "Monkey"
-          }
-        },
-        "ambassador_w3kexG": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/18.jpg",
-            "title": "Chuck"
-          }
-        },
-        "ambassador_xgcBcU": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/17.jpg",
-            "title": "Lucia"
-          }
-        },
-        "ambassador_bUbmj8": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/16.jpg",
-            "title": "Eason"
-          }
-        },
-        "ambassador_qrq8Bc": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/15.jpg",
-            "title": "Man Xiong"
-          }
-        },
-        "ambassador_3Pc9yz": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/14.jpg",
-            "title": "Max"
-          }
-        },
-        "ambassador_hCfihx": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/13.jpg",
-            "title": "Jian Wang"
-          }
-        },
-        "ambassador_8jxRAP": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/12.jpg",
-            "title": "Rosen"
-          }
-        },
-        "ambassador_aKtLaM": {
-          "type": "ambassador",
+        "row_TWNA4V": {
+          "type": "row",
           "settings": {
             "image": "shopify://shop_images/11.jpg",
-            "title": "Ang Lin"
-          }
-        },
-        "ambassador_XfXHR8": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/10.jpg",
-            "title": "Belle"
-          }
-        },
-        "ambassador_YmeV7C": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/9.jpg",
-            "title": "Peggy"
-          }
-        },
-        "ambassador_YabKmL": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/8.jpg",
-            "title": "Roy"
-          }
-        },
-        "ambassador_DpPbqP": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/7.jpg",
-            "title": "Crystal"
-          }
-        },
-        "ambassador_hktwDA": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/6.jpg",
-            "title": "Sylvia"
-          }
-        },
-        "ambassador_fp4Kkm": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/5_16e8bd64-6fdb-4e7c-9189-ded380c77a1b.jpg",
-            "title": "Chen Ye"
-          }
-        },
-        "ambassador_gztW9Q": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/4_e8e31333-c046-495f-be31-7c01276117fb.jpg",
-            "title": "Nick"
-          }
-        },
-        "ambassador_KGJFk4": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/3_7ba65da9-7c07-4a4b-9cc7-1e77ce880aa0.jpg",
-            "title": "Diana"
-          }
-        },
-        "ambassador_RNnNV7": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/2_f9583dd5-a19c-40c2-9e68-658c3cbc1b21.jpg",
-            "title": "Toki"
-          }
-        },
-        "ambassador_reNArQ": {
-          "type": "ambassador",
-          "settings": {
-            "image": "shopify://shop_images/1_c1f7db68-b42a-4160-8c52-77b22812fa80.jpg",
-            "title": "Momo.V"
+            "heading": "Multirow heading",
+            "heading_font_weight": "default",
+            "heading_font_size": 24,
+            "heading_color": "#121212",
+            "heading_margin_top": "default",
+            "heading_margin_bottom": "default",
+            "caption": "Add a tagline",
+            "caption_font_weight": "default",
+            "caption_font_size": 16,
+            "caption_color": "#121212",
+            "caption_margin_top": "default",
+            "caption_margin_bottom": "default",
+            "text": "<p>2025 HYROX Singapore Asian Championships Mixed Doubles No.1Spartan Race Chinese elite athlete SPARTAN PRO (top 3 in China)Founder of the Temporary Humans (TH) communityMember of the variety show \"I Can Be 47\" by Tencent sports</p>",
+            "text_font_weight": "default",
+            "text_font_size": 16,
+            "text_color": "#121212",
+            "text_margin_top": "default",
+            "text_margin_bottom": "default",
+            "button_label": "",
+            "button_link": "",
+            "button_font_weight": "default",
+            "button_font_size": 16,
+            "button_text_color": "#121212",
+            "button_bg_color": "rgba(0,0,0,0)",
+            "button_border_color": "rgba(0,0,0,0)",
+            "button_margin_top": "default",
+            "button_margin_bottom": "default"
           }
         }
       },
       "block_order": [
-        "ambassador_NaCPHz",
-        "ambassador_Dp6Yeg",
-        "ambassador_zyyk8r",
-        "ambassador_ibpENr",
-        "ambassador_MYdgAA",
-        "ambassador_BdnnpD",
-        "ambassador_w3kexG",
-        "ambassador_xgcBcU",
-        "ambassador_bUbmj8",
-        "ambassador_qrq8Bc",
-        "ambassador_3Pc9yz",
-        "ambassador_hCfihx",
-        "ambassador_8jxRAP",
-        "ambassador_aKtLaM",
-        "ambassador_XfXHR8",
-        "ambassador_YmeV7C",
-        "ambassador_YabKmL",
-        "ambassador_DpPbqP",
-        "ambassador_hktwDA",
-        "ambassador_fp4Kkm",
-        "ambassador_gztW9Q",
-        "ambassador_KGJFk4",
-        "ambassador_RNnNV7",
-        "ambassador_reNArQ"
+        "row_TWNA4V"
       ],
-      "name": "Community Ambassadors",
+      "name": "Desktop Multirow",
       "settings": {
-        "title": "",
+        "image_height": "large",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
         "heading_size": "h1",
-        "columns_desktop": 4,
-        "grid_gap": 20,
-        "font_size_desktop": 14,
-        "font_size_mobile": 9,
-        "padding_top": 0,
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
+        "padding_top": 36,
         "padding_bottom": 36
       }
     }
   },
   "order": [
     "main",
-    "banner_idJcQ6",
     "desktop_rich_text_xNn3J6",
-    "mobile_banner_M3jPAa",
-    "mobile_rich_text_aFGrW8",
-    "community_ambassador_yLyaPU"
+    "desktop_multirow_XqTGAF"
   ]
 }
