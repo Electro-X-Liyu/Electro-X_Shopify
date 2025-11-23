@@ -20,44 +20,6 @@
     },
     "desktop_product_row_E64F8M": {
       "type": "Desktop-product-row",
-      "blocks": {
-        "row_KrDUC9": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/12.png",
-            "heading": "Product Row Heading",
-            "heading_font_weight": "default",
-            "heading_font_size": 24,
-            "heading_color": "rgba(0,0,0,0)",
-            "heading_margin_top": "default",
-            "heading_margin_bottom": "default",
-            "caption": "Product tagline",
-            "caption_font_weight": "default",
-            "caption_font_size": 16,
-            "caption_color": "rgba(0,0,0,0)",
-            "caption_margin_top": "default",
-            "caption_margin_bottom": "default",
-            "text": "<p>Share information about your product with your customers. Describe features, benefits, or welcome customers to your store.</p>",
-            "text_font_weight": "default",
-            "text_font_size": 16,
-            "text_color": "rgba(0,0,0,0)",
-            "text_margin_top": "default",
-            "text_margin_bottom": "default",
-            "button_label": "Shop Now",
-            "button_link": "",
-            "button_font_weight": "default",
-            "button_font_size": 16,
-            "button_text_color": "rgba(0,0,0,0)",
-            "button_bg_color": "rgba(0,0,0,0)",
-            "button_border_color": "rgba(0,0,0,0)",
-            "button_margin_top": "default",
-            "button_margin_bottom": "default"
-          }
-        }
-      },
-      "block_order": [
-        "row_KrDUC9"
-      ],
       "name": "Desktop Product Row",
       "settings": {
         "image_height": "large",
