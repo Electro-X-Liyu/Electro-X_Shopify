@@ -62,12 +62,12 @@
         "row_TWNA4V": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/11.jpg",
+            "image": "shopify://shop_images/han.jpg",
             "heading": "HAN LIN 林昂",
             "heading_font_weight": "300",
             "heading_font_size": 24,
             "heading_color": "#121212",
-            "heading_margin_top": "default",
+            "heading_margin_top": "80",
             "heading_margin_bottom": "0",
             "caption": "ELECTRO X Elite HYROX Athlete",
             "caption_font_weight": "default",
@@ -80,7 +80,7 @@
             "text_font_size": 14,
             "text_color": "#121212",
             "text_margin_top": "default",
-            "text_margin_bottom": "default",
+            "text_margin_bottom": "80",
             "button_label": "",
             "button_link": "",
             "button_font_weight": "default",
@@ -95,12 +95,12 @@
         "row_UKYfmD": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/11.jpg",
+            "image": "shopify://shop_images/ada.jpg",
             "heading": "ADA 朱芳",
             "heading_font_weight": "300",
             "heading_font_size": 24,
             "heading_color": "#121212",
-            "heading_margin_top": "default",
+            "heading_margin_top": "80",
             "heading_margin_bottom": "0",
             "caption": "ELECTRO X Elite HYROX Athlete",
             "caption_font_weight": "default",
@@ -128,7 +128,7 @@
         "row_Vrx6eB": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/11.jpg",
+            "image": "shopify://shop_images/jim.jpg",
             "heading": "JIM 盘业进",
             "heading_font_weight": "300",
             "heading_font_size": 24,
