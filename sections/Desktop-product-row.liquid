@@ -21,7 +21,7 @@
   }
 
   /* Full width modifications */
-  .desktop-product-row .product-row__inner {
+  .desktop-product-row .desktop-product-row__inner {
     max-width: 100% !important;
     padding-left: 0 !important;
     padding-right: 0 !important;    
@@ -30,7 +30,7 @@
     margin-right: 0 !important;
   }
 
-  .image-with-text__grid {
+  .desktop-product-row .image-with-text__grid {
     max-width: 100% !important;
   }
 
@@ -39,7 +39,7 @@
     padding: 0 !important;
   }
 
-  /* 图片保持原始比例并完整显示 */
+  /* 图片保持原始比例并完整显示 - 修复版 */
   .desktop-product-row .image-with-text__media img {
     width: 100% !important;
     height: auto !important;
@@ -62,18 +62,25 @@
     min-height: 300px !important;
   }
 
-  /* 文本内容区域垂直居中 */
+  /* 确保自适应高度图片也能正确显示 */
+  .desktop-product-row .image-with-text__media.image-with-text__media--adapt {
+    min-height: 300px !important;
+  }
+
+  /* 文本内容区域垂直居中 - 增加特异性 */
   .desktop-product-row .image-with-text__text-item {
     display: flex !important;
     align-items: center !important;
+    justify-content: center !important;
   }
 
-  .desktop-product-row .image-with-text__content {
+  .desktop-product-row .image-with-text__text-item .image-with-text__content {
     width: 100% !important;
+    flex: none !important;
   }
 
   /* 取消副标题全大写和letter-spacing */
-  .image-with-text__text--caption {
+  .desktop-product-row .image-with-text__text--caption {
     text-transform: none !important;
     letter-spacing: normal !important;
   }
@@ -89,7 +96,7 @@
   }
 
   /* 内容区域padding */
-  .image-with-text__content.image-with-text__content--middle.image-with-text__content--desktop-left.image-with-text__content--mobile-left.image-with-text__content--large.content-container.background-transparent {
+  .desktop-product-row .image-with-text__content.image-with-text__content--middle.image-with-text__content--desktop-left.image-with-text__content--mobile-left.image-with-text__content--large.content-container.background-transparent {
     padding: 120px !important;
   }
 
@@ -213,17 +220,37 @@
   unless no_content_background and no_content_styles
     assign corners_class = ' collapse-corners'
   endunless
+
+  # 修复 Grid 类名逻辑
+  case section.settings.desktop_image_width
+    when 'small'
+      assign grid_class = '3-col-tablet'
+    when 'medium'
+      assign grid_class = '2-col-tablet'
+    when 'large'
+      assign grid_class = '3-col-tablet'
+  endcase
+
+  # 修复 sizes 属性逻辑
+  case section.settings.desktop_image_width
+    when 'small'
+      assign image_vw = '33'
+    when 'medium'
+      assign image_vw = '50'
+    when 'large'
+      assign image_vw = '67'
+  endcase
 -%}
 
-<div class="desktop-product-row product-row section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
-  <div class="product-row__inner">
+<div class="desktop-product-row section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
+  <div class="desktop-product-row__inner">
     {%- for block in section.blocks -%}
       <div
         id="block-{{ block.id }}"
         class="image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {{ block.shopify_attributes }}
       >
-        <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.image_layout contains 'alternate' %}{% cycle odd_class, even_class %}{% else %}{{ odd_class }}{% endif %}" style="margin-top: 1px !important; margin-bottom: 1px !important;">
+        <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{{ grid_class }}{% if section.settings.image_layout contains 'alternate' %}{% cycle odd_class, even_class %}{% else %}{{ odd_class }}{% endif %}" style="margin-top: 1px !important; margin-bottom: 1px !important;">
           <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
             <div
               class="image-with-text__media image-with-text__media--{{ section.settings.image_height }} gradient color-{{ section.settings.row_color_scheme }} global-media-settings{% if block.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}"
@@ -233,8 +260,8 @@
             >
               {%- if block.settings.image != blank -%}
                 {%- capture sizes -%}
-                  (min-width: {{ settings.page_width }}px) 50vw,
-                  (min-width: 750px) 50vw, calc(100vw - 30px)
+                  (min-width: {{ settings.page_width }}px) {{ image_vw }}vw,
+                  (min-width: 750px) {{ image_vw }}vw, calc(100vw - 30px)
                 {%- endcapture -%}
                 {{
                   block.settings.image
@@ -242,7 +269,8 @@
                   | image_tag: 
                     sizes: sizes, 
                     widths: '165, 360, 535, 750, 1070, 1500',
-                    class: 'product-row-image'
+                    class: 'desktop-product-row-image',
+                    loading: 'lazy'
                 }}
               {%- else -%}
                 {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
