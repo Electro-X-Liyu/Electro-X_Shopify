@@ -15,7 +15,9 @@
         "product_detail_UQTzcm": {
           "type": "product_detail",
           "settings": {
-            "image": "shopify://shop_images/20251121-145637.png",
+            "slider_image_1": "shopify://shop_images/20251121-145637.png",
+            "slider_image_2": "shopify://shop_images/20251121-145630.png",
+            "slider_image_4": "shopify://shop_images/20251121-145623.png",
             "heading": "<strong>Natural Alkaline Water</strong>",
             "heading_font_weight": "default",
             "heading_font_size": 24,
@@ -48,6 +50,8 @@
       "settings": {
         "image_height": "medium",
         "desktop_image_width": "medium",
+        "auto_rotate": false,
+        "auto_rotate_speed": 5000,
         "heading_size": "h1",
         "text_style": "body",
         "button_style": "secondary",
