@@ -438,6 +438,7 @@
     },
     "mobile_image_banner_bVz7i6": {
       "type": "Mobile-image-banner",
+      "disabled": true,
       "name": "Natural Alkaline Water",
       "settings": {
         "image_mobile": "shopify://shop_images/20251121-145637.png",
