@@ -66,6 +66,7 @@
           "disabled": true,
           "settings": {
             "image": "shopify://shop_images/15related.png",
+            "image_link": "",
             "title": "<a href=\"/pages/natural-alkaline-water\" title=\"Natural Alkaline Water\">Natural Alkaline Water</a>",
             "text": "<p>350mL | 580mL | 1L</p>",
             "link_label": "",
@@ -76,6 +77,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/10.png",
+            "image_link": "shopify://pages/plus-functional-sports-drink",
             "title": "<a href=\"/pages/plus-functional-sports-drink\" title=\"PLUS - Functional Sports Drink\">PLUS - Functional Sports Drink</a>",
             "text": "<p>Pineapple Mate Tea Flavor</p>",
             "link_label": "",
@@ -86,6 +88,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/12.png",
+            "image_link": "shopify://pages/plus-electrolyte-sports-drink",
             "title": "<a href=\"/pages/plus-electrolyte-sports-drink\" title=\"PLUS - Electrolyte Functional Sports Drink\">PLUS - Functional Sports Drink</a>",
             "text": "<p>Jasmine Green Grape Flavor</p>",
             "link_label": "",
@@ -96,6 +99,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/14.png",
+            "image_link": "shopify://pages/slim-electrolyte-sports-drink",
             "title": "<a href=\"/pages/slim-electrolyte-sports-drink\" title=\"SLIM - Electrolyte Functional Sports Drink\">SLIM - Functional Sports Drink</a>",
             "text": "<p>Razzmatazz Berry Flavor</p>",
             "link_label": "",
@@ -107,6 +111,7 @@
           "disabled": true,
           "settings": {
             "image": "shopify://shop_images/2_49fb4af0-50fa-4fb4-8286-8f9da9edc372.jpg",
+            "image_link": "",
             "title": "<a href=\"/pages/plus-electrolyte-liquid-concentrate\" title=\"PLUS - Electrolyte Liquid Concentrate\">PLUS - Electrolyte Liquid Concentrate</a>",
             "text": "<p>Pineapple Mate Tea Flavor</p>",
             "link_label": "",
@@ -118,6 +123,7 @@
           "disabled": true,
           "settings": {
             "image": "shopify://shop_images/4e3cf047ecc73b0dc1053e1eae1238cf.jpg",
+            "image_link": "",
             "title": "<a href=\"/pages/slim-electrolyte-liquid-concentrate\" title=\"SLIM - Electrolyte Liquid Concentrate\">SLIM - Electrolyte Liquid Concentrate</a>",
             "text": "<p>Pomegranate Pink Lemonade Flavor</p>",
             "link_label": "",
