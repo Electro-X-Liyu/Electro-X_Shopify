@@ -93,7 +93,7 @@
           "name": "Urban Challenger Project",
           "settings": {
             "image": "shopify://shop_images/3cut.png",
-            "heading": "Urban Challenger Project",
+            "heading": "<a href=\"/pages/ucp\" title=\"UCP\">Urban Challenger Project</a>",
             "heading_font_weight": "default",
             "heading_font_size": 24,
             "heading_color": "#121212",
@@ -112,7 +112,7 @@
             "text_margin_top": "default",
             "text_margin_bottom": "0",
             "button_label": "LEARN MORE",
-            "button_link": "",
+            "button_link": "shopify://pages/ucp",
             "button_font_weight": "default",
             "button_font_size": 16,
             "button_text_color": "#000000",
