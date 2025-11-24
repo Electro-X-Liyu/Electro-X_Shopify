@@ -71,6 +71,44 @@
         "stack_images_on_mobile": true
       }
     },
+    "mobile_rich_text_Wzgf6a": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_dDt93M": {
+          "type": "heading",
+          "settings": {
+            "heading": "Ambassodors",
+            "heading_size": "h2",
+            "heading_font_weight": "normal",
+            "heading_font_size": 19,
+            "heading_color": "#000000"
+          }
+        },
+        "text_fUPgjq": {
+          "type": "text",
+          "settings": {
+            "text": "<p><br/><br/>ELECTRO X has signed a diverse portfolio of community leaders <br/>and influencers as our Community Ambassadors, representing various sports, including CrossFit, cycling flag football, yoga, and Pilates, fostering a strong connection between ELECTRO X and a wide rangeof fitness enthusiasts.</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 9,
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_dDt93M",
+        "text_fUPgjq"
+      ],
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "text_container_width": 0,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "mobile_banner_J6yEEF": {
       "type": "Mobile-banner",
       "name": "Mobile-Banner",
@@ -79,7 +117,7 @@
         "image_link": "",
         "image_2_link": "",
         "image_overlay_opacity": 0,
-        "image_height": "medium",
+        "image_height": "adapt",
         "image_behavior": "none",
         "text_container_width": "default",
         "desktop_content_position": "middle-center",
@@ -96,6 +134,7 @@
     "main",
     "desktop_rich_text_EcVaya",
     "desktop_banner_wPRNjD",
+    "mobile_rich_text_Wzgf6a",
     "mobile_banner_J6yEEF"
   ]
 }
