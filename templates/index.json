@@ -898,8 +898,8 @@
           "settings": {
             "image": "shopify://shop_images/2cut.png",
             "image_link": "shopify://pages/ambassadors",
-            "title": "Community Ambassadors",
-            "text": "<p>LEARN MORE</p>",
+            "title": "<a href=\"/pages/ambassadors\" title=\"Ambassadors\">Community Ambassadors</a>",
+            "text": "",
             "link_label": "",
             "link": "shopify://pages/ambassadors"
           }
@@ -909,8 +909,8 @@
           "settings": {
             "image": "shopify://shop_images/20250612-154943.jpg",
             "image_link": "shopify://pages/ucp",
-            "title": "U.C.P - Urban Challenge Project",
-            "text": "<p>LEARN MORE</p>",
+            "title": "<a href=\"/pages/ucp\" title=\"UCP\">U.C.P - Urban Challenge Project</a>",
+            "text": "",
             "link_label": "",
             "link": ""
           }
