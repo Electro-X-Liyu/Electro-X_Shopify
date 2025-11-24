@@ -776,7 +776,7 @@
         "block_link_margin_top_mobile": 0,
         "block_link_margin_bottom_mobile": 0,
         "image_width": "full",
-        "image_ratio": "portrait",
+        "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
         "button_bg_color": "#000000",
