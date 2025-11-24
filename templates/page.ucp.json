@@ -38,14 +38,13 @@
     "desktop_rich_text_NAnwjE": {
       "type": "Desktop-Rich-Text",
       "blocks": {
-        "heading_nPBEHQ": {
-          "type": "heading",
+        "text_r8yfLV": {
+          "type": "text",
           "settings": {
-            "heading": "U.C.P 01 ",
-            "heading_size": "h1",
-            "heading_font_size": 24,
-            "heading_font_weight": "normal",
-            "heading_color": "#000000"
+            "text": "<p>U.C.P 01 </p>",
+            "text_font_size": 24,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
           }
         },
         "text_KpwQrn": {
@@ -59,7 +58,7 @@
         }
       },
       "block_order": [
-        "heading_nPBEHQ",
+        "text_r8yfLV",
         "text_KpwQrn"
       ],
       "name": "Desktop Rich Text",
@@ -69,7 +68,7 @@
         "container_width": 800,
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
+        "padding_top": 100,
         "padding_bottom": 52
       }
     },
@@ -79,19 +78,19 @@
         "heading_attCBb": {
           "type": "heading",
           "settings": {
-            "heading": "Talk about your brand",
+            "heading": "U.C.P 01 ",
             "heading_size": "h1",
-            "heading_font_weight": "bold",
-            "heading_font_size": 0,
+            "heading_font_weight": "normal",
+            "heading_font_size": 14,
             "heading_color": "#000000"
           }
         },
         "text_eU8X8f": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers.</p>",
+            "text": "<p>10km Running & CrossFit Training</p>",
             "text_font_weight": "normal",
-            "text_font_size": 0,
+            "text_font_size": 9,
             "text_color": "#000000"
           }
         }
@@ -107,7 +106,193 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
+        "padding_top": 88,
+        "padding_bottom": 52
+      }
+    },
+    "slideshow_iTY4Jm": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_aRjbrn": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1ucp.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_aRjbrn"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "grid",
+        "slide_height": "adapt_image",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": ""
+      }
+    },
+    "desktop_rich_text_PgBwKf": {
+      "type": "Desktop-Rich-Text",
+      "blocks": {
+        "text_H8ViG9": {
+          "type": "text",
+          "settings": {
+            "text": "<p>U.C.P 02</p>",
+            "text_font_size": 24,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        },
+        "text_wQ9HHx": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Metabolic Conditioning & Obstacles Proficiency Training</p>",
+            "text_font_size": 17,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        }
+      },
+      "block_order": [
+        "text_H8ViG9",
+        "text_wQ9HHx"
+      ],
+      "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "container_width": 800,
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 100,
+        "padding_bottom": 52
+      }
+    },
+    "mobile_rich_text_WYD9jP": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_ThBmM7": {
+          "type": "heading",
+          "settings": {
+            "heading": "U.C.P 02",
+            "heading_size": "h1",
+            "heading_font_weight": "normal",
+            "heading_font_size": 14,
+            "heading_color": "#000000"
+          }
+        },
+        "text_fqaGHp": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Metabolic Conditioning & Obstacles Proficiency Training</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 9,
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ThBmM7",
+        "text_fqaGHp"
+      ],
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "text_container_width": 0,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 88,
+        "padding_bottom": 52
+      }
+    },
+    "slideshow_PtgQKP": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_K4GA8G": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1ucp.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_K4GA8G"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "grid",
+        "slide_height": "adapt_image",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": ""
+      }
+    },
+    "desktop_rich_text_kYRihz": {
+      "type": "Desktop-Rich-Text",
+      "blocks": {
+        "text_aJHgWB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>U.C.P 01 </p>",
+            "text_font_size": 24,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        },
+        "text_ibYBNp": {
+          "type": "text",
+          "settings": {
+            "text": "<p>10km Running & CrossFit Training</p>",
+            "text_font_size": 17,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        }
+      },
+      "block_order": [
+        "text_aJHgWB",
+        "text_ibYBNp"
+      ],
+      "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "container_width": 800,
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 100,
         "padding_bottom": 52
       }
     }
@@ -116,6 +301,11 @@
     "main",
     "image_banner_UzTpYq",
     "desktop_rich_text_NAnwjE",
-    "mobile_rich_text_DC8yr7"
+    "mobile_rich_text_DC8yr7",
+    "slideshow_iTY4Jm",
+    "desktop_rich_text_PgBwKf",
+    "mobile_rich_text_WYD9jP",
+    "slideshow_PtgQKP",
+    "desktop_rich_text_kYRihz"
   ]
 }
