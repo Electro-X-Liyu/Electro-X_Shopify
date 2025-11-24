@@ -480,7 +480,7 @@
         "color_scheme": "",
         "columns_mobile": "1",
         "mobile_column_width": 80,
-        "mobile_column_gap": 10,
+        "mobile_column_gap": 0,
         "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 100,
