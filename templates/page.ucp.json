@@ -601,7 +601,7 @@
         "text_p7YDWh": {
           "type": "text",
           "settings": {
-            "text": "<p>U.C.P 03</p>",
+            "text": "<p>U.C.P 06</p>",
             "text_font_size": 24,
             "text_font_weight": "normal",
             "text_color": "#333333"
@@ -610,7 +610,7 @@
         "text_VbLtqr": {
           "type": "text",
           "settings": {
-            "text": "<p>Basic boxing moves & advanced combination punches & combat</p>",
+            "text": "<p>CrossFit training focusing on strength, gymnastics and endurance</p>",
             "text_font_size": 17,
             "text_font_weight": "normal",
             "text_color": "#333333"
@@ -638,7 +638,7 @@
         "heading_djWU9N": {
           "type": "heading",
           "settings": {
-            "heading": "U.C.P 03",
+            "heading": "U.C.P 06",
             "heading_size": "h1",
             "heading_font_weight": "normal",
             "heading_font_size": 14,
@@ -648,7 +648,7 @@
         "text_JQbdY7": {
           "type": "text",
           "settings": {
-            "text": "<p>Basic boxing moves & advanced combination punches & combat</p>",
+            "text": "<p>CrossFit training focusing on strength, gymnastics and endurance</p>",
             "text_font_weight": "normal",
             "text_font_size": 9,
             "text_color": "#000000"
