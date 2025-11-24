@@ -676,7 +676,7 @@
         "slide_Qmxf7t": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/3ucp.jpg",
+            "image": "shopify://shop_images/6ucp.jpg",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -713,7 +713,7 @@
         "text_B7QF4W": {
           "type": "text",
           "settings": {
-            "text": "<p>U.C.P 03</p>",
+            "text": "<p>U.C.P 07</p>",
             "text_font_size": 24,
             "text_font_weight": "normal",
             "text_color": "#333333"
@@ -722,7 +722,7 @@
         "text_mEbVFA": {
           "type": "text",
           "settings": {
-            "text": "<p>Basic boxing moves & advanced combination punches & combat</p>",
+            "text": "<p>HYROX Hybrid Training Camp</p>",
             "text_font_size": 17,
             "text_font_weight": "normal",
             "text_color": "#333333"
@@ -750,7 +750,7 @@
         "heading_yxgYXG": {
           "type": "heading",
           "settings": {
-            "heading": "U.C.P 03",
+            "heading": "U.C.P 07",
             "heading_size": "h1",
             "heading_font_weight": "normal",
             "heading_font_size": 14,
@@ -760,7 +760,7 @@
         "text_jiiftQ": {
           "type": "text",
           "settings": {
-            "text": "<p>Basic boxing moves & advanced combination punches & combat</p>",
+            "text": "<p>HYROX Hybrid Training Camp</p>",
             "text_font_weight": "normal",
             "text_font_size": 9,
             "text_color": "#000000"
@@ -780,6 +780,43 @@
         "full_width": true,
         "padding_top": 88,
         "padding_bottom": 52
+      }
+    },
+    "slideshow_GDerKQ": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_eFtGL9": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/7ucp.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_eFtGL9"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "grid",
+        "slide_height": "adapt_image",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": ""
       }
     }
   },
@@ -805,6 +842,7 @@
     "mobile_rich_text_Pq4Rya",
     "slideshow_7UWwb6",
     "desktop_rich_text_P6EJaB",
-    "mobile_rich_text_6NgLLd"
+    "mobile_rich_text_6NgLLd",
+    "slideshow_GDerKQ"
   ]
 }
