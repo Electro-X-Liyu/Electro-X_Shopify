@@ -25,7 +25,7 @@
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/2cut.png",
-            "heading": "<a href=\"/pages/community-ambassadors-1\" title=\"Community- Ambassadors\">Community Ambassadors</a>",
+            "heading": "<a href=\"/pages/community-ambassadors\" title=\"Community-Ambassadors\">Community Ambassadors</a>",
             "heading_font_weight": "default",
             "heading_font_size": 24,
             "heading_color": "#121212",
