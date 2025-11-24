@@ -18,6 +18,21 @@
         "text_alignment": "center"
       }
     },
+    "desktop_banner_6pGzdp": {
+      "type": "Desktop-banner",
+      "name": "Desktop Banner",
+      "settings": {
+        "image": "shopify://shop_images/8ucp.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true
+      }
+    },
     "mobile_banner_EePDMD": {
       "type": "Mobile-banner",
       "name": "Mobile-Banner",
@@ -825,6 +840,7 @@
   },
   "order": [
     "main",
+    "desktop_banner_6pGzdp",
     "mobile_banner_EePDMD",
     "desktop_rich_text_NAnwjE",
     "mobile_rich_text_DC8yr7",
