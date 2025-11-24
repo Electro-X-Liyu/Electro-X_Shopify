@@ -218,7 +218,7 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 88,
+        "padding_top": 0,
         "padding_bottom": 52
       }
     },
@@ -330,7 +330,7 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 88,
+        "padding_top": 0,
         "padding_bottom": 52
       }
     },
@@ -442,7 +442,7 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 88,
+        "padding_top": 0,
         "padding_bottom": 52
       }
     },
@@ -554,7 +554,7 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 88,
+        "padding_top": 0,
         "padding_bottom": 52
       }
     },
@@ -666,7 +666,7 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 88,
+        "padding_top": 0,
         "padding_bottom": 52
       }
     },
@@ -778,7 +778,7 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 88,
+        "padding_top": 0,
         "padding_bottom": 52
       }
     },
