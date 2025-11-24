@@ -317,11 +317,95 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "mobile_rich_text_T486fh": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_9zVkCc": {
+          "type": "heading",
+          "settings": {
+            "heading": "ELECTRO X Elite HYROX Athlete",
+            "heading_size": "h2",
+            "heading_font_weight": "normal",
+            "heading_font_size": 0,
+            "heading_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_9zVkCc"
+      ],
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "text_container_width": 0,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "mobile_product_banner_kriKJE": {
+      "type": "mobile-product-banner",
+      "blocks": {
+        "slide_kPHBMe": {
+          "type": "slide",
+          "settings": {
+            "image_overlay_opacity": 0,
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_KWryPa": {
+          "type": "slide",
+          "settings": {
+            "image_overlay_opacity": 0,
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_kPHBMe",
+        "slide_KWryPa"
+      ],
+      "name": "Mobile Product Banner",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
+      }
     }
   },
   "order": [
     "main",
     "desktop_rich_text_xNn3J6",
-    "desktop_multirow_XqTGAF"
+    "desktop_multirow_XqTGAF",
+    "mobile_rich_text_T486fh",
+    "mobile_product_banner_kriKJE"
   ]
 }
