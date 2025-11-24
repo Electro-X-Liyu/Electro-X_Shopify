@@ -897,7 +897,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/2cut.png",
-            "image_link": "shopify://pages/community-ambassadors-1",
+            "image_link": "shopify://pages/community-ambassadors",
             "title": "<a href=\"/pages/community-ambassadors-1\" title=\"Community- Ambassadors\">Community Ambassadors</a>",
             "text": "",
             "link_label": "",
