@@ -441,7 +441,7 @@
       "name": "Natural Alkaline Water",
       "settings": {
         "image_mobile": "shopify://shop_images/20251121-145637.png",
-        "link": "shopify://products/natural-alkaline-water",
+        "link": "shopify://pages/natural-alkaline-water",
         "image_height": "adapt"
       }
     },
