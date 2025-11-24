@@ -26,8 +26,8 @@
           "settings": {
             "heading": "Ambassadors",
             "heading_size": "h2",
-            "heading_font_size": 24,
-            "heading_font_weight": "normal",
+            "heading_font_size": 34,
+            "heading_font_weight": "lighter",
             "heading_color": "#000000"
           }
         },
