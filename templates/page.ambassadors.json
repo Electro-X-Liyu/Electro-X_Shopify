@@ -18,6 +18,44 @@
         "text_alignment": "center"
       }
     },
+    "desktop_rich_text_EcVaya": {
+      "type": "Desktop-Rich-Text",
+      "blocks": {
+        "heading_WYUQyL": {
+          "type": "heading",
+          "settings": {
+            "heading": "Ambassadors",
+            "heading_size": "h2",
+            "heading_font_size": 24,
+            "heading_font_weight": "normal",
+            "heading_color": "#000000"
+          }
+        },
+        "text_My9zK4": {
+          "type": "text",
+          "settings": {
+            "text": "<p><br/><br/>ELECTRO X has signed a diverse portfolio of community leaders and influencers as <br/>our Community Ambassadors, representing various sports, including CrossFit, cycling <br/>flag football, yoga, and Pilates, fostering a strong connection between ELECTRO X <br/>and a wide rangeof fitness enthusiasts.</p>",
+            "text_font_size": 17,
+            "text_font_weight": "lighter",
+            "text_color": "#333333"
+          }
+        }
+      },
+      "block_order": [
+        "heading_WYUQyL",
+        "text_My9zK4"
+      ],
+      "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "container_width": 1000,
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "desktop_banner_wPRNjD": {
       "type": "Desktop-banner",
       "name": "Desktop Banner",
@@ -56,6 +94,7 @@
   },
   "order": [
     "main",
+    "desktop_rich_text_EcVaya",
     "desktop_banner_wPRNjD",
     "mobile_banner_J6yEEF"
   ]
