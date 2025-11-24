@@ -107,6 +107,9 @@
                   {% assign spaced_image = true %}
                 {% endif %}
                 <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}">
+                  {%- if block.settings.image_link != blank -%}
+                    <a href="{{ block.settings.image_link }}" class="multicolumn-card__image-link">
+                  {%- endif -%}
                   <div
                     class="media media--transparent media--{{ section.settings.image_ratio }}"
                     {% if section.settings.image_ratio == 'adapt' %}
@@ -142,6 +145,9 @@
                         class: 'multicolumn-card__image'
                     }}
                   </div>
+                  {%- if block.settings.image_link != blank -%}
+                    </a>
+                  {%- endif -%}
                 </div>
               {%- endif -%}
               <div class="multicolumn-card__info">
@@ -534,6 +540,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Product image"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image link",
+          "info": "Optional: Add a link to the image"
         },
         {
           "type": "inline_richtext",
