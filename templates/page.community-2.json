@@ -45,6 +45,7 @@
         "heading_KghUYT",
         "text_EgjMJw"
       ],
+      "disabled": true,
       "name": "Desktop Rich Text",
       "settings": {
         "desktop_content_position": "center",
