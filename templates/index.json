@@ -679,6 +679,17 @@
             "link": ""
           }
         },
+        "column_kWeCdw": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/13cut.png",
+            "image_link": "",
+            "title": "2025 Ultra-Trail® Ninghai by UTMB®",
+            "text": "<p><a href=\"/blogs/sports-sponsorship-1/2025-ultra-trail®-ninghai-by-utmb®\" title=\"2025 Ultra-Trail® Ninghai by UTMB®\">LEARN MORE</a></p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
         "column_wExLCW": {
           "type": "column",
           "settings": {
@@ -722,26 +733,15 @@
             "link_label": "",
             "link": ""
           }
-        },
-        "column_kWeCdw": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/13cut.png",
-            "image_link": "",
-            "title": "2025 Ultra-Trail® Ninghai by UTMB®",
-            "text": "<p><a href=\"/blogs/sports-sponsorship-1/2025-ultra-trail®-ninghai-by-utmb®\" title=\"2025 Ultra-Trail® Ninghai by UTMB®\">LEARN MORE</a></p>",
-            "link_label": "",
-            "link": ""
-          }
         }
       },
       "block_order": [
         "column_Eg64X7",
+        "column_kWeCdw",
         "column_wExLCW",
         "column_weyBdy",
         "column_FqXfrL",
-        "column_pqfRWF",
-        "column_kWeCdw"
+        "column_pqfRWF"
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
