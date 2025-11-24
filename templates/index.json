@@ -897,11 +897,11 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/2cut.png",
-            "image_link": "",
+            "image_link": "shopify://pages/ambassadors",
             "title": "Community Ambassadors",
-            "text": "",
+            "text": "<p>LEARN MORE</p>",
             "link_label": "",
-            "link": ""
+            "link": "shopify://pages/ambassadors"
           }
         },
         "column_dJEhWA": {
@@ -950,7 +950,7 @@
         "block_title_margin_bottom_desktop": 10,
         "block_text_color_desktop": "#666666",
         "block_text_size_desktop": 14,
-        "block_text_margin_top_desktop": 0,
+        "block_text_margin_top_desktop": 14,
         "block_text_margin_bottom_desktop": 10,
         "block_link_color_desktop": "#0066cc",
         "block_link_size_desktop": 14,
@@ -959,7 +959,7 @@
         "block_title_size_mobile": 17,
         "block_title_margin_top_mobile": 0,
         "block_title_margin_bottom_mobile": 8,
-        "block_text_size_mobile": 14,
+        "block_text_size_mobile": 9,
         "block_text_margin_top_mobile": 0,
         "block_text_margin_bottom_mobile": 8,
         "block_link_size_mobile": 14,
