@@ -135,10 +135,10 @@
         "column_nEcpyT": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/9cut.png",
+            "image": "shopify://shop_images/24.jpg",
             "image_link": "",
-            "title": "2024/2025 HYROX CHINA",
-            "text": "<p><a href=\"/blogs/sports-sponsorship-1/hyrox-beijing-shanghai\" title=\"2024/2025 HYROX CHINA\">LEARN MORE</a></p>",
+            "title": "",
+            "text": "",
             "link_label": "",
             "link": ""
           }
@@ -146,10 +146,10 @@
         "column_bayHwK": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/13cut.png",
+            "image": "shopify://shop_images/23.jpg",
             "image_link": "",
-            "title": "2025 Ultra-Trail® Ninghai by UTMB®",
-            "text": "<p><a href=\"/blogs/sports-sponsorship-1/2025-ultra-trail®-ninghai-by-utmb®\" title=\"2025 Ultra-Trail® Ninghai by UTMB®\">LEARN MORE</a></p>",
+            "title": "",
+            "text": "",
             "link_label": "",
             "link": ""
           }
@@ -157,43 +157,241 @@
         "column_UkjD6q": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/10cut.png",
+            "image": "shopify://shop_images/22.jpg",
             "image_link": "",
-            "title": "2025 Ironman Shanghai",
-            "text": "<p><a href=\"/blogs/sports-sponsorship-1/ironman-2025-shanghai-chongming\" title=\"2025 Ironman Shanghai\">LEARN MORE</a></p>",
+            "title": "",
+            "text": "",
             "link_label": "",
             "link": ""
           }
         },
-        "column_PqPAjN": {
+        "column_YdxtkQ": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/11cut.png",
+            "image": "shopify://shop_images/21.jpg",
             "image_link": "",
-            "title": "NINGBO OPEN WTA 500",
-            "text": "<p><a href=\"/blogs/sports-sponsorship-1/wta-500-niingbo-open\" title=\"NINGBO OPEN WTA 500\">LEARN MORE</a></p>",
+            "title": "",
+            "text": "",
             "link_label": "",
             "link": ""
           }
         },
-        "column_CBFDa3": {
+        "column_7byyk6": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/17cut.png",
+            "image": "shopify://shop_images/20.jpg",
             "image_link": "",
-            "title": "2024 Beijing Half Marathron",
-            "text": "<p><a href=\"/blogs/sports-sponsorship-1/2024-beijing-half-marathron\" title=\"2024 Beijing Half Marathron\">LEARN MORE</a></p>",
+            "title": "",
+            "text": "",
             "link_label": "",
             "link": ""
           }
         },
-        "column_AerYh3": {
+        "column_9EX6ya": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/16cut.png",
+            "image": "shopify://shop_images/19.jpg",
             "image_link": "",
-            "title": "2024 Desafío Beijing",
-            "text": "<p><a href=\"/blogs/sports-sponsorship-1/2024-desafio-beijing\" title=\"2024 Desafío Beijing\">LEARN MORE</a></p>",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_QAqBjy": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/18.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_Vr6Dbx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/17.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_FVW7EV": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/16.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_wKTXHW": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_h7wYwh": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/14.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_pL7AHB": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_xWpAGV": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_JAVthb": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_KccjPR": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_xtkHUK": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_bPb3xw": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_dXKzBF": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_cKnC89": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_4m8HnJ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_QpWgaB": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_Mq3NtN": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_3pgQBy": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_cV8Qna": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/22.jpg",
+            "image_link": "",
+            "title": "",
+            "text": "",
             "link_label": "",
             "link": ""
           }
@@ -203,9 +401,27 @@
         "column_nEcpyT",
         "column_bayHwK",
         "column_UkjD6q",
-        "column_PqPAjN",
-        "column_CBFDa3",
-        "column_AerYh3"
+        "column_YdxtkQ",
+        "column_7byyk6",
+        "column_9EX6ya",
+        "column_QAqBjy",
+        "column_Vr6Dbx",
+        "column_FVW7EV",
+        "column_wKTXHW",
+        "column_h7wYwh",
+        "column_pL7AHB",
+        "column_xWpAGV",
+        "column_JAVthb",
+        "column_KccjPR",
+        "column_xtkHUK",
+        "column_bPb3xw",
+        "column_dXKzBF",
+        "column_cKnC89",
+        "column_4m8HnJ",
+        "column_QpWgaB",
+        "column_Mq3NtN",
+        "column_3pgQBy",
+        "column_cV8Qna"
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
@@ -240,7 +456,7 @@
         "block_link_margin_top_mobile": 0,
         "block_link_margin_bottom_mobile": 0,
         "image_width": "full",
-        "image_ratio": "portrait",
+        "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
         "button_bg_color": "#000000",
