@@ -41,18 +41,18 @@
         "heading_nPBEHQ": {
           "type": "heading",
           "settings": {
-            "heading": "请输入标题",
+            "heading": "U.C.P 01 ",
             "heading_size": "h1",
             "heading_font_size": 24,
-            "heading_font_weight": "bold",
+            "heading_font_weight": "normal",
             "heading_color": "#000000"
           }
         },
         "text_KpwQrn": {
           "type": "text",
           "settings": {
-            "text": "<p>分享您的品牌故事和产品信息</p>",
-            "text_font_size": 16,
+            "text": "<p>10km Running & CrossFit Training</p>",
+            "text_font_size": 17,
             "text_font_weight": "normal",
             "text_color": "#333333"
           }
