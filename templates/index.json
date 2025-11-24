@@ -436,20 +436,11 @@
         "padding_bottom": 0
       }
     },
-    "mobile_image_banner_PwcV7p": {
-      "type": "Mobile-image-banner",
-      "name": "Natural Alkaline Water",
-      "settings": {
-        "image_mobile": "shopify://shop_images/131cut.png",
-        "link": "shopify://products/natural-alkaline-water",
-        "image_height": "adapt"
-      }
-    },
     "mobile_image_banner_bVz7i6": {
       "type": "Mobile-image-banner",
       "name": "Natural Alkaline Water",
       "settings": {
-        "image_mobile": "shopify://shop_images/131cut.png",
+        "image_mobile": "shopify://shop_images/20251121-145637.png",
         "link": "shopify://products/natural-alkaline-water",
         "image_height": "adapt"
       }
@@ -1095,7 +1086,6 @@
     "all_products_mobile_LfijDi",
     "mobile_image_banner_MJarRN",
     "desktop_multirow_Q3mdjw",
-    "mobile_image_banner_PwcV7p",
     "mobile_image_banner_bVz7i6",
     "mobile_rich_text_pPqMYc",
     "mobile_image_banner_3RrncA",
