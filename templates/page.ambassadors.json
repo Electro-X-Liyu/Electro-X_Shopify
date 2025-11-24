@@ -18,10 +18,26 @@
         "text_alignment": "center"
       }
     },
+    "desktop_banner_wPRNjD": {
+      "type": "Desktop-banner",
+      "name": "Desktop Banner",
+      "settings": {
+        "image": "shopify://shop_images/KV_demo__1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true
+      }
+    },
     "mobile_banner_J6yEEF": {
       "type": "Mobile-banner",
       "name": "Mobile-Banner",
       "settings": {
+        "image": "shopify://shop_images/KV_a73f02b8-9315-4956-8b04-71471abf6bb4.jpg",
         "image_link": "",
         "image_2_link": "",
         "image_overlay_opacity": 0,
@@ -35,20 +51,6 @@
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
         "show_text_below": true
-      }
-    },
-    "desktop_banner_wPRNjD": {
-      "type": "Desktop-banner",
-      "name": "Desktop Banner",
-      "settings": {
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true
       }
     }
   },
