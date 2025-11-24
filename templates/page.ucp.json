@@ -34,10 +34,88 @@
         "mobile_content_alignment": "center",
         "show_text_below": true
       }
+    },
+    "desktop_rich_text_NAnwjE": {
+      "type": "Desktop-Rich-Text",
+      "blocks": {
+        "heading_nPBEHQ": {
+          "type": "heading",
+          "settings": {
+            "heading": "请输入标题",
+            "heading_size": "h1",
+            "heading_font_size": 24,
+            "heading_font_weight": "bold",
+            "heading_color": "#000000"
+          }
+        },
+        "text_KpwQrn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>分享您的品牌故事和产品信息</p>",
+            "text_font_size": 16,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        }
+      },
+      "block_order": [
+        "heading_nPBEHQ",
+        "text_KpwQrn"
+      ],
+      "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "container_width": 800,
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "mobile_rich_text_DC8yr7": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_attCBb": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1",
+            "heading_font_weight": "bold",
+            "heading_font_size": 0,
+            "heading_color": "#000000"
+          }
+        },
+        "text_eU8X8f": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers.</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 0,
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_attCBb",
+        "text_eU8X8f"
+      ],
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "text_container_width": 0,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
     "main",
-    "image_banner_UzTpYq"
+    "image_banner_UzTpYq",
+    "desktop_rich_text_NAnwjE",
+    "mobile_rich_text_DC8yr7"
   ]
 }
