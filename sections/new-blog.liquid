@@ -39,7 +39,7 @@
     margin-bottom: {{ section.settings.block_link_margin_bottom_desktop }}px;
   }
 
-  /* 优化移动端滑动体验 */
+  /* 优化移动端滑动体验 - 修复晃动问题 */
   @media screen and (max-width: 749px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -74,6 +74,7 @@
       margin-bottom: {{ section.settings.block_link_margin_bottom_mobile }}px;
     }
 
+    /* 修复移动端滑动晃动问题 */
     .multicolumn-list {
       display: flex;
       flex-wrap: nowrap;
@@ -82,11 +83,12 @@
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       padding-bottom: 10px;
-      overscroll-behavior-x: contain;
+      overscroll-behavior-x: none; /* 修复过度滚动导致的晃动 */
       scroll-behavior: smooth;
       scroll-padding: 0 10px;
       will-change: transform;
-      touch-action: pan-y;
+      touch-action: pan-x pan-y; /* 优化触摸行为 */
+      -webkit-overflow-scrolling: auto; /* 修复iOS滑动问题 */
     }
     .multicolumn-list::-webkit-scrollbar {
       display: none;
@@ -99,6 +101,8 @@
       transform: translateZ(0);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
+      perspective: 1000;
+      -webkit-perspective: 1000;
     }
     
     .slider-mobile-gutter .slider-buttons {
@@ -111,7 +115,7 @@
     }
   }
 
-  /* 桌面端样式 */
+  /* 桌面端样式 - 修复晃动问题 */
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -127,6 +131,7 @@
       -webkit-overflow-scrolling: touch;
       cursor: grab;
       scrollbar-width: none;
+      overscroll-behavior-x: none; /* 修复桌面端过度滚动 */
     }
     .multicolumn-list[data-desktop-slider]::-webkit-scrollbar {
       display: none;
@@ -150,12 +155,19 @@
       top: 50%;
       transform: translateY(-50%);
       pointer-events: none;
+      z-index: 10; /* 确保按钮在最上层 */
     }
     .slider-button--prev.desktop-prev,
     .slider-button--next.desktop-next {
       pointer-events: auto;
       width: 40px;
       height: 40px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     .slider-button--prev.desktop-prev .icon-wrap,
     .slider-button--next.desktop-next .icon-wrap {
@@ -175,11 +187,20 @@
     font-size: {{ section.settings.button_text_size }}px;
     display: inline-block;
     text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .button--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   /* 图片链接样式 */
   .multicolumn-card__image-wrapper {
     position: relative;
+    overflow: hidden;
   }
   .multicolumn-card__image-link {
     display: block;
@@ -199,6 +220,23 @@
   }
   .multicolumn-card__image.lazyloaded {
     opacity: 1;
+  }
+
+  /* 修复动画导致的晃动 */
+  .scroll-trigger.animate--slide-in {
+    animation-duration: 0.8s;
+    animation-fill-mode: both;
+  }
+
+  /* 确保布局稳定 */
+  .multicolumn-list__item {
+    box-sizing: border-box;
+  }
+
+  /* 防止滚动跳动 */
+  .slider-mobile-gutter {
+    position: relative;
+    overflow: hidden;
   }
 {%- endstyle -%}
 
@@ -419,6 +457,9 @@
             lazyImageObserver.unobserve(lazyImage);
           }
         });
+      }, {
+        rootMargin: '50px 0px', // 提前50px加载
+        threshold: 0.1
       });
 
       document.querySelectorAll('.multicolumn-card__image.lazyload').forEach(function(lazyImage) {
@@ -431,56 +472,71 @@
     if (desktopSlider) {
       const prevBtn = document.querySelector('.desktop-prev');
       const nextBtn = document.querySelector('.desktop-next');
-      const itemWidth = document.querySelector('.multicolumn-list__item').offsetWidth + 20;
+      const items = document.querySelectorAll('.multicolumn-list__item');
+      const itemWidth = items[0] ? items[0].offsetWidth + 20 : 300;
 
       prevBtn?.addEventListener('click', () => {
-        desktopSlider.scrollBy({ left: -itemWidth * 3, behavior: 'smooth' });
+        desktopSlider.scrollBy({ 
+          left: -itemWidth * 3, 
+          behavior: 'smooth' 
+        });
       });
 
       nextBtn?.addEventListener('click', () => {
-        desktopSlider.scrollBy({ left: itemWidth * 3, behavior: 'smooth' });
+        desktopSlider.scrollBy({ 
+          left: itemWidth * 3, 
+          behavior: 'smooth' 
+        });
       });
 
-      // 拖拽功能
+      // 拖拽功能 - 优化性能
       let isDown = false;
       let startX;
       let scrollLeft;
+      let scrollTimeout;
 
-      desktopSlider.addEventListener('mousedown', (e) => {
+      function handleDragStart(e) {
         isDown = true;
         desktopSlider.style.cursor = 'grabbing';
+        desktopSlider.style.scrollSnapType = 'none'; // 拖拽时禁用snap
         startX = e.pageX - desktopSlider.offsetLeft;
         scrollLeft = desktopSlider.scrollLeft;
-      });
+      }
 
-      desktopSlider.addEventListener('mouseleave', () => {
+      function handleDragEnd() {
         isDown = false;
         desktopSlider.style.cursor = 'grab';
-      });
+        
+        // 拖拽结束后恢复snap
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          desktopSlider.style.scrollSnapType = 'x mandatory';
+        }, 100);
+      }
 
-      desktopSlider.addEventListener('mouseup', () => {
-        isDown = false;
-        desktopSlider.style.cursor = 'grab';
-      });
-
-      desktopSlider.addEventListener('mousemove', (e) => {
+      function handleDragMove(e) {
         if(!isDown) return;
         e.preventDefault();
         const x = e.pageX - desktopSlider.offsetLeft;
         const walk = (x - startX) * 2;
         desktopSlider.scrollLeft = scrollLeft - walk;
-      });
+      }
 
-      // 触摸支持
+      // 鼠标事件
+      desktopSlider.addEventListener('mousedown', handleDragStart);
+      desktopSlider.addEventListener('mouseleave', handleDragEnd);
+      desktopSlider.addEventListener('mouseup', handleDragEnd);
+      desktopSlider.addEventListener('mousemove', handleDragMove);
+
+      // 触摸事件
       desktopSlider.addEventListener('touchstart', (e) => {
         isDown = true;
+        desktopSlider.style.scrollSnapType = 'none';
         startX = e.touches[0].pageX - desktopSlider.offsetLeft;
         scrollLeft = desktopSlider.scrollLeft;
       }, { passive: true });
 
-      desktopSlider.addEventListener('touchend', () => {
-        isDown = false;
-      });
+      desktopSlider.addEventListener('touchend', handleDragEnd, { passive: true });
 
       desktopSlider.addEventListener('touchmove', (e) => {
         if(!isDown) return;
@@ -490,7 +546,7 @@
       }, { passive: true });
     }
     
-    // 移动端滚动优化
+    // 移动端滚动优化 - 修复晃动问题
     const mobileSlider = document.querySelector('.multicolumn-list');
     if (mobileSlider && window.innerWidth <= 749) {
       let startX = 0;
@@ -510,6 +566,7 @@
           const dx = Math.abs(x - startX);
           const dy = Math.abs(y - startY);
           
+          // 确定是水平滚动
           isScrolling = dx > dy;
         }
       }, { passive: true });
@@ -517,6 +574,25 @@
       mobileSlider.addEventListener('touchend', () => {
         isScrolling = false;
       }, { passive: true });
+
+      // 防止垂直滚动干扰
+      mobileSlider.addEventListener('scroll', () => {
+        mobileSlider.scrollTop = 0;
+      });
+    }
+
+    // 修复动画导致的布局偏移
+    const animatedElements = document.querySelectorAll('.scroll-trigger');
+    animatedElements.forEach(element => {
+      element.style.transform = 'translateZ(0)';
+    });
+  });
+
+  // 窗口调整大小时重新初始化
+  window.addEventListener('resize', function() {
+    const mobileSlider = document.querySelector('.multicolumn-list');
+    if (mobileSlider) {
+      mobileSlider.scrollTop = 0;
     }
   });
 </script>
