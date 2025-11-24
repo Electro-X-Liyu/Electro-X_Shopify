@@ -886,7 +886,7 @@
       "name": "移动端图片链接",
       "settings": {
         "image_mobile": "shopify://shop_images/71cut.png",
-        "link": "shopify://pages/community-ambassadors",
+        "link": "shopify://pages/community",
         "image_height": "adapt"
       }
     },
