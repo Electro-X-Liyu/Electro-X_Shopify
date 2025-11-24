@@ -15,84 +15,119 @@
       }
     {%- endif -%}
 
-    /* 自定义文本布局 */
-    .slideshow__text-wrapper--custom {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
+    /* 运动员信息布局 */
+    .athlete-info-container {
+      padding: 3rem 2rem;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    .text-content-container {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      padding: 2rem 1.5rem;
-    }
-
-    @media screen and (min-width: 450px) {
-      .text-content-container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-      }
-    }
-
-    .text-left-column {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .text-right-column {
-      flex: 1;
-      min-width: 0;
-    }
-
-    @media screen and (min-width: 450px) {
-      .text-left-column {
-        padding-right: 1.5rem;
-      }
-      
-      .text-right-column {
-        padding-left: 1.5rem;
-        border-left: 1px solid rgba(var(--color-foreground), 0.1);
-      }
-    }
-
-    .banner__heading {
-      margin-bottom: 1rem;
+    .athlete-name {
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
       text-align: left;
+      letter-spacing: -0.02em;
     }
 
-    .banner__subheading {
-      font-size: 1.4rem;
+    .athlete-name-en {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 600;
       color: rgba(var(--color-foreground), 0.8);
-      text-align: left;
-      line-height: 1.4;
+      margin-bottom: 0.3rem;
     }
 
-    .banner__description {
+    .athlete-name-cn {
+      display: block;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: rgba(var(--color-foreground), 1);
+    }
+
+    .athlete-achievements {
+      margin-top: 2.5rem;
+    }
+
+    .achievement-item {
       font-size: 1.4rem;
       line-height: 1.6;
+      margin-bottom: 1.2rem;
+      padding-left: 0;
+      text-align: left;
+      position: relative;
+    }
+
+    .achievement-item:before {
+      content: "•";
+      color: rgba(var(--color-foreground), 0.6);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+
+    .achievement-highlight {
+      font-weight: 600;
       color: rgba(var(--color-foreground), 0.9);
+    }
+
+    .achievement-detail {
+      color: rgba(var(--color-foreground), 0.8);
+      display: block;
+      margin-top: 0.3rem;
+      padding-left: 1rem;
+    }
+
+    /* 按钮样式 */
+    .athlete-buttons {
+      margin-top: 3rem;
       text-align: left;
     }
 
-    .banner__buttons {
-      margin-top: 2rem;
-      text-align: left;
+    .athlete-button {
+      display: inline-block;
+      padding: 1.2rem 2.5rem;
+      background: rgba(var(--color-foreground), 0.9);
+      color: rgba(var(--color-background), 1);
+      text-decoration: none;
+      border-radius: 0.8rem;
+      font-size: 1.4rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(var(--color-foreground), 0.9);
     }
 
-    /* 移除原有文字框样式 */
-    .slideshow__text--custom {
+    .athlete-button:hover {
+      background: transparent;
+      color: rgba(var(--color-foreground), 0.9);
+      transform: translateY(-2px);
+    }
+
+    .athlete-button--secondary {
+      background: transparent;
+      color: rgba(var(--color-foreground), 0.9);
+      border: 1px solid rgba(var(--color-foreground), 0.3);
+    }
+
+    .athlete-button--secondary:hover {
+      background: rgba(var(--color-foreground), 0.9);
+      color: rgba(var(--color-background), 1);
+    }
+
+    /* 文字容器样式 */
+    .slideshow__text--athlete {
       background: transparent !important;
       padding: 0 !important;
       border-radius: 0 !important;
     }
 
-    .slideshow__text--custom .banner__box {
+    .slideshow__text--athlete .banner__box {
       background: transparent;
       padding: 0;
       border: none;
+      box-shadow: none;
     }
   }
 
@@ -104,6 +139,29 @@
     
     slideshow-component[class*="slider-mobile-gutter"] {
       display: none !important;
+    }
+  }
+
+  /* 小屏幕优化 */
+  @media screen and (max-width: 380px) {
+    .athlete-info-container {
+      padding: 2rem 1.5rem;
+    }
+    
+    .athlete-name {
+      font-size: 2rem;
+    }
+    
+    .athlete-name-en {
+      font-size: 1.6rem;
+    }
+    
+    .athlete-name-cn {
+      font-size: 2.4rem;
+    }
+    
+    .achievement-item {
+      font-size: 1.3rem;
     }
   }
 {%- endstyle -%}
@@ -241,44 +299,57 @@
             {%- endif -%}
           {%- endif -%}
         </div>
-        <div class="slideshow__text-wrapper slideshow__text-wrapper--custom banner__content banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll and forloop.index == 1 %} scroll-trigger animate--slide-in{% endif %}">
-          <div class="slideshow__text slideshow__text--custom banner__box content-container content-container--full-width-mobile color-{{ block.settings.color_scheme }} gradient slideshow__text-mobile--{{ block.settings.text_alignment_mobile }}">
-            <div class="text-content-container">
-              <div class="text-left-column">
-                {%- if block.settings.heading != blank -%}
-                  <h2 class="banner__heading inline-richtext {{ block.settings.heading_size }}">
-                    {{ block.settings.heading }}
-                  </h2>
-                {%- endif -%}
-                {%- if block.settings.subheading != blank -%}
-                  <div class="banner__subheading rte">
-                    <p>{{ block.settings.subheading }}</p>
-                  </div>
-                {%- endif -%}
+        <div class="slideshow__text-wrapper banner__content banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll and forloop.index == 1 %} scroll-trigger animate--slide-in{% endif %}">
+          <div class="slideshow__text slideshow__text--athlete banner__box content-container content-container--full-width-mobile color-{{ block.settings.color_scheme }} gradient slideshow__text-mobile--{{ block.settings.text_alignment_mobile }}">
+            <div class="athlete-info-container">
+              <!-- 运动员姓名 -->
+              <div class="athlete-name">
+                <span class="athlete-name-en">{{ block.settings.athlete_name_en | default: "HAN LIN" }}</span>
+                <span class="athlete-name-cn">{{ block.settings.athlete_name_cn | default: "林昂" }}</span>
               </div>
-              
-              <div class="text-right-column">
-                {%- if block.settings.description != blank -%}
-                  <div class="banner__description rte">
-                    {{ block.settings.description }}
+
+              <!-- 成就列表 -->
+              <div class="athlete-achievements">
+                {%- if block.settings.achievement_1 != blank -%}
+                  <div class="achievement-item">
+                    {{ block.settings.achievement_1 }}
                   </div>
                 {%- endif -%}
                 
-                {%- if block.settings.button_label != blank -%}
-                  <div class="banner__buttons">
-                    <a
-                      {% if block.settings.link %}
-                        href="{{ block.settings.link }}"
-                      {% else %}
-                        role="link" aria-disabled="true"
-                      {% endif %}
-                      class="button {% if block.settings.button_style_secondary %}button--secondary{% else %}button--primary{% endif %}"
-                    >
-                      {{- block.settings.button_label | escape -}}
-                    </a>
+                {%- if block.settings.achievement_2 != blank -%}
+                  <div class="achievement-item">
+                    {{ block.settings.achievement_2 }}
+                  </div>
+                {%- endif -%}
+                
+                {%- if block.settings.achievement_3 != blank -%}
+                  <div class="achievement-item">
+                    {{ block.settings.achievement_3 }}
+                  </div>
+                {%- endif -%}
+                
+                {%- if block.settings.achievement_4 != blank -%}
+                  <div class="achievement-item">
+                    {{ block.settings.achievement_4 }}
                   </div>
                 {%- endif -%}
               </div>
+
+              <!-- 按钮 -->
+              {%- if block.settings.button_label != blank -%}
+                <div class="athlete-buttons">
+                  <a
+                    {% if block.settings.link %}
+                      href="{{ block.settings.link }}"
+                    {% else %}
+                      role="link" aria-disabled="true"
+                    {% endif %}
+                    class="athlete-button {% if block.settings.button_style_secondary %}athlete-button--secondary{% endif %}"
+                  >
+                    {{- block.settings.button_label | escape -}}
+                  </a>
+                </div>
+              {%- endif -%}
             </div>
           </div>
         </div>
@@ -483,13 +554,13 @@
   "blocks": [
     {
       "type": "slide",
-      "name": "t:sections.slideshow.blocks.slide.name",
+      "name": "Athlete Slide",
       "limit": 5,
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:sections.slideshow.blocks.slide.settings.image.label"
+          "label": "Athlete Image"
         },
         {
           "type": "range",
@@ -498,89 +569,78 @@
           "max": 100,
           "step": 10,
           "unit": "%",
-          "label": "t:sections.slideshow.blocks.slide.settings.image_overlay_opacity.label",
+          "label": "Image Overlay Opacity",
           "default": 0
         },
         {
           "type": "header",
-          "content": "t:sections.slideshow.blocks.slide.settings.header_text.content"
+          "content": "Athlete Information"
         },
         {
-          "type": "inline_richtext",
-          "id": "heading",
-          "default": "Athlete Name",
-          "label": "Heading"
+          "type": "text",
+          "id": "athlete_name_en",
+          "label": "English Name",
+          "default": "HAN LIN"
         },
         {
-          "type": "select",
-          "id": "heading_size",
-          "options": [
-            {
-              "value": "h2",
-              "label": "t:sections.all.heading_size.options__1.label"
-            },
-            {
-              "value": "h1",
-              "label": "t:sections.all.heading_size.options__2.label"
-            },
-            {
-              "value": "h0",
-              "label": "t:sections.all.heading_size.options__3.label"
-            },
-            {
-              "value": "hxl",
-              "label": "t:sections.all.heading_size.options__4.label"
-            },
-            {
-              "value": "hxxl",
-              "label": "t:sections.all.heading_size.options__5.label"
-            }
-          ],
-          "default": "h1",
-          "label": "t:sections.all.heading_size.label"
+          "type": "text",
+          "id": "athlete_name_cn",
+          "label": "Chinese Name",
+          "default": "林昂"
         },
         {
-          "type": "inline_richtext",
-          "id": "subheading",
-          "default": "Athlete Title / Position",
-          "label": "Subheading"
+          "type": "text",
+          "id": "achievement_1",
+          "label": "Achievement 1",
+          "default": "2025 HYROX Singapore Asian Championships Mixed Doubles No.1"
         },
         {
-          "type": "richtext",
-          "id": "description",
-          "default": "<p>A detailed description about the athlete's achievements, background, or story.</p>",
-          "label": "Description"
+          "type": "text",
+          "id": "achievement_2",
+          "label": "Achievement 2",
+          "default": "Spartan Race Chinese elite athlete SPARTAN PRO (top 3 in China)"
+        },
+        {
+          "type": "text",
+          "id": "achievement_3",
+          "label": "Achievement 3",
+          "default": "Founder of the Temporary Humane (TH) community"
+        },
+        {
+          "type": "text",
+          "id": "achievement_4",
+          "label": "Achievement 4",
+          "default": "Member of the variety show \"I Can Be 47\" by Tencent sports"
         },
         {
           "type": "header",
-          "content": "t:sections.slideshow.blocks.slide.settings.header_button.content"
-        },        
+          "content": "Button"
+        },
         {
           "type": "text",
           "id": "button_label",
-          "default": "Learn More",
-          "label": "t:sections.slideshow.blocks.slide.settings.button_label.label", 
-          "info": "t:sections.slideshow.blocks.slide.settings.button_label.info"
+          "label": "Button Label",
+          "default": "Learn More"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "t:sections.slideshow.blocks.slide.settings.link.label"
+          "label": "Button Link"
         },
         {
           "type": "checkbox",
           "id": "button_style_secondary",
-          "label": "t:sections.slideshow.blocks.slide.settings.secondary_style.label",
+          "label": "Use Secondary Button Style",
           "default": false
         },
         {
           "type": "header",
-          "content": "t:sections.slideshow.blocks.slide.settings.header_layout.content"
-        },         
+          "content": "Layout"
+        },
         {
           "type": "checkbox",
           "id": "show_text_box",
-          "label": "t:sections.slideshow.blocks.slide.settings.show_text_box.label",
+          "label": "Show Text Box",
           "default": true
         },
         {
@@ -589,43 +649,43 @@
           "options": [
             {
               "value": "top-left",
-              "label": "t:sections.slideshow.blocks.slide.settings.box_align.options__1.label"
+              "label": "Top Left"
             },
             {
               "value": "top-center",
-              "label": "t:sections.slideshow.blocks.slide.settings.box_align.options__2.label"
+              "label": "Top Center"
             },
             {
               "value": "top-right",
-              "label": "t:sections.slideshow.blocks.slide.settings.box_align.options__3.label"
+              "label": "Top Right"
             },
             {
               "value": "middle-left",
-              "label": "t:sections.slideshow.blocks.slide.settings.box_align.options__4.label"
+              "label": "Middle Left"
             },
             {
               "value": "middle-center",
-              "label": "t:sections.slideshow.blocks.slide.settings.box_align.options__5.label"
+              "label": "Middle Center"
             },
             {
               "value": "middle-right",
-              "label": "t:sections.slideshow.blocks.slide.settings.box_align.options__6.label"
+              "label": "Middle Right"
             },
             {
               "value": "bottom-left",
-              "label": "t:sections.slideshow.blocks.slide.settings.box_align.options__7.label"
+              "label": "Bottom Left"
             },
             {
               "value": "bottom-center",
-              "label": "t:sections.slideshow.blocks.slide.settings.box_align.options__8.label"
+              "label": "Bottom Center"
             },
             {
               "value": "bottom-right",
-              "label": "t:sections.slideshow.blocks.slide.settings.box_align.options__9.label"
+              "label": "Bottom Right"
             }
           ],
           "default": "middle-center",
-          "label": "t:sections.slideshow.blocks.slide.settings.box_align.label"
+          "label": "Text Box Alignment"
         },
         {
           "type": "select",
@@ -633,24 +693,24 @@
           "options": [
             {
               "value": "left",
-              "label": "t:sections.slideshow.blocks.slide.settings.text_alignment_mobile.options__1.label"
+              "label": "Left"
             },
             {
               "value": "center",
-              "label": "t:sections.slideshow.blocks.slide.settings.text_alignment_mobile.options__2.label"
+              "label": "Center"
             },
             {
               "value": "right",
-              "label": "t:sections.slideshow.blocks.slide.settings.text_alignment_mobile.options__3.label"
+              "label": "Right"
             }
           ],
           "default": "left",
           "label": "Mobile Text Alignment"
-        },        
+        },
         {
           "type": "color_scheme",
           "id": "color_scheme",
-          "label": "t:sections.all.colors.label",
+          "label": "Color Scheme",
           "default": "scheme-1"
         }
       ]
@@ -661,10 +721,16 @@
       "name": "Mobile Athlete Info",
       "blocks": [
         {
-          "type": "slide"
-        },
-        {
-          "type": "slide"
+          "type": "slide",
+          "settings": {
+            "athlete_name_en": "HAN LIN",
+            "athlete_name_cn": "林昂",
+            "achievement_1": "2025 HYROX Singapore Asian Championships Mixed Doubles No.1",
+            "achievement_2": "Spartan Race Chinese elite athlete SPARTAN PRO (top 3 in China)",
+            "achievement_3": "Founder of the Temporary Humane (TH) community",
+            "achievement_4": "Member of the variety show \"I Can Be 47\" by Tencent sports",
+            "button_label": "Learn More"
+          }
         }
       ]
     }

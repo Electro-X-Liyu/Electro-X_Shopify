@@ -346,52 +346,45 @@
         "padding_bottom": 52
       }
     },
-    "mobile_product_banner_kriKJE": {
-      "type": "mobile-product-banner",
+    "mobile_athlete_info_aG78Fb": {
+      "type": "Mobile-athlete-info",
       "blocks": {
-        "slide_kPHBMe": {
+        "slide_dHGJaD": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/han.jpg",
             "image_overlay_opacity": 0,
-            "heading": "Image slide",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
+            "button_label": "Learn More",
             "link": "",
             "button_style_secondary": false,
             "show_text_box": true,
             "box_align": "middle-center",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
+            "text_alignment_mobile": "left",
             "color_scheme": ""
           }
         },
-        "slide_KWryPa": {
+        "slide_4HQxmb": {
           "type": "slide",
           "settings": {
             "image_overlay_opacity": 0,
-            "heading": "Image slide",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
+            "button_label": "Learn More",
             "link": "",
             "button_style_secondary": false,
             "show_text_box": true,
             "box_align": "middle-center",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
+            "text_alignment_mobile": "left",
             "color_scheme": ""
           }
         }
       },
       "block_order": [
-        "slide_kPHBMe",
-        "slide_KWryPa"
+        "slide_dHGJaD",
+        "slide_4HQxmb"
       ],
-      "name": "Mobile Product Banner",
+      "name": "Mobile Athlete Info",
       "settings": {
         "layout": "full_bleed",
-        "slide_height": "medium",
+        "slide_height": "adapt_image",
         "slider_visual": "counter",
         "auto_rotate": false,
         "change_slides_speed": 5,
@@ -406,6 +399,6 @@
     "desktop_rich_text_xNn3J6",
     "desktop_multirow_XqTGAF",
     "mobile_rich_text_T486fh",
-    "mobile_product_banner_kriKJE"
+    "mobile_athlete_info_aG78Fb"
   ]
 }
