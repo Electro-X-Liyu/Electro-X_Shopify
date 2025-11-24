@@ -483,9 +483,9 @@
         "mobile_column_gap": 10,
         "swipe_on_mobile": true,
         "padding_top": 36,
-        "padding_bottom": 36,
+        "padding_bottom": 100,
         "padding_top_mobile": 24,
-        "padding_bottom_mobile": 24
+        "padding_bottom_mobile": 60
       }
     }
   },
