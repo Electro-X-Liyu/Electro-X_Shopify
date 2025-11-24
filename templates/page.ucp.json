@@ -18,23 +18,6 @@
         "text_alignment": "center"
       }
     },
-    "image_banner_UzTpYq": {
-      "type": "image-banner",
-      "name": "t:sections.image-banner.presets.name",
-      "settings": {
-        "image": "shopify://shop_images/8ucp.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
-    },
     "mobile_banner_EePDMD": {
       "type": "Mobile-banner",
       "name": "Mobile-Banner",
@@ -842,7 +825,6 @@
   },
   "order": [
     "main",
-    "image_banner_UzTpYq",
     "mobile_banner_EePDMD",
     "desktop_rich_text_NAnwjE",
     "mobile_rich_text_DC8yr7",
