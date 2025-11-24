@@ -340,7 +340,7 @@
         "slide_9iA4nR": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/2ucp.jpg",
+            "image": "shopify://shop_images/3ucp.jpg",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -370,6 +370,417 @@
         "show_text_below": true,
         "accessibility_info": ""
       }
+    },
+    "desktop_rich_text_TdzGVn": {
+      "type": "Desktop-Rich-Text",
+      "blocks": {
+        "text_RKpkdC": {
+          "type": "text",
+          "settings": {
+            "text": "<p>U.C.P 04</p>",
+            "text_font_size": 24,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        },
+        "text_tEWDHj": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The basics of flag football & team practical tactics</p>",
+            "text_font_size": 17,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        }
+      },
+      "block_order": [
+        "text_RKpkdC",
+        "text_tEWDHj"
+      ],
+      "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "container_width": 800,
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 100,
+        "padding_bottom": 52
+      }
+    },
+    "mobile_rich_text_cAdp4Q": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_dAxxRB": {
+          "type": "heading",
+          "settings": {
+            "heading": "U.C.P 04",
+            "heading_size": "h1",
+            "heading_font_weight": "normal",
+            "heading_font_size": 14,
+            "heading_color": "#000000"
+          }
+        },
+        "text_MjaQpj": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The basics of flag football & team practical tactics</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 9,
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_dAxxRB",
+        "text_MjaQpj"
+      ],
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "text_container_width": 0,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 88,
+        "padding_bottom": 52
+      }
+    },
+    "slideshow_HbjfYm": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_xwg7E3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/4ucp.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        }
+      },
+      "block_order": [
+        "slide_xwg7E3"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "grid",
+        "slide_height": "adapt_image",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": ""
+      }
+    },
+    "desktop_rich_text_ecrqLe": {
+      "type": "Desktop-Rich-Text",
+      "blocks": {
+        "text_cMCjgc": {
+          "type": "text",
+          "settings": {
+            "text": "<p>U.C.P 05</p>",
+            "text_font_size": 24,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        },
+        "text_aGpeRk": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Bouldering techniques & V-Scale climbing challenges</p>",
+            "text_font_size": 17,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        }
+      },
+      "block_order": [
+        "text_cMCjgc",
+        "text_aGpeRk"
+      ],
+      "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "container_width": 800,
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 100,
+        "padding_bottom": 52
+      }
+    },
+    "mobile_rich_text_wfJGLR": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_nWGkM9": {
+          "type": "heading",
+          "settings": {
+            "heading": "U.C.P 05",
+            "heading_size": "h1",
+            "heading_font_weight": "normal",
+            "heading_font_size": 14,
+            "heading_color": "#000000"
+          }
+        },
+        "text_tgRjLe": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Bouldering techniques & V-Scale climbing challenges</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 9,
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_nWGkM9",
+        "text_tgRjLe"
+      ],
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "text_container_width": 0,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 88,
+        "padding_bottom": 52
+      }
+    },
+    "slideshow_6AwwDe": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_64gNg4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/5ucp.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_64gNg4"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "grid",
+        "slide_height": "adapt_image",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": ""
+      }
+    },
+    "desktop_rich_text_mrcp3y": {
+      "type": "Desktop-Rich-Text",
+      "blocks": {
+        "text_p7YDWh": {
+          "type": "text",
+          "settings": {
+            "text": "<p>U.C.P 03</p>",
+            "text_font_size": 24,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        },
+        "text_VbLtqr": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Basic boxing moves & advanced combination punches & combat</p>",
+            "text_font_size": 17,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        }
+      },
+      "block_order": [
+        "text_p7YDWh",
+        "text_VbLtqr"
+      ],
+      "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "container_width": 800,
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 100,
+        "padding_bottom": 52
+      }
+    },
+    "mobile_rich_text_Pq4Rya": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_djWU9N": {
+          "type": "heading",
+          "settings": {
+            "heading": "U.C.P 03",
+            "heading_size": "h1",
+            "heading_font_weight": "normal",
+            "heading_font_size": 14,
+            "heading_color": "#000000"
+          }
+        },
+        "text_JQbdY7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Basic boxing moves & advanced combination punches & combat</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 9,
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_djWU9N",
+        "text_JQbdY7"
+      ],
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "text_container_width": 0,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 88,
+        "padding_bottom": 52
+      }
+    },
+    "slideshow_7UWwb6": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_Qmxf7t": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/3ucp.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_Qmxf7t"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "grid",
+        "slide_height": "adapt_image",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": ""
+      }
+    },
+    "desktop_rich_text_P6EJaB": {
+      "type": "Desktop-Rich-Text",
+      "blocks": {
+        "text_B7QF4W": {
+          "type": "text",
+          "settings": {
+            "text": "<p>U.C.P 03</p>",
+            "text_font_size": 24,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        },
+        "text_mEbVFA": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Basic boxing moves & advanced combination punches & combat</p>",
+            "text_font_size": 17,
+            "text_font_weight": "normal",
+            "text_color": "#333333"
+          }
+        }
+      },
+      "block_order": [
+        "text_B7QF4W",
+        "text_mEbVFA"
+      ],
+      "name": "Desktop Rich Text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "container_width": 800,
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 100,
+        "padding_bottom": 52
+      }
+    },
+    "mobile_rich_text_6NgLLd": {
+      "type": "Mobile-rich-text",
+      "blocks": {
+        "heading_yxgYXG": {
+          "type": "heading",
+          "settings": {
+            "heading": "U.C.P 03",
+            "heading_size": "h1",
+            "heading_font_weight": "normal",
+            "heading_font_size": 14,
+            "heading_color": "#000000"
+          }
+        },
+        "text_jiiftQ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Basic boxing moves & advanced combination punches & combat</p>",
+            "text_font_weight": "normal",
+            "text_font_size": 9,
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "heading_yxgYXG",
+        "text_jiiftQ"
+      ],
+      "name": "Mobile-Rich-Text",
+      "settings": {
+        "text_container_width": 0,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 88,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -383,6 +794,17 @@
     "slideshow_PtgQKP",
     "desktop_rich_text_kYRihz",
     "mobile_rich_text_bNnD8r",
-    "slideshow_r6KqbN"
+    "slideshow_r6KqbN",
+    "desktop_rich_text_TdzGVn",
+    "mobile_rich_text_cAdp4Q",
+    "slideshow_HbjfYm",
+    "desktop_rich_text_ecrqLe",
+    "mobile_rich_text_wfJGLR",
+    "slideshow_6AwwDe",
+    "desktop_rich_text_mrcp3y",
+    "mobile_rich_text_Pq4Rya",
+    "slideshow_7UWwb6",
+    "desktop_rich_text_P6EJaB",
+    "mobile_rich_text_6NgLLd"
   ]
 }
