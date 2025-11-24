@@ -289,39 +289,6 @@
             "button_margin_top": "default",
             "button_margin_bottom": "default"
           }
-        },
-        "row_wYzmXA": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/jim.jpg",
-            "heading": "JIM 盘业进",
-            "heading_font_weight": "300",
-            "heading_font_size": 24,
-            "heading_color": "#121212",
-            "heading_margin_top": "280",
-            "heading_margin_bottom": "0",
-            "caption": "ELECTRO X Elite HYROX Athlete",
-            "caption_font_weight": "default",
-            "caption_font_size": 19,
-            "caption_color": "#121212",
-            "caption_margin_top": "0",
-            "caption_margin_bottom": "default",
-            "text": "<ul><li>2024-2025 HYROX Hong Kong Asian Championships representing the Chinese Team No.3</li><li>2024-2025 HYROX Beijing Men's Pro Age Group No.3</li></ul>",
-            "text_font_weight": "default",
-            "text_font_size": 14,
-            "text_color": "#121212",
-            "text_margin_top": "default",
-            "text_margin_bottom": "280",
-            "button_label": "",
-            "button_link": "",
-            "button_font_weight": "default",
-            "button_font_size": 16,
-            "button_text_color": "#121212",
-            "button_bg_color": "rgba(0,0,0,0)",
-            "button_border_color": "rgba(0,0,0,0)",
-            "button_margin_top": "default",
-            "button_margin_bottom": "default"
-          }
         }
       },
       "block_order": [
@@ -331,8 +298,7 @@
         "row_waHqay",
         "row_KtqkEE",
         "row_kCwpYq",
-        "row_kbDbtm",
-        "row_wYzmXA"
+        "row_kbDbtm"
       ],
       "name": "Desktop Multirow",
       "settings": {
