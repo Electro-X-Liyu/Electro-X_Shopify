@@ -335,6 +335,7 @@
       "block_order": [
         "heading_9zVkCc"
       ],
+      "disabled": true,
       "name": "Mobile-Rich-Text",
       "settings": {
         "text_container_width": 0,
@@ -354,6 +355,12 @@
           "settings": {
             "image": "shopify://shop_images/han.jpg",
             "image_overlay_opacity": 0,
+            "athlete_name_en": "HAN LIN",
+            "athlete_name_cn": "林昂",
+            "achievement_1": "2025 HYROX Singapore Asian Championships Mixed Doubles No.1",
+            "achievement_2": "Spartan Race Chinese elite athlete SPARTAN PRO (top 3 in China)",
+            "achievement_3": "Founder of the Temporary Humane (TH) community",
+            "achievement_4": "Member of the variety show \"I Can Be 47\" by Tencent sports",
             "button_label": "Learn More",
             "link": "",
             "button_style_secondary": false,
@@ -367,6 +374,12 @@
           "type": "slide",
           "settings": {
             "image_overlay_opacity": 0,
+            "athlete_name_en": "HAN LIN",
+            "athlete_name_cn": "林昂",
+            "achievement_1": "2025 HYROX Singapore Asian Championships Mixed Doubles No.1",
+            "achievement_2": "Spartan Race Chinese elite athlete SPARTAN PRO (top 3 in China)",
+            "achievement_3": "Founder of the Temporary Humane (TH) community",
+            "achievement_4": "Member of the variety show \"I Can Be 47\" by Tencent sports",
             "button_label": "Learn More",
             "link": "",
             "button_style_secondary": false,
@@ -381,6 +394,7 @@
         "slide_dHGJaD",
         "slide_4HQxmb"
       ],
+      "disabled": true,
       "name": "Mobile Athlete Info",
       "settings": {
         "layout": "full_bleed",
