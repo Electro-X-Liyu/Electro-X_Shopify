@@ -171,7 +171,7 @@
         "heading_6CayF7": {
           "type": "heading",
           "settings": {
-            "heading": "Community Ambassadors",
+            "heading": "<a href=\"/pages/community-ambassadors\" title=\"Community-Ambassadors\">Community Ambassadors</a>",
             "heading_size": "h1",
             "heading_font_weight": "normal",
             "heading_font_size": 19,
