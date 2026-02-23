@@ -39,12 +39,6 @@
     padding: 0 !important;
   }
 
-  /* 可选：图片拉伸 */
-  .image-with-text__media img {
-    width: 100% !important;
-    height: auto;
-  }
-
   /* 取消副标题全大写和letter-spacing */
   .image-with-text__text--caption {
     text-transform: none !important;
@@ -65,6 +59,44 @@
   .image-with-text__content.image-with-text__content--middle.image-with-text__content--desktop-left.image-with-text__content--mobile-left.image-with-text__content--large.content-container.background-transparent {
     padding: 120px !important;
   }
+
+  /* ===== 图片全高显示解决方案 ===== */
+  /* 确保grid行等高 */
+  .desktop-multirow .image-with-text__grid {
+    align-items: stretch !important;
+  }
+
+  /* 确保媒体容器填满整列高度 */
+  .desktop-multirow .image-with-text__media-item {
+    height: 100% !important;
+  }
+
+  .desktop-multirow .image-with-text__media {
+    height: 100% !important;
+    min-height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    overflow: hidden !important;
+  }
+
+  /* 图片覆盖整个容器，不变形 */
+  .desktop-multirow .image-with-text__media img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* 确保adapt模式也能正常工作 */
+  .desktop-multirow .image-with-text__media--adapt {
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .desktop-multirow .image-with-text__media--adapt img {
+    height: auto !important;
+    object-fit: contain !important;
+  }
+  /* ===== 图片全高显示解决方案结束 ===== */
 
   /* 自定义文字样式 */
   {%- for block in section.blocks -%}
