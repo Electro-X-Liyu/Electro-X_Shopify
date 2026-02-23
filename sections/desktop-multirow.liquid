@@ -13,14 +13,12 @@
     }
   }
 
-  /* Mobile hiding */
   @media screen and (max-width: 749px) {
     .desktop-multirow {
       display: none !important;
     }
   }
 
-  /* Full width modifications */
   .desktop-multirow .multirow__inner {
     max-width: 100% !important;
     padding-left: 0 !important;
@@ -30,28 +28,22 @@
     margin-right: 0 !important;
   }
 
-  .image-with-text__grid {
+  .desktop-multirow .image-with-text__grid {
     max-width: 100% !important;
   }
 
   .desktop-multirow .image-with-text__media {
     margin: 0 !important;
     padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
   }
 
-  /* 可选：图片拉伸 */
-  .image-with-text__media img {
-    width: 100% !important;
-    height: auto;
-  }
-
-  /* 取消副标题全大写和letter-spacing */
   .image-with-text__text--caption {
     text-transform: none !important;
     letter-spacing: normal !important;
   }
 
-  /* 按钮样式 - 增加特异性 */
   .desktop-multirow .image-with-text__content .button,
   .desktop-multirow .image-with-text__content a.button {
     min-height: calc(2.5rem + var(--buttons-border-width) * 2) !important;
@@ -61,14 +53,75 @@
     margin-top: 80px !important;
   }
 
-  /* 内容区域padding */
   .image-with-text__content.image-with-text__content--middle.image-with-text__content--desktop-left.image-with-text__content--mobile-left.image-with-text__content--large.content-container.background-transparent {
     padding: 120px !important;
   }
 
-  /* 自定义文字样式 */
+  /* 修复图片显示问题 */
+  .desktop-multirow .image-with-text__grid {
+    align-items: stretch !important;
+  }
+
+  .desktop-multirow .image-with-text__media-item {
+    height: 100% !important;
+    min-height: 300px !important; /* 设置最小高度确保内容区有高度 */
+  }
+
+  .desktop-multirow .image-with-text__media {
+    height: 100% !important;
+    min-height: inherit !important;
+    width: 100% !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  /* 修复图片标签显示 */
+  .desktop-multirow .image-with-text__media img,
+  .desktop-multirow .image-with-text__media .placeholder-svg {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important; /* 确保图片显示为块级元素 */
+    position: relative !important;
+  }
+
+  /* 修复media类的冲突 */
+  .desktop-multirow .image-with-text__media.media {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #f5f5f5; /* 添加背景色以便看到容器 */
+  }
+
+  /* 修复adapt模式 */
+  .desktop-multirow .image-with-text__media--adapt {
+    height: auto !important;
+    min-height: 300px !important; /* 给adapt模式一个最小高度 */
+    aspect-ratio: auto !important;
+  }
+
+  .desktop-multirow .image-with-text__media--adapt img {
+    height: auto !important;
+    min-height: 300px !important;
+    object-fit: contain !important;
+  }
+
+  /* 确保placeholder显示 */
+  .desktop-multirow .image-with-text__media--placeholder {
+    background-color: #f5f5f5;
+    min-height: 300px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .desktop-multirow .image-with-text__media--placeholder svg {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 300px !important;
+  }
+
   {%- for block in section.blocks -%}
-    /* 标题样式 */
     #block-{{ block.id }} .image-with-text__heading {
       {%- if block.settings.heading_font_weight != 'default' -%}
         font-weight: {{ block.settings.heading_font_weight }} !important;
@@ -87,7 +140,6 @@
       {%- endif -%}
     }
 
-    /* 副标题样式 - 与正文样式一致 */
     #block-{{ block.id }} .image-with-text__text--caption {
       {%- if block.settings.caption_font_weight != 'default' -%}
         font-weight: {{ block.settings.caption_font_weight }} !important;
@@ -110,7 +162,6 @@
       {%- endif -%}
     }
 
-    /* 正文样式 */
     #block-{{ block.id }} .image-with-text__text.rte {
       {%- if block.settings.text_font_weight != 'default' -%}
         font-weight: {{ block.settings.text_font_weight }} !important;
@@ -129,7 +180,6 @@
       {%- endif -%}
     }
 
-    /* 按钮样式 - 增加特异性 */
     #block-{{ block.id }} .image-with-text__content .button,
     #block-{{ block.id }} .image-with-text__content a.button {
       {%- if block.settings.button_font_weight != 'default' -%}
@@ -196,7 +246,7 @@
         class="image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {{ block.shopify_attributes }}
       >
-        <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.image_layout contains 'alternate' %}{% cycle odd_class, even_class %}{% else %}{{ odd_class }}{% endif %}" style="margin-top: 1px !important; margin-bottom: 1px !important;">
+        <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.image_layout contains 'alternate' %}{% cycle odd_class, even_class %}{% else %}{{ odd_class }}{% endif %}">
           <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
             <div
               class="image-with-text__media image-with-text__media--{{ section.settings.image_height }} gradient color-{{ section.settings.row_color_scheme }} global-media-settings{% if block.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}"
@@ -212,7 +262,11 @@
                 {{
                   block.settings.image
                   | image_url: width: 1500
-                  | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500'
+                  | image_tag: 
+                    sizes: sizes, 
+                    widths: '165, 360, 535, 750, 1070, 1500',
+                    loading: 'lazy',
+                    alt: block.settings.image.alt | escape
                 }}
               {%- else -%}
                 {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
