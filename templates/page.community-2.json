@@ -303,7 +303,7 @@
       ],
       "name": "Desktop Multirow",
       "settings": {
-        "image_height": "adapt",
+        "image_height": "large",
         "desktop_image_width": "medium",
         "image_layout": "alternate-left",
         "heading_size": "h1",
