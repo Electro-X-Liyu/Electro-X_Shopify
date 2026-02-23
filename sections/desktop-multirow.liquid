@@ -13,14 +13,12 @@
     }
   }
 
-  /* Mobile hiding */
   @media screen and (max-width: 749px) {
     .desktop-multirow {
       display: none !important;
     }
   }
 
-  /* Full width modifications */
   .desktop-multirow .multirow__inner {
     max-width: 100% !important;
     padding-left: 0 !important;
@@ -39,19 +37,11 @@
     padding: 0 !important;
   }
 
-  /* 可选：图片拉伸 */
-  .image-with-text__media img {
-    width: 100% !important;
-    height: auto;
-  }
-
-  /* 取消副标题全大写和letter-spacing */
   .image-with-text__text--caption {
     text-transform: none !important;
     letter-spacing: normal !important;
   }
 
-  /* 按钮样式 - 增加特异性 */
   .desktop-multirow .image-with-text__content .button,
   .desktop-multirow .image-with-text__content a.button {
     min-height: calc(2.5rem + var(--buttons-border-width) * 2) !important;
@@ -61,14 +51,43 @@
     margin-top: 80px !important;
   }
 
-  /* 内容区域padding */
   .image-with-text__content.image-with-text__content--middle.image-with-text__content--desktop-left.image-with-text__content--mobile-left.image-with-text__content--large.content-container.background-transparent {
     padding: 120px !important;
   }
 
-  /* 自定义文字样式 */
+  .desktop-multirow .image-with-text__grid {
+    align-items: stretch !important;
+  }
+
+  .desktop-multirow .image-with-text__media-item {
+    height: 100% !important;
+  }
+
+  .desktop-multirow .image-with-text__media {
+    height: 100% !important;
+    min-height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    overflow: hidden !important;
+  }
+
+  .desktop-multirow .image-with-text__media img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .desktop-multirow .image-with-text__media--adapt {
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .desktop-multirow .image-with-text__media--adapt img {
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
   {%- for block in section.blocks -%}
-    /* 标题样式 */
     #block-{{ block.id }} .image-with-text__heading {
       {%- if block.settings.heading_font_weight != 'default' -%}
         font-weight: {{ block.settings.heading_font_weight }} !important;
@@ -87,7 +106,6 @@
       {%- endif -%}
     }
 
-    /* 副标题样式 - 与正文样式一致 */
     #block-{{ block.id }} .image-with-text__text--caption {
       {%- if block.settings.caption_font_weight != 'default' -%}
         font-weight: {{ block.settings.caption_font_weight }} !important;
@@ -110,7 +128,6 @@
       {%- endif -%}
     }
 
-    /* 正文样式 */
     #block-{{ block.id }} .image-with-text__text.rte {
       {%- if block.settings.text_font_weight != 'default' -%}
         font-weight: {{ block.settings.text_font_weight }} !important;
@@ -129,7 +146,6 @@
       {%- endif -%}
     }
 
-    /* 按钮样式 - 增加特异性 */
     #block-{{ block.id }} .image-with-text__content .button,
     #block-{{ block.id }} .image-with-text__content a.button {
       {%- if block.settings.button_font_weight != 'default' -%}
